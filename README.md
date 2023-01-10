@@ -78,3 +78,38 @@ $ rm -rf REPO.git
 ```
 
 ---
+
+#### Atlassian Bitbucket Guidance on Merging and Branching
+
+[Git Merge](https://www.atlassian.com/git/tutorials/using-branches/git-merge)  
+[A different merge process](https://www.udemy.com/course/azure100/learn/lecture/33163106#overview)  
+[Git Merge Strategy Options and Examples](https://www.atlassian.com/git/tutorials/using-branches/merge-strategy)  
+
+[Git merge using ort strategy](https://medium.com/the-scale-factory/configure-git-to-merge-using-ort-92fc0d450169)  
+[Git merge Recursive startegy](https://stackoverflow.com/questions/55998614/merge-made-by-recursive-strategy)  
+[What exactly is a merge commit in git?](https://stackoverflow.com/questions/18584376/git-what-exactly-is-a-merge-commit-in-git)  
+
+[Why is a 3-way merge advantageous over a 2-way merge?](https://stackoverflow.com/questions/4129049/why-is-a-3-way-merge-advantageous-over-a-2-way-merge#:~:text=A%20three%2Dway%20merge%20is,a%20change%20of%20one%20line.)  
+---
+
+#### Other useful Git Commands
+
+`git log --graph`
+
+[Pretty Git branch graphs](https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs)  
+`git log --all --decorate --oneline --graph`
+
+and If you enter the following at the command prompt once, you can use the single command
+`git adog`
+
+Summary of what the different options are for: 
+
+--all = Pretend as if all the refs in refs/ are listed on the command line as commit>. 
+--oneline = This is a shorthand for "--pretty=oneline --abbrev-commit" used together. 
+--graph= Draw a text-based graphical representation of the commit history
+--no-decorate, --decorate[=short|full|no] = 
+Print out the ref names of any commits that are shown. 
+If short is specified, the ref name prefixes refs/heads/, refs/tags/ and refs/remotes/ will not be printed. 
+If full is specified, the full ref name (including prefix) will be printed. 
+
+---
