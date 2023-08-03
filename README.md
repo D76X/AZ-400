@@ -118,7 +118,7 @@ A tag is like a branch that doesn’t change. Unlike branches, tags, after being
 
 Tagging is traditionally used to create semantic version number identifier tags that correspond to software release cycles. 
 
-Git supports two different types of tags, annotated and lightweight tags and these iffer in the amount of accompanying meta data they store. A best practice is to consider Annotated tags as public, and Lightweight tags as private. 
+Git supports two different types of tags, annotated and lightweight tags and these differ in the amount of accompanying meta data they store. A best practice is to consider Annotated tags as public, and Lightweight tags as private. 
 
 #### Annotated Tags
 
@@ -231,6 +231,347 @@ git add FileB.txt
 git commit -m "added file FileB.txt"
 git checkout main
 git push -u origin --all
+```
+
+#### Create a Release or Release Candidate branch with a tag
+
+The following approach is applicable to the **GtiFlow Workflow Development Mangement**
+as explain in the following reference article.
+
+[Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20Workflow%20is%20a%20Git,designed%20around%20the%20project%20release.)  
+
+1. Once develop has acquired enough features for a release or a redetermined release date is approaching, you fork a release branch off of develop.
+2. Creating this branch starts the next release cycle, so no new features can be added after this point
+3. Only bug fixes, documentation generation, and other release-oriented tasks should go in this branch.
+4. Once it's ready to ship, the release branch gets merged into main and tagged with a version number. 
+5. In addition, it should be merged back into develop, which may have progressed since the release was initiated.
+
+Using a dedicated branch to prepare releases makes it possible for one team to polish the current release while another team continues working on features for the next release. 
+
+6. Once the release is ready to ship, it will get merged it into main and develop.
+
+It’s important to merge back into develop because critical updates may have been added to the release branch and they need to be accessible to new features. 
+
+7. The release branch will be deleted
+
+The fact that the release branch is deleted is why often a tag is created on the main branch
+after the release branch is merged back into the main branch.
+
+The following illustrates the whole process step by step.
+
+```
+git checkout development
+git checkout -b release/rcv010000
+git push -u origin --all
+
+# here the team or part of it can harden the release branch..
+# here the team or part of it can continue to work on feature for the development branch
+
+# when QA says that the release branch is god to be shipped
+# merge the release branch back into develop
+git switch development
+git merge release/rcv010000
+
+# merge the release branch back into main
+git switch main
+git merge release/rcv010000
+# tag the main branch at the merge commit of the release branch into teh main branch
+git tag rcv010000 -lw
+
+# show the tags on the main branch
+git tag -l *rc*
+
+# the release branch can now be deleted
+git branch --delete release/rcv010000
+git push origin --delete release/rcv010000
+
+# if and wehn required by means of the tag it is possible to move the head
+# of main back to the merge commit of the correspondig release
+git switch main
+git checkout rcv010000
+
+# if a bug must be fixed on the release then a branch from the main@rc-v1.0.0
+# can be taken as a short-lived bug-fix branch
+git checkout -b bug-dev-1234
+
+# here the team or part of it can fix the bug..
+# once the bug is fixed the bug-fix branch must be merged back into main and develop
+# the bug fix may be delivered to the user of the active release before the next major release
+m that is before the next merge of develop branch into main branch
+
+git switch main
+git merge bug-dev-1234
+git tag rcv010001 -lw
+
+# now you can give this to QA and then if they say the bug is fixed and it is OK 
+# this can be pushed to production
+
+# merged the bug fix back into develop 
+git switch development
+git merge bug-dev-1234
+
+```
+
+---
+
+### DevOps Branching and Releasing - Version control management practice 
+
+Most teams leverage one of two development models to deliver quality software Gitflow and trunk-based development. 
+
+#### Git Flows
+
+[Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20Workflow%20is%20a%20Git,designed%20around%20the%20project%20release.)  
+[Git Feature Branch Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)  
+[Git Forking Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow)  
+
+#### Trunk Based Development & Feature Flags
+
+[Trunk Based Development-Introduction](https://trunkbaseddevelopment.com/)  
+[Trunk Based Development: Branch by Abstraction](https://trunkbaseddevelopment.com/branch-by-abstraction/)  
+[Trunk-based development - Atlassian](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)  
+
+A source-control branching model, where developers collaborate on code in a single branch called ‘trunk’ *, resist any pressure to create other long-lived development branches by employing documented techniques. They therefore avoid merge hell, do not break the build, and live happily ever after.
+
+Trunk-based development is a version control management practice where developers merge small, frequent updates to a core “trunk” or main branch. Since it streamlines merging and integration phases, it helps achieve CI/CD and increases software delivery and organizational performance.
+
+The main purpose of any Trunk based flow is **to iterate quickly and implement CI/CD**.
+
+#### Specific Implementation of Trunk Based Development
+
+In all practical cases one common element of all Trunk Based control management strategies is their 
+relianceof the concept of **Pull Request** to drive **Collaboration** and **Integration**.
+Another point is that in all trunk based development the **short-lived branches are always deleted**
+and all the changes are flown into the **only long-lived* branch** that matters that is **the trunk**.
+
+**Releases** may be branched off from the main trunk and deployed as such but then they are deleted
+and any **bug fix** is performed on a **short lived bug-fix branch** that is shortly converged to 
+the trunk.
+
+[GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)    
+
+#### Git Flows vs Trunk based flows
+
+[Git Flow VS GitHub Flow](https://www.youtube.com/watch?v=gW6dFpTMk8s)  
+
+---
+
+### How to investigate the folder structure on an Azure DevOps Pipeline Agent
+
+
+# https://stackoverflow.com/questions/71728509/azure-devops-powershell-not-showing-file-names-for-get-childitem
+# https://cosmin-vladutu.medium.com/azuredevops-list-files-and-folders-676386d8a2bd 
+# https://stackoverflow.com/questions/71728509/azure-devops-powershell-not-showing-file-names-for-get-childitem
+# https://cosmin-vladutu.medium.com/azuredevops-list-files-and-folders-676386d8a2bd 
+# $(Agent.BuildDirectory) = /home/vsts/work/1
+        
+
+Folder Structure
+
+[Classic release and artifacts variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/variables?view=azure-devops&tabs=batch)  
+[Runtime parameters](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/runtime-parameters?view=azure-devops&tabs=script)  
+[Azure DevOps Pipelines - Use predefined variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml)  
+[Azure Pipelines - Is there a way to view the folder structure?](https://stackoverflow.com/questions/63117797/azure-pipelines-is-there-a-way-to-view-the-folder-structure)  
+
+
+[Azure Devops Powershell not showing file names for Get-ChildItem](https://stackoverflow.com/questions/71728509/azure-devops-powershell-not-showing-file-names-for-get-childitem)  
+
+
+
+Build.ArtifactStagingDirectory = c:\agent_work\1\a
+Directory: /home/vsts/work/1/a/WebApp1
+
+```
+
+UnixMode   User             Group                 LastWriteTime           Size Name
+--------   ----             -----                 -------------           ---- ----
+-rw-r--r-- vsts             docker             04/15/2023 10:16            119 appsettings.Development.json
+-rw-r--r-- vsts             docker             04/15/2023 10:16            142 appsettings.json
+-rwxr--r-- vsts             docker             08/29/2020 20:14         173960 Microsoft.OpenApi.dll
+-rwxr--r-- vsts             docker             10/16/2021 12:54          14848 Swashbuckle.AspNetCore.Swagger.dll
+-rwxr--r-- vsts             docker             10/16/2021 12:54          86016 Swashbuckle.AspNetCore.SwaggerGen.dll
+-rwxr--r-- vsts             docker             10/16/2021 12:54        3724800 Swashbuckle.AspNetCore.SwaggerUI.dll
+-rw-r--r-- vsts             docker             04/15/2023 10:16            483 web.config
+-rw-r--r-- vsts             docker             04/15/2023 10:16           4583 WebApp1.deps.json
+-rw-r--r-- vsts             docker             04/15/2023 10:16           9216 WebApp1.dll
+-rw-r--r-- vsts             docker             04/15/2023 10:16          20468 WebApp1.pdb
+-rw-r--r-- vsts             docker             04/15/2023 10:16            469 WebApp1.runtimeconfig.json
+
+```
+---
+
+```
+ # -------------------------------------------------------
+        # VERY USEFUL
+        # notice that \*.* is replaced by \* because the Dockerfile does not have 
+        # extension and does not show up with the former wildcard
+
+        # /home/vsts/work/1/s
+        - powershell: |
+           Write-Host "Content of Build.Repository.LocalPath = $(Build.Repository.LocalPath)"
+           Get-ChildItem -Path $(Build.Repository.LocalPath)\* -Recurse -Force | Out-String -Width 160
+          errorActionPreference: continue
+          displayName: 'pwsh Get-ChildItem of Build.Repository.LocalPath = $(Build.Repository.LocalPath)'
+          continueOnError: true
+
+        - powershell: |
+           Write-Host "Content of Build.Repository.LocalPath/WebApp1 = $(Build.Repository.LocalPath)/WebApp1"
+           Get-ChildItem -Path $(Build.Repository.LocalPath)/WebApp1\* -Recurse -Force | Out-String -Width 160
+          errorActionPreference: continue
+          displayName: 'pwsh Get-ChildItem of Build.Repository.LocalPath/WebApp1 = $(Build.Repository.LocalPath)/WebApp1'
+          continueOnError: true
+
+        - powershell: |
+           Write-Host "Content of Build.ArtifactStagingDirectory = $(Build.ArtifactStagingDirectory)"
+           Get-ChildItem -Path $(Build.ArtifactStagingDirectory)\* -Recurse -Force | Out-String -Width 160
+          errorActionPreference: continue
+          displayName: 'pwsh Get-ChildItem of Build.ArtifactStagingDirectory = $(Build.ArtifactStagingDirectory)'
+          continueOnError: true
+
+        # -------------------------------------------------------
+```
+
+```
+
+# -------------------------------------------------------
+        # USEFUL
+
+        #- powershell: |
+        #   Write-Host "Content of Build.Repository.LocalPath = $(Build.Repository.LocalPath)"
+        #   Get-ChildItem -Path $(Build.Repository.LocalPath)\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Build.Repository.LocalPath = $(Build.Repository.LocalPath)'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Agent.WorkFolder = $(Agent.WorkFolder)"
+        #   Get-ChildItem -Path $(Agent.WorkFolder)\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Agent.WorkFolder = $(Agent.WorkFolder)'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Agent.BuildDirectory/s/WebApp1 = $(Agent.BuildDirectory)/s/WebApp1"
+        #   Get-ChildItem -Path $(Agent.BuildDirectory)/s/WebApp1\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Agent.BuildDirectory/s/WebApp1 = $(Agent.BuildDirectory)/s/WebApp1'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Agent.BuildDirectory/s/WebApp1 = $(Agent.BuildDirectory)/s/WebApp1"
+        #   Get-ChildItem -Path $(Agent.BuildDirectory)/s/WebApp1\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Agent.BuildDirectory/s/WebApp1 = $(Agent.BuildDirectory)/s/WebApp1'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Agent.BuildDirectory = $(Agent.BuildDirectory)"
+        #   Get-ChildItem -Path $(Agent.BuildDirectory)\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Agent.BuildDirectory = $(Agent.BuildDirectory)'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Build.SourcesDirectory = $(Build.SourcesDirectory)"
+        #   Get-ChildItem -Path $(Build.SourcesDirectory)\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Build.SourcesDirectory = $(Build.SourcesDirectory)'
+        #  continueOnError: true
+
+        #- powershell: |
+        #   Write-Host "Content of Build.SourcesDirectory = $(Build.ArtifactStagingDirectory)"
+        #   Get-ChildItem -Path $(Build.ArtifactStagingDirectory)\*.* -Recurse -Force | Out-String -Width 160
+        #  errorActionPreference: continue
+        #  displayName: 'pwsh Get-ChildItem of Build.SourcesDirectory = $(Build.ArtifactStagingDirectory)'
+        #  continueOnError: true
+
+        # ------------------------------------------------------- 
+        ## https://cosmin-vladutu.medium.com/azuredevops-list-files-and-folders-676386d8a2bd 
+        #- powershell: |
+        #   Write-Host "Show all folder content ArtifactStagingDirectory"
+        #   Get-ChildItem -Path $(Build.ArtifactStagingDirectory)\*.* -Recurse -Force
+        #  errorActionPreference: continue
+        #  displayName: 'PowerShell Script List folder structure $(Build.ArtifactStagingDirectory)'
+        #  continueOnError: true
+
+        ## https://praveenkumarsreeram.com/2022/10/24/azure-devops-tips-and-tricks-15-working-with-the-magic-folders-a-b-and-s-in-the-azure-devops-agents/ 
+        #- task: PowerShell@2
+        #  displayName: List all Folders in $(System.DefaultWorkingDirectory)
+        #  inputs:
+        #    targetType: 'inline'
+        #    pwsh: true
+        #    script: |
+        #      Get-ChildItem -path $(System.DefaultWorkingDirectory) -recurse
+
+        ## https://techcommunity.microsoft.com/t5/azure-devops/azure-devops-how-to-monitor-the-files-amp-folders-placed-into/m-p/2481508
+        #- powershell: |
+        #   Write-Host "Show all folder content"
+        #   Get-ChildItem -Path $(Agent.WorkFolder)\*.* -Recurse -Force
+        #  errorActionPreference: continue
+        #  displayName: 'PowerShell Script List folder structure $(Agent.WorkFolder)'
+        #  continueOnError: true
+
+        ## https://stackoverflow.com/questions/63117797/azure-pipelines-is-there-a-way-to-view-the-folder-structure
+        ## https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/cmd-line-v2?view=azure-pipelines&tabs=yaml&viewFallbackFrom=azure-devops  
+        #- task: CmdLine@2
+        #  displayName: show folder structure on agent
+        #  inputs:
+        #    script: echo "Structure of work folder of this pipeline:"
+        #      tree $(Agent.WorkFolder)\1 /f
+        #      echo "Build.ArtifactStagingDirectory:" 
+        #      echo "$(Build.ArtifactStagingDirectory)"
+        #      echo "Build.BinariesDirectory:" 
+        #      echo "$(Build.BinariesDirectory)"
+        #      echo "Build.SourcesDirectory:"
+        #      echo "$(Build.SourcesDirectory)"
+
+        # Docker@2 task from the pipeline editor
+        #- task: Docker@2
+        #  inputs:            
+        #    repository: 'webapps'
+            #command: 'buildAndPush'
+            #buildContext: '$(Build.ArtifactStagingDirectory)/WebApp1' #Default value: ** > Pass ** to indicate the directory that contains the Docker file.
+            #string. Required when command = build || command = buildAndPush. Default value: **/Dockerfile.
+            #Dockerfile: 'WebApp1/Dockerfile'
+            #Dockerfile: '**/WebApp1/Dockerfile'
+            #Dockerfile: '$(Build.Repository.LocalPath)/WebApp1/Dockerfile'
+            #Dockerfile: '$(Build.Repository.LocalPath)/WebApp1/Dockerfile'
+            #Dockerfile: '$(Build.SourcesDirectory)/WebApp1/Dockerfile'
+            #Dockerfile: '$(Build.ArtifactStagingDirectory)/WebApp1/Dockerfile'
+            #containerRegistry: 'containerRegistryServiceConnection'
+            #Dockerfile: '**/Dockerfile'  
+            #sourceFolder: '$(Build.Repository.LocalPath)/ArmTemplates/bin/Release/'
+
+        # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/docker-v2?view=azure-pipelines&tabs=yaml
+        #- task: Docker@2
+        #  displayName: Login to ACR
+        #  inputs:
+        #    command: login
+        #    containerRegistry: dockerRegistryServiceConnection1
+        #- task: Docker@2
+        #  displayName: Login to Docker Hub
+        #  inputs:
+        #    command: login
+        #    containerRegistry: dockerRegistryServiceConnection2
+        #- task: Docker@2
+        #  displayName: Build and Push
+        #  inputs:
+        #    command: buildAndPush
+        #    repository: contosoRepository # username/contosoRepository for DockerHub
+        #    tags: |
+        #      tag1
+        #      tag2  
+        # ----------------------------------------------------------------------------        
+        #- task: Docker@2
+        #  displayName: Build and Push an image to Azure Container Registry
+        #  inputs:
+        #    command: buildAndPush
+        #    repository: $(imageRepository)
+        #    dockerFile: $(dockerfilePath)            
+        #    #containerRegistry: $(containerRegistry)
+        #    containerRegistry: $(containerRegistryServiceConnection)
+        #    tags: |
+        #      $(tag)
+        # ----------------------------------------------------------------------------
 ```
 
 ---

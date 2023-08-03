@@ -1,0 +1,3866 @@
+https://www.udemy.com/course/practice-exams-az400-microsoft-azure-devops-engineer/
+----------------------------------------------------------------
+AZ-400 Microsoft Azure DevOps Engineer Exam 1 45 questions
+AZ-400 Microsoft Azure DevOps Engineer Exam 2 40 questions
+AZ-400 Microsoft Azure DevOps Engineer Exam 3 28 questions
+----------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q0X: 
+question text..
+Which of the following is the option you would choose?
+
+A0X-1: 
+A0X-2: 
+A0X-3: 
+A0X-4: 
+
+MY ANSWER TO PT01-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+
+--------------------------------
+Practice Test 1 45 questions
+--------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q45: 
+
+
+You have a multi-tier application that has an 
+Azure Web Apps front end 
+and 
+an Azure SQL Database back end.
+
+You need to recommend a solution to capture and store telemetry data. 
+
+The solution must meet the following requirements
+
+ - Support using ad-hoc queries to identify baselines.
+ - Trigger alerts when metrics in the baseline are exceeded.
+ - Store application and database metrics in a central location.
+
+What should you include in the recommendation?
+
+A45-1: A. Azure Event Hubs
+A45-2: B. Azure SQL Database Intelligent Insights
+A45-3: C. Azure Application Insights
+A45-4: D. Azure Log Analytics
+A45-5: 
+
+
+MY ANSWER TO PT01-Q45
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+CORRECT ANSWER TO PT01-Q45
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+Suggested Answer: Suggested Answer: D
+--------------------------------------------------------------------------
+question posts
+https://www.examtopics.com/discussions/microsoft/view/24967-exam-az-400-topic-14-question-40-discussion/
+
+Azure Platform as a Service (PaaS) resources, like 
+ - Azure SQL 
+ - Web Sites (Web Apps), 
+
+can emit performance metrics data natively to ** Log Analytics. **
+
+The Premium plan will retain up to 12 months of data, 
+giving you an excellent baseline ability.
+
+There are two options available in the Azure portal for analyzing data 
+stored in Log analytics and for creating queries for ad hoc analysis.
+
+Incorrect Answers:
+B: ** Intelligent Insights** analyzes database performance by comparing the
+database workload from the last hour with the past seven-day baseline workload. 
+However, we need handle application metrics as well!
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/resource-logs#send-to-log-analytics-workspace
+
+REFS: PT01-Q28: 
+
+----------------------------------------
+
+Intelligent Insights using AI to monitor and troubleshoot database performance (preview)
+https://learn.microsoft.com/en-us/azure/azure-sql/database/intelligent-insights-overview?view=azuresql-mi
+
+Intelligent Insights in 
+ - Azure SQL Database  
+ - Azure SQL Managed Instance 
+
+lets you know what is happening with your database performance.
+
+iT uses built-in intelligence to continuously monitor database usage 
+through artificial intelligence and detect 
+ - disruptive events that cause poor performance. 
+
+Once detected, a detailed analysis is performed that generates 
+an Intelligent Insights resource log called SQLInsights
+****
+unrelated to Azure Monitor SQL Insights (preview)
+
+Monitor Azure SQL Database with Azure Monitor
+https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor?view=azuresql-db&viewFallbackFrom=azuresql-mi
+****
+
+----------------------------------------
+
+----------------------------------------
+
+Monitor Azure SQL Database with Azure Monitor
+https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor?view=azuresql-db&viewFallbackFrom=azuresql-mi
+
+Some services in Azure have a focused, pre-built monitoring dashboard in
+the Azure portal that can be enabled to provide a starting point for 
+monitoring your service. 
+
+These special dashboards are called "insights" and are 
+*** not *** enabled by default. 
+
+For more on using Azure Monitor SQL Insights for all products in 
+the Azure SQL family, see 
+Monitor your SQL deployments with SQL Insights (preview).
+https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-insights-overview?view=azuresql-vm
+
+After creating a monitoring profile, you can configure your 
+** 
+Azure Monitor SQL Insights for SQL-specific metrics for
+-----------------------------
+- Azure SQL Database 
+- Azure SQL Managed Instance 
+- SQL Server on Azure VMs.
+-----------------------------
+
+----------------------------------------
+
+Monitor your SQL deployments with SQL Insights (preview).
+https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-insights-overview?view=azuresql-vm
+
+SQL Insights (preview) is a comprehensive solution for monitoring 
+any product in the Azure SQL family.
+SQL Insights uses ** dynamic management views** to expose the data
+that you need to monitor 
+ - health 
+ - diagnose problems 
+ - tune performance.
+
+SQL Insights performs all monitoring remotely. 
+Monitoring agents on dedicated virtual machines connect to your SQL
+resources and remotely gather data. 
+
+The gathered data is stored in ** Azure Monitor Logs ** 
+to enable easy 
+ 
+ - aggregation 
+ - filtering 
+ - trend analysis. 
+
+----------------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q44: 
+
+You have an Azure DevOps organization named Contoso and an Azure subscription.
+
+You use Azure DevOps to build a containerized app named App1 and deploy App1
+to an Azure container instance named ACI1. 
+
+You need to restart ACI1 when App1 stops responding. 
+What should you do?
+
+A44-1: A. Add a liveness probe to the YAML configuration of App1.
+A44-2: B. Add a readiness probe to the YAML configuration of App1.
+A44-3: C. Use Connection Monitor in Azure Network Watcher.
+A44-4: D. Use IP flow verify in Azure Network Watcher.
+A43-5: 
+
+
+MY ANSWER TO PT01-Q44
+--------------------------------------------------------------------------
+A. Add a liveness probe to the YAML configuration of App1
+--------------------------------------------------------------------------
+CORRECT ANSWER TO PT01-Q44
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+Suggested Answer: A. Add a liveness probe to the YAML configuration of App1
+--------------------------------------------------------------------------
+question posts
+https://www.examtopics.com/discussions/microsoft/view/35946-exam-az-400-topic-3-question-6-discussion/
+
+REFS
+
+Configure liveness probes
+https://learn.microsoft.com/en-us/azure/container-instances/container-instances-liveness-probe?source=recommendations
+
+Containerized applications may run for extended periods of time, resulting 
+in broken states that may need to be repaired by restarting the container. 
+Azure Container Instances supports liveness probes so that you can configure
+your containers within your container group to restart if critical functionality
+is not working.
+
+Configure readiness probes
+https://learn.microsoft.com/en-us/azure/container-instances/container-instances-readiness-probe
+
+For containerized applications that serve traffic, you might want to verify
+that your container is ready to handle incoming requests. 
+Azure Container Instances supports readiness probes to include 
+configurations so that your container can't be accessed under certain 
+conditions. 
+For example, a container application might need to load a large data set 
+during startup, and you don't want it to receive requests during this time.
+
+-------------------------------------------------------------------------
+PT01-Q43: 
+
+You configure an Azure Application Insights availability test. 
+
+You need to notify the customer services department at your company 
+by email when availability is degraded. 
+
+You create an Azure logic app that will handle the email and follow-up
+actions. 
+
+---------------------------------------------------------------
+Which type of trigger should you use to invoke the logic app?
+---------------------------------------------------------------
+
+A43-1: A. an HTTPWebhook trigger
+A43-2: B. an HTTP trigger
+A43-3: C. a Request trigger
+A43-4: D. an ApiConnection trigger
+A43-5: 
+
+
+MY ANSWER TO PT01-Q43
+--------------------------------------------------------------------------
+A43-3: C. a Request trigger
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q43
+--------------------------------------------------------------------------
+Suggested Answer: 
+--------------------------------------------------------------------------
+question posts
+https://www.examtopics.com/discussions/microsoft/view/36099-exam-az-400-topic-3-question-5-discussion/
+
+REFS: PT01-Q25
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-webhooks
+
+Correct answer is C.
+
+-------------------
+HTTPWebhook trigger < inbound subscription
+-------------------
+This trigger makes your logic app callable by creating an endpoint that can 
+register a subscription by calling the specified endpoint URL. When you create
+this trigger in your workflow, an outgoing request makes the call to register
+the subscription.
+
+-------------------
+HTTP trigger        > outbound (scheduled)
+-------------------
+This trigger sends a request to the specified HTTP or HTTPS endpoint based on
+the specified recurrence schedule. The trigger then checks the response to 
+determine whether the workflow runs.
+
+-------------------
+Request trigger		< inbound
+-------------------
+This trigger makes your logic app callable by creating an endpoint that can
+accept incoming requests.
+
+https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-workflow-actions-triggers
+
+-------------------------------------------------------------------------
+PT01-Q42: 
+
+You configure Azure Application Insights and the 
+** shared service plan tier ** 
+for a web app.
+
+You enable ** Smart Detection **.
+
+You confirm that standard metrics are visible in the logs, but when you
+test a failure, you do not receive a Smart Detection notification. 
+
+What prevents the Smart Detection notification from being sent?
+
+A42-1: A. You must enable the Snapshot Debugger for the web app.
+A42-2: B. Smart Detection uses the first 24 hours to establish the normal behavior of the web app.
+A42-3: C. The web app is configured to use the shared service plan tier.
+A42-4: D. You must restart the web app before Smart Detection is enabled.
+A42-5: 
+
+
+MY ANSWER TO PT01-Q42
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q42
+--------------------------------------------------------------------------
+Suggested Answer: B. Smart Detection uses the first 24 hours to establish the normal behavior of the web app
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/74090-exam-az-400-topic-3-question-3-discussion/
+
+REFS
+Smart detection in Application Insights
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/proactive-diagnostics
+
+After setting up Application Insights for your project, and if your app generates
+a certain minimum amount of data, Smart Detection of Failure Anomalies takes 24
+hours to learn the normal behavior of your app, before it is switched on and can
+send alerts
+
+-------------------------------------------------------------------------
+PT01-Q41: 
+
+You have an Azure DevOps organization named Contoso and an Azure subscription.
+
+The subscription contains an Azure virtual machine scale set named VMSS1 that
+is configured for autoscaling.
+
+You have a project in Azure DevOps named Project1. 
+Project1 is used to build a web app named App1 and deploy App1 to VMSS1.
+
+*****************************************************************************
+You need to ensure that an email alert is generated 
+whenever VMSS1 scales in or out.
+*****************************************************************************
+
+Solution-A: From Azure Monitor, configure the autoscale settings.
+Does this meet the goal?
+
+A41-1A: Yes 
+A41-2A: No	<< NO
+
+https://www.examtopics.com/discussions/microsoft/view/76020-exam-az-400-topic-3-question-29-discussion/
+Solution-B: From Azure Monitor, create an action group.
+Does this meet the goal?
+
+A41-1B: Yes <<
+A41-2B: No
+
+https://www.examtopics.com/discussions/microsoft/view/76270-exam-az-400-topic-3-question-28-discussion/
+Solution-C: From Azure DevOps, 
+configure the Service hooks settings for Project1.
+Does this meet the goal?
+
+A41-1C: Yes 
+A41-2C: No <<
+
+
+MY ANSWER TO PT01-Q41
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q41
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+
+POST-1
+https://www.examtopics.com/discussions/microsoft/view/76020-exam-az-400-topic-3-question-29-discussion/
+Suggested Answer: A41-1B: Yes <<
+
+An action group is a collection of notification preferences defined by the 
+owner of an Azure subscription. 
+------------------
+ - Azure Monitor 
+ - Service Health 
+ - Azure Advisor 
+------------------
+alerts use action groups to notify users that an alert has been triggered.
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
+
+POST-2
+https://www.examtopics.com/discussions/microsoft/view/76270-exam-az-400-topic-3-question-28-discussion/
+
+-------------------------------------------------------------------------
+PT01-Q40: 
+
+You have an Azure subscription that contains multiple Azure services.
+You need to send an SMS alert when scheduled maintenance is planned for
+the Azure services.
+
+Which two actions should you perform?
+
+Each correct answer presents part of the solution.
+Each correct selection is worth one point.
+
+A40-1: A. Enable Azure Security Center.
+A40-2: B. Create and configure an Azure Monitor alert rule.
+A40-3: C. Create an Azure Service Health alert.
+A40-4: D. Create and configure an action group.
+A40-5: 
+
+
+MY ANSWER TO PT01-Q40
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q40
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/74028-exam-az-400-topic-3-question-1-discussion/
+Suggested Answer:
+C. Create an Azure Service Health alert. Most Voted
+D. Create and configure an action group. Most Voted
+
+REFS
+
+Quickstart: Send an SMS message
+https://learn.microsoft.com/en-us/azure/communication-services/quickstarts/sms/send?tabs=windows&pivots=platform-azcli
+
+Azure: Using Service Health to alert about planned maintenance
+https://www.techkb.onl/azure-using-service-health-to-alert-against-planned-maintenance/
+
+Routine Planned Maintenance Notifications for Azure App Service
+https://azure.github.io/AppService/2022/02/01/App-Service-Planned-Notification-Feature.html
+
+Azure App Service is regularly updated to provide new features, new runtime versions,
+performance improvements, and bug fixes. One of the top feature requests from our 
+customers is the ability to receive notifications before one of the platform updates 
+occurs.
+
+- With these notifications, you will be able to receive email or SMS text alerts 
+  - before a platform upgrade starts
+  - while it is in progress
+  - and when the upgrade completes. 
+
+This article shows how to set up 
+ - email and SMS alerts
+ - , as well as Function and Logic Apps, to consume these events.
+
+***
+For critical security or livesite updates, we may not be able to send 
+notifications as these updates are time sensitive.
+***
+
+The maintenance notifications for App Service are surfaced as events in 
+** Azure Monitor **. 
+
+> Viewing upgrade notifications
+- Azure portal, go to Home > Monitor > Service Health > Planned maintenance
+
+> Setting up alerts
+- Home > Monitor > Service Health > Add service health alert
+  At the Service(s) box, choose all items starting with App Service
+- At the Event type box, check Planned maintenance.
+- In the Actions section, click Add action groups
+- choose Email/SMS message/Push/Voice at the Notification type.
+- If you want to hook up your custom automation, in the Actions section, 
+  choose Azure Function or Logic App
+  ...
+
+-------------------------------------------------------------------------
+PT01-Q39: 
+
+You build an iOS app. 
+You receive crash reports from Crashlytics. 
+
+You need to capture the following data:
+Crash-free users
+Custom events
+Breadcrumbs
+
+What should you do?
+
+
+A39-1: A. Configure the xcworkspace file in the project
+A39-2: B. Add the GoogleAnalytics pod to the app.
+A39-3: C. Configure the Crashlytics pod in the app.
+A39-4: D. Import the Firebase module to UIApplicationDelegate.
+
+MY ANSWER TO PT01-Q39
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q39
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/78910-exam-az-400-topic-2-question-30-discussion/
+Suggested Answer:  D. Import the Firebase module to UIApplicationDelegate.
+
+
+REFS
+Firebase Crashlytics - Track, prioritize, and fix crashes faster
+https://firebase.google.com/products/crashlytics
+Get started with Firebase Crashlytics
+https://firebase.google.com/docs/crashlytics/get-started?platform=ios
+
+configure the Firebase module:
+Import the Firebase module in your App struct or UIApplicationDelegate:
+
+-------------------------------------------------------------------------
+PT01-Q38: 
+
+You have an Azure virtual machine that is monitored by using Azure Monitor. 
+The virtual machine has the Azure Log Analytics agent installed. 
+You plan to deploy the Service Map solution from the Azure Marketplace.
+
+What should you deploy to the virtual machine to support the Service Map solution?
+
+
+A38-1: A. the Dependency agent
+A38-2: B. the Telegraf agent
+A38-3: C. the Windows Azure diagnostics extension (WAD)
+A38-4: D. the Azure monitor agent
+
+MY ANSWER TO PT01-Q38
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q38
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/78608-exam-az-400-topic-2-question-28-discussion/
+Suggested Answer:  A. the Dependency agent
+
+Use the Dependency agent if you need to use the Map feature 
+VM insights or the Service Map solution.
+
+Note: Consider the following when using the Dependency agent:
+
+The Dependency agent requires the Log Analytics agent to be installed 
+on the same machine.
+On Linux computers, the Log Analytics agent must be installed before 
+the Azure Diagnostic Extension.
+On both the Windows and Linux versions of the Dependency Agent, 
+data collection is done using a user-space service and a kernel driver.
+
+REFS
+
+Service Map - Azure Marketplace
+https://azuremarketplace.microsoft.com/en/marketplace/apps/Microsoft.ServiceMapOMS?tab=Overview
+
+Use the Service Map solution in Azure
+https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/vm/service-map
+Service Map automatically discovers application components 
+on Windows and Linux systems and maps the communication between services. 
+
+***
+No configuration is required other than the installation of an agent.
+***
+
+----------------------------------
+How to deploy and use Service Map. 
+----------------------------------
+
+The prerequisites of the solution are:
+
+ -1 A Log Analytics workspace in a supported region.
+ -2 The Log Analytics agent installed on the Windows computer 
+    or 
+    Linux server connected to the same workspace that you enabled the solution with.
+ -3 **The Dependency agent** installed on the Windows computer or Linux server.
+
+Azure Monitor Agent overview
+https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview
+
+----------------------------------
+Overview of VM insights
+https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-overview?source=docs
+----------------------------------
+Service Map will be retired on September 30, 2025. 
+make sure to migrate to 
+Azure Monitor VM insights 
+before this date.
+
+-------------------------------------------------------------------------
+PT01-Q37: 
+
+You have a web app hosted on Azure App Service. The web app stores data in an Azure SQL database.
+You need to generate an alert when there are 10,000 simultaneous connections to the database. 
+The solution must minimize development efforts. 
+
+Which option should you select in the Diagnostics settings of the database?
+
+
+A37-1: A. Send to Log Analytics
+A37-2: B. Stream to an event hub
+A37-3: C. Archive to a storage account
+A37-4: 
+
+MY ANSWER TO PT01-Q37
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q37
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/52925-exam-az-400-topic-2-question-26-discussion/
+Suggested Answer: A. Send to Log Analytics
+ENABLE DIAGNOSTICS TO LOG ANALYTICS
+This configuration is done PER DATABASE
+1. Click on Diagnostics Settings and then Turn On Diagnostics
+
+REFS
+AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER – PART #1
+https://techcommunity.microsoft.com/t5/azure-database-support-blog/azure-sql-db-and-log-analytics-better-together-part-1/ba-p/794833
+
+STEP-1 – FIRST CREATE AN LOG ANALYTICS WORKSPACE
+
+STEP-2 – ENABLE **AUDIT** TO LOG ANALYTICS
+At 
+**Server level** 
+or at 
+** Database level**
+enable auditing and send log to 
+Log Analytics and select the workspace you just created
+
+STEP-3 – ENABLE **DIAGNOSTICS** TO LOG ANALYTICS
+*This configuration is done PER DATABASE
+Click on Diagnostics Settings and then Turn On Diagnostics
+Select to Send to Log Analytics and select the Log Analytics workspace. 
+For this sample I will selected
+
+STEP-4 – QUERING LOG ANALYTICS
+Just go to the Log Analytics workspace and query the database using 
+a language called Kusto.
+
+STEP-5
+YOU CAN ALSO MONITOR USING AZURE SQL ANALYTICS (PREVIEW)
+
+
+AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER – PART #2 – ALERTS
+https://techcommunity.microsoft.com/t5/azure-database-support-blog/azure-sql-db-and-log-analytics-better-together-part-2-alerts/ba-p/795360
+To create an Alert based on a query, just click on 
+>> New alert rule
+>> set CONDITIONS
+>> set threshold
+>> set frequency
+>> st Action Group > 
+   | email | sms | pysh Azure App | call mobile 
+   | runbook on Automation Account | Azure Function
+   | Logic App | Web Hook | ITSM
+
+-------------------------------------------------------------------------
+PT01-Q36: 
+
+You create an alert rule in Azure Monitor as shown in the following exhibit.
+
+A36-1: A. a failed attempt to delete the ASP-9bb7 resource
+A36-2: B. a change to a role assignment for the ASP-9bb7 resource
+A36-3: C. a successful attempt to delete the ASP-9bb7 resource
+A36-4: D. a failed attempt to scale up the ASP-9bb7 resource
+
+
+MY ANSWER TO PT01-Q36
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q36
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/49130-exam-az-400-topic-2-question-25-discussion/
+Suggested Answer: A. a failed attempt to delete the ASP-9bb7 resource
+
+Answer is A.
+The alert is triggered on a failure, so B and C are excluded right away.
+The A option, deleting, is an administrative action.
+The D option, scaling, are NOT an administrative action
+
+
+-------------------------------------------------------------------------
+PT01-Q35: 
+
+You have an Azure DevOps organization named Contoso. 
+You need to receive Microsoft Teams notifications when work items are updated. 
+What should you do?
+
+
+A35-1: A. From Azure DevOps, configure a service hook subscription
+A35-2: B. From Microsoft Teams, configure a connector
+A35-3: C. From the Microsoft Teams admin center, configure external access
+A35-4: D. From Microsoft Teams, add a channel
+A35-5: E. From Azure DevOps, install an extension 
+
+
+MY ANSWER TO PT01-Q35
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q35
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/36353-exam-az-400-topic-2-question-24-discussion/
+Suggested Answer: A. From Azure DevOps, configure a service hook subscription
+
+REFS
+
+-----------------------------------------
+OPTION-1: Set up **service hooks**
+-----------------------------------------
+Create a **service hook** for Azure DevOps with Microsoft Teams
+https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/teams?view=azure-devops
+See activity about your Azure DevOps Server (2017.2 and later) 
+projects directly in your Microsoft Teams channel, 
+for example:
+ - Work item updates
+ - Pull requests
+ - Code commits
+ - Builds
+ - Release deployments and approvals
+
+it is a two-step process
+
+STEP-1
+set up a connector in Teams
+
+STEP-2
+set up one or more **service hook subscriptions** in 
+your Azure DevOps Server project.
+
+- Project administrator permissions are required to 
+  create service hook subscriptions.
+- Events for YAML pipelines are not supported
+
+This 2-step process to bring events 
+from Azure DevOps 
+into Microsoft Teams 
+can be accomplished as follows
+- From Teams
+- From Azure DevOps Server
+
+-----------
+From Teams
+-----------
+>> select '...', the ellipsis, or at the upper navigation 
+of your team channel
+>> select Connectors.
+>> Select Azure DevOps from the list.
+>> Add
+>> Configure the connector.
+>> Copy the generated webhook URL. 
+  Provide this URL when you're setting up service hook subscriptions 
+  in your Azure DevOps project.
+  This URL is where your Microsoft Teams Service listens for 
+  notifications sent by the Azure DevOps Connector
+
+---------------------------
+From Azure DevOps Server
+---------------------------
+>> From your project page (https://mycompany/tfs/[collection]/[project])
+>> Service Hooks in the settings:
+>> Click Create subscription and select the Teams service.
+>> Choose the type of activity you want to appear in your Teams channel
+>> Paste the webhook URL from the Teams connector configuration step and select Finish.
+
+-----------------------------------------
+OPTION-2 : Use specific Integration Apps
+-----------------------------------------
+
+[Azure Pipeline]
+Use Azure Pipelines with Microsoft Teams
+https://learn.microsoft.com/en-us/azure/devops/pipelines/integrations/microsoft-teams?view=azure-devops
+helps to easily monitor the events in your pipelines.
+
+[Azure Boards]
+Use the Azure Boards app in Microsoft Teams
+helps to easily create and monitor work items from your Teams channels. 
+https://learn.microsoft.com/en-us/azure/devops/boards/integrations/boards-teams?view=azure-devops
+Users can create work items using a command
+convert conversations in the channel into work items.
+set up and manage subscriptions to get notifications in their channel whenever work items are created or updated.
+
+[Azure Repos]
+Use Azure Repos with Microsoft Teams
+helps to easily monitor the events in your repositories. 
+https://learn.microsoft.com/en-us/azure/devops/repos/integrations/repos-teams?view=azure-devops
+The app supports monitoring both 
+ - Git and Team Foundation Version Control (TFVC) repos 
+ - but it doesn't support integration with GitHub repos.
+
+-------------------------------------------------------------------------
+PT01-Q34: 
+
+You are integrating Azure Pipelines and Microsoft Teams. 
+You install the Azure Pipelines app in Microsoft Teams.
+
+You have an Azure DevOps organization named Contoso that contains a project
+name Project1. 
+
+You subscribe to Project1 in Microsoft Teams. 
+You need to ensure that you only receive events about failed builds in 
+Microsoft Teams. 
+
+What should you do first?
+
+
+A34-1: A. From Microsoft Teams, run @azure pipelines subscribe https://dev.azure.com/Contoso/Project1.
+A34-2: B. From Azure Pipelines, add a Publish Build Artifacts task to Project1.
+A34-3: C. From Microsoft Teams, run @azure pipelines subscriptions.
+A34-4: D. From Azure Pipelines, enable continuous integration for Project1
+
+
+MY ANSWER TO PT01-Q34
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q34
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/35955-exam-az-400-topic-2-question-23-discussion/
+Suggested Answer: A. From Microsoft Teams, run @azure pipelines subscribe https://dev.azure.com/Contoso/Project1. 
+
+REFS
+Use Azure Pipelines with Microsoft Teams
+https://learn.microsoft.com/en-us/azure/devops/pipelines/integrations/microsoft-teams?view=azure-devops
+The Azure Pipelines app for Microsoft Teams lets you monitor events for your pipelines.
+
+
+Microsoft DevOps Solutions: Automating Communication
+https://app.pluralsight.com/library/courses/microsoft-devops-solutions-automating-communication/table-of-contents 
+
+***
+Demo: Integrating Build Failure Notification with Microsoft Teams > [ ChatOps 101 ]
+***
+https://app.pluralsight.com/course-player?clipId=aa31fac5-8808-49c2-a9d7-4b7a6b1e7f1c
+Pipeline Events that Teams can subscribe to
+ - Build Completed > On Build Status: Any, Succeeded > Partially Succeeded > **Failed > Stopped
+ - Run Stage Approval Completed >
+ - Run Stage state changed >
+ - Run Stage waiting for approval >
+ - Run state changed >
+ - ...
+
+More on this Topic 
+Path : Continuous Feedback on Microsoft Azure for DevOps Engineers
+https://app.pluralsight.com/paths/skills/continuous-feedback-on-microsoft-azure-for-devops-engineers
+
+-------------------------------------------------------------------------
+PT01-Q33: 
+
+You have a private GitHub repository. 
+You need to display the commit status of the repository on Azure Boards.
+
+What should you do first?
+
+A33-1: A. Configure multi-factor authentication (MFA) for your GitHub account.
+A33-2: B. Add the Azure Pipelines app to the GitHub repository.
+A33-3: C. Add the Azure Boards app to the repository.
+A33-4: D. Create a GitHub action in GitHub.
+
+
+MY ANSWER TO PT01-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/54343-exam-az-400-topic-2-question-22-discussion/
+Suggested Answer: C. Add the Azure Boards app to the repository.
+
+To connect Azure Boards to GitHub.com
+ 
+ 1- connect and configure from Azure Boards
+ 
+ alternatively 
+ 
+ 2- install and configure the Azure Boards app from within GitHub
+
+Both methods support authenticating and operating via the app 
+rather than an individual!
+
+REFS
+Connect Azure Boards to GitHub
+Add a GitHub connection using PAT
+Register Azure DevOps in GitHub as an OAuth App - GitHub Enterprise Server
+https://learn.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops
+
+Microsoft DevOps Solutions: Communicating and Collaborating with Stakeholders
+Demo: Integrating Your Azure Boards with GitHub
+https://app.pluralsight.com/course-player?clipId=8b53e231-88f3-42c6-b7ce-8bb817468014
+
+-------------------------------------------------------------------------
+PT01-Q32: 
+
+
+You are monitoring the health and performance of an Azure web app by 
+using Azure Application Insights.
+
+You need to ensure that an alert is sent when the web app has a sudden
+rise in performance issues and failures.
+
+What should you use?
+
+
+A32-1: A. custom events
+A32-2: B. Application Insights Profiler
+A32-3: C. usage analysis
+A32-4: D. Smart Detection
+A32-5: E. Continuous export
+
+
+MY ANSWER TO PT01-Q32
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q32
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/45570-exam-az-400-topic-2-question-20-discussion/
+Suggested Answer: D. Smart Detection
+
+
+REFS
+
+Smart detection in Application Insights
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/proactive-diagnostics
+
+Smart detection automatically warns you of about the following in your web application
+
+ - potential performance problems 
+ - failure anomalies 
+ - sudden rise in failure rates or abnormal patterns 
+   in client or server performance 
+ - you get an alert
+ - access the detections issued by smart detection from 
+   - emails you receive 
+   - from the smart detection pane
+
+What problems are detected?
+ 
+  -1 Failure Anomalies
+     Notifies if the failure rate goes outside the expected envelope. 
+	 With machine learning set the expected rate of failed requests
+	 for your app, correlating with load and other factors.
+  
+  -2 Performance Anomalies
+     if response time of an operation or dependency duration is slowing 
+	 down compared to the historical baseline. 
+	 identify an anomalous pattern in response time or page load time.
+
+  -3 General Degradation Issues
+     - Trace degradation
+	 - Memory leak
+	 - Abnormal rise in Exception volume
+	 - Security anti-patterns.
+
+Migrate Azure Monitor Application Insights smart detection to alerts (preview)
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-smart-detections-migration
+
+Take advantage of the full capabilities of Azure Monitor alerts
+ 
+  - You can configure notification by 
+  - email, SMS, voice call, or push notifications. 
+  
+  - You can configure actions like 
+  - calling a secure webhook
+  - logic app
+  - automation runbook
+  
+  - Action groups further management at scale by allowing you to configure actions
+    once and use them across multiple alert rules.
+
+  - Rule-based suppression of notifications:
+
+-------------------------------------------------------------------------
+PT01-Q31: 
+
+You have an Azure DevOps project named Project1 and an Azure subscription 
+named Sub1. 
+
+Sub1 contains an Azure virtual machine scale set named VMSS1.
+
+VMSS1 hosts a web application named WebApp1. 
+WebApp1 uses stateful sessions.
+The WebApp1 installation is managed by using the Custom Script extension.
+The script resides in an Azure Storage account named sa1.
+
+You plan to 
+ - make a minor change to a UI element of WebApp1 
+ and 
+ - to gather user feedback about the change.
+
+You need to 
+ - implement limited user testing for the new version of WebApp1 on VMSS1.
+
+Which three actions should you perform?
+
+NOTE: Each correct selection is worth one point.
+
+A31-1: A. Modify the load balancer settings of VMSS1.
+A31-2: B. Redeploy VMSS1.
+A31-3: C. Upload a custom script file to sa1.
+A31-4: D. Modify the Custom Script extension settings of VMSS1.
+A31-5: E. Update the configuration of a virtual machine in VMSS1.
+
+
+MY ANSWER TO PT01-Q31
+--------------------------------------------------------------------------
+A31-3: C. Upload a custom script file to sa1.
+A31-4: D. Modify the Custom Script extension settings of VMSS1.
+A31-5: E. Update the configuration of a virtual machine in VMSS1.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q31
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/17247-exam-az-400-topic-2-question-14-discussion/
+
+AZ-400 Azure VM Extension
+https://www.udemy.com/course/azure100/learn/lecture/33596474#overview
+ARM Template - VM scale set extension
+https://www.udemy.com/course/azure100/learn/lecture/33596546#overview
+ - ARM Template that apply a Custom Script Extension to each VM of the VMSS
+   for this use the [extensionProfile].[extensions] section of the ARM template
+   In this example two different extensions are applied
+
+   Extension-1
+   with 
+   ------------------------------------------------------   
+   "publisher": "Microsoft.VisualStudio.Services",
+   "type": "TeamServicesAgent",   
+   "name": "TeamServicesAgent",
+   ...
+   ------------------------------------------------------
+   This extension is the VM Extension that allows a VM, including a VM that is
+   part of a VMSS to register itself with an Azure DevOps Deployment Group.
+
+   Extension-2
+   with 
+   ------------------------------------------------------   
+   "publisher": "Microsoft.Compute", 
+   "type": "CustomeScriptExtension",   
+   "name": "CustomeScriptExtension",
+   "settings":{
+		"fileUris": [
+			"https://..."  << The SAS to a BLOB  that holds the file with the script to execute
+			],
+		"commandToExecute": "powershell -ExecutePolicy Unrestricted ..."
+   }
+   ...
+   ------------------------------------------------------
+
+
+ - Install IIS
+ - Install the ASP.Net Core Hosting Bunlde on each VS SS IIS instance
+ - You may use the same technique to install a WebApp on each IIS instance
+ - The WebApp binaries may be stored on a storage account
+
+Suggested Procedures
+
+-------------------
+Suggestion-1
+-------------------
+
+It seems it can be done in 2 ways:
+
+Option1 :
+ - C. Upload a custom script file to sa1.
+   With this you Upload new script with newer version of code to be deployed
+   to the VMs to the SA.
+
+ - D. Modify the Custom Script extension settings of VMSS1.
+   With this you point the Scaleset to the new script in the storage account.
+   For example, in the case of a deplyment with a ARM template you may do so
+   by means of a modification to the "fileUris" element of the ARM tamplate.
+
+ - E. Update the configuration of a virtual machine in VMSS1.
+   For example..
+   Increase the number of VMS in scaleset from say 3 to 4. 
+   With this change , the new VM that is VM-4 will be started and the new 
+   version of the code downloaded on it. 
+   The first 3 VMS will continue to run with older version of code.
+
+-------------------
+Suggestion-2
+-------------------
+
+The answer is CDE. 
+
+A and B are simply not related. 
+A31-1: A. Modify the load balancer settings of VMSS1.
+A31-2: B. Redeploy VMSS1.
+
+We do not need to make any changes to the LOAD BALANCER FOR THE scaleset
+to deploy a small UI change.
+
+The rest was explained in Update App deployment section of 
+---------------------------------------------------------------------
+Tutorial: Canary Deployment for Azure Virtual Machine Scale Sets
+https://cloudblogs.microsoft.com/opensource/2018/06/18/tutorial-canary-deployment-for-azure-virtual-machine-scale-sets/
+---------------------------------------------------------------------
+Canary deployment 
+
+- It is a pattern that rolls out releases to a subset of users or servers. 
+- It deploys the changes to a small set of servers.
+- It allows you to test and monitor how the new release works before 
+  rolling the changes to the rest of the servers.
+
+- VMSS allow you to manage large number of identical VMs with simple instructions
+- ** yet allow you to update specific VMs. **
+
+VMSS BUILD 
+
+- you can build your VMSS with a 
+- customized image 
+- publicly available OS images 
++ VM extension scripts to setup all required environments.
+
+VMSS UPDATE
+
+- update its configuration with a new image 
+- or extension scripts
+- Then manually trigger the update of the VMSS instances
+  either ** all ** in one instruction 
+  or 
+  **selectively pick some VMs to be updated.**
+
+CANARY ON VMSS
+
+- The ability to update ** individual VMs in VMSS ** allows us
+  to control the number of VMs that will be updated to the new releases
+
+ - STEP-1 
+   (Existing) Create the initial VMSS which host your services.
+ 
+ -STEP-2
+  Update the VMSS configuration, either point to new customized image,
+  or update the extension scripts, which contains the new release of your
+  services.
+ 
+ -STEP-3: For Canary Deployment
+ **Selectively update individual instances** 
+ to the new release according to the configuration changes.
+
+ -STEP-4
+  Verify the new release works.
+
+ -STEP-5
+  Update the rest of instances to the new release.
+
+-------------------------------------------------------------------------
+PT01-Q30: This is a duplicate of Q24 
+-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q29: 
+
+Your company creates a web application. You need to recommend a solution
+that automatically sends to Microsoft Teams a daily summary of the 
+exceptions that occur in the application. 
+
+Which two Azure services should you recommend?
+
+NOTE: Each correct selection is worth one point.
+
+A29-1: A. Azure Logic Apps
+A29-2: B. Azure Pipelines
+A29-3: C. Microsoft Visual Studio App Center
+A29-4: D. Azure DevOps Project
+A29-5: E. Azure Application Insights
+
+
+MY ANSWER TO PT01-Q29
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q29
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/26060-exam-az-400-topic-2-question-11-discussion/
+https://www.examtopics.com/discussions/microsoft/view/34143-exam-az-400-topic-14-question-53-discussion/
+Suggested Answer:
+A. Azure Logic Apps
+E. Azure Application Insights
+
+Exceptions in your live web app are reported by Application Insights.
+You can programmatically query Application Insights data to generate custom 
+reports on a schedule. 
+Automate reports with Logic Apps
+
+
+
+
+-------------------------------------------------------------------------
+PT01-Q28: 
+
+You use Azure SQL Database Intelligent Insights 
+and 
+Azure Application Insights for monitoring. 
+
+You need to write ad-hoc queries against the monitoring data. 
+
+Which query language should you use?
+
+
+A28-1: A. Azure Log Analytics
+A28-2: B. PL/pgSQL
+A28-3: C. PL/SQL
+A28-4: D. Transact-SQL
+A28-5: E. Kusto Query Language (KQL)
+
+MY ANSWER TO PT01-Q28
+--------------------------------------------------------------------------
+A28-5: E. Kusto Query Language (KQL)
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q28
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/25631-exam-az-400-topic-7-question-4-discussion/
+Suggested Answer: A. Azure Log Analytics
+Data analysis in Azure SQL Analytics is based on Log Analytics language for
+your custom querying and reporting.
+Monitor Azure SQL Database using Azure SQL Analytics (preview) [OUTDATED]
+https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/insights/azure-sql
+
+
+REFS
+
+Monitoring and performance tuning in Azure SQL Database and Azure SQL Managed Instance
+https://learn.microsoft.com/en-us/azure/azure-sql/database/monitor-tune-overview?view=azuresql-mi
+
+Intelligent Insights using AI to monitor and troubleshoot database performance (preview)
+https://learn.microsoft.com/en-us/azure/azure-sql/database/intelligent-insights-overview?view=azuresql-mi
+
+Query Performance Insight for Azure SQL Database
+https://learn.microsoft.com/en-gb/azure/azure-sql/database/query-performance-insight-use?view=azuresql-db
+
+
+-------------------------------------------------------------------------
+PT01-Q27: 
+
+Your company uses ServiceNow for incident management. 
+You develop an application that runs on Azure.
+
+The company needs to generate a ticket in ServiceNow when the application 
+fails to authenticate. 
+
+Which Azure Log Analytics solution should you use?
+
+
+A27-1: A. Application Insights Connector
+A27-2: B. Automation & Control 
+A27-3: C. IT Service Management Connector (ITSM)
+A27-4: D. Insight & Analytics
+--------------------------------------
+A27-5: B. Microsoft Azure Connector
+A27-6: D. SQL Server Connector
+--------------------------------------
+
+MY ANSWER TO PT01-Q27
+--------------------------------------------------------------------------
+A27-3: C. IT Service Management Connector (ITSM)
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/35611-exam-az-400-topic-2-question-8-discussion/
+https://www.examtopics.com/discussions/microsoft/view/57576-exam-az-400-topic-8-question-42-discussion/
+Suggested Answer: C. IT Service Management Connector (ITSM)
+
+REFS
+
+IT Service Management integration
+https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/itsmc-overview
+integrate Azure Monitor with supported IT Service Management (ITSM) products.
+Azure Monitor provides a bidirectional connection between Azure and ITSM tools
+
+You can create work items in your ITSM tool based on 
+ - your Azure metric alerts
+ - activity log alerts
+ - Log Analytics alerts.
+
+Azure Monitor supports connections with the following ITSM tools:
+
+- ServiceNow ITSM or IT Operations Management (ITOM)
+- BMC Helix
+
+-------------------------------------------------------------------------
+PT01-Q26: 
+
+You have a multi-tier application. 
+The front end of the application is hosted in Azure App Service.
+
+You need to identify the average load times of the application pages. 
+
+What should you use?
+
+
+A26-1: A. Azure Application Insights
+A26-2: B. the activity log of the App Service
+A26-3: C. the diagnostics logs of the App Service
+A26-4: D. Azure Advisor
+
+
+MY ANSWER TO PT01-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/35799-exam-az-400-topic-2-question-6-discussion/
+Suggested Answer: A. Azure Application Insights
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/
+Application Insights will  
+ - tell you about any performance issues and exceptions
+ - help you find and diagnose the root causes.
+ - can monitor both Java and ASP.NET web applications and services, WCF services. 
+ - take telemetry from web pages and a wide variety of devices including iOS, Android, and Windows Store apps.
+
+Manage applications by using Azure Monitor Application Insights
+https://learn.microsoft.com/en-gb/training/modules/design-monitoring-strategy-on-azure/4-application-insights
+
+-------------------------------------
+You can use Application Insights to:
+-------------------------------------
+
+ - Analyze and address issues and problems that affect your application's health and performance.
+ - Improve your application's development lifecycle.
+ - Measure your user experience and analyze users' behavior.
+
+- Instrumentation refers to enabling the collection of monitoring data from your app
+  by using an agent or an SDK
+- In many cases, you can perform instrumentation without access to the source code 
+  using codeless attach in the Azure portal or by using an agent.
+- Application Insights also automatically detect app dependencies to support 
+  distributed tracing and create application topology views.
+- view the slowest requests for an instance and investigate performance
+
+-----------------------
+Analyzing user behavior
+-----------------------
+
+ - Instrumenting your web pages with Application Insights collects usage 
+   information to augment the server-side monitoring capabilities. 
+ 
+ from the browser-side JavaScript instrumentation data includes
+ - umber of users
+ - sessions
+ - events
+ - browser version
+ - OS version
+ - locations 
+
+ answers questions such as 
+ - which pages of your app are the most popular
+ - where users drop out
+ - the conversion and retention rates for specific pages.
+
+ You can use this type of information to ** inform decisions ** 
+ - for allocating functional and performance-testing resources.
+
+ ----------------------------------------
+ Monitor your application’s availability
+ ----------------------------------------
+
+ You can create availability tests to monitor the health of your applications continuously. 
+ Availability tests allow you to check the health of your application from different geographic locations.
+ You can create an availability test in the Azure portal. 
+ You'll specify details like the frequency, the URL of your application, and locations from which to test it.
+
+ ----------------------------------------
+ Receive notifications and take action
+ ----------------------------------------
+ configure alert rules for your application’s performance and availability. 
+ Use alert rules to dictate how alerts should be handled.
+ You can specify the conditions that should trigger an alert. 
+ For example Application Insights can 
+  - send an alert if a specified number of locations are unavailable
+  - if a certain number of exceptions are observed
+  - etc.
+ 
+ You can also specify who should be notified
+ Application Insights can send notifications 
+  - email | text message 
+  
+ Application Insights can respond to alerts in an automated way.
+  - use runbooks 
+  - webhooks 
+
+-------------------------------------------------------------------------
+PT01-Q25: 
+
+You have a Microsoft ASP.NET Core web app in Azure that is accessed worldwide.
+
+You need to run a URL ping test once every five minutes and create an alert
+** when the web app is unavailable from specific Azure regions. ** 
+
+The solution must minimize development time. 
+What should you do?
+
+A25-1: A. Create an Azure Monitor Availability metric and alert.
+A25-2: B. Create an Azure Application Insights availability test and alert.
+A25-3: C. Write an Azure function and deploy the function to the specific regions.
+A25-4: D. Create an Azure Service Health alert for the specific regions.
+
+
+MY ANSWER TO PT01-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/35931-exam-az-400-topic-14-question-99-discussion/
+Suggested Answer: B. Create an Azure Application Insights availability test and alert.
+
+There are three types of Application Insights availability tests: 
+ -----------------------------------------------------------------------------
+ -1 URL ping test: a simple test that you can create in the Azure portal. <<
+ https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test
+ -----------------------------------------------------------------------------
+ -2 Multi-step web test
+ https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/availability-multistep
+ -----------------------------------------------------------------------------
+ -3 Custom Track Availability Tests
+
+- Azure Application Insights sends web requests to your application at 
+  regular intervals from points around the world. 
+- It can alert you if your application isn't responding, or if it responds too slowly.
+- You can set up availability tests for any HTTP or HTTPS endpoint that is accessible from the public internet. 
+- You don't have to make any changes to the website you're testing. 
+- it doesn't even have to be a site you own. 
+- You can test the availability of a REST API that your service depends on.
+
+REFS
+
+----------------------------------------------------
+B. Create an Azure Application Insights availability test and alert.
+
+-1 URL ping test: a simple test that you can create in the Azure portal. <<
+Monitor availability with URL ping tests
+https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#create-a-url-ping-test
+
+- The name URL ping test is a bit of a misnomer. 
+- These tests don't use the Internet Control Message Protocol (ICMP) to check your site's availability.
+- they use more advanced HTTP request functionality to validate whether an endpoint is responding.
+- They measure the performance associated with that response.
+- They also add the ability to set custom success criteria, 
+  coupled with more advanced features like parsing dependent
+  requests and allowing for retries.
+
+To create an availability test, you need to use an 
+- existing Application Insights resource 
+- or create an Application Insights resource.
+
+----------------
+Test locations:	
+----------------
+
+The values for this setting are the places from which servers
+send web requests to your URL. We recommend a minimum of 
+5 test locations to ensure that you can distinguish problems 
+in your website from network issues. 
+You can select up to 16 locations.
+
+------------------------------------------------------------
+-2 Multi-step web test
+ https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/availability-multistep
+
+ Multistep web tests have been deprecated. 
+ We recommend using TrackAvailability() to submit custom availability 
+ tests instead of multistep web tests.
+
+----------------------------------------------------
+D. Create an Azure Service Health alert for the specific regions.
+
+Configure Resource Health alerts in the Azure portal
+https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-monitor-guide
+Azure Resource Health keeps you informed about the current and historical 
+health status of your Azure resources. 
+Azure Resource Health alerts can notify you in near real-time when these 
+resources have a change in their health status.
+Resource health notifications are stored in the Azure activity log .
+You can receive an alert when Azure resource sends resource health notifications
+to your Azure subscription.
+
+ You can configure the alert based on:
+
+- The subscription affected.
+- The resource(s) type(s) affected.
+- The resource group(s) affected.
+- The resource(s) affected.
+- The event status(s) of the resource(s) affected.
+- The resource(s) affected statuses.
+- The reason(s) type(s) of the resource(s) affected.
+
+You also can configure who the alert should be sent to:
+
+- Select an existing action group.
+- Create a new action group (that can be used for future alerts). 
+
+What is Azure Service Health?
+https://learn.microsoft.com/en-us/azure/service-health/overview
+Azure Service Health is a combination of three separate smaller services.
+
+-1 Azure status overview 
+https://learn.microsoft.com/en-us/azure/service-health/azure-status-overview
+provides you with a global view of the health of Azure services and regions. 
+
+-2 Service Health portal classic experience overview
+https://learn.microsoft.com/en-us/azure/service-health/service-health-overview
+The portal provides you with a customizable dashboard which tracks the health
+of your Azure services **in the regions where you use them.** 
+
+-3 Resource Health overview
+https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview
+diagnose and get support for service problems that affect your Azure resources.
+It reports on the current and past health of your resources.
+ Resource Health gives you a personalized dashboard of the health of your resources. 
+
+-------------------------------------------------------------------------
+PT01-Q24: 
+
+You are in the process of building a mobile app aimed at Android and iOS devices.
+All work items and release cycles are managed via Azure DevOps. 
+You want to make sure that 
+-1 crash reports for issue analysis are collected,
+-2 beta releases are distributed to your testers. 
+-3 user feedback on the functionality of new apps is received. 
+
+Which of the following must be part of your solution?
+
+A24-1: A. The Microsoft Test & Feedback extension.
+A24-2: B. OWASP ZAP
+A24-3: C. TFS Integration Platform
+A24-4: D. Code Style
+----------------------------------------------------
+A24-5: B. Microsoft Visual Studio App Center integration
+A24-6: C. Azure Application Insights widgets
+A24-7: D. Jenkins integration
+
+
+MY ANSWER TO PT01-Q24
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q24
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57280-exam-az-400-topic-1-question-31-discussion/
+Suggested Answer: A. The Microsoft Test & Feedback extension. 
+https://www.examtopics.com/discussions/microsoft/view/16580-exam-az-400-topic-2-question-13-discussion/
+Suggested Answer: A. The Microsoft Test & Feedback extension. 
+
+---------------------------------------------------------------------------------------------------
+The "Exploratory Testing" extension is now "Test & Feedback" and is now Generally Available.
+Anyone can now test web apps and give feedback, all directly from the browser on any platform:
+
+Windows, Mac, or Linux. Available for Google Chrome and Mozilla Firefox 
+(required version 50.0 or above) currently. Support for Microsoft Edge is in the pipeline 
+and will be enabled once Edge moves to a Chromium- compatible web platform.
+---------------------------------------------------------------------------------------------------
+
+REFS
+
+Test & Feedback Extension
+https://marketplace.visualstudio.com/items?itemName=ms.vss-exploratorytesting-web
+
+Install the Test & Feedback extension
+https://learn.microsoft.com/en-us/azure/devops/test/perform-exploratory-tests?view=azure-devops
+
+Exploratory testing with the Test & Feedback extension in Connected mode
+https://learn.microsoft.com/en-us/azure/devops/test/connected-mode-exploratory-testing?view=azure-devops
+- helps teams perform exploratory testing and provide feedback. 
+- Everyone in the team, such as 
+  - developers
+  - product owners
+  - managers 
+  - UX or UI engineers
+  - marketing teams
+  - early adopters 
+
+can use the extension to submit bugs or provide feedback and contribute to 
+the quality of your product.
+
+-------------------------------------------------------------------------
+PT01-Q23: 
+
+Your company makes use of Azure
+** SQL Database Intelligent Insights ** 
+and 
+** Azure Application Insights ** 
+for monitoring purposes.
+
+You have been tasked with analyzing the monitoring using ad-hoc queries.
+You need to utilize the correct query language.
+
+Solution: You use the Contextual Query Language (CQL).
+*updated to KQL
+https://learn.microsoft.com/en-us/azure/data-explorer/web-ui-kql
+
+Does the solution meet the goal?
+
+A23-1: Yes
+A23-2: No
+A23-3: 
+A23-4: 
+
+
+MY ANSWER TO PT01-Q23
+--------------------------------------------------------------------------
+A23-1: Yes
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q23
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/56595-exam-az-400-topic-1-question-29-discussion/
+
+REF
+*updated to KQL
+https://learn.microsoft.com/en-us/azure/data-explorer/web-ui-kql
+
+
+Intelligent Insights using AI to monitor and troubleshoot database performance (preview)
+https://learn.microsoft.com/en-us/azure/azure-sql/database/intelligent-insights-overview?view=azuresql-mi
+Intelligent Insights in 
+ - Azure SQL Database 
+ and 
+ - Azure SQL Managed Instance 
+lets you know what is happening with your database performance.
+
+
+What can Intelligent Insights do for you?
+- Proactive monitoring
+- Tailored performance insights
+- Early detection of database performance degradation
+- Root cause analysis of issues detected
+- Performance improvement recommendations
+- Scale out capability on hundreds of thousands of databases
+- Positive impact to DevOps resources and the total cost of ownership
+
+-------------------------------------
+How does Intelligent Insights work
+-------------------------------------
+
+By comparing the database workload from 
+the last hour with the 
+past seven-day baseline workload. 
+ - queries determined to be the most significant to the database performance,
+ - the most repeated and largest queries. 
+
+Intelligent Insights, independent of the workload baseline, also 
+monitors absolute operational thresholds and detects issues with 
+
+- excessive wait times
+- critical exceptions 
+- issues with query parameterizations that might affect performance.
+
+-------------------------------------------------------------------------
+PT01-Q22: 
+
+You need to consider the underlined segment to establish whether it is accurate.
+
+Your company has a multi-tier application that has its front end hosted in 
+Azure App Service. 
+
+To pinpoint the average load times of the application pages, you should make use of 
+___Azure Event Hubs___.
+
+
+A22-1: A. No adjustment required.
+A22-2: B. Azure Application Insights
+A22-3: C. Azure Log Analytics
+A22-4: D. Azure Advisor
+
+
+MY ANSWER TO PT01-Q22
+--------------------------------------------------------------------------
+A22-2: B. Azure Application Insights
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q22
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57110-exam-az-400-topic-1-question-26-discussion/
+Suggested Answer: B
+
+REFS
+Azure Monitor documentation
+https://learn.microsoft.com/en-us/azure/azure-monitor/
+Capture and view page load times in your Azure web app with Application Insights
+https://learn.microsoft.com/en-us/training/modules/capture-page-load-times-application-insights/
+
+-------------------------------------------------------------------------
+PT01-Q21: 
+
+Your company has an application that contains a number of Azure App Service
+web apps and Azure functions.
+You would like to view 
+**recommendations** with regard to the 
+** security ** of 
+**web apps and functions**.
+
+You plan to navigate to Compute and Apps to achieve your goal. 
+
+Which of the following should you access to make use of Compute and Apps?
+
+A21-1: Azure Log Analytics
+A21-2: Azure Event Hubs
+A21-3: Azure Advisor
+A21-4: Azure Security Center
+
+
+MY ANSWER TO PT01-Q21
+--------------------------------------------------------------------------
+A21-4: Azure Security Center
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q21
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57100-exam-az-400-topic-1-question-25-discussion/
+suggested answer
+Suggested Answer: D. Azure Security Center
+
+REFS
+
+Introduction to Azure Advisor
+https://learn.microsoft.com/en-us/azure/advisor/advisor-overview
+Advisor is a personalized cloud consultant that helps you follow 
+best practices to optimize your Azure deployments. 
+It analyzes your 
+ - resource configuration 
+ - usage telemetry 
+ 
+The recommendations are divided into five categories:
+then recommends solutions that can help you improve 
+ -1 the cost effectiveness
+ -2 performance 
+ -3 Reliability (formerly called High availability
+ -4 security
+ -5 Operational Excellence:
+    achieve process and workflow efficiency, resource 
+	manageability and deployment best practices.
+ 
+of your Azure resources.
+
+
+What resources does Advisor provide recommendations for?
+-------------------------------------------------
+* Notice that it does not mention Azure Funtions
+-------------------------------------------------
+ - Application Gateway 
+ - App Services 
+ - availability sets 
+ - Azure Cache
+ - Azure Data Factory
+ - Azure Database for MySQL/ PostgreSQL / Azure Database / MariaDB
+ - Azure ExpressRoute
+ - Azure Cosmos DB
+ - Azure public IP addresses
+ - Azure Synapse Analytics
+ - SQL servers-
+ - storage accounts
+ - Traffic Manager profiles
+ - virtual machines.
+
+
+Azure Security Center
+https://learn.microsoft.com/en-us/shows/azure-friday/azure-security-center
+
+What's the difference between Azure Security Center, Azure Defender and Azure Sentinel?
+https://techcommunity.microsoft.com/t5/itops-talk-blog/what-s-the-difference-between-azure-security-center-azure/ba-p/2155188
+Three common capabilities that are used in unison are 
+-1 Azure Security Center
+-2 Azure Defender 
+------------------------------------------------------------------------------------
+-3 Azure Sentinel => Micorsoft Sentinel SIEM = Security Information Event Managemnt
+------------------------------------------------------------------------------------
+
+Azure Security product name changes
+https://techcommunity.microsoft.com/t5/itops-talk-blog/azure-security-product-name-changes-microsoft-ignite-november/ba-p/3004418?WT.mc_id=modinfra-48365-socuff
+-1 Azure Security Center
+-2 Azure Defender 
+---------------------------------------------------------------
+= Microsoft Defender For Cloud => Security Posture Management
+ - Security alerts
+ - Vulnerability assessment
+ - Just in time access
+ - Adaptive application controls
+---------------------------------------------------------------
+
+Microsoft Defender for Cloud Apps overview
+part of Microsoft 365 Defender
+https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps
+- Collect
+- Detect
+- Investigate
+- Respond
+
+Securing Azure Functions
+https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts?tabs=v4
+Defender for Cloud integrates with your function app in the portal. 
+It provides, for free, a quick assessment of potential configuration-related security vulnerabilities. 
+
+Function apps running in a dedicated plan can also use 
+Defender for Cloud's enhanced security features for an additional cost.
+
+Overview of Defender for App Service to protect your Azure App Service web apps and APIs
+https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-app-service-introduction
+
+Analyze infrastructure security by using Microsoft Defender for Cloud
+https://learn.microsoft.com/en-gb/training/modules/design-monitoring-strategy-on-azure/6-security-center
+Microsoft Defender for Cloud ensures that you make the security configuration
+of your resources as secure as possible.
+
+You use Defender for Cloud to:
+
+ - Understand the security posture of your architecture.
+ - Identify and address risks and threats to your infrastructure.
+ - Secure a complex infrastructure with traditional in-house skills and capital.
+ - Secure an infrastructure that consists of on-premises and cloud resources.
+ 
+ Defender for Cloud gives you detailed analyses of different components of 
+ your environment. 
+ Defender for Cloud collects data from your machines to monitor for security
+ vulnerabilities and threats using 
+ ** Azure Monitor Logs. **
+ Data is collected using the 
+ ** Log Analytics agent **
+ which reads various security-related configurations and event logs from the 
+ machine and copies the data to your ** Log Analytics workspace** for analysis.
+ -----------------------------
+ - data security
+ - network security
+ - identity and access 
+ - application security
+ -----------------------------
+
+ Defender for Cloud **recommends** ways to address the issues and risks that
+ it's uncovered. 
+
+ ----------------------------------------------------------
+ Protect against threats with Microsoft Defender for Cloud
+ ----------------------------------------------------------
+ use access and application controls in Defender for Cloud to help protect your resources. 
+ These controls block suspicious activity.
+  
+  ---
+  JIT
+  ---
+  - virtual machines through just-in-time (JIT) virtual machine access.
+  - You enable can JIT through the Just in time VM access option in the 
+    Microsoft Defender for Cloud >>  Advanced protection section 
+  - Defender for Cloud shows you a list of default ports that JIT will target.
+  - You can also configure your own
+
+  -------------------------------
+  Adaptive application controls
+  -------------------------------
+  You can control which applications are allowed to run on your virtual machines.
+  Create application control rules to target the virtual machines.
+
+  ----------------------------------------------------
+  Respond to threats with Microsoft Defender for Cloud
+  ----------------------------------------------------
+  Defender for Cloud 
+   - gives you a centralized view of all of your security alerts. 
+   - ranks security alerts based on their severity.
+   - combines related alerts as much as possible into a single security incident
+   - You have the responsibility to dismiss alerts if no action is required
+   - you must decide which alerts require more investigation.
+   - You also need to act to address known attacks and block, for example, known malicious IP addresses. 
+   - Defender for Cloud helps you respond to threats faster, and in an automated way by taking action. 
+     - triggering an automated response with Logic Apps,
+	 - suppressing similar alerts.
+	 - Playbooks are automated procedures that you can run against alerts
+
+
+Analyze enterprise security by using Microsoft Sentinel
+https://learn.microsoft.com/en-gb/training/modules/design-monitoring-strategy-on-azure/7-sentinel
+
+--------------------------------------
+Why would you use Microsoft Sentinel? 
+--------------------------------------
+You want a detailed overview of your enterprise, potentially 
+across multiple clouds, and on-premises locations.
+
+You can use Microsoft Sentinel to:
+
+ - Get a detailed overview of your organization, potentially across multiple clouds 
+   and on-premises locations.
+ - Avoid reliance on complex and disparate tools.
+ - Use enterprise-grade AI, built by experts, to identify and handle threats 
+   across your organization.
+
+ You can create a Microsoft Sentinel resource in the Azure portal. 
+ The process for creating this resource involves creating a 
+ ** Log Analytics workspace** then adding it to Sentinel.
+ 
+ ----------
+ Connectors
+ ----------
+ Sentinel integrates with Microsoft solutions, including
+ - Azure Active Directory 
+ - Office 365
+ - onnectors for non-Microsoft solutions
+ - also has a REST API that allows you to connect to other data sources.
+ 
+ -----------------------------------
+ alerts to monitor your enterprise
+ -----------------------------------
+ - When your data sources have been connected, Sentinel begins to monitor your enterprise.
+ - create alert rules and configure alert rules to investigate anomalies and threats 
+   more intelligently.
+ - respond manually or 
+ - by using playbooks for automated responses
+
+ ---------------------
+ Investigate incidents
+ ---------------------
+ - Sentinel combines your generated alerts into incidents for further investigation.
+ - You can select an incident to start to investigate it. 
+ - you get an investigation map.
+   You can use the map to better understand what caused an incident and the affected scope.
+ - use the map to correlate data surrounding an incident.
+ - If you hover over an entity, you'll also get a list of exploration queries 
+   designed by Microsoft security analysts and experts. 
+   You use exploration queries to investigate more effectively.
+ - The investigation map also gives you a timeline that helps you understand 
+   which event occurred at a particular time. 
+
+ ----------------------------------
+ Respond to threats with playbooks
+ ----------------------------------
+  - Playbooks can help you automatically respond to threats in Sentinel
+  - You add a new playbook by creating a logic app.
+  - When you've configured your playbook, you can point to it in your alert rules. 
+
+
+-------------------------------------------------------------------------
+PT01-Q20: 
+
+You have created an Azure DevOps project for a new application that will 
+be deployed to a number of 
+
+**Windows Server 2016 Azure virtual machines.** 
+
+You are preparing a deployment solution that allows for the virtual 
+machines to 
+
+-1 
+maintain a uniform configuration
+AND
+
+-2 
+keep administrative effort with regard to configuring the virtual 
+machines to a minimum. 
+
+Which of the following should be part of your solution?
+Which of the following should be part of your solution? (Choose two.)
+
+A20-1: Azure Resource Manager templates
+A20-2: The PowerShell Desired State Configuration (DSC) extension for Windows
+A20-3: Azure pipeline deployment groups
+A20-4: The Custom Script Extension for Windows
+A20-5: Azure pipeline stage templates
+
+
+MY ANSWER TO PT01-Q20
+--------------------------------------------------------------------------
+A20-1: Azure Resource Manager templates
+A20-2: The PowerShell Desired State Configuration (DSC) extension for Windows
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q20
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57178-exam-az-400-topic-1-question-24-discussion/
+https://www.examtopics.com/discussions/microsoft/view/16114-exam-az-400-topic-6-question-12-discussion/
+
+
+RESF
+
+Desired State Configuration extension with Azure Resource Manager templates
+https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/dsc-template
+-----------------------------------------------------------
+-Template example for a Windows VM
+-Template example for Windows virtual machine scale sets
+-----------------------------------------------------------
+
+Introduction to the Azure Desired State Configuration extension handler
+https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/dsc-overview
+
+**
+Azure VM extensions are software components that extend VM functionality
+and simplify various VM management operations. 
+You can use the extension to register your VMs to the service and gain 
+a flexible solution that works across Azure subscriptions.
+**
+
+The primary use for the 
+Azure Desired State Configuration (DSC) extension for Windows PowerShell 
+is to bootstrap a VM to the Azure Automation State Configuration (DSC) service. 
+
+------------------------------------
+Custom Script Extension for Windows
+https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows
+The Custom Script Extension downloads and runs scripts on Azure virtual machines (VMs).
+Use this extension for 
+- post-deployment configuration
+- software installation
+- any other configuration or management task.
+
+-----------------------------------------------------------------------------
+The Custom Script Extension integrates with 
+- Azure Resource Manager templates. 
+- Azure CLI 
+- Azure PowerShell 
+- Azure portal 
+- Azure Virtual Machines REST API.
+-----------------------------------------------------------------------------
+
+AZ-400 DSC Desired State Configuration
+https://www.udemy.com/course/azure100/learn/lecture/33596446#overview
+AZ-400 Azure Automation DSC Desired State Configuration
+https://www.udemy.com/course/azure100/learn/lecture/33596460#overview
+
+AZ-400 Azure VM Extension
+https://www.udemy.com/course/azure100/learn/lecture/33596474#overview
+ARM Template - VM scale set extension
+https://www.udemy.com/course/azure100/learn/lecture/33596546#overview
+
+The following shows how a custom script extension can be used to 
+automate the registration of a VM to a deployment group within 
+Azure DevOps organization
+
+AZ-400 Azure VM Extension - Team Services Agent
+https://www.udemy.com/course/azure100/learn/lecture/33596498#overview
+AZ-400 Azure VM Extension - Custom VM Extension Lab
+https://www.udemy.com/course/azure100/learn/lecture/33596478#overview
+
+-------------------------------------------------------------------------
+PT01-Q19: 
+
+You need to consider the underlined segment to establish whether it is accurate.
+
+Black Duck can be used to make sure that all the open-source libraries 
+conform to your company's licensing criteria.
+
+A19-1: No adjustment required.
+A19-2: Maven
+A19-3: Bamboo
+A19-4: CMAKE
+
+
+MY ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+A19-1: No adjustment required.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57099-exam-az-400-topic-8-question-34-discussion/
+https://www.examtopics.com/discussions/microsoft/view/74041-exam-az-400-topic-1-question-23-discussion/
+SUGGESTED ANSWER
+A. No adjustment required. 
+
+Secure and Manage Open Source Software
+Black Duck helps organizations identify and mitigate open source security,
+license compliance and code-quality risks across application and container 
+portfolios.
+Black Duck Hub and its plugin for Team Foundation Server (TFS) allows you
+to automatically find and fix open source security vulnerabilities during 
+the build process, so you can proactively manage risk. 
+The integration allows you to receive alerts and fail builds when any 
+Black Duck Hub policy violations are met.
+
+References:
+https://marketplace.visualstudio.com/items?itemName=black-duck-software.hub-tfs
+
+
+-------------------------------------------------------------------------
+PT01-Q18: 
+
+Your company has an Azure DevOps project, which includes a build pipeline 
+that makes use of roughly fifty open-source libraries. You have been tasked
+with making sure that you are able to scan projects for common security 
+weaknesses in open-source libraries. 
+
+Which of the following actions should you take?
+
+A18-1: You should create a build task and use the WhiteSource Bolt service.
+A18-2: You should create a deployment task and use the WhiteSource Bolt service. 
+A18-3: You should create a build task and use the Chef service.
+A18-4: You should create a deployment task and use the Chef service.
+
+
+MY ANSWER TO PT01-Q18
+--------------------------------------------------------------------------
+A. You should create a build task and use the WhiteSource Bolt service.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57978-exam-az-400-topic-1-question-22-discussion/
+https://www.examtopics.com/discussions/microsoft/view/24966-exam-az-400-topic-14-question-37-discussion/
+https://www.pass4success.com/microsoft/discussions/exam-az-400-topic-4-question-56-discussion
+suggested answer
+A. You should create a build task and use the WhiteSource Bolt service.
+
+REFS
+Managing Open-source security and license with Mend (formerly WhiteSource)
+https://www.azuredevopslabs.com/labs/vstsextend/whitesource/
+
+-------------------------------------------------------------------------
+PT01-Q17: 
+
+You need to consider the underlined segment to establish whether it is accurate.
+To find when common open-source libraries are added to the code base, you should
+add Jenkins to the build pipeline.
+
+A17-1: No adjustment required.
+A17-2: SourceGear Vault
+A17-3: WhiteSource
+A17-4: OWASP ZAP
+
+
+MY ANSWER TO PT01-Q17
+--------------------------------------------------------------------------
+A17-3: WhiteSource
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q17
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/58293-exam-az-400-topic-1-question-21-discussion/
+C. WhiteSource / Black Duck
+Note: Black duck would also be a good answer, but it is not an option here.
+
+WhiteSource is the leader in continuous open source software security and 
+compliance management. 
+It integrates into your build process, irrespective of your programming
+languages, build tools, or development environments.
+
+It works in the background, checking the security, licensing, and quality
+of your open source components against WhiteSource constantly-updated 
+definitive database of open source repositories.
+
+Azure DevOps integration with WhiteSource Bolt will enable you to:
+
+1. Detect and remedy vulnerable open source components.
+2. Generate comprehensive open source inventory reports per project or build.
+3. Enforce open source license compliance, including dependencies' licenses.
+4. Identify outdated open source libraries with recommendations to update.
+
+
+https://github.com/zaproxy/zaproxy
+The OWASP Zed Attack Proxy (ZAP) is one of the world’s most popular free 
+security tools and is actively maintained by a dedicated international team 
+of volunteers. 
+
+It can help you automatically find security vulnerabilities in your web 
+applications while you are developing and testing your applications. 
+It's also a great tool for experienced pentesters to use for manual 
+security testing.
+
+AZ-400 Using the Mend Bolt tool (WhiteSource)
+Setup
+https://www.udemy.com/course/azure100/learn/lecture/33318444#overview
+Usage
+https://www.udemy.com/course/azure100/learn/lecture/33318450#overview
+-------------------------------------------------------------------------
+PT01-Q16: 
+
+You intend to make use of Azure Artifacts to share packages that you 
+wrote, tested, validated, and deployed.
+You want to use a solitary feed to release several builds of each package.
+You have to make sure that the release of packages that are in development
+is restricted. 
+
+Which of the following actions should you take?
+
+
+A16-1: You should make use of static code analysis.
+A16-2: You should make use of views.
+A16-3: You should make use of dynamic code analysis.
+A16-4: You should make use of upstream sources.
+
+
+MY ANSWER TO PT01-Q16
+--------------------------------------------------------------------------
+A16-2: You should make use of views.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q16
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/56900-exam-az-400-topic-1-question-20-discussion/
+suggested answer
+B. You should make use of views. 
+
+REFS
+
+Azure Artifacts overview
+https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nuget
+Azure Artifacts enables developers to share their code efficiently 
+and manage all their packages from one place. 
+Developers can publish packages to 
+ -their feeds and share it within the same team
+ -across organizations
+ -publicly > Only from a Azure DevOps Public Projetcs! 
+
+Developers can also consume packages from different feeds and 
+public registries
+- Package Type: Nuget > NuGet.org 
+- Package Type: npm (JavaScript) > npmjs.com. 
+- Package Type: several types (Python) > there are several Python package registers
+- Package Type: Maven (Java) > https://search.maven.org/
+- Package Type: Universal Packages > https://learn.microsoft.com/en-us/azure/devops/artifacts/quickstarts/universal-packages?view=azure-devops&tabs=Windows 
+
+AZ-400: Package Management - Azure Artifacts 
+https://www.udemy.com/course/azure100/learn/lecture/33592796#overview
+
+AZ-400: Package Management - Azure Artifacts 
+- Creating and Publishing a Nuget Package to Azure Artifacts
+https://www.udemy.com/course/azure100/learn/lecture/33592802#overview
+> Azure Artifacts > Create a Feed > 
+Choose a Visibility for the Feed
+----------------------------------------------
+- Members of your Azure AD Tenants
+- Memmbers of your Azure DevOps Organizations
+- Specific People
+----------------------------------------------
+- You may include Upstream Sources
+- Scope: scope it to the Azure DevOp projects or the Azure DevOps Organization
+
+> From the Azure Artifacts Pane button | Connect to the Feed |
+> select the consumer of the feed i.e. 
+  -----------------------------------
+  Visual Studio / VSCode / Nuget.exe
+  -----------------------------------
+> Get Instruction on how to setup the consumer to connect to the Feed
+  Each consumer is set up differently.
+
+----------------------------------------------------------------------------
+One of the main purposes of Azure Artifacts is to make Private Package Feeds
+available to a group of authenticated consumers to that they mayy consume
+packages and/or upload and update packages on the Feed. 
+----------------------------------------------------------------------------
+
+AZ-400 Axure Artifacts - Other Aspects
+https://www.udemy.com/course/azure100/learn/lecture/33592822#overview
+
+All Artifacts feeds come with three Default views: 
+
+@local 
+@prerelease
+@release
+
+@local : it's the default Feed View
+view contains all packages published directly to the feed and all packages 
+saved from upstream sources.
+
+Feed Views
+https://learn.microsoft.com/en-us/azure/devops/artifacts/concepts/views?view=azure-devops
+Feed views enable developers to share a subset of package-versions with their consumers. 
+
+A common use of feed views is 
+- to share package versions that have been tested and validated 
+but 
+- hold back on packages that are still under development and/or didn't meet a certain
+quality bar.
+
+-------------------------------
+Feed views are read-only
+users connected to a view can only use packages that are published to that view 
+and/or packages previously saved from upstream sources.
+
+Feed View Visibility : depending on your scenario
+you must set your feed's visibility to 
+
+- members of your organization
+or 
+- members of your Azure Active Directory.
+
+If you choose the latter, all people in your organization will be able to access 
+your feed. 
+In addition, 
+all feeds in your organization and other organizations associated with the same
+Azure Active Directory tenant will be able to upstream to your feed.
+
+-------------------------------
+
+Release packages with feed views
+
+When creating release packages, it's important to convey three pieces of information: 
+
+Example: Semantic Versioning
+
+1.2.3-beta2
+1.2.3-prerelease
+
+------------------------------------------------------------------
+1- the nature of the change		> major.minor.patch
+2- the risk of the change		> major > minor > patch
+3- the quality of the change	-beta2
+------------------------------------------------------------------
+
+The @release View
+
+You can use the @Release view as a means to convey the quality of your 
+changes. Using the @Release view, you can share packages that met your
+quality bar and allow your consumers to only see the subset of package
+versions that were tested, validated, and are ready to be consumed.
+
+Use feed views to share packages
+https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/views?view=azure-devops
+
+Azure Artifacts - Manage permissions
+https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops
+By configuring permissions for your feed, you can manage access to your 
+packages and control who can interact with them.
+
+-----------------------------------------------
+Access to the Feed and Access to the Feed View
+-----------------------------------------------
+
+Users who have access to a specific view are able to access and download 
+packages from the feed through that view even if they don't have direct 
+access to that feed. 
+
+If you want to completely hide your packages, you must restrict access
+to both feed and views.
+
+Views inherit permissions from the parent feed. 
+If you set a view's visibility to Specific people without specifying
+any users or groups, the view's permissions will default back to the
+permissions of its parent feed.
+
+-----------------------------------------------
+Access the Feed from a Build Pipeline
+https://learn.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=azure-devops
+-----------------------------------------------
+To access your feed from your pipeline, the corresponding build identity
+must have the necessary permissions.
+By default, feeds have the Project Collection Build Service role set to
+Collaborator.
+
+The project-level build identity is named as follows: 
+-------------------------------------------------------
+[Project name] Build Service ([Organization name])
+-------------------------------------------------------
+Example: FabrikamFiber Build Service (codesharing-demo)
+-------------------------------------------------------
+
+If you want to access a feed in a different project from your pipeline, 
+you must configure the other project to provide read/write access to 
+the build service.
+
+-----------------------------------------------
+
+AZ-400 Azure Pipeline 
+- Publish a Package to a Feed from a Azure DevOps Pipeline
+https://www.udemy.com/course/azure100/learn/lecture/33592842#overview
+
+-------------------------------------------------------------------------
+PT01-Q15: 
+
+To deploy an application to a number of Azure virtual machines, you should
+create a universal group.
+
+A15-1: No adjustment required.
+A15-2: security
+A15-3: deployment
+A15-4: respurce
+
+
+MY ANSWER TO PT01-Q15
+--------------------------------------------------------------------------
+C. You should make use of a gate.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57084-exam-az-400-topic-8-question-27-discussion/
+https://www.examtopics.com/discussions/microsoft/view/74040-exam-az-400-topic-1-question-18-discussion/
+suggested answer
+A15-3: deployment (group)
+
+REFS
+
+Provision deployment groups
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/?view=azure-devops
+A deployment group is a logical set of deployment target machines that have 
+agents installed on each one.
+------------------------------------------------------------------
+These machines may be in Azure or any cloud provider or on-premise.
+------------------------------------------------------------------
+Deployment groups represent the physical environments. 
+For example, "Dev", "Test", or "Production" environment. 
+In effect, a deployment group is just another grouping of agents, 
+much like an agent pool.
+--------------------------------------------------------------------
+Deployment groups are 
+- only available with Classic release pipelines 
+- are different from deployment jobs
+
+Deployment Job
+A deployment job is a collection of deployment-related steps defined
+in a YAML file to accomplish a specific task
+
+With deployment groups you can:
+
+-Specify the security context and runtime targets for the agents.
+As you create a deployment group, you add users and give them appropriate
+permissions to administer, manage, view, and use the group.
+
+-Let you view live logs for each server as a deployment takes place, 
+and download logs for all servers to track your deployments down to 
+individual machines.
+
+-Enable you to use machine tags to limit deployment to specific sets
+of target servers.
+--------------------------------------------------------------------
+
+-------------------------------------------------------------------
+In the end the purpose of Deployment Groups is to group a set of
+VMs on which the Azure DevOps Agent is installed so that the DG
+can be used as a TARGET of a RELEASE PIPELINE
+-------------------------------------------------------------------
+
+AZ-400 Lab - Deployment Groups - Setup
+https://www.udemy.com/course/azure100/learn/lecture/33385816#overview
+
+-------------------------------------------------------------------------
+PT01-Q14: 
+
+
+Your company hosts a web application in Azure and makes use of Azure Pipelines 
+for managing the build and release of the application. When stakeholders report
+that system performance has been adversely affected by the most recent releases, 
+you configure alerts in Azure Monitor. You are informed that new releases must 
+satisfy specified performance baseline conditions in the staging environment 
+before they can be deployed to production.
+
+You must ensure that releases not satisfying the performance baseline are 
+prevented from being deployed.
+
+Which of the following actions should you take?
+
+A14-1: You should make use of a branch control check
+A14-2: You should make use of an alert trigger.
+A14-3: You should make use of a gate.
+A14-4: You should make use of an approval check.
+
+
+MY ANSWER TO PT01-Q14
+--------------------------------------------------------------------------
+C. You should make use of a gate.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/58289-exam-az-400-topic-1-question-17-discussion/#:~:text=When%20stakeholders%20report%20that%20system,can%20be%20deployed%20to%20production.
+suggested answer
+C. You should make use of a gate.
+-------------------------------------------------------
+Use Quality Gates to integrate monitoring into your pre-deployment 
+or post-deployment. 
+This ensures that you are meeting the key health/performance metrics
+(KPIs) as your applications move from dev to production.
+Gates allow automatic collection of health signals from external 
+services.
+Promote the release when all the signals are successful 
+at the same time 
+or 
+stop the deployment on timeout. 
+Typically, gates are used in connection with 
+- incident management
+- problem management
+- change management
+- monitoring
+- external approval systems.
+-------------------------------------------------------
+
+REFS
+
+Define approvals and checks
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#branch-control
+
+AZ-400 Release Pipelines - Approval
+https://www.udemy.com/course/azure100/learn/lecture/33385702#overview
+
+pre-deployment conditions are set as conditions PRIOR TO the execution of 
+a stage in a release pipeline.
+
+with a pre-deployment approval 
+- you can set a user as approver
+- you can set a timer for the expiration of a pending deployment approval
+
+AZ-400 Release Pipelines - Gate - Query Work Items
+https://www.udemy.com/course/azure100/learn/lecture/33385716#overview
+
+post-deployment conditions are set AFTER a stage of a release pipeline has 
+executed.
+Gates are part of the set of post-deployment conditions.
+Gates are versateil as there are several kinds of chekcs that may be used 
+to define a gate.
+-----------------------------------------
+- Check Azure Policy Compliance
+- Invoke Azure Function
+- Invoke a REST api
+- Query Azure Monitor
+- Query work Items
+- SonarCloud Quality Gate status check
+-----------------------------------------
+Example: Query work Items
+- you can create a save a named query to be performed on the development 
+  board such as one that counts the number of tasks that are not in closed 
+  state
+- you can then instruct the gate to perform the query on a scheduled poll
+  and set a numeric threshold. 
+- If the result of the query is above the Upper Threshold the gate prevents
+  the execution of the next stage in the release pipeline
+- the query for the gate is evaluated continuosly
+- it is possible to alos set a steady state target, etc.
+- ** you must give the Identity of teh Build Service Read Permission on the
+  shared query that the gate wants to run.
+-----------------------------------------
+
+AZ-400 Release Pipelines - Gate - Azure Monitor Alerts
+https://www.udemy.com/course/azure100/learn/lecture/33385742#overview
+
+- go to Azure Monitor and create an **Alert Rule**
+- for example if you are going to deploy a App Service or VMs you may 
+  create a rule based on a 
+  - Metric
+  - Log
+  - Activity Log
+  - Resource Health
+- for example you may measure the CPU Average Aggregate value over the 
+  last 30 mins and set a threshold over which an alert is triggert
+- For each Alert Rule you may set an **Action** or **Action Group**
+
+- Go to the stage of the Release Pipeline on which you want to set 
+  a gate > Select Subscription > Select Resource Group > Advanced
+  > ** Filter Type: By Alert Rule **
+  > select the name of the Alert Rule you have created
+- Monitor Condition: fired => the Gate will prevent the execution of 
+  next stage in the Release Pipeline 
+
+In the is an noticeable increase of the CPU Average Aggregate metric 
+(or any other significant Metric) of the piece of infrastructure on 
+which new softare has been just deployed by means of a prior stage of
+the Release Pipeline then the gate prevents that the next stage is 
+executed i.e. it prevents, in an automated fashion, progressions such as 
+---------------------
+staging > production
+test    > staging
+---------------------
+
+There might be some issue with the newly deployed software before moving
+forward to the deployment of the same software to yet another, perhaps more
+critical, environment.
+
+Define approvals and checks
+branch control check
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#branch-control
+You can ensure all the resources linked with the pipeline are 
+- built from the allowed branches 
+- and that the branches have protection enabled
+-------------------------------------------------------------------------
+PT01-Q13: 
+
+You are currently defining a release strategy for an app, named APP-01. 
+The strategy should allow you to keep the time it takes to deploy new 
+releases of the app to a minimum. The strategy should also allow you to 
+roll back in the shortest time required. 
+
+Which of the following is the release strategy you should use?
+
+A13-1: Red/Black deployment
+A13-2: Rolling deployment
+A13-3: Big Bang deployment
+A13-4: Canary Deployment
+
+
+MY ANSWER TO PT01-Q13
+--------------------------------------------------------------------------
+A13-1
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/57039-exam-az-400-topic-8-question-22-discussion/
+suggested answer
+Blue/Green = Red/Black. So answer is correct
+
+REFS
+What is the difference between blue/green and red/black deployments?
+https://octopus.com/blog/blue-green-red-black
+
+-------------------------
+blue/green AND red/black:
+-------------------------
+with each color representing a copy of the target environment. 
+Deploy a new versions of a centralized application like a web service, 
+AND direct production traffic to the new version only after it has been 
+successfully deployed and optionally tested.
+** Traffic is routed to one color OR the other**
+** 
+Having two environments running side by side hosting different versions
+of an application means traffic can be switched over, and back again if
+an issue is found, with little to no downtime.
+**
+
+---------------------------------------------------------------------
+So why is this strategy referred to as both green/blue and red/black?
+---------------------------------------------------------------------
+BLUE-GREEN
+
+in blue-green deployment, both versions may be getting requests at the 
+same time **temporarily**.
+
+READ-BLACK
+in red-black only one of the versions is getting traffic at any point 
+in time
+
+----------------------
+Rolling Deployment
+https://www.techtarget.com/searchitoperations/definition/rolling-deployment
+----------------------
+In a rolling upgrade, only part of the server capacity for an application
+is offline at a given time. In a rolling deployment, the organization can
+take one of the nodes in each tier offline, with the load balancer configured
+to direct traffic to the remaining servers still running the current software
+version. 
+
+The idle servers receive updates and testing; the remaining online servers 
+support user traffic.
+The number of simultaneous deployment targets in a rolling deployment is 
+referred to as the window size
+
+------------------------------
+ROLLING DEPLOYMENT CONSTRAINT
+------------------------------
+For a successful rolling deployment, IT teams ****must**** ensure backward 
+compatibility across the stack
+Some nodes might be running newer versions while others are still on older
+versions during a rolling deployment. Older versions of web or application 
+components must work with new database schema, or vice versa.
+
+------------------------------
+ROLLING DEPLOYMENT ADVANTAGES
+------------------------------
+Rolling deployments do not require as much underlying IT resource capacity
+as blue/green deployments. 
+
+--------------------
+Canary Deployment
+https://cloud.google.com/deploy/docs/deployment-strategies/canary#:~:text=A%20canary%20deployment%20is%20a,users%20before%20rolling%20out%20fully.
+Canary Deployment
+https://www.udemy.com/course/azure100/learn/lecture/33592694#overview
+AZ-400 Azure Traffic Manager
+https://www.udemy.com/course/azure100/learn/lecture/33592720#overview
+AZ-400 Azure Traffic Manager Lab
+https://www.udemy.com/course/azure100/learn/lecture/33592728#overview
+--------------------
+A canary deployment is a progressive rollout of an application that splits 
+traffic between an already-deployed version and a new version, rolling it 
+out to a subset of users before rolling out fully.
+
+A canary deployment gives you a chance to partially release your application.
+In this way, you can ensure the new version of your application is reliable
+before you deliver it to all users.
+
+----------------------------------------
+In Azure you would use a Traffic Manager
+https://learn.microsoft.com/en-us/training/modules/implement-canary-releases-dark-launching/2-explore-canary-releases
+https://www.udemy.com/course/azure100/learn/lecture/33592720#overview
+----------------------------------------
+Azure Traffic Manager 
+
+-1 
+is a DNS-based Load Balancer
+
+-2 
+can be used to direct traffic to public facing apps accross regions 
+i.e. North Europe / UK South
+
+-3
+You can use ROUTHING METHODS
+https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-routing-methods
+- Priority traffic-routing method.
+- Weighted traffic-routing method.
+- Performance traffic-routing method.
+- Geographic traffic-routing method.
+- Multivalue traffic-routing method.
+- Subnet traffic-routing method.
+
+-----------------
+Typical Use Cases
+-----------------
+------------------
+Canary Deployment: 
+------------------
+Weighted traffic-routing method.
+For example, assign weight 
+100 to the current version of the app
+and 
+10 to the new version of the app.
+
+Then gradualy increase the weight of the new version of the app.
+
+-----------------------------------
+Increase Resilience Accross Regions
+-----------------------------------
+Priority traffic-routing method. 
+
+Assign a high priority ot the app deplyed to the region where 
+its user are located and a low priaority to the deployed app 
+on a fall-back region.
+
+-------------------------------------------------------------------------
+PT01-Q12: 
+
+You scan a Node.js application using WhiteSource Bolt. 
+The scan finds numerous libraries with invalid licenses, but are only used
+during development. You have to make sure that only production dependencies
+are scanned by WhiteSource Bolt. 
+
+Which of the following is a command you should run?
+
+A12-1: npm edit
+A12-2: npm publish
+A12-3: npm install
+A12-4: npm update
+
+--------------------
+Alternative answers
+--------------------
+
+A. Run npm install and specify the --production flag.
+B. Modify the WhiteSource Bolt policy and set the action for the licenses used by the development tools to Reassign.
+C. Modify the devDependencies section of the project's Package.json file.
+D. Configure WhiteSource Bolt to scan the node_modules directory only.
+
+MY ANSWER TO PT01-Q12
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q12
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57754-exam-az-400-topic-1-question-15-discussion/
+https://www.examtopics.com/discussions/microsoft/view/31774-exam-az-400-topic-4-question-27-discussion/
+https://www.exam-answer.com/how-to-scan-only-production-dependencies-with-whitesource-bolt-in-a-node-js-application
+
+RESF
+From the question posts and in particular the following
+https://www.exam-answer.com/how-to-scan-only-production-dependencies-with-whitesource-bolt-in-a-node-js-application
+it is possible to summarize the answers a s follow.
+
+STEP-1: this maps to answer .C 
+	
+	STEP-1a
+	Identify the libraries that are only used during development.
+
+	Review the project's dependencies and determine which ones are 
+	only used during development and not part of a production deployment. 
+	This will help you to exclude these libraries from the WhiteSource 
+	Bolt scan.
+
+	STEP-1b
+	Modify the devDependencies section of the project's Package.json file. 
+
+	The devDependencies section in the package.json file contains the 
+	libraries that are only required during development. You can add the
+	invalid licensed libraries to this section to ensure that they are not
+	included in the WhiteSource Bolt scan.
+
+	When we add devDependencies and during installation add the 
+	productionflag the devDependencies will not be installed.
+
+STEP-2: this maps to answer .A 
+
+	Run npm install and specify the --production flag. 
+
+	The npm install command is used to install dependencies for a Node.js project. 
+	By adding the --production flag to this command, you can ensure that only the
+	production dependencies are installed, and the development dependencies are excluded.
+
+-----------------------------------------------
+Therefore the correct answer should be .A + .C
+-----------------------------------------------
+
+-----------------------------------------------
+What about the remaining options .B & .D ?
+-----------------------------------------------
+
+While it is that .A + .C is indeed the correct answer,
+it's also a good practice to 
+
+.B: 
+Modify the policy to exclude development dependencies 
+Modify the WhiteSource Bolt policy and set the action for 
+the licenses used by the development tools to Reassign.
+
+and 
+.D: 
+Configure WhiteSource Bolt to scan only the production 
+dependencies.
+	
+
+-------------------------------------------------------------------------
+PT01-Q11: 
+
+When moving to Azure DevOps, JIRA must be replaced with the build pipelines
+Azure DevOps service.
+
+Which of the following is the version control system you should use?
+
+A11-1: No adjustment required.
+A11-2: repos
+A11-3: release pipelines
+A11-4: boards
+
+MY ANSWER TO PT01-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/56339-exam-az-400-topic-8-question-16-discussion/
+D - correct answer
+
+-------------------------------------------------------------------------
+PT01-Q10: 
+
+You are making use of Azure DevOps to configure Azure Pipelines for the project, 
+named PROJ-01. You are preparing to use a version control system that allows 
+for source code to be stored on a managed Windows server located on the company 
+network.
+
+Which of the following is the version control system you should use?
+
+A10-1: Github Enterprise
+A10-2: Bitbucket cloud
+A10-3: Github Professional
+A10-4: Git in Azure Repos
+
+MY ANSWER TO PT01-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post 
+https://www.examtopics.com/discussions/microsoft/view/57107-exam-az-400-topic-8-question-14-discussion/
+Suggested Answer
+GitHub Enterprise is the on-premises version of GitHub.com. 
+GitHub Enterprise includes the same great set of features as GitHub.com but packaged for running on your
+organization's local network. All repository data is stored on machines that you control, and access is
+integrated with your organization's authentication system (LDAP, SAML, or CAS).
+
+References:
+https://www.azuredevopslabs.com/labs/azuredevops/yaml/
+https://enterprise.github.com/faq
+
+
+-------------------------------------------------------------------------
+PT01-Q09: 
+
+Your company has an Azure DevOps environment that can only be accessed by 
+Azure Active Directory users. You are instructed to make sure that the Azure
+DevOps environment can only be accessed from devices connected to the 
+company's on-premises network. 
+
+Which of the following actions should you take?
+
+
+A09-1: Assign the devices to a security group
+A09-2: Create a GPO [Group Policy Object of Active Directory].
+A09-3: Configure Security in Project Settings from Azure DevOps
+A09-4: Configure conditional access in Azure Active Directory.
+
+MY ANSWER TO PT01-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question posts
+https://www.examtopics.com/discussions/microsoft/view/57077-exam-az-400-topic-8-question-13-discussion/
+https://www.examtopics.com/discussions/microsoft/view/73986-exam-az-400-topic-1-question-12-discussion/
+https://www.examtopics.com/discussions/microsoft/view/20532-exam-az-400-topic-4-question-21-discussion/
+Suggested Answer: D
+With Conditional Access, you can implement automated access control decisions for accessing your cloud
+apps that are based on conditions.
+Explanation
+You can make use of Conditional access in Azure AD. 
+You would first ensure the devices are joined to Azure AD. 
+Then in Conditional access , you can set the policy to only allow access if the device is joined to Azure AD.
+
+REFS
+
+Conditional access policies
+https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/change-application-access-policies?view=azure-devops#conditional-access-policies
+
+Azure AD allows tenants to define which users are allowed to gain access to Microsoft
+resources through their Conditional Access Policy (CAP) feature. 
+Through these settings, the tenant admin can require members must adhere to any of the
+following conditions, for example, the user must:
+
+-1 be a member of a specific security group
+-2 belong to a certain location and/or network
+-3 be using a specific operating system
+-4 be using an enabled device in a management system
+
+In this example a conditional access policy with a combination of 
+condition-2 + condition-4 
+may be used.
+
+-------------------------------------------------------------------------
+PT01-Q08: 
+
+You need to consider the underlined segment to establish whether it is accurate.
+To compile an Internet Information Services (IIS) web application that runs docker, 
+you should use a Default build agent pool.
+
+
+A08-1: No Adjustment required
+A08-2: Hosted Windows Container
+A08-3: Hosted
+A08-4: Hosted macOS
+
+MY ANSWER TO PT01-Q08
+--------------------------------------------------------------------------
+A08-2: Hosted Windows Container
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/58286-exam-az-400-topic-8-question-11-discussion/
+Suggestions
+1-
+When you need to compile an Internet Information Services (IIS) web application that runs on Docker, 
+you should use a Hosted Windows Container build agent pool.
+This is because IIS is a web server created by Microsoft specifically for Windows-based systems. 
+Since you want to run the application in a Docker container, a Hosted Windows Container build agent pool
+will provide the necessary Windows environment along with Docker support.
+The Hosted Windows Container build agent pool is a pre-configured, managed pool provided by Azure DevOps
+or other CI/CD platforms, which supports running Docker containers on a Windows-based system. 
+By using this pool, you can ensure that your IIS web application is built and run in the appropriate 
+environment.
+
+Impotant:
+Azure DevOps Agent pools : https://www.youtube.com/watch?v=yr3IgGd0iKA 
+In a Pipeline there are the following concepts.
+---------------------
+Stages > Jobs > Steps
+---------------------
+Therefore a Pipeline may be described as a 
+Stages
+sequence of Stages that are link to each other in seriesand/or in parallel.
+Jobs
+Each Stage is a sequence of Jobs where several jobs may be linked to each either in series.
+Steps
+Each Job is a sequence of Steps where several steps may be linked to each either in series.
+Job Agent
+Each Job in a pipeline runs its steps on a specified Agent
+This Agent may be a Hosted-Agent (on Azure Infrastructure) or a Self-Hosted (on-premise/private Cloud)
+Agent Pool
+An Agent may also be part of an Agent Pool that is registered at the Azure DevOps Organization Level.
+An Agent Pool a way to organize Registered Agents for teh Organization that makes use of them in their Pipelines.
+
+
+REFS
+
+Create and manage agent pools
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/pools-queues?view=azure-devops&tabs=yaml%2Cbrowser
+An agent pool is a collection of agents. Instead of managing each agent individually, you organize agents into 
+agent pools. When you configure an agent, it is registered with a single pool, and when you create a pipeline, 
+you specify the pool in which the pipeline runs. When you run the pipeline, it runs on an agent from that pool
+that meets the demands of the pipeline.
+----------------------------------------------------------------
+In Azure Pipelines, Agent Pools are scoped to the entire organization; 
+so you can share the agent machines across projects.
+----------------------------------------------------------------
+Agent pool jobs run a job on a single agent.
+If you need to run a job on all agents see Deployment Groups
+----------------------------------------------------------------
+Default Agent Pools
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/pools-queues?view=azure-devops&tabs=yaml%2Cbrowser#default-agent-pools
+
+- Default pool: 
+Use it to register self-hosted agents that you've set up.
+
+- Azure Pipelines hosted pool : 
+with various Windows, Linux, and macOS images. 
+The Azure Pipelines hosted pool replaces the previous hosted pools
+
+----------------------------------------------------------------
+Create agent pools
+Here are some typical situations when you might want to create self-hosted agent pools:
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/pools-queues?view=azure-devops&tabs=yaml%2Cbrowser#create-agent-pools
+
+-1
+You're a member of a project and you want to use a set of machines owned by your team
+for running build and deployment jobs.
+You must have Administrator role to be able to create new pools. 
+
+-2
+You're a member of the infrastructure team and would like to set up a pool of agents
+for use in all projects. 
+Select the option to Auto-provision this agent pool in all projects while creating the pool. 
+
+-3
+You want to share a set of agent machines with multiple projects, but not all of them. 
+First, navigate to the settings for one of the projects, add an agent pool, and select 
+the option to create a new pool at the organization level. Next, go to each of the other 
+projects, and create a pool in each of them while selecting the option to Use an existing
+agent pool from the organization. 
+
+-------------------------------------------------------------------------
+Run a self-hosted agent in Docker
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops
+
+You can set up a self-hosted agent in Azure Pipelines to run inside a Windows Server Core 
+(for Windows hosts), or Ubuntu container (for Linux hosts) with Docker
+
+User Case
+This is useful when you want to run agents with outer orchestration, such as Azure Container Instances.
+In this article, you'll walk through a complete container example, including handling agent self-update.
+
+-------------------------------------------------------------------------
+Azure DevOps Container Jobs
+
+Define container jobs (YAML)
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops
+User Case for Container Jobs
+--------------------------------------------------------------------------------
+On Linux and Windows agents, **jobs** may be run on the host or in a container.
+Containers provide isolation from the host and allow you to pin specific versions 
+of tools and dependencies. 
+--------------------------------------------------------------------------------
+By default, jobs run on the **host machine** where the agent is installed. 
+Over time, you may find that you want more control over the context where your 
+tasks run.
+YAML pipelines offer container jobs for this level of control.
+
+About Container Jobs - AZ-400 Udemy Course
+https://www.udemy.com/course/azure100/learn/lecture/33386920#overview
+User Case for Container Jobs
+--------------------------------------------------------------------------------
+An additional reason to run Jobs in a container is when you want to use a 
+Self-Hosted agent perhaps on on-premise infrastructure and you also want to 
+use as little infrastructure as possible to minimize costs. By using Docker
+Containers to run Jobs you can pack on the same machine as many specific tools
+as possible without versioning or other conflicts.
+--------------------------------------------------------------------------------
+
+Another Scenario is when you want to build a Container Image with an application 
+in it. This question referens to this scenario and specifically a WebApp that is
+run in IIS.
+
+Quickstart: Build a container image to deploy apps using Azure Pipelines
+https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/build-image?view=azure-devops
+--------------------------------------------------------------------------------
+How to build a container image for app deployment using Azure Pipelines. 
+To build this image, all you need is a Dockerfile in your repository.
+You can build Linux or Windows containers, based on the agent that you use 
+in your pipeline.
+--------------------------------------------------------------------------------
+To meet the requirement of this question we need
+- A Windows based Host Agent because the App must use a Windows Container as IIS
+is a required part of the container
+
+Deploy existing .NET apps as Windows containers
+https://learn.microsoft.com/en-us/dotnet/architecture/modernize-with-azure-containers/modernize-existing-apps-to-cloud-optimized/deploy-existing-net-apps-as-windows-containers
+
+In Windows Containers, the process of packaging applications is fully automated. 
+The main improvement you get from using the Docker engine is that you create images, 
+which are like snapshots of your application, with all its dependencies.
+The images run ASP.NET apps in containers, without going back to source code.
+The container snapshot becomes the unit of deployment.
+
+Existing .NET applications refer to those applications that were created using the 
+.NET Framework. For example, they might be traditional ASP.NET web applications-they 
+don't use .NET Core or .NET 5+, which is newer and runs cross-platform on Linux, Windows,
+and MacOS.
+---------------------------------------------------------------------------------
+The main dependency in the .NET Framework is Windows. 
+It also has secondary dependencies, like IIS, and System.Web in traditional ASP.NET.
+---------------------------------------------------------------------------------
+Choose an OS to target with .NET-based containers
+Given the diversity of operating systems that are supported by Docker, as well as 
+the differences between .NET Framework and .NET Core, you should target a specific 
+OS and specific versions based on the framework you are using.
+--------------------------------------------------------------------
+For Windows, you can use Windows Server Core or Windows Nano Server.
+.Net Framework 3.5, 4.x => Windows Server Core
+.Net => Windows Nano Server
+
+In migration scenarios for existing or legacy applications that are based 
+on .NET Framework applications, the main dependencies are on Windows and IIS.
+--------------------------------------------------------------------
+For Linux, multiple distros are available and supported in official .NET Docker images (like Debian).
+--------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q07: 
+
+The question is included in a number of questions that depicts the identical 
+set-up. However, every question has a distinctive result. Establish if the 
+solution satisfies the requirements. 
+
+You run the Register-AzureRmAutomationDscNode command in your company's 
+environment. You need to make sure that your company's test servers remain 
+correctly configured, regardless of configuration drift.
+
+Solution-1: You set the -ConfigurationMode parameter to ApplyOnly.
+Solution-2: You set the -ConfigurationMode parameter to ApplyAndMonitor.
+Solution-3: You set the -ConfigurationMode parameter to ApplyAndAutocorrect.
+
+
+
+Does the solution meet the goal?
+
+A07-1: Yes
+A07-2: No
+
+MY ANSWER TO PT01-Q07
+--------------------------------------------------------------------------
+In this case we are required to satisfy the following
+You need to make sure that your company's test servers remain 
+correctly configured, regardless of configuration drift.
+Therefore Solution-3:ApplyAndAutocorrect should be what we need.
+
+If we used 
+Solution-1: You set the -ConfigurationMode parameter to ApplyOnly.
+the requirement would not be met, therefore
+NO
+A07-2: No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/57746-exam-az-400-topic-1-question-9-discussion/
+
+REFS
+Register-AzAutomationDscNode
+https://learn.microsoft.com/en-us/powershell/module/az.automation/register-azautomationdscnode?view=azps-10.1.0
+This cmdlet will only register VMs running Windows OS as an Automation DSC Node for an account.
+Registers an Azure virtual machine as an APS Desired State Configuration (DSC) node in an Azure Automation account. 
+-ConfigurationMode
+	ApplyAndMonitor
+	ApplyAndAutocorrect
+	ApplyOnly
+PowerShell DSC: Configuring the Local Configuration Manager
+https://learn.microsoft.com/en-us/powershell/dsc/managing-nodes/metaconfig?view=dsc-1.1
+
+ApplyOnly: 
+---------------------------------------------------------
+DSC applies the configuration and does nothing further 
+---------------------------------------------------------
+unless a new configuration is pushed to the target node
+or when a new configuration is pulled from a service. 
+After initial application of a new configuration, 
+---------------------------------------------------------
+DSC does not check for drift from a previously configured 
+state. 
+---------------------------------------------------------
+Note that DSC will attempt to apply the configuration 
+until it is successful before ApplyOnly takes effect. 
+
+ApplyAndMonitor: 
+---------------------------------------------------------
+This is the default value. 
+The LCM applies any new configurations. 
+-------------------------------------------------
+After initial application of a new configuration, 
+if the target node drifts from the desired state,
+DSC reports the discrepancy in logs. 
+-------------------------------------------------
+Note that DSC will attempt to apply the configuration until it is successful before ApplyAndMonitor takes
+
+
+ApplyAndAutoCorrect: 
+---------------------------------------------------------
+DSC applies any new configurations. 
+After initial application of a new configuration, 
+if the target node drifts from the desired state, 
+DSC reports the discrepancy in logs, and then re-applies
+the current configuration.
+---------------------------------------------------------
+
+
+-------------------------------------------------------------------------
+
+PT01-Q06: 
+
+Which of the following is the widget you should use?
+
+You are currently developing a project for a client that will be managing 
+work items via Azure DevOps. You want to make sure that the work item 
+process you use for the client allows for 
+** requirements, change requests, risks, and reviews to be tracked.** 
+
+A06-1: Basic 
+A06-2: Agile
+A06-3: Scrum
+A06-4: CMMI - Capability Maturity Model Integration
+
+
+MY ANSWER TO PT01-Q06
+--------------------------------------------------------------------------
+A06-4: CMMI - Capability Maturity Model Integration
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/57052-exam-az-400-topic-1-question-7-discussion/
+suggested answer
+A06-4: CMMI - Capability Maturity Model Integration
+Refs
+About default processes and process templates
+https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process&source=docs
+A.BASIC: Choose Basic when your team wants the simplest model that uses Issues, Tasks, and Epics to track work.
+B.AGILE: This process works great if you want to track user stories and (optionally) bugs on the Kanban board, or track bugs and tasks on the taskboard.
+C.SCRUM: This process works great if you want to track product backlog items (PBIs) and bugs on the Kanban board, or break PBIs and bugs down into tasks on the taskboard.
+
+Reference:
+--------------
+Basic Process
+--------------
+https://www.youtube.com/watch?v=oqgv0jMBMmM&list=PLaFzfwmPR7_Ifxq-udm66fhReFeGOe2x_&index=9
+(#8) Azure board with basic process | Azure devops tutorial for beginners
+
+In the Basic Process the 
+Unit of Work = Work Item
+--------------------------------------------------------------
+Epic*, Issue*, Task*, User Story, Bug, Improvement, etc. are ALL kinds of WIs
+*These types are the default types.
+Epic > Isues(es) > Tals(s)
+Sate Flow: ToDo > InProgress > Done
+--------------------------------------------------------------
+a WI has a set of attributes of interest.
+Example:
+- Title
+- Description
+- AssignedTo
+- Completed By
+- others...
+
+
+--------------
+Agile Process
+--------------
+https://www.youtube.com/watch?v=e3Nb9ecaJNQ&list=PLaFzfwmPR7_Ifxq-udm66fhReFeGOe2x_&index=13 
+(#12) Azure DevOps Board with Agile work process | Azure DevOps Boards | Azure DevOps tutorial
+Work Items available in the CMMI process
+-----------------------------------------------------------------------------------------------
+Bug | Epic | Feature | Issue | User Story | Task | Test case
+-----------------------------------------------------------------------------------------------
+- Agile User Story: a Work Item to track on the board 
+
+Agile Flows:
+
+User Story states: New > Active | Removed > Resolved > Closed
+Bug states: New > Active > Resolved > Closed
+
+Portfolio Backlog: Epic > Feature > ** User Story > Tasks **
+Product Backlog:   ** User Story > Tasks **
+Configurable: Bug > Tasks
+Issue Tracking: Issue
+Test: TestPlan > TestSuite > TestCase > SharedSteps + Shared Parameters
+
+--------------
+Scrum Process
+--------------
+(#15) Azure board with Scrum process | Azure devops tutorial for beginners
+https://www.youtube.com/watch?v=Rfw9npZwcVU&list=PLaFzfwmPR7_Ifxq-udm66fhReFeGOe2x_&index=16
+-----------------------------------------------------------------------------------------------
+Bug | Epic | Feature | Impediment | Product Backlog Item | Task | Test case
+-----------------------------------------------------------------------------------------------
+- SCRUM Impediment: 
+a piece of work that has an impedimenti i.e. **dependencies** on other pieces of work,
+infrastructure or tasks, etc.
+- SCRUM PBI: a Work Item to track on the board
+ 
+
+Scrum Flows:
+-----------------------------------------------
+On the board: New > Approved > Commited > Done
+-----------------------------------------------
+User Story states: New > Approved | Removed > Commited > Done
+Bug states:		   New > Approved | Removed > Commited > Done
+Task states:       ToDo > InProgress | Removed > Done
+
+Portfolio Backlog: Epic > Feature > ** Product Backlog Item > Tasks **
+Product Backlog:   ** Product Backlog Item > Tasks **
+Configurable: Bug > Tasks
+Issue Tracking: Issue
+Test: TestPlan > TestSuite > TestCase > SharedSteps + Shared Parameters
+
+--------------
+CMMI Process
+--------------
+Understand CMMI process template artifacts
+https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/cmmi-process?view=azure-devops
+https://cmmiinstitute.com/
+What is CMMI?
+https://cmmiinstitute.com/cmmi/intro
+
+https://www.youtube.com/watch?v=rNqFOc5fQo0
+(#14) Azure board with CMMI process | Azure devops tutorial for beginners
+Work Items available in the CMMI process
+-----------------------------------------------------------------------------------------------
+Bug | Change Request | Epic | Feature | Issue | Requirement | Review | Risk | Task | Test case
+-----------------------------------------------------------------------------------------------
+The objective of CMMI ist to provide improved clarity on the work and process to the stakeholders 
+and the development team.
+
+- CMMI does not use User Stories as these are replaced by Requirements
+- CMMI applies the concepts of Feedback and Code Review Feedback
+- CMMI Epic: a business initiative to be accomplished
+- CMMI Feature: a shippable component of software
+- CMMI Requirement: a Work Item to track on the board! (kind of a replacement for the User Story)
+- CMMI Bug: something that si missing or wrongly implemented
+- CMMI Task: the SMALLEST UNIT OF WORK
+- CMMI Change Request: the work is valid but it is required to implement something else
+- CMMI Issue: any other custom type
+
+- CMMI Review: to review some work
+- CMMI Risk: a tyep of risk that may be associated with some particular work
+--------------------------------------------------------------------------
+CMMI Flows:
+
+Requirement states: Proposed > Active > Resolved > Closed
+Bug states: Proposed > Active > Resolved > Closed
+
+Portfolio Backlog: Epic > Feature > ** Requirement > Tasks **
+Product Backlog:   ** Requirement > Tasks **
+Configurable: Bug > Tasks
+Issue Tracking: Change Request, Issue, Review, Risk
+Feedback: Feedback Request > Feedback Response
+Test: TestRun > TestSuite > TestCase > SharedSteps + Shared Parameters
+Code Review: Code Review Request > Code Review Response
+
+-------------------------------------------------------------------------
+PT01-Q05: 
+
+Your company is currently making use of 
+**Team Foundation Server 2013 (TFS 2013), **
+but intends to 
+** migrate to Azure DevOps.** 
+
+You have been tasked with supplying a migration approach that allows for the
+**
+preservation of Team Foundation Version Control 
+changesets dates, 
+as well as
+the changes dates of work items revisions. 
+**
+
+The approach should also allow for the migration of all TFS artifacts 
+while keeping migration effort to a minimum.
+
+You have suggested upgrading TFS to the most recent RTW release. 
+
+Which of the following should also be suggested?
+
+A05-1: Installing the TFS SDK
+A05-2: Using the TFS Database Import Service to perform upgrades
+A05-3: Upgrading Powershell Code to the latest version
+A05-4: Using the TFS Integration Platform to perform the upgrade
+
+MY ANSWER TO PT01-Q05
+--------------------------------------------------------------------------
+A05-2: Using the TFS Database Import Service to perform upgrades
+the tools is now renamed to 
+data migration tool for Azure DevOps
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q05
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+This question is taken from 
+https://www.examtopics.com/discussions/microsoft/view/56344-exam-az-400-topic-8-question-6-discussion/
+and most agree that the correct answer should be
+A05-2: Using the TFS Database Import Service to perform the upgrade
+
+https://learn.microsoft.com/en-us/azure/devops/migrate/migration-import?view=azure-devops
+Validation and import processes
+This article walks you through the preparation that's required to get an import to Azure DevOps Services ready to run.
+- Visual Studio Team Services (VSTS) is now Azure DevOps Services.
+- With the release of Azure DevOps Server 2019, the 
+  **TFS Database Import Service** 
+  has been rebranded as the 
+  -----------------------------------------------------------------
+  **data migration tool for Azure DevOps.** 
+  This service works exactly the same as the former import service.
+  -----------------------------------------------------------------
+
+Migration Tools for Azure DevOps
+https://marketplace.visualstudio.com/items?itemName=nkdagility.vsts-sync-migration
+
+
+Import your TFS Database into Visual Studio Team Services
+https://devblogs.microsoft.com/devops/import-your-tfs-database-into-visual-studio-team-services/
+-------------------------------------------------------------------------------
+TFS Database Import Service is a high-fidelity migration that brings over your 
+source code history, work items, builds, etc. and keeps the same ID numbers, 
+traceability, settings, permissions personalizations, and much more.
+-------------------------------------------------------------------------------
+
+This is a complex case study
+Refactor a Team Foundation Server deployment to Azure DevOps Services
+https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-best-practices/contoso-migration-tfs-vsts
+
+-------------------------------------------------------------------------
+PT01-Q04: 
+
+You have been tasked with 
+**strengthening the security of your team's development process. **
+You need to 
+** suggest a security tool type for the Continuous Integration (CI)**
+phase of the development process. 
+
+Which of the following is the option you would suggest?
+
+A04-1: Penetration testing
+A04-2: Static Code Analysis
+A04-3: Threat Modelling
+A04-4: Dynamic Code Analysis
+
+MY ANSWER TO PT01-Q04
+--------------------------------------------------------------------------
+A04-2: Static Code Analysis >> for CI i.e. SonarCube
+
+A04-1: Penetration testing >> OWASP => Dynamic application security testing (DAST)
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+question post 
+https://www.examtopics.com/discussions/microsoft/view/57051-exam-az-400-topic-8-question-5-discussion/
+A04-2: Static Code Analysis
+
+Develop secure applications on Azure
+https://learn.microsoft.com/en-us/azure/security/develop/secure-develop
+
+Microsoft Threat Modeling Tool
+https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool
+
+------------------------------------------------------------------------------------
+PT01-Q03: 
+
+You are making use of Azure DevOps to manage build pipelines, and also deploy pipelines.
+The development team is quite lare and is regularly added to. You have been informed
+that the **management of users and licences** must be automated when it can be. 
+
+Which of the following is a task that can't be automated?
+
+A03-1: Group membership changes
+A03-2: License assignment
+A03-3: Assigning entitelments
+A03-4: Licence procurement
+
+MY ANSWER TO PT01-Q03
+--------------------------------------------------------------------------
+A03-4: Licence procurement
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+question post
+https://www.examtopics.com/discussions/microsoft/view/57075-exam-az-400-topic-8-question-4-discussion/
+A03-4: Licence procurement
+
+https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/assign-access-levels-by-group-membership?view=azure-devops
+Add a group rule to assign access levels
+You don't need to automate license management to reflect changes in your organizational structure on a per-user basis.
+Important
+Group rules only apply to users without direct assignments and to users added to the group going forward.
+
+https://learn.microsoft.com/en-us/azure/active-directory/enterprise-users/groups-dynamic-membership
+Dynamic membership rules for groups in Azure Active Directory
+
+https://learn.microsoft.com/en-us/azure/devops/organizations/billing/buy-basic-access-add-users?view=azure-devops
+Azure DevOps Security - Manage paid access for users
+-------------------------------------------------------------------------------
+The easiest way to control paid access is to manually assign an access level. 
+
+You can assign the access level when you add a new user to your organization. 
+Also, remove users when they leave your organization.
+
+Keep the following information in mind:
+
+- Visual Studio subscribers get detected automatically when they sign in. 
+  There's no extra charge for users with a Visual Studio subscription.
+- Stakeholder is a free access level with limited functionality.
+- Basic is free for the first 5 users, and paid for 6 or more users.
+- Basic + Test Plans is paid only, but is free to try for 30 days.
+
+-By default all new users get the free Stakeholder access if they're added directly to a project.
+-
+You as **Project Collection Admin** or as **Organization Owner** can change the 
+access level for new users added to projects from the UI. 
+
+https://learn.microsoft.com/en-us/azure/devops/organizations/billing/buy-basic-access-add-users?view=azure-devops#automate-access-with-group-rules
+Automate access with group rules
+This way, you don't have to manually assign access each time a user gets added or removed.
+- A group rule supersedes the default access level.
+- The default access level applies to users who aren't part of any group rules.
+- Billing stops automatically when users get removed from your organization or are assigned the free Stakeholder access level.
+
+
+https://stackoverflow.com/questions/67536450/automatically-change-access-level-on-a-user-in-azure-devops
+Automatically change access level on a user in Azure DevOps
+
+-------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------------------
+PT01-Q02: 
+The **Burnup widget** 
+meausures the elapsed time from the creation of work items to their completion.
+
+Which of the following is the widget you should use?
+
+A02-1: No adjustment is required
+A02-2: Lead Time
+A02-3: Test Results Trend
+A02-4: Burndown
+
+MY ANSWER TO PT01-Q02
+--------------------------------------------------------------------------
+In this question the **Burnup widget** does not match the definition
+**meausures the elapsed time from the creation of work items to their completion**
+that is the definition of the LEAD TIME.
+Therefore the **Burnup widget** token should be replaced with the token
+A02-2: Lead Time. 
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q02
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+question posted here
+https://www.examtopics.com/discussions/microsoft/view/56898-exam-az-400-topic-1-question-2-discussion/
+
+
+------------------------------------------------------------------------------------
+PT01-Q01: 
+You are configuring project metrics for dashboards in Azure DevOps. 
+You need to configure a chart widget that measures 
+** the elapsed time to complete work items once they become active**. 
+
+Which of the following is the widget you should use?
+
+A01-1: Cumulative Flow Diagram = CFD
+A01-2: Burnup
+A01-3: Cycle time = CT
+A01-4: Burndown
+
+MY ANSWER TO PT01-Q01
+--------------------------------------------------------------------------
+A01-3: Cycle time = CT
+The ** the elapsed time to complete work items once they become active**
+is the **CYCLE TIME** as defined below. Therefore the correct answer 
+ought to be A01-3.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q01
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS
+
+This question was posted here
+https://www.examtopics.com/discussions/microsoft/view/57074-exam-az-400-topic-8-question-2-discussion/
+suggested correct answer
+A01-3: Cycle time = CT
+
+CFD: View and configure a Cumulative Flow Diagram
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow?view=azure-devops
+------------------------------------------------------------------------------------
+You use cumulative flow diagrams (CFD) to monitor the flow of work through a system.
+CFD charts display the count of work items grouped by state/Kanban column over time.
+The two primary metrics to track 
+**cycle time** 
+**lead time**
+, can be extracted from the chart.
+------------------------------------------------------------------------------------
+There are two CFD charts: view from a team backlog or Kanban.
+CFDs help teams monitor the count of work items as they progressively move through various workflow states.
+These diagrams can show the flow of epics, features, user stories, issues, product backlog items, or requirements, 
+depending on the process selected for your project:
+AGILE | BASIC | SCRUM |CMMI=Capability Maturity Model Integration.
+
+Cumulative flow, lead time, and cycle time guidance
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow-cycle-lead-time-guidance?view=azure-devops
+-------------------------------------------
+The CFD answers several specific questions
+
+1-Will the team complete work on time?
+
+2-How is the flow of work progressing?=Is the team completing work at a steady pace?
+Falt Lines and Bulges in CFD
+----------------------------
+Falt Lines=> CADENCE
+Flat lines appear when the team doesn't update their work with a regular cadence.
+Flat lines can also appear when the work across one or more processes takes longer than planned. 
+Flat lines appear across many parts of the system because if only one part of the system or two 
+parts of a system have problems then you'll see a bulge.
+----------------------------
+3-How do you fix flow problems?
+----------------------------
+Daily stand-ups.
+Other regular meetings.
+Scheduling a daily team reminder email.
+----------------------------
+Bulges => VELOCITY BOTTLENECKS
+Bulges occur when work builds up in one part of the system and isn't moving through a process.
+Bulges can occur when testing takes a long period of time while development takes a shorter 
+period of time.
+Bulges indicate that a succeeding step is having a problem, not necessarily the step in which 
+the bulge is occurring
+----------------------------
+4-How do you fix Bulges problems?
+----------------------------
+Example
+Two potentially easy ways to solve this problem are: 
+1) 
+Shift developers from the development process to the testing process until the bulge is 
+eliminated 
+or 
+2) 
+change the order of work such that work that can be done quickly is interwoven with 
+work that takes longer to do. 
+--------------------------------------------------------------------------------------
+Kanban: Use your Kanban board
+https://learn.microsoft.com/en-us/azure/devops/boards/boards/kanban-quickstart?view=azure-devops
+Expedite work using swimlanes
+https://learn.microsoft.com/en-us/azure/devops/boards/boards/expedite-work?view=azure-devops 
+
+Lead Time VS Cycle Time and How Kanban/Lean Can Help Continuous Delivery and DevOps
+https://www.youtube.com/watch?v=fRqUhj3mj70 
+
+**lead time**
+For a continuous flow process: 
+Measures the amount of time it takes from when a request is made
+(such as adding a proposed user story) until that request is completed (closed).
+That is this is the time mesured from thwe CREATION of a WI to its COMPLETION.
+
+**cycle time**
+Measures the time it takes to move work through a single process or workflow state. 
+Calculation is from the start of one process to the start of the next process.
+That is this is the time mesured from when the state of a WI becomes ACTIVE/COMMITTED 
+to its COMPLETION.
+For a sprint or fixed period process: Measures the time from when work on a request begins until
+the work is completed (i.e. the time from Active to Closed).
+
+It is always that LD > CT
+The LD includes the time required for ANALYSIS, APPROVAL, etc.
+The CT measures the time that is required to BUILD the WI by the dev team.
+
+Measuring DevOps
+-------------------------------
+AGILITY PERFORMANCE INDICATORS
+-------------------------------
+-Frequency of deployment
+-Speed of deployment
+-Change in LT
+-Speed of build verification
+-------------------------------
+RELIABILITY PERFORMANCE INDICATORS
+-------------------------------
+-Change of Fail Rate
+-Incident/Defect Volume
+-MMTD=Mean Time To Detect
+-MMTR=Mean Time To Repair
+-------------------------------
+
+--------------------------------------------------------------
+Plan using estimate delivery times based on lead/cycle times
+--------------------------------------------------------------
+You can use the average lead/cycle times and standard deviations to estimate 
+delivery times. Likewise, you can use cycle time and its standard deviation to estimate 
+the completion of a work item once work has begun.
+
+
+
+
+--------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+----------------------------------------------------------------

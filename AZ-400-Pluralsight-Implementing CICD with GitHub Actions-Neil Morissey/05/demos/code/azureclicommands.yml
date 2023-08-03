@@ -1,0 +1,18 @@
+name: Azure CLI Commands Testing
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted, azure, linux]
+
+    steps:
+    - name: "Login and list resource groups in subscription"
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.24.2
+        inlineScript: |
+          az login --identity
+          az group list 

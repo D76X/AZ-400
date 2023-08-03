@@ -1,0 +1,36 @@
+name: Push to GitHub Packages
+
+on:
+name: Push to GitHub Packages
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore 
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-build --output .
+      
+    - run:  ls
+      
+    - name: Push
+      run: |
+        dotnet nuget add source --username <your account> --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/<yourorg>/index.json"
+        dotnet nuget push ./*.nupkg --skip-duplicate --source "github" --api-key ${GITHUB_TOKEN}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,21 @@
+Create Linux Ubuntu VM in Azure
+
+log into linux VM using ssh and run commands from GitHub Repo Settings -> Actions -> runners -> new runner
+
+Install docker manually on linux VM:
+https://docs.docker.com/engine/install/ubuntu/
+
+Run post-install tasks on docker VM:
+https://docs.docker.com/engine/install/linux-postinstall/
+
+For Azure App Service deploy script, install zip onto runner:
+sudo apt install zip unzip
+
+Enable system managed identity on linux VM using the Azure Portal
+Grant reader role for subscription to system managed identity using Azure Portal - for resource group listing
+Grant contributor role for App Service to managed identity for deployment demo
+
+Add tags to Linux runner in GitHub
+Use tags in workflow to run job on self-hosted linux runner
+
+
