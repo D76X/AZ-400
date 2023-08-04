@@ -339,8 +339,8 @@ You have a project in Azure DevOps named Project1.
 Project1 is used to build a web app named App1 and deploy App1 to VMSS1.
 
 *****************************************************************************
-You need to ensure that an email alert is generated 
-whenever VMSS1 scales in or out.
+You need to ensure that 
+an email alert is generated whenever VMSS1 scales in or out.
 *****************************************************************************
 
 Solution-A: From Azure Monitor, configure the autoscale settings.
@@ -631,12 +631,12 @@ This configuration is done PER DATABASE
 1. Click on Diagnostics Settings and then Turn On Diagnostics
 
 REFS
-AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER – PART #1
+AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER ï¿½ PART #1
 https://techcommunity.microsoft.com/t5/azure-database-support-blog/azure-sql-db-and-log-analytics-better-together-part-1/ba-p/794833
 
-STEP-1 – FIRST CREATE AN LOG ANALYTICS WORKSPACE
+STEP-1 ï¿½ FIRST CREATE AN LOG ANALYTICS WORKSPACE
 
-STEP-2 – ENABLE **AUDIT** TO LOG ANALYTICS
+STEP-2 ï¿½ ENABLE **AUDIT** TO LOG ANALYTICS
 At 
 **Server level** 
 or at 
@@ -644,13 +644,13 @@ or at
 enable auditing and send log to 
 Log Analytics and select the workspace you just created
 
-STEP-3 – ENABLE **DIAGNOSTICS** TO LOG ANALYTICS
+STEP-3 ï¿½ ENABLE **DIAGNOSTICS** TO LOG ANALYTICS
 *This configuration is done PER DATABASE
 Click on Diagnostics Settings and then Turn On Diagnostics
 Select to Send to Log Analytics and select the Log Analytics workspace. 
 For this sample I will selected
 
-STEP-4 – QUERING LOG ANALYTICS
+STEP-4 ï¿½ QUERING LOG ANALYTICS
 Just go to the Log Analytics workspace and query the database using 
 a language called Kusto.
 
@@ -658,7 +658,7 @@ STEP-5
 YOU CAN ALSO MONITOR USING AZURE SQL ANALYTICS (PREVIEW)
 
 
-AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER – PART #2 – ALERTS
+AZURE SQL DB AND LOG ANALYTICS BETTER TOGETHER ï¿½ PART #2 ï¿½ ALERTS
 https://techcommunity.microsoft.com/t5/azure-database-support-blog/azure-sql-db-and-log-analytics-better-together-part-2-alerts/ba-p/795360
 To create an Alert based on a query, just click on 
 >> New alert rule
@@ -718,17 +718,39 @@ A35-5: E. From Azure DevOps, install an extension
 
 MY ANSWER TO PT01-Q35
 --------------------------------------------------------------------------
-?
+A35-1: A. From Azure DevOps, configure a service hook subscription
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q35
 --------------------------------------------------------------------------
-?
+A35-2: B. From Microsoft Teams, configure a connector
 --------------------------------------------------------------------------
 
 question posts
 https://www.examtopics.com/discussions/microsoft/view/36353-exam-az-400-topic-2-question-24-discussion/
 Suggested Answer: A. From Azure DevOps, configure a service hook subscription
+
+B. 
+From Microsoft Teams, Configure a connector.
+if you try from Azure DevOps, you getting the following message:
+Subscriptions for this service are managed by the consumer service. 
+To create a new subscription visit Microsoft Teams.
+
+B. 
+From Microsoft Teams, configure a connector
+https://azuredevopslabs.com/labs/vstsextend/teams/
+------------------------------------------------------------------
+B. *** Connector ***
+
+Allow connect with external services, install it in Teams allow 
+to integrate Microsoft Teams with Azure Devops.
+------------------------------------------------------------------
+A. *** service hook subscription ***
+
+From Azure DevOps, configure a *** service hook subscription ***
+Allow to react to events within Azure Devops and automate actions
+ in response
+------------------------------------------------------------------
 
 REFS
 
@@ -839,17 +861,20 @@ A34-4: D. From Azure Pipelines, enable continuous integration for Project1
 
 MY ANSWER TO PT01-Q34
 --------------------------------------------------------------------------
-?
+A34-1: A. From Microsoft Teams, run @azure pipelines subscribe https://dev.azure.com/Contoso/Project1.
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q34
 --------------------------------------------------------------------------
-?
+A34-3: C. From Microsoft Teams, run @azure pipelines subscriptions.
 --------------------------------------------------------------------------
 
 question posts
 https://www.examtopics.com/discussions/microsoft/view/35955-exam-az-400-topic-2-question-23-discussion/
 Suggested Answer: A. From Microsoft Teams, run @azure pipelines subscribe https://dev.azure.com/Contoso/Project1. 
+---------------------------------------
+>>>> However: Correct Answer is C. <<<<
+---------------------------------------
 
 REFS
 Use Azure Pipelines with Microsoft Teams
@@ -1421,7 +1446,7 @@ Analyzing user behavior
  - for allocating functional and performance-testing resources.
 
  ----------------------------------------
- Monitor your application’s availability
+ Monitor your applicationï¿½s availability
  ----------------------------------------
 
  You can create availability tests to monitor the health of your applications continuously. 
@@ -1432,7 +1457,7 @@ Analyzing user behavior
  ----------------------------------------
  Receive notifications and take action
  ----------------------------------------
- configure alert rules for your application’s performance and availability. 
+ configure alert rules for your applicationï¿½s performance and availability. 
  Use alert rules to dictate how alerts should be handled.
  You can specify the conditions that should trigger an alert. 
  For example Application Insights can 
@@ -1533,8 +1558,8 @@ You can select up to 16 locations.
  https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/availability-multistep
 
  Multistep web tests have been deprecated. 
- We recommend using TrackAvailability() to submit custom availability 
- tests instead of multistep web tests.
+ We recommend using TrackAvailability()ï¿½to submitï¿½custom availability 
+ testsï¿½instead of multistep web tests.
 
 ----------------------------------------------------
 D. Create an Azure Service Health alert for the specific regions.
@@ -1587,7 +1612,8 @@ It reports on the current and past health of your resources.
 PT01-Q24: 
 
 You are in the process of building a mobile app aimed at Android and iOS devices.
-All work items and release cycles are managed via Azure DevOps. 
+All work items and release cycles are managed via Azure DevOps.
+
 You want to make sure that 
 -1 crash reports for issue analysis are collected,
 -2 beta releases are distributed to your testers. 
@@ -1683,11 +1709,15 @@ A23-1: Yes
 
 CORRECT ANSWER TO PT01-Q23
 --------------------------------------------------------------------------
-?
+A23-1: No
 --------------------------------------------------------------------------
 
 question posts
+https://www.examtopics.com/discussions/microsoft/view/58151-exam-az-400-topic-1-question-27-discussion/
 https://www.examtopics.com/discussions/microsoft/view/56595-exam-az-400-topic-1-question-29-discussion/
+Suggested Answer: B 
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql
 
 REF
 *updated to KQL
@@ -2028,10 +2058,7 @@ be deployed to a number of
 You are preparing a deployment solution that allows for the virtual 
 machines to 
 
--1 
-maintain a uniform configuration
-AND
-
+-1  ** maintain ** a uniform configuration
 -2 
 keep administrative effort with regard to configuring the virtual 
 machines to a minimum. 
@@ -2039,28 +2066,48 @@ machines to a minimum.
 Which of the following should be part of your solution?
 Which of the following should be part of your solution? (Choose two.)
 
-A20-1: Azure Resource Manager templates
-A20-2: The PowerShell Desired State Configuration (DSC) extension for Windows
-A20-3: Azure pipeline deployment groups
-A20-4: The Custom Script Extension for Windows
-A20-5: Azure pipeline stage templates
+A20-1: A. Azure Resource Manager templates
+A20-2: B. The PowerShell Desired State Configuration (DSC) extension for Windows
+A20-3: C. Azure pipeline deployment groups
+A20-4: D. The Custom Script Extension for Windows
+A20-5: E. Azure pipeline stage templates
 
 
 MY ANSWER TO PT01-Q20
 --------------------------------------------------------------------------
-A20-1: Azure Resource Manager templates
-A20-2: The PowerShell Desired State Configuration (DSC) extension for Windows
+A20-1: A. Azure Resource Manager templates
+A20-2: B. The PowerShell Desired State Configuration (DSC) extension for Windows
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q20
 --------------------------------------------------------------------------
-?
+A20-1: A. Azure Resource Manager templates
+A20-4: D. The Custom Script Extension for Windows
 --------------------------------------------------------------------------
 
 question posts
 https://www.examtopics.com/discussions/microsoft/view/57178-exam-az-400-topic-1-question-24-discussion/
 https://www.examtopics.com/discussions/microsoft/view/16114-exam-az-400-topic-6-question-12-discussion/
 
+POST-1: https://www.examtopics.com/discussions/microsoft/view/57178-exam-az-400-topic-1-question-24-discussion/
+Suggested Answer: AD 
+The Custom Script Extension downloads and executes scripts on Azure virtual machines. 
+This extension is useful for
+ - post deployment configuration
+ - software installation
+ - any other configuration or management tasks. 
+
+Scripts can be  
+ - downloaded from Azure storage 
+ - downloaded from GitHub 
+ - provided to the Azure portal at extension run time. 
+ 
+The Custom Script Extension integrates with Azure Resource Manager templates, 
+and can be run using the Azure CLI, PowerShell, Azure portal, or 
+the Azure Virtual Machine REST API.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows
 
 RESF
 
@@ -2249,7 +2296,7 @@ Azure DevOps integration with WhiteSource Bolt will enable you to:
 
 
 https://github.com/zaproxy/zaproxy
-The OWASP Zed Attack Proxy (ZAP) is one of the world’s most popular free 
+The OWASP Zed Attack Proxy (ZAP) is one of the worldï¿½s most popular free 
 security tools and is actively maintained by a dedicated international team 
 of volunteers. 
 
@@ -2275,10 +2322,10 @@ is restricted.
 Which of the following actions should you take?
 
 
-A16-1: You should make use of static code analysis.
-A16-2: You should make use of views.
-A16-3: You should make use of dynamic code analysis.
-A16-4: You should make use of upstream sources.
+A16-1: A. You should make use of static code analysis.
+A16-2: B. You should make use of views.
+A16-3: C. You should make use of dynamic code analysis.
+A16-4: D. You should make use of upstream sources.
 
 
 MY ANSWER TO PT01-Q16
@@ -2288,13 +2335,26 @@ A16-2: You should make use of views.
 
 CORRECT ANSWER TO PT01-Q16
 --------------------------------------------------------------------------
-?
+D. You should make use of upstream sources.
+>> However, the consensus is that this answer is not correct.
 --------------------------------------------------------------------------
 
 question posts
 https://www.examtopics.com/discussions/microsoft/view/56900-exam-az-400-topic-1-question-20-discussion/
-suggested answer
-B. You should make use of views. 
+suggested answer: B. You should make use of views. 
+
+---------------------------------
+FEED Views
+
+Feed views enable developers to share a subset of package-versions with their consumers.
+
+A common use of feed views is to share package versions that have been tested and 
+validated but hold back on packages that are still under development and/or didn't 
+meet a certain quality bar.
+
+docs.microsoft.com/en-us/azure/devops/artifacts/concepts/views?view=azure-devops
+---------------------------------
+
 
 REFS
 
