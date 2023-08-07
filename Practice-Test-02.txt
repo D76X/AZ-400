@@ -30,13 +30,57 @@ Practice Test 2 40 questions
 --------------------------------
 
 ------------------------------------------------------------------------
+PT02-Q05: 
+
+You have an Azure DevOps organization named Contoso and an Azure subscription. 
+The subscription contains an Azure virtual machine scale set named VMSS1 
+and an Azure Standard Load Balancer named LB1. LB1 distributes incoming 
+requests across VMSS1 instances. 
+
+You use Azure DevOps to build a web app named App1 and deploy App1 to VMSS1. 
+App1 is accessible via HTTPS only and configured to require mutual 
+authentication by using a client certificate. You need to recommend a 
+solution for implementing a health check of App1. 
+
+The solution must meet the following requirements:
+
+Identify whether individual instances of VMSS1 are eligible for an upgrade operation.
+Minimize administrative effort.
+
+What should you include in the recommendation?
+
+A05-1: 
+A05-2: 
+A05-3: 
+A05-4: 
+A05-5: 
+
+MY ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/44703-exam-az-400-topic-3-question-13-discussion/ 
+
+
+
+------------------------------------------------------------------------
 PT02-Q04: 
 
-You are building an ASP.NET Core application. 
-You plan to create an application utilization baseline by capturing telemetry data.
+You are building an ** ASP.NET Core ** application. 
+You plan to create an application utilization baseline by capturing 
+telemetry data.
 You need to add code to the application to capture the telemetry data. 
 
+------------------------------------------------------------------
 The solution must minimize the costs of storing the telemetry data.
+------------------------------------------------------------------
 
 Which two actions should you perform?
 
@@ -59,6 +103,136 @@ CORRECT ANSWER TO PT02-Q04
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/44154-exam-az-400-topic-3-question-12-discussion/
 
+Suggested Answer: BD
+B. From the code of the application, enable adaptive sampling.
+D. Add the <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond> parameter to the ApplicationInsights.config file.
+
+Most Voted Answer: CD 
+C. From the code of the application, add Azure Application Insights telemetry.
+E. From the code of the application, disable adaptive sampling. 
+
+Comment:
+E is "disable adaptive sampling". it does no make sense. 
+the question mentioned "minimize cost of storing the telemetry data", so adaptive 
+sampling should not be disabled. And, in ASP.NET Core, 
+adaptive sampling is enabled by default.
+
+REFS
+Sampling in Application Insights
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/sampling
+
+It's the recommended way 
+ - to reduce telemetry traffic
+ - to reduce data costs and storage costs
+   while preserving a statistically correct analysis of application data. 
+ - avoid Application Insights throttling your telemetry
+
+The sampling filter selects items that are related, so that you can 
+navigate between items when you're doing diagnostic investigations.
+When metric counts are presented in the portal, they're renormalized to
+take into account sampling. Doing so minimizes any effect on the statistics.
+
+There are three different types of sampling: 
+ - adaptive sampling : enabled by default in all recent SDKs
+ - fixed-rate sampling 
+ - ingestion sampling : It doesn't reduce telemetry traffic sent from your app, 
+   but helps you keep within your monthly quota.
+   The main advantage of ingestion sampling is that you can set the sampling
+   rate without redeploying your app. 
+
+
+When to use sampling?
+In general, for most small and medium size applications you don't need sampling.
+
+ - Application Insights service drops ("throttles") data points when 
+   your app sends a high rate of telemetry in a short time interval. 
+   Sampling reduces the likelihood that your application sees throttling occur.
+ - To keep within the quota of data points for your pricing tier.
+ - To reduce network traffic from the collection of telemetry.
+
+-----------------
+Adaptive sampling
+-----------------
+Adaptive sampling is enabled by default when you use the 
+ASP.NET SDK or the 
+ASP.NET Core SDK, 
+and is also enabled by default for Azure Functions.
+
+The volume is adjusted automatically to keep within a specified maximum 
+rate of traffic, and is controlled via the setting 
+-----------------------------
+MaxTelemetryItemsPerSecond. 
+-----------------------------
+
+----------------------
+Fixed-rate sampling
+----------------------
+Fixed-rate sampling reduces the traffic sent from your web server and web browsers. 
+Unlike adaptive sampling, it reduces telemetry at a fixed rate decided by you. 
+Fixed-rate sampling is available for ASP.NET, ASP.NET Core, Java and Python applications.
+
+------------------------------------------------------------------
+Configuring fixed-rate sampling for ASP.NET Core applications
+------------------------------------------------------------------
+1. Disable adaptive sampling
+
+Changes can be made after the WebApplication.CreateBuilder() method, 
+using ApplicationInsightsServiceOptions:
+
+```
+var builder = WebApplication.CreateBuilder(args);
+var aiOptions = new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions();
+aiOptions.EnableAdaptiveSampling = false; // Disable !
+builder.Services.AddApplicationInsightsTelemetry(aiOptions);
+var app = builder.Build();
+```
+
+2. Enable the fixed-rate sampling module
+
+Changes can be made after the WebApplication.CreateBuilder() method:
+
+```
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
+{
+    var builder = telemetryConfiguration.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
+
+    // Using fixed rate sampling
+    double fixedSamplingPercentage = 10;
+    builder.UseSampling(fixedSamplingPercentage);
+});
+
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+{
+    EnableAdaptiveSampling = false,
+});
+
+var app = builder.Build(); 
+```
+
+------------------------------------------------------------------
+Configuring fixed-rate sampling for ASP.NET applications
+------------------------------------------------------------------
+
+1. Disable adaptive sampling: In ApplicationInsights.config, remove
+   or comment out the AdaptiveSamplingTelemetryProcessor node.
+
+<TelemetryProcessors>
+    <!-- Disabled adaptive sampling:
+    <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.AdaptiveSamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+        <MaxTelemetryItemsPerSecond>5</MaxTelemetryItemsPerSecond>
+    </Add>
+    -->
+
+2. Enable the fixed-rate sampling module. Add this snippet to ApplicationInsights.config:
+<TelemetryProcessors>
+    <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
+        <!-- Set a percentage close to 100/N where N is an integer. -->
+        <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
+        <SamplingPercentage>10</SamplingPercentage>
+    </Add>
+</TelemetryProcessors>
 
 ------------------------------------------------------------------------
 PT02-Q03: 
