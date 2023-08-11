@@ -30,34 +30,210 @@ Practice Test 2 40 questions
 --------------------------------
 
 ------------------------------------------------------------------------
+PT02-Q07:
+
+Your company hosts a web application in Azure. The company uses 
+Azure Pipelines for the build and release management of the application.
+
+Stakeholders report that the past few releases have negatively affected 
+system performance. 
+You configure alerts in Azure Monitor. 
+
+You need to ensure that new releases are only deployed to production if 
+the releases meet defined performance baseline criteria in the staging
+environment first.
+
+What should you use to prevent the deployment of releases that fall to
+meet the performance baseline?
+
+A07-1: A. an Azure Scheduler job
+A07-2: B. a trigger
+A07-3: C. a gate
+A07-4: D. an Azure function
+A07-5: 
+
+MY ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+A07-3: C. a gate
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35525-exam-az-400-topic-3-question-16-discussion/ 
+Suggested Answer: C. a gate
+
+Scenarios and use cases for gates include: Quality validation.
+
+Query metrics from tests on the build artifacts such as pass rate or code 
+coverage and deploy only if they are within required thresholds.
+Use Quality Gates to integrate monitoring into your pre-deployment or post-deployment.
+This ensures that you are meeting the key health/performance metrics (KPIs) as 
+your applications move from dev to production and any differences in the 
+infrastructure environment or scale is not negatively impacting your KPIs.
+
+Note: 
+Gates allow automatic collection of health signals from external services,
+and then promote the release when all the signals are successful at the same
+time or stop the deployment on timeout. 
+Typically, gates are used in connection with 
+incident management, problem management, change management, monitoring, and
+external approval systems.
+
+
+REFS
+
+Deployment gates
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops
+
+AZ-400 DevOps Exam - Udemy
+Approval and Gates 
+https://www.udemy.com/course/azure100/learn/lecture/33385684#overview
+---------------------------------------------------------------------
+----------------------------------------------------------------------
+Release Pipelines Approvals Example
+https://www.udemy.com/course/azure100/learn/lecture/33385702#overview
+
+APPROVALs are manual processes that allow a release to move from stage
+to stage of a release pipeline. You set up 
+-one or more Approvers User 
+-a timeframe for the stage Approval to be signed off by teh Approvers
+
+----------------------------------------------------------------------
+> pre-deployment approval : 
+approve that the release can be deployed by means of a pipeline stage.
+> post-deployment-approval: 
+approve that the release has been successfully deployed by means of a 
+pipeline stage and can continue to the next stage. 
+
+----------------------------------------------------------------------
+Gates with Azure Boards Work Items Query Example
+https://www.udemy.com/course/azure100/learn/lecture/33385716#overview
+
+GATEs are AUTOMATED processes that allow a release to move from stage
+to stage of a release pipeline. 
+For example:
+the following can be used as part of the definition of a deployment GATE.
+-1 Run saved queries on Azure Boards 
+-2 Measure KPIs using Azure Monitor ALERTS on the deployment environment
+   infrastructure 
+-----------------------------------------
+Check Azure Policy Compliance
+Invoke Azure Function
+Invoke a REST API   
+Query Azure Monitor alerts **
+Query Work Items
+Sonar Cloud Quality Gate Status Check
+-----------------------------------------
+----------------------------------------------------------------------
+Gates with Azure Boards Azure Monitor alerts **
+https://www.udemy.com/course/azure100/learn/lecture/33385742#overview 
+
+----------------------------------------------------------------------
+> predeployment-gate: 
+> post-deployment-gate:
+
+
+---------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------------
+PT02-Q06: 
+
+You have a build pipeline in Azure Pipelines that occasionally fail. 
+
+You discover that a test measuring the response time of an API endpoint 
+causes the failures. 
+
+You need to prevent the build pipeline from failing due to the test.
+
+Which two actions should you perform? 
+Each correct answer presents part of the solution.
+NOTE: Each correct selection is worth one point.
+
+A06-1: A. Set Flaky test detection to Off.
+A06-2: B. Clear Flaky tests included in test pass percentage.
+A06-3: C. Enable Test Impact Analysis (TIA).
+A06-4: D. Manually mark the test as flaky.
+A06-5: E. Enable test slicing.
+
+MY ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+A06-2: B. Clear Flaky tests included in test pass percentage.
+A06-4: D. Manually mark the test as flaky.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/51100-exam-az-400-topic-3-question-15-discussion/
+Suggested Answer: BD
+B. Clear Flaky tests included in test pass percentage.
+D. Manually mark the test as flaky.
+
+REFS
+Flaky Tests - AZ-400 DevOps Exam - Udemy
+https://www.udemy.com/course/azure100/learn/lecture/33592864#overview
+
+Manage flaky tests
+https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops
+
+If you want to ensure flaky test failures don't fail your pipeline, 
+you can choose to not include them in your test summary and suppress
+the test failure.
+This option ensures flaky tests (both passed and failed) are removed 
+from the pass percentage and shown in Tests not reported, as shown in 
+the following screenshot.
+
+Tests marked as flaky
+https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops#tests-marked-as-flaky
+
+------------------------------------------------------------------------
 PT02-Q05: 
 
 You have an Azure DevOps organization named Contoso and an Azure subscription. 
-The subscription contains an Azure virtual machine scale set named VMSS1 
-and an Azure Standard Load Balancer named LB1. LB1 distributes incoming 
-requests across VMSS1 instances. 
+
+The subscription contains 
+ - an Azure virtual machine scale set named VMSS1 
+ - and an Azure Standard Load Balancer named LB1. 
+ 
+ LB1 distributes incoming requests across VMSS1 instances. 
 
 You use Azure DevOps to build a web app named App1 and deploy App1 to VMSS1. 
+
 App1 is accessible via HTTPS only and configured to require mutual 
-authentication by using a client certificate. You need to recommend a 
-solution for implementing a health check of App1. 
+authentication by using a client certificate. 
+
+You need to recommend a solution for 
+-------------------------------------
+implementing a health check of App1. 
+-------------------------------------
 
 The solution must meet the following requirements:
 
-Identify whether individual instances of VMSS1 are eligible for an upgrade operation.
-Minimize administrative effort.
+-1 Identify whether individual instances of VMSS1 are eligible for an
+   upgrade operation.
+-2 Minimize administrative effort.
 
 What should you include in the recommendation?
 
-A05-1: 
-A05-2: 
-A05-3: 
-A05-4: 
+A05-1: A. an Azure Load Balancer health probe
+A05-2: B. Azure Monitor autoscale
+A05-3: C. the Custom Script Extension
+A05-4: D. the Application Health extension
 A05-5: 
 
 MY ANSWER TO PT02-Q05
 --------------------------------------------------------------------------
-?
+A05-4: D. the Application Health extension
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT02-Q05
@@ -65,9 +241,126 @@ CORRECT ANSWER TO PT02-Q05
 ?
 --------------------------------------------------------------------------
 
+
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/44703-exam-az-400-topic-3-question-13-discussion/ 
+Suggested Answer: D. the Application Health extension
 
+
+REFS
+
+Azure Load Balancer health probes
+https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview
+
+Overview of autoscale in Azure
+https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview
+
+Using Application Health extension with Virtual Machine Scale Sets
+https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api
+
+
+----------------------------------
+Azure Load Balancer health probes
+https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview
+----------------------------------
+
+Azure Load Balancer rules require a health probe to detect the endpoint status. 
+Use health probes 
+ - to detect the failure of an application. 
+ - to generate a custom response to a health probe.
+ - for flow control to manage load or planned downtime.
+
+When a health probe fails, the load balancer stops sending new connections to
+the respective unhealthy instance.
+
+Probe protocols > Basic SKU: TCP, HTTP > Std SKU: +HTTPS
+
+--------------------
+Probe down behavior
+--------------------
+
+Scenario 1- Single instance probes down
+New TCP connections succeed to remaining healthy backend endpoint.
+Established TCP connections to this backend endpoint continue.
+
+Scenario 2- All instances probe down
+No new flows are sent to the backend pool. 
+
+ > Standard Load Balancer 
+   allows established TCP flows to continue given that a backend pool
+   has more than one backend instance. 
+ > Basic Load Balancer terminates all existing TCP flows to the backend pool.
+
+------------------
+Probe properties
+------------------
+...
+
+----------------------------------
+Azure Load Balancer health probes
+Limitations
+----------------------------------
+
+-1 HTTPS probes don't support mutual authentication with a client certificate.
+-2 A Basic SKU load balancer health probe isn't supported with a virtual machine scale set.
+-3 You should assume health probes fail when TCP timestamps are enabled.
+-4 HTTP probes don't support probing on the following ports due to 
+   security concerns: 19, 21, 25, 70, 110, 119, 143, 220, 993.
+
+Note:
+
+Limitation-1 
+HTTPS probes don't support mutual authentication with a client certificate.
+
+rules out that Azure Load Balancer health probes can be used in this scenario 
+because of the requirement.
+-------------------------------------------------------------------------------------------
+App1 is accessible via HTTPS only and configured to require mutual mutual authentication 
+by using a client certificate ( << this is imprtant!)
+--------------------------------------------------------------------------------------------
+
+
+Using Application Health extension with Virtual Machine Scale Sets
+https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api
+-------------------------------------------------------------------
+Monitoring your application health for managing and upgrading your deployment. 
+Azure Virtual Machine Scale Sets provide support for 
+ - Rolling Upgrades 
+ - including Automatic OS-Image Upgrades 
+- Automatic VM Guest Patching,
+  which rely on health monitoring of the individual instances to upgrade
+  your deployment. 
+  
+You can also use Application Health Extension to monitor the application health
+of each instance in your scale set and 
+- perform instance repairs using Automatic Instance Repairs.
+
+two types of Application Health extension
+ - Binary Health States 
+ - Rich Health States
+
+---------------------------------------------
+When to use the Application Health extension
+---------------------------------------------
+The extension probes on a local application endpoint and will update the health
+status based on TCP/HTTP(S) responses received from the application.
+This health status is used by Azure to initiate repairs on unhealthy instances
+and to determine if an instance is eligible for upgrade operations. 
+
+The extension reports health 
+********************************************************************* 
+from within a VM and can be used in situations where an external 
+probe such as the Azure Load Balancer health probes can’t be used.
+*********************************************************************
+
+Note:
+
+This last statement confirms that Application Health extension can be used 
+with teh VMs of the scale set VMSS1 in this scanario in place of the  
+Azure Load Balancer health probe which cannot be used in this case due to
+the requirement of the HTTPS mutual authentication by using a client 
+certificate which is not a supported scenario of the Azure Load Balancer 
+health probe.
 
 
 ------------------------------------------------------------------------
@@ -77,6 +370,7 @@ You are building an ** ASP.NET Core ** application.
 You plan to create an application utilization baseline by capturing 
 telemetry data.
 You need to add code to the application to capture the telemetry data. 
+
 
 ------------------------------------------------------------------
 The solution must minimize the costs of storing the telemetry data.
