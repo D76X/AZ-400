@@ -29,6 +29,536 @@ CORRECT ANSWER TO PT02-Q0X
 Practice Test 2 40 questions
 --------------------------------
 
+-----------------------------------------------------------------------
+PT02-Q17:
+
+
+You plan to provide a self-hosted Linux agent. 
+
+Which authentication mechanism should you use to register the self-hosted agent?
+
+A17-1: A. personal access token (PAT)
+A17-2: B. SSH key
+A17-3: C. Alternate credentials
+A17-4: D. certificate
+A17-5: 
+
+MY ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35920-exam-az-400-topic-4-question-3-discussion/
+
+Suggested Answer: A. personal access token (PAT)
+Note: 
+PAT Supported only on Azure Pipelines and TFS 2017 and newer. 
+After you choose PAT, paste the PAT token you created into the command 
+prompt window. Use a personal access token (PAT) if your Azure DevOps 
+Server or TFS instance and the agent machine are not in a trusted domain. 
+PAT authentication is handled by your Azure DevOps Server or TFS instance 
+instead of the domain controller.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/v2-linux
+
+The user configuring the agent needs 
+POOL ADMIN PERMISSION 
+but the user running the agent does not.
+
+---------------------------------------------
+IMPORTANT!
+
+The folders controlled by the agent should be restricted to as few users
+as possible and they contain secrets that could be decrypted or exfiltrated.
+The Azure Pipelines agent is a software product designed to execute code 
+it downloads from external sources. It inherently could be a target for 
+Remote Code Execution (RCE) attacks.
+
+Therefore, it is important to consider the threat model surrounding each 
+individual usage of Pipelines Agents to perform work, and decide what are
+ the minimum permissions could be granted to 
+ 
+- the user running the agent 
+- to the machine where the agent runs 
+- to the users who have write access to the Pipeline definition
+- to the git repos where the yaml is stored
+- or to the group of users who control access to the pool for new pipelines.
+
+IMPORTANT
+
+It is a best practice to have the identity running the agent be different 
+from the identity with permissions to connect the agent to the pool.
+The user generating the credentials (and other agent-related files) is 
+different than the user that needs to read them.
+Therefore, it is safer to carefully consider access granted to the agent 
+machine itself, and the agent folders which contain sensitive files, 
+such as logs and artifacts.
+
+---------------------------------------------
+
+
+
+------------------------------------------------------------------------
+PT02-Q16:
+
+You have several Azure Active Directory (Azure AD) accounts. 
+You need to ensure that users use multi-factor authentication (MFA) to 
+access Azure apps from untrusted networks. 
+
+What should you configure in Azure AD?
+
+A16-1: A. access reviews
+A16-2: B. managed identities
+A16-3: C. entitlement management
+A16-4: D. conditional access
+A16-5: 
+
+MY ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+A16-4: D. conditional access
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74034-exam-az-400-topic-4-question-2-discussion/
+
+Suggested Answer: D. conditional access
+You can configure a Conditional Access policy that requires 
+** MFA for access from untrusted networks. ** 
+Reference:
+https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/howto-conditional-access-policy-all-users-mfa
+
+------------------------------------------------------------------------
+PT02-Q15:
+
+
+You have an Azure DevOps organization named Contoso and an Azure subscription. 
+The subscription contains an Azure virtual machine scale set named VMSS1 that
+is configured for autoscaling. 
+
+You have a project in Azure DevOps named Project1. 
+Project1 is used to build a web app named App1 and deploy App1 to VMSS1. 
+You need to ensure that an email alert is generated whenever VMSS1 scales 
+in or out.
+
+Solution1: From Azure DevOps, configure the Notifications settings for Project1.
+
+Does this meet the goal?
+
+A15-1: A. Yes
+A15-2: B. No <<
+
+
+Solution2: From Azure DevOps, configure the Service hooks settings for Project1.
+
+A15-1: A. Yes
+A15-2: B. No <<
+
+
+Solution3: From Azure Monitor, create an action group.
+
+A15-1: A. Yes <<
+A15-2: B. No
+ 
+
+MY ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+No > No > Yes
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+
+https://www.examtopics.com/discussions/microsoft/view/76270-exam-az-400-topic-3-question-28-discussion/
+
+https://www.examtopics.com/discussions/microsoft/view/76020-exam-az-400-topic-3-question-29-discussion/
+
+An action group is a collection of notification preferences defined by 
+the owner of an Azure subscription. 
+
+ - Azure Monitor Service Health and 
+ - Azure Advisor alerts 
+ 
+use action groups to notify users that an alert has been triggered.
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
+
+
+------------------------------------------------------------------------
+PT02-Q14:
+
+You are designing a strategy to monitor the baseline metrics of 
+Azure virtual machines that run Windows Server.
+
+You need to collect detailed data about the processes running in the guest
+operating system.
+
+Which two agents should you deploy?
+
+A14-1: A. the Telegraf agent
+A14-2: B. the Azure Log Analytics agent
+A14-3: C. the Azure Network Watcher Agent for Windows
+A14-4: D. the Dependency agent
+A14-5: 
+
+MY ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/51392-exam-az-400-topic-3-question-25-discussion/
+
+Suggested Answer: BD
+B. the Azure Log Analytics agent
+D. the Dependency agent
+
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-monitor/platform/agents-overview
+
+B. the Azure Log Analytics agent
+D. the Dependency agent REQUIRES the Azure Log Analytics agent
+collects the following data
+- Processes 
+- Dependencies
+- Network connections metrics
+
+B. the Azure Log Analytics agent
+collects the following data
+- Event Logs
+- Performance Counters
+- File based Loogs
+- IIS Logs
+- Data generated by Application Insights
+- Other Services
+
+
+
+------------------------------------------------------------------------
+PT02-Q13:
+
+You have a containerized solution that runs in Azure Container Instances. 
+The solution contains 
+ - a frontend container named App1 
+ - and a backend container named DB1. 
+ 
+ DB1 loads a large amount of data during startup.
+
+You need to verify that DB1 can handle incoming requests before users can 
+submit requests to App1.
+
+What should you configure?
+
+A13-1: A. a liveness probe
+A13-2: B. a performance log
+A13-3: C. a readiness probe
+A13-4: D. an Azure Load Balancer health probe
+A13-5: 
+
+MY ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+A13-3: C. a readiness probe
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/37404-exam-az-400-topic-3-question-24-discussion/ 
+Suggested Answer: C. a readiness probe
+
+** readiness probes **
+For containerized applications that serve traffic, you might want to verify that
+your container is ready to handle incoming requests. 
+Azure Container Instances supports readiness probes to include configurations so
+that your container can't be accessed under certain conditions.
+
+Incorrect Answers:
+** liveness probes **
+A: Containerized applications may run for extended periods of time, resulting in
+broken states that may need to be repaired by restarting the container. 
+Azure Container Instances supports liveness probes so that you can configure your
+containers within your container group to restart if critical functionality is not working.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/container-instances/container-instances-readiness-probe
+
+------------------------------------------------------------------------
+PT02-Q12:
+
+You are designing a configuration management solution to support five apps
+hosted on Azure App Service. 
+Each app is available in the following three environments: 
+ - development 
+ - test
+ - production.
+
+You need to recommend a configuration management solution that meets the
+following requirements:
+
+- Supports feature flags
+- Tracks configuration changes from the past 30 days
+- Stores hierarchically structured configuration values
+- Controls access to the configurations by using role-based access control (RBAC) permissions
+- Stores shared values as key/value pairs that can be used by all the apps
+ 
+Which Azure service should you recommend as the configuration management solution?
+
+
+A12-1: A. Azure Cosmos DB
+A12-2: B. Azure App Service
+A12-3: C. Azure App Configuration
+A12-4: D. Azure Key Vault
+A12-5: 
+
+MY ANSWER TO PT02-Q12
+--------------------------------------------------------------------------
+A12-3: C. Azure App Configuration
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q12
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36343-exam-az-400-topic-6-question-26-discussion/
+
+Suggested Answer: C 🗳️
+The Feature Manager in the Azure portal for App Configuration provides a UI for creating and managing the feature flags that you use in your applications.
+App Configuration offers the following benefits:
+- A fully managed service that can be set up in minutes
+- Flexible key representations and mappings
+- Tagging with labels
+- Point-in-time replay of settings
+- Dedicated UI for feature flag management
+- Comparison of two sets of configurations on custom-defined dimensions
+- Enhanced security through Azure-managed identities
+- Encryption of sensitive information at rest and in transit
+- Native integration with popular frameworks
+
+App Configuration complements Azure Key Vault, which is used to store application secrets.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-app-configuration/overview
+
+------------------------------------------------------------------------
+PT02-Q11:
+
+You manage a project in Azure DevOps. 
+You need to prevent the configuration of the project from changing over time.
+
+Solution: Add a code coverage step to the build pipelines. 
+
+Does this meet the goal?
+
+A11-1: A. Yes
+A11-2: B. No
+A11-3: 
+A11-4: 
+A11-5: 
+
+MY ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+A11-2: B. No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/33255-exam-az-400-topic-3-question-20-discussion/
+Suggested Answer: B. No
+Instead implement Continuous Assurance for the project.
+Reference:
+https://azsk.azurewebsites.net/04-Continous-Assurance/Readme.html
+
+REFS: PT02-Q08
+
+
+------------------------------------------------------------------------
+PT02-Q10:
+
+You use 
+ - Azure Pipelines to manage to build pipelines 
+ - GitHub to store source code 
+ - Dependabot to manage dependencies. 
+
+You have an app named App1. 
+Dependable detects a dependency in App1 that requires an update.
+
+What should you do first to apply the update?
+
+A10-1: A. Create a pull request.
+A10-2: B. Approve the pull request.
+A10-3: C. Create a branch.
+A10-4: D. Perform a commit.
+A10-5: 
+
+MY ANSWER TO PT02-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36309-exam-az-400-topic-3-question-19-discussion/
+
+Suggested Answer: B. Approve the pull request. 
+
+DependaBot is a useful tool to regularly check for dependency updates.
+By helping to keep your project up to date, DependaBot can reduce technical
+debt and immediately apply security vulnerabilities when patches are released.
+
+How does DependaBot work?
+
+1. DependaBot regularly checks dependencies for updates
+2. If an update is found, DependaBot creates a new branch with this upgrade
+   and ** Pull Request ** for approval
+3. You review the new Pull Request, ensure the tests passed, review the code,
+  and decide if you can merge the change
+
+Reference:
+https://samlearnsazure.blog/2019/12/20/github-using-dependabot/
+
+------------------------------------------------------------------------
+PT02-Q09:
+
+Your company uses the following resources:
+
+-1 Windows Server 2019 container images hosted in an Azure Container Registry.
+-2 Azure virtual machines that run the latest version of Ubuntu
+-3 An Azure Log Analytics workspace
+-4 Azure Active Directory (Azure AD)
+-5 An Azure key vault
+
+For which two resources can you receive vulnerability assessments in Azure
+Security Center?
+
+A09-1: A. the Azure Log Analytics workspace
+A09-2: B. the Azure key vault
+A09-3: C. the Azure virtual machines that run the latest version of Ubuntu
+A09-4: D. Azure Active Directory (Azure AD)
+A09-5: E. The Windows Server 2019 container images hosted in the Azure Container Registry.
+
+MY ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+C. the Azure virtual machines that run the latest version of Ubuntu
+E. The Windows Server 2019 container images hosted in the Azure Container Registry.
+On the basis of 
+Security Control: Vulnerability Management
+https://learn.microsoft.com/en-us/security/benchmark/azure/security-control-vulnerability-management
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35778-exam-az-400-topic-3-question-18-discussion/ 
+Suggested Answer: BC 
+B. the Azure key vault
+C. the Azure virtual machines that run the latest version of Ubuntu
+
+
+REFS
+Microsoft cloud security benchmark documentation
+https://learn.microsoft.com/en-us/security/benchmark/azure/
+
+Security Control: Vulnerability Management
+https://learn.microsoft.com/en-us/security/benchmark/azure/security-control-vulnerability-management
+
+5.1: Run automated vulnerability scanning tools
+Follow recommendations from Azure Security Center on performing 
+ ** vulnerability assessments ** on your 
+  -------------------------------------
+  - Azure virtual machines 
+  - container images 
+  - SQL servers.
+ -------------------------------------
+
+Enable vulnerability scanning with the integrated Qualys scanner
+https://learn.microsoft.com/en-us/azure/defender-for-cloud/deploy-vulnerability-assessment-vm
+
+------------------------------------------------------------------------
+PT02-Q08:
+
+You manage a project in Azure DevOps. 
+You need to prevent the configuration of the project from changing over time.
+
+Solution: Perform a Subscription Health scan when packages are created.
+
+
+
+A08-1: Yes
+A08-2: No
+A08-3: 
+A08-4: 
+A08-5: 
+
+MY ANSWER TO PT02-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/52677-exam-az-400-topic-3-question-17-discussion/
+Suggested Answer: B No
+
+Instead implement ** Continuous Assurance ** for the project.
+Note: 
+The Subscription Security health check features in AzSK contains a set of
+scripts that examines a subscription and flags off security issues, 
+misconfigurations or obsolete artifacts/settings which can put your 
+subscription at higher risk.
+
+Reference:
+https://azsk.azurewebsites.net/04-Continous-Assurance/Readme.html
+
+Building cloud apps using the Secure DevOps Kit for Azure
+https://www.microsoft.com/insidetrack/blog/building-cloud-apps-using-the-secure-devops-kit-for-azure/
+
+It offers tools and best practices for building security into every stage of cloud app development.
+
+MPORTANT: DevOps Kit (AzSK) is being sunset by end of FY21. 
+More details here
+https://github.com/azsk/DevOpsKit-docs/blob/master/04-Continous-Assurance/Readme.md
+help accelerate Microsoft IT's adoption of Azure.
+
 ------------------------------------------------------------------------
 PT02-Q07:
 
@@ -121,7 +651,7 @@ the following can be used as part of the definition of a deployment GATE.
 -2 Measure KPIs using Azure Monitor ALERTS on the deployment environment
    infrastructure 
 -----------------------------------------
-Check Azure Policy Compliance
+Check Azure Policy Compliance ^^
 Invoke Azure Function
 Invoke a REST API   
 Query Azure Monitor alerts **
@@ -131,8 +661,11 @@ Sonar Cloud Quality Gate Status Check
 ----------------------------------------------------------------------
 Gates with Azure Boards Azure Monitor alerts **
 https://www.udemy.com/course/azure100/learn/lecture/33385742#overview 
-
 ----------------------------------------------------------------------
+Check Azure Policy Compliance ^^
+https://www.udemy.com/course/azure100/learn/lecture/33385774#overview
+----------------------------------------------------------------------
+
 > predeployment-gate: 
 > post-deployment-gate:
 
