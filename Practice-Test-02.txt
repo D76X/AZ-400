@@ -101,9 +101,25 @@ Therefore, it is safer to carefully consider access granted to the agent
 machine itself, and the agent folders which contain sensitive files, 
 such as logs and artifacts.
 
+It makes sense 
+ - to grant access to the agent folder only for DevOps administrators
+ - and to the user identity running the agent process.
+
+ Administrators may need to investigate the file system to 
+ understand build failures or get log files to be able to report 
+ Azure DevOps failures.
+
 ---------------------------------------------
 
+REGISTER THE AGENT 
 
+As a one-time step, you must register the agent. 
+Someone with permission to administer the agent queue must complete these steps.
+The agent will not use this person's credentials in everyday operation, but they're required to complete registration.
+
+In Azure DevOps
+Organization >> User Settings >> Personal Access Token (PAT)
+Create a personal access token.
 
 ------------------------------------------------------------------------
 PT02-Q16:
