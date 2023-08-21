@@ -29,6 +29,572 @@ CORRECT ANSWER TO PT02-Q0X
 Practice Test 2 40 questions
 --------------------------------
 
+You are deploying a server application that will run on a Server Core installation of Windows Server 2019.
+You create an Azure key vault and a secret. You need to use the key vault to secure API secrets for third-party integrations. Which three actions should you perform?
+
+-----------------------------------------------------------------------
+PT02-Q24:
+
+
+You have an Azure Resource Manager template that deploys a multi-tier application.
+
+You need to prevent the user who performs the deployment from viewing the
+account credentials and connection strings used by the application. 
+
+What should you use?
+
+
+A24-1: A. Azure Key Vault
+A24-2: B. a Web.config file
+A24-3: C. an Appsettings.json file
+A24-4: D. an Azure Storage table
+A24-5: E. an Azure Resource Manager parameter file
+
+MY ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+A24-1: A. Azure Key Vault
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/24850-exam-az-400-topic-4-question-13-discussion/
+
+Suggested Answer: A. Azure Key Vault
+
+When you need to pass a secure value (like a password) as a parameter during
+deployment, you can retrieve the value from an Azure Key Vault. You retrieve
+the value by referencing the key vault and secret in your parameter file. 
+
+The value is never exposed because you only reference its key vault ID. 
+The key vault can exist in a different subscription than the resource group
+you are deploying to.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-keyvault-parameter
+
+Instead of putting a secure value (like a password) directly in your 
+template or parameter file, you can retrieve the value from an 
+Azure Key Vault during a deployment.
+
+```
+az keyvault update  --name ExampleVault --enabled-for-template-deployment true
+```
+
+```
+az group create --name ExampleGroup --location centralus
+az keyvault create \
+  --name ExampleVault \
+  --resource-group ExampleGroup \
+  --location centralus \
+  --enabled-for-template-deployment true
+az keyvault secret set --vault-name ExampleVault --name "ExamplePassword" --value "hVFkk965BuUv"
+```
+
+```
+az keyvault set-policy \
+  --upn <user-principal-name> \
+  --name ExampleVault \
+  --secret-permissions set delete get list
+```
+
+--------------------------------------------
+Grant deployment access to the secrets
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli#grant-deployment-access-to-the-secrets
+--------------------------------------------
+
+The user who deploys the template must have the 
+-----------------------------------------
+Microsoft.KeyVault/vaults/deploy/action 
+-----------------------------------------
+The Owner and Contributor roles both grant this access. 
+
+permission for the scope of the resource group and key vault.
+By checking this access, Azure Resource Manager prevents an unapproved user
+from accessing the secret by passing in the resource ID for the key vault.
+
+You can grant deployment access to users without granting write access to 
+the secrets.
+
+-----------------------------------------
+Reference secrets with static ID
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli#reference-secrets-with-static-id
+-----------------------------------------
+
+
+***
+--------------------------------------------------------------------
+Access Key Vault secret when deploying Azure Managed Applications
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/managed-applications/key-vault-access
+--------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------
+PT02-Q23:
+
+
+You have a branch policy in a project in Azure DevOps. The policy requires
+that code always builds successfully.
+
+You need to ensure that a specific user can always merge changes to the master
+branch, even if the code fails to compile. 
+
+The solution must use the principle of least privilege.
+
+What should you do?
+
+
+A23-1: A. Add the user to the Build Administrators group.
+A23-2: B. Add the user to the Project Administrators group.
+A23-3: C. From the Security settings of the repository, modify the access control for the user.
+A23-4: D. From the Security settings of the branch, modify the access control for the user.
+A23-5: 
+
+MY ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+D. From the Security settings of the branch, modify the access control for the user.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20613-exam-az-400-topic-4-question-12-discussion/
+
+Suggested Answer: D. From the Security settings of the branch, modify the access control for the user.
+
+In some cases, you need to bypass policy requirements so you can push changes
+to the branch directly or complete a pull request even if branch policies are
+not satisfied. 
+
+For these situations, grant the desired permission from the previous list to
+a user or group. 
+You can scope this permission to an 
+ - entire project
+ - a repo 
+ - a single branch. 
+ 
+Manage this permission along the with other Git permissions.
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies
+
+---------------------
+Set Branch policies
+---------------------
+
+To set branch policies, you must be a member of the 
+
+- Project Administrators security group 
+or 
+- ave repository-level Edit policies permissions. 
+
+You can also use Azure DevOps CLI `az repos policy` commands to manage 
+branch policies, follow the steps in Get started with Azure DevOps CLI.
+
+Get started with Azure DevOps CLI
+https://learn.microsoft.com/en-us/azure/devops/cli/?view=azure-devops
+
+az repos policy
+https://learn.microsoft.com/en-us/cli/azure/repos/policy?view=azure-cli-latest
+
+---------------------
+In Azure DevOps
+---------------------
+Repos >> Branches
+or
+Project Settings > Repository > Policies > Branch Policies > <Branch Name>.
+
+>> Select the More options > select Branch policies
+
+- Require a minimum number of reviewers
+  - Allow requestors to approve their own changes
+  - Prohibit the most recent pusher from approving their own changes
+  - Allow completion even if some reviewers vote to wait or reject
+  - When new changes are pushed
+    - Require at least one approval on every iteration
+    - Require at least one approval on the last iteration
+    - Reset all approval votes (does not reset votes to reject or wait) 
+    - Reset all code reviewer votes
+
+- Check for linked work items
+
+you can require associations between PRs and work items to ensures that 
+updates go through your work item tracking process.
+
+- Check for comment resolution
+
+----------------------
+- Limit merge types
+----------------------
+
+
+- Basic merge 
+(no fast-forward) creates a merge commit in the target whose parents are 
+the target and source branches.
+
+- Squash merge 
+creates a linear history with a single commit in the target branch with the
+changes from the source branch. 
+
+- Rebase and fast-forward 
+creates a linear history by replaying source commits onto the target branch
+with no merge commit.
+
+- Rebase with merge commit 
+replays the source commits onto the target and also creates a merge commit.
+
+----------------------
+Build validation
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#build-validation
+----------------------
+You can set a policy requiring PR changes to build successfully before the 
+PR can complete. A build validation policy queues a new build when a new PR
+is created or changes are pushed to an existing PR that targets the branch. 
+The build policy evaluates the build results to determine whether the PR 
+can be completed.
+
+----------------------
+Bypass branch policies
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#bypass-branch-policies
+----------------------
+
+In some cases, you might need to bypass policy requirements. 
+Bypass permissions let you push changes to a branch directly, or complete 
+pull requests that don't satisfy branch policies. You can grant bypass
+permissions to a user or group. 
+
+Two permissions allow users to bypass branch policy in different ways:
+
+- Bypass policies when completing pull requests 
+
+applies only to pull request completion.
+
+- Bypass policies when pushing
+
+applies to pushes from local repositories and edits made on the web. 
+Users with this permission can push changes directly to protected branches 
+without meeting policy requirements.
+
+----------------------
+Path filters
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#path-filters
+----------------------
+
+Several branch policies offer path filters.
+If a path filter is set, the policy applies only to files that match the path filter. 
+
+
+-----------------------------------------------------------------------
+PT02-Q22:
+
+
+You create a Microsoft ASP.NET Core application. 
+You plan to use Azure Key Vault to provide secrets to the application as
+configuration data. 
+
+You need to create a Key Vault access policy to assign secret permissions
+to the application. 
+
+The solution must use the principle of least privilege. 
+Which secret permissions should you use?
+
+A22-1: A. List only
+A22-2: B. Get only
+A22-3: C. Get and List
+A22-4: 
+A22-5: 
+
+MY ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/23056-exam-az-400-topic-4-question-9-discussion/
+
+Suggested Answer: B: Get only
+
+within least privilege rules, by granting “Get only” permission, application 
+will only be able to retrieve values of secrets from Azure Key Vault, but 
+will not be allowed to list all secrets in Key Vault. This ensures that 
+the application only has access to the specific secrets it needs, without 
+excessive or necessary access to other secrets.
+
+
+-----------------------------------------------------------------------
+PT02-Q21:
+
+
+Your company has a project in Azure DevOps for a new web application. 
+The company identifies security as one of its highest priorities. 
+
+You need to recommend a solution to minimize the likelihood that 
+infrastructure credentials will be leaked. 
+
+What should you recommend?
+
+A21-1: A. Add a Run Inline Azure PowerShell task to the pipeline.
+A21-2: B. Add a PowerShell task to the pipeline and run Set-AzureKeyVaultSecret.
+A21-3: C. Add an Azure Key Vault task to the pipeline.
+A21-4: D. Add Azure Key Vault references to Azure Resource Manger templates.
+A21-5: 
+
+MY ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+A21-3: C. Add an Azure Key Vault task to the pipeline.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/9791-exam-az-400-topic-4-question-7-discussion/
+
+------------------------
+xRiot007 1 month ago
+------------------------
+You want credentials not to be leaked. 
+This means they CANNOT be anywhere in your infrastructure scripts of pipeline.
+To do this, you will add Azure Key Vault key references. 
+At runtime, the pipeline will ask the Vault for values and pass them 
+immediately to the infrastructure scripts.
+
+-----------------------------------------------------------------------
+PT02-Q20:
+
+
+You have an application that consists of several Azure App Service web
+apps and Azure functions. 
+You need to assess the security of web apps and their functions. 
+
+Which Azure feature can you use to provide a recommendation for the security
+of the application?
+
+A20-1: A. Security & Compliance in Azure Log Analytics
+A20-2: B. Resource health in Azure Service Health 
+A20-3: C. Smart Detection in Azure Application Insights
+A20-4: D. Compute & apps in Azure Security Center
+A20-5: 
+
+MY ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+A20-4: D. Compute & apps in Azure Security Center
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/29727-exam-az-400-topic-4-question-6-discussion/
+Suggested Answer: D. Compute & apps in Azure Security Center
+
+Monitor compute and app services: Compute & apps include the App Services tab, 
+which App services: list of your App service environments and current security
+state of each.
+
+** Micorsoft Defender For Cloud **
+Overview of Defender for App Service to protect your Azure App Service web apps and APIs
+https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-app-service-introduction
+
+Defender for Cloud is natively integrated with App Service, eliminating the need
+for deployment and onboarding - the integration is transparent.
+To protect your Azure App Service plan with Microsoft Defender for App Service, 
+you'll need:
+- A supported App Service plan associated with dedicated machines. 
+- Defender for Cloud's enhanced protections enabled on your subscription 
+
+-------------------------------------------------------------
+What are the benefits of Microsoft Defender for App Service?
+-------------------------------------------------------------
+
+Microsoft Defender for App Service uses the scale of the cloud to identify attacks 
+targeting applications running over App Service. Attackers probe web applications
+to find and exploit weaknesses. Before being routed to specific environments, requests
+to applications running in Azure go through several gateways, where they're inspected 
+and logged.
+This data is then used to identify exploits and attackers, and to learn new patterns
+that will be used later.
+
+When you enable Microsoft Defender for App Service, you immediately benefit from
+the following services offered by this Defender plan:
+
+- Secure:
+Defender for App Service assesses the resources covered by your App Service plan
+and generates security recommendations based on its findings.
+Use the detailed instructions in these recommendations to harden your App Service 
+resources.
+
+-Detect 
+Defender for App Service detects a multitude of threats to your App Service resources 
+by monitoring:
+  - the VM instance in which your App Service is running, and its management interface
+  - the requests and responses sent to and from your App Service apps
+  - the underlying sandboxes and VMs
+  - App Service internal logs - available thanks to the visibility that Azure has as a cloud provider
+
+As a cloud-native solution, Defender for App Service can identify attack methodologies
+applying to multiple targets. or example, from a single host it would be difficult to
+identify a distributed attack from a small subset of IPs, crawling to similar endpoints
+on multiple hosts.
+The log data and the infrastructure together can tell the story.
+
+------------------------------------------------------------
+What threats can Defender for App Service detect?
+------------------------------------------------------------
+The alerts cover almost the complete list of MITRE ATT&CK tactics
+
+- Pre-attack threats:
+Defender for Cloud can detect the execution of multiple types of vulnerability scanners
+that attackers frequently use to probe applications for weaknesses.
+
+- Initial access threats: 
+Microsoft Threat Intelligence powers these alerts that include triggering an
+alert when a known malicious IP address connects to your Azure App Service FTP 
+interface.
+
+- Execution threats:  
+Defender for Cloud can detect attempts to run high privilege commands, Linux
+commands on a Windows App Service, fileless attack behavior, digital currency
+mining tools, and many other suspicious and malicious code execution activities.
+
+- Dangling DNS detection
+-----------------------------------------------------------------------------
+Subdomain takeovers are a common, high-severity threat for organizations.
+
+hen a threat actor detects a dangling DNS entry, they create their own site at 
+the destination address.
+-----------------------------------------------------------------------------
+Defender for App Service also identifies any DNS entries remaining in your 
+DNS registrar when an App Service website is decommissioned.
+When you remove a website and don't remove its custom domain from your DNS registrar,
+the DNS entry is pointing to a non-existent resource, and your subdomain is vulnerable
+to a takeover.
+Defender for Cloud doesn't scan your DNS registrar for existing dangling DNS entries;
+it alerts you when an App Service website is decommissioned and its custom domain 
+(DNS entry) isn't deleted.
+
+------------------------------
+Incorrect Answers: C: 
+------------------------------
+Smart Detection automatically warns you of potential performance problems, 
+not security problems in your web application.
+Reference:
+https://docs.microsoft.com/en-us/azure/azure-monitor/app/proactive-diagnostics
++
+REFS: PT02-Q01
+
+***
+What's the difference between Azure Security Center, Azure Defender and Azure Sentinel?
+https://techcommunity.microsoft.com/t5/itops-talk-blog/what-s-the-difference-between-azure-security-center-azure/ba-p/2155188
+***
+
+-----------------------------------------------------------------------
+PT02-Q19:
+
+
+You have an Azure DevOps organization named Contoso. 
+
+You need to recommend an authentication mechanism that meets the following
+requirements:
+- Supports authentication from Git
+- Minimizes the need to provide credentials during the authentication
+
+What should you recommend?
+
+A19-1: A. personal access tokens (PATs) in Azure DevOps
+A19-2: B. Alternate credentials in Azure DevOps
+A19-3: C. user accounts in Azure Active Directory (Azure AD)
+A19-4: D. managed identities in Azure Active Directory (Azure AD)
+A19-5: 
+
+MY ANSWER TO PT02-Q19
+--------------------------------------------------------------------------
+A. personal access tokens (PATs) in Azure DevOps
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q19
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/44299-exam-az-400-topic-4-question-5-discussion/
+Suggested Answer: A. personal access tokens (PATs) in Azure DevOps
+
+Personal access tokens (PATs) give you access 
+- to Azure DevOps 
+- and Team Foundation Server (TFS), 
+without using your username and password directly.
+
+- These tokens have an expiration date from when they're created
+- You can restrict the scope of the data they can access
+
+Use PATs to authenticate if 
+- you don't already have SSH keys set up on your system 
+  or 
+- you need to restrict the permissions that are granted by the credential.
+
+Incorrect Answers:
+B: Azure DevOps no longer supports Alternate Credentials authentication since
+the beginning of March 2, 2020.
+
+-----------------------------------------------------------------------
+PT02-Q18:
+
+
+You are building a Microsoft ASP.NET application that requires authentication.
+You need to authenticate users by using Azure Active Directory (Azure AD).
+
+What should you do first?
+
+A18-1: A. Assign an enterprise application to users and groups
+A18-2: B. Create an app registration in Azure AD
+A18-3: C. Configure the application to use a SAML endpoint
+A18-4: D. Create a new OAuth token from the application
+A18-5: E. Create a membership database in an Azure SQL database
+
+MY ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+B. Create an app registration in Azure AD
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35919-exam-az-400-topic-4-question-4-discussion/
+Suggested Answer: B. Create an app registration in Azure AD
+
+Register your application to use Azure Active Directory. 
+Registering the application means that your developers can use Azure AD 
+to authenticate users and request access to user resources such as email,
+calendar, and documents.
+
+---------------------------------------------
+What is the Microsoft identity platform?
+https://learn.microsoft.com/en-us/azure/active-directory/develop/v2-overview
+---------------------------------------------
+The Microsoft identity platform helps you build applications your users and 
+customers can sign in to using their Microsoft identities or social accounts. 
+It authorizes access to your own APIs or Microsoft APIs like Microsoft Graph
+
 -----------------------------------------------------------------------
 PT02-Q17:
 
@@ -120,6 +686,28 @@ The agent will not use this person's credentials in everyday operation, but they
 In Azure DevOps
 Organization >> User Settings >> Personal Access Token (PAT)
 Create a personal access token.
+>
+For the scope select Agent Pools (read, manage) and 
+make sure all the other boxes are cleared.
+* If it's a deployment group agent, for the scope select Deployment group (read, manage) 
+>
+Select Show all scopes at the bottom of the Create 
+a new personal access token window window to see the complete list of scopes.
+>
+Copy the token. You'll use this token when you configure the agent.
+
+
+---------------------------------------------
+Download and configure the agent
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops#download-and-configure-the-agent
+
+---------------------------------------------
+Authentication type
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops#authentication-type
+Azure Pipelines: Choose PAT, and then paste the PAT token you created into the command prompt window.
+Note:
+When using PAT as the authentication method, the PAT token is used only 
+for the initial configuration of the agent.
 
 ------------------------------------------------------------------------
 PT02-Q16:
