@@ -29,12 +29,372 @@ CORRECT ANSWER TO PT02-Q0X
 Practice Test 2 40 questions
 --------------------------------
 
-You are deploying a server application that will run on a Server Core installation of Windows Server 2019.
-You create an Azure key vault and a secret. You need to use the key vault to secure API secrets for third-party integrations. Which three actions should you perform?
+-----------------------------------------------------------------------
+PT02-Q30:
+
+You have an Azure DevOps organization named Contoso, an Azure DevOps project named Project1, an Azure subscription named Sub1, and an Azure key vault named vault1. You need to ensure that you can reference the values of the secrets stored in vault1 in all the pipelines of Project1. The solution must prevent the values from being stored in the pipelines. What should you do?
+
+
+A30-1: 
+A30-2: 
+A30-3: 
+A30-4: 
+A30-5: 
+
+MY ANSWER TO PT02-Q30
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q30
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20533-exam-az-400-topic-4-question-23-discussion/
+
+-----------------------------------------------------------------------
+PT02-Q29:
+
+You have the following Azure policy.
+
+```
+"policyRule": {
+            "if": {
+                "allof": [
+                  {
+                    "field": "type",
+                    "equals": "Microsoft.Storage/storageAccounts"
+                  },
+                  {
+                    "field": "Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly",
+                    "notEquals": "true"
+                  }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+```
+
+You assign the policy to the Tenant root group.
+What is the effect of the policy?
+
+
+A29-1: A. prevents all HTTP traffic to existing Azure Storage accounts
+A29-2: B. ensures that all traffic to new Azure Storage accounts is encrypte 
+A29-3: C. prevents HTTPS traffic to new Azure Storage accounts when the accounts are accessed over the Internet
+A29-4: D. ensures that all data for new Azure Storage accounts is encrypted at rest
+A29-5: 
+
+MY ANSWER TO PT02-Q29
+--------------------------------------------------------------------------
+B. ensures that all traffic to new Azure Storage accounts is encrypte
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q29
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/48661-exam-az-400-topic-4-question-22-discussion/
+
+Correct answer is OK. 
+The policy is not going to apply to the existing resources, 
+** unless you run a remediation task ** to force the policy to all the existing
+resources.
+
+REFs
+
+Azure Policy definition structure
+https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure
+
+
+-----------------------------------------------------------------------
+PT02-Q28:
+
+Your company uses Azure DevOps. Only users who have accounts in 
+Azure Active Directory can access the Azure DevOps environment. 
+
+You need to ensure that only devices that are connected to the on-premises
+network can access the Azure DevOps environment. 
+
+What should you do?
+
+
+A28-1: A. Assign the Stakeholder access level to all users.
+A28-2: B. In Azure Active Directory, configure risky sign-ins.
+A28-3: C. In Azure DevOps, configure Security in Project Settings.
+A28-4: D. In Azure Active Directory, configure conditional access.
+A28-5: 
+
+MY ANSWER TO PT02-Q28
+--------------------------------------------------------------------------
+D. In Azure Active Directory, configure conditional access.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q28
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20532-exam-az-400-topic-4-question-21-discussion/
+
+Suggested Answer: D. In Azure Active Directory, configure conditional access. 
+
+Conditional Access is a capability of Azure Active Directory. 
+With Conditional Access, you can implement automated access control decisions
+for accessing your cloud apps that are based on conditions.
+
+Conditional Access policies are enforced after the first-factor authentication 
+has been completed.
+
+Reference:
+
+What is Conditional Access?
+https://docs.microsoft.com/en-us/azure/active-directory/conditional-access/overview
+
+Conditional Access: Conditions
+https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/concept-conditional-access-conditions#locations
+
+Conditional Access: Filter for devices
+https://learn.microsoft.com/en-us/azure/active-directory/conditional-access/concept-condition-filters-for-devices
+
+----------------------------------------------------
+Intune Conditional Access for Exchange on-premises
+https://learn.microsoft.com/en-us/mem/intune/protect/conditional-access-intune-common-ways-use#intune-conditional-access-for-exchange-on-premises
+----------------------------------------------------
+
+Conditional Access can be used to allow or block access to Exchange on-premises
+based on the device compliance policies and enrollment state. When Conditional
+Access is used in combination with a device compliance policy, only compliant 
+devices are allowed access to Exchange on-premises.
+
+- Allow or block certain platforms.
+- Immediately block devices that aren't managed by Intune.
+
+-----------------------------------------------------------------------
+PT02-Q27:
+
+You have an Azure DevOps organization named Contoso that contains a project 
+named Project1. 
+
+You provision an Azure key vault named Keyvault1. 
+
+You need to reference Keyvault1 secrets in a build pipeline of Project1.
+
+What should you do first?
+
+A27-1: A. Add a secure file to Project1.
+A27-2: B. Create an XAML build service.
+A27-3: C. Create a variable group in Project1.
+A27-4: D. Configure the security policy of Contoso.
+A27-5: 
+
+MY ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+D. Configure the security policy of Contoso.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35918-exam-az-400-topic-4-question-20-discussion/
+
+Suggested Answer: D. Configure the security policy of Contoso. 
+
+The build needs permission to access the Azure Key Vault. 
+This can be added in the Azure Portal.
+Open the Access Policies in the Key Vault and add a new one. 
+Choose the principle used in the DevOps build.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault
+
+-----------------------------------------------------------------------
+PT02-Q26:
+
+Your company is creating a suite of three mobile applications.
+
+You need to control access to the application builds.
+The solution must be managed at the organizational level.
+
+What should you use for below? 
+To answer, select the appropriate options in the answer area.
+
+A. Group to control the build access _____________
+
+A26A-1: A. Active Directory Groups
+A26A-2: B. Azure Active Directory Groups
+A26A-3: C. Microsoft Visual Studio App Center distribution groups
+
+
+B. Group type ____________
+
+A26B-1: A. Private
+A26B-2: B. Public
+A26B-3: C. Shared
+
+MY ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20530-exam-az-400-topic-4-question-19-discussion/
+
+Suggested Answer:
+
+Box 1: 
+C. Microsoft Visual Studio App Center distribution groups
+
+Distribution Groups are used to control access to releases. 
+A Distribution Group represents a set of users that can be managed jointly 
+and can have common access to releases. 
+Example of Distribution Groups can be teams of users, like the 
+
+ - QA Team 
+ - External Beta Testers 
+
+ or can represent stages or rings of releases, such as 
+
+  - Staging
+
+Box 2: 
+C. Shared
+
+Shared distribution groups are private or public distribution groups that are 
+shared across multiple apps in a single organization. Shared distribution groups 
+eliminate the need to replicate distribution groups across multiple apps.
+
+Note: 
+With the Deploy with App Center Task in Visual Studio Team Services, you can deploy
+your apps from Azure DevOps (formerly known as VSTS) to App Center. 
+By deploying to App Center, you will be able to distribute your builds to your users.
+
+REFS
+Manage App Center Distribution Groups
+https://docs.microsoft.com/en-us/appcenter/distribution/groups
+
+--------------------------------
+Private Distribution Groups
+https://learn.microsoft.com/en-us/appcenter/distribution/groups#private-distribution-groups
+--------------------------------
+In App Center, distribution groups are private by default. 
+Only testers invited via email can access the releases available to this group.
+Testers added to this group will receive a notification that they've been added to the app to test.
+After a release, testers will receive a new release notification email and must sign in to App Center to access the release.
+
+--------------------------------
+Public Distribution Groups
+https://learn.microsoft.com/en-us/appcenter/distribution/groups#public-distribution-groups
+--------------------------------
+Distribution groups must be public to enable unauthenticated installs from public links. 
+
+As with private distribution groups, testers receive emails notifying inviting them to test
+the app and when releases are available. To access the app, testers are required to sign in
+with their App Center account.
+
+Also, a ** public download link ** is under the distribution group name at the top of the 
+distribution group page. 
+** Anyone ** can access the release without signing in using the public download link.
+
+--------------------------------
+Shared Distribution Groups
+https://learn.microsoft.com/en-us/appcenter/distribution/groups#shared-distribution-groups
+--------------------------------
+
+Shared distribution groups are ** private or public ** distribution groups that are shared
+across multiple apps ** in a single organization. ** 
+***
+Shared distribution groups eliminate the need to replicate distribution groups across multiple apps.
+You can give a shared distribution group access to any combination of apps in your organization.
+Unlike app-level distribution groups, shared distribution groups are at the organization level rather than the app level. 
+***
+
+--------------------------------
+Adding Azure Active Directory (AAD) security groups to a Distribution Group
+https://learn.microsoft.com/en-us/appcenter/distribution/groups#adding-azure-active-directory-aad-security-groups-to-a-distribution-group
+--------------------------------
+
+App Center supports adding AAD security groups to a distribution group, 
+after your App Center organization is connected to your Azure Active Directory tenant.
+
+To connect Azure AD tenants to App Center, see 
+----------------------------------------
+Connecting to Azure Active Directory.
+https://learn.microsoft.com/en-us/appcenter/general/connecting-to-azure-active-directory
+----------------------------------------
+
+Once your tenant is connected to the organization, you can add AAD security groups to
+the distribution group.
+
+
+-----------------------------------------------------------------------
+PT02-Q25:
+
+You are deploying a server application that will run on a Server Core 
+installation of Windows Server 2019.
+
+You create an Azure key vault and a secret. 
+You need to use the key vault to secure API secrets for third-party 
+integrations. 
+
+Which three actions should you perform?
+
+A25-1: A. Configure RBAC for the key vault.
+A25-2: B. Modify the application to access the key vault.
+A25-3: C. Configure a Key Vault access policy.
+A25-4: D. Deploy an Azure Desired State Configuration (DSC) extension.
+A25-5: E. Deploy a virtual machine that uses a system-assigned managed identity.
+
+MY ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35808-exam-az-400-topic-4-question-18-discussion/
+
+Suggested Answer: BCE 
+B. Modify the application to access the key vault.
+C. Configure a Key Vault access policy.
+E. Deploy a virtual machine that uses a system-assigned managed identity.
+
+B+E
+An app deployed to Azure can take advantage of Managed identities for Azure resources,
+which allows the app to authenticate with Azure Key Vault using Azure AD authentication
+without credentials (Application ID and Password/Client Secret) stored in the app.
+
+C. Configure a Key Vault access policy.
+Key Vault
+> Add Access Policy 
+> Open Secret permissions and provide the app with Get and List permissions
+> Select Select principal and select the registered app by name. 
+  =>
+  Probably this ought to be the VM system-assigned managed identity
+> Save
+
 
 -----------------------------------------------------------------------
 PT02-Q24:
-
 
 You have an Azure Resource Manager template that deploys a multi-tier application.
 
@@ -42,7 +402,6 @@ You need to prevent the user who performs the deployment from viewing the
 account credentials and connection strings used by the application. 
 
 What should you use?
-
 
 A24-1: A. Azure Key Vault
 A24-2: B. a Web.config file
@@ -121,8 +480,36 @@ the secrets.
 
 -----------------------------------------
 Reference secrets with static ID
+*** parameter file ***
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli#reference-secrets-with-static-id
 -----------------------------------------
+With this approach, you reference the key vault in the parameter file, not the template.
+
+-----------------------------------------
+Reference secrets with dynamic ID
+*** linked template. ***
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli#reference-secrets-with-dynamic-id
+-----------------------------------------
+
+-----------------------------------------------------------------------
+You can't dynamically generate the resource ID in the parameters file 
+because template expressions aren't allowed in the parameters file.
+-----------------------------------------------------------------------
+
+In some scenarios, you need to reference a key vault secret that varies 
+based on the current deployment. 
+Or you may want to pass parameter values to the template rather than 
+create a reference parameter in the parameter file.
+
+The solution is to dynamically generate the resource ID for a 
+key vault secret by using a *** linked template. ***.
+
+-----------------------------------------------------------------------
+In your ** parent template ** you add the ** nested template ** 
+and pass in a parameter that contains the dynamically generated 
+resource ID.
+Template expressions are allowed in ** nested templates **.
+-----------------------------------------------------------------------
 
 
 ***
