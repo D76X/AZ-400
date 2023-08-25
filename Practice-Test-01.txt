@@ -2953,7 +2953,7 @@ STEP-1: this maps to answer .C
 	included in the WhiteSource Bolt scan.
 
 	When we add devDependencies and during installation add the 
-	productionflag the devDependencies will not be installed.
+	production flag the devDependencies will not be installed.
 
 STEP-2: this maps to answer .A 
 

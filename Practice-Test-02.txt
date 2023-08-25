@@ -30,15 +30,245 @@ Practice Test 2 40 questions
 --------------------------------
 
 -----------------------------------------------------------------------
+PT02-Q34:
+
+You have an Azure DevOps project named Project1 and an Azure subscription 
+named Sub1.
+
+You need to prevent releases from being deployed unless the releases 
+comply with the Azure Policy rules assigned to Sub1. 
+
+What should you do in the release pipeline of Project1?
+
+A34-1: A. Add a deployment gate.
+A34-2: B. Modify the Deployment queue settings.
+A34-3: C. Configure a deployment trigger.
+A34-4: D. Create a pipeline variable
+A34-5: 
+
+MY ANSWER TO PT02-Q34
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q34
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/44153-exam-az-400-topic-4-question-35-discussion/
+
+-----------------------------------------------------------------------
+PT02-Q33:
+
+You need to configure GitHub to use Azure Active Directory (Azure AD) for authentication.
+What should you do first?
+
+
+A33-1: A. Create a conditional access policy in Azure AD.
+A33-2: B. Register GitHub in Azure AD. <<
+A33-3: C. Create an Azure Active Directory B2C (Azure AD B2C) tenant.
+A33-4: D. Modify the Security settings of the GitHub organization.
+A33-5: 
+
+MY ANSWER TO PT02-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36610-exam-az-400-topic-4-question-34-discussion/
+Suggested Answer: B. Register GitHub in Azure AD.
+
+---------------------------------------
+THE FOLLOWING IS NOT RELATED TO THE QUESTION AS IT EXPLAINS WHAT 
+The Credential Manager 
+does when you wish to use it to authenticate  using your Azure AD credentials
+to Azure Repos.
+
+When you connect to a Git repository from your Git client for the first time, 
+the ** credential manager ** prompts for credentials. 
+
+Provide your Microsoft account or Azure AD credentials.
+
+Note: 
+** Git Credential Managers ** simplify authentication with your Azure Repos Git
+repositories. Credential managers let you use the same credentials that you use
+for the Azure DevOps Services web portal. 
+
+Credential managers support multi-factor authentication through Microsoft account
+or Azure Active Directory 
+(Azure AD). Besides supporting multi-factor authentication with Azure Repos, 
+credential managers also support two-factor authentication with GitHub repositories.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/git/set-up-credential-managers
+---------------------------------------
+
+REFS
+Tutorial: Azure AD SSO integration with a GitHub Enterprise Cloud Organization
+https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/github-tutorial
+
+When you integrate a GitHub Enterprise Cloud Organization with Azure AD, you can:
+
+ - Control in Azure AD who has access to your GitHub Enterprise Cloud Organization.
+ - Manage access to your GitHub Enterprise Cloud Organization in one central location - the Azure portal.
+
+---------------------------------
+Adding GitHub from the gallery
+https://learn.microsoft.com/en-us/azure/active-directory/saas-apps/github-tutorial?source=docs#adding-github-from-the-gallery
+---------------------------------
+To configure the integration of GitHub into Azure AD, you need to add GitHub
+from the gallery to your list of managed SaaS apps.
+
+-----------------------------------------------------------------------
+PT02-Q32:
+
+You plan to update the Azure DevOps strategy of your company. 
+You need to identify the following issues as they occur during the company's 
+development process:
+
+Licensing violations *
+Prohibited libraries * 
+
+Solution-1: You implement continuous integration. << use WhiteSource 
+Solution-2: You implement continuous deployment.
+
+Does this meet the goal?
+
+A32-1: A. Yes
+A32-2: B. No
+A32-3: 
+A32-4: 
+A32-5: 
+
+MY ANSWER TO PT02-Q32
+--------------------------------------------------------------------------
+Solution-1: A. Yes
+Solution-2: B. No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q32
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/30817-exam-az-400-topic-4-question-28-discussion/
+Suggested Answer: A 
+
+https://www.examtopics.com/discussions/microsoft/view/50916-exam-az-400-topic-4-question-31-discussion/
+Suggested Answer: B
+
+WhiteSource is the leader in continuous open source software security and compliance management.
+WhiteSource integrates into your build process, irrespective of your programming languages, 
+build tools, or development environments. 
+It works automatically, continuously, and silently in the background, checking 
+
+ - the security
+ - licensing 
+ - the quality 
+
+of your open source components against WhiteSource constantly-updated definitive database
+of open source repositories.
+
+Reference:
+https://azuredevopslabs.com/labs/vstsextend/whitesource/
+
+-----------------------------------------------------------------------
+PT02-Q31:
+
+You use WhiteSource Bolt to scan a Node.js application. 
+
+The WhiteSource Bolt scan identifies numerous libraries that have invalid 
+licenses. The libraries are used only during development and are not part 
+of a production deployment. 
+
+You need to ensure that WhiteSource Bolt only scans production dependencies.
+
+Which two actions should you perform?
+NOTE: Each correct selection is worth one point.
+
+A31-1: A. Run npm install and specify the --production flag.
+A31-2: B. Modify the WhiteSource Bolt policy and set the action for the licenses used by the development tools to Reassign.
+A31-3: C. Modify the devDependencies section of the project's Package.json file.
+A31-4: D. Configure WhiteSource Bolt to scan the node_modules directory only.
+A31-5: 
+
+MY ANSWER TO PT02-Q31
+--------------------------------------------------------------------------
+C. Modify the devDependencies section of the project's Package.json file.
+A. Run npm install and specify the --production flag.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q31
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/31774-exam-az-400-topic-4-question-27-discussion/
+
+Suggested Answer: AC 
+
+C: 
+All npm packages contain a file, usually in the project root, called ** package.json **.
+This file holds various metadata relevant to the project. 
+This file is used to give information to npm that allows it to identify the project
+as well as handle the project's dependencies. 
+
+It can also contain other metadata such as 
+
+ - a project description 
+ - the version of the project in a particular distribution 
+ - license information 
+ - configuration data 
+
+all of which can be vital to both npm and to the end users of the package.
+
+A: 
+To resolve NPM dependencies, you should first run "npm install" command on
+the relevant folders before executing the plugin.
+
+***
+The npm install command is used to install dependencies for a Node.js project. 
+By adding the --production flag to this command, you can ensure that only the
+production dependencies are installed, and the development dependencies are excluded.
+***
+
+
+Reference:
+https://whitesource.atlassian.net/wiki/spaces/WD/pages/34209870/NPM+Plugin https://nodejs.org/en/knowledge/getting-started/npm/what-is-the-file-package-json
+
+REFS: PT01-Q12:
+
+-----------------------------------------------------------------------
 PT02-Q30:
 
-You have an Azure DevOps organization named Contoso, an Azure DevOps project named Project1, an Azure subscription named Sub1, and an Azure key vault named vault1. You need to ensure that you can reference the values of the secrets stored in vault1 in all the pipelines of Project1. The solution must prevent the values from being stored in the pipelines. What should you do?
+You have  
 
+ - an Azure DevOps organization named Contoso, 
+ - an Azure DevOps project named Project1
+ - an Azure subscription named Sub1 
+ - an Azure key vault named vault1. 
+ 
+ You need to ensure that you can reference the values of the secrets stored
+ in vault1 in ** all ** the pipelines of Project1. 
+ 
+ The solution must prevent the values from being stored in the pipelines.
+ 
+ What should you do?
 
-A30-1: 
-A30-2: 
-A30-3: 
-A30-4: 
+A30-1: A. Create a variable group in Project1.
+A30-2: B. Add a secure file to Project1.
+A30-3: C. Modify the security settings of the pipelines
+A30-4: D. Configure the security policy of Contoso
 A30-5: 
 
 MY ANSWER TO PT02-Q30
@@ -53,6 +283,80 @@ CORRECT ANSWER TO PT02-Q30
 
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/20533-exam-az-400-topic-4-question-23-discussion/
+
+Suggested Answer: A. Create a variable group in Project1.
+
+Use a variable group to store values that you want to control and 
+** make available across multiple pipelines. **
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups
+
+Variable groups store values and secrets that you might want to be passed into a
+YAML pipeline or make available across multiple pipelines. 
+You can share and use variable groups in multiple pipelines in the same project.
+Access to non-secret variables is not limited by approvals, checks, and pipeline 
+permissions.
+
+-------------------------------------------------------------
+Secret variables in Variables groups are protected resources. 
+-------------------------------------------------------------
+You can add combinations of approvals, checks, and pipeline permissions to limit
+access to secret variables in a variable group. 
+
+-------------------------------------------------------------
+Authorize a variable group
+https://learn.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml#authorize-a-variable-group
+-------------------------------------------------------------
+To work with a variable group, you must authorize the group. 
+***
+if you only name the variable group in YAML, then anyone who can push code
+to your repository could extract the contents of secrets in the variable group. 
+***
+ To authorize the group, use one of the following techniques:
+
+ option-1
+  authorize ** any ** pipeline to use the variable group.
+  This might be a good option if you don't have any secrets in the group.
+  go to 
+  >> Azure Pipelines >> Library > Variable groups > Allow access to all pipelines
+
+option-2
+  authorize a variable group for a specific pipeline
+  Choose this action to explicitly add the pipeline as an authorized user of
+  the variable group.
+
+  open the pipeline >> Edit > Queue > Build Manually >
+  > You see a resource authorization error
+  > Authorize resources action on the error
+
+---------------------------------------------------------------------------------
+You can't access secret variables (encrypted variables and key vault variables)
+directly in scripts nstead, they must be passed as arguments to a task.
+---------------------------------------------------------------------------------
+Set secret variables
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#secret-variables
+---------------------------------------------------------------------------------
+
+Don't set secret variables in your YAML file. 
+Operating systems often log commands for the processes that they run, and you wouldn't
+want the log to include a secret that you passed in as an input. 
+Use the script's environment or map the variable within the variables block to pass
+secrets to your pipeline.
+
+You need to set secret variables in the pipeline settings UI for your pipeline.
+You can also set secret variables in variable groups.
+
+---------------------------------------------------------------------------------
+Reference secret variables in variable groups
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#reference-secret-variables-in-variable-groups
+---------------------------------------------------------------------------------
+In practice you ghave to map a secret from a variable group into a environment variable
+as shown below.
+```
+env:
+    MY_MAPPED_TOKEN: $(token) # Maps the secret variable $(token) from my-var-group
+```
 
 -----------------------------------------------------------------------
 PT02-Q29:
