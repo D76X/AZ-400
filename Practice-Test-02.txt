@@ -30,6 +30,173 @@ Practice Test 2 40 questions
 --------------------------------
 
 -----------------------------------------------------------------------
+PT02-Q40: repeat question
+PT02-Q39: repeat question
+
+-----------------------------------------------------------------------
+PT02-Q378
+
+You plan to update the Azure DevOps strategy of your company. 
+You need to identify the following issues as they occur during the company's 
+development process:
+
+- Licensing violations
+- Prohibited libraries
+
+Solution: You implement automated security testing.
+
+Does this meet the goal?
+
+-----------------------------------------------------------------------
+PT02-Q37: REFER TO PT02-Q32
+https://www.examtopics.com/discussions/microsoft/view/50914-exam-az-400-topic-4-question-30-discussion/
+-----------------------------------------------------------------------
+
+-----------------------------------------------------------------------
+PT02-Q37:
+
+You administer an Azure DevOps project that includes package feeds.
+
+You need to ensure that developers can unlist and deprecate packages. 
+The solution must use the principle of least privilege. 
+
+Which access level should you grant to the developers?
+
+A37-1: A. Collaborator
+A37-2: B. Contributor
+A37-3: C. Owner
+A37-4: 
+A37-5: 
+
+MY ANSWER TO PT02-Q37
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q37
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/51044-exam-az-400-topic-4-question-39-discussion/
+
+Suggested Answer: B. Contributor 
+
+Feeds have four levels of access: 
+ - Administrators <<
+ - Owners 
+ - Contributors
+ - Collaborators 
+ - Readers. 
+ 
+Owners can add any type of identity-individuals, teams, and groups-to any access level
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions
+
+-----------------------------------------------------------------------
+PT02-Q36:
+
+You are designing the security validation strategy for a project in 
+Azure DevOps. 
+
+You need to identify package dependencies that have known security issues
+and  can be resolved by an update.
+
+What should you use?
+
+A36-1: A. Octopus Deploy
+A36-2: B. Jenkins
+A36-3: C. Gradle
+A36-4: D. SonarQube <<
+A36-5: 
+
+MY ANSWER TO PT02-Q36
+--------------------------------------------------------------------------
+A36-4: D. SonarQube <<
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q36
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36228-exam-az-400-topic-4-question-38-discussion/
+
+REFS:
+
+----------------------------------------------------------
+Dependency-Check
+https://github.com/jeremylong/DependencyCheck
+
+Docs: OWASP dependency-check
+http://jeremylong.github.io/DependencyCheck/
+----------------------------------------------------------
+OWASP dependency-check's core analysis engine can be used as:
+
+Ant Task
+Command Line Tool
+Gradle Plugin
+Jenkins Plugin
+Maven Plugin - Maven 3.1 or newer required
+SBT Plugin
+
+----------------------------------------------------------
+Dependency-Check Plugin for SonarQube 9.x and 10.x
+https://github.com/dependency-check/dependency-check-sonar-plugin
+----------------------------------------------------------
+
+Dependency-Check is a utility that attempts to detect publicly disclosed 
+vulnerabilities contained within project dependencies.
+It does this by determining if there is a Common Platform Enumeration (CPE) 
+identifier for a given dependency. If found, it will generate a report 
+linking to the associated CVE entries.
+
+This SonarQube plugin does not perform analysis, rather, it reads existing
+Dependency-Check reports. Use one of the other available methods to scan
+project dependencies and generate the necessary JSON report which can then
+be consumed by this plugin. 
+
+Refer to the Dependency-Check project for relevant documentation.
+
+-----------------------------------------------------------------------
+PT02-Q35:
+
+You have an Azure DevOps project that contains a build pipeline. 
+The build pipeline uses approximately 50 open-source libraries.
+
+You need to ensure that all the open-source libraries comply with your
+company's licensing standards. 
+
+Which service should you use?
+
+
+A35-1: A. Ansible
+A35-2: B. Maven
+A35-3: C. WhiteSource Bolt
+A35-4: D. Helm
+A35-5: 
+
+MY ANSWER TO PT02-Q35
+--------------------------------------------------------------------------
+A35-3: C. WhiteSource Bolt
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q35
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74553-exam-az-400-topic-4-question-37-discussion/
+Suggested Answer: C
+Note: Blackduck would also be a good answer, but it is not an option here.
+
+REFS: PT02-Q32
+
+-----------------------------------------------------------------------
 PT02-Q34:
 
 You have an Azure DevOps project named Project1 and an Azure subscription 
@@ -58,6 +225,10 @@ CORRECT ANSWER TO PT02-Q34
 
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/44153-exam-az-400-topic-4-question-35-discussion/
+Suggested Answer: A
+
+REFS: PT01-Q14
+
 
 -----------------------------------------------------------------------
 PT02-Q33:
@@ -165,6 +336,9 @@ Suggested Answer: A
 
 https://www.examtopics.com/discussions/microsoft/view/50916-exam-az-400-topic-4-question-31-discussion/
 Suggested Answer: B
+
+see also: PT02-Q32
+https://www.examtopics.com/discussions/microsoft/view/50914-exam-az-400-topic-4-question-30-discussion/
 
 WhiteSource is the leader in continuous open source software security and compliance management.
 WhiteSource integrates into your build process, irrespective of your programming languages, 
