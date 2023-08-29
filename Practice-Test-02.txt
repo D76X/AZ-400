@@ -120,6 +120,10 @@ A36-4: D. SonarQube <<
 CORRECT ANSWER TO PT02-Q36
 --------------------------------------------------------------------------
 ?
+The answer given as being correct is
+A36-1: A. Octopus Deploy
+However, the whole community agrees that it should be the following instead
+A36-4: D. SonarQube <<
 --------------------------------------------------------------------------
 
 QUESTION POSTS
@@ -383,7 +387,10 @@ A. Run npm install and specify the --production flag.
 
 CORRECT ANSWER TO PT02-Q31
 --------------------------------------------------------------------------
-?
+C. Modify the devDependencies section of the project's Package.json file.
+D. Configure WhiteSource Bolt to scan the node_modules directory only.
+
+This is uncertain.
 --------------------------------------------------------------------------
 
 QUESTION POSTS
@@ -421,6 +428,13 @@ Reference:
 https://whitesource.atlassian.net/wiki/spaces/WD/pages/34209870/NPM+Plugin https://nodejs.org/en/knowledge/getting-started/npm/what-is-the-file-package-json
 
 REFS: PT01-Q12:
+
+Comments
+
+Selected Answer: AD
+Correct answers are A & D.
+1. A. When you use --production flag in npm install devDependencies are not installed (so C is wrong).
+2. D. npm install command installs the dependencies to the local node_modules folder.
 
 -----------------------------------------------------------------------
 PT02-Q30:
@@ -681,6 +695,25 @@ D. Configure the security policy of Contoso.
 CORRECT ANSWER TO PT02-Q27
 --------------------------------------------------------------------------
 ?
+-----------------------------------------------
+renzoku Most Recent  1 month, 2 weeks ago
+-----------------------------------------------
+Selected Answer: C. Create a variable group in Project1.
+
+To reference Keyvault1 secrets in a build pipeline, you need to create a variablegroup.
+Azure DevOps variable groups can link to Azure Key Vault.
+Ref
+https://learn.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml#link-secrets-from-an-azure-key-vault
+
+** After the variable group is in place **
+
+The build needs permission to access the Azure Key Vault. 
+This can be added to the Azure Portal. Open the Access Policies in the Key Vault 
+and add a new one. Choose the principle used in the DevOps build.
+
+Reference
+https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault
+
 --------------------------------------------------------------------------
 
 QUESTION POSTS
@@ -1217,12 +1250,22 @@ A21-5:
 
 MY ANSWER TO PT02-Q21
 --------------------------------------------------------------------------
-A21-3: C. Add an Azure Key Vault task to the pipeline.
+A21-3: C. Add an Azure Key Vault task to the pipeline. << INCORRECT!
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT02-Q21
 --------------------------------------------------------------------------
 ?
+There is uncertainty on this question it could be either 
+A21-3: C. Add an Azure Key Vault task to the pipeline.
+A21-4: D. Add Azure Key Vault references to Azure Resource Manger templates.
+
+I think D. Add Azure Key Vault references to Azure Resource Manger templates.
+might be a better choice because the question asks
+** to minimize the likelihood that infrastructure credentials will be leaked **
+and while 
+C. Add an Azure Key Vault task to the pipeline.
+can help in that it only does so if ** securestring ** is used!
 --------------------------------------------------------------------------
 
 QUESTION POSTS
@@ -1233,9 +1276,44 @@ xRiot007 1 month ago
 ------------------------
 You want credentials not to be leaked. 
 This means they CANNOT be anywhere in your infrastructure scripts of pipeline.
-To do this, you will add Azure Key Vault key references. 
+To do this, you will add ** Azure Key Vault key references. **
 At runtime, the pipeline will ask the Vault for values and pass them 
 immediately to the infrastructure scripts.
+
+Comments
+
+------------------------ 
+Yanzhi 3 years, 8 months ago
+------------------------ 
+D. Add Azure Key Vault references to Azure Resource Manger templates. 
+is more "correct" than 
+C. Add an Azure Key Vault task to the pipeline. 
+because the protection object is infra's credential, it may or may not 
+used in pipeline.
+
+------------------------ 
+notsure1111 3 months ago
+------------------------ 
+Answer: 
+
+Option A (Add a Run Inline Azure PowerShell task to the pipeline) 
+and 
+Option B (Add a PowerShell task to the pipeline and run Set-AzureKeyVaultSecret) 
+might involve executing PowerShell commands to manage secrets, but they do not 
+provide the same level of security and centralization as Azure Key Vault.
+
+Option C: Add an Azure Key Vault task to the pipeline.
+is OK
+
+Option D (Add Azure Key Vault references to Azure Resource Manager templates) 
+is more focused on referencing secrets in Azure Resource Manager templates, which 
+may be applicable in certain scenarios, but it does not address the issue of 
+securely retrieving and managing infrastructure credentials within the Azure DevOps 
+pipeline itself.
+
+Therefore, Option C is the recommended solution to minimize the likelihood of
+infrastructure credentials being leaked by leveraging the security features 
+provided by Azure Key Vault
 
 -----------------------------------------------------------------------
 PT02-Q20:
@@ -2407,11 +2485,36 @@ Most Voted Answer: CE
 C. From the code of the application, add Azure Application Insights telemetry.
 E. From the code of the application, disable adaptive sampling. 
 
-Comment:
+Comments:
+
+----------------------------------------
+saponazureguy 2 years, 6 months ago
+----------------------------------------
+C. From the code of the application, add Azure Application Insights telemetry.
+E. From the code of the application, disable adaptive sampling. 
+Correct! 
+The keywords here are "ASP.NET core application". 
+There is no ApplicationInsights.config file in ASP.NET Core applications 
+( it exists only in ASP.NET) and any setting needs to be done through code itself.
+
+----------------------------------------
+fflyin2k 2 years, 3 months ago
+----------------------------------------
 E is "disable adaptive sampling". it does no make sense. 
 the question mentioned "minimize cost of storing the telemetry data", so adaptive 
-sampling should not be disabled. And, in ASP.NET Core, 
-adaptive sampling is enabled by default.
+sampling should not be disabled. And, in ASP.NET Core, adaptive sampling is enabled
+by default.
+>>
+----------------------------------------
+ yana_b 2 weeks, 4 days ago
+----------------------------------------
+Although it (i.e. ingestion sampling) doesn't reduce the telemetry traffic sent from 
+your app, it does reduce the amount processed and retained (and charged for) by 
+Application Insights. 
+Set the sampling rate in the Usage and estimated costs page.
+Default setting is adaptive sampling, but in order to set ingestion sampling, you have
+to disable the adaptive sampling and set the sampling rate in the Usage and estimated 
+costs page:
 
 REFS
 Sampling in Application Insights
