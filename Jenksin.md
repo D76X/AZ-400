@@ -47,6 +47,47 @@ In a traditional contest one would operate a build pipeline on **Virtual Machine
 In the simplest of cases you may have a single VM where you install the **Jenkins Controller** and then one or more **Jenkins Agents**.
 In more sofisticated scenario the **Jenkins Agents** would spill over additional VMs as the demand of the pipeline grows over time. 
 
+#### The Traditional Jenkins setup  
+
+With this model there are two competing effects at play. 
+
+ 1. In order to achieve reasonable performance, one would have a dedicated VM for each installed **Jenkins Agents**
+ 2. it is possible to install multiples **Jenkins Agents** on the same VM which increases parallelization over a set of constraint resources.
+
+#### The Jenkins setup with Containers 
+
+This model is intrinsicly far more inefficient than running **Jenkins Agents** as containers on an equal set of VMs.
+
+However, each VM has its own Kernel therefore once it is up and running it keeps running whether it is idle or not.
+This is intrinsicly far more inefficient than running **Jenkins Agents** as containers on an equal set of VMs because with containers 
+there is only one **shared Kernal** borrowed from the **Host OS** and no additionla resources are booked to the exclusive use of the
+agent
+
+---
+
+[Demo: The Basics of Running Jenkins in a Container](https://app.pluralsight.com/course-player?clipId=238f1b69-fa8f-4cec-b22f-b36cdffeb3a5)   
+
+```
+docker image list
+docker search jenkins
+docker pull jenkins/jenkins:lts
+docker run -p 8080:8080 jenkins/jenkins:lts
+docker ps -a
+```
+
+Use the initial admin password taht the container prints out on the shell and use it @ localhost:8080 where the **Jenkins Startup Page** 
+for this running container is located. Notice that there is no additional setup required i.e. no JAVA_HOME or JDK installed, it is all
+packaged up into the Docker Container.
+
+```
+docker run -p 50000:8080 -name jenkins-master jenkins/jenkins:lts 
+docker exec -it jenkins-master /bin/bash
+cd var/jenkins_home
+ls
+cd jobs
+cd ../secrets
+cat initialAdminPassword
+```
 
 ---
 
