@@ -74,13 +74,189 @@ CORRECT ANSWER TO PT02-Q10
 --------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
+PT02-Q04: 
+
+You plan to use a NuGet package in a project in Azure DevOps. 
+The NuGet package is in a feed that requires authentication. 
+You need to ensure that the project can restore the NuGet package automatically.
+
+What should the project use to automate the authentication?
+
+A04-1: A. an Azure Automation accoun
+A04-2: B. an Azure Artifacts Credential Provider
+A04-3: C. an Azure Active Directory (Azure AD) account that has multi-factor authentication (MFA) enabled
+A04-4: D. an Azure Active Directory (Azure AD) service principal
+A04-5: 
+
+
+MY ANSWER TO PT02-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/33149-exam-az-400-topic-4-question-51-discussion/
+
+References
+
+Azure Artifacts Credential Provider
+https://github.com/microsoft/artifacts-credprovider
+The Azure Artifacts Credential Provider automates the acquisition of credentials 
+needed to restore NuGet packages as part of your .NET development workflow.
+It integrates with
+--------------------- 
+ - MSBuild 
+ - dotnet 
+ -NuGet(.exe) 
+---------------------
+
+ and works on Windows, Mac, and Linux. 
+ Any time you want to use packages from an Azure Artifacts feed, 
+ the Credential Provider will automatically acquire and securely store a token
+on behalf of the NuGet client you're using.
+
+------------------------------------------------
+Connect to Azure Artifacts feeds (NuGet.exe)
+https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/nuget-exe?view=azure-devops
+
+Connect to Azure Artifacts feeds (dotnet)
+https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/dotnet-setup?view=azure-devops
+------------------------------------------------
+
+
+
+------------------------------------------------------------------------
+PT02-Q03: 
+
+Your company develops an app for iOS. 
+
+All users of the app have devices that are members of a private distribution group
+in the Microsoft Visual Studio App Center. 
+
+You plan to distribute a new release of the app.
+
+You need to identify which certificate file you require 
+to distribute the new release from App Center. 
+
+Which file type should you upload to App Center?
+
+A03-1: A. .cer
+A03-2: B. .pfx
+A03-3: C. .p12
+A03-4: D. .pvk
+A03-5: 
+
+
+MY ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/28872-exam-az-400-topic-4-question-46-discussion/
+https://www.examtopics.com/discussions/microsoft/view/57406-exam-az-400-topic-8-question-39-discussion/
+
+Suggested Answer: C. .p12
+
+A successful IOS device build will produce an ** ipa ** file.
+
+In order to install the build on a device, it needs to be signed with a valid 
+provisioning profile and certificate.
+To sign the builds produced from a branch, enable code signing in the 
+configuration pane and upload a 
+------------------------------------------
+** provisioning profile (.mobileprovision) ** 
+------------------------------------------
+and 
+------------------------------------------
+** a valid certificate (.p12) ** 
+------------------------------------------
+along with 
+------------------------------------------
+** the password for the certificate. **
+------------------------------------------
+
+References:
+https://docs.microsoft.com/en-us/appcenter/build/xamarin/ios/
+
+
+------------------------------------------------------------------------
+PT02-Q02: 
+
+You plan to create in Azure DevOps. 
+
+Multiple developers will work on the project. 
+The developers will work offline frequently and will require access to the
+full project history while they are offline.
+
+Which version control solution should you use?
+
+
+A02-1: A. Team Foundation Version Control
+A02-2: B. Git
+A02-3: C. TortoiseSVN
+A02-4: D. Subversion
+A02-5: 
+
+
+MY ANSWER TO PT02-Q02
+--------------------------------------------------------------------------
+A02-2: B. Git
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35766-exam-az-400-topic-6-question-11-discussion/
+
+Suggested Answer: B. Git
+
+Git history: File history is replicated on the client dev machine and can 
+be viewed even when not connected to the server. You can view history in 
+Visual Studio and on the web portal.
+Note: 
+Azure Repos supports two types of version control: 
+- Git 
+- Team Foundation Version Control (TFVC).
+
+Incorrect Answers:
+A: Team Foundation Version Control: 
+File history is not replicated on the client dev machine and so can be viewed
+only when you're connected to the server.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc
+
+------------------------------------------------------------------------
 PT02-Q01: 
 
+Your company is concerned that when developers introduce open-source libraries, 
+it creates licensing compliance issues. 
 
-A01-1: 
-A01-2: 
-A01-3: 
-A01-4: 
+You need to add an automated process to the build pipeline to detect when 
+common open-source libraries are added to the code base. 
+
+What should you use?
+
+A01-1: A. Microsoft Visual SourceSafe
+A01-2: B. Code Style
+A01-3: C. Black Duck (or WhiteSource)
+A01-4: D. Jenkins
+A01-5: E. SourceGear
+A01-6: F. OWASP ZAP
 
 MY ANSWER TO PT02-Q01
 --------------------------------------------------------------------------
@@ -93,3 +269,21 @@ CORRECT ANSWER TO PT02-Q01
 --------------------------------------------------------------------------
 
 QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/22946-exam-az-400-topic-3-question-44-discussion/  
+
+Suggested Answer: C. Black Duck
+
+Secure and Manage Open Source Software
+Black Duck helps organizations identify and mitigate open source security, 
+license compliance and code-quality risks across application and container 
+portfolios.
+Black Duck Hub and its plugin for Team Foundation Server (TFS) allows you 
+to automatically find and fix open source security vulnerabilities during 
+the build process, so you can proactively manage risk. The integration allows
+you to receive alerts and fail builds when any Black Duck Hub policy violations
+are met.
+
+Note: ** WhiteSource ** would also be a good answer, but it is not an option here.
+
+Reference:
+https://marketplace.visualstudio.com/items?itemName=black-duck-software.hub-tfs
