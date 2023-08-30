@@ -74,6 +74,295 @@ CORRECT ANSWER TO PT02-Q10
 --------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
+PT02-Q08:
+
+You are designing the development process for your company. 
+
+You need to recommend a solution for continuous inspection of the company's
+code base to locate common code patterns that are known to be problematic.
+
+What should you include in the recommendation?
+
+A08-1: A. Microsoft Visual Studio test plans
+A08-2: B. Gradle wrapper scripts
+A08-3: C. SonarCloud analysis
+A08-4: D. the JavaScript task runner
+A08-5: 
+
+
+MY ANSWER TO PT02-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+
+
+
+------------------------------------------------------------------------
+PT02-Q07: 
+
+You use release pipelines in Azure Pipelines to deploy an app. 
+
+Secrets required by the pipeline are stored as pipeline variables. 
+Logging of commands is enabled for the Azure Pipelines agent. 
+You need to prevent the values of the secrets from being logged. 
+
+What should you do?
+
+A07-1: A. Store the secrets in the environment variables instead of the pipeline variables.
+A07-2: B. Pass the secrets on the command line instead of in the pipeline variables.
+A07-3: C. Apply a prefix of secret to the name of the variables.
+A07-4: D. Echo the values of the secrets to the command line.
+A07-5: 
+
+
+MY ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/78922-exam-az-400-topic-4-question-56-discussion/
+
+Suggested Answer: A. Store the secrets in the environment variables instead of the pipeline variables.
+
+Don't set secret variables in your YAML file. 
+Operating systems often log commands for the processes that they run, and you
+wouldn't want the log to include a secret that you passed in as an input. 
+
+Use the **script's environment** 
+or 
+**
+map the variable within the variables block to pass secrets to your pipeline.
+**
+
+The following example shows how to use a secret variable called mySecret in PowerShell 
+and Bash scripts. Unlike a normal pipeline variable, there's no environment variable
+called MYSECRET.
+
+```
+variables:
+ GLOBAL_MYSECRET: $(mySecret) # this will not work because the secret variable needs to be mapped as env
+ GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
+
+steps:
+
+- powershell: |
+    Write-Host "Using an input-macro works: $(mySecret)"
+    Write-Host "Using the env var directly does not work: $env:MYSECRET"
+    Write-Host "Using a global secret var mapped in the pipeline does not work either: $env:GLOBAL_MYSECRET"
+    Write-Host "Using a global non-secret var mapped in the pipeline works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
+    Write-Host "Using the mapped env var for this task works and is recommended: $env:MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+
+- bash: |
+    echo "Using an input-macro works: $(mySecret)"
+    echo "Using the env var directly does not work: $MYSECRET"
+    echo "Using a global secret var mapped in the pipeline does not work either: $GLOBAL_MYSECRET"
+    echo "Using a global non-secret var mapped in the pipeline works: $GLOBAL_MY_MAPPED_ENV_VAR" 
+    echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+
+```
+-----------------------
+Incorrect Answers:
+-----------------------
+B: Never pass secrets on the command line.
+
+C: Adding a prefix does not make the variable a secret. 
+The ** issecret property ** makes it secret but does not prevent logging of the secret.
+
+D: Never echo secrets as output.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands?view=azure-devops&tabs=bash
+
+------------------------------------------------------------------------
+PT02-Q06: 
+
+You have an existing project in Azure DevOps. 
+
+You plan to integrate GitHub as the repository for the project.
+
+** 
+You need to ensure that Azure Pipelines runs under the 
+Azure Pipelines identity. 
+**
+
+Which authentication mechanism should you use?
+
+A06-1: A. personal access token (PAT)
+A06-2: B. GitHub App
+A06-3: C. Azure Active Directory (Azure AD)
+A06-4: D. OAuth
+A06-5: 
+
+
+MY ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35757-exam-az-400-topic-4-question-53-discussion/
+
+Suggested Answer: B. GitHub App
+
+GitHub App uses the Azure Pipelines identity.
+-------------------
+Incorrect Answers:
+-------------------
+A: Personal access token and OAuth use your personal GitHub identity.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github
+
+
+Compare to:  PT02-Q17
+---------------------------------------------
+You plan to provide a self-hosted Linux agent. 
+Which authentication mechanism should you use to register the self-hosted agent?
+---------------------------------------------
+In this case the answer is 
+A17-1: A. personal access token (PAT)
+
+------------------------------------------------------------------------
+PT02-Q05: 
+
+You use Azure Pipelines to manage project builds and deployments. 
+
+You plan to use ** Azure Pipelines for Microsoft Teams ** 
+to notify the legal team when a new build is ready for release. 
+
+You need to configure the ** Organization Settings in Azure DevOps ** 
+to support Azure Pipelines for Microsoft Teams. 
+
+What should you turn on?
+
+A05-1: A. Third-party application access via OAuth
+A05-2: B. Azure Active Directory Conditional Access Policy Validation
+A05-3: C. Alternate authentication credentials
+A05-4: D. SSH authentication
+A05-5: 
+
+
+MY ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+A. Third-party application access via OAuth
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35915-exam-az-400-topic-4-question-52-discussion/
+
+Suggested Answer: A. Third-party application access via OAuth
+
+The Azure Pipelines app uses the OAuth authentication protocol, and requires 
+Third-party application access via OAuth for the organization to be enabled. 
+To enable this setting, navigate to 
+Organization Settings > Security > Policies 
+
+and set the Third-party application access via OAuth for the organization setting
+to On.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/integrations/microsoft-teams
+
+Microsoft DevOps Solutions: 
+Communicating and Collaborating with Stakeholders
+https://app.pluralsight.com/library/courses/microsoft-devops-solutions-communicating-collaborating-stakeholders/table-of-contents
+
+
+Microsoft DevOps Solutions: 
+Automating Communication
+https://app.pluralsight.com/library/courses/microsoft-devops-solutions-automating-communication/table-of-contents
+
+---------------------------------------------------------
+Demo: Integrating Build Failure Notification with Slack
+https://app.pluralsight.com/course-player?clipId=aee43b0d-3933-4b8d-abe8-6a090d773061
+
+This Demo shows how to connect Slack to an Azure DevOps Build Pipelines
+starting from within the Slack App. This implies that from the Slack
+client you must install a custom app > Azure Pipelines.
+
+Once installed in Slack you need
+
+-1 to select a channel where the app is going to post.
+
+-2 
+in the selected slack channel you need to have the app to subscribe to the Azure
+Buuild Pipelines of the Azure DevOp Organization that you wish to monitor on this 
+channel.
+This can be done by following the instructions given by Slack on the channel.
+
+Example:
+
+/azpipelines help
+
+/azpipelines subscriptions >> 
+this will get the app on this channel authenticated via ** OAuth ** to the Azure DevOps Organization
+
+/azpipelines subscribe [pipelineURL/project URL]
+the values for [pipelineURL/project URL] are on the Azure DevOps Portal for your Organization/Pipeline.
+---------------------------------------------------------
+
+---------------------------------------------------------
+Demo: Integrating Build Failure Notification with Microsoft Teams
+https://app.pluralsight.com/course-player?clipId=aa31fac5-8808-49c2-a9d7-4b7a6b1e7f1c
+
+This Demo shows how to connect Micorsoft Teams in very much teh same way it is doneabove with Slack. 
+
+---------------------------------------------------------
+
+---------------------------------------------------------
+
+Demo: Configuring Simple Notifications in a Build
+https://app.pluralsight.com/course-player?clipId=7ae7bb4c-6fc2-45ad-9f58-415d7d23d469
+
+This Demo shows how to send emails from Azure DevOps Pipelies on specific build events.
+It can be done at two levels.
+
+-1 at Organizatio level
+Organization > Settings > Global Notifications > 
+[Subscribers]
+---------------------------------------------------------------------
+here you can choose who the notification are going to and may include people inside or
+even outside teh organization or any Project's Teams.
+---------------------------------------------------------------------
+
+-2 at Project level*
+Organization > Project > Settings > Notifications >
+---------------------------------------------------------------------
+*at Project level the Subscribers are locked to the Project's Team!
+However, there are filters to narrow down the scope to some of the 
+teams members according to the notification properties.
+---------------------------------------------------------------------
+
+---------------------------------------------------------
+
+------------------------------------------------------------------------
 PT02-Q04: 
 
 You plan to use a NuGet package in a project in Azure DevOps. 
@@ -101,6 +390,7 @@ CORRECT ANSWER TO PT02-Q04
 
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/33149-exam-az-400-topic-4-question-51-discussion/
+Suggested Answer: B. an Azure Artifacts Credential Provider
 
 References
 
@@ -112,7 +402,7 @@ It integrates with
 --------------------- 
  - MSBuild 
  - dotnet 
- -NuGet(.exe) 
+ - NuGet(.exe) 
 ---------------------
 
  and works on Windows, Mac, and Linux. 
@@ -128,7 +418,13 @@ Connect to Azure Artifacts feeds (dotnet)
 https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/dotnet-setup?view=azure-devops
 ------------------------------------------------
 
+This is also interesting
+Publish NuGet packages with Azure Pipelines (YAML/Classic)
+https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/nuget?view=azure-devops&tabs=yaml
 
+In Azure Pipelines, you can use the classic editor or the YAML tasks to publish 
+your NuGet packages within your pipeline, to your Azure Artifacts feed, or to
+public registries such as nuget.org.
 
 ------------------------------------------------------------------------
 PT02-Q03: 
