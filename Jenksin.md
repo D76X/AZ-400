@@ -3,6 +3,12 @@
 [Running Jenkins in Docker](https://app.pluralsight.com/library/courses/running-jenkins-docker/table-of-contents)  
 [Automating Jenkins with Groovy](https://app.pluralsight.com/library/courses/automating-jenkins-groovy/table-of-contents)  
 
+[Jenkins + docker-compose Makes It Incredibly Easy to Run Instances Side by Side on the Same Host](https://app.pluralsight.com/course-player?clipId=8d1e075c-a831-4e54-9d98-6594e8a4ddbc)
+
+```
+docker-compose up
+```
+
 [Intro to Docker - A Tool Every Developer Should Know](https://www.youtube.com/watch?v=WcQ3-M4-jik&t=2329s)  
 [The Best Way To Use Docker For Integration Testing In .NET](https://www.youtube.com/watch?v=tj5ZCtvgXKY)  
 
@@ -88,6 +94,33 @@ cd jobs
 cd ../secrets
 cat initialAdminPassword
 ```
+---
+
+[Maintaining State Outside the Container](https://app.pluralsight.com/course-player?clipId=2c794ca0-31a0-486a-98a2-50d0631b74d0)  
+
+We have two aspects to consider on this point.
+
+1. The 
+
+Jenkins offers two foundamental ways to manage the definition of builds and its setup.
+By default Jenkins maintains state as a set of files **on disc** located in the folder that is set up as value of the 
+path variable `JENKINS_HOME`, the default should be `user.home/.jenkins` and in this folder (directory) the file
+`config.xml` is also located that contains the configuration for Jenkins together with either files that are used to 
+maintain the definition of the builds.
+
+In thismode of operation it is advisable to regularly **back up** the contents of the directory `JENKINS_HOME` in 
+order to preserve the state of teh Jenkins setup together with the definition of teh builds.
+
+More information is available at the link below.
+
+[Spelunking JENKINS_HOME: How to Reset Your Jenkins Install and Back It Up](https://app.pluralsight.com/course-player?clipId=921b3f28-2314-4710-8127-272c70b5142e) 
+
+---
+
+#### Freestyle Projects (aka the Toilet Paper Form) vs. Pipeline Type Project (Scripted Pipeline Syntax)
+
+[Reflecting on Freestyle Projects Aka the Toilet Paper Form](https://app.pluralsight.com/course-player?clipId=619bd731-9d4d-478e-9122-bf6756c046a6)  
+
 
 ---
 
