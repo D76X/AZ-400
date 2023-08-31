@@ -52,15 +52,160 @@ QUESTION POSTS
 
 -----------------------------------------------------------------------
 
+Your development team is building a new web solution by using the Microsoft Visual Studio integrated development environment (IDE). You need to make a custom package available to all the developers. The package must be managed centrally, and the latest version must be available for consumption in Visual Studio automatically. Which three actions should you perform?
+
+------------------------------------------------------------------------
+PT02-Q13:
+
+During a code review, you discover many quality issues. 
+Many modules contain unused variables and empty catch blocks. 
+
+You need to recommend a solution to improve the quality of the code. 
+What should you recommend?
+
+A13-1: A. In a Grunt build task, select Enabled from Control Options.
+A13-2: B. In a Maven build task, select Run PMD.
+A13-3: C. In a Xcode build task, select Use xcpretty from Advanced.
+A13-4: D. In a Gradle build task, select Run Checkstyle.
+
+MY ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20515-exam-az-400-topic-5-question-11-discussion/
+
+Suggested Answer: B. In a Maven build task, select Run PMD.
+
+PMD is a source code analyzer. 
+
+It finds common programming flaws like unused variables, empty catch blocks,
+unnecessary object creation, and so forth.
+There is an Apache Maven PMD Plugin which allows you to automatically run the 
+PMD code analysis tool on your project's source code and generate a site report
+ with its results.
+
+-------------------
+Incorrect Answers:
+C: xcpretty is a fast and flexible formatter for xcodebuild.
+-------------------
+
+Reference:
+
+https://pmd.github.io
+An extensible cross-language static code analyzer.
+It supports 
+ -Java 
+ -JavaScript
+ -Salesforce.com Apex 
+ -Visualforce
+ -PLSQL
+ -Apache Velocity
+ -XML
+ -XSL
+
+Additionally it includes CPD, the copy-paste-detector. 
+CPD finds duplicated code in 
+
+-Java, C, C++, C#, Groovy, PHP, Ruby, Fortran, JavaScript, PLSQL, 
+Apache Velocity, Scala, Objective C, Matlab, Python, Go, Swift and 
+Salesforce.com Apex and Visualforce.
+
+------------------------------------------------------------------------
+PT02-Q12: DUPLICATE OF PT02-Q11
+PT02-Q11:
+
+Your company is building a new solution in Java. 
+
+The company currently uses a SonarQube server to analyze the code of 
+.NET solutions. 
+
+You need to analyze and monitor the code quality of the 
+Java solution.
+
+Which task types should you add to the build pipeline?
+
+A11-1: A. Gradle    << Java + this should work also with SonarCloud / SonarQube
+A11-2: B. CocoaPods << Swift
+A11-3: C. Grunt     << JavaScript - uses data configuration files that are similar to JSON
+A11-4: D. Gulp      << JavaScript - employs JavaScript, which tends to be easier to write. 
+------------------
+https://www.examtopics.com/discussions/microsoft/view/35487-exam-az-400-topic-5-question-6-discussion/
+A11-5: E. Octopus
+A11-6: E. Maven
+
+MY ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+A11-1: A. Gradle    << Java + this should work also with SonarCloud / SonarQube
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35487-exam-az-400-topic-5-question-6-discussion/
+
+Suggested Answer: E. Maven
+
+SonarQube is a set of static analyzers that can be used to identify areas of improvement 
+in your code. It allows you to analyze the technical debt in your project and keep track 
+of it in the future. 
+
+With ** Maven and Gradle build tasks ** 
+you can run SonarQube analysis with minimal setup in a new or existing Azure DevOps.
+
+Services build task.
+
+- Prepare Analysis Configuration task
+  to configure all the required settings before executing the build.
+  - This task is mandatory.
+  - In case of .NET solutions or Java projects, it helps to integrate seamlessly with 
+    MSBuild, Maven and Gradle tasks.
+
+Note: There are several versions of this question in the exam. 
+The question can have three correct answers:
+
+- MSBuild
+- Maven
+- Gradle
+
+The question can also have different ** incorrect options ** including:
+- Chef
+- xCODE
+- CocoaPods
+
+Reference:
+https://docs3.sonarqube.org/latest/analysis/scan/sonarscanner-for-azure-devops/ 
+https://docs.microsoft.com/en-us/azure/devops/java/sonarqube?view=azure-devops
+
+
+
 ------------------------------------------------------------------------
 PT02-Q10:
 
+Your company uses Azure DevOps for the 
+build pipelines 
+and deployment pipelines 
+of Java-based projects.
 
+You need to recommend a strategy for 
+** managing technical debt **. 
 
-A10-1: 
-A10-2: 
-A10-3: 
-A10-4: 
+Which two actions should you include in the recommendation?
+NOTE: Each correct selection is worth one point.
+
+A10-1: A. Configure post-deployment approvals in the deployment pipeline.
+A10-2: B. Configure pre-deployment approvals in the deployment pipeline.
+A10-3: C. Integrate Azure DevOps and SonarQube.
+A10-4: D. Integrate Azure DevOps and Azure DevTest Labs.
 A10-5: 
 
 MY ANSWER TO PT02-Q10
@@ -73,6 +218,36 @@ CORRECT ANSWER TO PT02-Q10
 ?
 --------------------------------------------------------------------------
 
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/23054-exam-az-400-topic-5-question-3-discussion/
+
+************************************************************
+B: With ** SonarQube pre-approval ** you can set quality gate.
+C: You can manage technical debt with SonarQube and Azure DevOps.
+************************************************************
+
+Note: Technical debt is the set of problems in a development effort that
+make forward progress on customer value inefficient. Technical debt saps 
+productivity by making code hard to understand, fragile, time-consuming 
+to change, difficult to validate, and creates unplanned work that blocks 
+progress. 
+
+Unless they are managed, technical debt can accumulate and hurt the overall
+quality of the software and the productivity of the development team in the
+long term.
+
+SonarQube an open source platform for continuous inspection of code quality
+to perform automatic reviews with static analysis of code to:
+
+- Detect Bugs
+- Code Smells
+- Security Vulnerabilities
+- Centralize Quality
+
+Reference:
+Managing technical debt with SonarQube and Azure DevOps
+https://azuredevopslabs.com/labs/vstsextend/sonarqube/
+
 ------------------------------------------------------------------------
 PT02-Q09:
 
@@ -81,8 +256,17 @@ takes longer than expected due to a ** large accumulated technical debt **.
 
 You need to recommend changes to reduce the accumulated technical debt.
 
-Solution: 
+Solution-1: uggested Answer: B. No >> Instead reduce the code complexity.
 Do You recommend reducing the code coupling and the dependency cycles?
+https://www.examtopics.com/discussions/microsoft/view/50539-exam-az-400-topic-5-question-2-discussion/
+
+Solution-2: Suggested Answer: A. Yes 
+https://www.examtopics.com/discussions/microsoft/view/39686-exam-az-400-topic-5-question-18-discussion/ 
+You recommend reducing the code complexity.
+
+Solution-3: Suggested Answer: B. No >> Instead reduce the code complexity.
+https://www.examtopics.com/discussions/microsoft/view/35260-exam-az-400-topic-5-question-17-discussion/
+Solution: You recommend increasing the test coverage.
 
 Does this meet the goal?
 
@@ -95,7 +279,9 @@ A09-5:
 
 MY ANSWER TO PT02-Q09
 --------------------------------------------------------------------------
-A09-1: A. Yes
+Solution-1:  A09-1: B. No
+Solution-2:  A09-1: A. Yes
+Solution-3:  A09-1: B. No
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT02-Q09
@@ -106,7 +292,7 @@ CORRECT ANSWER TO PT02-Q09
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/39686-exam-az-400-topic-5-question-18-discussion/
 
-Suggested Answer: A. Yes
+Suggested Answer: A. Yes << For solution-2: You recommend reducing the code complexity.
 
 Note: 
 Technical debt is the accumulation of sub-optimal technical decisions made
