@@ -109,7 +109,7 @@ path variable `JENKINS_HOME`, the default should be `user.home/.jenkins` and in 
 maintain the definition of the builds.
 
 In thismode of operation it is advisable to regularly **back up** the contents of the directory `JENKINS_HOME` in 
-order to preserve the state of teh Jenkins setup together with the definition of teh builds.
+order to preserve the state of the Jenkins setup together with the definition of teh builds.
 
 More information is available at the link below.
 
@@ -119,8 +119,11 @@ More information is available at the link below.
 
 #### Freestyle Projects (aka the Toilet Paper Form) vs. Pipeline Type Project (Scripted Pipeline Syntax)
 
-[Reflecting on Freestyle Projects Aka the Toilet Paper Form](https://app.pluralsight.com/course-player?clipId=619bd731-9d4d-478e-9122-bf6756c046a6)  
-
+- [Reflecting on Freestyle Projects Aka the Toilet Paper Form](https://app.pluralsight.com/course-player?clipId=619bd731-9d4d-478e-9122-bf6756c046a6)  
+- [Jobs Are Backed by XML Config Files](https://app.pluralsight.com/course-player?clipId=4c1e98fb-f62d-4f3b-96ea-a69db2b74f57)  
+- [Changing config.xml on Disk Then Reloading Configuration from Disk](https://app.pluralsight.com/course-player?clipId=759da612-7b13-465e-8028-71e22a6aca94)  
+- [Pipeline Jobs Also Have a config.xml](https://app.pluralsight.com/library/courses/getting-started-jenkins/table-of-contents)   
+- [Git Clone in a Declarative Pipeline](https://app.pluralsight.com/course-player?clipId=3aea9dcd-d1ec-4432-ad77-0c0bdbbd77a9)   
 
 ---
 
