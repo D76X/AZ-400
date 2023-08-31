@@ -74,6 +74,251 @@ CORRECT ANSWER TO PT02-Q10
 --------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
+PT02-Q09:
+
+The lead developer at your company reports that adding new application features
+takes longer than expected due to a ** large accumulated technical debt **. 
+
+You need to recommend changes to reduce the accumulated technical debt.
+
+Solution: 
+Do You recommend reducing the code coupling and the dependency cycles?
+
+Does this meet the goal?
+
+A09-1: A. Yes
+A09-2: B. No
+A09-3: 
+A09-4: 
+A09-5: 
+
+
+MY ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+A09-1: A. Yes
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/39686-exam-az-400-topic-5-question-18-discussion/
+
+Suggested Answer: A. Yes
+
+Note: 
+Technical debt is the accumulation of sub-optimal technical decisions made
+over the lifetime of an application. Eventually, it gets harder to change 
+things: it's the 'sand in the gears' that sees IT initiatives grind to a halt.
+
+
+Reference:
+
+5 Ways DevOps Helps With Technical Debt
+https://www.devopsgroup.com/blog/five-ways-devops-helps-with-technical-debt/
+
+It is worth pointing out that technical debt doesn’t only occur in development, 
+** it can occur in operations too **.
+For Example:
+
+- Still running an out-of-date OS that’s no longer supported, like Windows Server 2008 or Ubuntu 11.04
+- Not keeping your servers patched and up to date 
+- leaving you vulnerable to cyber-attack and ransomware
+
+--------------------------------
+Is Technical Debt Always Bad?
+--------------------------------
+
+Refer ro the concept: TechnicalDebtQuadrant - Martin Fowler
+https://martinfowler.com/bliki/TechnicalDebtQuadrant.html
+
+------------------------------------
+Prudent, deliberate technical debt 
+------------------------------------
+is at the heart of Eric Ries’ ‘Build-Measure-Learn’ cycle from The Lean Startup.
+https://www.youtube.com/watch?v=xkaabHiZN-k
+
+------------------------------------------------------------
+So, how can DevOps address the technical debt challenge?
+------------------------------------------------------------
+
+One of the key tenets of DevOps is creating small, multidisciplinary teams (i.e. Dev + Ops) 
+who own the entire lifecycle of a product or service from ‘inception to retirement’. 
+Because these teams (including their product managers) feel the impact of technical debt
+every day, they are highly motivated to pay it back to make life easier.
+
+****************************************************** 
+Simple things can help teams tackle technical debt.
+****************************************************** 
+
+--------------------------------------------------
+1. Create DevOps Product Teams 
+--------------------------------------------------
+You can do this by 
+
+- labelling work items
+-carve out part of every sprint to work on technical debt items 
+( We’d suggest at least 20% of a sprint commitment)
+- every team retro, do a quick thumbs up/down (or planning poker) on current levels of technical debt.
+- try to avoid creating more technical debt in new product development.
+- If you need to create prudent, deliberate technical debt, track it and allocate effort to pay it back in the future.
+
+DevOps patterns and practices, like using CI/CD code pipelines to build, test, package
+and deploy applications, enables teams to move faster, with less risk and less technical 
+debt.
+Code pipelines also provide end-to-end traceability of application code
+– from user story to code commit to released package.
+
+This helps derive clear, customer-driven priorities for where to focus technical 
+debt repayment efforts.
+
+--------------------------------------------------
+2. Build Shared Self-Service Platforms 
+--------------------------------------------------
+
+** 
+Increasingly, organisations are building shared self-service platforms to support product teams.
+In other words, where possible use PaaS+Best Practices
+**
+
+More in detail..
+
+- platforms help avoid the technical debt of having to build and maintain toolchains.
+- Teams can consume a self-service platform (i.e. an internal or third party software-as-a-service (SaaS) style solution) instead.
+- Platform teams build these services to meet the needs of product teams, along with best-practice templates, reference architectures and other code building blocks that might be needed.
+
+--------------------------------------------------
+3. Use DevOps Automation to Repay Tech Debt
+--------------------------------------------------
+But how does DevOps automation help repay technical debt?
+
+-------------------------------------
+‘virtuous circle’ of automation
+-------------------------------------
+
+The time you spend NOT troubleshooting deployments due to snowflake environment issues 
+is time you can invest paying back even more technical debt. 
+This leads to a ‘virtuous circle’ of automation.
+
+CALMS Culture-Automation-Lean-Measurement-Sharing
+
+Inherent in any DevOps approach is the heavy use of automation. 
+he services platforms provide are often automation toolchains for the product teams to use.
+
+------------------------------------------------------
+The Problem of Inconsistency: minimize it  
+------------------------------------------------------
+- infrastructure-as-code 
+- configuration-as-code 
+can help repay technical debt while avoiding future debt.
+
+
+Inconsistent aka ‘snowflake’ environments are a prevalent form of technical debt
+that almost everyone will have experienced. When your application works in Dev but
+not in Pre-Production or, even worse, not in Production, the root cause is often 
+inconsistency. 
+
+- operating system configuration
+- application dependencies
+- the myriad configuration settings upon which the application depends 
+- the communication between different services that comprise the application
+
+ The time you spend troubleshooting issues like these is the cost, the impact, of your technical debt.
+
+- infrastructure-as-code 
+- configuration-as-code 
+enable you to precisely express your intent for how you want the environment to be.
+Then, via the power of tools like Terraform and Puppet, you can (declaratively) ‘make it so’, 
+** consistently ** in every instance of that environment. 
+
+************************************
+** Containerisation ** 
+takes this to the next level.
+************************************
+
+-------------------------
+As-code automation
+-------------------------
+‘As-code’ automation also has another benefit. 
+Holding DevOps automation as code, in a repository like GitHub, rather than describing 
+config settings in verbose Word documents or Visio diagrams, makes it simpler and easier
+to iterate and improve. People can discover the code easily via search, submit suggested
+changes via pull requests, or even fork code, modifying and extending it to meet their 
+needs. 
+This ability to iterate means automation code is less likely to get ‘out of date’ thereby
+avoiding another form of technical debt.
+
+-----------------------------------------------------------
+4. Use Containers to Simplify App Deployment and Management
+-----------------------------------------------------------
+************************************
+** Containerisation ** 
+takes this to the next level.
+************************************
+
+containers enable you to hold 
+ 
+ - your application 
+ - its configuration 
+ - OS dependencies 
+ 
+in one lightweight bundle that’s easier to deploy and faster to provision.
+As with the environment management automation example discussed earlier, 
+the portability of containers simplifies everything.
+
+Container orchestration tools like Kubernetes go even further, enabling 
+automation of the container lifecycle in production, freeing DevOps teams
+to focus on higher-value tasks (like re-architecting applications to reduce
+technical debt).
+
+Organisations building new, cloud-native applications typically use containers 
+to improve 
+ - flexibility
+ - scalability 
+ - total cost of ownership (TCO)
+
+--------------------------------------------
+The ‘microservices’ architectural pattern 
+--------------------------------------------
+ - works well with containers 
+ and
+ - more importantly, the small multidisciplinary DevOps product teams
+
+Each microservice is 
+
+ - small 
+ - with a clear bounded context
+ - managed by a long-lived team. 
+
+** So, technical debt is easier to spot and fix **
+
+-----------------------------------------------
+5. Using DevOps to Build an API-Centric Model
+** 
+with APIs AND  ideally supporting ‘semantic versioning’ 
+we can
+1. REDUCE CODE COMPEXITY
+2. REDUCE COUPLING BETWEEN PRODUCTS / FEATURS / PRODUCERS / CONSUMERS
+-----------------------------------------------
+
+The microservices model discussed above is one way to implement an 
+API-centric application strategy.
+Jeff Bezos famously challenged his teams to ONLY use APIs to communicate
+between their systems “or be fired”.
+Encouraging teams to build and consume APIs with well-defined, versioned 
+interfaces is a great way to reduce technical debt.
+Often, technical debt is caused by different systems accessing services 
+and data in ways that other teams don’t expect. 
+
+***************************************************************
+APIs make these interfaces more visible and less fragile. 
+less fragility = less technical debt
+***************************************************************
+
+
+------------------------------------------------------------------------
 PT02-Q08:
 
 You are designing the development process for your company. 
@@ -101,8 +346,28 @@ CORRECT ANSWER TO PT02-Q08
 --------------------------------------------------------------------------
 
 QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/31981-exam-az-400-topic-5-question-1-discussion/
 
+Suggested Answer: C. SonarCloud analysis
 
+SonarCloud is a cloud service offered by SonarSource and based on SonarQube.
+SonarQube is a widely adopted open source platform to inspect continuously
+the quality of source code and detect bugs, vulnerabilities and code smells
+in more than 20 different languages.
+
+Note: 
+The SonarCloud Azure DevOps extension brings everything you need to have 
+your projects analyzed on SonarCloud very quickly.
+
+Incorrect Answers:
+
+A: 
+Test plans are used to group together test suites and individual test cases. 
+This includes static test suites, requirement-based suites, and query-based suites.
+
+Reference:
+https://docs.travis-ci.com/user/sonarcloud/
+https://sonarcloud.io/documentation/integrations/vsts/
 
 ------------------------------------------------------------------------
 PT02-Q07: 
