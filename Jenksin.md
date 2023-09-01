@@ -127,6 +127,32 @@ More information is available at the link below.
 
 ---
 
+### Maintaining State Outside the Container - Pipeline Scripts and Jenking Files
+
+[Maintaining State Outside the Container](https://app.pluralsight.com/course-player?clipId=2c794ca0-31a0-486a-98a2-50d0631b74d0)
+
+#### Jenkins Classic Builds
+
+By default Jenkins maintains its setup state and the state of the build definitions by storing files on disc.
+The **config.xml** under the **JOB directory on the Jenkings file system** on disc is where Jenkings stores the
+information about **the build configuration** and the **steps configurations**. This is the case also when Jekings
+is used within a Docker  container, as an istallation on OS or on teh OS of a VM.
+
+If you can replace this operation mode with Pipeline Scripts in version control ASAP!
+ 
+#### Keep your builds in version control with Pipeline Scripts!
+
+**Pipeline Scripts and Jenking Files** are a way to store and maintain this state **outside of the container** by 
+using **version control**. These files then can the bue **pulleed dynamically as the first step of your build**.
+While **build history, plugins and dependencies can be rebuilt**, the **build definitions** are the most important 
+assets and sotring then in version control is the best course of action. 
+
+
+
+
+---
+
+
 ### Jenkins Main Controller Configuration and Agent Nodes
 
 [Adding a Jenkins Agent Node](https://www.pluralsight.com/resources/blog/cloud/adding-a-jenkins-agent-node)
