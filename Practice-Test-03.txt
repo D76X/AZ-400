@@ -52,7 +52,435 @@ QUESTION POSTS
 
 -----------------------------------------------------------------------
 
-Your development team is building a new web solution by using the Microsoft Visual Studio integrated development environment (IDE). You need to make a custom package available to all the developers. The package must be managed centrally, and the latest version must be available for consumption in Visual Studio automatically. Which three actions should you perform?
+------------------------------------------------------------------------
+PT02-Q21:
+
+You use GitHub for source control and project-related discussions. 
+
+You receive a notification when an entry is made to any team discussion.
+You need to ensure that you receive email notifications only for discussions
+in which you commented or in which you are mentioned. 
+
+Which two Notification settings should you clear?
+
+A21-1: 
+A21-2: 
+A21-3: 
+A21-4: 
+A21-4: 
+
+MY ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/78924-exam-az-400-topic-5-question-21-discussion/
+
+------------------------------------------------------------------------
+PT02-Q20:
+
+You use Azure Artifacts to host the NuGet packages that you create. 
+
+You need to make one of the packages available to anonymous users outside
+your organization. 
+
+The solution must minimize the number of publication points. 
+What should you do?
+
+A20-1: A. Change the feed URL of the package
+A20-2: B. Create a new feed for the package
+A20-3: C. Promote the package to a release view.
+A20-4: D. Publish the package to a public NuGet repository.
+A20-4: 
+
+MY ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+A20-2: B. Create a new feed for the package
+Not sure.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/10248-exam-az-400-topic-5-question-20-discussion/
+
+Suggested Answer: B. Create a new feed for the package
+
+Azure Artifacts introduces the concept of multiple feeds that you can use to
+organize and control access to your packages.
+Packages you host in Azure Artifacts are stored in a feed. 
+Setting permissions on the feed allows you to share your packages with as many or
+as few people as your scenario requires.
+
+Feeds have four levels of access: Owners, Contributors, Collaborators, and Readers.
+
+Reference:
+
+Azure Artifacts > Manage permissions
+https://docs.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=vsts&tabs=new-nav
+
+------------------------------------------------------------------------
+PT02-Q19: DUPLICATE OF PT02-Q13:
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35948-exam-az-400-topic-5-question-19-discussion/#:~:text=PMD%20is%20a%20source%20code,object%20creation%2C%20and%20so%20forth.
+
+
+------------------------------------------------------------------------
+PT02-Q18:
+
+The lead developer at your company reports that adding new application 
+features takes longer than expected due to a large accumulated technical 
+debt.
+
+You need to recommend changes to reduce the accumulated technical debt.
+
+Solution: You recommend increasing the code duplication.
+Does this meet the goal?
+
+A18-1: A. Yes
+A18-2: B. No
+A18-3: 
+A18-4: 
+A18-4: 
+
+MY ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+A18-2: B. No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/50224-exam-az-400-topic-5-question-16-discussion/
+
+REFER TO QUESTION: PT02-Q10:
+
+------------------------------------------------------------------------
+PT02-Q17:
+
+You have a GitHub repository. 
+
+You create a new repository in Azure DevOps. 
+You need to recommend a procedure to clone the repository 
+from GitHub to Azure DevOps. 
+
+What should you recommend?
+
+A17-1: A. Create a pull request 
+A17-2: B. Create a webhook.
+A17-3: C. Create a service connection for GitHub.
+A17-4: D. From Import a Git repository, click Import.
+A17-4: E. Create a personal access token in Azure DevOps
+
+
+MY ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+A17-4: D. From Import a Git repository, click Import.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20518-exam-az-400-topic-5-question-15-discussion/
+
+Suggested Answer: D. From Import a Git repository, click Import.
+
+You can import an existing Git repo from 
+ 
+ - GitHub 
+ - Bitbucket 
+ - GitLab
+ - other location 
+ 
+ into a new or empty existing repo in your project in Azure DevOps.
+
+Import into a new repo -
+- Select Repos, Files.
+- From the repo drop-down, select Import repository.
+- If the source repo is publicly available, just enter the clone URL of the source repository
+ and a name for your new Git repository.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/git/import-git-repository?view=azure-devops
+
+------------------------------------------------------------------------
+PT02-Q16:
+
+Your company uses GitHub for source control. 
+The company has a team that performs code reviews.
+You need to automate the assignment of the code reviews. 
+
+The solution must meet the following requirements:
+
+-Prioritize the assignment of code reviews to team members who have the
+ fewest outstanding assignments.
+-Ensure that each team member performs an equal number of code reviews
+ in any 30-day period.
+-Prevent the assignment of code reviews to the team leader.
+
+Which two actions should you perform? 
+
+Each correct answer presents part of the solution.
+NOTE: Each correct selection is worth one point.
+
+A16-1: A. Clear Never assign certain team members.
+A16-2: B. Select If assigning team members, don't notify the entire team.
+A16-3: C. Select Never assign certain team members.
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+
+MY ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+
+We definitely need to select the option:
+C. Select Never assign certain team members.
+
+and 
+the option A. cannot be selected:
+A16-1: A. Clear Never assign certain team members.
+
+In order to: 
+-Prevent the assignment of code reviews to the team leader.
+
+Then the remaing options are:
+
+A16-2: B. Select If assigning team members, don't notify the entire team.
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+The option:
+A16-2: B. Select If assigning team members, don't notify the entire team.
+
+does not appear among the requirements therefore is irrelevant.
+
+Then the remaing options are:
+
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+The question is: which of these satisfies the remaining requirements?
+
+-Prioritize the assignment of code reviews to team members who have the
+ fewest outstanding assignments.
+-Ensure that each team member performs an equal number of code reviews
+ in any 30-day period.
+
+ I believe it is:
+ A16-4: E. Set Routing algorithm to Load balance.
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/73902-exam-az-400-topic-5-question-14-discussion/
+
+Suggested Answer: AE
+A16-1: A. Clear Never assign certain team members.
+A16-4: E. Set Routing algorithm to Load balance.
+
+A: A. Clear Never assign certain team members.
+
+To always skip certain members of the team > 
+select Never assign certain team members. 
+Then, select one or more team members you'd like to always skip. 
+In this case select the team leader.
+
+E: E. Set Routing algorithm to Load balance.
+
+The load balance algorithm chooses reviewers based on each member's total number 
+of recent review requests and considers the number of outstanding reviews for 
+each member. 
+The load balance algorithm tries to ensure that each team member reviews an equal
+number of pull requests in any 30 day period.
+
+------------------
+Incorrect Answers:
+------------------
+D: 
+The round robin algorithm chooses reviewers based on who's received the least 
+recent review request, focusing on alternating between all members of the team 
+** regardless of the number of outstanding reviews they currently have. **
+
+Reference:
+https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-assignment-for-your-team
+
+------------------------------------------------------------------------
+PT02-Q15:
+
+You use GitHub for source control. A file that contains sensitive data 
+is committed accidentally to the Git repository of a project. 
+You need to delete the file and its history from the repository. 
+
+Which two tools can you use?
+
+A15-1: A. the git filter-branch command M
+A15-2: B. BFG Repo-Cleaner 
+A15-3: C. the git rebase command
+A15-4: D. GitHub Desktop
+
+
+MY ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+A15-1: A. the git filter-branch command M
+A15-2: B. BFG Repo-Cleaner 
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74555-exam-az-400-topic-5-question-13-discussion/
+
+References
+
+-----------------------------
+BFG Repo-Cleaner
+https://rtyley.github.io/bfg-repo-cleaner/
+BFG Repo-Cleaner an alternative to git-filter-branch
+
+The BFG is a simpler, faster alternative to git-filter-branch for cleansing 
+bad data out of your Git repository history:
+ - Removing Crazy Big Files
+ - Removing Passwords, Credentials & other Private data
+
+The git-filter-branch command is enormously powerful and can do things that 
+the BFG can't - but the BFG is much better for the tasks above, because:
+
+Faster : 10 - 720x faster
+Simpler : The BFG isn't particularily clever, but is focused on making the 
+above tasks easy
+
+Beautiful : If you need to, you can use the beautiful Scala language to 
+customise the BFG. Which has got to be better than Bash scripting at least
+some of the time.
+
+-----------------------------
+
+https://git-scm.com/docs/git-filter-branch
+
+WARNING
+git filter-branch has a plethora of pitfalls that can produce non-obvious 
+manglings of the intended history rewrite (and can leave you with little 
+time to investigate such problems since it has such abysmal performance). 
+These safety and performance issues cannot be backward compatibly fixed 
+and as such, its use is not recommended. Please use an alternative history
+filtering tool such as git filter-repo. 
+If you still need to use git filter-branch, please carefully read 
+SAFETY (and PERFORMANCE) to learn about the land mines of filter-branch
+and then vigilantly avoid as many of the hazards listed there as reasonably
+possible.
+
+------------------------------------------------------------------------
+PT02-Q14:
+
+Your development team is building a new web solution by using the Microsoft
+Visual Studio integrated development environment (IDE). 
+
+You need 
+- to make a custom package available to all the developers. 
+- The package must be managed centrally, and 
+- the latest version must be available for consumption in Visual Studio automatically. 
+
+Which three actions should you perform?
+
+NOTE: Each correct selection is worth one point.
+
+A14-1: A. Publish the package to a feed.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-3: C. Upload a package to a Git repository   < wrong!
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+A14-6: F. Create a Git repository in Azure Repos. < wrong!
+
+MY ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+Some options are obviously wrong:
+A14-3: C. Upload a package to a Git repository
+A14-6: F. Create a Git repository in Azure Repos.
+
+This leaves us with 4 remaining options of which we must select 3.
+
+A14-1: A. Publish the package to a feed.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+The right logical order would be the following.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-1: A. Publish the package to a feed.
+
+obviously onle one of the following can be correct:
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+I think that the correct options between these two is:
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+Finally the 3 options in their logic order are the following:
+
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+A14-1: A. Publish the package to a feed.
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20892-exam-az-400-topic-5-question-12-discussion/
+
+Suggested Answer: ABE 
+
+B: B. Create a new feed in Azure Artifacts.
+By using your custom NuGet package feed within your Azure DevOps (previously VSTS) instance
+you'll be able to distribute your packages within your organization with ease.
+
+Start by creating a new feed.
+
+A: A. Publish the package to a feed.
+We can publish, pack and push the built project to our NuGet feed.
+
+E: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+Consume your private NuGet Feed
+
+Go back to the Packages area in Azure DevOps, select your feed and hit Connect to feed. 
+You'll see some instructions for your feed, but it's fairly simple to set up.
+Just copy your package source URL, go to Visual Studio, open the ** NuGet Package Manager ** 
+go to its settings and add a new source. 
+
+Choose a fancy name, insert the source URL. Done.
+
+Search for your package in the NuGet Package Manager and it should appear there, ready for 
+installation. Make sure to select the appropriate feed (or just all feeds) from the top 
+right select box.
+
+Reference:
+https://medium.com/medialesson/get-started-with-private-nuget-feeds-in-azure-devops-8c7b5f022a68
 
 ------------------------------------------------------------------------
 PT02-Q13:
