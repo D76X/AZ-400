@@ -32,10 +32,21 @@ Practice Test 3 28 questions
 -----------------------------------------------------------------------
 PT02-Q28:
 
-A28-1: 
-A28-2: 
-A28-3: 
-A28-4: 
+You plan to onboard 10 new developers. 
+You need to recommend a development 
+environment that meets the following requirements:
+
+- Integrates with GitHub
+- Provides integrated debugging tools
+- Supports remote workers and hot-desking environments
+- Supports developers who use browsers, tablets, and Chromebooks
+
+What should you recommend?
+
+A28-1: A. VS Code
+A28-2: B. Xamarin Studio
+A28-3: C. MonoDevelop
+A28-4: D. Github Codespaces
 A28-5: 
 
 MY ANSWER TO PT02-Q28
@@ -49,8 +60,361 @@ CORRECT ANSWER TO PT02-Q28
 --------------------------------------------------------------------------
 
 QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74557-exam-az-400-topic-6-question-7-discussion/
+
+Suggested Answer: D. Github Codespaces
+You can develop in your codespace directly in Visual Studio Code by connecting 
+the GitHub Codespaces extension with your account on GitHub.
+
+Reference:
+https://docs.github.com/en/codespaces/developing-in-codespaces/using-codespaces-in-visual-studio-code
+
+
 
 -----------------------------------------------------------------------
+PT02-Q27:
+
+You have a project in Azure DevOps that has a release pipeline. 
+You need to integrate 
+work item tracking and an Agile project management system 
+to meet the following requirements:
+
+- Ensure that developers can track whether their commits are deployed to production.
+- Report the deployment status.
+- Minimize integration effort.
+
+Which system should you use?
+
+A27-1: A. Asana
+A27-2: B. Basecamp
+A27-3: C. Trello
+A27-4: D. Jira
+A27-5: 
+
+MY ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/75184-exam-az-400-topic-6-question-6-discussion/
+
+Suggested Answer: D. Jira
+
+Jira Software is a development tool used by agile teams to plan, track, and 
+manage software releases. 
+
+Using Azure Pipelines, teams can configure CI/CD pipelines for applications
+of any language, deploying to any platform or any cloud.
+
+Note: 
+Microsoft and Atlassian have partnered together to build an integration 
+between Azure Pipelines and Jira Software.
+This integration connects the two products, providing full tracking of how 
+and when the value envisioned with an issue is delivered to end users. 
+This enables teams to setup a tight development cycle from issue creation through
+release. 
+Key development milestones like builds and deployments associated to a Jira issue
+can then be tracked from within Jira Software.
+
+Incorrect Answers:
+C: 
+Trello is a collaboration tool that organizes your projects into boards. 
+In one glance, Trello tells you what's being worked on, who's working on what, and
+where something is in a process.
+
+Reference:
+https://devblogs.microsoft.com/devops/azure-pipelines-integration-with-jira-software/
+
+-----------------------------------------------------------------------
+PT02-Q26:
+
+You integrate a cloud-hosted Jenkins server and a new Azure DevOps deployment.
+
+You need Azure DevOps to send a notification to Jenkins when a developer 
+commits changes to a branch in Azure Repos.
+
+Solution-1: You create a service hook subscription that uses the build 
+completed event.
+
+Solution 2: You create a service hook subscription that uses the code 
+pushed event.
+
+Does this meet the goal?
+
+
+A26-1: A. Yes
+A26-2: B. No
+
+
+MY ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+Soulution-1 : A26-2: B. No
+
+Obviously the build completed event would not be the correct event for the
+service hook even if the service hook was a viable mechanism to notify 
+a Jenking instance.
+It is required to to send a notification to Jenkins when a developer 
+commits changes therefore the event would be related to the Repo and not 
+the build.
+
+Solution-2: A26-1: A. Yes
+You create a service hook subscription that uses the code pushed event.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36373-exam-az-400-topic-6-question-9-discussion/
+
+REFS
+
+Azure Pipelines - Continuously deploy from a Jenkins build
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/integrate-jenkins-pipelines-cicd?view=azure-devops&tabs=yaml
+
+-----------------------------------------------------------------------
+PT02-Q25:
+
+Your team uses an agile development approach. 
+
+You need to recommend a branching strategy for the team's Git repository.
+The strategy must meet the following requirements.
+
+- Provide the ability to work on multiple independent tasks in parallel.
+- Ensure that the checked-in code remains in a releasable state always.
+- Ensure that new features can be abandoned at any time.
+- Encourage experimentation. 
+
+What should you recommend?
+
+
+A25-1: A. a single long-running branch
+A25-2: B. multiple long-running branches
+A25-3: C. a single fork per team member
+A25-4: D. a single-running branch with multiple short-lived topic branches
+A25-5: 
+
+MY ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+A25-4: D. a single-running branch with multiple short-lived topic branches
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/24173-exam-az-400-topic-2-question-19-discussion/
+
+Suggested Answer: D. a single-running branch with multiple short-lived topic branches
+
+Topic branches, however, are useful in projects of any size. 
+A topic branch is a short-lived branch that you create and use for a single
+particular feature or related work. This is something you've likely never 
+done with a VCS before because it's generally too expensive to create and 
+merge branches. 
+But in Git it's common to create, work on, merge, and delete branches 
+several times a day.
+
+Reference:
+https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows
+
+-----------------------------------------------------------------------
+PT02-Q24:
+
+Your company implements an Agile development methodology. 
+
+You plan to implement retrospectives at the end of each sprint. 
+Which three questions should you include?
+
+A24-1: A. Who performed well?
+A24-2: B. Who should have performed better?
+A24-3: C. What could have gone better?
+A24-4: D. What went well?
+A24-5: E. What should we try next?
+
+MY ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+A24-4: D. What went well?
+A24-3: C. What could have gone better?
+A24-5: E. What should we try next?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35745-exam-az-400-topic-6-question-3-discussion/
+
+REFS
+
+Retrospectives: Be Agile and Thrive
+https://learn.microsoft.com/en-us/shows/devops-lab/retrospectives-be-agile-and-thrive 
+
+Manage alerts, blameless retrospectives and a just culture
+https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/
+https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/8-examine-blameless-retrospective
+
+Having a "blameless" retrospective process means that engineers whose actions have 
+contributed to an accident can give a detailed account of:
+
+What actions do they take at what time.
+What effects do they observe?
+Expectations they had.
+Assumptions they had made.
+Their understanding of the timeline of events as they occurred.
+
+This cycle of name/blame/shame can be looked at like this:
+
+Engineer acts and contributes to a failure or incident.
+Engineer is punished, shamed, blamed, or retrained.
+Reduced trust between engineers on the ground (the "sharp-end") and management (the "blunt end") looking for someone to scapegoat.
+Engineers become silent on details about actions/situations/observations, resulting in "Cover-Your-Mistake" engineering (from fear of punishment)
+Management becomes less aware and informed on how work is being performed daily. Engineers become less educated on lurking or latent conditions for failure because of the silence mentioned in the previous four.
+Errors are more likely, and latent conditions can't be identified because of the previous five.
+Repeat the first step.
+
+-----------------------------------------------------------------------
+PT02-Q23:
+
+Your company creates a new Azure DevOps team. 
+
+You plan to use Azure DevOps for sprint planning. 
+You need to visualize the flow of your work by using an agile methodology. 
+Which Azure DevOps component should you use?
+
+
+A23-1: A. Kanban boards
+A23-2: B. sprint planning
+A23-3: C. delivery plans
+A23-4: D. portfolio backlogs
+A23-5: 
+
+MY ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+A23-1: A. Kanban boards
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35806-exam-az-400-topic-6-question-2-discussion/
+
+
+Suggested Answer: A. Kanban boards
+
+Customizing Kanban boards.
+To maximize a team's ability to consistently deliver high quality software, 
+Kanban emphasize two main practices. 
+
+- The first, visualize the flow of work, requires you to map your team's 
+workflow stages and configure your Kanban board to match. Your Kanban board
+turns your backlog into an interactive signboard, providing a visual flow of
+work.
+
+- The second, constrain the amount of work in progress, requires you to set 
+work-in-progress (WIP) limits. 
+
+Reference:
+https://azuredevopslabs.com/labs/azuredevops/agile/
+
+------------------------------------------------------------------------
+PT02-Q22:
+
+Your company has 60 developers who are assigned to four teams. 
+Each team has 15 members. 
+
+The company uses an agile development methodology. 
+You need to structure the work of the development teams so that each team
+owns its respective work while working together to reach a common goal. 
+
+Which parts of the taxonomy should you enable the team to perform autonomously?
+
+A22-1: A. Features and Tasks
+A22-2: B. Initiatives and Epics
+A22-3: C. Epics and Features
+A22-4: D. Stories and Tasks
+A22-4: 
+
+MY ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+As the question referes to the agile development methodology on the types 
+of assets realted to teh Agile Process may be referred to:
+Bug | Epic | Feature | Issue | User Story | Task | Test case
+
+Therefore the following is not applicable.
+A22-2: B. Initiatives and Epics
+
+Within Agile the common goal is represented by the Epics.
+Therefore the individual teasm cannot own the Epics as these must be shared
+by all teams.
+
+Therefore the following is not applicable.
+A22-3: C. Epics and Features
+
+We are then left with the following options:
+
+A22-1: A. Features and Tasks
+A22-4: D. Stories and Tasks
+
+Should the teams share Features or Stories?
+I think each team should become responsible of rtheir own feature.
+
+A feature is made up of possible several user stories that partecipate
+together to create a functional piece of functionality. If we dividedthe work
+among different teams at User Story level then it may happen that two or more 
+teams would be coupled at feature level.
+This is the opposite of what 
+
+Therefore my answer is:
+A22-1: A. Features and Tasks
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+A22-4: D. Stories and Tasks << but I am not sure this is right!
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/30575-exam-az-400-topic-6-question-2-discussion/
+
+refer to PT01-Q06: 
+
+--------------
+Agile Process
+--------------
+https://www.youtube.com/watch?v=e3Nb9ecaJNQ&list=PLaFzfwmPR7_Ifxq-udm66fhReFeGOe2x_&index=13 
+(#12) Azure DevOps Board with Agile work process | Azure DevOps Boards | Azure DevOps tutorial
+Work Items available in the CMMI process
+-----------------------------------------------------------------------------------------------
+Bug | Epic | Feature | Issue | User Story | Task | Test case
+-----------------------------------------------------------------------------------------------
+- Agile User Story: a Work Item to track on the board 
+
+Agile Flows:
+
+User Story states: New > Active | Removed > Resolved > Closed
+Bug states: New > Active > Resolved > Closed
+
+Portfolio Backlog: Epic > Feature > ** User Story > Tasks **
+Product Backlog:   ** User Story > Tasks **
+Configurable: Bug > Tasks
+Issue Tracking: Issue
+Test: TestPlan > TestSuite > TestCase > SharedSteps + Shared Parameters
 
 ------------------------------------------------------------------------
 PT02-Q21:
@@ -63,15 +427,20 @@ in which you commented or in which you are mentioned.
 
 Which two Notification settings should you clear?
 
-A21-1: 
-A21-2: 
-A21-3: 
-A21-4: 
+Which two Notifications settings should you clear? 
+Each correct answer presents part of the solution.
+NOTE: Each correct selection is worth one point.
+
+A21-1: A. Automatically watch teams
+A21-2: B. Participating
+A21-3: C. Automatically watch repositories
+A21-4: D. Watching
 A21-4: 
 
 MY ANSWER TO PT02-Q21
 --------------------------------------------------------------------------
-?
+A. Automatically watch teams 
+C. Automatically watch repositories
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT02-Q21
@@ -81,6 +450,23 @@ CORRECT ANSWER TO PT02-Q21
 
 QUESTION POSTS
 https://www.examtopics.com/discussions/microsoft/view/78924-exam-az-400-topic-5-question-21-discussion/
+
+
+Suggested Answer: BC 🗳️
+C: If "Automatically watch repositories" is disabled, then you will not automatically watch your own repositories. You must navigate to your repository page and choose the watch option.
+
+A. Automatically watch teams 
+C. Automatically watch repositories
+
+https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching
+
+By default, anytime you gain access to a new repository, you will automatically
+begin watching that repository. 
+Anytime you join a new team, you will automatically be subscribed to updates
+and receive notifications when that team is @mentioned. 
+
+If you don't want to automatically be subscribed, 
+you can unselect the automatic watching options.
 
 ------------------------------------------------------------------------
 PT02-Q20:
@@ -107,7 +493,8 @@ Not sure.
 
 CORRECT ANSWER TO PT02-Q20
 --------------------------------------------------------------------------
-?
+A20-2: B. Create a new feed for the package
+A20-4: D. Publish the package to a public NuGet repository.
 --------------------------------------------------------------------------
 
 QUESTION POSTS
@@ -707,7 +1094,7 @@ A09-5:
 
 MY ANSWER TO PT02-Q09
 --------------------------------------------------------------------------
-Solution-1:  A09-1: B. No
+Solution-1:  A09-1: B. No   << ? It says that it is incorrect ? => perhaps reducing code coupling and the dependency cycles is intended as a way to reduce code complexity?
 Solution-2:  A09-1: A. Yes
 Solution-3:  A09-1: B. No
 --------------------------------------------------------------------------
