@@ -147,8 +147,17 @@ using **version control**. These files then can the bue **pulleed dynamically as
 While **build history, plugins and dependencies can be rebuilt**, the **build definitions** are the most important 
 assets and sotring then in version control is the best course of action. 
 
+#### Store Jenkins Configurations in a Mount Volume for a basic Docker Image
 
+[The Docker File System](https://app.pluralsight.com/course-player?clipId=c4e4b89a-18ec-4b5f-9344-8a7d38f970ad) 
+[Understanding Copy on Write](https://app.pluralsight.com/course-player?clipId=c4e4b89a-18ec-4b5f-9344-8a7d38f970ad)
+[Demo: Mounting a Volume to Your Container](https://app.pluralsight.com/course-player?clipId=11238ab2-8967-4fd4-8393-6b4b7bfc055a)
 
+```
+docker run -2119:8080 -p 50000:5000 -v C://Docker/Volumes/jenkins-master:var/jenkins/jenkins_home -name jenkins-master jenkins/jenkins:lts
+
+docker rm jenkins-master
+```
 
 ---
 
@@ -169,4 +178,40 @@ Can't I simply run Jenkins directly on the **Jenkins Controller**?
 The answer is yes you can but you should not!
 Use the **Main Controller Configuraion** instead.
 
+---
+
+[Jenkns: Pipeline as Code](https://www.jenkins.io/doc/book/pipeline-as-code/)
+
+To use Pipeline as Code, projects must contain a file named Jenkinsfile in the repository root, which contains a "Pipeline script."
+
+[Building a Modern CI/CD Pipeline with Jenkins](https://app.pluralsight.com/library/courses/building-modern-ci-cd-pipeline-jenkins/table-of-contents)   
+
+https://github.com/devbyaccident/azure-voting-app-redis 
+https://github.com/devbyaccident/demo-shared-pipeline
+
+https://www.jenkins.io/doc/book/pipeline/
+https://www.jenkins.io/doc/book/pipeline/syntax/
+https://www.jenkins.io/doc/pipeline/steps/
+
 --- 
+
+ # Jenkins and Azure DevOps 
+
+[Jenkins on Azure documentation](https://learn.microsoft.com/en-us/azure/developer/jenkins/)  
+[Continuously deploy from a Jenkins build](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/integrate-jenkins-pipelines-cicd?view=azure-devops&tabs=yaml)   
+[Tutorial: Use Azure Container Instances as a Jenkins build agent](https://learn.microsoft.com/en-us/azure/developer/jenkins/azure-container-instances-as-jenkins-build-agent)  
+[Get Started: Install Jenkins on an Azure Linux VM](https://learn.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm)   
+
+---
+
+## [Automatic Jenkins with Groovy](https://app.pluralsight.com/library/courses/jenkins-groovy-automating/table-of-contents)
+
+[The Groovy Console](https://app.pluralsight.com/course-player?clipId=2a284fe6-3654-45a9-aac5-7286b69d7cbd)
+[Ways to get Apache Groovy}(http://groovy-lang.org/download.html)
+
+```
+cd 'C:\VSProjects\MyProjetcs\Groovy\apache-groovy-sdk-4.0.14\groovy-4.0.14\bin'
+groovyconsole
+```
+
+---
