@@ -193,6 +193,13 @@ https://www.jenkins.io/doc/book/pipeline/
 https://www.jenkins.io/doc/book/pipeline/syntax/
 https://www.jenkins.io/doc/pipeline/steps/
 
+[Connecting Jenkins To GitHub](https://app.pluralsight.com/course-player?clipId=f40e709c-ef20-41e4-bd02-b8203021e380)     
+
+[Running Scripted Pipeline](https://app.pluralsight.com/course-player?clipId=57a92ff5-273a-4d4e-85c4-bae6dbdbf8c1)    
+
+[Running Scripted Pipeline from SCM](https://app.pluralsight.com/course-player?clipId=bc90e0f5-0e21-49ec-9985-202143e60547)    
+
+
 --- 
 
  # Jenkins and Azure DevOps 
