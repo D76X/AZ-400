@@ -1,0 +1,63 @@
+https://www.udemy.com/course/practice-exams-az400-microsoft-azure-devops-engineer/
+----------------------------------------------------------------
+AZ-400 Microsoft DevOps Engineer REAL Exam Dumps : Part-1
+https://www.youtube.com/watch?v=eHlPZipHQco&list=PLyABYqulvUwYlrqboc1FgrLM4lN-8OAd7
+
+----------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT0X-Q0X: 
+question text..
+Which of the following is the option you would choose?
+
+A0X-1: 
+A0X-2: 
+A0X-3: 
+A0X-4: 
+
+MY ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT04-Q01: 
+
+A company has an ongoing issue for its code quality.
+The code quality deteriorates because of the time constraints during developemnt of the code.
+As a DevOp Engineer you need implement static code analysis.
+During which phase should you implement static code analysis?
+
+A01-1: Build
+A02-2: Production Release
+A03-3: Integration Testing
+A04-4: Staging
+
+MY ANSWER TO PT04-Q01
+--------------------------------------------------------------------------
+A01-1: Build
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT04-Q01
+--------------------------------------------------------------------------
+A01-1: Build
+--------------------------------------------------------------------------
+
+refs:
+Microsoft Security Development Lifecycle (SDL)
+https://learn.microsoft.com/en-us/compliance/assurance/assurance-microsoft-security-development-lifecycle
+
+Various automated checks are also required and are built into the commit pipeline
+to analyze code during check-in and when builds are compiled. The security checks
+used at Microsoft fall into the following categories:
+
+**
+Static code analysis: Analyzes source code for potential security flaws, 
+including the presence of credentials in code.
+
+--------------------------------------------------------------------------
