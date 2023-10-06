@@ -199,6 +199,8 @@ https://www.jenkins.io/doc/pipeline/steps/
 
 [Running Scripted Pipeline from SCM](https://app.pluralsight.com/course-player?clipId=bc90e0f5-0e21-49ec-9985-202143e60547)    
 
+[Configuring a Multi-Branch Pipelien](https://app.pluralsight.com/course-player?clipId=78433521-f99b-4d02-8664-97832205d1d6)  
+
 
 --- 
 
