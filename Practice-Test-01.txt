@@ -56,7 +56,7 @@ REFS:
 PT00-Q04: 
 
 You are developing the security validation plan for an application’s lifecycle.
-For which activity should you include a passive penetration test?
+For which activity should you include a ** passive penetration ** test?
 
  - continuous deployment
  - continuous integration
@@ -65,7 +65,7 @@ For which activity should you include a passive penetration test?
 
 MY ANSWER TO PT00-Q04
 --------------------------------------------------------------------------
-?
+continuous integration
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT00-Q04: continuous deployment
@@ -75,7 +75,40 @@ CORRECT ANSWER TO PT00-Q04: continuous deployment
 --------------------------------------------------------------------------
 
 REFS:
-Continuous deployment should include passive penetration tests as well as SSL and infrastructure scans. Nightly test runs should include infrastructure scans and active penetration tests. Continuous integration should include an Open-Source Software (OSS) vulnerability scan. The integrated development environment/pull request step should include static code analysis and code reviews.
+
+---------------------------------------
+ The IDE environment/pull request step should include:
+ ---------------------------------------
+
+- static code analysis 
+- code reviews (manual check).
+
+---------------------------------------
+ Continuous integration should include:
+ ---------------------------------------
+
+ - Open-Source Software (OSS) vulnerability scan. 
+
+---------------------------------------
+Nightly test runs should include:
+---------------------------------------
+
+ - infrastructure scans 
+ - **active** penetration tests 
+
+---------------------------------------
+Continuous deployment should include: 
+---------------------------------------
+
+- SSL scan 
+- infrastructure scans. 
+- **passive** penetration tests 
+
+-----------------------------
+Microsoft Security Development Lifecycle (SDL)
+Threat modeling is a core element of the Microsoft Security Development Lifecycle (SDL).
+https://learn.microsoft.com/en-us/compliance/assurance/assurance-microsoft-security-development-lifecycle
+-----------------------------
 
 Explore key validation points - Training | Microsoft Learn
 https://learn.microsoft.com/en-gb/training/modules/introduction-to-secure-devops/5-explore-key-validation-points?pivots=bash
@@ -83,6 +116,66 @@ https://learn.microsoft.com/en-gb/training/modules/introduction-to-secure-devops
 
 Control releases with deployment gates - Azure Pipelines | Microsoft Learn
 https://learn.microsoft.com/en-gb/azure/devops/pipelines/release/approvals/gates?view=azure-devops
+
+-------
+ChatGPT
+-------
+
+EXAM Q/A:
+
+A **passive penetration test** is typically included in the **continuous integration (CI)** 
+phase of an application's lifecycle. In CI, developers frequently integrate code changes into a 
+shared repository, and automated security checks, including **passive penetration** tests, can
+be performed to detect vulnerabilities as early as possible in the development process. 
+
+**Passive penetration tests are non-intrusive** and focus on identifying vulnerabilities and 
+security issues without actively exploiting them.
+
+So, the correct answer is: continuous integration
+
+-----------
+QUESTION: 
+
+What is the difference between a passive penetration test and active penetration test and in 
+which steps of the development lifecycle each of these should be used according to the 
+Microsoft Security Development Lifecycle (SDL)?
+-----------
+
+Passive and active penetration tests are two different approaches to testing the security of an
+application or system, and they serve distinct purposes within the development lifecycle, 
+as outlined in the Microsoft Security Development Lifecycle (SDL).
+
+---------------------------
+Passive Penetration Test:
+---------------------------
+
+Purpose: Passive penetration tests are non-intrusive tests designed to identify vulnerabilities
+and security weaknesses without actively exploiting them. 
+These tests involve the analysis of code, architecture, configurations, and network traffic to
+find potential issues.
+
+---------------
+** When to Use: 
+---------------
+Passive penetration tests are typically used in the early stages of the development lifecycle, 
+such as during the requirements and design phases of the SDL. They can also be used during the
+continuous integration (CI) phase to identify security issues before they become more critical.
+
+-----------------------
+Active Penetration Test:
+-----------------------
+
+Purpose: Active penetration tests are more aggressive and involve simulating real-world attacks
+to actively exploit vulnerabilities and assess the effectiveness of security controls. They aim
+to provide a realistic view of how an application or system would withstand attacks.
+
+---------------
+** When to Use:
+---------------
+
+Active penetration tests are typically conducted in later phases of the development lifecycle 
+when the application or system is closer to completion. This includes the testing and verification
+phases of the SDL. They can also be performed during the operational phase to assess ongoing security.
 
 -------------------------------------------------------------------------
 PT00-Q03: 
