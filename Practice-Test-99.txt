@@ -48,7 +48,7 @@ CORRECT ANSWER TO PT99-Q0X
 PT99-Q02: 
 
 Arrange the actions in the correct order if you need to configure Helm and  
-Tiller on the Azure Kubernetes Services (AKS) cluster which has RBACK enabled
+Tiller on the Azure Kubernetes Services (AKS) cluster which has RBAC enabled
 and install the chart.
 
 What is the correct sequence of the three commands below?
@@ -60,16 +60,70 @@ helm install
 
 MY ANSWER TO PT99-Q02
 --------------------------------------------------------------------------
-
+(By ChatGPT)
+heml init
+kubectl create
+helm install
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT99-Q02
 --------------------------------------------------------------------------
+The author of the Video maintyains tha the correct sequnce is:
 
+kubectl create
+helm init
+helm install
 --------------------------------------------------------------------------
 
 refs:
 
+Install existing applications with Helm in Azure Kubernetes Service (AKS)
+https://learn.microsoft.com/en-us/azure/aks/kubernetes-helm
+
+Helm is an open-source packaging tool that helps you install and manage 
+the lifecycle of Kubernetes applications. Similar to Linux package managers, 
+such as APT and Yum, you can use Helm to manage Kubernetes charts, which are
+packages of preconfigured Kubernetes resources.
+
+This article shows you how to configure and use Helm in a Kubernetes cluster
+on Azure Kubernetes Service (AKS).
+
+------------
+ChatGPT
+------------
+
+To configure Helm and Tiller on an Azure Kubernetes Service (AKS) cluster
+with RBAC enabled and then install a Helm chart, you should follow these 
+steps in the correct order:
+
+Initialize Helm and install Tiller on the AKS cluster: 
+(This command initializes Helm on your local system and installs Tiller in the AKS cluster.)
+
+> heml init
+
+Set up RBAC permissions for Tiller on the AKS cluster:
+
+```
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+```
+
+These commands 
+-1 create a service account for Tiller
+-2 grant it cluster-admin privileges 
+-3 patch the Tiller deployment to use the new service account.
+
+Finally, you can use helm install to install the Helm chart on your AKS cluster.
+Make sure you provide the appropriate chart name and values file if needed:
+
+helm install <RELEASE_NAME> <CHART_NAME> [flags]
+
+Therefore the correct sequence is:
+
+heml init
+kubectl create
+helm install
 
 -------------------------------------------------------------------------
 PT99-Q01: 
