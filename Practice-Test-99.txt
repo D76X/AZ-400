@@ -1,0 +1,133 @@
+----------------------------------------------------------------
+AZ-400 Microsoft DevOps Engineer REAL Exam Dumps : Part-1
+https://www.youtube.com/watch?v=eHlPZipHQco&list=PLyABYqulvUwYlrqboc1FgrLM4lN-8OAd7
+
+----------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT0X-Q0X: 
+question text..
+Which of the following is the option you would choose?
+
+A0X-1: 
+A0X-2: 
+A0X-3: 
+A0X-4: 
+
+MY ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT99-Q02: 
+question text..
+Which of the following is the option you would choose?
+
+A99-1: 
+A99-2: 
+A99-3: 
+A99-4: 
+
+MY ANSWER TO PT99-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT99-Q02: 
+
+Arrange the actions in the correct order if you need to configure Helm and  
+Tiller on the Azure Kubernetes Services (AKS) cluster which has RBACK enabled
+and install the chart.
+
+What is the correct sequence of the three commands below?
+
+helm init
+kubectl create
+helm install
+
+
+MY ANSWER TO PT99-Q02
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q02
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+refs:
+
+
+-------------------------------------------------------------------------
+PT99-Q01: 
+
+A company has an ongoing issue for its code quality.
+The code quality deteriorates because of the time constraints during 
+developemnt of the code.
+As a DevOp Engineer you need implement static code analysis.
+
+During which phase should you implement static code analysis?
+
+A01-1: Build
+A01-2: Production Release
+A01-3: Integration Testing
+A01-4: Staging
+
+MY ANSWER TO PT99-Q01
+--------------------------------------------------------------------------
+A01-1: Build
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q01
+--------------------------------------------------------------------------
+A01-1: Build
+--------------------------------------------------------------------------
+
+refs:
+
+Microsoft Security Development Lifecycle (SDL)
+https://learn.microsoft.com/en-us/compliance/assurance/assurance-microsoft-security-development-lifecycle
+
+Various automated checks are also required and are built into the commit pipeline
+to analyze code during check-in and when builds are compiled. 
+
+The security checks used at Microsoft fall into the following categories:
+
+**
+1-Static code analysis: 
+Analyzes source code for potential security flaws, including the presence of credentials in code.
+
+Other Security Checks.
+
+2-Binary analysis: 
+Assesses vulnerabilities at the binary code level to confirm code is production ready.
+
+3-Credential and secret scanner: 
+Identify possible instances of credential and secret exposure in source code and configuration files.
+
+4-Encryption scanning: 
+Validates encryption best practices in source code and code execution.
+
+5-Fuzz testing: 
+Use malformed and unexpected data to exercise APIs and parsers to check for vulnerabilities and validate error handling.
+
+6-Configuration validation: 
+Analyzes the configuration of production systems against security standards and best practices.
+
+7-Component Governance (CG): 
+Open-source software detection and checking of version, vulnerability, and legal obligations.
+
+--------------------------------------------------------------------------

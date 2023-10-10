@@ -1,0 +1,56 @@
+----------------------------------------------------------------
+
+Practice Assessment for Exam AZ-400: Designing and Implementing Microsoft DevOps Solutions
+https://learn.microsoft.com/en-us/credentials/certifications/exams/az-400/
+https://learn.microsoft.com/en-gb/credentials/certifications/exams/az-400/practice/assessment?assessment-type=practice&assessmentId=56
+
+----------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT0X-Q0X: 
+question text..
+Which of the following is the option you would choose?
+
+A0X-1: 
+A0X-2: 
+A0X-3: 
+A0X-4: 
+
+MY ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT0X-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT00-Q01: 
+
+You are configuring project metrics for dashboards in Azure DevOps.
+You need to configure a chart widget that measures the elapsed time to 
+complete work items once they become active.
+
+Which of the following is the widget you should use?
+
+A. Cumulative Flow Diagram
+B. Burnup
+C. Cycle time
+D. Burndown
+
+MY ANSWER:
+--------------------------------------------------------------------------
+A00-1: Build
+--------------------------------------------------------------------------
+
+CORRECT ANSWER:
+--------------------------------------------------------------------------
+A00-1: Build
+--------------------------------------------------------------------------
+
+REFS:
+
+
+--------------------------------------------------------------------------

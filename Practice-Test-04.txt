@@ -1,12 +1,12 @@
 https://www.udemy.com/course/practice-exams-az400-microsoft-azure-devops-engineer/
 ----------------------------------------------------------------
-AZ-400 Microsoft DevOps Engineer REAL Exam Dumps : Part-1
-https://www.youtube.com/watch?v=eHlPZipHQco&list=PLyABYqulvUwYlrqboc1FgrLM4lN-8OAd7
-
+AZ-400 Microsoft Azure DevOps Engineer Exam 1 45 questions
+AZ-400 Microsoft Azure DevOps Engineer Exam 2 40 questions
+AZ-400 Microsoft Azure DevOps Engineer Exam 3 28 questions
 ----------------------------------------------------------------
 
 -------------------------------------------------------------------------
-PT0X-Q0X: 
+PT02-Q0X: 
 question text..
 Which of the following is the option you would choose?
 
@@ -15,49 +15,1837 @@ A0X-2:
 A0X-3: 
 A0X-4: 
 
-MY ANSWER TO PT0X-Q0X
+MY ANSWER TO PT02-Q0X
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT0X-Q0X
+CORRECT ANSWER TO PT02-Q0X
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
--------------------------------------------------------------------------
-PT04-Q01: 
+--------------------------------
+Practice Test 3 28 questions
+--------------------------------
 
-A company has an ongoing issue for its code quality.
-The code quality deteriorates because of the time constraints during developemnt of the code.
-As a DevOp Engineer you need implement static code analysis.
-During which phase should you implement static code analysis?
+-----------------------------------------------------------------------
+PT02-Q28:
 
-A01-1: Build
-A02-2: Production Release
-A03-3: Integration Testing
-A04-4: Staging
+You plan to onboard 10 new developers. 
+You need to recommend a development 
+environment that meets the following requirements:
 
-MY ANSWER TO PT04-Q01
+- Integrates with GitHub
+- Provides integrated debugging tools
+- Supports remote workers and hot-desking environments
+- Supports developers who use browsers, tablets, and Chromebooks
+
+What should you recommend?
+
+A28-1: A. VS Code
+A28-2: B. Xamarin Studio
+A28-3: C. MonoDevelop
+A28-4: D. Github Codespaces
+A28-5: 
+
+MY ANSWER TO PT02-Q28
 --------------------------------------------------------------------------
-A01-1: Build
+?
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT04-Q01
+CORRECT ANSWER TO PT02-Q28
 --------------------------------------------------------------------------
-A01-1: Build
+?
 --------------------------------------------------------------------------
 
-refs:
-Microsoft Security Development Lifecycle (SDL)
-https://learn.microsoft.com/en-us/compliance/assurance/assurance-microsoft-security-development-lifecycle
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74557-exam-az-400-topic-6-question-7-discussion/
 
-Various automated checks are also required and are built into the commit pipeline
-to analyze code during check-in and when builds are compiled. The security checks
-used at Microsoft fall into the following categories:
+Suggested Answer: D. Github Codespaces
+You can develop in your codespace directly in Visual Studio Code by connecting 
+the GitHub Codespaces extension with your account on GitHub.
 
+Reference:
+https://docs.github.com/en/codespaces/developing-in-codespaces/using-codespaces-in-visual-studio-code
+
+
+
+-----------------------------------------------------------------------
+PT02-Q27:
+
+You have a project in Azure DevOps that has a release pipeline. 
+You need to integrate 
+work item tracking and an Agile project management system 
+to meet the following requirements:
+
+- Ensure that developers can track whether their commits are deployed to production.
+- Report the deployment status.
+- Minimize integration effort.
+
+Which system should you use?
+
+A27-1: A. Asana
+A27-2: B. Basecamp
+A27-3: C. Trello
+A27-4: D. Jira
+A27-5: 
+
+MY ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q27
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/75184-exam-az-400-topic-6-question-6-discussion/
+
+Suggested Answer: D. Jira
+
+Jira Software is a development tool used by agile teams to plan, track, and 
+manage software releases. 
+
+Using Azure Pipelines, teams can configure CI/CD pipelines for applications
+of any language, deploying to any platform or any cloud.
+
+Note: 
+Microsoft and Atlassian have partnered together to build an integration 
+between Azure Pipelines and Jira Software.
+This integration connects the two products, providing full tracking of how 
+and when the value envisioned with an issue is delivered to end users. 
+This enables teams to setup a tight development cycle from issue creation through
+release. 
+Key development milestones like builds and deployments associated to a Jira issue
+can then be tracked from within Jira Software.
+
+Incorrect Answers:
+C: 
+Trello is a collaboration tool that organizes your projects into boards. 
+In one glance, Trello tells you what's being worked on, who's working on what, and
+where something is in a process.
+
+Reference:
+https://devblogs.microsoft.com/devops/azure-pipelines-integration-with-jira-software/
+
+-----------------------------------------------------------------------
+PT02-Q26:
+
+You integrate a cloud-hosted Jenkins server and a new Azure DevOps deployment.
+
+You need Azure DevOps to send a notification to Jenkins when a developer 
+commits changes to a branch in Azure Repos.
+
+Solution-1: You create a service hook subscription that uses the build 
+completed event.
+
+Solution 2: You create a service hook subscription that uses the code 
+pushed event.
+
+Does this meet the goal?
+
+
+A26-1: A. Yes
+A26-2: B. No
+
+
+MY ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+Soulution-1 : A26-2: B. No
+
+Obviously the build completed event would not be the correct event for the
+service hook even if the service hook was a viable mechanism to notify 
+a Jenking instance.
+It is required to to send a notification to Jenkins when a developer 
+commits changes therefore the event would be related to the Repo and not 
+the build.
+
+Solution-2: A26-1: A. Yes
+You create a service hook subscription that uses the code pushed event.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q26
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/36373-exam-az-400-topic-6-question-9-discussion/
+
+REFS
+
+Azure Pipelines - Continuously deploy from a Jenkins build
+https://learn.microsoft.com/en-us/azure/devops/pipelines/release/integrate-jenkins-pipelines-cicd?view=azure-devops&tabs=yaml
+
+-----------------------------------------------------------------------
+PT02-Q25:
+
+Your team uses an agile development approach. 
+
+You need to recommend a branching strategy for the team's Git repository.
+The strategy must meet the following requirements.
+
+- Provide the ability to work on multiple independent tasks in parallel.
+- Ensure that the checked-in code remains in a releasable state always.
+- Ensure that new features can be abandoned at any time.
+- Encourage experimentation. 
+
+What should you recommend?
+
+
+A25-1: A. a single long-running branch
+A25-2: B. multiple long-running branches
+A25-3: C. a single fork per team member
+A25-4: D. a single-running branch with multiple short-lived topic branches
+A25-5: 
+
+MY ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+A25-4: D. a single-running branch with multiple short-lived topic branches
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q25
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/24173-exam-az-400-topic-2-question-19-discussion/
+
+Suggested Answer: D. a single-running branch with multiple short-lived topic branches
+
+Topic branches, however, are useful in projects of any size. 
+A topic branch is a short-lived branch that you create and use for a single
+particular feature or related work. This is something you've likely never 
+done with a VCS before because it's generally too expensive to create and 
+merge branches. 
+But in Git it's common to create, work on, merge, and delete branches 
+several times a day.
+
+Reference:
+https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows
+
+-----------------------------------------------------------------------
+PT02-Q24:
+
+Your company implements an Agile development methodology. 
+
+You plan to implement retrospectives at the end of each sprint. 
+Which three questions should you include?
+
+A24-1: A. Who performed well?
+A24-2: B. Who should have performed better?
+A24-3: C. What could have gone better?
+A24-4: D. What went well?
+A24-5: E. What should we try next?
+
+MY ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+A24-4: D. What went well?
+A24-3: C. What could have gone better?
+A24-5: E. What should we try next?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q24
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35745-exam-az-400-topic-6-question-3-discussion/
+
+REFS
+
+Retrospectives: Be Agile and Thrive
+https://learn.microsoft.com/en-us/shows/devops-lab/retrospectives-be-agile-and-thrive 
+
+Manage alerts, blameless retrospectives and a just culture
+https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/
+https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/8-examine-blameless-retrospective
+
+Having a "blameless" retrospective process means that engineers whose actions have 
+contributed to an accident can give a detailed account of:
+
+What actions do they take at what time.
+What effects do they observe?
+Expectations they had.
+Assumptions they had made.
+Their understanding of the timeline of events as they occurred.
+
+This cycle of name/blame/shame can be looked at like this:
+
+Engineer acts and contributes to a failure or incident.
+Engineer is punished, shamed, blamed, or retrained.
+Reduced trust between engineers on the ground (the "sharp-end") and management (the "blunt end") looking for someone to scapegoat.
+Engineers become silent on details about actions/situations/observations, resulting in "Cover-Your-Mistake" engineering (from fear of punishment)
+Management becomes less aware and informed on how work is being performed daily. Engineers become less educated on lurking or latent conditions for failure because of the silence mentioned in the previous four.
+Errors are more likely, and latent conditions can't be identified because of the previous five.
+Repeat the first step.
+
+-----------------------------------------------------------------------
+PT02-Q23:
+
+Your company creates a new Azure DevOps team. 
+
+You plan to use Azure DevOps for sprint planning. 
+You need to visualize the flow of your work by using an agile methodology. 
+Which Azure DevOps component should you use?
+
+
+A23-1: A. Kanban boards
+A23-2: B. sprint planning
+A23-3: C. delivery plans
+A23-4: D. portfolio backlogs
+A23-5: 
+
+MY ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+A23-1: A. Kanban boards
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q23
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35806-exam-az-400-topic-6-question-2-discussion/
+
+
+Suggested Answer: A. Kanban boards
+
+Customizing Kanban boards.
+To maximize a team's ability to consistently deliver high quality software, 
+Kanban emphasize two main practices. 
+
+- The first, visualize the flow of work, requires you to map your team's 
+workflow stages and configure your Kanban board to match. Your Kanban board
+turns your backlog into an interactive signboard, providing a visual flow of
+work.
+
+- The second, constrain the amount of work in progress, requires you to set 
+work-in-progress (WIP) limits. 
+
+Reference:
+https://azuredevopslabs.com/labs/azuredevops/agile/
+
+------------------------------------------------------------------------
+PT02-Q22:
+
+Your company has 60 developers who are assigned to four teams. 
+Each team has 15 members. 
+
+The company uses an agile development methodology. 
+You need to structure the work of the development teams so that each team
+owns its respective work while working together to reach a common goal. 
+
+Which parts of the taxonomy should you enable the team to perform autonomously?
+
+A22-1: A. Features and Tasks
+A22-2: B. Initiatives and Epics
+A22-3: C. Epics and Features
+A22-4: D. Stories and Tasks
+A22-4: 
+
+MY ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+As the question referes to the agile development methodology on the types 
+of assets realted to teh Agile Process may be referred to:
+Bug | Epic | Feature | Issue | User Story | Task | Test case
+
+Therefore the following is not applicable.
+A22-2: B. Initiatives and Epics
+
+Within Agile the common goal is represented by the Epics.
+Therefore the individual teasm cannot own the Epics as these must be shared
+by all teams.
+
+Therefore the following is not applicable.
+A22-3: C. Epics and Features
+
+We are then left with the following options:
+
+A22-1: A. Features and Tasks
+A22-4: D. Stories and Tasks
+
+Should the teams share Features or Stories?
+I think each team should become responsible of rtheir own feature.
+
+A feature is made up of possible several user stories that partecipate
+together to create a functional piece of functionality. If we dividedthe work
+among different teams at User Story level then it may happen that two or more 
+teams would be coupled at feature level.
+This is the opposite of what 
+
+Therefore my answer is:
+A22-1: A. Features and Tasks
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q22
+--------------------------------------------------------------------------
+A22-4: D. Stories and Tasks << but I am not sure this is right!
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/30575-exam-az-400-topic-6-question-2-discussion/
+
+refer to PT01-Q06: 
+
+--------------
+Agile Process
+--------------
+https://www.youtube.com/watch?v=e3Nb9ecaJNQ&list=PLaFzfwmPR7_Ifxq-udm66fhReFeGOe2x_&index=13 
+(#12) Azure DevOps Board with Agile work process | Azure DevOps Boards | Azure DevOps tutorial
+Work Items available in the CMMI process
+-----------------------------------------------------------------------------------------------
+Bug | Epic | Feature | Issue | User Story | Task | Test case
+-----------------------------------------------------------------------------------------------
+- Agile User Story: a Work Item to track on the board 
+
+Agile Flows:
+
+User Story states: New > Active | Removed > Resolved > Closed
+Bug states: New > Active > Resolved > Closed
+
+Portfolio Backlog: Epic > Feature > ** User Story > Tasks **
+Product Backlog:   ** User Story > Tasks **
+Configurable: Bug > Tasks
+Issue Tracking: Issue
+Test: TestPlan > TestSuite > TestCase > SharedSteps + Shared Parameters
+
+------------------------------------------------------------------------
+PT02-Q21:
+
+You use GitHub for source control and project-related discussions. 
+
+You receive a notification when an entry is made to any team discussion.
+You need to ensure that you receive email notifications only for discussions
+in which you commented or in which you are mentioned. 
+
+Which two Notification settings should you clear?
+
+Which two Notifications settings should you clear? 
+Each correct answer presents part of the solution.
+NOTE: Each correct selection is worth one point.
+
+A21-1: A. Automatically watch teams
+A21-2: B. Participating
+A21-3: C. Automatically watch repositories
+A21-4: D. Watching
+A21-4: 
+
+MY ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+A. Automatically watch teams 
+C. Automatically watch repositories
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q21
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/78924-exam-az-400-topic-5-question-21-discussion/
+
+
+Suggested Answer: BC 🗳️
+C: If "Automatically watch repositories" is disabled, then you will not automatically watch your own repositories. You must navigate to your repository page and choose the watch option.
+
+A. Automatically watch teams 
+C. Automatically watch repositories
+
+https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#automatic-watching
+
+By default, anytime you gain access to a new repository, you will automatically
+begin watching that repository. 
+Anytime you join a new team, you will automatically be subscribed to updates
+and receive notifications when that team is @mentioned. 
+
+If you don't want to automatically be subscribed, 
+you can unselect the automatic watching options.
+
+------------------------------------------------------------------------
+PT02-Q20:
+
+You use Azure Artifacts to host the NuGet packages that you create. 
+
+You need to make one of the packages available to anonymous users outside
+your organization. 
+
+The solution must minimize the number of publication points. 
+What should you do?
+
+A20-1: A. Change the feed URL of the package
+A20-2: B. Create a new feed for the package
+A20-3: C. Promote the package to a release view.
+A20-4: D. Publish the package to a public NuGet repository.
+A20-4: 
+
+MY ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+A20-2: B. Create a new feed for the package
+Not sure.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q20
+--------------------------------------------------------------------------
+A20-2: B. Create a new feed for the package
+A20-4: D. Publish the package to a public NuGet repository.
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/10248-exam-az-400-topic-5-question-20-discussion/
+
+Suggested Answer: B. Create a new feed for the package
+
+Azure Artifacts introduces the concept of multiple feeds that you can use to
+organize and control access to your packages.
+Packages you host in Azure Artifacts are stored in a feed. 
+Setting permissions on the feed allows you to share your packages with as many or
+as few people as your scenario requires.
+
+Feeds have four levels of access: Owners, Contributors, Collaborators, and Readers.
+
+Reference:
+
+Azure Artifacts > Manage permissions
+https://docs.microsoft.com/en-us/azure/devops/artifacts/feeds/feed-permissions?view=vsts&tabs=new-nav
+
+------------------------------------------------------------------------
+PT02-Q19: DUPLICATE OF PT02-Q13:
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35948-exam-az-400-topic-5-question-19-discussion/#:~:text=PMD%20is%20a%20source%20code,object%20creation%2C%20and%20so%20forth.
+
+
+------------------------------------------------------------------------
+PT02-Q18:
+
+The lead developer at your company reports that adding new application 
+features takes longer than expected due to a large accumulated technical 
+debt.
+
+You need to recommend changes to reduce the accumulated technical debt.
+
+Solution: You recommend increasing the code duplication.
+Does this meet the goal?
+
+A18-1: A. Yes
+A18-2: B. No
+A18-3: 
+A18-4: 
+A18-4: 
+
+MY ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+A18-2: B. No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/50224-exam-az-400-topic-5-question-16-discussion/
+
+REFER TO QUESTION: PT02-Q10:
+
+------------------------------------------------------------------------
+PT02-Q17:
+
+You have a GitHub repository. 
+
+You create a new repository in Azure DevOps. 
+You need to recommend a procedure to clone the repository 
+from GitHub to Azure DevOps. 
+
+What should you recommend?
+
+A17-1: A. Create a pull request 
+A17-2: B. Create a webhook.
+A17-3: C. Create a service connection for GitHub.
+A17-4: D. From Import a Git repository, click Import.
+A17-4: E. Create a personal access token in Azure DevOps
+
+
+MY ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+A17-4: D. From Import a Git repository, click Import.
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q17
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20518-exam-az-400-topic-5-question-15-discussion/
+
+Suggested Answer: D. From Import a Git repository, click Import.
+
+You can import an existing Git repo from 
+ 
+ - GitHub 
+ - Bitbucket 
+ - GitLab
+ - other location 
+ 
+ into a new or empty existing repo in your project in Azure DevOps.
+
+Import into a new repo -
+- Select Repos, Files.
+- From the repo drop-down, select Import repository.
+- If the source repo is publicly available, just enter the clone URL of the source repository
+ and a name for your new Git repository.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/git/import-git-repository?view=azure-devops
+
+------------------------------------------------------------------------
+PT02-Q16:
+
+Your company uses GitHub for source control. 
+The company has a team that performs code reviews.
+You need to automate the assignment of the code reviews. 
+
+The solution must meet the following requirements:
+
+-Prioritize the assignment of code reviews to team members who have the
+ fewest outstanding assignments.
+-Ensure that each team member performs an equal number of code reviews
+ in any 30-day period.
+-Prevent the assignment of code reviews to the team leader.
+
+Which two actions should you perform? 
+
+Each correct answer presents part of the solution.
+NOTE: Each correct selection is worth one point.
+
+A16-1: A. Clear Never assign certain team members.
+A16-2: B. Select If assigning team members, don't notify the entire team.
+A16-3: C. Select Never assign certain team members.
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+
+MY ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+
+We definitely need to select the option:
+C. Select Never assign certain team members.
+
+and 
+the option A. cannot be selected:
+A16-1: A. Clear Never assign certain team members.
+
+In order to: 
+-Prevent the assignment of code reviews to the team leader.
+
+Then the remaing options are:
+
+A16-2: B. Select If assigning team members, don't notify the entire team.
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+The option:
+A16-2: B. Select If assigning team members, don't notify the entire team.
+
+does not appear among the requirements therefore is irrelevant.
+
+Then the remaing options are:
+
+A16-4: D. Set Routing algorithm to Round robin.
+A16-4: E. Set Routing algorithm to Load balance.
+
+The question is: which of these satisfies the remaining requirements?
+
+-Prioritize the assignment of code reviews to team members who have the
+ fewest outstanding assignments.
+-Ensure that each team member performs an equal number of code reviews
+ in any 30-day period.
+
+ I believe it is:
+ A16-4: E. Set Routing algorithm to Load balance.
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q16
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/73902-exam-az-400-topic-5-question-14-discussion/
+
+Suggested Answer: AE
+A16-1: A. Clear Never assign certain team members.
+A16-4: E. Set Routing algorithm to Load balance.
+
+A: A. Clear Never assign certain team members.
+
+To always skip certain members of the team > 
+select Never assign certain team members. 
+Then, select one or more team members you'd like to always skip. 
+In this case select the team leader.
+
+E: E. Set Routing algorithm to Load balance.
+
+The load balance algorithm chooses reviewers based on each member's total number 
+of recent review requests and considers the number of outstanding reviews for 
+each member. 
+The load balance algorithm tries to ensure that each team member reviews an equal
+number of pull requests in any 30 day period.
+
+------------------
+Incorrect Answers:
+------------------
+D: 
+The round robin algorithm chooses reviewers based on who's received the least 
+recent review request, focusing on alternating between all members of the team 
+** regardless of the number of outstanding reviews they currently have. **
+
+Reference:
+https://docs.github.com/en/organizations/organizing-members-into-teams/managing-code-review-assignment-for-your-team
+
+------------------------------------------------------------------------
+PT02-Q15:
+
+You use GitHub for source control. A file that contains sensitive data 
+is committed accidentally to the Git repository of a project. 
+You need to delete the file and its history from the repository. 
+
+Which two tools can you use?
+
+A15-1: A. the git filter-branch command M
+A15-2: B. BFG Repo-Cleaner 
+A15-3: C. the git rebase command
+A15-4: D. GitHub Desktop
+
+
+MY ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+A15-1: A. the git filter-branch command M
+A15-2: B. BFG Repo-Cleaner 
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/74555-exam-az-400-topic-5-question-13-discussion/
+
+References
+
+-----------------------------
+BFG Repo-Cleaner
+https://rtyley.github.io/bfg-repo-cleaner/
+BFG Repo-Cleaner an alternative to git-filter-branch
+
+The BFG is a simpler, faster alternative to git-filter-branch for cleansing 
+bad data out of your Git repository history:
+ - Removing Crazy Big Files
+ - Removing Passwords, Credentials & other Private data
+
+The git-filter-branch command is enormously powerful and can do things that 
+the BFG can't - but the BFG is much better for the tasks above, because:
+
+Faster : 10 - 720x faster
+Simpler : The BFG isn't particularily clever, but is focused on making the 
+above tasks easy
+
+Beautiful : If you need to, you can use the beautiful Scala language to 
+customise the BFG. Which has got to be better than Bash scripting at least
+some of the time.
+
+-----------------------------
+
+https://git-scm.com/docs/git-filter-branch
+
+WARNING
+git filter-branch has a plethora of pitfalls that can produce non-obvious 
+manglings of the intended history rewrite (and can leave you with little 
+time to investigate such problems since it has such abysmal performance). 
+These safety and performance issues cannot be backward compatibly fixed 
+and as such, its use is not recommended. Please use an alternative history
+filtering tool such as git filter-repo. 
+If you still need to use git filter-branch, please carefully read 
+SAFETY (and PERFORMANCE) to learn about the land mines of filter-branch
+and then vigilantly avoid as many of the hazards listed there as reasonably
+possible.
+
+------------------------------------------------------------------------
+PT02-Q14:
+
+Your development team is building a new web solution by using the Microsoft
+Visual Studio integrated development environment (IDE). 
+
+You need 
+- to make a custom package available to all the developers. 
+- The package must be managed centrally, and 
+- the latest version must be available for consumption in Visual Studio automatically. 
+
+Which three actions should you perform?
+
+NOTE: Each correct selection is worth one point.
+
+A14-1: A. Publish the package to a feed.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-3: C. Upload a package to a Git repository   < wrong!
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+A14-6: F. Create a Git repository in Azure Repos. < wrong!
+
+MY ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+Some options are obviously wrong:
+A14-3: C. Upload a package to a Git repository
+A14-6: F. Create a Git repository in Azure Repos.
+
+This leaves us with 4 remaining options of which we must select 3.
+
+A14-1: A. Publish the package to a feed.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+The right logical order would be the following.
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-1: A. Publish the package to a feed.
+
+obviously onle one of the following can be correct:
+A14-4: D. Add the package URL to the Environment settings in Visual Studio.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+I think that the correct options between these two is:
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+
+Finally the 3 options in their logic order are the following:
+
+A14-2: B. Create a new feed in Azure Artifacts.
+A14-5: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+A14-1: A. Publish the package to a feed.
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20892-exam-az-400-topic-5-question-12-discussion/
+
+Suggested Answer: ABE 
+
+B: B. Create a new feed in Azure Artifacts.
+By using your custom NuGet package feed within your Azure DevOps (previously VSTS) instance
+you'll be able to distribute your packages within your organization with ease.
+
+Start by creating a new feed.
+
+A: A. Publish the package to a feed.
+We can publish, pack and push the built project to our NuGet feed.
+
+E: E. Add the package URL to the NuGet Package Manager settings in Visual Studio.
+Consume your private NuGet Feed
+
+Go back to the Packages area in Azure DevOps, select your feed and hit Connect to feed. 
+You'll see some instructions for your feed, but it's fairly simple to set up.
+Just copy your package source URL, go to Visual Studio, open the ** NuGet Package Manager ** 
+go to its settings and add a new source. 
+
+Choose a fancy name, insert the source URL. Done.
+
+Search for your package in the NuGet Package Manager and it should appear there, ready for 
+installation. Make sure to select the appropriate feed (or just all feeds) from the top 
+right select box.
+
+Reference:
+https://medium.com/medialesson/get-started-with-private-nuget-feeds-in-azure-devops-8c7b5f022a68
+
+------------------------------------------------------------------------
+PT02-Q13:
+
+During a code review, you discover many quality issues. 
+Many modules contain unused variables and empty catch blocks. 
+
+You need to recommend a solution to improve the quality of the code. 
+What should you recommend?
+
+A13-1: A. In a Grunt build task, select Enabled from Control Options.
+A13-2: B. In a Maven build task, select Run PMD.
+A13-3: C. In a Xcode build task, select Use xcpretty from Advanced.
+A13-4: D. In a Gradle build task, select Run Checkstyle.
+
+MY ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/20515-exam-az-400-topic-5-question-11-discussion/
+
+Suggested Answer: B. In a Maven build task, select Run PMD.
+
+PMD is a source code analyzer. 
+
+It finds common programming flaws like unused variables, empty catch blocks,
+unnecessary object creation, and so forth.
+There is an Apache Maven PMD Plugin which allows you to automatically run the 
+PMD code analysis tool on your project's source code and generate a site report
+ with its results.
+
+-------------------
+Incorrect Answers:
+C: xcpretty is a fast and flexible formatter for xcodebuild.
+-------------------
+
+Reference:
+
+https://pmd.github.io
+An extensible cross-language static code analyzer.
+It supports 
+ -Java 
+ -JavaScript
+ -Salesforce.com Apex 
+ -Visualforce
+ -PLSQL
+ -Apache Velocity
+ -XML
+ -XSL
+
+Additionally it includes CPD, the copy-paste-detector. 
+CPD finds duplicated code in 
+
+-Java, C, C++, C#, Groovy, PHP, Ruby, Fortran, JavaScript, PLSQL, 
+Apache Velocity, Scala, Objective C, Matlab, Python, Go, Swift and 
+Salesforce.com Apex and Visualforce.
+
+------------------------------------------------------------------------
+PT02-Q12: DUPLICATE OF PT02-Q11
+PT02-Q11:
+
+Your company is building a new solution in Java. 
+
+The company currently uses a SonarQube server to analyze the code of 
+.NET solutions. 
+
+You need to analyze and monitor the code quality of the 
+Java solution.
+
+Which task types should you add to the build pipeline?
+
+A11-1: A. Gradle    << Java + this should work also with SonarCloud / SonarQube
+A11-2: B. CocoaPods << Swift
+A11-3: C. Grunt     << JavaScript - uses data configuration files that are similar to JSON
+A11-4: D. Gulp      << JavaScript - employs JavaScript, which tends to be easier to write. 
+------------------
+https://www.examtopics.com/discussions/microsoft/view/35487-exam-az-400-topic-5-question-6-discussion/
+A11-5: E. Octopus
+A11-6: E. Maven
+
+MY ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+A11-1: A. Gradle    << Java + this should work also with SonarCloud / SonarQube
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35487-exam-az-400-topic-5-question-6-discussion/
+
+Suggested Answer: E. Maven
+
+SonarQube is a set of static analyzers that can be used to identify areas of improvement 
+in your code. It allows you to analyze the technical debt in your project and keep track 
+of it in the future. 
+
+With ** Maven and Gradle build tasks ** 
+you can run SonarQube analysis with minimal setup in a new or existing Azure DevOps.
+
+Services build task.
+
+- Prepare Analysis Configuration task
+  to configure all the required settings before executing the build.
+  - This task is mandatory.
+  - In case of .NET solutions or Java projects, it helps to integrate seamlessly with 
+    MSBuild, Maven and Gradle tasks.
+
+Note: There are several versions of this question in the exam. 
+The question can have three correct answers:
+
+- MSBuild
+- Maven
+- Gradle
+
+The question can also have different ** incorrect options ** including:
+- Chef
+- xCODE
+- CocoaPods
+
+Reference:
+https://docs3.sonarqube.org/latest/analysis/scan/sonarscanner-for-azure-devops/ 
+https://docs.microsoft.com/en-us/azure/devops/java/sonarqube?view=azure-devops
+
+
+
+------------------------------------------------------------------------
+PT02-Q10:
+
+Your company uses Azure DevOps for the 
+build pipelines 
+and deployment pipelines 
+of Java-based projects.
+
+You need to recommend a strategy for 
+** managing technical debt **. 
+
+Which two actions should you include in the recommendation?
+NOTE: Each correct selection is worth one point.
+
+A10-1: A. Configure post-deployment approvals in the deployment pipeline.
+A10-2: B. Configure pre-deployment approvals in the deployment pipeline.
+A10-3: C. Integrate Azure DevOps and SonarQube.
+A10-4: D. Integrate Azure DevOps and Azure DevTest Labs.
+A10-5: 
+
+MY ANSWER TO PT02-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/23054-exam-az-400-topic-5-question-3-discussion/
+
+************************************************************
+B: With ** SonarQube pre-approval ** you can set quality gate.
+C: You can manage technical debt with SonarQube and Azure DevOps.
+************************************************************
+
+Note: Technical debt is the set of problems in a development effort that
+make forward progress on customer value inefficient. Technical debt saps 
+productivity by making code hard to understand, fragile, time-consuming 
+to change, difficult to validate, and creates unplanned work that blocks 
+progress. 
+
+Unless they are managed, technical debt can accumulate and hurt the overall
+quality of the software and the productivity of the development team in the
+long term.
+
+SonarQube an open source platform for continuous inspection of code quality
+to perform automatic reviews with static analysis of code to:
+
+- Detect Bugs
+- Code Smells
+- Security Vulnerabilities
+- Centralize Quality
+
+Reference:
+Managing technical debt with SonarQube and Azure DevOps
+https://azuredevopslabs.com/labs/vstsextend/sonarqube/
+
+------------------------------------------------------------------------
+PT02-Q09:
+
+The lead developer at your company reports that adding new application features
+takes longer than expected due to a ** large accumulated technical debt **. 
+
+You need to recommend changes to reduce the accumulated technical debt.
+
+Solution-1: uggested Answer: B. No >> Instead reduce the code complexity.
+Do You recommend reducing the code coupling and the dependency cycles?
+https://www.examtopics.com/discussions/microsoft/view/50539-exam-az-400-topic-5-question-2-discussion/
+
+Solution-2: Suggested Answer: A. Yes 
+https://www.examtopics.com/discussions/microsoft/view/39686-exam-az-400-topic-5-question-18-discussion/ 
+You recommend reducing the code complexity.
+
+Solution-3: Suggested Answer: B. No >> Instead reduce the code complexity.
+https://www.examtopics.com/discussions/microsoft/view/35260-exam-az-400-topic-5-question-17-discussion/
+Solution: You recommend increasing the test coverage.
+
+Does this meet the goal?
+
+A09-1: A. Yes
+A09-2: B. No
+A09-3: 
+A09-4: 
+A09-5: 
+
+
+MY ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+Solution-1:  A09-1: B. No   << ? It says that it is incorrect ? => perhaps reducing code coupling and the dependency cycles is intended as a way to reduce code complexity?
+Solution-2:  A09-1: A. Yes
+Solution-3:  A09-1: B. No
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/39686-exam-az-400-topic-5-question-18-discussion/
+
+Suggested Answer: A. Yes << For solution-2: You recommend reducing the code complexity.
+
+Note: 
+Technical debt is the accumulation of sub-optimal technical decisions made
+over the lifetime of an application. Eventually, it gets harder to change 
+things: it's the 'sand in the gears' that sees IT initiatives grind to a halt.
+
+
+Reference:
+
+5 Ways DevOps Helps With Technical Debt
+https://www.devopsgroup.com/blog/five-ways-devops-helps-with-technical-debt/
+
+It is worth pointing out that technical debt doesn’t only occur in development, 
+** it can occur in operations too **.
+For Example:
+
+- Still running an out-of-date OS that’s no longer supported, like Windows Server 2008 or Ubuntu 11.04
+- Not keeping your servers patched and up to date 
+- leaving you vulnerable to cyber-attack and ransomware
+
+--------------------------------
+Is Technical Debt Always Bad?
+--------------------------------
+
+Refer ro the concept: TechnicalDebtQuadrant - Martin Fowler
+https://martinfowler.com/bliki/TechnicalDebtQuadrant.html
+
+------------------------------------
+Prudent, deliberate technical debt 
+------------------------------------
+is at the heart of Eric Ries’ ‘Build-Measure-Learn’ cycle from The Lean Startup.
+https://www.youtube.com/watch?v=xkaabHiZN-k
+
+------------------------------------------------------------
+So, how can DevOps address the technical debt challenge?
+------------------------------------------------------------
+
+One of the key tenets of DevOps is creating small, multidisciplinary teams (i.e. Dev + Ops) 
+who own the entire lifecycle of a product or service from ‘inception to retirement’. 
+Because these teams (including their product managers) feel the impact of technical debt
+every day, they are highly motivated to pay it back to make life easier.
+
+****************************************************** 
+Simple things can help teams tackle technical debt.
+****************************************************** 
+
+--------------------------------------------------
+1. Create DevOps Product Teams 
+--------------------------------------------------
+You can do this by 
+
+- labelling work items
+-carve out part of every sprint to work on technical debt items 
+( We’d suggest at least 20% of a sprint commitment)
+- every team retro, do a quick thumbs up/down (or planning poker) on current levels of technical debt.
+- try to avoid creating more technical debt in new product development.
+- If you need to create prudent, deliberate technical debt, track it and allocate effort to pay it back in the future.
+
+DevOps patterns and practices, like using CI/CD code pipelines to build, test, package
+and deploy applications, enables teams to move faster, with less risk and less technical 
+debt.
+Code pipelines also provide end-to-end traceability of application code
+– from user story to code commit to released package.
+
+This helps derive clear, customer-driven priorities for where to focus technical 
+debt repayment efforts.
+
+--------------------------------------------------
+2. Build Shared Self-Service Platforms 
+--------------------------------------------------
+
+** 
+Increasingly, organisations are building shared self-service platforms to support product teams.
+In other words, where possible use PaaS+Best Practices
 **
-Static code analysis: Analyzes source code for potential security flaws, 
-including the presence of credentials in code.
 
+More in detail..
+
+- platforms help avoid the technical debt of having to build and maintain toolchains.
+- Teams can consume a self-service platform (i.e. an internal or third party software-as-a-service (SaaS) style solution) instead.
+- Platform teams build these services to meet the needs of product teams, along with best-practice templates, reference architectures and other code building blocks that might be needed.
+
+--------------------------------------------------
+3. Use DevOps Automation to Repay Tech Debt
+--------------------------------------------------
+But how does DevOps automation help repay technical debt?
+
+-------------------------------------
+‘virtuous circle’ of automation
+-------------------------------------
+
+The time you spend NOT troubleshooting deployments due to snowflake environment issues 
+is time you can invest paying back even more technical debt. 
+This leads to a ‘virtuous circle’ of automation.
+
+CALMS Culture-Automation-Lean-Measurement-Sharing
+
+Inherent in any DevOps approach is the heavy use of automation. 
+he services platforms provide are often automation toolchains for the product teams to use.
+
+------------------------------------------------------
+The Problem of Inconsistency: minimize it  
+------------------------------------------------------
+- infrastructure-as-code 
+- configuration-as-code 
+can help repay technical debt while avoiding future debt.
+
+
+Inconsistent aka ‘snowflake’ environments are a prevalent form of technical debt
+that almost everyone will have experienced. When your application works in Dev but
+not in Pre-Production or, even worse, not in Production, the root cause is often 
+inconsistency. 
+
+- operating system configuration
+- application dependencies
+- the myriad configuration settings upon which the application depends 
+- the communication between different services that comprise the application
+
+ The time you spend troubleshooting issues like these is the cost, the impact, of your technical debt.
+
+- infrastructure-as-code 
+- configuration-as-code 
+enable you to precisely express your intent for how you want the environment to be.
+Then, via the power of tools like Terraform and Puppet, you can (declaratively) ‘make it so’, 
+** consistently ** in every instance of that environment. 
+
+************************************
+** Containerisation ** 
+takes this to the next level.
+************************************
+
+-------------------------
+As-code automation
+-------------------------
+‘As-code’ automation also has another benefit. 
+Holding DevOps automation as code, in a repository like GitHub, rather than describing 
+config settings in verbose Word documents or Visio diagrams, makes it simpler and easier
+to iterate and improve. People can discover the code easily via search, submit suggested
+changes via pull requests, or even fork code, modifying and extending it to meet their 
+needs. 
+This ability to iterate means automation code is less likely to get ‘out of date’ thereby
+avoiding another form of technical debt.
+
+-----------------------------------------------------------
+4. Use Containers to Simplify App Deployment and Management
+-----------------------------------------------------------
+************************************
+** Containerisation ** 
+takes this to the next level.
+************************************
+
+containers enable you to hold 
+ 
+ - your application 
+ - its configuration 
+ - OS dependencies 
+ 
+in one lightweight bundle that’s easier to deploy and faster to provision.
+As with the environment management automation example discussed earlier, 
+the portability of containers simplifies everything.
+
+Container orchestration tools like Kubernetes go even further, enabling 
+automation of the container lifecycle in production, freeing DevOps teams
+to focus on higher-value tasks (like re-architecting applications to reduce
+technical debt).
+
+Organisations building new, cloud-native applications typically use containers 
+to improve 
+ - flexibility
+ - scalability 
+ - total cost of ownership (TCO)
+
+--------------------------------------------
+The ‘microservices’ architectural pattern 
+--------------------------------------------
+ - works well with containers 
+ and
+ - more importantly, the small multidisciplinary DevOps product teams
+
+Each microservice is 
+
+ - small 
+ - with a clear bounded context
+ - managed by a long-lived team. 
+
+** So, technical debt is easier to spot and fix **
+
+-----------------------------------------------
+5. Using DevOps to Build an API-Centric Model
+** 
+with APIs AND  ideally supporting ‘semantic versioning’ 
+we can
+1. REDUCE CODE COMPEXITY
+2. REDUCE COUPLING BETWEEN PRODUCTS / FEATURS / PRODUCERS / CONSUMERS
+-----------------------------------------------
+
+The microservices model discussed above is one way to implement an 
+API-centric application strategy.
+Jeff Bezos famously challenged his teams to ONLY use APIs to communicate
+between their systems “or be fired”.
+Encouraging teams to build and consume APIs with well-defined, versioned 
+interfaces is a great way to reduce technical debt.
+Often, technical debt is caused by different systems accessing services 
+and data in ways that other teams don’t expect. 
+
+***************************************************************
+APIs make these interfaces more visible and less fragile. 
+less fragility = less technical debt
+***************************************************************
+
+
+------------------------------------------------------------------------
+PT02-Q08:
+
+You are designing the development process for your company. 
+
+You need to recommend a solution for continuous inspection of the company's
+code base to locate common code patterns that are known to be problematic.
+
+What should you include in the recommendation?
+
+A08-1: A. Microsoft Visual Studio test plans
+A08-2: B. Gradle wrapper scripts
+A08-3: C. SonarCloud analysis
+A08-4: D. the JavaScript task runner
+A08-5: 
+
+
+MY ANSWER TO PT02-Q08
 --------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/31981-exam-az-400-topic-5-question-1-discussion/
+
+Suggested Answer: C. SonarCloud analysis
+
+SonarCloud is a cloud service offered by SonarSource and based on SonarQube.
+SonarQube is a widely adopted open source platform to inspect continuously
+the quality of source code and detect bugs, vulnerabilities and code smells
+in more than 20 different languages.
+
+Note: 
+The SonarCloud Azure DevOps extension brings everything you need to have 
+your projects analyzed on SonarCloud very quickly.
+
+Incorrect Answers:
+
+A: 
+Test plans are used to group together test suites and individual test cases. 
+This includes static test suites, requirement-based suites, and query-based suites.
+
+Reference:
+https://docs.travis-ci.com/user/sonarcloud/
+https://sonarcloud.io/documentation/integrations/vsts/
+
+------------------------------------------------------------------------
+PT02-Q07: 
+
+You use release pipelines in Azure Pipelines to deploy an app. 
+
+Secrets required by the pipeline are stored as pipeline variables. 
+Logging of commands is enabled for the Azure Pipelines agent. 
+You need to prevent the values of the secrets from being logged. 
+
+What should you do?
+
+A07-1: A. Store the secrets in the environment variables instead of the pipeline variables.
+A07-2: B. Pass the secrets on the command line instead of in the pipeline variables.
+A07-3: C. Apply a prefix of secret to the name of the variables.
+A07-4: D. Echo the values of the secrets to the command line.
+A07-5: 
+
+
+MY ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/78922-exam-az-400-topic-4-question-56-discussion/
+
+Suggested Answer: A. Store the secrets in the environment variables instead of the pipeline variables.
+
+Don't set secret variables in your YAML file. 
+Operating systems often log commands for the processes that they run, and you
+wouldn't want the log to include a secret that you passed in as an input. 
+
+Use the **script's environment** 
+or 
+**
+map the variable within the variables block to pass secrets to your pipeline.
+**
+
+The following example shows how to use a secret variable called mySecret in PowerShell 
+and Bash scripts. Unlike a normal pipeline variable, there's no environment variable
+called MYSECRET.
+
+```
+variables:
+ GLOBAL_MYSECRET: $(mySecret) # this will not work because the secret variable needs to be mapped as env
+ GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
+
+steps:
+
+- powershell: |
+    Write-Host "Using an input-macro works: $(mySecret)"
+    Write-Host "Using the env var directly does not work: $env:MYSECRET"
+    Write-Host "Using a global secret var mapped in the pipeline does not work either: $env:GLOBAL_MYSECRET"
+    Write-Host "Using a global non-secret var mapped in the pipeline works: $env:GLOBAL_MY_MAPPED_ENV_VAR" 
+    Write-Host "Using the mapped env var for this task works and is recommended: $env:MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+
+- bash: |
+    echo "Using an input-macro works: $(mySecret)"
+    echo "Using the env var directly does not work: $MYSECRET"
+    echo "Using a global secret var mapped in the pipeline does not work either: $GLOBAL_MYSECRET"
+    echo "Using a global non-secret var mapped in the pipeline works: $GLOBAL_MY_MAPPED_ENV_VAR" 
+    echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret) # the recommended way to map to an env variable
+
+```
+-----------------------
+Incorrect Answers:
+-----------------------
+B: Never pass secrets on the command line.
+
+C: Adding a prefix does not make the variable a secret. 
+The ** issecret property ** makes it secret but does not prevent logging of the secret.
+
+D: Never echo secrets as output.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch https://docs.microsoft.com/en-us/azure/devops/pipelines/scripts/logging-commands?view=azure-devops&tabs=bash
+
+------------------------------------------------------------------------
+PT02-Q06: 
+
+You have an existing project in Azure DevOps. 
+
+You plan to integrate GitHub as the repository for the project.
+
+** 
+You need to ensure that Azure Pipelines runs under the 
+Azure Pipelines identity. 
+**
+
+Which authentication mechanism should you use?
+
+A06-1: A. personal access token (PAT)
+A06-2: B. GitHub App
+A06-3: C. Azure Active Directory (Azure AD)
+A06-4: D. OAuth
+A06-5: 
+
+
+MY ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35757-exam-az-400-topic-4-question-53-discussion/
+
+Suggested Answer: B. GitHub App
+
+GitHub App uses the Azure Pipelines identity.
+-------------------
+Incorrect Answers:
+-------------------
+A: Personal access token and OAuth use your personal GitHub identity.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/repos/github
+
+
+Compare to:  PT02-Q17
+---------------------------------------------
+You plan to provide a self-hosted Linux agent. 
+Which authentication mechanism should you use to register the self-hosted agent?
+---------------------------------------------
+In this case the answer is 
+A17-1: A. personal access token (PAT)
+
+------------------------------------------------------------------------
+PT02-Q05: 
+
+You use Azure Pipelines to manage project builds and deployments. 
+
+You plan to use ** Azure Pipelines for Microsoft Teams ** 
+to notify the legal team when a new build is ready for release. 
+
+You need to configure the ** Organization Settings in Azure DevOps ** 
+to support Azure Pipelines for Microsoft Teams. 
+
+What should you turn on?
+
+A05-1: A. Third-party application access via OAuth
+A05-2: B. Azure Active Directory Conditional Access Policy Validation
+A05-3: C. Alternate authentication credentials
+A05-4: D. SSH authentication
+A05-5: 
+
+
+MY ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+A. Third-party application access via OAuth
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q05
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35915-exam-az-400-topic-4-question-52-discussion/
+
+Suggested Answer: A. Third-party application access via OAuth
+
+The Azure Pipelines app uses the OAuth authentication protocol, and requires 
+Third-party application access via OAuth for the organization to be enabled. 
+To enable this setting, navigate to 
+Organization Settings > Security > Policies 
+
+and set the Third-party application access via OAuth for the organization setting
+to On.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/integrations/microsoft-teams
+
+Microsoft DevOps Solutions: 
+Communicating and Collaborating with Stakeholders
+https://app.pluralsight.com/library/courses/microsoft-devops-solutions-communicating-collaborating-stakeholders/table-of-contents
+
+
+Microsoft DevOps Solutions: 
+Automating Communication
+https://app.pluralsight.com/library/courses/microsoft-devops-solutions-automating-communication/table-of-contents
+
+---------------------------------------------------------
+Demo: Integrating Build Failure Notification with Slack
+https://app.pluralsight.com/course-player?clipId=aee43b0d-3933-4b8d-abe8-6a090d773061
+
+This Demo shows how to connect Slack to an Azure DevOps Build Pipelines
+starting from within the Slack App. This implies that from the Slack
+client you must install a custom app > Azure Pipelines.
+
+Once installed in Slack you need
+
+-1 to select a channel where the app is going to post.
+
+-2 
+in the selected slack channel you need to have the app to subscribe to the Azure
+Buuild Pipelines of the Azure DevOp Organization that you wish to monitor on this 
+channel.
+This can be done by following the instructions given by Slack on the channel.
+
+Example:
+
+/azpipelines help
+
+/azpipelines subscriptions >> 
+this will get the app on this channel authenticated via ** OAuth ** to the Azure DevOps Organization
+
+/azpipelines subscribe [pipelineURL/project URL]
+the values for [pipelineURL/project URL] are on the Azure DevOps Portal for your Organization/Pipeline.
+---------------------------------------------------------
+
+---------------------------------------------------------
+Demo: Integrating Build Failure Notification with Microsoft Teams
+https://app.pluralsight.com/course-player?clipId=aa31fac5-8808-49c2-a9d7-4b7a6b1e7f1c
+
+This Demo shows how to connect Micorsoft Teams in very much teh same way it is doneabove with Slack. 
+
+---------------------------------------------------------
+
+---------------------------------------------------------
+
+Demo: Configuring Simple Notifications in a Build
+https://app.pluralsight.com/course-player?clipId=7ae7bb4c-6fc2-45ad-9f58-415d7d23d469
+
+This Demo shows how to send emails from Azure DevOps Pipelies on specific build events.
+It can be done at two levels.
+
+-1 at Organizatio level
+Organization > Settings > Global Notifications > 
+[Subscribers]
+---------------------------------------------------------------------
+here you can choose who the notification are going to and may include people inside or
+even outside teh organization or any Project's Teams.
+---------------------------------------------------------------------
+
+-2 at Project level*
+Organization > Project > Settings > Notifications >
+---------------------------------------------------------------------
+*at Project level the Subscribers are locked to the Project's Team!
+However, there are filters to narrow down the scope to some of the 
+teams members according to the notification properties.
+---------------------------------------------------------------------
+
+---------------------------------------------------------
+
+------------------------------------------------------------------------
+PT02-Q04: 
+
+You plan to use a NuGet package in a project in Azure DevOps. 
+The NuGet package is in a feed that requires authentication. 
+You need to ensure that the project can restore the NuGet package automatically.
+
+What should the project use to automate the authentication?
+
+A04-1: A. an Azure Automation accoun
+A04-2: B. an Azure Artifacts Credential Provider
+A04-3: C. an Azure Active Directory (Azure AD) account that has multi-factor authentication (MFA) enabled
+A04-4: D. an Azure Active Directory (Azure AD) service principal
+A04-5: 
+
+
+MY ANSWER TO PT02-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/33149-exam-az-400-topic-4-question-51-discussion/
+Suggested Answer: B. an Azure Artifacts Credential Provider
+
+References
+
+Azure Artifacts Credential Provider
+https://github.com/microsoft/artifacts-credprovider
+The Azure Artifacts Credential Provider automates the acquisition of credentials 
+needed to restore NuGet packages as part of your .NET development workflow.
+It integrates with
+--------------------- 
+ - MSBuild 
+ - dotnet 
+ - NuGet(.exe) 
+---------------------
+
+ and works on Windows, Mac, and Linux. 
+ Any time you want to use packages from an Azure Artifacts feed, 
+ the Credential Provider will automatically acquire and securely store a token
+on behalf of the NuGet client you're using.
+
+------------------------------------------------
+Connect to Azure Artifacts feeds (NuGet.exe)
+https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/nuget-exe?view=azure-devops
+
+Connect to Azure Artifacts feeds (dotnet)
+https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/dotnet-setup?view=azure-devops
+------------------------------------------------
+
+This is also interesting
+Publish NuGet packages with Azure Pipelines (YAML/Classic)
+https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/nuget?view=azure-devops&tabs=yaml
+
+In Azure Pipelines, you can use the classic editor or the YAML tasks to publish 
+your NuGet packages within your pipeline, to your Azure Artifacts feed, or to
+public registries such as nuget.org.
+
+------------------------------------------------------------------------
+PT02-Q03: 
+
+Your company develops an app for iOS. 
+
+All users of the app have devices that are members of a private distribution group
+in the Microsoft Visual Studio App Center. 
+
+You plan to distribute a new release of the app.
+
+You need to identify which certificate file you require 
+to distribute the new release from App Center. 
+
+Which file type should you upload to App Center?
+
+A03-1: A. .cer
+A03-2: B. .pfx
+A03-3: C. .p12
+A03-4: D. .pvk
+A03-5: 
+
+
+MY ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/28872-exam-az-400-topic-4-question-46-discussion/
+https://www.examtopics.com/discussions/microsoft/view/57406-exam-az-400-topic-8-question-39-discussion/
+
+Suggested Answer: C. .p12
+
+A successful IOS device build will produce an ** ipa ** file.
+
+In order to install the build on a device, it needs to be signed with a valid 
+provisioning profile and certificate.
+To sign the builds produced from a branch, enable code signing in the 
+configuration pane and upload a 
+------------------------------------------
+** provisioning profile (.mobileprovision) ** 
+------------------------------------------
+and 
+------------------------------------------
+** a valid certificate (.p12) ** 
+------------------------------------------
+along with 
+------------------------------------------
+** the password for the certificate. **
+------------------------------------------
+
+References:
+https://docs.microsoft.com/en-us/appcenter/build/xamarin/ios/
+
+
+------------------------------------------------------------------------
+PT02-Q02: 
+
+You plan to create in Azure DevOps. 
+
+Multiple developers will work on the project. 
+The developers will work offline frequently and will require access to the
+full project history while they are offline.
+
+Which version control solution should you use?
+
+
+A02-1: A. Team Foundation Version Control
+A02-2: B. Git
+A02-3: C. TortoiseSVN
+A02-4: D. Subversion
+A02-5: 
+
+
+MY ANSWER TO PT02-Q02
+--------------------------------------------------------------------------
+A02-2: B. Git
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/35766-exam-az-400-topic-6-question-11-discussion/
+
+Suggested Answer: B. Git
+
+Git history: File history is replicated on the client dev machine and can 
+be viewed even when not connected to the server. You can view history in 
+Visual Studio and on the web portal.
+Note: 
+Azure Repos supports two types of version control: 
+- Git 
+- Team Foundation Version Control (TFVC).
+
+Incorrect Answers:
+A: Team Foundation Version Control: 
+File history is not replicated on the client dev machine and so can be viewed
+only when you're connected to the server.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc
+
+------------------------------------------------------------------------
+PT02-Q01: 
+
+Your company is concerned that when developers introduce open-source libraries, 
+it creates licensing compliance issues. 
+
+You need to add an automated process to the build pipeline to detect when 
+common open-source libraries are added to the code base. 
+
+What should you use?
+
+A01-1: A. Microsoft Visual SourceSafe
+A01-2: B. Code Style
+A01-3: C. Black Duck (or WhiteSource)
+A01-4: D. Jenkins
+A01-5: E. SourceGear
+A01-6: F. OWASP ZAP
+
+MY ANSWER TO PT02-Q01
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT02-Q01
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+QUESTION POSTS
+https://www.examtopics.com/discussions/microsoft/view/22946-exam-az-400-topic-3-question-44-discussion/  
+
+Suggested Answer: C. Black Duck
+
+Secure and Manage Open Source Software
+Black Duck helps organizations identify and mitigate open source security, 
+license compliance and code-quality risks across application and container 
+portfolios.
+Black Duck Hub and its plugin for Team Foundation Server (TFS) allows you 
+to automatically find and fix open source security vulnerabilities during 
+the build process, so you can proactively manage risk. The integration allows
+you to receive alerts and fail builds when any Black Duck Hub policy violations
+are met.
+
+Note: ** WhiteSource ** would also be a good answer, but it is not an option here.
+
+Reference:
+https://marketplace.visualstudio.com/items?itemName=black-duck-software.hub-tfs
