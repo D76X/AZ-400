@@ -5,34 +5,11 @@ https://www.youtube.com/watch?v=eHlPZipHQco&list=PLyABYqulvUwYlrqboc1FgrLM4lN-8O
 ----------------------------------------------------------------
 
 -------------------------------------------------------------------------
-PT0X-Q0X: 
+PT99-Q0X: 
 question text..
 Which of the following is the option you would choose?
 
-A0X-1: 
-A0X-2: 
-A0X-3: 
-A0X-4: 
 
-MY ANSWER TO PT0X-Q0X
---------------------------------------------------------------------------
-?
---------------------------------------------------------------------------
-
-CORRECT ANSWER TO PT0X-Q0X
---------------------------------------------------------------------------
-?
---------------------------------------------------------------------------
-
--------------------------------------------------------------------------
-PT99-Q02: 
-question text..
-Which of the following is the option you would choose?
-
-A99-1: 
-A99-2: 
-A99-3: 
-A99-4: 
 
 MY ANSWER TO PT99-Q0X
 --------------------------------------------------------------------------
@@ -43,6 +20,88 @@ CORRECT ANSWER TO PT99-Q0X
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
+
+-------------------------------------------------------------------------
+PT99-Q03: 
+
+A Company has a ** Azure Resource Group deployment Project in Visual Studio **
+which is checked in to Azure DevOps project.
+
+As a DevOps Engineer, you need to create a release pipeline which will deploy
+resources using ARM templates.
+
+Which task type should you include which can minimize the administrative
+effort for the solution?
+
+Select TWO correct answwers.
+
+-Azure Sentinel
+-Use Azure PowerShell 
+-Add multiple DevOps services build steps, each one performing a stage task
+-Use Azure Firewall
+
+
+MY ANSWER TO PT99-Q03
+--------------------------------------------------------------------------
+-Use Azure PowerShell 
+-Add multiple DevOps services build steps, each one performing a stage task
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q03
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+Integrate ARM templates with Azure Pipelines
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines
+
+consider the different options for deploying an ARM template from a pipeline.
+
+-------------------------------------
+-1 Use ARM template deployment task.
+-------------------------------------
+This option is the easiest option.
+This approach works when you want to deploy a template directly from a repository.
+----------------------------------------------------------------------
+Tutorial: Continuous integration of ARM templates with Azure Pipelines
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-tutorial-pipeline
+It shows how to use the ARM template deployment task to deploy a template from your GitHub repo.
+----------------------------------------------------------------------
+
+-------------------------------------
+-2 Add task that runs an Azure PowerShell script.
+-------------------------------------
+This option has the advantage of providing consistency throughout the development life cycle.
+This is because you can use the same script that you used when running local tests. 
+Your script deploys the template but can also perform other operations such as getting values to use as parameters.
+
+--------------------------------------------
+Integrate ARM templates with Azure Pipelines - Powershell Task
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines#azure-powershell-task
+--------------------------------------------
+
+-------------------------------------------------------------
+** Visual Studio provides the Azure Resource Group project **
+-------------------------------------------------------------
+This includes a PowerShell script.
+The script stages artifacts from your project to a storage account that Resource Manager can access. 
+Artifacts are items in your project such as linked templates, scripts, and application binaries.
+
+-------------------------------------
+-3 Add tasks to copy and deploy tasks. 
+-------------------------------------
+This option offers a convenient alternative to the project script.
+You configure two tasks in the pipeline.
+One task stages the artifacts to an accessible location. 
+The other task deploys the template from that location.
+
+--------------------------------------------
+Integrate ARM templates with Azure Pipelines - Powershell Task
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines#copy-and-deploy-tasks
+--------------------------------------------
+
 
 -------------------------------------------------------------------------
 PT99-Q02: 
@@ -61,9 +120,9 @@ helm install
 MY ANSWER TO PT99-Q02
 --------------------------------------------------------------------------
 (By ChatGPT)
-heml init
-kubectl create
-helm install
+heml init       << Initialize Helm and install Tiller on the AKS cluster
+kubectl create  << Set up RBAC permissions for Tiller on the AKS cluster
+helm install    << install the Helm chart on your AKS cluster
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT99-Q02
@@ -77,8 +136,10 @@ helm install
 
 refs:
 
+--------------
 Install existing applications with Helm in Azure Kubernetes Service (AKS)
 https://learn.microsoft.com/en-us/azure/aks/kubernetes-helm
+--------------
 
 Helm is an open-source packaging tool that helps you install and manage 
 the lifecycle of Kubernetes applications. Similar to Linux package managers, 
@@ -87,6 +148,11 @@ packages of preconfigured Kubernetes resources.
 
 This article shows you how to configure and use Helm in a Kubernetes cluster
 on Azure Kubernetes Service (AKS).
+
+--------------
+Quickstart: Develop on Azure Kubernetes Service (AKS) with Helm
+https://learn.microsoft.com/en-us/azure/aks/quickstart-helm?tabs=azure-cli
+--------------
 
 ------------
 ChatGPT

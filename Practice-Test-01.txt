@@ -51,20 +51,67 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q05: 
 
-?
+You plan to implement GitHub secrets.
 
+At which two levels can secrets be created? 
+Each correct answer presents a complete solution.
+
+
+action
+organization
+repository
+step
+workflow
 
 MY ANSWER TO PT01-Q05
 --------------------------------------------------------------------------
-?
+(By ChatGPT)
+repository
+organization
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q05
 --------------------------------------------------------------------------
-?
+organization
+repository
 --------------------------------------------------------------------------
 
 REFS:
+
+GitHub secrets can be created at the organization and repository levels.
+You can use secrets in a step of an action within a workflow, but you cannot
+create them at any of the other three levels.
+
+-----------
+Create encrypted secrets - Training | Microsoft Learn
+https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/8-create-encrypted-secrets
+-----------
+Learn continuous integration with GitHub Actions
+https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/
+-----------
+
+
+----------
+ChatGPT
+----------
+
+GitHub secrets can be created at two levels:
+
+-1 Repository Level: 
+
+You can create secrets specific to a repository. 
+These secrets are accessible to the workflows and actions within that particular 
+repository.
+
+-1 Organization Level: 
+
+You can also create secrets at the organization level. 
+These secrets are accessible to multiple repositories within the same organization, 
+making it convenient to share common secrets among related projects.
+
+So, the correct answers are:
+repository
+organization
 
 -------------------------------------------------------------------------
 PT00-Q04: 
