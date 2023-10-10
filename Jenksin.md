@@ -199,7 +199,62 @@ https://www.jenkins.io/doc/pipeline/steps/
 
 [Running Scripted Pipeline from SCM](https://app.pluralsight.com/course-player?clipId=bc90e0f5-0e21-49ec-9985-202143e60547)    
 
-[Configuring a Multi-Branch Pipelien](https://app.pluralsight.com/course-player?clipId=78433521-f99b-4d02-8664-97832205d1d6)  
+[Configuring a Multi-Branch Pipeline](https://app.pluralsight.com/course-player?clipId=78433521-f99b-4d02-8664-97832205d1d6)  
+
+--- 
+
+## The Problem of the versioning Lag and the Upgrade Anti-Pattern
+
+[Upgrading Jenkins](https://app.pluralsight.com/course-player?clipId=0fa608b6-4b83-47aa-b500-f5cd45728530)  
+
+In the traditional install of Jenkins or similar CI tools there is the problem of version lag
+as it is unlikely that the DevOps Team can tale pace with the rate of delivery of new versions
+of the CI brick. This normally results that the lag becomes large and it is closed only when
+it becomes absolutely necessary at possibly a huge cost and risk.
+
+This is actually one of the problems that Docket+Jenkins solves. In general terms, one may 
+make a case of the following well-known DevOps statement.
+
+```
+If something hurts, do it often!
+```
+
+This is to say that in proper DevOps one should strive to automate those operations that are 
+tedious and can potentially and factually cause huge costs or situations of stress which may
+detract resources from the business goals of the organization.
+
+```
+If something hurts, do it often, faster cheaper and better!
+```
+
+[Upgrading Plug-ins](https://app.pluralsight.com/course-player?clipId=b4060b24-c595-47cc-9fc0-d4000e8197d8)
+
+When the Jenkins LTS image is upgraded also all the **included** plugins are upgraded, unless
+the Jenkins upgrade engine detects that any plug-in has been manually, in which case it will
+leave those alone.
+
+If you need to upgrade also the previously manually upgraded plug-ins as part of the upgrade of 
+the LTS then there are two options.
+
+ 1. Perform the manual upgrade for thsoe plugins
+ 2. set PLUGINS_FORCE_UPGRADE
+
+Option 1. Perform the manual upgrade for those plugins is complicated as the latest version of the
+plugin may not be the version of the plugin tha is compatible with teh LTS image. In this cas it is
+necessary to verify manually which version of teh plugins correspond to the LTS version of Jenkins.
+
+Option 2. 
+
+```
+docker run -p 2119:8080 -p 50000:50000
+-e PLUGINS_FORCE_UPGRADE=true
+-v c://Docker/Volumes/jenkins-master:/var/jenkins_home
+-name jenkins-master jenkins/jenkins:lts
+```
+
+
+
+
 
 
 --- 
