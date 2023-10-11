@@ -80,6 +80,12 @@ Your script deploys the template but can also perform other operations such as g
 --------------------------------------------
 Integrate ARM templates with Azure Pipelines - Powershell Task
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines#azure-powershell-task
+
+azure-quickstart-templates/Deploy-AzTemplate.ps1
+https://github.com/Azure/azure-quickstart-templates/blob/master/Deploy-AzTemplate.ps1
+
+azure-quickstart-templates/Deploy-AzureResourceGroup.ps1
+https://github.com/Azure/azure-quickstart-templates/blob/master/Deploy-AzureResourceGroup.ps1
 --------------------------------------------
 
 -------------------------------------------------------------
@@ -98,9 +104,116 @@ One task stages the artifacts to an accessible location.
 The other task deploys the template from that location.
 
 --------------------------------------------
-Integrate ARM templates with Azure Pipelines - Powershell Task
+Integrate ARM templates with Azure Pipelines - Copy and deploy tasks
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/add-template-to-azure-pipelines#copy-and-deploy-tasks
+
+------------------
+Part-1: The Copy File Task
+------------------
+Copy the Artefacts to the SA.
+AzureFileCopy@4 - Azure file copy v4 task
+https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-file-copy-v4?view=azure-pipelines
+
+------------------
+Part-2: The task to deploy the staged template.
+------------------
+Azure Resource Manager (ARM) Template Deployment Task
+https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/AzureResourceManagerTemplateDeploymentV3/README.md
+
+This task is used to deploy Azure Resource Manager templates at 
+ - resource group deployment scope
+ - subscription deployment scope 
+ - management group deployment scopes. 
+ 
+The task is also used to create or update a resource group in Azure.
+
+------------------
+Deployment scope
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-rest#deployment-scope
+------------------
+
+You can target your deployment to a 
+ - a resource group 
+ - a Azure subscription 
+ - a management group 
+ - a tenant
+ - multiple RGs 
+ 
+ Depending on the scope of the deployment, you use different commands.
+
+-----------------------------------------------
+Resource group deployments with ARM templates
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-cli
+-----------------------------------------------
+This article describes how to scope your deployment to a resource group.
+The article also shows how to expand the scope beyond the resource group in the deployment operation.
+
+Azure CLI
+```
+az deployment group create \
+  --name demoRGDeployment \
+  --resource-group ExampleGroup \
+  --template-uri "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.storage/storage-account-create/azuredeploy.json" \
+  --parameters storageAccountType=Standard_GRS
+```
+
+Powershell
+```
+New-AzResourceGroupDeployment `
+  -Name demoRGDeployment `
+  -ResourceGroupName ExampleGroup `
+  -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.storage/storage-account-create/azuredeploy.json `
+  -storageAccountType Standard_GRS
+```
+
+When deploying to a resource group, you can deploy resources to:
+
+ - the target resource group from the operation
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#deploy-to-target-resource-group
+   Deploy to target resource group.
+   To deploy resources in the target resource group, define those resources in the resources section of the template. 
+
+ - other resource groups in the same subscription ** or other subscriptions **
+   
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#scope-to-resource-group-in-same-subscription
+   Scope to resource group in same subscription
+   To deploy resources to a different resource group in the same subscription.
+   Add a nested deployment and include the resourceGroup property. 
+
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#scope-to-resource-group-in-different-subscription
+   Scope to resource group in different subscription
+   To deploy resources to a resource group in a different subscription.
+   Add a nested deployment and include the subscriptionId and resourceGroup properties
+
+ - any subscription in the tenant
+   Scope to subscription
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#scope-to-subscription
+   To deploy resources to a subscription, add a nested deployment and include the subscriptionId property. 
+
+ - the tenant for the resource group
+   Scope to tenant
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#scope-to-tenant
+   To create resources at the tenant, set the scope to /. 
+   Or, you can set the scope to / for some resource types, like management groups.
+   The user deploying the template must have the required access to deploy at the tenant.
+
+ - Deploy to multiple resource groups
+   Target a resource group that is different than the one for parent template
+   https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-to-resource-group?tabs=azure-powershell#deploy-to-multiple-resource-groups 
+   You can deploy to more than one resource group in a single ARM template. 
+   Use a nested or linked template.
+   Within the deployment resource type, specify values for the subscription ID and resource group that you want the nested template to deploy to.
+   You can deploy to 800 resource groups in a single deployment. 
+   
+** In all cases the user deploying the template must have access to the specified scope.
+
 --------------------------------------------
+
+To copy files to a storage account, the service principal for the service connection 
+must be assigned either the following roles:
+
+ - Storage Blob Data Contributor 
+ - Storage Blob Data Owner
 
 
 -------------------------------------------------------------------------
