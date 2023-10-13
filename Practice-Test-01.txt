@@ -49,6 +49,617 @@ REFS:
 
 
 -------------------------------------------------------------------------
+PT01-Q11: 
+
+You are working as a DevOps engineer to implement policies that control the
+number of days that personal access tokens (PAT) are available.
+
+Which policy option should you configure?
+
+Select only one answer.
+
+full-scoped
+global
+lifespan
+revoke leaked PATs
+
+MY ANSWER TO PT01-Q11
+--------------------------------------------------------------------------
+lifespan
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q11
+--------------------------------------------------------------------------
+lifespan
+
+Lifespan can be used to define the maximum lifespan of a PAT and control its
+lifecycle. 
+
+The full-scoped 
+option forces the use of defined sets of scopes. 
+
+Global grants
+access to all accessible organizations in Azure DevOps. 
+
+Revoke leaked PATs
+automatically revokes any PAT that is checked into a public GitHub repository.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+---------------------------------
+Manage personal access tokens using policies - Azure DevOps | Microsoft Learn
+Set maximum lifespan for new PATs
+https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats
+---------------------------------
+
+---------------------------------
+Explore an authorization and access strategy
+https://learn.microsoft.com/en-gb/training/modules/migrate-to-devops/4-explore-authorization-access-strategy
+---------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q10: 
+
+You are working on a project that must raise approvals before an 
+Azure Resource Manager (ARM) service connection is used for release 
+deployments.
+
+What should you configure?
+
+
+an Azure AD managed identity
+Organization permissions
+Pipeline permissions
+Project permissions
+
+MY ANSWER TO PT01-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q10
+--------------------------------------------------------------------------
+Pipeline permissions
+
+------------------------------
+Using Pipeline permissions: 
+------------------------------
+you can specify which pipeline can consume the service connection. 
+If any other YAML pipelines refer to the service connection, an authorization
+request is raised, which must be approved by a connection administrator. 
+
+------------------------------
+Project permissions:
+------------------------------
+are used to control service connection sharing between projects but not for pipelines. 
+
+------------------------------
+Organization permissions: 
+------------------------------
+are used to define security groups to control service connections inside of the 
+organization. 
+
+------------------------------
+Azure AD managed identity:
+------------------------------
+is used instead of a service principal for a service connection, but not to 
+request approval to use the service connection.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+---------------------
+Pipeline permissions [of Service Connections]
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#pipeline-permissions
+---------------------
+Pipeline permissions control which YAML pipelines are authorized to use 
+the service connection. 
+Pipeline permissions do not restrict access from Classic pipelines.
+
+You can choose from the following options:
+
+------------
+-1 Open access
+------------
+for all pipelines to consume the service connection from the more options
+at top-right corner of the Pipeline permissions section in security tab
+of a service connection.
+
+------------
+-2 Lock down 
+------------
+the service connection and only allow selected YAML pipelines to consume 
+the service connection.
+If any other YAML pipeline refers to the service connection, an 
+authorization request gets raised, which must be approved by a 
+connection Administrator.
+
+----------------------
+Project permissions - Cross project sharing of service connections
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#project-permissions---cross-project-sharing-of-service-connections
+----------------------
+Project permissions control which projects can use the service connection. 
+By default, service connections aren't shared with any other projects.
+-
+Only the organization-level administrators from User permissions can share 
+the service connection with other projects.
+-
+The user who's sharing the service connection with a project should have 
+at least Create service connection permission in the target project.
+-
+The user who shares the service connection with a project becomes 
+the project-level Administrator for that service connection. 
+-
+The service connection name is appended with the project name and it 
+can be renamed in the target project scope.
+-
+Organization-level administrator can unshare a service connection from any shared project
+-
+
+-----------------------------
+Organization-level permissions
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#organization-level-permissions
+-----------------------------
+Any permissions set at the organization-level reflect across 
+all the projects where the service connection is shared. 
+There's no inheritance for organization-level permissions.
+
+The organization-level Administrator can do the following administrative tasks:
+
+- Manage organization-level users
+- Edit all the fields of a service connection
+- Share and unshare a service connection with other project
+
+-------------------------------------------------------------------------
+PT01-Q09: 
+
+You manage Azure Pipelines.
+
+You need to implement a self-hosted agent pool.
+
+Which authentication method should you use to connect the agent to Azure Pipelines?
+
+Select only one answer.
+
+Azure AD managed identity
+Azure AD service principal
+personal access token (PAT)
+shared access signature (SAS)
+
+MY ANSWER TO PT01-Q09
+--------------------------------------------------------------------------
+personal access token (PAT)
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q09
+--------------------------------------------------------------------------
+personal access token (PAT)
+
+A PAT is used to connect a self-hosted agent to Azure Pipelines. 
+
+A SAS is used to authorize access to Azure Storage, which is not applicable
+in this scenario. 
+
+Azure AD service principals and managed identities do not support connecting
+self-hosted agents to Azure Pipelines.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+--------------------------------
+Integrate with Azure Pipelines
+https://learn.microsoft.com/en-gb/training/modules/integrate-azure-pipelines/
+--------------------------------
+
+-------------------------------------------------------------------------
+PT01-Q08: 
+
+You plan to configure GitHub Actions to access GitHub secrets.
+You have the following YAML.
+
+```
+01  steps:
+02    - shell: pwsh
+03        ?????
+04        DB_PASSWORD: ${{ secrets.DBPassword }}
+```
+You need to complete the YAML to reference the secret. 
+The solution must minimize the possibility of exposing secrets.
+Which element should you use at line 03?
+
+$env:
+args:
+env:
+run:
+
+MY ANSWER TO PT01-Q0X
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q0X
+--------------------------------------------------------------------------
+```
+01  steps:
+02    - shell: pwsh
+03        args:
+04        DB_PASSWORD: ${{ secrets.DBPassword }}
+```
+
+args:
+-----------------------------------------------------------------------------
+https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions
+-----------------------------------------------------------------------------
+
+The most secure way to pass secrets to run commands is to reference them as
+environment variables, rather than arguments. 
+
+This requires the use of the env: element. 
+
+The $env: 
+notation is used to reference an environment variable, but the 
+intention of this question is to define rather than reference. 
+
+The run: 
+element defines which command to run, so it follows the env: notation.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+Learn  Training  Browse  Manage GitHub Actions in the enterprise 
+Manage encrypted secrets
+https://learn.microsoft.com/en-us/training/modules/manage-github-actions-enterprise/manage-encrypted-secrets
+
+Secrets are ** encrypted environment variables ** you can create to store:
+- tokens 
+- credentials
+- any other type of sensitive information your GitHub Actions workflows and actions might rely on. 
+
+Once created, they become available to use in the workflows and actions that have access to the 
+organization, repository, or repository environment where they are stored.
+
+You can:
+
+-1 Manage encrypted secrets at organization level
+   This will minimize the management overhead in your enterprise.
+   This way the credentials can be used in the workflows without being exposed.
+   Settings >> Secrets and variables > Actions > New organization secret
+
+-2 Manage encrypted secrets at repository level
+   scoped to a specific repository
+   GitHub Enterprise Cloud and GitHub Enterprise Server also let you create secrets at repository level.
+   Settings >> Secrets and variables > Actions > New repository secret
+
+-------------------------------------------------------
+Access encrypted secrets within actions and workflows
+-------------------------------------------------------
+
+```
+steps:
+  - name: Hello world action
+    with: # Set the secret as an input
+      super_secret: ${{ secrets.SuperSecret }}
+    env: # Or as an environment variable
+      super_secret: ${{ secrets.SuperSecret }}
+```
+To access an encrypted secret in an action, you must specify the secret as an 
+input parameter in the action.yml metadata file. 
+If you need to access the encrypted secret in your action's code, the action 
+code could read the value of the input using the $SUPER_SECRET environment variable.
+
+```
+inputs:
+  super_secret:
+    description: 'My secret token'
+    required: true
+```
+
+----------------------------
+Learn  Training  Browse  Learn continuous integration with GitHub Actions 
+Use secrets in a workflow
+https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/9-use-secrets-workflow
+----------------------------
+Secrets aren't passed automatically to the runners when workflows are executed.
+Instead, when you include an action that requires access to a secret, you use 
+the secrets context to provide it.
+
+```
+steps:
+  - name: Test Database Connectivity
+    with:
+      db_username: ${{ secrets.DBUserName }}
+      db_password: ${{ secrets.DBPassword }}
+```
+
+--------------------
+Command-line secrets
+--------------------
+Secrets shouldn't be passed directly as command-line arguments as they may be visible to others.
+Instead, treat them like environment variables:
+
+```
+steps:
+  - shell: pwsh
+    env:
+      DB_PASSWORD: ${{ secrets.DBPassword }}
+    run: |
+      db_test "$env:DB_PASSWORD"
+```
+
+--------------------------------------------------------------------------
+PT01-Q07: 
+
+You are working with Azure DevOps on a Scrum project. 
+You need to monitor and count work items as they move to a different state.
+
+What should you use to perform the monitoring activity?
+
+cumulative flow diagrams (CFD)
+cycle time
+sprint burndown
+velocity widget
+
+MY ANSWER TO PT01-Q07
+--------------------------------------------------------------------------
+cumulative flow diagrams (CFD)
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q07
+--------------------------------------------------------------------------
+cumulative flow diagrams (CFD)
+--------------------------------------------------------------------------
+
+REFS:
+
+Two CFD charts can be used to monitor the flow of work:
+-1 in-context report:  you can view from a team backlog or Kanban board 
+-2 CFD widget: you can add to a dashboard.
+
+The velocity widget:
+is used to track the amount of work that a team can achieve in a sprint. 
+
+Sprint burndown:
+helps monitor the remaining work in a sprint. 
+
+Cycle time:
+shows work items closed in a specified timeframe.
+
+----------------------
+View and configure the cumulative flow diagram (CFD) reports - Azure DevOps | Microsoft Learn
+https://learn.microsoft.com/en-gb/azure/devops/report/dashboards/cumulative-flow?view=azure-devops
+----------------------
+
+You use cumulative flow diagrams (CFD) to monitor the flow of work through a system.
+CFDs help teams monitor the count of work items as they progressively move through various 
+workflow states. The CFD shows the count of items in each Kanban column for the 
+selected time period. From this chart, you can gain an idea of 
+------------------------------------ 
+- the amount of work in progress =  counts unfinished requirements
+- lead time = indicates the amount of time it takes to complete a requirement once work has started
+------------------------------------ 
+
+These diagrams can show the flow of ,=any of the following depending on the process \
+selected for your project: 
+
+(Agile | Basic | Scrum | CMMI=Capability Maturity Integration)
+
+- epics 
+- features  
+- user stories
+- issues 
+- product backlog items  
+- requirements
+
+Two CFD charts can be used to monitor the flow of work:
+----------------------------------------------------------------------
+-1 in-context report:  you can view from a team backlog or Kanban board 
+-2 CFD widget: you can add to a dashboard.
+----------------------------------------------------------------------
+
+To view the in-context reports for the product backlog select as the backlog level: 
+---------------------
+Stories for Agile
+Issues for Basic
+Backlog items for Scrum 
+Requirements for CMMI .
+---------------------
+
+----------------------
+Choose the right project - Training | Microsoft Learn
+https://learn.microsoft.com/en-gb/training/modules/choose-right-project/
+----------------------
+- Understand different projects and systems to guide the journey
+- Select a project to start the DevOps transformation
+- Identify groups to minimize initial resistance
+- Identify project metrics and Key Performance Indicators (KPI's)
+
+-------------------------------------------------------------------------
+PT01-Q06: 
+
+You manage the deployment of an Azure App Service web app named App1 in
+multiple Azure regions.
+
+You plan to validate the availability of App1 by using an 
+Application Insights availability test.
+
+Which type of test should be implemented by using Microsoft Visual Studio?
+
+- custom TrackAvailability
+- Multi-step
+- Standard
+- URL ping
+
+MY ANSWER TO PT01-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q06
+--------------------------------------------------------------------------
+Multi-step
+Multi-step tests in Application Insights must be implemented by using Visual Studio.
+
+URL ping and Standard tests: 
+can be implemented directly from the Azure portal.
+
+Custom TrackAvailability tests: 
+can be implemented by using App Service editor in the Azure portal.
+
+Monitor app performance - Training | Microsoft Learn
+
+Application Insights availability tests - Azure Monitor | Microsoft Learn
+--------------------------------------------------------------------------
+
+REFS:
+------------------------
+Monitor app performance
+https://learn.microsoft.com/en-gb/training/modules/monitor-app-performance/
+------------------------
+Application Insights feature overview
+--------------------------------------
+-1 Live Metrics:
+Observe activity from your deployed application 
+**in real time ** 
+** with no effect on the host environment **.
+
+-2 Availability:
+Also known as “Synthetic Transaction Monitoring”, probe your applications 
+external endpoint(s) to test over time:
+**the overall availability**  
+**the responsiveness **
+
+-3 GitHub or Azure DevOps integration:	
+Create GitHub or Azure DevOps work items in context of Application Insights data.
+
+-4 Usage:	
+Understand which features are popular with users and how users interact and use your application
+
+-5 Smart Detection:	
+**Automatic failure and anomaly detection** 
+through 
+**proactive telemetry analysis**.
+
+-6 Application Map:	
+A high level **top-down view** of the application architecture 
+and 
+at-a-glance visual references to component health and responsiveness.
+
+-7 Distributed Tracing:
+Search and visualize an **end-to-end flow** of a given execution or transaction.
+
+----------------------------------
+What Application Insights monitors
+----------------------------------
+
+1- Request rates, response times, and failure rates: 
+
+Find out which pages are most popular, at what times of day, and where your users are. 
+See which pages perform best. 
+If your response times and failure rates go high when there are more requests, then 
+perhaps you have a resourcing problem.
+
+-2 Dependency rates, response times, and failure rates: 
+ Find out whether external services are slowing you down.
+
+-2 Exceptions:
+Analyze the aggregated statistics, or pick specific instances and 
+drill into the stack trace and related requests. 
+Both server and browser exceptions are reported.
+
+- Page views and load performance: reported by your users' browsers.
+- AJAX calls from web pages: rates, response times, and failure rates.
+- User and session counts.
+- Performance counters:
+  from your Windows or Linux server machines, such as CPU, memory, and network usage.
+- Host diagnostics: from Docker or Azure.
+- Diagnostic trace logs: 
+  from your app - so that you can correlate trace events with requests.
+-Custom events and metrics: 
+ that you write yourself in the client or server code, to track business events
+ such as items sold or games won.
+
+---------------------------------------------
+Getting started with Application Insights
+---------------------------------------------
+-At run time: 
+instrument your web app on the server. Ideal for applications already deployed. 
+Avoids any update to the code.
+
+- At development time: 
+add Application Insights to your code. 
+Allows you to customize telemetry collection and send more telemetry.
+
+- Instrument your web pages: 
+for page view, AJAX, and other client-side telemetry.
+
+-Analyze mobile app usage: by integrating with Visual Studio App Center.
+*********************
+-Availability tests - ping your website regularly from our servers.
+*********************
+
+----------------------------------------
+Application Insights log-based metric
+----------------------------------------
+let you 
+- analyze the health of your monitored apps
+- create powerful dashboards
+- configure alerts. 
+
+There are two kinds of metrics:
+
+---------------------
+1- Standard metrics:
+---------------------
+   are stored as pre-aggregated time series.
+   Since standard metrics are pre-aggregated during collection, they have 
+   better performance at query time. 
+   Standard metrics are a better choice for dashboarding and in real-time alerting.
+
+   The pre-aggregated metrics aren't stored as individual events with lots of properties.
+   Instead, they're stored as pre-aggregated time series, and only with key dimensions.
+   This makes the new metrics superior at query time.
+   This enables new scenarios such as near real-time alerting on dimensions of metrics, 
+   more responsive dashboards, and more.
+
+   The newer SDKs (Application Insights 2.7 SDK or later for .NET) pre-aggregate metrics during collection. 
+   This applies to standard metrics sent by default so the accuracy isn't affected by sampling or filtering. 
+   
+   ------------------------------------
+   Pre-Aggregration at the AI backend
+   ------------------------------------
+   For the SDKs that don't implement pre-aggregation the Application Insights backend 
+   still populates the new metrics by aggregating the events received by the Application Insights event collection endpoint. 
+
+---------------------
+2- Log-based metrics:
+---------------------
+   behind the scene are translated into **Kusto queries** from stored events.
+   The log-based metrics have more dimensions, which makes them the superior 
+   option for data analysis and ad-hoc diagnostics.
+   
+   Developers can use the SDK to send events manually by writing code that explicitly
+   invokes the SDK or they can rely on the automatic collection of events from 
+   auto-instrumentation. 
+ 
+   The Application Insights backend stores all collected events as logs.
+
+    For situations when the volume of events is too high, Application Insights 
+    implements several ** telemetry volume reduction techniques, such as:
+    sampling and filtering **.
+    Behind the scenes, must perform query-time aggregations of the events stored in logs.
+
+------------------------
+Application Insights availability tests
+https://learn.microsoft.com/en-gb/azure/azure-monitor/app/availability-overview
+------------------------
+
+
+-------------------------------------------------------------------------
 PT01-Q05: 
 
 You plan to implement GitHub secrets.

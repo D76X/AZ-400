@@ -9,8 +9,6 @@ PT99-Q0X:
 question text..
 Which of the following is the option you would choose?
 
-
-
 MY ANSWER TO PT99-Q0X
 --------------------------------------------------------------------------
 ?
@@ -20,6 +18,33 @@ CORRECT ANSWER TO PT99-Q0X
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q04: 
+
+Arrange the actions in teh correct order if you need to associate an automatedtest
+to a test case in an Azure DevOps Project.
+
+In which sequance shouuld you run the following three commands?
+
+ - Add automated test to pipeline
+ - Check in the project onto DevRepo
+ - Create a test Project
+
+
+MY ANSWER TO PT99-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q04
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
 
 -------------------------------------------------------------------------
 PT99-Q03: 
@@ -204,7 +229,7 @@ When deploying to a resource group, you can deploy resources to:
    Use a nested or linked template.
    Within the deployment resource type, specify values for the subscription ID and resource group that you want the nested template to deploy to.
    You can deploy to 800 resource groups in a single deployment. 
-   
+
 ** In all cases the user deploying the template must have access to the specified scope.
 
 --------------------------------------------
