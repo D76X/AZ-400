@@ -279,3 +279,12 @@ groovyconsole
 ```
 
 ---
+
+What are the advantages of running Jenkins in a docker container
+https://stackoverflow.com/questions/44440164/what-are-the-advantages-of-running-jenkins-in-a-docker-container 
+
+1) I want most of the configuration for the server to be under version control.
+
+2) I want the ability to run the build server locally on my machine when I’m experimenting with new features or configurations
+
+3) I want to easily be able to set up a build server in a new environment (e.g. on a local server, or in a cloud environment such as AWS)

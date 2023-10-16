@@ -1,8 +1,9 @@
 ----------------------------------------------------------------
 
-Practice Assessment for Exam AZ-400: Designing and Implementing Microsoft DevOps Solutions
-https://learn.microsoft.com/en-us/credentials/certifications/exams/az-400/
-https://learn.microsoft.com/en-gb/credentials/certifications/exams/az-400/practice/assessment?assessment-type=practice&assessmentId=56
+Microsoft AZ-400 Exam Actual Questions
+The questions for AZ-400 were last updated on Oct. 2, 2023.
+Viewing page 1 out of 47 pages.
+Viewing questions 1-10 out of 472 questions
 
 ----------------------------------------------------------------
 
