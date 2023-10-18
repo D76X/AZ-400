@@ -46,27 +46,150 @@ CORRECT ANSWER TO PT01-Q0X
 REFS:
 
 -------------------------------------------------------------------------
-PT01-Q19: 
+PT01-Q23: 
 
 ?
 
-MY ANSWER TO PT01-Q19
+MY ANSWER TO PT01-Q23
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT01-Q19
+CORRECT ANSWER TO PT01-Q23
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
 REFS:
 
+-------------------------------------------------------------------------
+PT01-Q22: 
+
+?
+
+MY ANSWER TO PT01-Q22
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q22
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q21:
+
+You are implementing a forking workflow.
+What is the minimum number of repositories that each developer should use?
+Select only one answer.
+
+1
+2
+3
+4
+
+MY ANSWER TO PT01-Q21
+--------------------------------------------------------------------------
+2
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q21
+--------------------------------------------------------------------------
+2
+When using a forking workflow, each developer should have two repositories, 
+one private local side and the other public server-side. 
+While it is technically possible to use only a server-side repository, 
+this violates the principle of the forking workflow.
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q20: 
+
+In a trunk-based development workflow, which step immediately follows 
+creating a feature branch?
+
+Select only one answer.
+
+adding commits
+code review
+deployment
+opening a pull request
+
+MY ANSWER TO PT01-Q20
+--------------------------------------------------------------------------
+adding commits
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q20
+--------------------------------------------------------------------------
+adding commits
+
+in a trunk-based development workflow
+creating a feature branch =>
+Adding commits => 
+Opening a pull request => 
+Code review => 
+Deployment 
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q19: 
+
+In which Git-based branch workflow does each developer have their own server-side repository?
+
+Select only one answer.
+
+centralized
+forking
+GitFlow
+trunk-based
+
+MY ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+forking
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+forking
+A forking workflow is the only Git-based workflow in which each developer has
+their own server-side repository. 
+For all others, developers share the same server-side repository.
+--------------------------------------------------------------------------
+
+REFS:
+
+--------------------------------------------------------
+Explore branch workflow types - Training | Microsoft Learn
+https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/2-explore-branch-workflow-types
+--------------------------------------------------------
+
+--------------------------------------------------------
+Branch strategically - Azure Repos | Microsoft Learn
+https://learn.microsoft.com/en-gb/azure/devops/repos/tfvc/branch-strategically?view=azure-devops
+--------------------------------------------------------
 
 -------------------------------------------------------------------------
 PT01-Q18: 
 
-?
+You need to implement a Git hook that will be triggered automatically in 
+response to a Git commit being run on a Linux server.
+
+What should you do to ensure that the predefined Git hook script can be executed?
+
+Select only one answer.
+
+Add an extension to the script file.
+Modify the location of the file.
+Modify the permissions on the file.
+Remove the extension of the script file.
 
 MY ANSWER TO PT01-Q18
 --------------------------------------------------------------------------
@@ -75,10 +198,63 @@ MY ANSWER TO PT01-Q18
 
 CORRECT ANSWER TO PT01-Q18
 --------------------------------------------------------------------------
-?
+Remove the extension of the script file.
 --------------------------------------------------------------------------
 
 REFS:
+
+To ensure that the predefined Git hook script can be executed, you need to 
+remove its existing extension (.sample), rather than adding the extension. 
+**On a Windows server**, there is no need to modify the existing permissions
+on the script file. 
+The file must reside in its default location.
+
+--------------------
+Implement Git hooks
+https://learn.microsoft.com/en-gb/training/modules/explore-git-hooks/3-implement
+--------------------
+
+------------
+On Linux
+------------
+Navigate to the repo ** .git\hooks ** directory.
+
+If you open that folder, you'll find a file called pre-commit.sample.
+To enable it, ** rename it** to pre-commit by removing the .sample 
+extension 
+** and ** 
+making the script executable.
+
+
+------------
+On Windows
+Windows isn't a Unix-like OS. 
+------------
+
+STEP-1:
+Change the SheBang: 
+---------
+#!/bin/sh
+---------
+Providing the path to the sh executable on your system. 
+It's using the 64-bit version of Git for Windows, so the baseline looks like this:
+------------------------------------------
+#!C:/Program\ Files/Git/usr/bin/sh.exe
+------------------------------------------
+
+The repo .git\hooks folder isn't committed into source control. 
+From Git version 2.9, you can now map Git hooks to a folder that can be committed 
+into source control.
+
+updating the **global settings configuration for your Git repository**
+```
+git config --global core.hooksPath '~/.githooks'
+```
+If you ever need to overwrite the Git hooks you have set up on the client-side,
+you can do so by using the **no-verify switch**:
+```
+git commit --no-verify
+```
 
 -------------------------------------------------------------------------
 PT01-Q17: 
@@ -546,7 +722,65 @@ Merge the feature branch back into the main branch in a second pull request.
 ----------------------------------
 Merge strategies and squash merge
 https://learn.microsoft.com/en-gb/azure/devops/repos/git/merging-with-squash?view=azure-devops
-----------------------------------
+------------
+
+-------------
+-1 Basic merge:
+   https://learn.microsoft.com/en-gb/azure/devops/repos/git/merging-with-squash?view=azure-devops#squash-merge
+------------     
+  (no fast-forward) creates a merge commit in the target 
+  whose parents are the target and source branches.
+  This merge adds the commits of the topic branch to your main branch and 
+  creates a merge commit to reconcile any conflicts between the default and
+  topic branch. 
+
+  --------------------------------
+  The problem with basic merge:  
+  --------------------------------
+  The default branch is an accurate representation of the history of 
+  ** each topic branch **, but it's difficult to use to answer broader questions
+  about your project's development.
+
+-2 Squash merge:
+------------
+Squash merge
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/merging-with-squash?view=azure-devops#squash-merge
+------------
+  creates a linear history with a single commit in the target
+  branch with the changes from the source branch. 
+  Learn more about squash merging and how it affects branch history.
+  https://learn.microsoft.com/en-gb/azure/devops/repos/git/merging-with-squash?view=azure-devops
+
+  Instead of each commit on the topic branch being added to the history of the default branch,
+  a squash merge adds all the file changes to a single new commit on the default branch. 
+  Squash merge commit doesn't have a reference to the topic branch, it will produce a new commit
+  that contains all changes from the topic branch.
+  ***
+  Furthermore it is recommended to delete the topic branch to prevent any confusion.
+  ***
+
+  -------------------------------------------------------------------------
+  Note:
+  A simple way to think about this is the following.. 
+  squash merge: gives you just the file changes 
+  regular merge: gives you the file changes and the commit history.
+  -------------------------------------------------------------------------
+
+  -------------------------------
+  How is a squash merge helpful?
+  -------------------------------
+  Keeps your default branch histories clean and easy to follow,
+  without demanding any workflow changes on your team!
+  The commit history of a main branch updated with squash merges has 
+  **one commit for each merged branch**.   
+  Contributors to the topic branch work how they want in the topic branch.
+
+-3 Rebase and fast-forward:
+  creates a linear history by replaying source commits onto 
+  the target branch with no merge commit.
+
+-4 Rebase with merge commit:
+  replays the source commits onto the target and also creates a merge commit.
 
 
 -------------------------------------------------------------------------
@@ -2044,4 +2278,101 @@ accelerates commit walks and reachability calculations, speeding up commands lik
 -Incremental repack: 
 Repacks the packed Git data into fewer pack files without disrupting concurrent commands using the multi-pack-index.
 
+-----------------------
+Purge repository data
+https://learn.microsoft.com/en-gb/training/modules/manage-git-repositories/3-purge-repository-data
+-----------------------
+
+While one of the benefits of Git is its ability to hold long histories 
+for repositories efficiently, there are times when you need to purge data.
+
+The most common situations are where you want to:
+
+-1 Significantly reduce the size of a repository by removing history.
+-2 Remove a large file that was accidentally uploaded.
+-3 Remove a sensitive file that shouldn't have been uploaded.
+
+If you commit sensitive data (for example, password, key) to Git, it can be removed from history.
+Two tools are commonly used:
+
+---------------------------------------------
+TOOL-1
+https://github.com/newren/git-filter-repo
+```
+git filter-repo tool
+```
+---------------------------------------------
+The **git filter-repo** is a tool for **rewriting history.**
+
+Its core filter-repo contains a library for creating history rewriting tools. 
+Users with specialized needs can quickly create entirely new history rewriting tools.
+
+---------------------------------------------
+TOOL-2
+BFG Repo-Cleaner
+---------------------------------------------
+BFG Repo-Cleaner is a commonly used open-source tool for deleting or "fixing" 
+content in repositories. 
+It's easier to use than the **git filter-branch** command. 
+
+For a single file or set of files, use the --delete-files option:
+
+```
+$ bfg --delete-files file_I_should_not_have_committed
+```
+
+The following bash shows how to find all the places that a file called passwords.txt exists 
+in the repository. 
+Also, to replace all the text in it, you can execute the **--replace-text** option:
+
+```
+$ bfg --replace-text passwords.txt
+```
+
+---------------------------------
+GIT FILTER BRANCH: git filter-branch 
+https://git-scm.com/docs/git-filter-branch
+
+---------------------------------
+GIT FILTER REPO: git filter-repo  
+https://github.com/newren/git-filter-repo/
+---------------------------------
+
+---------------------------------
+BFG Repo-Cleaner
+https://rtyley.github.io/bfg-repo-cleaner/
+---------------------------------
+
+---------------------------------
+GitHub Docs:
+Removing files from Git Large File Storage
+https://docs.github.com/en/repositories/working-with-files/managing-large-files/removing-files-from-git-large-file-storage
+---------------------------------
+Remove the file from the repository's Git history using either 
+the filter-repo command or BFG Repo-Cleaner.
+
+---------------------------------
+GitHub Docs:
+Removing sensitive data from a repository
+---------------------------------
+If you commit sensitive data, such as a password or SSH key into a Git repository,
+you can remove it from the history. To entirely remove unwanted files from a 
+repository's history you can use either the git filter-repo tool or the 
+BFG Repo-Cleaner open source tool.
+
+The git **filter-repo** tool and the **BFG Repo-Cleaner** rewrite your repository's
+history, which changes the SHAs for existing commits that you alter and any 
+dependent commits. 
+
+Changed commit SHAs may affect open pull requests in your repository. 
+We recommend merging or closing all open pull requests before removing 
+files from your repository.
+
+----------------------------------------------------------
+Removing a file added in the most recent unpushed commit
+https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#removing-a-file-added-in-the-most-recent-unpushed-commit
+----------------------------------------------------------
+
+
 --------------------------------------------------------------------------
+
