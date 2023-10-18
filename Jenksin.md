@@ -288,3 +288,27 @@ https://stackoverflow.com/questions/44440164/what-are-the-advantages-of-running-
 2) I want the ability to run the build server locally on my machine when I’m experimenting with new features or configurations
 
 3) I want to easily be able to set up a build server in a new environment (e.g. on a local server, or in a cloud environment such as AWS)
+
+
+
+----
+
+[Is Docker Still Relevant?](https://www.youtube.com/watch?v=Cs2j-Rjqg94)  
+
+- runtime-spec
+- image-spec
+- distribution-spec
+
+[Open Container Initiative](https://opencontainers.org/)  
+The Open Container Initiative is an open governance structure for the express purpose of creating open industry standards around container formats and runtimes.
+
+
+[Tutorial: Use Azure Container Instances as a Jenkins build agent](https://learn.microsoft.com/en-us/azure/developer/jenkins/azure-container-instances-as-jenkins-build-agent)  
+
+
+Azure Container Instances (ACI) provides an on-demand, burstable, and isolated environment 
+for running containerized workloads. Because of these attributes, ACI makes a great platform
+for running Jenkins build jobs at a large scale. 
+
+This article shows you how to deploy an ACI and add it as a permanent build agent for a Jenkins 
+controller.

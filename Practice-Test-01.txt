@@ -45,37 +45,385 @@ CORRECT ANSWER TO PT01-Q0X
 
 REFS:
 
+-------------------------------------------------------------------------
+PT01-Q19: 
+
+?
+
+MY ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q19
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+
+-------------------------------------------------------------------------
+PT01-Q18: 
+
+?
+
+MY ANSWER TO PT01-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q18
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q17: 
+
+You manage 100 on-premises servers that run Linux and Windows.
+
+You need to collect logs from all the servers and make the logs available for
+analysis directly from the Azure portal. The solution must meet the following 
+requirements:
+
+- Provide the ability to send data from Linux virtual machines to 
+  multiple Log Analytics workspaces.
+
+- Support the use of XPATH queries to filter Windows events for collection.
+- Minimize the number of agents installed on the servers.
+
+Which agent should you install?
+
+Select only one answer.
+
+the Azure Monitor agent
+the Connected Machine agent
+the Dependency agent
+the Telegraph agent
+
+MY ANSWER TO PT01-Q17
+--------------------------------------------------------------------------
+the Azure Monitor agent
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q17
+--------------------------------------------------------------------------
+the Azure Monitor agent
+
+The Azure Monitor agent replaces: 
+the Log Analytics agent. 
+The diagnostic extension. t
+he Telegraph agent. 
+
+It can centrally configure data collection for different data from different
+sets of virtual machines, sending the data from Linux virtual machines to 
+multiple workspaces, and using XPATH queries to filter Windows events for
+collection. 
+
+The Telegraph agent supports only Linux operating systems. 
+
+The Connected Machine agent is used by Azure Arc, which is not required in
+this scenario. 
+
+Using the Dependency agent increases the number of agents to be installed
+on the target servers.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+----------------------------
+Learn  Training  Browse  Azure Monitor fundamentals  Introduction to Azure Monitor 
+https://learn.microsoft.com/en-gb/training/modules/intro-to-azure-monitor/
+Metrics & Logs
+https://learn.microsoft.com/en-gb/training/modules/intro-to-azure-monitor/3-how-azure-monitor-works
+----------------------------
+
+Azure Monitor can collect several types of metrics, including:
+
+Azure platform metrics. Azure Monitor starts collecting metrics data from Azure resources as soon as they're added to a subscription. A list of resource-specific metrics is automatically available for each Azure resource type.
+Custom metrics. Azure Monitor can also collect metrics from other sources, including applications and agents running on VMs. You can send custom metrics to Azure Monitor via the Azure Monitor Agent, other agents and extensions, or directly to the Azure Monitor REST API.
+Prometheus metrics. Azure Monitor managed service for Prometheus collects metrics from Azure Kubernetes Service (AKS) or other Kubernetes clusters. Prometheus metrics share some characteristics with platform and custom metrics, but have different features to support open-source analysis and alerting tools like PromQL and Grafana.
+
+----------------------------
+Collect events and performance counters from virtual machines with Azure Monitor Agent
+https://learn.microsoft.com/en-gb/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal
+----------------------------
 
 
 -------------------------------------------------------------------------
 PT01-Q16: 
 
-?
+You have an Azure DevOps organization.
+You plan to use a new Git repository.
+You need to define a branch strategy. 
+The solution must track all detected bugs in the code in an isolated code configuration.
+
+Which branch strategy should you implement?
+
+Select only one answer.
+
+development
+feature
+release
+tags
 
 MY ANSWER TO PT01-Q16
 --------------------------------------------------------------------------
-?
+feature
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q16
 --------------------------------------------------------------------------
-?
+feature
+
+Feature: 
+provides isolation to work with new features or bugs. 
+
+Development:
+is used in Team Foundation version control and is not specific to bug fixes isolation. 
+
+Release:
+is used when the code is ready to be implemented. 
+
+Tags:
+are useful to mark a point in the code history as important. 
+Tags introduce extra steps that are not necessary if branches are used for releases.
+
 --------------------------------------------------------------------------
 
+REFS:
+
+---------------------------
+Manage Git branches and workflows - Training | Microsoft Learn
+https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/
+---------------------------
+Explore feature branch workflow
+https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/3-explore-feature-branch-workflow
+---------------------------
+The core idea behind the Feature Branch Workflow is that all feature development 
+should take place in a dedicated branch instead of the main branch.
+
+-------------------------------
+1-MAIN BRANCH CAN NEVER BREAK
+-------------------------------
+It also means the main branch will never contain broken code, a huge advantage
+for continuous integration environments.
+
+-------------------------------
+2-ENABLE PULL REQUESTS: 
+discussion + pulling-out + support + sharing
+-------------------------------
+Encapsulating feature development also makes it possible to use pull requests, 
+which are a way to start discussions around a branch.
+They allow other developers to sign out on a feature before it integrates into 
+the official project.
+Or, if you get stuck in the middle of a feature, you can open a pull request 
+asking for suggestions from your colleagues.
+Pull requests make it incredibly easy for your team to comment on each other's work. 
+ It allows sharing a feature with other developers without touching any official code.
+
+-----------------------------------
+Trunk-based development workflow
+-----------------------------------
+Instead of committing directly to their local main branch, developers create a 
+new branch whenever they start working on a new feature.
+Feature branches should have descriptive names, like new-banner-images or bug-91. 
+The idea is to give each branch a clear, highly focused purpose.
+
+-1 Create a branch: feature or bug
+-2 Add commits
+
+-3 Open a pull request
+  You can open a Pull Request at any point during the development process when:
+  -You've little or no code but want to share screenshots or general ideas.
+  -You're stuck and need help or advice.
+  -You're ready for someone to review your work.
+  -@mention system in your Pull Request message, you can ask for feedback 
+   from specific people or teams, whether they're down the hall or 10 time zones away.
+  ---------------------------------------------------------------------------------  
+  **Fork & Pull Model**
+  -If you're using a **Fork & Pull Model**, Pull Requests provide a way to notify 
+   project maintainers about the changes you'd like them to consider.
+   ---------------------------------------------------------------------------------
+   ** Shared Repository Model **
+   If you're using a Shared Repository Model, Pull Requests help start code review 
+   and conversation about proposed changes before they're merged into the main branch.
+   ---------------------------------------------------------------------------------
+
+-4 Discuss and review your code
+
+You can also continue to push to your branch, considering discussion and feedback about your commits.
+Pull Request comments are written in Markdown, so you can embed images and emojis, use pre-formatted 
+text blocks, and other lightweight formatting.
+
+-5 Deploy
+
+With Git, you can deploy from a branch for final testing in an environment before merging to the main.
+
+-6 Merge (the PR)
+Once your changes have been verified, it's time to merge your code into the main branch.
+You can associate issues with code by incorporating specific keywords into your Pull Request text. 
+
+----------------------
+OTHER GIT WORKFLOWS
+----------------------
+Other Git workflows, like 
+
+-1 the Git Forking Workflow 
+-2 Gitflow Workflow
+
+these are repo-focused and can use the Git Feature Branch Workflow to manage their branching models.
+
+---------------------------
+the Git Forking Workflow 
+---------------------------
+The Forking Workflow is fundamentally different than the other workflows discussed in this tutorial.
+Instead of using a single server-side repository to act as the "central" codebase, it gives 
+** every developer ** a server-side repository.
+
+It means that each contributor has two Git repositories:
+- A private local one.
+- A public server-side one.
+
+
+---------------------------
+Adopt a Git branching strategy
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/git-branching-guidance?view=azure-devops#use-feature-branches-for-your-work
+Git branching guidance - Azure Repos | Microsoft Learn
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/git-branching-guidance?view=azure-devops#use-feature-branches-for-your-work
+---------------------------
+-1 Name your feature branches by convention
+Some suggestions for naming your feature branches:
+
+users/username/description
+users/username/workitem
+bugfix/description
+feature/feature-name
+feature/feature-area/feature-name
+hotfix/description
+
+-2 Use feature flags to manage long-running branches
+
+-3 Review and merge code with pull requests
+Some suggestions for successful pull requests:
+
+  - Two reviewers is an optimal number based on research.
+  - If your team already has a code review process, bring pull requests into what you're already doing.
+  - Take care assigning the same reviewers to a large number of pull requests. 
+    Pull requests work better when reviewer responsibilities are shared across the team.
+  - Provide enough detail in the description to quickly bring reviewers up to speed with your changes.
+  - Include a build or linked version of your changes running in a staged environment with your pull request. Others can easily test the changes.
+
+------------------------------------------------
+-4 Keep a high quality, up-to-date main branch
+
+Set up a branch policy for your main branch that:
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser
+------------------------------------------------
+UI: Project Settings > Repository > Policies > Branch Policies > <Branch Name>.
+** You can also use AzureDevOps CLI **
+
+- Require a minimum number of reviewers
+- Check for linked work items
+- Check for comment resolution
+- Limit merge types
+  -------------------------------------------------------
+  -1 Basic merge:
+   (no fast-forward) creates a merge commit in the target 
+   whose parents are the target and source branches.
+
+  -2 Squash merge:
+  creates a linear history with a single commit in the target
+  branch with the changes from the source branch. 
+  Learn more about squash merging and how it affects branch history.
+  https://learn.microsoft.com/en-gb/azure/devops/repos/git/merging-with-squash?view=azure-devops
+
+  -3 Rebase and fast-forward:
+  creates a linear history by replaying source commits onto 
+  the target branch with no merge commit.
+
+  -4 Rebase with merge commit:
+  replays the source commits onto the target and also creates a merge commit.
+  -------------------------------------------------------
+
+-5 Build validation
+
+You can set a policy requiring PR changes to build successfully before the PR can complete.
+A build validation policy queues a new build when a new PR is created or changes are pushed 
+to an existing PR that targets the branch. 
+The build policy evaluates the build results to determine whether the PR can be completed.
+
+-----------------------------------
+-6 Status checks: EXTERNAL SERVICES
+-----------------------------------
+External services can use the PR Status API to post detailed status to your PRs. 
+
+-7 Automatically include code reviewers
+
+-8 Bypass branch policies* 
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#bypass-branch-policies
+
+-9 Path Filters
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#path-filters
+Several branch policies offer path filters. 
+ If a path filter is set, the policy applies only to files that match the path filter. 
+------------------------------- 
+/WebApp/Models/Data.cs
+/WebApp/*
+*/Models/Data.cs
+*.cs
+-------------------------------
+You can specify multiple paths using ; as a separator. Example:
+/WebApp/Models/Data.cs;/ClientApp/Models/Data.cs
+
+Paths prefixed with ! are excluded
+/WebApp/*;!/WebApp/Tests/*
 -------------------------------------------------------------------------
 PT01-Q15: 
 
-?
+In a trunk-based development workflow, 
+which step immediately follows creating a feature branch?
+
+Select only one answer.
+
+adding commits
+code review
+deployment
+opening a pull request
 
 MY ANSWER TO PT01-Q15
 --------------------------------------------------------------------------
-?
+adding commits
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q15
 --------------------------------------------------------------------------
-?
+adding commits: 
+follows creating a feature branch in a trunk-based development workflow.
+
+Opening a pull request: 
+follows adding commits in a trunk-based development workflow. 
+
+Code review: 
+follows opening a pull request in a trunk-based development workflow.
+
+Deployment: 
+follows code review in a trunk-based development workflow.
+
 --------------------------------------------------------------------------
+
+REFS:
+
+---------------------------------
+Learn  Training  Browse  AZ-400: Development for enterprise DevOps  Manage Git branches and workflows 
+Explore feature branch workflow
+https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/3-explore-feature-branch-workflow
+---------------------------------
+
 
 -------------------------------------------------------------------------
 PT01-Q14: 
