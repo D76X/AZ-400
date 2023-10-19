@@ -46,16 +46,16 @@ CORRECT ANSWER TO PT01-Q0X
 REFS:
 
 -------------------------------------------------------------------------
-PT01-Q23: 
+PT01-Q27: 
 
 ?
 
-MY ANSWER TO PT01-Q23
+MY ANSWER TO PT01-Q27
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT01-Q23
+CORRECT ANSWER TO PT01-Q27
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
@@ -63,18 +63,479 @@ CORRECT ANSWER TO PT01-Q23
 REFS:
 
 -------------------------------------------------------------------------
+PT01-Q26: 
+
+You need to create custom availability tests for Azure Monitor.
+What should you use?
+
+Select only one answer.
+
+Azure App Configuration
+Azure DevOps Starter
+Azure DevTest Labs
+Azure Functions
+
+MY ANSWER TO PT01-Q26
+--------------------------------------------------------------------------
+Azure Functions
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q26
+--------------------------------------------------------------------------
+Azure Functions
+
+Azure Functions provides the ability to create and run custom availability
+tests by relying on the TrackAvailability() method (included in the Azure SDK for .NET).
+
+
+--------------------------------------------------------------------------
+
+REFS:
+
+--------------------------------------------------------
+Multi-step web tests will be retired on 31 August 2024
+https://azure.microsoft.com/en-gb/updates/retirement-notice-transition-to-custom-availability-tests-in-application-insights/
+--------------------------------------------------------
+Multi-step web tests depend on Visual Studio webtest files, and it has been announced 
+that Visual Studio 2019 will be the last version with webtest functionality. 
+Therefore, we are retiring multi-step web tests within Application Insights 
+on 31 August 2024.  
+
+Recommended action:
+Rewrite your existing multi-step web tests as custom availability tests
+before 31 August 2024.
+-----------------------------------------
+Review TrackAvailability() test results
+https://learn.microsoft.com/en-gb/azure/azure-monitor/app/availability-azure-functions
+-----------------------------------------
+
+-----------------------------------------
+Set up and run availability tests
+https://learn.microsoft.com/en-gb/training/modules/configure-provision-environments/6-set-up-run-availability-tests
+-----------------------------------------
+
+Some applications have specific Health endpoints that an automated process can check.
+The Health endpoint can be an HTTP status or a complex computation that uses and
+consumes crucial parts of your application.
+
+For example, you can create a Health endpoint that queries the database. 
+This way, you can check that your application is still accessible, but also 
+the database connection is verified.
+
+------------------------------------------------------------
+Azure has the functionality to develop Availability tests. 
+You can use these tests in the pipeline and as release gates.
+In Azure, you can set up availability tests for any HTTP or HTTPS 
+endpoint accessible from the public internet.
+You don't have to add anything to the website you're testing. 
+------------------------------------------------------------
+
+There are two types of availability tests:
+
+-1 URL ping test: 
+a simple test that you can create in the Azure portal. 
+You can check the URL and check the response and status code of the response.
+
+-2 Multi-step web test: 
+Several HTTP calls that are executed in sequence.
+
+--------------------------------------------------------
+
+
+
+-------------------------------------------------------------------------
+PT01-Q25: 
+
+You manage the deployment of an Azure App Service web app named App1 to 
+multiple on-premises locations.
+You plan to implement Application Insights to monitor App1.
+You need to authorize App1 to access to an Application Insights resource.
+
+Which authorization method should you use?
+
+Select only one answer.
+
+access key
+Azure AD managed identity
+Azure AD security principal
+instrumentation key
+
+MY ANSWER TO PT01-Q25
+--------------------------------------------------------------------------
+instrumentation key
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q25
+--------------------------------------------------------------------------
+instrumentation key
+
+An instrumentation key: 
+is used to authorize access to an Application Insights resource. 
+
+An access key:
+is used to authorize access to an Azure Storage account. 
+
+Azure AD security principals:
+AND 
+managed identities:
+are not supported for authorizing access to an Application Insights resource.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q24: 
+
+You manage the deployment of an Azure App Service web app named App1 
+in multiple Azure regions.
+
+You need to identify an Azure service that includes built-in functionality, 
+allowing you to validate the availability of App1 from multiple locations 
+around the world.
+
+What should you identify?
+
+Select only one answer.
+
+Application Insights
+Azure Advisor
+Azure App Configuration
+Azure Service Health
+
+MY ANSWER TO PT01-Q24
+--------------------------------------------------------------------------
+Application Insights
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q24
+--------------------------------------------------------------------------
+Application Insights
+
+Application Insights includes built-in functionality that allows you to validate
+the availability of App1 from multiple locations around the world. 
+
+App Configuration: 
+is a key/value store that you can use to facilitate the implementation of 
+feature flags. 
+
+Azure Advisor: detects misconfiguration issues. 
+
+Service Health: 
+provides information about the status of platform services, not individual apps.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q23: 
+
+Your Azure DevOps YAML pipeline needs to use multiple repositories to build artifacts.
+Which step should you include in the pipeline?
+
+checkout
+pool
+script
+trigger
+
+MY ANSWER TO PT01-Q23
+--------------------------------------------------------------------------
+checkout
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q23
+--------------------------------------------------------------------------
+checkout
+The checkout step is required to gain access to repositories from a YAML pipeline.
+The trigger, pool, and script steps are all optional in this scenario.
+They are not required to gain access to repositories from a YAML pipeline.
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------
+Use multiple repositories in your pipeline
+https://learn.microsoft.com/en-gb/training/modules/integrate-azure-pipelines/6-use-multiple-repositories-your-pipeline
+-------------------------------------------
+
+Pipelines often rely on various repositories.
+By using multiple checkout steps in your pipeline, you can fetch and check 
+out other repositories to the one you use to store your YAML pipeline.
+
+----------------------------------------
+Specify multiple repositories
+----------------------------------------
+Supported repositories are 
+----------------------
+- Azure Repos Git 
+- GitHub
+- BitBucket Cloud
+----------------------
+
+Repositories can be specified as a 
+----------------------
+-1 repository resource   
+-2 in line with the checkout step. 
+----------------------
+
+The following combinations of checkout steps are supported.
+
+-If there are no checkout steps, the default behavior is checkout: self is the first step.
+-If there's a single checkout: none step, no repositories are synced or checked out.
+-If there's a single checkout: self step, the current repository is checked out.
+-If there's a single checkout step that isn't self or none, that repository is checked out instead of self.
+-If there are multiple checkout steps, each named repository is checked out to a folder named after the repository. 
+ Unless a different path is specified in the checkout step, 
+ use checkout: self as one of the checkout steps.
+
+----------------------------------------
+Repository resource 
+When is it necessary?
+How to do it?
+----------------------------------------
+
+If your repository type requires 
+- a service connection or 
+- other extended resources field
+
+you must use a repository resource.
+Even if your repository type doesn't require a service connection, 
+you may use a repository resource. For example, you have a repository resource defined
+already for templates in a different repository.
+
+-------------
+Example YAML
+-------------
+If the self-repository is named CurrentRepo, the script command produces the following output:
+CurrentRepo MyAzureReposGitRepo MyBitBucketRepo MyGitHubRepo.
+In this example, the repositories' names are used for the folders because no path is specified
+in the checkout step.
+
+```
+resources:
+  repositories:
+
+  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step.
+    type: github
+    endpoint: MyGitHubServiceConnection
+    name: MyGitHubOrgOrUser/MyGitHubRepo
+
+  - repository: MyBitBucketRepo
+    type: bitbucket
+    endpoint: MyBitBucketServiceConnection
+    name: MyBitBucketOrgOrUser/MyBitBucketRepo
+
+  - repository: MyAzureReposGitRepository
+    type: git
+    name: MyProject/MyAzureReposGitRepo
+
+trigger:
+
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- checkout: self
+- checkout: MyGitHubRepo
+- checkout: MyBitBucketRepo
+- checkout: MyAzureReposGitRepository
+
+
+- script: dir $(Build.SourcesDirectory)
+```
+
+
+------------------------
+Inline
+How to do it?
+------------------------
+
+If your repository doesn't require a service connection, you can declare it according to your checkout step.
+The default branch is checked out unless you choose a specific ref.
+
+```
+steps:
+
+- checkout: git://MyProject/MyRepo # Azure Repos Git repository in the same organization
+```
+
+If you're using inline syntax, choose the ref by appending @ref. For example:
+
+```
+- checkout: git://MyProject/MyRepo@features/tools # checks out the features/tools branch
+- checkout: git://MyProject/MyRepo@refs/heads/features/tools # also checks out the features/tools branch.
+- checkout: git://MyProject/MyRepo@refs/tags/MyTag # checks out the commit referenced by MyTag.
+```
+
+------------------
+GitHub repository
+------------------
+Azure Pipelines can automatically build and validate every pull request and commit to your GitHub repository.
+When creating your new pipeline, you can select a GitHub repository and then a YAML file in that repository 
+(self repository). By default, this is the repository that your pipeline builds.
+
+Azure Pipelines must be granted access to your repositories to trigger their 
+builds and fetch their code during builds.
+
+There are three authentication types for granting Azure Pipelines access to your GitHub
+repositories while creating a pipeline.
+----------------------------------------
+-1 GitHub App.
+-2 OAuth.
+-3 Personal access token (PAT).
+----------------------------------------
+
+-----------------------
+Configuring CI Triggers
+-----------------------
+
+YAML pipelines are configured by default with a CI trigger on all branches.
+
+YAML
+```
+trigger:
+    - main
+    - releases/*
+
+```
+
+You can configure complex triggers that use exclude or batch.
+
+```
+# specific branches build
+trigger:
+    branches:
+        include:
+            - master
+            - releases/*
+        exclude:
+            - releases/old*
+```
+
+-----------------------
+Configuring PR Triggers
+-----------------------
+
+it's possible to configure pull request (PR) triggers to run whenever a pull request
+is opened with one of the specified target branches or when updates are made to such
+ a pull request.
+
+To validate pull requests that target main and releases/* and start a new run 
+- the first time a new pull request is created and
+- after every update made to 
+the pull request: 
+
+```
+pr:
+    - main
+    - releases/*
+```
+You can specify the full name of the branch or a wildcard.
+
+
+-------------------------
+Explore YAML resources
+-------------------------
+
+Resources in YAML represent 
+ - sources of pipelines
+ - repositories 
+ - containers. 
+
+----------------------------------------------
+For more information on Resources, see here.
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/resources?view=azure-devops&tabs=schema&source=docs
+----------------------------------------------
+
+```
+resources:
+  pipelines: [ pipeline ]  
+  builds: [ build ]
+  repositories: [ repository ]
+  containers: [ container ]
+  packages: [ package ]
+  webhooks: [ webhook ]
+```
+
+If you have an Azure pipeline that produces **artifacts**, your pipeline can consume 
+the artifacts by using the pipeline keyword to define a pipeline resource.
+
+```
+resources:
+  pipelines:
+
+  - pipeline: MyAppA
+    source: MyCIPipelineA
+
+  - pipeline: MyAppB
+    source: MyCIPipelineB
+    trigger: true
+
+  - pipeline: MyAppC
+    project:  DevOpsProject
+    source: MyCIPipelineC
+    branch: releases/M159
+    version: 20190718.2
+    trigger:
+      branches:
+        include:
+
+        - master
+        - releases/*
+        exclude:
+
+        - users/*
+```
+
+----------------------------------------
+SPECIAL USE CASE: no Repo to check out!
+----------------------------------------
+There's also a use case for not checking out any repository in the pipeline. 
+It can be helpful in cases where you're setting up a pipeline to do a job 
+that has no dependency on any repository.
+
+-------------------------------------------------------------------------
 PT01-Q22: 
 
-?
+You have been working as a DevOps engineer on a project for the last two years.
+Due to the amount of work, you need to have your default branch histories clean
+and easy to follow.
+
+Which branch policy should you implement?
+
+Select only one answer.
+
+Automatically include code reviewers.
+Check for comment resolution.
+Limit allowed merge types.
+Require a minimum number of reviewers.
 
 MY ANSWER TO PT01-Q22
 --------------------------------------------------------------------------
-?
+Limit allowed merge types.
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q22
 --------------------------------------------------------------------------
-?
+Limit allowed merge types.
+
+**squash merge,** 
+You can limit the allowed merge types to only the use of **squash merge,** 
+which can be used to condense the history of changes in your default branch.
+
+Requiring a minimum number of reviewers is not used to reduce the history 
+on merge actions. 
+
+Checking for comment resolution is useful to verify that reviewers’ comments
+are resolved, but not to condense the history of changes. 
+
+A policy can be defined to include specific reviewers, but it is not able
+to clean the branch history.
+
 --------------------------------------------------------------------------
 
 REFS:
@@ -2372,6 +2833,51 @@ files from your repository.
 Removing a file added in the most recent unpushed commit
 https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#removing-a-file-added-in-the-most-recent-unpushed-commit
 ----------------------------------------------------------
+
+--------------------------------------
+What is continuous delivery?
+Progressive exposure techniques: Controlling the Blast Radius
+https://learn.microsoft.com/en-us/devops/deliver/what-is-continuous-delivery#progressive-exposure-techniques
+--------------------------------------
+CD supports several patterns for progressive exposure, also called "controlling the blast radius." 
+These practices limit exposure to deployments to avoid risking problems with the overall user base.
+
+----------------------------
+-1 multiple deployment rings:
+CANARY => following rings
+----------------------------
+A ring tries a deployment on a user group, and monitors their experience. 
+
+RING-1
+The first deployment ring can be a canary to test new versions in production 
+before a broader rollout. 
+CD automates deployment from one ring to the next.
+
+RING-2
+Deployment to the next ring can optionally depend on a manual approval step, 
+where a decision maker signs off on the changes electronically. 
+
+CD can create an auditable record of the approval to satisfy regulatory 
+procedures or other control objectives.
+
+----------------------------
+-2 Blue/green deployment
+via Load Balancing
+----------------------------
+relies on keeping an existing blue version live while a new green version deploys.
+This practice typically uses load balancing to direct increasing amounts of traffic
+to the green deployment. 
+
+If monitoring discovers an incident, traffic can be rerouted to the blue 
+deployment still running.
+
+----------------------------
+-3 Feature Flags/Toggles
+----------------------------
+
+Feature flags or feature toggles are another technique for experimentation 
+and dark launches. Feature flags turn features on or off for different user
+groups based on identity and group membership.
 
 
 --------------------------------------------------------------------------
