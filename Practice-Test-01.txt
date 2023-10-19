@@ -45,10 +45,207 @@ CORRECT ANSWER TO PT01-Q0X
 
 REFS:
 
+
+-------------------------------------------------------------------------
+PT01-Q33: 
+
+?
+
+MY ANSWER TO PT01-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q33
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q32: 
+
+?
+
+MY ANSWER TO PT01-Q32
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q32
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q31: 
+
+?
+
+MY ANSWER TO PT01-Q31
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q31
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q30: 
+
+You have an Azure DevOps project that uses packages from 
+NuGet and Maven public registries.
+
+You need to verify that project-level package feeds use original packages 
+rather than copies.
+
+Which Azure Artifacts feature should you implement?
+
+Select only one answer.
+
+public feeds
+security policies
+upstream sources
+WinDbg
+
+MY ANSWER TO PT01-Q30
+--------------------------------------------------------------------------
+upstream sources
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q30
+--------------------------------------------------------------------------
+upstream sources
+One of the advantages of upstream sources is the control over which a package
+is downloaded, allowing you to verify that project-level package feeds use 
+original packages. Public feeds are used to show and control packages, but upstream sources are not allowed. A security policy is used inside of a project-scoped feed, allowing you to control how you can get access to the feed, but it does not provide public registry access or control. To debug Azure artifacts by using symbol servers, you can use WinDbg. This feature does not provide upstream source control.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+-----------------------
+Upstream sources
+https://learn.microsoft.com/en-gb/azure/devops/artifacts/concepts/upstream-sources?view=azure-devops#advantages
+-----------------------
+
+-----------------------
+Configure upstream behavior
+https://learn.microsoft.com/en-gb/azure/devops/artifacts/concepts/upstream-behavior?view=azure-devops&tabs=nuget%2Cget
+-----------------------
+
+-----------------------
+Explore package dependencies
+https://learn.microsoft.com/en-gb/training/modules/explore-package-dependencies/
+-----------------------
+
+
+-------------------------------------------------------------------------
+PT01-Q29: 
+
+You are creating an Azure Pipelines artifact.
+You need to provide assurances of backward compatibility.
+
+Which element of semantic versioning should you use?
+
+
+label
+major
+minor
+patch
+
+MY ANSWER TO PT01-Q29
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q29
+--------------------------------------------------------------------------
+patch
+
+The patch element is the only one that provides assurances of backward compatibility.
+Other answer choices either do not convey versioning, such as label, 
+or do not provide any assurances regarding backward compatibility.
+
+--------------------------------------------------------------------------
+
+REFS:
+
+------------------------------------
+Understand versioning of artifacts
+https://learn.microsoft.com/en-gb/training/modules/implement-versioning-strategy/2-understand-versioning-of-artifacts
+------------------------------------
+
+------------------------------------
+Explore semantic versioning
+https://learn.microsoft.com/en-gb/training/modules/implement-versioning-strategy/3-explore-semantic-versioning
+------------------------------------
+
+------------------------------------
+Publish and download Universal Packages with Azure Pipelines
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/artifacts/universal-packages?view=azure-devops&tabs=yaml
+------------------------------------
+
+
+
+
+
+-------------------------------------------------------------------------
+PT01-Q28: 
+
+You plan to create a package that will be made available to the public.
+The package will contain .NET code artifacts.
+
+Which package management tool should you use?
+
+Docker
+Maven
+NuGet
+PyPi
+
+MY ANSWER TO PT01-Q28
+--------------------------------------------------------------------------
+NuGet
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q28
+--------------------------------------------------------------------------
+NuGet
+
+NuGet is the standard package management tool for .NET code artifacts.
+
+Maven:
+is a tool used for the management of Java-based projects. 
+
+PyPi:
+provides a software repository for Python packages. 
+
+Docker:
+is a tool used for the management of container images.
+--------------------------------------------------------------------------
+
+REFS:
+
 -------------------------------------------------------------------------
 PT01-Q27: 
 
-?
+You are configuring an Azure DevOps self-hosted agent to implement UI testing
+for a pipeline.
+What should you do first to allow UI testing?
+
+Select only one answer.
+
+Enable auto-logon.
+Run a screen resolution task.
+Run a unit test.
+Run tests in parallel.
 
 MY ANSWER TO PT01-Q27
 --------------------------------------------------------------------------
@@ -57,10 +254,118 @@ MY ANSWER TO PT01-Q27
 
 CORRECT ANSWER TO PT01-Q27
 --------------------------------------------------------------------------
-?
+Enable auto-logon.
+
+When self-hosted agents are used, auto-logon must be enabled to allow 
+UI tests to run. 
+
+A screen resolution task: 
+allows additional configurations to be done, but an auto-logon configuration
+is needed first to allow the test to run. 
+
+Run tests in parallel:
+To reduce the time of test activities, running tests in parallel can be useful,
+but this strategy does not address this scenario. 
+
+A unit test is the first step to add testing to the development process.
 --------------------------------------------------------------------------
 
 REFS:
+
+---------------------------
+UI testing considerations
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest#setting-screen-resolution
+---------------------------
+
+When running automated tests in the CI/CD pipeline, you may need 
+a special configuration in order to run UI tests such as tests in
+
+- Selenium
+- Appium 
+- Coded UI 
+
+
+------------------------------------
+Headless mode or visible UI mode?
+Headless: faster.
+
+Visible UI mode: slower.
+In this mode, the browser runs normally and the UI components are visible. 
+When running tests in this mode on Windows, special configuration of the agents is required.
+------------------------------------
+Visible UI testing using self-hosted Windows agents
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest#visible-ui-testing-using-self-hosted-windows-agents
+------------------------------------
+
+Microsoft-hosted agents are pre-configured for UI testing and UI tests for both 
+web apps and desktop apps. 
+Microsoft-hosted agents are also pre-configured with popular browsers and 
+matching web-driver versions that can be used for running Selenium tests.
+
+Agents that are configured to run as service can run Selenium tests only with headless browsers.
+If you are not using a headless browser, or if you are running UI tests for desktop apps, 
+Windows agents **must** be configured to run as an interactive process with 
+**auto-logon enabled**.
+
+***
+When configuring agents, select 'No' when prompted to run as a service. 
+Subsequent steps then allow you to configure the agent with auto-logon. 
+When your UI tests run, applications and browsers are launched in the 
+context of the user specified in the auto-logon settings.
+***
+
+---------------------------
+Setting screen resolution
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest#setting-screen-resolution
+---------------------------
+Before running UI tests you may need to adjust the screen resolution so 
+that apps render correctly. 
+
+---------------------------------
+Screen resolution utility task
+https://marketplace.visualstudio.com/items?itemName=ms-autotest.screen-resolution-utility-task
+---------------------------------
+For this, a screen resolution utility task is available from Marketplace.
+By default, this utility sets the resolution to the optimal value supported by the agent machine.
+
+
+-----------------------------------------------
+Provisioning agents in Azure VMs for UI testing
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest#provisioning-agents-in-azure-vms-for-ui-testing
+-----------------------------------------------
+If you are provisioning virtual machines (VMs) on Azure, agent configuration 
+for UI testing is available through the:
+
+Agent artifact for DevTest Labs.
+https://github.com/Azure/azure-devtestlab/tree/master/Artifacts/windows-vsts-build-agent
+
+-------------------------------------
+Troubleshooting failures in UI tests
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest#troubleshooting-failures-in-ui-tests
+-------------------------------------
+
+When you run UI tests in an unattended manner, capturing diagnostic data such as 
+screenshots or video is useful for discovering the state of the application when
+the failure was encountered.
+
+Most UI testing frameworks provide the ability to capture screenshots. 
+The screenshots collected are available as an attachment to the test results when 
+these results are published to the server.
+
+--------------------------
+the Visual Studio test task
+--------------------------
+If you use the Visual Studio test task to run tests, captured screenshots must be
+added as a result file in order to be available in the test report. 
+https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/vstest-v2?view=azure-pipelines
+
+For this, use the following code:
+
+--------------------------------------------------------------------
+Run quality tests in your build pipeline by using Azure Pipelines
+https://learn.microsoft.com/en-gb/training/modules/run-quality-tests-build-pipeline/
+--------------------------------------------------------------------
+
 
 -------------------------------------------------------------------------
 PT01-Q26: 
@@ -491,12 +796,69 @@ resources:
         - users/*
 ```
 
+------------------
+Container resource
+------------------
+Container jobs let you isolate your tools and dependencies inside a container. 
+The agent launches an instance of your specified container then runs steps inside it. 
+The container keyword lets you specify your container images.
+
+```
+resources:
+  containers:
+
+  - container: linux
+    image: ubuntu:16.04
+
+  - container: windows
+    image: myprivate.azurecr.io/windowsservercore:1803
+    endpoint: my_acr_connection
+
+  - container: my_service
+    image: my_service:tag
+    ports:
+
+    - 8080:80 # bind container port 80 to 8080 on the host machine
+    - 6379 # bind container port 6379 to a random available port on the host machine
+    volumes:
+
+    - /src/dir:/dst/dir # mount /src/dir on the host into /dst/dir in the container
+```
+
+------------------
+Repository resource
+------------------
+
+Let the system know about the repository if:
+
+- If your pipeline has templates in another repository.
+- If you want to use multi-repo checkout with a repository that requires a service connection.
+
+The repository keyword lets you specify an external repository.
+
+```
+resources:
+  repositories:
+
+  - repository: common
+    type: github
+    name: Contoso/CommonTools
+    endpoint: MyContosoServiceConnection
+
+```
 ----------------------------------------
 SPECIAL USE CASE: no Repo to check out!
 ----------------------------------------
 There's also a use case for not checking out any repository in the pipeline. 
 It can be helpful in cases where you're setting up a pipeline to do a job 
 that has no dependency on any repository.
+
+----------------------------------------
+Detail templates/Pipeline Templates
+https://learn.microsoft.com/en-gb/training/modules/integrate-azure-pipelines/4-detail-templates
+----------------------------------------
+
+
 
 -------------------------------------------------------------------------
 PT01-Q22: 
