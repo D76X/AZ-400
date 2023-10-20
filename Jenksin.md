@@ -312,3 +312,7 @@ for running Jenkins build jobs at a large scale.
 
 This article shows you how to deploy an ACI and add it as a permanent build agent for a Jenkins 
 controller.
+
+---
+
+[Deploy an ASP.NET Core (Docker) application to Kubernetes using Octopus, Jenkins, and Docker Registry](https://octopus.com/docs/guides/deploy-aspnetcore-docker-app/to-k8s/using-octopus-onprem-jenkins-dockerhub)  
