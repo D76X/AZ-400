@@ -116,7 +116,18 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q36: 
 
-?
+You are designing an npm package management system by using Azure Artifacts.
+Due to the number of packages and versions, you need to group related packages 
+together.
+
+What should you use?
+
+Select only one answer.
+
+audit
+npm publish
+NPMRC
+scopes
 
 MY ANSWER TO PT01-Q36
 --------------------------------------------------------------------------
@@ -125,7 +136,12 @@ MY ANSWER TO PT01-Q36
 
 CORRECT ANSWER TO PT01-Q36
 --------------------------------------------------------------------------
-?
+scopes:
+
+Scopes allow you to group npm packages. Audits scan npm packages, but they
+do not group them. NPMRC is a file used to provide npm configuration settings.
+The npm publish command is used to upload packages to the feed and make it 
+available for consumption.
 --------------------------------------------------------------------------
 
 REFS:
@@ -133,16 +149,39 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q35: 
 
-?
+You are creating an Azure Pipelines artifact.
+
+Which element of semantic versioning should you use to designate the beta 
+prerelease of the artifact?
+
+Select only one answer.
+
+label
+major
+minor
+patch
 
 MY ANSWER TO PT01-Q35
 --------------------------------------------------------------------------
-?
+label:
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q35
 --------------------------------------------------------------------------
-?
+label:
+The label element represents prereleases, such as alpha/beta. 
+
+The major element:
+represents the version of content that has changed significantly, which
+ results in some degree of incompatibility with the previous major version. 
+
+The minor element:
+represents the version of content that has been changed but not as 
+significantly as the major version, making it more likely to be compatible
+with the previous minor version. 
+
+The patch element: represents a fix that preserves backward compatibility.
+
 --------------------------------------------------------------------------
 
 REFS:
@@ -150,7 +189,17 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q34: 
 
-?
+You are evaluating the capabilities of Azure Pipelines for use in creating 
+release pipelines.
+
+Which types of Azure Pipelines support caching?
+
+Select only one answer.
+
+classic build and classic release
+classic release only
+YAML and classic build
+YAML only
 
 MY ANSWER TO PT01-Q34
 --------------------------------------------------------------------------
@@ -159,10 +208,29 @@ MY ANSWER TO PT01-Q34
 
 CORRECT ANSWER TO PT01-Q34
 --------------------------------------------------------------------------
-?
+YAML and classic build:
+Caching is available YAML and classic build pipelines. 
+It is not available in classic **release** pipelines.
+
 --------------------------------------------------------------------------
 
 REFS:
+
+--------------------
+Describe Azure DevOps release pipeline capabilities - Training | Microsoft Learn
+https://learn.microsoft.com/en-gb/training/modules/create-release-pipeline-devops/2-describe-azure-devops-capabilities
+--------------------
+
+** Caching:	**
+YAML: Yes	
+Classic Build: Yes	
+Classic Release: No	
+
+Reduces build time by allowing outputs or downloaded dependencies from one run 
+to be reused in later runs. 
+In Preview, available with Azure Pipelines only.
+
+
 
 -------------------------------------------------------------------------
 PT01-Q33: 
@@ -186,9 +254,34 @@ release annotations
 
 CORRECT ANSWER TO PT01-Q33
 --------------------------------------------------------------------------
-release annotations
 
-Release annotations allow the integration of Azure DevOps and Application Insights, showing build and release-related information to detect performance impact. Azure Monitor can be used in release pipelines to detect whether active alerts are triggered and block or allow the next step. GitHub Actions are used to trigger an Azure pipeline to run directly from a GitHub Actions workflow. Continuous monitoring allows you to add preconditions and postconditions, but not to send information to Application Insights.
+release annotations: 
+Integration of Azure DevOps and Application Insights
+
+Release annotations allow the integration of Azure DevOps and Application Insights,
+showing build and release-related information to detect performance impact. 
+
+Azure Monitor: 
+can be used in release pipelines to detect whether active alerts are triggered
+and block or allow the next step. 
+
+GitHub Actions: 
+are used to trigger an Azure pipeline to run directly from a GitHub Actions workflow.
+
+---------------------------------------
+Continuous monitoring: 
+preconditions and postconditions
+---------------------------------------
+Allows you to add preconditions and postconditions, but not to send information
+to Application Insights.
+Azure Pipelines integrates with Application Insights to allow continuous monitoring
+of your Azure DevOps release pipeline throughout the software development lifecycle.
+With continuous monitoring, release pipelines can incorporate monitoring data from
+Application Insights and other Azure resources.
+When the release pipeline detects an Application Insights alert, the pipeline can 
+gate or roll back the deployment until the alert is resolved. 
+If all checks pass, deployments can proceed automatically from test all the way 
+to production, without the need for manual intervention.
 
 --------------------------------------------------------------------------
 
@@ -199,6 +292,46 @@ Azure Monitor
 Release and work item insights
 https://learn.microsoft.com/en-gb/azure/azure-monitor/app/release-and-work-item-insights?tabs=release-annotations
 -------------------------------
+
+Release and work item insights are crucial for optimizing the software 
+development lifecycle. it's vital to monitor each release and its work 
+items closely. These insights highlight performance bottlenecks and let
+teams address issues proactively.
+They equip developers and stakeholders to make decisions, adjust processes.
+
+---------------------------------------
+release annotations: 
+Integration of Azure DevOps and Application Insights
+---------------------------------------
+Annotations show where you deployed a new build or other significant events. 
+Annotations make it easy to see whether your changes had any effect on your 
+application's performance.
+They can be automatically created by the Azure Pipelines build system.
+You can also create annotations to flag any event you want by creating them from PowerShell.
+
+Release annotations are a feature of the cloud-based Azure Pipelines service of Azure DevOps.
+
+CONDITIONS:
+If all the following criteria are met, the deployment task creates the release
+annotation automatically:
+
+-1:
+The resource to which you're deploying is linked to Application Insights via 
+the APPINSIGHTS_INSTRUMENTATIONKEY app setting.
+
+-2:
+The Application Insights resource is in the same subscription as the resource
+to which you're deploying.
+
+-3:
+You're using one of the following Azure DevOps pipeline tasks:
+
+---------------------------------------
+Work Item Integration: 
+---------------------------------------
+Work item integration functionality allows you to easily create work items 
+in GitHub or Azure DevOps that have relevant Application Insights data embedded 
+in them.
 
 -------------------------------------------------------------------------
 PT01-Q32: 
