@@ -46,9 +46,205 @@ CORRECT ANSWER TO PT01-Q0X
 REFS:
 
 -------------------------------------------------------------------------
-PT01-Q40: 
+PT01-Q50: 
 
 ?
+
+MY ANSWER TO PT01-Q50
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q50
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q49: 
+
+?
+
+MY ANSWER TO PT01-Q49
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q49
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q48: 
+
+?
+
+MY ANSWER TO PT01-Q48
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q48
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q47: 
+
+?
+
+MY ANSWER TO PT01-Q47
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q47
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q46: 
+
+?
+
+MY ANSWER TO PT01-Q46
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q46
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q45: 
+
+?
+
+MY ANSWER TO PT01-Q45
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q45
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q44: 
+
+?
+
+MY ANSWER TO PT01-Q44
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q44
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q43: 
+
+?
+
+MY ANSWER TO PT01-Q43
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q43
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q42: 
+
+?
+
+MY ANSWER TO PT01-Q42
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q42
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q41: 
+
+Which key performance indicator (KPI) represents a faster outcomes metric 
+associated with an Azure DevOps project?
+
+Select only one answer.
+
+Lead Time
+Mean time to detection
+Mean time to recover
+Retention rates
+
+MY ANSWER TO PT01-Q41
+--------------------------------------------------------------------------
+Lead Time
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT01-Q41
+--------------------------------------------------------------------------
+Lead Time
+
+Only Lead Time is an example of a faster outcomes metric associated with 
+an Azure DevOps project. 
+
+Mean time to detection and Mean time to recover 
+are examples of a quality and security metric. 
+
+Retention rates is an example of a culture metric.
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT01-Q40: 
+
+You are planning the metrics and key performance indicators (KPIs) for 
+Azure DevOps projects to ensure that your team is meeting goals and expectations.
+
+Which KPI represents a culture metric associated with an Azure DevOps project?
+
+Select only one answer.
+
+Defect escape rate
+Retention rates
+Service level agreement achievement
+Staff Member to Customers Ratio
 
 MY ANSWER TO PT01-Q40
 --------------------------------------------------------------------------
@@ -57,15 +253,127 @@ MY ANSWER TO PT01-Q40
 
 CORRECT ANSWER TO PT01-Q40
 --------------------------------------------------------------------------
-?
+Retention rates
+
+Out of all answer choices, only Retention rates constitute an example of a
+culture metric associated with an Azure DevOps project. 
+
+Defect escape rate
+and Service level agreement
+achievement are examples of a quality and security metric. 
+
+Staff Member to Customers Ratio is an example of an efficiency metric.
+
 --------------------------------------------------------------------------
 
 REFS:
 
+----------------------------
+Identify project metrics and key performance indicators (KPIs)
+https://learn.microsoft.com/en-gb/training/modules/choose-right-project/6-identify-project-metrics-key-performance-indicators-kpis
+----------------------------
+Agreed upon by team members that the goals needed to be SMART:
+(Specific, Measurable, Achievable, Relevant, and Time-Bound.)
+
+- specific
+- measurable
+- time-bound.
+
+It is essential to establish and agree upon appropriate metrics and 
+Key Performance Indicators (KPIs) to ensure these goals are measurable.
+
+While there is no specific list of metrics and KPIs that apply to all DevOps
+Projects, the following are commonly used:
+
+----------------------
+Faster outcomes
+----------------------
+-Deployment Frequency. 
+Increasing the frequency of deployments is often a critical driver in DevOps Projects.
+
+-Deployment Speed. 
+It is necessary to reduce the time that they take.
+
+-Deployment Size. 
+How many features, stories, and bug fixes are being deployed each time?
+
+-Lead Time. 
+How long does it take from the creation of a work item until it is completed?
+
+----------------------
+Efficiency
+----------------------
+-Server to Admin Ratio. 
+Are the projects reducing the number of administrators required for a given number of servers?
+
+-Staff Member to Customers Ratio. 
+Is it possible for fewer staff members to serve a given number of customers?
+
+-Application Usage. 
+How busy is the application?
+
+-Application Performance. 
+Is the application performance improving or dropping? (Based upon application metrics)?
+
+----------------------
+Quality and security
+----------------------
+-Deployment failure rates. 
+How often do deployments (or applications) fail?
+
+-Application failure rates. 
+How often do application failures occur, such as configuration failures, 
+performance timeouts, and so on?
+
+-Mean time to recover. 
+How quickly can you recover from a failure?
+
+-Bug report rates. 
+You do not want customers finding bugs in your code. 
+Is the amount they are seeing increasing or lowering?
+
+-Test pass rates. 
+How well is your automated testing working?
+
+-Defect escape rate. 
+What percentage of defects are being found in production?
+
+-Availability. 
+What percentage of time is the application truly available for customers?
+
+-Service level agreement achievement. 
+Are you meeting your service level agreements (SLAs)?
+
+-Mean time to detection. 
+If there is a failure, how long does it take for it to be detected?
+
+----------------------
+Culture
+----------------------
+Employee morale. 
+Are employees happy with the transformation and where the organization is heading? 
+Are they still willing to respond to further changes? 
+This metric can be challenging to measure but is often done by periodic, anonymous
+employee surveys.
+
+Retention rates. 
+Is the organization losing staff?
+
 -------------------------------------------------------------------------
 PT01-Q39: 
 
-?
+You have an Azure DevOps project named MyProject that contains an 
+Azure Repos Git repository named MyRepo and a YAML pipeline.
+
+Which two URIs can be used in combination with the inline syntax to access
+the features/tool branch from the pipeline? 
+
+Each correct answer presents part of the solution.
+
+git://MyProject/MyRepo@features/tools
+git://MyProject/MyRepo@refs/heads/features/tools
+https://MyProject/MyRepo@features/tools
+https://MyProject/MyRepo@refs/heads/features/tools
 
 MY ANSWER TO PT01-Q39
 --------------------------------------------------------------------------
@@ -74,7 +382,12 @@ MY ANSWER TO PT01-Q39
 
 CORRECT ANSWER TO PT01-Q39
 --------------------------------------------------------------------------
-?
+git://MyProject/MyRepo@features/tools
+git://MyProject/MyRepo@refs/heads/features/tools
+
+can be used to access the features/tool branch of a Git repository from an 
+Azure DevOps YAML pipeline.
+To target a Git repository, the prefix git: must be used.
 --------------------------------------------------------------------------
 
 REFS:
@@ -82,33 +395,121 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q38: 
 
-?
+You need to reduce the size of a GitHub repository that contains a single 
+branch with a long history of changes.
+Which two commands should you run? 
+
+Each correct answer presents a complete solution.
+
+git-branch --no-track
+git-branch --unset-upstream
+git filter-branch
+git filter-repo
 
 MY ANSWER TO PT01-Q38
 --------------------------------------------------------------------------
-?
+git filter-branch
+git filter-repo
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q38
 --------------------------------------------------------------------------
-?
+git filter-branch
+git filter-repo
+
+The git filter-branch and git filter-repo commands
+supports rewriting history on a specific branch, which allows for significantly
+reducing the repository size in this scenario. 
+
+git-branch --no-track 
+git-branch --unset-upstream 
+commands control the correlation between the local and upstream repo, 
+which does not have a direct impact on the size of the history-related content.
+
 --------------------------------------------------------------------------
 
 REFS:
 
+-----------------------------
+Work with large repositories
+https://learn.microsoft.com/en-gb/training/modules/manage-git-repositories/2-work-large-repositories
+-----------------------------
+There are two primary causes for large repositories:
+----------------------------
+-1 Long history
+-2 Large binary files
+----------------------------
+
+If developers don't need all the available history in their local repositories, a good option
+is to implement a shallow clone.
+You can also reduce clones by filtering branches or cloning only a single branch.
+```
+git clone --depth [depth] [clone-url]
+```
+------------
+Use scalar
+https://devblogs.microsoft.com/devops/introducing-scalar/
+https://github.com/microsoft/scalar/
+------------
+Scalar accelerates your Git workflow, no matter the size or shape of your repository. 
+Scalar is a .NET Core application with installers available for Windows and macOS. 
+Scalar maximizes your Git command performance by setting recommended config values
+and running background maintenance.
+You can clone a repository using the GVFS protocol if your repository is hosted by Azure Repos. 
+
+Scalar’s design:
+
+1- Focus on the files that matter.
+2- Reduce object transfer.
+3- Don’t wait for expensive operations.
+
+
+
+-------------------------
+Git command reference
+https://learn.microsoft.com/en-gb/azure/devops/repos/git/command-prompt?view=azure-devops 
+-------------------------
+
+------------------
+https://git-scm.com/docs/git-branch/2.31.0
+--unset-upstream
+Remove the upstream information for <branchname>. 
+If no branch is specified it defaults to the current branch.
+------------------
+
 -------------------------------------------------------------------------
 PT01-Q37: 
 
-?
+Which branch strategy defines a strict branching model design around a project release?
+
+Select only one answer.
+
+centralized
+forking
+GitFlow
+trunk-based
 
 MY ANSWER TO PT01-Q37
 --------------------------------------------------------------------------
-?
+GitFlow
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q37
 --------------------------------------------------------------------------
-?
+GitFlow
+
+1-GitFlow is the only answer choice that represents a Git-based branch workflow
+that defines a strict branching model design around a project release. 
+
+2-Centralized workflow:
+relies on a central repository, with all changes committed to the main branch.
+
+3-A trunk-based workflow: 
+features development taking place in a dedicated branch. 
+
+4-A forking workflow: 
+involves each developer working with a dedicated server-side repository.
+
 --------------------------------------------------------------------------
 
 REFS:
@@ -137,14 +538,52 @@ MY ANSWER TO PT01-Q36
 CORRECT ANSWER TO PT01-Q36
 --------------------------------------------------------------------------
 scopes:
+npm Scopes allow you to group npm packages. 
 
-Scopes allow you to group npm packages. Audits scan npm packages, but they
-do not group them. NPMRC is a file used to provide npm configuration settings.
-The npm publish command is used to upload packages to the feed and make it 
-available for consumption.
+Audits: 
+scan npm packages, but they do not group them. 
+
+NPMRC: is a file used to provide npm configuration settings.
+https://docs.npmjs.com/cli/v10/configuring-npm/npmrc 
+
+npm publish command: 
+is used to upload packages to the feed and make it available for consumption.
 --------------------------------------------------------------------------
 
 REFS:
+
+--------------------------------
+Use Npm scopes in Azure Artifacts
+https://learn.microsoft.com/en-gb/azure/devops/artifacts/npm/scopes?view=azure-devops
+--------------------------------
+Npm scopes serve as a means to categorize related packages into groups. 
+
+By using scopes, you have the ability to: 
+
+-1 create packages with identical names to those created by different users 
+  without encountering conflicts. 
+
+-2 segregate public and private packages by 
+   adding the scope prefix  @scopeName 
+   and 
+   configuring the .npmrc file 
+   to exclusively use a feed with that particular scope
+
+Azure Artifacts provides the capability to publish and download both scoped 
+and nonscoped packages from feeds or public registries. 
+
+Npm scopes are particularly valuable when working with 
+self-hosted on-premises servers lacking internet access, 
+as configuring upstream sources in such scenarios isn't feasible.
+
+-------------------------------
+In summary, when using scopes:
+-------------------------------
+
+-1 We don't have to worry about name collisions.
+-2 No need to change the npm registry in order to install or publish our packages.
+-3 Each npm organization/user has their own scope, and only the owner or
+   the scope members can publish packages to their scope.
 
 -------------------------------------------------------------------------
 PT01-Q35: 
