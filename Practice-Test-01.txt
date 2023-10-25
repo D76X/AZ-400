@@ -184,7 +184,20 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q42: 
 
-?
+You collect performance logs from an Azure virtual machine named VM1 by 
+using Log Analytics.
+You have a Kusto Query Language (KQL) query that displays the results of
+the log-based performance data in a tabular format.
+You need to modify the query to display the results as a bar chart.
+
+Which KQL operator should you use?
+
+Select only one answer.
+
+project
+project-away
+render
+summarize
 
 MY ANSWER TO PT01-Q42
 --------------------------------------------------------------------------
@@ -193,10 +206,59 @@ MY ANSWER TO PT01-Q42
 
 CORRECT ANSWER TO PT01-Q42
 --------------------------------------------------------------------------
-?
+render
+The render operator allows you to display the results of the query as a bar chart.
+
+The project 
+operator allows you to specify the columns to include in the result set. 
+
+The project-away 
+operator allows you to specify which columns to exclude from the result set. 
+
+The summarize 
+operator aggregates the results.
+
 --------------------------------------------------------------------------
 
 REFS:
+
+----------------------------------------------------------
+Kusto Query Language (KQL) overview
+https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/
+----------------------------------------------------------
+
+
+----------------------------------------------------------
+Gain insights from your data by using Kusto Query Language
+https://learn.microsoft.com/en-gb/training/modules/gain-insights-data-kusto-query-language/
+----------------------------------------------------------
+-1 GROUP & AGGREGATE
+Group data using aggregation functions.
+
+-2 COUNT EVENTS: count(), dcount(), countif()
+Count events using the count(), dcount(), countif() functions.
+
+-3 SUMMARIZE: sum(), avg(), min(), max(), percentiles()
+Summarize data using sum(), avg(), min(), max(), and percentiles() functions.
+
+-4 VISUALIZE: render
+Visualize data using the render operator.
+
+-5 USE VARIABLES: let
+Introduce variables using the let statement.
+
+
+----------------------------------------------------------
+render operator
+https://learn.microsoft.com/en-gb/azure/data-explorer/kusto/query/renderoperator?pivots=azuredataexplorer
+----------------------------------------------------------
+The render operator must be the last operator in the query, and can 
+only be used with queries that produce a single tabular data stream result.
+The render operator doesn't modify data. 
+It injects an annotation ("Visualization") into the result's extended properties. 
+The interpretation of the visualization information is done by the user agent.
+Different agents, such as Kusto.Explorer or Azure Data Explorer web UI, 
+may support different visualizations.
 
 -------------------------------------------------------------------------
 PT01-Q41: 
