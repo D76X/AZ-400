@@ -101,6 +101,28 @@ StormEvents
 // there are other aggregate functions
 // sum(), avg(), min(), max(), and percentiles(), etc.
 
+// use avg() function to calculate the average damage caused by storms in US dollars.
+StormEvents
+| extend damage = DamageProperty + DamageCrops
+| where damage > 0
+| summarize avg(damage) by EventType
+| sort by avg_damage
 
+// avgif() only averages results for which the predicate is true. 
+// While we're at it, let's clean up the results by using the round() function. 
+// This function rounds the results to the specified number of digits after the decimal point.
+// In this example, you'll use the default rounding value of 0.
+StormEvents
+| extend damage = DamageProperty + DamageCrops
+| summarize round(avgif(damage, damage > 0)) by EventType
+| sort by avgif_damage
 
+// Find extremes using min() and max()
+// you may also use: minif(predicate), maxif(predicate), sumif(predicate)
+StormEvents
+| extend damage = DamageProperty + DamageCrops
+| where damage > 0
+| summarize MaxDamage=max(damage), MinDamage=min(damage), AverageDamage=round(avg(damage)) by EventType
+| sort by MaxDamage
 
+// Use the percentiles() function
