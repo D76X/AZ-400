@@ -125,4 +125,113 @@ StormEvents
 | summarize MaxDamage=max(damage), MinDamage=min(damage), AverageDamage=round(avg(damage)) by EventType
 | sort by MaxDamage
 
-// Use the percentiles() function
+// Use the percentiles() function to find the distribution of data
+// you've calculated the min, max, and average values of damage caused by each event. 
+// find the distribution of the values of damage by event type
+// The median value is equal to the 50th percentile.
+StormEvents
+| extend damage = DamageProperty + DamageCrops
+| where damage > 0
+| summarize percentiles(damage, 5, 20, 50, 80, 95) by EventType
+| sort by EventType asc
+
+// -----------------------------------------------------
+// Exercise - Introduce variables using the let statement
+// https://learn.microsoft.com/en-gb/training/modules/gain-insights-data-kusto-query-language/7-exercise-introduce-variables-let-statement
+
+// use let statements to introduce variables and organize complex queries
+// let statements are useful for breaking up a complex expression into multiple parts, 
+// defining constants outside of the query body and using it multiple times within a query.
+// You can use multiple let statements; each statement must be followed by a semicolon (;)
+// You can define scalar values OR tabular filtered view of a table that will be used as 
+// the tabular input for the query. 
+// You can also create a function using a let statement!
+
+// Define a scalar with a let statement
+let MinDamage = 1; // int - let statements end with a semicolon.
+let EventLocation = "ARIZONA"; // string
+StormEvents
+| where State == EventLocation
+| where DamageCrops + DamageProperty >= MinDamage
+| summarize Damage=round(avg(DamageProperty + DamageCrops)) by EventType
+| sort by Damage
+
+// --------------------------------------------------------------------------------
+// Convert a tabular result to a scalar value using toscalar within a let statement
+
+// look at a count of the most frequent event type as a function of time.
+// First, you need to figure out which is the most frequent event type.
+// Use the **project** operator to return only the EventType column. 
+// the query produces a tabular result with one column and one row. 
+StormEvents
+| summarize count() by EventType
+| top 1 by count_
+| project EventType
+
+// Then, you'll use this value in a query. 
+// you'll want to convert this to a scalar value to use as a filter value in your main query.
+// convert the tabular result to a scalar value by putting the whole query inside the toscalar() function
+// -------------------------------------------------------------
+// Notice that this statement by itself isn't a valid query!
+// a valid query must contain at least one statement that's not a let statement. 
+// You can, however, use this stored scalar value in a query.
+// -------------------------------------------------------------
+let MostFrequentEventType = toscalar(
+    StormEvents
+    | summarize count() by EventType
+    | top 1 by count_
+    | project EventType);
+
+// valid query
+// startofmonth
+let MostFrequentEventType = toscalar(
+    StormEvents
+    | summarize count() by EventType
+    | top 1 by count_
+    | project EventType);
+StormEvents
+| where EventType == MostFrequentEventType
+| summarize count() by startofmonth(StartTime)
+| render columnchart
+
+// ----------------------------------------------------------------
+// Construct a let statement with tabular output
+// use a let statement to create tabular data that's then used as the input to a query
+let KillerStorms =
+    StormEvents
+    | where DeathsDirect + DeathsIndirect > 0
+    | project State, EventType, Deaths=DeathsDirect + DeathsIndirect;
+KillerStorms
+| summarize DistinctKillerEventTypes=dcount(EventType), TotalDeaths=sum(Deaths) by State
+| sort by TotalDeaths
+
+// ----------------------------------------------------------------
+// Create a user-defined function with the let statement
+// user-defined functions are reusable subqueries
+
+// create a user-defined function that will calculate percentages
+// --------------------------------------------------------------------
+//let function=(argument1:datatype, argument2:datatype) {functionbody};
+// --------------------------------------------------------------------
+
+//portion:	The portion of the total events that you want to calculate the percentage of.
+//total:	The total number of events.
+let Pcent = (portion:real, total:real){round(100 * portion / total, 2)};
+StormEvents
+| extend Damage = DamageCrops + DamageProperty
+| summarize TotalEvents = count(), TotalDamagingEvents = countif(Damage > 0) by EventType
+| project EventType, TotalDamagingEvents, TotalEvents, Percentage = Pcent(TotalDamagingEvents, TotalEvents)
+| sort by EventType asc
+
+// Challenge
+
+// What was the total week-by-week damage caused by all flood events? 
+// Show damage in the unit of Euros. 
+// In this case, damage refers to both property and crop damage. 
+// Assume the Euro is worth 1.14 USD.
+let Eur = 1.14; // conversion rate
+StormEvents
+| where EventType has "flood"
+| extend Damage = (DamageProperty + DamageCrops) / Eur
+| summarize sum(Damage) by bin(StartTime, 7d)
+| render columnchart
