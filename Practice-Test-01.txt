@@ -133,7 +133,18 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q45: 
 
-?
+You are working as a DevOps engineer, and you must track the 
+Common Vulnerability Scoring System (CVSS) 
+rate detected in a user story.
+
+You need to show the CVSS rate on an Azure Boards dashboard.
+
+What should you use?
+
+a column
+a field
+a filter
+an area path
 
 MY ANSWER TO PT01-Q45
 --------------------------------------------------------------------------
@@ -142,44 +153,168 @@ MY ANSWER TO PT01-Q45
 
 CORRECT ANSWER TO PT01-Q45
 --------------------------------------------------------------------------
-?
+a field
+
+A **custom field** can be used to track additional information and customize 
+a dashboard. 
+
+Area paths:
+are useful to group work items by product, feature, or business area, but 
+cannot be used to customize a dashboard. 
+
+Columns:
+are shown in backlogs, sprint backlogs, queries, and work items and are 
+based on fields. A field must exist first to be added as a column later. 
+
+A filter:
+can be applied to an Azure board to show specific information.
+
 --------------------------------------------------------------------------
 
 REFS:
+
+--------------
+Custom fields
+https://learn.microsoft.com/en-gb/azure/devops/boards/configure-customize?view=azure-devops&tabs=cmmi-process#custom-fields
+--------------
+
+--------------
+About configuring and customizing Azure Boards
+https://learn.microsoft.com/en-gb/azure/devops/boards/configure-customize?view=azure-devops&tabs=cmmi-process#custom-fields
+--------------
+Quick access to common tasks:
+
+1-Customize cards on a Kanban board
+https://learn.microsoft.com/en-gb/azure/devops/boards/boards/customize-cards?view=azure-devops
+
+2-Manage columns in a work item list in Azure Boards
+https://learn.microsoft.com/en-gb/azure/devops/boards/backlogs/set-column-options?view=azure-devops&tabs=browser
+
+3-Expedite work using swimlanes
+https://learn.microsoft.com/en-gb/azure/devops/boards/boards/expedite-work?view=azure-devops
+
+4-Configure your backlog view in Azure Boards
+https://learn.microsoft.com/en-gb/azure/devops/boards/backlogs/configure-your-backlog-view?view=azure-devops
+
 
 -------------------------------------------------------------------------
 PT01-Q44: 
 
-?
+What provides direct integration with Azure Boards, allowing you to embed its data into work items?
+
+Select only one answer.
+
+Application Insights
+Azure App Configuration
+Azure Automation
+Log Analytics
 
 MY ANSWER TO PT01-Q44
 --------------------------------------------------------------------------
-?
+Application Insights
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q44
 --------------------------------------------------------------------------
-?
+Application Insights
+
+Application Insights provides direct integration with Azure Boards, allowing
+you to embed its data into work items. 
+
+Azure Automation, App Configuration, and Log Analytics 
+do not provide direct integration with Azure Boards.
 --------------------------------------------------------------------------
 
 REFS:
+
+-------------------------------------
+AZ-400: Implement continuous feedback
+Integrate with Azure Boards
+https://learn.microsoft.com/en-gb/training/modules/share-knowledge-within-teams/4-integrate-azure-boards
+-------------------------------------
+
 
 -------------------------------------------------------------------------
 PT01-Q43: 
 
-?
+What is the purpose of using Mermaid syntax when editing project wikis in Azure DevOps?
+
+Select only one answer.
+
+creating diagrams
+creating images
+referencing pipelines
+referencing work items
 
 MY ANSWER TO PT01-Q43
 --------------------------------------------------------------------------
-?
+creating diagrams
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT01-Q43
 --------------------------------------------------------------------------
-?
+creating diagrams
+
+The purpose of Mermaid syntax in Markdown when implementing Azure DevOps 
+wikis is to create diagrams.
+
 --------------------------------------------------------------------------
 
 REFS:
+------------------------------
+AZ-400: Implement continuous feedback
+Share knowledge within teams
+https://learn.microsoft.com/en-gb/training/modules/share-knowledge-within-teams/1-introduction
+------------------------------
+
+--------------------------
+Markdown syntax for wikis
+https://learn.microsoft.com/en-us/azure/devops/project/wiki/wiki-markdown-guidance?view=azure-devops
+--------------------------
+
+--------------------------
+Add Mermaid diagrams to a wiki page
+https://learn.microsoft.com/en-us/azure/devops/project/wiki/wiki-markdown-guidance?view=azure-devops#add-mermaid-diagrams-to-a-wiki-page
+--------------------------
+Mermaid lets you create diagrams and visualizations using text and code.
+Wiki supports the following Mermaid diagram types:
+
+Sequence diagrams
+Gantt charts
+Flowcharts
+Class diagram
+State diagram
+User journey
+Pie chart
+Requirements diagram
+
+```
+::: mermaid
+<mermaid diagram syntax>
+:::
+```
+
+```
+::: mermaid
+sequenceDiagram
+    Christie->>Josh: Hello Josh, how are you?
+    Josh-->>Christie: Great!
+    Christie->>Josh: See you later!
+:::
+```
+
+```
+::: mermaid
+gantt
+    title A Gantt chart
+    dateFormat YYYY-MM-DD
+    excludes 2022-03-16,2022-03-18,2022-03-19
+    section Section
+
+    A task          :a1, 2022-03-07, 7d
+    Another task    :after a1 , 5d
+:::
+```
 
 -------------------------------------------------------------------------
 PT01-Q42: 
