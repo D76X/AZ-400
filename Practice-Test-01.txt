@@ -99,7 +99,15 @@ REFS:
 -------------------------------------------------------------------------
 PT01-Q47: 
 
-?
+You need to retrieve specific information stored in Azure Key Vault to use 
+in an Azure Pipelines YAML pipeline.
+Which argument should you use to specify the value to be retrieved 
+from Key Vault?
+
+connectedServiceName
+runAsPreJob
+secret
+secretsFilter
 
 MY ANSWER TO PT01-Q47
 --------------------------------------------------------------------------
@@ -108,15 +116,206 @@ MY ANSWER TO PT01-Q47
 
 CORRECT ANSWER TO PT01-Q47
 --------------------------------------------------------------------------
-?
+secretsFilter: 
+provides a default value of *, which allows you to download all the secrets
+or a comma-separated list of secret names. 
+
+runAsPreJob: 
+exposes secrets to all the tasks in the job, not just the tasks that follow.
+
+connectedServiceName:
+selects the service connection for the Azure subscription that contains the
+Key Vault instance or creates a new connection. 
+
+secret: 
+is not an argument of a YAML pipeline. 
+It is an option of the Azure pipeline CLI to create a variable and mark it 
+as a secret.
+
 --------------------------------------------------------------------------
 
 REFS:
 
+----------------------------------------
+AzureKeyVault@2 - Azure Key Vault v2 task
+https://learn.microsoft.com/en-gb/azure/devops/pipelines/tasks/reference/azure-key-vault-v2?view=azure-pipelines&viewFallbackFrom=azure-devops#arguments
+----------------------------------------
+Use this task to download, from an Azure Key Vault instance, secrets such as:
+
+- authentication keys
+- storage account keys
+- data encryption keys
+- .PFX files
+- passwords 
+
+The task can be used to fetch the latest values of all or a subset of secrets
+from the vault and set them as variables that can be used in subsequent tasks
+of a pipeline.
+
+The task is Node-based and works with agents on Linux, macOS, and Windows.
+
+```
+# Azure Key Vault v2
+# Download Azure Key Vault secrets.
+- task: AzureKeyVault@2
+  inputs:
+    azureSubscription: # string. Alias: ConnectedServiceName. Required. Azure subscription. 
+    KeyVaultName: # string. Required. Key vault. 
+    SecretsFilter: '*' # string. Required. Secrets filter. Default: *.
+    #RunAsPreJob: false # boolean. Make secrets available to whole job. Default: false.
+```
+
+*****
+If you're using a Microsoft-hosted agent, you must add the IP range of the Microsoft-hosted
+agent to your firewall. 
+
+Get the weekly list of IP ranges from the weekly JSON file, which is published every Wednesday.
+The new IP ranges become effective the following Monday. 
+For more information, see Microsoft-hosted agents. 
+
+-----------------------------------------------------------------
+To identify the possible IP ranges for Microsoft-hosted agents
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#to-identify-the-possible-ip-ranges-for-microsoft-hosted-agents
+-----------------------------------------------------------------
+To find the IP ranges that are required for your Azure DevOps organization, 
+learn how to identify the possible IP ranges for Microsoft-hosted agents.
+*****
+
+----------------------------------------
+Manage secrets in your server apps with Azure Key Vault
+https://learn.microsoft.com/en-gb/training/modules/manage-secrets-with-azure-key-vault/
+----------------------------------------
+Vault authentication with managed identities for Azure resources
+https://learn.microsoft.com/en-gb/training/modules/manage-secrets-with-azure-key-vault/4-authentication-with-managed-identities-for-azure-resources
+----------------------------------------
+Azure Key Vault uses Microsoft Entra ID to authenticate users and apps
+that try to access a vault. To grant our web app access to the vault, 
+we first need to register our app with Microsoft Entra ID. 
+
+1-Register the app with Microsoft Entra ID
+2-Registering creates an identity for the app.
+3-After the app has an identity, we can assign vault permissions to it.
+
+Apps and users authenticate to Key Vault using a:
+------------------------------------
+Microsoft Entra authentication token.
+------------------------------------
+Anyone with a token could use the app identity to access 
+all of the secrets in the vault.
+
+Getting a token from Microsoft Entra ID requires a
+------------------------------------
+secret or certificate 
+------------------------------------
+
+*********************************
+*** The bootstrapping problem ***
+*********************************
+we still need to keep a secret or certificate outside of the vault to access them!
+
+*****************************************
+***Azure has a solution for it. ***
+Managed identities for Azure resources
+*****************************************
+Managed identities for Azure resources is an Azure feature your app can use 
+to access Key Vault and other Azure services 
+**without having to manage a single secret outside of the vault! **
+
+-1 You enable managed identity on your web app
+-2 Azure activates a separate token-granting REST service 
+   specifically for your app to use. 
+-3 Your app will request tokens from this service 
+   instead of directly from Microsoft Entra ID.    
+-4 Your app needs to use a secret to access this service.
+----------------------------------------------------------------
+-5 that secret is injected into your app's environment variables 
+   by App Service when it starts up!
+   You don't need to manage or store this secret value anywhere.
+   Nothing outside of your app can access this secret or the managed 
+   identity token service endpoint.
+----------------------------------------------------------------
+
+Managed identities for Azure resources also registers your app in 
+Microsoft Entra ID for you and will delete the registration if you 
+delete the web app or disable its managed identity.
+
+Managed identities are available in all editions of Microsoft Entra ID, 
+including the Free edition included with an Azure subscription.
+Enabling a managed identity for a web app requires only a single 
+Azure CLI command with no configuration.
+Has no extra cost and requires no configuration, and you can enable 
+or disable it on an app at any time.
+
+SUMMARY 
+
+--------------------------------------------------------------------
+1. 
+How does using managed identities for Azure resources change the way 
+an app authenticates to Azure Key Vault?
+
+When you enable managed identity on your web app, Azure activates a
+separate token-granting REST service specifically for use by your app. 
+Your app will request tokens from this service 
+instead of Microsoft Entra ID.
+--------------------------------------------------------------------
+
+--------------------------------------------------------------------
+2. 
+The primary benefit of using managed identities for Azure resources 
+to authenticate an app to Key Vault.
+
+Your app authenticates to a managed identities token service with a
+secret injected into its environment variables at runtime. 
+This eliminates the need to store secrets during configuration.
+--------------------------------------------------------------------
+
+-------------------
+Check your knowledge
+-------------------
+
+1.
+Which of the following is not a benefit of Azure Key Vault? 
+- Synchronizing application secrets among multiple instances of an application.
+- Reducing the need for application developers to directly handle application secrets.
+- Controlling access to application secrets with assignable permissions.
+--------------------------------------------------------------------------
+- Secure storage of private user information. ** << THIS IS NOT A BENEFIT!
+--------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+2.
+Which of these statements best describes Azure Key Vault's 
+authentication and authorization process?
+------------------------------------------------------------------------
+Applications and users authenticate to a vault with their Microsoft Entra 
+identities and are authorized to perform actions on 
+**all secrets in the vault**.
+**Access policies** are used to provide **authorization for actions** 
+**that apply to every secret in the vault**.
+
+------------------------------------------------------------------------
+3.
+How does Azure Key Vault help protect your secrets after they have been 
+loaded by your app?
+------------------------------------------------------------------------
+It doesn't protect your secrets. Secrets are unprotected once they're 
+loaded by your application.
+Once secrets have been loaded by an app, they are unprotected. 
+**Make sure to not log them, store them, or return them in client responses.**
+
+
 -------------------------------------------------------------------------
 PT01-Q46: 
 
-?
+You manage GitHub Actions that make extensive use of GitHub secrets.
+What is the maximum number of secrets a workflow can have?
+
+Select only one answer.
+
+10
+100
+1,000
+10,000
 
 MY ANSWER TO PT01-Q46
 --------------------------------------------------------------------------
@@ -125,10 +324,17 @@ MY ANSWER TO PT01-Q46
 
 CORRECT ANSWER TO PT01-Q46
 --------------------------------------------------------------------------
-?
+100
+Workflows support up to 100 secrets.
+
 --------------------------------------------------------------------------
 
 REFS:
+------------------------
+Use secrets in a workflow
+https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/9-use-secrets-workflow
+Workflows can use up to 100 secrets, and they're limited to 64 KB in size.
+------------------------
 
 -------------------------------------------------------------------------
 PT01-Q45: 
@@ -2339,7 +2545,7 @@ the official project.
 Or, if you get stuck in the middle of a feature, you can open a pull request 
 asking for suggestions from your colleagues.
 Pull requests make it incredibly easy for your team to comment on each other's work. 
- It allows sharing a feature with other developers without touching any official code.
+It allows sharing a feature with other developers without touching any official code.
 
 -----------------------------------
 Trunk-based development workflow
