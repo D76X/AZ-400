@@ -72,12 +72,15 @@ agent
 ---
 
 [Demo: The Basics of Running Jenkins in a Container](https://app.pluralsight.com/course-player?clipId=238f1b69-fa8f-4cec-b22f-b36cdffeb3a5)   
+[Demo: The Basics of Running Jenkins in a Container](https://app.pluralsight.com/course-player?clipId=fab899b5-00c9-4814-b16f-5ca9b0ac6036) 
+
+The image jenkins is a weekly release while the jenkins/jenkins:lts is the 4-months stable version.
 
 ```
 docker image list
-docker search jenkins
+docker search jenkins 
 docker pull jenkins/jenkins:lts
-docker run -p 8080:8080 jenkins/jenkins:lts
+docker run -p 8081:8080 jenkins/jenkins:lts
 docker ps -a
 ```
 
@@ -316,3 +319,8 @@ controller.
 ---
 
 [Deploy an ASP.NET Core (Docker) application to Kubernetes using Octopus, Jenkins, and Docker Registry](https://octopus.com/docs/guides/deploy-aspnetcore-docker-app/to-k8s/using-octopus-onprem-jenkins-dockerhub)  
+
+
+
+https://github.com/FeynmanFan 
+https://github.com/FeynmanFan/JenkinsGroovy 
