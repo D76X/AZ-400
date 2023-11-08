@@ -22,7 +22,7 @@ CORRECT ANSWER TO PT99-Q0X
 REFS:
 
 -------------------------------------------------------------------------
-PT99-Q04: 
+PT99-Q05: 
 
 Arrange the actions in teh correct order if you need to associate an automatedtest
 to a test case in an Azure DevOps Project.
@@ -34,12 +34,12 @@ In which sequance shouuld you run the following three commands?
  - Create a test Project
 
 
-MY ANSWER TO PT99-Q04
+MY ANSWER TO PT99-Q05
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT99-Q04
+CORRECT ANSWER TO PT99-Q05
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
@@ -47,7 +47,7 @@ CORRECT ANSWER TO PT99-Q04
 REFS:
 
 -------------------------------------------------------------------------
-PT99-Q03: 
+PT99-Q04: 
 
 A Company has a ** Azure Resource Group deployment Project in Visual Studio **
 which is checked in to Azure DevOps project.
@@ -66,13 +66,13 @@ Select TWO correct answwers.
 -Use Azure Firewall
 
 
-MY ANSWER TO PT99-Q03
+MY ANSWER TO PT99-Q04
 --------------------------------------------------------------------------
 -Use Azure PowerShell 
 -Add multiple DevOps services build steps, each one performing a stage task
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT99-Q03
+CORRECT ANSWER TO PT99-Q04
 --------------------------------------------------------------------------
 ?
 --------------------------------------------------------------------------
@@ -242,7 +242,7 @@ must be assigned either the following roles:
 
 
 -------------------------------------------------------------------------
-PT99-Q02: 
+PT99-Q03: 
 
 Arrange the actions in the correct order if you need to configure Helm and  
 Tiller on the Azure Kubernetes Services (AKS) cluster which has RBAC enabled
@@ -255,7 +255,7 @@ kubectl create
 helm install
 
 
-MY ANSWER TO PT99-Q02
+MY ANSWER TO PT99-Q03
 --------------------------------------------------------------------------
 (By ChatGPT)
 heml init       << Initialize Helm and install Tiller on the AKS cluster
@@ -263,7 +263,7 @@ kubectl create  << Set up RBAC permissions for Tiller on the AKS cluster
 helm install    << install the Helm chart on your AKS cluster
 --------------------------------------------------------------------------
 
-CORRECT ANSWER TO PT99-Q02
+CORRECT ANSWER TO PT99-Q03
 --------------------------------------------------------------------------
 The author of the Video maintyains tha the correct sequnce is:
 
