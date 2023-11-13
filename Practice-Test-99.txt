@@ -21,17 +21,436 @@ CORRECT ANSWER TO PT99-Q0X
 
 REFS:
 
+
+-------------------------------------------------------------------------
+PT99-Q10: 
+
+A company uses open source libraries. You need to make sure that all the
+open source libraries comply with the the company's licencing standards.
+Which service should you use?
+
+MY ANSWER TO PT99-Q10
+--------------------------------------------------------------------------
+
+A. Ansible
+B. Maven
+C. WhiteSource Bolt
+D. Helm
+E. Gradle
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q10
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q09:
+
+You want to compile an Internet Information Services (IIS) web application
+which runs on docker.
+What should you use as a default build agent pool?
+
+https://www.examtopics.com/discussions/microsoft/view/58286-exam-az-400-topic-8-question-11-discussion/
+You need to consider the underlined segment to establish whether it is accurate.
+To compile an Internet Information Services (IIS) web application that runs
+docker, you should use a Default build agent pool.
+Select `No adjustment required` if the underlined segment is accurate. 
+If the underlined segment is inaccurate, select the accurate option.
+
+A. No adjustment required. = Default build agent pool = this is correct as the Default pool is Hosted! 
+B. Hosted Windows Container < this is not even an option in Azure DevOps!
+C. Hosted                   < this is correct!
+D. Hosted macOS
+
+MY ANSWER TO PT99-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q09
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+------------------------
+Microsoft-hosted agents
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&viewFallbackFrom=vsts&tabs=yaml
+------------------------
+Azure Virtual Machine Scale Set agents
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents?view=azure-devops
+------------------------
+**Define container jobs (YAML)
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops
+------------------------
+
+----------------------- 
+1-Microsoft-hosted agents 
+----------------------- 
+can run jobs directly on the VM or in a container**.
+Azure Pipelines provides a predefined agent pool named Azure Pipelines with 
+Microsoft-hosted agents.
+For many teams this is the simplest way to run your jobs. 
+You can try it first and see if it works for your build or deployment. 
+If not, you can use:
+----------------------- 
+2-scale set agents or 
+3-a self-hosted agent.
+----------------------- 
+
+DEFAULTS:
+The default agent image for classic build pipelines is windows-2019. 
+Tthe default agent image for YAML build pipelines is ubuntu-latest.
+
+YAML:
+In YAML pipelines, if you do not specify a pool, pipelines default to 
+the Azure Pipelines agent pool. You simply need to specify which 
+virtual machine image you want to use.
+
+----------
+Hardware
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#hardware
+----------
+Microsoft-hosted agents that run Windows and Linux images are provisioned
+on Azure general purpose virtual machines with: 
+-------------------------------------------------------
+2 core CPU, 7 GB of RAM, and 14 GB of SSD disk space. 
+These virtual machines are co-located in the same geography 
+as your Azure DevOps organization.
+-------------------------------------------------------
+Agents that run macOS images are provisioned on:
+Mac pros with a 3 core CPU, 14 GB of RAM, and 14 GB of SSD disk space.
+These agents always run in the US irrespective of the 
+location of your Azure DevOps organization.
+
+If data sovereignty is important to you and if your 
+organization is not in the US, then you should not use 
+macOS images!
+-------------------------------------------------------
+
+-------------------------------------------------------
+USE CASE
+Run a self-hosted agent in Docker
+https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops
+-------------------------------------------------------
+
+This article provides instructions for running your Azure Pipelines 
+agent in Docker. 
+
+1-Both Windows and Linux are supported as container hosts.
+2-you customize the container to suit your needs.
+3-Tasks and scripts might depend on specific tools being available 
+on the container's PATH, and it's your responsibility to ensure that
+these tools are available. 
+
+You can set up a self-hosted agent in Azure Pipelines to run inside a: 
+-Windows Server Core (for Windows hosts) 
+or 
+-Ubuntu container (for Linux hosts) with Docker.
+*********************************************************************
+This is useful when you want to run agents with outer orchestration, 
+such as Azure Container Instances
+*********************************************************************
+
+------------------------------------------------------------------------
+USE CASE
+Quickstart: Build a container image to deploy apps using Azure Pipelines
+https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/build-image?view=azure-devops
+------------------------------------------------------------------------
+How to build a container image for app deployment using Azure Pipelines. 
+To build this image, all you need is a Dockerfile in your repository. 
+You can build Linux or Windows containers, based on the agent that you use 
+in your pipeline.
+
+-------------------------------------------------------------------------
+PT99-Q08: 
+
+As a DevOps Engineer, you need to configure project metrics for the 
+dashboard in Azure DevOps. Which of the following charts should you use 
+to measure:
+the elapsed time from the **creation** of work items to their completion?
+
+A. Cycle Time
+B. Lead Time
+C. Burndown
+D. Burnup
+
+MY ANSWER TO PT99-Q08
+--------------------------------------------------------------------------
+B. Lead Time
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q08
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+----------------------------------------------------
+Cumulative flow, lead time, and cycle time guidance
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow-cycle-lead-time-guidance?view=azure-devops&source=docs
+----------------------------------------------------
+
+The Continuous flow CFD provides the chart most favored by teams that follow 
+a lean process. However, many teams have begun combining lean practices with 
+Scrum or other methodologies which means they practice lean within the span 
+of an iteration or sprint. 
+
+-------------
+Burnup Chart
+-------------
+The top line represents the scope set for the sprint. And, because the work 
+must be completed by the last day of the sprint, the slope of the Closed 
+state indicates whether or not a team is on track to complete the sprint. 
+The easiest way to think of this view is as a burnup chart.
+
+-------------
+Chart Metrics
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow-cycle-lead-time-guidance?view=azure-devops&source=docs#chart-metrics
+-------------
+
+-------------
+1- Cycle Time
+-------------
+Measures the time it takes to move work through a single process or workflow state.
+Calculation is from the start of one process to the start of the next process.
+
+-------------
+2- Lead Time
+-------------
+2A- For a continuous flow process: 
+-------------------------------------
+Measures the amount of time it takes from when a request is **made** 
+(such as adding a proposed user story) until that request is completed (closed).
+
+-------------------------------------
+2B- For a sprint or fixed period process: 
+-------------------------------------
+Measures the time from when work on a request **begins** 
+until the work is completed (i.e. the time from Active to Closed).
+
+--------------------
+3-Work in Progress
+--------------------
+Measures the amount of work or number of work items that are actively being worked.
+
+--------------------
+Scope
+--------------------
+Represents the amount of work committed for the given period of time. 
+Only applies to fixed period processes. [Scrum]
+
+------------
+CORRELATION 
+------------
+There's a well-defined correlation between Lead Time / Cycle Time and 
+Work in Progress (WIP). 
+The more WIP, the longer the cycle time, which also leads to longer 
+lead times. 
+The opposite is also true—the less WIP, the shorter the cycle and 
+lead time. 
+When the development team focuses on fewer items, they reduce the 
+cycle and lead times. 
+This correlation is a key reason why you can and should set Work In 
+Progress limits on the Kanban board.
+----------------------------
+Set Work in Progress limits
+https://learn.microsoft.com/en-us/azure/devops/boards/boards/wip-limits?view=azure-devops
+----------------------------
+
+-----------------------------------------------
+Identify issues, take appropriate actions
+-----------------------------------------------
+The CFD answers several specific questions and based on the answer, 
+actions can be taken to adjust the process to move work through the system.
+
+-----------------------------------------------
+Will the team complete work on time?
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow-cycle-lead-time-guidance?view=azure-devops&source=docs#will-the-team-complete-work-on-time
+-----------------------------------------------
+This question applies to fixed period CFDs only. [Scrum]
+
+-----------------------------------------------
+How is the flow of work progressing?
+https://learn.microsoft.com/en-us/azure/devops/report/dashboards/cumulative-flow-cycle-lead-time-guidance?view=azure-devops&source=docs#how-is-the-flow-of-work-progressing
+-----------------------------------------------
+Is the team completing work at a steady pace? 
+One way to tell is to look at the spacing between the different columns on the chart. 
+Are they of a similar or uniform distance from each other from beginning to end?
+Does a column appear to flat-line over a period of multiple days?
+Does it seem to "bulge"?
+Any unevenness in the system will cause bulges to appear in the CFD.
+Monitoring the CFD for flat lines and bulges supports a key part of the 
+**Theory of Constraints** project management process. 
+
+Protecting the slowest area of the system is referred to as the 
+**drum-buffer-rope** process and is part of how work is planned.
+
+-------------------------------------------------------------------------
+PT99-Q07: 
+
+You want to create a release pipeline which uses Azure SQL Database
+deployment task to update the Azure SQL database.
+
+Which artifact should you deploy?
+
+You have an Azure DevOps project named Project1 and an Azure subscription named Sub1.
+Sub1 contains an Azure SQL database named DB1.
+You need to create a release pipeline that uses 
+the Azure SQL Database Deployment task to update DB1.
+
+Which artifact should you deploy?
+
+A. a BACPAC
+B. a DACPAC
+C. an LDF file
+D. an MDF file
+
+MY ANSWER TO PT99-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q07
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+https://www.examtopics.com/discussions/microsoft/view/20475-exam-az-400-topic-8-question-36-discussion/
+
+Suggested Answer: B. a DACPAC 
+Use Azure SQL Database Deployment task in a build or release pipeline to 
+deploy to Azure SQL DB using a DACPAC or run scripts using SQLCMD.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/deploy/sql-azure-dacpac-deployment
+
+Correct
+
+DACPAC and BACPAC are similar but they target different scenarios. 
+---------------------------------------
+-DACPAC: = schemas + other SQL objects
+---------------------------------------
+is focused on capturing and deploying schema, including upgrading an existing database.
+The primary use case for a DACPAC is to deploy a tightly defined schema to:
+development, test, and then to production environments. 
+And also the reverse: capturing production's schema and applying it back to
+test and development environments.
+
+----------------------
+-BACPAC: DACPAC + data
+----------------------
+is focused on capturing schema and data supporting two main operations:
+EXPORT- The user can export the schema and the data of a database to a BACPAC.
+IMPORT- The user can import the schema and the data into a new database in the host server.
+
+-------------------------------------------------------------------------
+PT99-Q06: 
+
+You have a free tier of an Azure DevOps organization named Contoso. 
+Contoso contains 10 private projects. 
+Each project has multiple jobs with no dependencies.
+
+You frequently run the jobs on five self-hosted agents but experience 
+long build times and frequently queued builds.
+
+You need to minimize the number of queued builds and the time it takes to
+run the builds.
+
+What should you do?
+What should you recommend?
+
+A. Configure the pipelines to use the Microsoft-hosted agents.
+B. Register additional self-hosted agents.
+C. Purchase self-hosted parallel jobs.              << this is correct
+D. Purchase Microsoft-hosted parallel jobs. << this looks right but it's wrong!
+
+MY ANSWER TO PT99-Q06
+--------------------------------------------------------------------------
+C. Purchase self-hosted parallel jobs. 
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q06
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+https://www.examtopics.com/discussions/microsoft/view/35935-exam-az-400-topic-14-question-90-discussion/
+
+If you want to run your jobs on machines that Microsoft manages, 
+use Microsoft-hosted parallel jobs.
+Your jobs run on our pool of Microsoft-hosted agents.
+We provide a free tier of service by default in every organization.
+
+https://docs.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=self-hosted
+C. Purchase self-hosted parallel jobs
+
+It should be C- as the it talks about jobs running on a self-hosted pool in question.
+Answer is C :
+
+1]
+As the number of queued builds and releases exceeds the number of parallel 
+jobs you have, your build and release queues will grow longer. 
+When you find the queue delays are too long, you can purchase additional 
+parallel jobs as needed.
+
+2]
+D. Purchase Microsoft-hosted parallel jobs. << this looks right but it's wrong!
+
+The reason is that in the question you have 
+" you experience 
+-long build times and 
+-frequently queued builds."
+
+**********************************************************************************
+The LONG BUILD time may not be resolved by option D. because the  Microsoft-hosted
+agents have a time limit instead on self-hostet Jobs there are no time limits.
+This is also ONE OF the reasons why you may wish to use self-hosted agents
+rather than Microsoft hosted agents! 
+
+------------
+TIME LIMITS:
+------------
+Microsoft-hosted for public projects 360 mins
+Microsoft-hosted for private projects 60 mins !!!!!!
+self-hosted agents NO TIME LIMITS !!!
+
+**********************************************************************************
+
+---------------------------
+Agreed. https://docs.microsoft.com/en-us/azure/devops/organizations/billing/buy-more-build-vs?view=azure-devops#self-hosted-cicd
+Self-hosted private projects
+---------------------------
+---------------------------
+PARALLEL JOBS LIMITS
+---------------------------
+The free tier is one parallel job. 
+You also get one free parallel job for each Visual Studio Enterprise subscriber
+who's a member of your organization. 
+You can get more using **paid self-hosted parallel jobs**.
+
 -------------------------------------------------------------------------
 PT99-Q05: 
 
-Arrange the actions in teh correct order if you need to associate an automatedtest
-to a test case in an Azure DevOps Project.
+Arrange the actions in the correct order if you need to associate an automated
+test to a test case in an Azure DevOps Project.
 
-In which sequance shouuld you run the following three commands?
+In which sequence shouuld you run the following three commands?
 
- - Add automated test to pipeline
- - Check in the project onto DevRepo
+ - Debug the Project
  - Create a test Project
+ - Create a work Item
+ - Check in the project to an Azure DevOps repository
+ - Add automated test to pipeline
 
 
 MY ANSWER TO PT99-Q05
@@ -41,10 +460,57 @@ MY ANSWER TO PT99-Q05
 
 CORRECT ANSWER TO PT99-Q05
 --------------------------------------------------------------------------
-?
+ - Create a test Project
+ - Check in the project to an Azure DevOps repository
+ - Add automated test to pipeline
 --------------------------------------------------------------------------
 
 REFS:
+
+EXAMTOPICS
+https://www.examtopics.com/discussions/microsoft/view/50322-exam-az-400-topic-8-question-26-discussion/
+
+The process to associate an automated test with a test case is:
+
+1. Create a test project containing your automated test. 
+   What types of tests are supported?
+
+2. Check your test project into an Azure DevOps or Team Foundation Server (TFS) repository.
+
+3. Create a build pipeline for your project, ensuring that it contains the automated test.
+   What are the differences if I am still using a XAML build?
+
+4. Use Visual Studio Enterprise or Professional 2017 or a later version to associate the
+   automated test with a test case as shown below. 
+   The test case must have been added to a test plan that uses the build you just defined.
+
+Reference:
+https://docs.microsoft.com/en-us/azure/devops/test/associate-automated-test-with-test-case
+
+-------------------------------------------------
+Azure Test Plans
+
+Azure Test Plans - Toronto Enterprise Usergroup
+https://www.youtube.com/watch?v=hho2rFQqbfc 
+
+-1 Create a test case
+-2 Associate the test case to the Test Plan
+
+-1 Create a test case
+-On the Azure DevOps Board select a Work Item WI
+-Add Link to with: 
+  Link Type      = Tested By
+  Work Item Type = Test Case
+-One WI can have multiple Tested By Links, these are all its related Test cases
+-By clinging on the Test Case Link you can now fill in its specific details
+ i.e. the steps to perform to carry out the test.  
+
+-------------------------------------------------
+
+
+Running Tests with Azure Pipelines (9 of 12) | Automated Software Testing
+https://www.youtube.com/watch?v=Ja034np9KhU&t=205s
+
 
 -------------------------------------------------------------------------
 PT99-Q04: 

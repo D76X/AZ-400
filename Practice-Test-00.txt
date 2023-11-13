@@ -7,6 +7,43 @@ Viewing questions 1-10 out of 472 questions
 
 ----------------------------------------------------------------
 
+***********
+Offers
+***********
+https://learn.microsoft.com/en-us/credentials/certifications/deals
+
+Exam AZ-400: Designing and Implementing Microsoft DevOps Solutions:€165
+https://learn.microsoft.com/en-us/credentials/certifications/devops-engineer/
+
+***********
+MeausureUp
+***********
+https://pts.measureup.com/web/index.php#dashboard.php
+Microsoft Practice Test: €59.15 discounted 35% from €91
+https://www.measureup.com/catalogsearch/result/?q=AZ-400
+
+
+***********
+Mindhub
+***********
+https://eu1.mindhub.com/myaccount
+
+Microsoft Exam Replay: MCP exam + Retake: €215
+https://eu1.mindhub.com/microsoft-exam-replay-mcp-exam-plus-retake/p/Microsoft-Exam-Replay?utm_source=msftmarketing&utm_medium=msft_offers&utm_campaign=ExamReplayFY20&utm_term=ERFY20&utm_content=weblink3
+
+Microsoft Exam Replay with Practice Test: MCP exam + Retake + Practice test: €245
+https://eu1.mindhub.com/microsoft-exam-replay-with-practice-test-mcp-exam/p/Microsoft-Exam-Replay-PT
+
+Full price of single items would be: 
+
+€165 +  €91 = €256 : 1-exam-voucher + 1-practice-test
+€330 +  €91 = €421 : 2-exam-voucher + 1-practice-test
+€165 +  €59 = €224 : 2-exam-voucher + 1-practice-test
+              €215 : Microsoft Exam Replay: MCP exam + Retake
+              €245 : Microsoft Exam Replay with Practice Test: MCP exam + Retake + Practice test*
+        
+* best value!
+
 -------------------------------------------------------------------------
 PT0X-Q0X: 
 question text..
