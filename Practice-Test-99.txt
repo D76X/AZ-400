@@ -1,6 +1,8 @@
 ----------------------------------------------------------------
 AZ-400 Microsoft DevOps Engineer REAL Exam Dumps : Part-1
 https://www.youtube.com/watch?v=eHlPZipHQco&list=PLyABYqulvUwYlrqboc1FgrLM4lN-8OAd7
+AZ-400 Microsoft DevOps Engineer REAL Exam Dumps : Part-2
+https://www.youtube.com/watch?v=TuM2xEc68dg
 
 ----------------------------------------------------------------
 
@@ -21,6 +23,154 @@ CORRECT ANSWER TO PT99-Q0X
 
 REFS:
 
+-------------------------------------------------------------------------
+PT99-Q15: 
+
+MY ANSWER TO PT99-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q15
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q14: 
+
+MY ANSWER TO PT99-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q14
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q13: 
+
+You need to configure YAML startegy value for each app while Designing
+YAML-based Azure pipelines.
+The solution should minimize app downtime.
+Which value should you configurefor each app?
+
+MY ANSWER TO PT99-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q13
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q12: 
+
+As a DevOps Engineer, you need to automate the build process for a Java
+application by using Azure DevOps.
+You need to add test coverage and publish the outcome to the pipeline.
+What should you use?
+
+https://www.examtopics.com/discussions/microsoft/view/6755-exam-az-400-topic-14-question-47-discussion/
+https://www.examtopics.com/discussions/microsoft/view/23322-exam-az-400-topic-6-question-13-discussion/
+You are automating the build process for a Java-based application by using Azure DevOps.
+You need to add code coverage testing and publish the outcomes to the pipeline.
+What should you use?
+
+A. Cobertura
+B. Bullseye Coverage
+C. MSTest
+D. Coverlet
+E. MS SQL
+F. JaCoCo <<
+G. NUnit
+H. Coverage.py
+
+MY ANSWER TO PT99-Q12
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q12
+--------------------------------------------------------------------------
+Cobertura or JaCoCo format
+
+Incorrect Answers:
+F: Coverage.py is used for Python, not for Java.
+B: Bullseye Coverage is used for C++ code, and not for Java.
+D: 
+If you're building on Linux or macOS, you can use Coverlet or a similar
+tool to collect code coverage metrics. Code coverage results can be published
+to the server by using the Publish Code Coverage Results task. 
+
+To leverage this functionality, the coverage tool must be configured to 
+generate results in Cobertura or JaCoCo coverage format.
+
+PublishCodeCoverageResults@1
+https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-code-coverage-results-v1?view=azure-pipelines
+--------------------------------------------------------------------------
+
+REFS:
+
+-------------------------------------------------------------------------
+PT99-Q11: 
+
+A company has stored source code in a Git Repository in Azure Repo.
+The company uses third-party CI tools to control the builds.
+What should you use in Azure DevOps to authenticate with the tool?
+
+https://www.examtopics.com/discussions/microsoft/view/35805-exam-az-400-topic-7-question-5-discussion/
+You store source code in a Git repository in Azure Repos. 
+You use a third-party continuous integration (CI) tool to control builds.
+What will Azure DevOps use to authenticate with the tool?
+
+A. certificate authentication
+B. a personal access token (PAT)
+C. a Shared Access Signature (SAS) token
+D. NTLM authentication
+E. Azure Key Vault 
+F. Vistual Machine
+
+MY ANSWER TO PT99-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+CORRECT ANSWER TO PT99-Q11
+--------------------------------------------------------------------------
+?
+--------------------------------------------------------------------------
+
+REFS:
+
+Personal access tokens (PATs) give you access to Azure DevOps and 
+Team Foundation Server (TFS), without using your username and password 
+directly.
+
+Azure devops will not use anything!
+The third party CI tool will use a PAT to access Azure DevOps repos.
+
+---------------------------------------------------------
+PATs are short-lived, limited-privilege tokens.
+**** Provided by Azure DevOps! *****
+PAT can be used to authenticate/authorize API requests 
+*** to Azure DevOps services. *** 
+*** Do not share your Azure DevOps username and password. ***
+---------------------------------------------------------
+
+Shared Access Signature (SAS) token, grant access to Azure resources, 
+such as Azure Storage, Azure Service Bus, blob and files
+
 
 -------------------------------------------------------------------------
 PT99-Q10: 
@@ -29,23 +179,23 @@ A company uses open source libraries. You need to make sure that all the
 open source libraries comply with the the company's licencing standards.
 Which service should you use?
 
-MY ANSWER TO PT99-Q10
---------------------------------------------------------------------------
-
 A. Ansible
 B. Maven
 C. WhiteSource Bolt
 D. Helm
 E. Gradle
 
+MY ANSWER TO PT99-Q10
+--------------------------------------------------------------------------
+C. WhiteSource Bolt
 --------------------------------------------------------------------------
 
 CORRECT ANSWER TO PT99-Q10
 --------------------------------------------------------------------------
-?
+C. WhiteSource Bolt
 --------------------------------------------------------------------------
 
-REFS:
+REFS:   Obvious
 
 -------------------------------------------------------------------------
 PT99-Q09:

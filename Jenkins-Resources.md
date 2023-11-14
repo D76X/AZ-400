@@ -324,3 +324,12 @@ controller.
 
 https://github.com/FeynmanFan 
 https://github.com/FeynmanFan/JenkinsGroovy 
+
+
+---
+
+## Controller and Agent Node Configuration
+
+[How to Create an Agent Node in Jenkins](https://www.youtube.com/watch?v=99DddJiH7lM)  
+[Create a new Jenkins node, and run your Jenkins agent as a service ](https://www.jenkins.io/blog/2022/12/27/run-jenkins-agent-as-a-service/)  
+---
