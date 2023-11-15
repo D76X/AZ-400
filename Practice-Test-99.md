@@ -58,8 +58,38 @@ PT99-Q13:
 
 You need to configure YAML startegy value for each app while Designing
 YAML-based Azure pipelines.
-The solution should minimize app downtime.
+**The solution should minimize app downtime.**
 Which value should you configurefor each app?
+
+https://www.examtopics.com/discussions/microsoft/view/49157-exam-az-400-topic-7-question-19-discussion/
+You are designing YAML-based Azure pipelines for the apps shown in the following table.
+
+
+| Name  | Platform    | Release Requirements     |
+| :---  |:----:       |---: |
+| App1  | Azure VM    | Replace a fixed set of existing instances of the previous version of App1 with instances of the new version of the app in each itereation   |
+| App2  | AKS Cluster | Roll out a limited deployment of the new version of App2 to validate the functionality of the app. Once testiong is successful, expand the rollout.     |
+
+You need to configure the YAML strategy value for each app. 
+**The solution must minimize app downtime.**
+Which value should you configure for each app? 
+To answer, select the appropriate options in the answer area.
+
+NOTE: Each correct selection is worth one point.
+
+----------
+Hot Area:
+----------
+
+App1:
+ -1A: CANARY
+ -1B: ROLLING
+ -1C: RUNONCE
+
+App2:
+ -2A: CANARY
+ -2B: ROLLING
+ -2C: RUNONCE
 
 MY ANSWER TO PT99-Q13
 --------------------------------------------------------------------------
@@ -68,10 +98,125 @@ MY ANSWER TO PT99-Q13
 
 CORRECT ANSWER TO PT99-Q13
 --------------------------------------------------------------------------
-?
+App1: rolling
+App2: canary
 --------------------------------------------------------------------------
 
+
 REFS:
+https://docs.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs
+
+-------------
+App1: rolling 
+-------------
+A rolling deployment replaces instances of the previous version of an 
+application with instances of the new version of the application 
+**on a fixed set of virtual machines (rolling set) in each iteration**.
+
+
+-------------
+App2: canary 
+-------------
+Canary deployment strategy is an advanced deployment strategy that helps
+**mitigate the risk involved in rolling out new versions of applications**.
+By using this strategy, you can **roll out the changes to a small subset of servers first**. 
+As you gain more confidence in the new version, you can release it to
+more servers in your infrastructure and **route more traffic to it**.
+
+--------------------------
+Incorrect Answers:
+--------------------------
+runonce:
+runOnce is the simplest deployment strategy wherein all the lifecycle hooks,
+namely preDeploy deploy, routeTraffic, and postRouteTraffic, are executed once.
+Then, either on: success or on: failure is executed.
+
+--------------------------
+[Deployment strategies](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops#deployment-strategies)  
+--------------------------
+
+When you're deploying application updates, it's important that the technique you use to deliver the update will:
+
+- Enable initialization.
+- Deploy the update.
+- Route traffic to the updated version.
+- Test the updated version after routing traffic.
+- In case of failure, run steps to restore to the last known good version.
+
+We achieve this by using **lifecycle hooks** that can run steps during deployment.
+Each of the lifecycle hooks resolves into an **agent job** or a **server job** 
+(or a container or validation job in the future), depending on the pool attribute.
+By default, the lifecycle hooks will inherit the pool specified by the deployment
+job.
+
+[Descriptions of lifecycle hooks](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops#descriptions-of-lifecycle-hooks)  
+
+**preDeploy:**
+Used to run steps that initialize resources before application deployment starts.
+
+**deploy:** 
+Used to run steps that deploy your application. 
+**Download artifact task will be auto injected only in the deploy hook** 
+for deployment jobs. 
+To stop downloading artifacts, use : `- download: none` 
+or choose specific artifacts to download by specifying Download Pipeline Artifact task.
+
+**routeTraffic:** 
+Used to run steps that serve the traffic to the updated version.
+
+**postRouteTraffic:** 
+Used to run the steps after the traffic is routed. Typically, these tasks 
+monitor the health of the updated version for defined interval.
+
+**on: failure or on: success:** 
+Used to run steps for rollback actions or clean-up.
+
+
+[RunOnce deployment strategy](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops#runonce-deployment-strategy)  
+runOnce is the simplest deployment strategy wherein all the lifecycle hooks, namely: 
+
+- preDeploy 
+- deploy 
+- routeTraffic
+- postRouteTraffic
+
+are executed once. Then, either **on: success or on: failure** is executed.
+
+```
+strategy: 
+    runOnce:
+      preDeploy:        
+        pool: [ server | pool ] # See pool schema.        
+        steps:
+        - script: [ script | bash | pwsh | powershell | checkout | task | templateReference ]
+      deploy:          
+        pool: [ server | pool ] # See pool schema.        
+        steps:
+        ...
+      routeTraffic:         
+        pool: [ server | pool ]         
+        steps:
+        ...        
+      postRouteTraffic:          
+        pool: [ server | pool ]        
+        steps:
+        ...
+      on:
+        failure:         
+          pool: [ server | pool ]           
+          steps:
+          ...
+        success:          
+          pool: [ server | pool ]           
+          steps:
+          ...
+```
+
+[Rolling deployment strategy](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops#rolling-deployment-strategy)  
+
+**We currently only support the rolling strategy to VM resources.**
+
+A rolling deployment typically waits for deployments on each set of virtual machines to complete before proceeding to the next set of deployments. You could do a health check after each iteration and if a significant issue occurs, the rolling deployment can be stopped.
 
 -------------------------------------------------------------------------
 PT99-Q12: 

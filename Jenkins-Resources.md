@@ -3,6 +3,8 @@
 [Running Jenkins in Docker](https://app.pluralsight.com/library/courses/running-jenkins-docker/table-of-contents)  
 [Automating Jenkins with Groovy](https://app.pluralsight.com/library/courses/automating-jenkins-groovy/table-of-contents)  
 
+---
+
 [Jenkins + docker-compose Makes It Incredibly Easy to Run Instances Side by Side on the Same Host](https://app.pluralsight.com/course-player?clipId=8d1e075c-a831-4e54-9d98-6594e8a4ddbc)
 
 ```
@@ -271,7 +273,7 @@ docker run -p 2119:8080 -p 50000:50000
 
 ---
 
-## [Automatic Jenkins with Groovy](https://app.pluralsight.com/library/courses/jenkins-groovy-automating/table-of-contents)
+## [Automating Jenkins with Groovy](https://app.pluralsight.com/library/courses/jenkins-groovy-automating/table-of-contents)
 
 [The Groovy Console](https://app.pluralsight.com/course-player?clipId=2a284fe6-3654-45a9-aac5-7286b69d7cbd)
 [Ways to get Apache Groovy}(http://groovy-lang.org/download.html)
