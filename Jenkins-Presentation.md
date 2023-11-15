@@ -29,7 +29,24 @@ Strive to keep state outside of the container:
 
 ## TOPIC #2: Why Jenkins in Docker?
 
----
+[Using Docker with Pipeline ](https://www.jenkins.io/doc/book/pipeline/docker/)  
+
+  1. to unify their build and test environments across machines.
+ 
+  2. a user can define the tools required for their Pipeline, without having to manually configure agents.
+    Any tool that can be packaged in a Docker container can be used with ease, by making only minor edits 
+    to a Jenkinsfile.
+    
+  3. Using multiple containers thus multiple build toolsets
+    For example, a repository might have both a Java-based back-end API implementation and a 
+    JavaScript-based front-end implementation. Combining Docker and Pipeline allows a Jenkinsfile 
+    to use multiple types of technologies, by combining the agent {} directive with different stages.
+
+  It has become increasingly common for code bases to rely on multiple different technologies. 
+ 
+  4. to provide an efficient mechanism for deploying applications.
+
+
 
   1. try to run containers side to side 
   2. You want ot test a new feature that has been recently release to Jenkins and you would like to do so on your current pipeline definition.
@@ -119,6 +136,8 @@ USER jenkins
 
 ## TOPIC #3: Some basics about Docker and Docker Containers
 
+
+[Overview of the get started guide](https://docs.docker.com/get-started/)
 
 Running Jenkins in Docker
 [The Docker File System](https://app.pluralsight.com/ilx/video-courses/11cf4ce8-1747-4679-969e-83becb6fefd3/ff6d8c86-ed91-4258-b2a9-f90920a0db08/52145344-7e85-4f49-b3de-958a2c846252)    
