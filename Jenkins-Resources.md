@@ -1,3 +1,9 @@
+## General
+
+[Apache Groovy](https://groovy-lang.org/documentation.html)  
+[Jenkins on Azure documentation](https://learn.microsoft.com/en-us/azure/developer/jenkins/)  
+
+## Pluralsight
 
 [Getting Started with Jenkins](https://app.pluralsight.com/library/courses/getting-started-jenkins/table-of-contents)  
 [Running Jenkins in Docker](https://app.pluralsight.com/library/courses/running-jenkins-docker/table-of-contents)  

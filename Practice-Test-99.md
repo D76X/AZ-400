@@ -216,7 +216,112 @@ strategy:
 
 **We currently only support the rolling strategy to VM resources.**
 
-A rolling deployment typically waits for deployments on each set of virtual machines to complete before proceeding to the next set of deployments. You could do a health check after each iteration and if a significant issue occurs, the rolling deployment can be stopped.
+A rolling deployment replaces instances of the previous version of an application 
+with instances of the new version of the application on a fixed set of 
+virtual machines (rolling set) in each iteration.
+
+A rolling deployment typically waits for deployments on each set of virtual machines 
+to complete before proceeding to the next set of deployments. 
+You could do a health check after each iteration and if a significant issue occurs,
+the rolling deployment can be stopped.
+
+With **maxParallel**: 
+<# or % of VMs>, you can control the **number / percentage** of virtual machine 
+targets to deploy to in parallel. This ensures that the app is running on these 
+machines and is capable of handling requests while the deployment is taking place 
+on the rest of the machines, which **reduces overall downtime**.
+
+All the lifecycle hooks are supported and lifecycle hook jobs are created to run 
+on each VM.
+
+ - preDeploy 
+ - deploy
+ - routeTraffic 
+ - postRouteTraffic 
+ 
+ are executed **once per batch size defined by maxParallel**. 
+ Then, either on: success or on: failure is executed.
+
+```
+strategy:
+  rolling:
+    maxParallel: [ number or percentage as x% ]
+    preDeploy:        
+      steps:
+      - script: [ script | bash | pwsh | powershell | checkout | task | templateReference ]
+    deploy:          
+      steps:
+      ...
+    routeTraffic:         
+      steps:
+      ...        
+    postRouteTraffic:          
+      steps:
+      ...
+    on:
+      failure:         
+        steps:
+        ...
+      success:          
+        steps:
+        ...
+```
+
+Note:
+There are a few known gaps in this feature. For example, when you retry 
+a stage, it will re-run the deployment on all VMs not just failed targets.
+
+
+[Canary deployment strategy](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-jobs?view=azure-devops#canary-deployment-strategy)  
+
+It helps **mitigate the risk involved in rolling out new versions of applications by**
+**rolling out the changes to a small subset of servers first**.
+ As you gain more confidence in the new version, you can release it to more
+ servers in your infrastructure **and route more traffic to it**.
+
+Canary deployment strategy supports the 
+- preDeploy lifecycle hook : executed once 
+
+and **iterates with** the lifecycle hooks:
+
+- deploy
+- routeTraffic 
+- postRouteTraffic 
+
+It then exits with either the success or failure hook.
+
+```
+strategy: 
+    canary:
+      increments: [ number ]
+      preDeploy:        
+        pool: [ server | pool ] # See pool schema.        
+        steps:
+        - script: [ script | bash | pwsh | powershell | checkout | task | templateReference ]
+      deploy:          
+        pool: [ server | pool ] # See pool schema.        
+        steps:
+        ...
+      routeTraffic:         
+        pool: [ server | pool ]         
+        steps:
+        ...        
+      postRouteTraffic:          
+        pool: [ server | pool ]        
+        steps:
+        ...
+      on:
+        failure:         
+          pool: [ server | pool ]           
+          steps:
+          ...
+        success:          
+          pool: [ server | pool ]           
+          steps:
+          ...
+```
+
+
 
 -------------------------------------------------------------------------
 PT99-Q12: 

@@ -96,12 +96,16 @@ cd ../secrets
 cat initialAdminPassword
 ```
 
-### Install tolls on a Docker Image.
+### Install tools on a Docker Image.
 
+## Install .Net SDK on a Linux Distribution Docker Image.
 
 - [adding .net core to docker container with Jenkins](https://stackoverflow.com/questions/48104954/adding-net-core-to-docker-container-with-jenkins)  
 
-In the following script we have replaced `dotnet-sdk-2.0.0` with `dotnet-sdk-6.0.0`.
+In the following script we have replaced `dotnet-sdk-2.0.0` with `dotnet-sdk-6.0.0` in order to install
+**.NET 6.0**. This can be updated to install any future version of .Net SDK.
+The .Net installed on the **Jenkins Controller Node** as well as any **Agen Node** that may be used
+to build **.Net** source code.
 
 ```
 FROM jenkins/jenkins:lts
@@ -130,7 +134,113 @@ RUN apt-get install -y dotnet-sdk-6.0.0 && \
 USER jenkins
 ```
 
+The `uname -a && cat /etc/*release` which is embedded in this exerpt of Dockerfile can be used
+in the **Exec** pane of **Docker Client** or terminal to verify the Linux Distribution the 
+image is based on. 
+The image used as **Jenkins Controller** is **jenkins/jenkins:lts** and the following is the 
+ output the Developer machine. It is easy to see that it is a **Debian** distribution for **WSL2**.
+
+```
+Linux daf6fd2fe971 5.10.102.1-microsoft-standard-WSL2 #1 SMP Wed Mar 2 00:30:59 UTC 2022 x86_64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+$
+```
 ---
+
+### Jenkins Plugis that must be installed
+
+[Dashboard > Manage Jenkins > Plugins](http://localhost:8081/manage/pluginManager/)  
+
+On the **Jenkins Controller Node** or an **Jenkins Agent Node** the following **Jenkins Plugins**
+mat need to be installed.
+
+1. [.NET SDK Support](https://plugins.jenkins.io/dotnet-sdk/)
+
+This is required to...
+
+
+2. [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
+
+This is required to...
+
+---
+
+### Installing Docker on the machine of a Jenkins node
+
+[Downloading and running Jenkins in Docker](https://www.jenkins.io/doc/book/installing/docker/#downloading-and-running-jenkins-in-docker)    
+
+Use the recommended officialimage from the Docker Hub repository: 
+
+- [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins) 
+- [Official Jenkins Docker image - GitHub](https://github.com/jenkinsci/docker/blob/master/README.md)  
+
+This image contains the current Long-Term Support (LTS) release of Jenkins, 
+which is production-ready. However, this image **doesn’t contain Docker CLI**, 
+and is not bundled with the frequently used Blue Ocean plugins and its features. 
+To use the full power of Jenkins and Docker, you may want to go through the 
+installation process described below.
+
+[On macOS and Linux](https://www.jenkins.io/doc/book/installing/docker/#on-windows)  
+...
+
+[On Windows](https://www.jenkins.io/doc/book/installing/docker/#on-windows)  
+
+The Jenkins project provides a Linux container image, not a Windows container image.
+Be sure that your Docker for Windows installation is configured to run Linux Containers 
+rather than Windows Containers. 
+
+Refer to the Docker documentation for instructions to switch to Linux containers.
+https://docs.docker.com/desktop/get-started/#switch-between-windows-and-linux-containers 
+
+Once configured to run Linux Containers, the steps are:
+
+1. Create a bridge network in Docker
+In a terminal: `docker network create jenkins`
+
+2. Run a docker:dind Docker image
+In a Cmd Terminal (BASH):
+
+```
+docker run --name jenkins-docker --rm --detach ^
+  --privileged --network jenkins --network-alias docker ^
+  --env DOCKER_TLS_CERTDIR=/certs ^
+  --volume jenkins-docker-certs:/certs/client ^
+  --volume jenkins-data:/var/jenkins_home ^
+  --publish 2376:2376 ^
+  docker:dind
+```
+
+3. Build a new docker image from this Dockerfile and assign the image a meaningful name, e.g. "myjenkins-blueocean:2.426.1-1":
+`docker build -t myjenkins-blueocean:2.426.1-1 .`
+
+If you have not yet downloaded the official Jenkins Docker image, the above process automatically downloads it for you.
+
+4. Run your own myjenkins-blueocean:2.426.1-1 image as a container in Docker using the following docker run command:
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach ^
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 ^
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 ^
+  --volume jenkins-data:/var/jenkins_home ^
+  --volume jenkins-docker-certs:/certs/client:ro ^
+  --publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1
+```
+
+---
+
+# Docker in Dockler
+
+[Docker in Docker](https://hub.docker.com/_/docker)  
+[~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)  
+[docker run docker (redux)](https://asciinema.org/a/378669)  
 
 ---
 
