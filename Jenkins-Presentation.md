@@ -46,7 +46,14 @@ Strive to keep state outside of the container:
  
   4. to provide an efficient mechanism for deploying applications.
 
+# 2.[Customizing the execution environment](https://www.jenkins.io/doc/book/pipeline/docker/#execution-environment)
 
+The Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline. 
+Users can define the tools required for their Pipeline, without having to manually configure agents. 
+Any tool that can be packaged in a Docker container can be used with ease, by making only minor edits to a Jenkinsfile.
+When the Pipeline executes, Jenkins will automatically start the specified container and execute the defined steps within.
+
+---
 
   1. try to run containers side to side 
   2. You want ot test a new feature that has been recently release to Jenkins and you would like to do so on your current pipeline definition.
@@ -264,3 +271,245 @@ Running Jenkins in Docker
 
 
 ---
+
+# The Problem of Connecting a Docker Agent to a Docker Controller
+
+
+[Running Jenkins Controller locally with Docker](https://benmatselby.dev/post/jenkins-basics/)  
+[Running Jenkins Agent locally with Docker](https://benmatselby.dev/post/jenkins-basic-agent/)  
+[jenkins/inbound-agent](https://hub.docker.com/r/jenkins/inbound-agent)
+
+### Docker Network
+
+[https://stackoverflow.com/questions/43904562/docker-how-to-find-the-network-my-container-is-in](https://stackoverflow.com/questions/43904562/docker-how-to-find-the-network-my-container-is-in)  
+[https://maximorlov.com/4-reasons-why-your-docker-containers-cant-talk-to-each-other/#do-the-containers-share-a-network](https://maximorlov.com/4-reasons-why-your-docker-containers-cant-talk-to-each-other/)  
+
+```
+ docker inspect jenkins-blueocean -f "{{json .NetworkSettings.Networks }}"
+
+ docker inspect -f '{{range $key, $value := .NetworkSettings.Networks}}{{$key}} {{end}}' jenkins-blueocean
+```
+
+```
+ docker run --rm `
+ -eJENKINS_SECRET=58731f8abec31462273b3db8ccd13a54fb9fb61cb4350fa97aaa0eb42826c551 `
+ -eJENKINS_URL=http://jenkins-blueocean:8082 `
+ -eJENKINS_AGENT_NAME=agent1 `
+ --network jenkins `
+ --init `
+ -it `
+ jenkins/inbound-agent
+
+  docker run --rm `
+ -eJENKINS_SECRET=58731f8abec31462273b3db8ccd13a54fb9fb61cb4350fa97aaa0eb42826c551 `
+ -eJENKINS_URL=http://jenkins-blueocean:8082 `
+ -eJENKINS_AGENT_NAME=agent1 `
+ -eJENKINS_WEB_SOCKET=true `
+  --init `
+ jenkins/inbound-agent
+```
+
+```
+ docker run --rm `
+ -eJENKINS_SECRET=58731f8abec31462273b3db8ccd13a54fb9fb61cb4350fa97aaa0eb42826c551 `
+ -eJENKINS_URL=http://jenkins-blueocean:8082 `
+ -eJENKINS_AGENT_NAME=agent1 `
+ -eTESTCONTAINERS_HOST_OVERRIDE=host.docker.internal `
+ --network jenkins `
+ --init `
+ -it `
+ jenkins/inbound-agent
+```
+
+```
+ docker run --rm `
+ -eJENKINS_SECRET=58731f8abec31462273b3db8ccd13a54fb9fb61cb4350fa97aaa0eb42826c551 `
+ -eJENKINS_URL=http://host.docker.internal:8082 `
+ -eJENKINS_AGENT_NAME=agent1 ` 
+ --network jenkins `
+ --init `
+ -it `
+ jenkins/inbound-agent
+```
+
+# Tests
+
+```
+docker run --init jenkins/inbound-agent -url http://127.0.0.1:8081 97bf15d8d02f8f6a7f932669f9c8defabe1a3cbc9b38b07c00e0c02aebd6d243 agent1
+docker run --init jenkins/inbound-agent -url http://localhost:8082 58731f8abec31462273b3db8ccd13a54fb9fb61cb4350fa97aaa0eb42826c551 agent1
+```
+
+#Refs:
+
+[Dedicated agents are not able to connect](https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-controllers/how-to-troubleshoot-jnlp-agents-connection-issues-with-jenkins)  
+[Dedicated agents are not able to connect](https://stackoverflow.com/questions/67196036/how-to-find-jenkins-version-through-cli-command-is-there-any-command-like-java)  
+
+Starting in Jenkins core 2.217 the WebSocket feature landed in Jenkins.
+This improvement provides WebSocket transport agent support to Jenkins, available when 
+connecting inbound agents or when running the CLI. 
+The WebSocket protocol allows bidirectional, streaming communication over an HTTP(S) port.
+Since CloudBees Core 2.222.1.1 you can use WebSocket transport to connect inbound agents, 
+and this works as well for shared agents / clouds. 
+Just select the WebSocket checkbox in agent / cloud configuration. 
+No special network configuration is needed, since the regular HTTP(S) port proxied by 
+the CloudBees CI ingress is used for all communications.
+ 
+```
+jenkins-blueocean
+$  java -jar /usr/share/jenkins/jenkins.war --version
+2.426.1
+
+jenkins/jenkins:lts
+$  java -jar /usr/share/jenkins/jenkins.war --version
+2.414.3
+```
+
+---
+
+# https://docs.cloudbees.com/docs/cloudbees-ci-kb/latest/client-and-managed-controllers/how-to-troubleshoot-jnlp-agents-connection-issues-with-jenkins
+# https://devopscube.com/docker-containers-as-build-slaves-jenkins/
+
+
+# https://serverfault.com/questions/1054310/how-to-fix-error-while-connecting-to-jenkins-windows-slaves
+# https://stackoverflow.com/questions/65655733/failed-to-connect-to-http-localhost8080-tcpslaveagentlistener-connection-re  
+# https://github.com/jenkinsci/docker-inbound-agent/issues/146  
+# https://serverfault.com/questions/1114513/jenkins-agent-is-not-honoring-hudson-tcpslaveagentlistener-hostname 
+# https://community.jenkins.io/t/unable-to-start-inbound-agent-on-windows-server/2251/6
+
+---
+
+### Jenkins Master
+
+[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)   
+[Install Docker Desktop on Linux](https://docs.docker.com/desktop/install/linux-install/)  
+[What is the difference between Docker Desktop for Linux and Docker Engine?](https://docs.docker.com/desktop/faqs/linuxfaqs/#what-is-the-difference-between-docker-desktop-for-linux-and-docker-engine)   
+
+http://52.178.43.220:8080/
+
+```
+uname -a && cat /etc/*release
+
+Linux jenkins-get-started-vm 6.2.0-1015-azure #15~22.04.1-Ubuntu SMP Fri Oct  6 13:20:44 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=22.04
+DISTRIB_CODENAME=jammy
+DISTRIB_DESCRIPTION="Ubuntu 22.04.3 LTS"
+PRETTY_NAME="Ubuntu 22.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.3 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+```
+
+```
+sudo apt update
+sudo apt install docker.io -y << DO NOT USE THIS!
+```
+
+[Docker Installation Methods on Ubuntu](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
+[docker ls](https://docs.docker.com/engine/reference/commandline/container_ls/)
+[docker rm](https://docs.docker.com/engine/reference/commandline/rm/)
+
+```
+sudo docker run hello-world
+sudo docker container ls --all
+sudo docker rm --force 86df7e87c987 
+sudo service docker status
+```
+
+[Configure remote access for Docker daemon](https://docs.docker.com/config/daemon/remote-access/)
+
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://127.0.0.1:2375
+
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock
+```
+
+---
+
+[systemctl edit failed (canceled: temporary file is empty) #24208](https://github.com/systemd/systemd/issues/24208)  
+
+```
+### Editing /etc/systemd/system/docker.service.d/override.conf
+### Anything between here and the comment below will become the new contents of the file
+
+************* YOU MUST PLACE THE EXCERPT ABOVE HERE !!!!! ***************
+
+
+### Lines below this comment will be discarded
+
+### /lib/systemd/system/docker.service
+# [Unit]
+# Description=Docker Application Container Engine
+# Documentation=https://docs.docker.com
+# After=network-online.target docker.socket firewalld.service containerd.service time-set.target
+# Wants=network-online.target containerd.service
+# Requires=docker.socket
+# 
+# [Service]
+# Type=notify
+# # the default is not to use systemd for cgroups because the delegate issues still
+# # exists and systemd currently does not support the cgroup feature set required
+# # for containers run by docker
+# ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+# ExecReload=/bin/kill -s HUP $MAINPID
+# TimeoutStartSec=0
+```
+
+```
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+
+sudo apt update
+sudo apt install net-tools
+sudo netstat -lntp | grep dockerd
+```
+
+### Verify 1
+
+```
+tcp6       0      0 :::4243                 :::*                    LISTEN      5661/dockerd 
+```
+
+### Verify 2
+
+```
+curl http://localhost:4243/version
+
+{"Platform":{"Name":"Docker Engine - Community"},"Components":[{"Name":"Engine","Version":"24.0.7","Details":{"ApiVersion":"1.43","Arch":"amd64","BuildTime":"2023-10-26T09:07:41.000000000+00:00","Experimental":"false","GitCommit":"311b9ff","GoVersion":"go1.20.10","KernelVersion":"6.2.0-1016-azure","MinAPIVersion":"1.12","Os":"linux"}},{"Name":"containerd","Version":"1.6.25","Details":{"GitCommit":"d8f198a4ed8892c764191ef7b3b06d8a2eeb5c7f"}},{"Name":"runc","Version":"1.1.10","Details":{"GitCommit":"v1.1.10-0-g18a0cb0"}},{"Name":"docker-init","Version":"0.19.0","Details":{"GitCommit":"de40ad0"}}],"Version":"24.0.7","ApiVersion":"1.43","MinAPIVersion":"1.12","GitCommit":"311b9ff","GoVersion":"go1.20.10","Os":"linux","Arch":"amd64","KernelVersion":"6.2.0-1016-azure","BuildTime":"2023-10-26T09:07:41.000000000+00:00"}
+```
+---
+
+[Linux Ping Command Tutorial with Examples](https://phoenixnap.com/kb/linux-ping-command-examples)
+
+```
+sudo ping -c 3 jenkins-docker-host
+```
+
+[How to Fix the “java command not found” in Linux?](https://itslinuxfoss.com/how-to-fix-the-java-command-not-found-in-linux/?utm_content=cmp-true)  
+
+---
+
+[How to Setup Jenkins Agent Using SSH [Password & SSH Key]](https://devopscube.com/setup-slaves-on-jenkins-2/)
+[Become root user on Linux servers in Azure](https://mohitgoyal.co/2017/08/21/become-root-user-on-linux-servers-in-azure/)
+
+```
+ssh admin20231020@172.201.121.242
+```
+
+
+script.sh: docker: not found #962
+https://github.com/jenkinsci/docker/issues/962 
+
+
