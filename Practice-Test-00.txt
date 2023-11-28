@@ -65,27 +65,123 @@ CORRECT ANSWER TO PT0X-Q0X
 --------------------------------------------------------------------------
 
 -------------------------------------------------------------------------
-PT00-Q01: 
+PT00-Q02: 
 
-You are configuring project metrics for dashboards in Azure DevOps.
-You need to configure a chart widget that measures the elapsed time to 
-complete work items once they become active.
 
-Which of the following is the widget you should use?
-
-A. Cumulative Flow Diagram
-B. Burnup
-C. Cycle time
-D. Burndown
 
 MY ANSWER:
 --------------------------------------------------------------------------
-A00-1: Build
+
 --------------------------------------------------------------------------
 
 CORRECT ANSWER:
 --------------------------------------------------------------------------
-A00-1: Build
+
+--------------------------------------------------------------------------
+
+REFS:
+
+
+-------------------------------------------------------------------------
+PT00-Q01: 
+
+*********************
+Complete Case Study
+*********************
+
+----------
+Overview:
+----------
+
+Company 2  is a software company that creates a new project in Azure DevOps.
+A new development team has been assembled for this new project and the 
+project code will be hosted on a Git Repo in Azure Repo.
+You have been hired as a consultant to create this repository and to Implement
+their code flow on the team structure and company policies.
+
+-------------------
+Development Team:
+-------------------
+
+- 2 tech leands who are responsible for reviewing application code in all the development stages.
+- 10 developers who are responsible for implementing new features and reviewing pull requests.
+- 2 QA analysts who are responsible for dealing with quality requirements and maintaining the automatic test cases.
+- 1 infrastructure analyst who is responsible for deploying new application versions. 
+
+Each role has a  corresponding Azure DevOps Group to manage permission.
+All of the permissions are attached to the group and not to individual users.
+
+-------------------
+Requirements:
+-------------------
+
+R1:
+Every code change in the main branch must be auditable and these will require 
+a user story association and a review from a teach leader
+
+R2:
+Developers must include new code by using a pull request without breaking the test cases.
+
+R3:
+The developr's machine must access the code repository from command line tools
+without using passwords.
+
+R4:
+Test cases must be executed on every pull request.
+
+R5:
+The commit history should be linear, should maintain every developer commit and
+should not contain merge commits on the main branch.
+
+R6:
+To merge a PR on the main branch, all test must pass.
+If the tests are failing QA and Tech Lead can bypass the checks and complete 
+the merge as-is.
+
+R7:
+The infrastucture analyst should be able to publish tags for commits in the 
+main branch using a command line script.
+
+R8:
+New features must be developed in isolation with production code.
+
+R9:
+Deployment to production environment must originate from the main branch only.
+
+------------
+Question 1
+------------
+You need to create the main branch according to the company policies.
+A pipeline needs to be configured along with the main branch.
+
+Which 4 actions should you perform in sequence?
+
+All the available actions:
+
+-Create a fork                                  (NA)
+-Create a repository                             01     
+-Create a build pipeline
+-Enable the continuos integration trigger.
+-Create a main branch.                           02
+-Clone the repository.                          (NA)
+-Add branch permission
+
+MY ANSWER:
+--------------------------------------------------------------------------
+This is a new project therefore there is no existing codebase.
+This rules out the following:
+-Create a fork
+-Clone the repository.
+
+The you must create the repo and the main branch with it.
+-Create a repository 
+-Create a main branch.
+
+--------------------------------------------------------------------------
+
+CORRECT ANSWER:
+--------------------------------------------------------------------------
+
 --------------------------------------------------------------------------
 
 REFS:
