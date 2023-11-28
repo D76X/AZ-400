@@ -160,31 +160,191 @@ All the available actions:
 
 -Create a fork                                  (NA)
 -Create a repository                             01     
--Create a build pipeline
+-Create a build pipeline                         04
 -Enable the continuos integration trigger.
 -Create a main branch.                           02
 -Clone the repository.                          (NA)
--Add branch permission
+-Add branch permission                           03
 
 MY ANSWER:
 --------------------------------------------------------------------------
 This is a new project therefore there is no existing codebase.
 This rules out the following:
--Create a fork
--Clone the repository.
+- Create a fork
+- Clone the repository.
 
-The you must create the repo and the main branch with it.
--Create a repository 
--Create a main branch.
+STEP1: 
+you must create the repo and the main branch with it.
+- Create a repository    
+
+STEP1: 
+- Create a main branch.
+
+STEP3:
+- Add branch permission
+
+The requirement for STEP3
+
+R1:
+Every code change in the main branch must be auditable.
+Every code change requires a user story association.
+Every code change requires a review from a teach leader.
+
+R2:
+Developers must include new code by using a pull request without breaking the test cases.
+
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-permissions?view=azure-devops
+    Add users or groups
+    Set permissions > 
+        Bypass policies when completing pull requests > R6
+
+- About pull requests > Permissions and prerequisites
+https://learn.microsoft.com/en-us/azure/devops/repos/git/about-pull-requests?view=azure-devops#permissions-and-prerequisites
+
+The Developers:
+To contribute to a PR, you must be a member of the **Readers** security group
+or have the corresponding permissions.
+
+The tech leads:
+To create and complete a PR, you must be a member of the **Contributors** 
+security group or have the corresponding permissions.
+
+----------------------------------
+Branch policies and pull requests
+https://learn.microsoft.com/en-us/azure/devops/repos/git/about-pull-requests?view=azure-devops#branch-policies-and-pull-requests 
+
+Branch policies and settings
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser
+----------------------------------
+You can set branch policies to require PRs for any changes on these protected branches
+and reject any changes pushed directly to the branches.
+Extra requirements like a clean build of the proposed code or approval from multiple 
+reviewers can help protect key branches.
+
+To set branch policies, you must be a member of the **Project Administrators security group**.
+Require a minimum number of reviewers.
+
+The available policies:
+---------------------------------------
+Require a minimum number of reviewers
+Check for linked work items                 < R1: must have a user story association.
+Check for comment resolution
+Limit merge types                           < R5: linear history, no rebase, no merge commits.
+Add Build Validation policies               < R2+R4: PR must build and tests pass.
+Add Status Check policies
+Automatically included reviewers            < R1: one reviewer must be a tech leader
+---------------------------------------
 
 --------------------------------------------------------------------------
 
 CORRECT ANSWER:
 --------------------------------------------------------------------------
+-Create a repository                             01     
+-Create a main branch.                           02
+-Add branch permission                           03
+-Create a build pipeline                         04
+--------------------------------------------------------------------------
 
 --------------------------------------------------------------------------
 
-REFS:
+------------
+Question 2
+------------
+
+After creating the repository, the tech leads report that one of the developers
+pushed new code directly to the main branch before it had been reviewed.
+You need to ensure that only changes from reviewed PRs are added to the main branch.
+
+Which 2 actions should you perform?
+
+- Add the Tech Lead Group as automatic reviewers.               R1*?
+- Lock the main branch.                                         NA
+- Change the branch permission in the main branch.              NA    
+- Add a Require minimum fo reviewers policy.                    ?
+- Add a build validation policy.                                !
+
+
+Which of the options would not apply?
+
+--------------
+Lock a branch
+https://learn.microsoft.com/en-us/azure/devops/repos/git/lock-branches?view=azure-devops
+--------------
+Prevent updates to a Git branch by locking the branch. 
+Locking a branch prevents other users from changing the existing commit history. 
+Locking also blocks any new commits from being added to the branch by others.
+
+> When would you use a Branch Lock?
+Locking is ideal for 
+1-preventing new changes that might conflict with an important merge.
+2-to place a branch into a read-only state i.e. a released version branch.
+
+> Limitations
+Locking does not prevent cloning of a repo or fetching updates made in the branch
+into your local repo.
+
+--------------
+Change the branch permission in the main branch.
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-permissions?view=azure-devops
+--------------
+This would clearly not solve the problem at hand.
+
+-----------------------------------------------------------------------------
+
+CORRECT ANSWER:
+--------------------------------------------------------------------------
+
+You should perform the following two actions:
+---------------------------------------------------
+- Add a build validation policy.  
+- Add the Tech Lead Group as automatic reviewers.  
+---------------------------------------------------
+
+Explanation:
+
+You should add a build validation policy to ensure that only changes from a 
+review PR are added to the main branch.
+-------------------------------------
+Branch policies and settings
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser
+A branch that has required policies configured 
+- can't be deleted 
+- requires pull requests (PRs) for all changes.
+-------------------------------------
+
+This will prevent any developer from committing any code directly to the branch
+which is one of the problems that the Tech Laeds have task you to solve.
+
+You should also add the Tech Lead Group as automatic reviewers.  
+This is part of the requirement R1. 
+The requirement says "a review from a Tech Leader".
+However, I think that this detail was not consider in this Q&A. 
+
+--------------------------------------
+Automatically include code reviewers
+https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#automatically-include-code-reviewers
+--------------------------------------
+You can automatically add reviewers to pull requests that change files in 
+specific directories and files, or to all pull requests in a repo.
+
+--------------------------------------------------------------------------
+
+Notes:
+
+*R1:
+As the Tech Lead Group holds 2 reviewers in this Case Study this would add one 
+extra review for a total of 2, which is not STRIKTLY a requirement in this case.
+
+This makes the following option possible:
+
+Add a Require minimum fo reviewers policy.            > require 1 minimum from the Security Group Tech Lead
+in place of 
+Add the Tech Lead Group as automatic reviewers
+
+However, as noted the solution to the test seems to indicate that this 
+requirement has not been interpreted to striktly.
+
+
 
 
 --------------------------------------------------------------------------
