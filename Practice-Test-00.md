@@ -83,15 +83,11 @@ REFS:
 
 
 -------------------------------------------------------------------------
-PT00-Q01: 
+## PT00-Q01: 
 
-*********************
-Complete Case Study
-*********************
+### Complete Case Study
 
-----------
-Overview:
-----------
+#### Overview:
 
 Company 2  is a software company that creates a new project in Azure DevOps.
 A new development team has been assembled for this new project and the 
@@ -99,9 +95,9 @@ project code will be hosted on a Git Repo in Azure Repo.
 You have been hired as a consultant to create this repository and to Implement
 their code flow on the team structure and company policies.
 
--------------------
-Development Team:
--------------------
+---
+
+#### Development Team:
 
 - 2 tech leands who are responsible for reviewing application code in all the development stages.
 - 10 developers who are responsible for implementing new features and reviewing pull requests.
@@ -111,32 +107,27 @@ Development Team:
 Each role has a  corresponding Azure DevOps Group to manage permission.
 All of the permissions are attached to the group and not to individual users.
 
--------------------
-Requirements:
--------------------
+---
 
-R1:
-Every code change in the main branch must be auditable and these will require 
-a user story association and a review from a teach leader
+#### Requirements:
 
-R2:
-Developers must include new code by using a pull request without breaking the test cases.
+1.  Every code change in the main branch must be auditable and these will require 
+    a user story association and a review from a teach leader.
 
-R3:
-The developr's machine must access the code repository from command line tools
-without using passwords.
+2.  Developers must include new code by using a pull request without breaking the
+    test cases.
 
-R4:
-Test cases must be executed on every pull request.
+3.  The developr's machine must access the code repository from command line tools
+    without using passwords.
 
-R5:
-The commit history should be linear, should maintain every developer commit and
-should not contain merge commits on the main branch.
+4.  Test cases must be executed on every pull request.
 
-R6:
-To merge a PR on the main branch, all test must pass.
-If the tests are failing QA and Tech Lead can bypass the checks and complete 
-the merge as-is.
+5.  The commit history should be linear, should maintain every developer commit and
+    should not contain merge commits on the main branch.
+
+6.  To merge a PR on the main branch, all test must pass. 
+    If the tests are failing QA and Tech Lead can bypass the checks and complete the 
+    merge as-is.
 
 R7:
 The infrastucture analyst should be able to publish tags for commits in the 
@@ -158,13 +149,37 @@ Which 4 actions should you perform in sequence?
 
 All the available actions:
 
--Create a fork                                  (NA)
--Create a repository                             01     
--Create a build pipeline                         04
--Enable the continuos integration trigger.
--Create a main branch.                           02
--Clone the repository.                          (NA)
--Add branch permission                           03
+- Create a fork                                   NA
+- Create a repository                             01     
+- Create a build pipeline                         
+- Enable the continuos integration trigger.
+- Create a main branch.                           02
+- Clone the repository.                           NA
+- Add branch permission                           
+
+
+CORRECT ANSWER:
+--------------------------------------------------------------------------
+1. Create a repository                                  
+2. Create a main branch.                           
+3. Create a build pipeline                         
+4. Enable the continuos integration trigger        
+
+--------------------------------------------------------------------------
+EXPLANATION:
+
+Create a new Git Repo in Azure Repo.
+A new Git Repo does not conyain any branches therefore create the main branch
+to meet the requirement R1.
+The main branch is defined as the first branch which is made when the Git Repo
+is initialized using the git init command.
+
+--------------------------------------------------------------------------
+RESF:
+
+
+--------------------------------------------------------------------------
+
 
 MY ANSWER:
 --------------------------------------------------------------------------
@@ -173,14 +188,11 @@ This rules out the following:
 - Create a fork
 - Clone the repository.
 
-STEP1: 
-you must create the repo and the main branch with it.
-- Create a repository    
+STEP1: you must create the repo.
+STEP2: create a main branch.
+STEP3: create the build pipeline.
+STEP4: enable CI trigger.
 
-STEP1: 
-- Create a main branch.
-
-STEP3:
 - Add branch permission
 
 The requirement for STEP3
@@ -237,15 +249,6 @@ Automatically included reviewers            < R1: one reviewer must be a tech le
 
 --------------------------------------------------------------------------
 
-CORRECT ANSWER:
---------------------------------------------------------------------------
--Create a repository                             01     
--Create a main branch.                           02
--Add branch permission                           03
--Create a build pipeline                         04
---------------------------------------------------------------------------
-
---------------------------------------------------------------------------
 
 ------------
 Question 2
@@ -344,7 +347,19 @@ Add the Tech Lead Group as automatic reviewers
 However, as noted the solution to the test seems to indicate that this 
 requirement has not been interpreted to striktly.
 
+--------------------------------------------------------------------------
 
+------------
+Question 3
+------------
 
+You need to configure a policy for the main branch to ensure the desired
+commit history.
+Which merge type should you use for the main branch?
+
+- Rebase and fast-forward
+- Rebase with merge commit
+- Squash merge
+- Basic merge (no- fast-forward)
 
 --------------------------------------------------------------------------
