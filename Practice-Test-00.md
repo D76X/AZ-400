@@ -245,6 +245,23 @@ To set branch policies, you must be a member of the **Project Administrators sec
  - [Check for comment resolution](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#check-for-comment-resolution)  
  - [Add Status Check policies](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#status-checks)  
 
+ #### Imnportant Note
+
+ The two policies below are related.
+
+- Require a minimum number of reviewers
+- Automatically included reviewers
+
+[Why can't I complete my own pull requests when "Allow requestors to approve their own changes is set"?](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#why-cant-i-complete-my-own-pull-requests-when-allow-requestors-to-approve-their-own-changes-is-set)
+```
+Both the Require a minimum number of reviewers policy and the Automatically included reviewers policy have options to Allow requestors to approve their own changes. In each policy, the setting applies only to that policy. The setting doesn't affect the other policy.
+```
+
+In other words, if a reviewer is in the set of **Automatically included reviewers** and is also the 
+requestor than when they perform the review they satisfy this specific policy if for this policy the 
+**Allow requestors to approve their own changes** is set. However, the other policy **Require a minimum number of reviewers** may remain not fulfilled when its **Allow requestors to approve their own changes** 
+is NOT enabled. This casues the PR to fail its policies checks!
+
 ---
 
 #### [Bypass Branch Policies](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#bypass-branch-policies)  
