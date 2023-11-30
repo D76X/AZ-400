@@ -380,15 +380,6 @@ minimum nuber of reviewers set to 1 in order to fulfill the requirements for
  This makes the **Add the Tech Lead Group as automatic reviewers** the correct option 
  for this questyion instead of **Add a Require minimum fo reviewers policy**. 
 
-
---------------------------------------
-Automatically include code reviewers
-https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#automatically-include-code-reviewers
---------------------------------------
-You can automatically add reviewers to pull requests that change files in 
-specific directories and files, or to all pull requests in a repo.
-
-
 ---
 
 ### Which of the options would not apply?
@@ -414,28 +405,13 @@ into your local repo.
 
 This would clearly not solve the problem at hand.
 
----
+```
+Set up permissions to control who can read and update the code in a branch on your Git repo. You can set permissions for individual users and groups, and inherit and override permissions as needed from your repo permissions.
+```
 
-Notes:
+----
 
-*R1:
-As the Tech Lead Group holds 2 reviewers in this Case Study this would add one 
-extra review for a total of 2, which is not STRIKTLY a requirement in this case.
-
-This makes the following option possible:
-
-Add a Require minimum fo reviewers policy.            > require 1 minimum from the Security Group Tech Lead
-in place of 
-Add the Tech Lead Group as automatic reviewers
-
-However, as noted the solution to the test seems to indicate that this 
-requirement has not been interpreted to striktly.
-
---------------------------------------------------------------------------
-
-------------
-Question 3
-------------
+### Question 3
 
 You need to configure a policy for the main branch to ensure the desired
 commit history.
@@ -446,4 +422,95 @@ Which merge type should you use for the main branch?
 - Squash merge
 - Basic merge (no- fast-forward)
 
---------------------------------------------------------------------------
+---
+
+### From the requiremnts for this Case Study
+
+The commit history should
+
+ - be linear
+ - maintain every develop commit
+ - not contain merge commits on the main branch
+
+These 3 requirements may be used to rul out some of the available options.
+
+> The commit history should be linear
+This rules out the options **Basic merge (no- fast-forward)** because with this type of 
+merge strategy the history is never linear, instead the commit history on each feature 
+branch is preserved.
+
+> The commit history should maintain every develop commit
+This rules out the options **Squash merge** because it compresses all the commits merged
+in from a feature branch into a single commit on the main branch.
+
+> The commit history should not contain merge commits on the main branch
+This rules out the option **Rebase with merge commit**, obviously.
+
+---
+
+### Correct Answer
+
+Rebase and fast-forward
+
+---
+
+### Explanation
+
+**Rebase and fast-forward** creates a linear history by replaying the source branch
+commits to the target without a merge commit.
+
+**Squash merge** creates a linear history but it lasio condenses the source branch 
+commits into a single new cvommit on the target branch, therefore all teh commits 
+on the development branch are lost.
+
+**Rebase with merge commit** create a **semi-linear** history. It replays the commits
+from the source branch onto the target branch but it also add a merge commit.
+
+---
+
+### Question 4
+
+You need to give developrs access to code repositories.
+Which authentication method should you implement?
+
+- HTTPS credentials
+- SSH keys
+- GitHub OAuth tokens
+- Azure Active Directory (Azure AD) credentials
+
+---
+
+#### Relevant Requirements:
+
+3.  The developr's machine must access the code repository from command line tools
+    without using passwords.
+
+7.  The infrastucture analyst should be able to publish tags for commits in the 
+    main branch using a command line script.
+
+**Requirement 3** rules out all the options that are **passowrd based**.
+
+
+---
+
+### Correct Answer
+
+SSH keys
+
+---
+
+### Explanation
+
+You should use **SSH keys (Secure Shell Keys)** beacsue these do not require any passowrd and can be used by command line tools. 
+
+A **SSH Public Key** can be associated with your Azure DevOps account and use a **Private SSH Cerificate** that generated this public key as the authentication method to connect to
+git repositories. In other words the **Private SSH Cerificate** will be installed on the developer machine and will be used by the command line tools to authenticate to the 
+Git Repo on Azure Repo. 
+
+---
+
+### References
+
+[Authentication overview](https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops)  
+
+---
