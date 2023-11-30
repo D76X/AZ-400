@@ -329,68 +329,57 @@ You need to ensure that only changes from reviewed PRs are added to the main bra
 
 Which 2 actions should you perform?
 
+- Add a Require minimum fo reviewers policy.                    ?
+- Change the branch permission in the main branch.              NA    
 - Add the Tech Lead Group as automatic reviewers.               R1*?
 - Lock the main branch.                                         NA
-- Change the branch permission in the main branch.              NA    
-- Add a Require minimum fo reviewers policy.                    ?
 - Add a build validation policy.                                !
 
+---
 
-Which of the options would not apply?
-
---------------
-Lock a branch
-https://learn.microsoft.com/en-us/azure/devops/repos/git/lock-branches?view=azure-devops
---------------
-Prevent updates to a Git branch by locking the branch. 
-Locking a branch prevents other users from changing the existing commit history. 
-Locking also blocks any new commits from being added to the branch by others.
-
-> When would you use a Branch Lock?
-Locking is ideal for 
-1-preventing new changes that might conflict with an important merge.
-2-to place a branch into a read-only state i.e. a released version branch.
-
-> Limitations
-Locking does not prevent cloning of a repo or fetching updates made in the branch
-into your local repo.
-
---------------
-Change the branch permission in the main branch.
-https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-permissions?view=azure-devops
---------------
-This would clearly not solve the problem at hand.
-
------------------------------------------------------------------------------
-
-CORRECT ANSWER:
---------------------------------------------------------------------------
+#### Correct Answer:
 
 You should perform the following two actions:
----------------------------------------------------
 - Add a build validation policy.  
 - Add the Tech Lead Group as automatic reviewers.  
----------------------------------------------------
 
-Explanation:
+---
+
+#### Explanation:
 
 You should add a build validation policy to ensure that only changes from a 
-review PR are added to the main branch.
--------------------------------------
-Branch policies and settings
-https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser
+reviewed PR are added to the main branch.
+
+[Branch policies and settings](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser)
+
+
 A branch that has required policies configured 
 - can't be deleted 
 - requires pull requests (PRs) for all changes.
--------------------------------------
 
 This will prevent any developer from committing any code directly to the branch
-which is one of the problems that the Tech Laeds have task you to solve.
+in that only code that has fulfilled all the policies through a PR can be merged 
+into the main branch. However, the PR by itself would not ensure that the code 
+in it is reviewed. A PR will be resolved or rejected according to whether the 
+corresponding code and processes fulfill the required policies that are specified. 
+If, for example, the policy that requires reviewers approval and/or the policy
+that requires reviewers approval from a specific security group were not selected
+as branch policies then the code in the PR could still be merged into the main
+branch without being reviewed.
 
-You should also add the Tech Lead Group as automatic reviewers.  
-This is part of the requirement R1. 
-The requirement says "a review from a Tech Leader".
-However, I think that this detail was not consider in this Q&A. 
+Therefor the **Add a build validation policy** by itself does not meet all the 
+requirements in thsi question and for the Case Study in general.  
+**Question 2** specifies that the code must be reviwed but it does not explicitly
+say by whom. This means that in absence of more requirements one could think that 
+the option **Add a Require minimum fo reviewers policy** could be used with a 
+minimum nuber of reviewers set to 1 in order to fulfill the requirements for 
+**Question 2**.
+
+ However, as part of the whole Case Study **requirement 1** says that not only the
+ code in a PR must be reviewed, but it also must be reviewed by at least a Tech Lead.
+ This makes the **Add the Tech Lead Group as automatic reviewers** the correct option 
+ for this questyion instead of **Add a Require minimum fo reviewers policy**. 
+
 
 --------------------------------------
 Automatically include code reviewers
@@ -399,7 +388,33 @@ https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=az
 You can automatically add reviewers to pull requests that change files in 
 specific directories and files, or to all pull requests in a repo.
 
---------------------------------------------------------------------------
+
+---
+
+### Which of the options would not apply?
+
+[Lock a branch](https://learn.microsoft.com/en-us/azure/devops/repos/git/lock-branches?view=azure-devops)
+
+Prevent updates to a Git branch by locking the branch. 
+Locking a branch prevents other users from changing the existing commit history. 
+Locking also blocks any new commits from being added to the branch by others.
+
+> When would you use a Branch Lock?  
+Locking is ideal for 
+1-preventing new changes that might conflict with an important merge.
+2-to place a branch into a read-only state i.e. a released version branch.
+
+> Limitations  
+Locking does not prevent cloning of a repo or fetching updates made in the branch
+into your local repo.
+
+---
+
+[Change the branch permission in the main branch](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-permissions?view=azure-devops)
+
+This would clearly not solve the problem at hand.
+
+---
 
 Notes:
 
