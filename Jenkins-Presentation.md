@@ -2,9 +2,27 @@
 https://github.com/g0t4/course-jenkins-getting-started 
 
 
+---
+
+---
+
+## TOPIC #1: Some basics about Docker and Docker Containers
+
+
+[Overview of the get started guide](https://docs.docker.com/get-started/)
+
+Running Jenkins in Docker
+[The Docker File System](https://app.pluralsight.com/ilx/video-courses/11cf4ce8-1747-4679-969e-83becb6fefd3/ff6d8c86-ed91-4258-b2a9-f90920a0db08/52145344-7e85-4f49-b3de-958a2c846252)    
+[Understanding Copy on Write](https://app.pluralsight.com/ilx/video-courses/11cf4ce8-1747-4679-969e-83becb6fefd3/ff6d8c86-ed91-4258-b2a9-f90920a0db08/5c5fc4b4-f4ba-4514-959f-c1624839e414)  
+
+- talk about the TWL: Top Writable Layer
+  The TWL is in effect the state of a running container!
+  This is what distiguishes from its image!
+  Take care of your container files: back-up / mirror / RAID / use Docker volumes...
+
 --- 
 
-## TOPIC #1: The Problem of the state
+## TOPIC #2: The Problem of the state
 
 #### Getting Started with Jenkins
 
@@ -27,7 +45,7 @@ Strive to keep state outside of the container:
 
 ---
 
-## TOPIC #2: Why Jenkins in Docker?
+## TOPIC #3: Why Jenkins in Docker?
 
 [Using Docker with Pipeline ](https://www.jenkins.io/doc/book/pipeline/docker/)  
 
@@ -73,7 +91,7 @@ docker-compose down
 
 ---
 
-## TOPIC #1: How Jenkins in Docker?
+## TOPIC #4: How Jenkins in Docker?
 
 ## How to run Jenkins in a Docker Container on a development machine.
 
@@ -212,9 +230,53 @@ Once configured to run Linux Containers, the steps are:
 1. Create a bridge network in Docker
 In a terminal: `docker network create jenkins`
 
+---
+
+# Docker in Dockler
+
+## Docker-in-Docker vs Docker-out-of-Docker
+
+[Docker-in-Docker vs Docker-out-of-Docker](https://tdongsi.github.io/blog/2017/04/23/docker-out-of-docker/)    
+[How To Run Docker in Docker](https://shisho.dev/blog/posts/docker-in-docker/)    
+
+#### Docker-out-of-Docker specifics
+
+[Docker Tips : about /var/run/docker.sock](https://betterprogramming.pub/about-var-run-docker-sock-3bfd276e12fd)  
+[var/run/docker.sock](https://www.educative.io/answers/var-run-dockersock)  
+
+
+#### Other Articles Related to Docker-in-Docker
+
+[Docker in Docker](https://hub.docker.com/_/docker)  
+[~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)  
+[docker run docker (redux)](https://asciinema.org/a/378669)  
+
+---
+
+## [Running Docker in Docker on Windows (Linux containers) also for Jenkins CI](https://cloudcasanova.com/running-docker-in-docker-on-windows/)    
+
+> This Article explains well all issues realted to hetting
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach ^
+--group-add 0 ^
+--volume //var/run/docker.sock:/var/run/docker.sock ^
+--volume jenkins-data:/var/jenkins_home ^
+--publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1 
+```
+
+### Related Articles
+
+[Docker Docs - Docker run - Additional groups](https://docs.docker.com/engine/reference/run/#additional-groups)  
+[How to fix docker: Got permission denied while trying to connect to the Docker daemon socket](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)   
+[Docker: Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock](https://stackoverflow.com/questions/47854463/docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socke)  
+
+---
+
 2. Run a docker:dind Docker image
 In a Cmd Terminal (BASH):
 
+????? this does not even start!
 ```
 docker run --name jenkins-docker --rm --detach ^
   --privileged --network jenkins --network-alias docker ^
@@ -241,34 +303,64 @@ docker run --name jenkins-blueocean --restart=on-failure --detach ^
   --publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1
 ```
 
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach ^
+  --network jenkins --env DOCKER_HOST=tcp://docker:2376 ^
+  --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 ^
+  --volume jenkins-data:/var/jenkins_home ^
+  --volume jenkins-docker-certs:/certs/client:ro ^
+  --publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1 ^
+  docker:dind
+```
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach --publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1     
+```
+
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach \
+--network jenkins --env DOCKER_HOST=tcp://docker:2376 \
+--volume /var/run/docker.sock:/var/run/docker.sock \
+--volume jenkins-data:/var/jenkins_home \
+--volume jenkins-docker-certs:/certs/client:ro \
+--publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1 
+```
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach \
+-v /var/run/docker.sock:/var/run/docker.sock \
+--publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1 
+```
+
+```
+docker run --name jenkins-blueocean --restart=on-failure --detach ^
+-v /var/run/docker.sock:/var/run/docker.sock ^
+--publish 8082:8080 --publish 50002:50000 myjenkins-blueocean:2.426.1-1 
+```
+
 ---
 
-# Docker in Dockler
+### Problem
 
-[Docker in Docker](https://hub.docker.com/_/docker)  
-[~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)  
-[docker run docker (redux)](https://asciinema.org/a/378669)  
-
----
-
-## TOPIC #3: Some basics about Docker and Docker Containers
+```
+error during connect: Get "https://docker:2376/v1.24/images/json": dial tcp: lookup docker on 127.0.0.11:53: server misbehaving
+```
 
 
-[Overview of the get started guide](https://docs.docker.com/get-started/)
+[Jenkins failing to connect to docker while building](https://community.jenkins.io/t/jenkins-failing-to-connect-to-docker-while-building/6936/2)  
 
-Running Jenkins in Docker
-[The Docker File System](https://app.pluralsight.com/ilx/video-courses/11cf4ce8-1747-4679-969e-83becb6fefd3/ff6d8c86-ed91-4258-b2a9-f90920a0db08/52145344-7e85-4f49-b3de-958a2c846252)    
-[Understanding Copy on Write](https://app.pluralsight.com/ilx/video-courses/11cf4ce8-1747-4679-969e-83becb6fefd3/ff6d8c86-ed91-4258-b2a9-f90920a0db08/5c5fc4b4-f4ba-4514-959f-c1624839e414)  
+[Error from server: error dialing backend: dial tcp: lookup worker-1 on 127.0.0.53:53: server misbehaving](https://github.com/kelseyhightower/kubernetes-the-hard-way/issues/630)  
 
-- talk about the TWL: Top Writable Layer
-  The TWL is in effect the state of a running container!
-  This is what distiguishes from its image!
-  Take care of your container files: back-up / mirror / RAID / use Docker volumes...
+script.sh: docker: not found #962
+https://github.com/jenkinsci/docker/issues/962 
 
 
----
+[No such host error in Jenkins pipeline when pushing docker image to unauthorized private registry](https://community.jenkins.io/t/no-such-host-error-in-jenkins-pipeline-when-pushing-docker-image-to-unauthorized-private-registry/962)
 
+[Docker repository server gave HTTP response to HTTPS client](https://stackoverflow.com/questions/49674004/docker-repository-server-gave-http-response-to-https-client/68733536#68733536)
 
+https://stackoverflow.com/questions/42211380/add-insecure-registry-to-docker
 
 ---
 
@@ -279,6 +371,8 @@ Running Jenkins in Docker
 [Running Jenkins Agent locally with Docker](https://benmatselby.dev/post/jenkins-basic-agent/)  
 [jenkins/inbound-agent](https://hub.docker.com/r/jenkins/inbound-agent)
 
+---
+
 ### Docker Network
 
 [https://stackoverflow.com/questions/43904562/docker-how-to-find-the-network-my-container-is-in](https://stackoverflow.com/questions/43904562/docker-how-to-find-the-network-my-container-is-in)  
@@ -286,7 +380,6 @@ Running Jenkins in Docker
 
 ```
  docker inspect jenkins-blueocean -f "{{json .NetworkSettings.Networks }}"
-
  docker inspect -f '{{range $key, $value := .NetworkSettings.Networks}}{{$key}} {{end}}' jenkins-blueocean
 ```
 
@@ -508,8 +601,5 @@ sudo ping -c 3 jenkins-docker-host
 ssh admin20231020@172.201.121.242
 ```
 
-
-script.sh: docker: not found #962
-https://github.com/jenkinsci/docker/issues/962 
 
 
