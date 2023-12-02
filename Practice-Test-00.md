@@ -511,6 +511,134 @@ Git Repo on Azure Repo.
 
 ### References
 
-[Authentication overview](https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops)  
+[Azure Repos - Authentication overview](https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops)  
+
+[Authentication comparison](https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops#authentication-comparison)
+
+ > [Personal access tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows)  
+- You need an easy to configure credential or need configurable access controls.  
+- Very secure (when using HTTPS)
+- [Use Git Credential Manager to authenticate to Azure Repos](https://learn.microsoft.com/en-us/azure/devops/repos/git/set-up-credential-managers?view=azure-devops)
+- (PATs) give you access to Azure DevOps and Team Foundation Server (TFS), without using your username and password directly. 
+- **These tokens have an expiration date from when they're created**
+- You can restrict the scope of the data they can access
+- Use PATs to authenticate if you don't already have SSH keys set up on your system
+- Or if you need to restrict the permissions that are granted by the credential. 
+- [Use Git Credential Manager to generate tokens](https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops#use-credential-managers-to-generate-tokens)  
+
+
+ > SSH Keys
+ - You already have SSH keys set up, or are on macOS or Linux
+ - Very secure
+ - Windows users will need the SSH tools included with [Git for Windows](https://gitforwindows.org/) 
+
+> Personal access tokens   
+ 
+---
+
+
+### Question 5
+
+You need to bild the command line script to publish teh tags for commits.
+How should you complete the code?
+
+```
+#!/bin/sh
+version=$1
+```
+
+Options 1
+```
+git tag                 $version
+git fetch --tag         $version
+git checkout tags/      $version
+```
+
+
+Options 2
+```
+git checkout tags      $version
+git push origin        $version
+git tag                $version
+```
+---
+
+### Correct Answer
+
+```
+git tag $version
+git push origin $version
+```
+
+---
+
+### Explanation
+
+The script should be as follows:
+
+```
+#!/bin/sh
+version=$1
+git tag $version
+git push origin $version
+```
+
+`git tag $version` **create** a git tag with the value defined in the param $version.
+This tag will reference the **HEAD** commit in the branch and repo at that moment.
+This tag is created locally and is not yet poushed to the remote origin ropositrory. 
+
+`git push origin $version` pushes the tag to the origin repo. The tag that is pushed
+has the value $version.
+
+Alternatively the command `git push origin --tags` to push **all local tags** to the
+origin **at once**. However, this was not an available option in the question text.
+
+The remaining options **are not applicable** to this question and are explained briefly
+in the following.
+
+`git checkout tags $version` would be used to checkout the local branch to the commit
+that is pointed to by the tag with value $version.
+
+`git fetch --tags` without any additional parameter fetches all the available tags
+from the origin and makes them available to the local repository.
+
+---
+
+### References
+
+[Use Git Tags](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-tags?view=azure-devops&tabs=browser)
+
+[2.6 Git Basics - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)    
+
+[10.3 Git Internals - Git References](https://git-scm.com/book/en/v2/Git-Internals-Git-References)   
+
+[Git command reference](https://learn.microsoft.com/en-us/azure/devops/repos/git/command-prompt?view=azure-devops)  
+
+---
+
+
+
+---
+
+## PT00-Q02: 
+
+
+### Complete Case Study
+
+#### Overview:
+
+Company 1 is a retail company specialized in gaming furniture and runs its systems
+in Azure. To keep the sustainable groth of the business, teh company wants to improve its **logging and telemetry** solutions.
+
+You were hired as a **Site Reliability Engineer (SRE)** to improve the **logging and telemetry** solutions. 
+
+---
+
+#### Environment:
+
+The company has the following applications running **in production**:
+
+1. Application 1: a microservices solution on AKS Azure Kubernetes Services.
+   This is hosted in Central US region.  
 
 ---
