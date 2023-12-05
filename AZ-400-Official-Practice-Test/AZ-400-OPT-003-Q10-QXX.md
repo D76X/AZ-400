@@ -246,6 +246,88 @@ do not use this method to authenticate applications
 
 ---
 
+### Question 14:
+
+Your organization uses Azure DevOps services to build and release 
+modern, cloud-native applications.
+
+You implement **Requirement Traceability Matrix (RTM)** in order to provide
+end-to-end traceability by linking various objects, such as WI, branchen, builds
+and releases.
+
+You need to anlyse the code changes to identify the potentioan root cause of a 
+test failure.
+
+Which **requirement traceability type** should you use to meet the requirement?
+
+- Bug traceability
+- Source traceability
+- Quality traceability
+- Test failures
+
+---
+
+### Answer:
+- Source traceability
+
+---
+
+### Explanation:
+
+You should use **Source traceability** to analyze code changes in order to identify the 
+potential root cause of a test failure. 
+
+Based on the build or release pipeline, you can choose either of the following
+views to see which code changes were committed.
+
+- the timeline view
+- the pipeline view
+
+When you are trouble shooting test failures that occur consistently over a period of time,
+it is important to trace it back to the original set of changes where the failure originated.
+**Source traceability provide this information effetively**.
+
+A **Requirement Traceability Matrix (RTM)** is a **document** which captures the technical 
+details of the requirements for a given test scenario and its current state. It helps the
+**testing team** to understand the level of testing that is performed for a given product.
+It provides the tema with insight into **indicators** such as **the quality requirements**
+or **readiness to ship** requirement.
+
+You **should not** use:
+
+- Bug traceability: 
+[ it is not very clear what the following means..]
+This provides **a way to track test failures and drive accountability within the team** so that 
+**you can take remedial actions**. If you want to **associate bugs with test results**, you 
+should visit the test report in a build or a release.
+
+- Quality traceability:
+This is to **ensure that user requirements meet the quality goals in the project**.
+**Quality traceability** capures **requirements query** and **quality data**.
+**Requirements query** captures the requirements, for example user stories in a current
+iteration. **Qauality data** specifies the stage of the pipeline for which the requirement
+is being traced.
+
+- Test failures:
+**Test analytics** provides test analytics for the following areas. 
+ - builds 
+ - releases 
+ - test failures.
+The **test failures report** provides a granula view of the top failing tests in the pipeline
+along with the failure details.
+
+---
+
+### References:
+
+[End-to-end traceability](https://learn.microsoft.com/en-us/azure/devops/cross-service/end-to-end-traceability?view=azure-devops)  
+
+[Requirements traceability](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/requirements-traceability?view=azure-devops)  
+
+[What Is a Requirements Traceability Matrix (RTM)?](https://www.wrike.com/blog/what-is-requirements-traceability-matrix/)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
