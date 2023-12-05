@@ -508,6 +508,47 @@ in the YAML Pipeline.
 
 ---
 
+### Question 17:
+
+You r company uses Azure DevOps. 
+You are using GitHub Actions with Azure Pipeliens.
+You are trying to execute a workflow every time a Git commit gets pushed to main or
+when a pull request is initiated.
+
+You need to implement a solution.
+
+How should you complete the given YAML code?
+To answer selct the appropriate values from the drop down menus.
+
+```
+name: CI
+
+# Run this workflow every time a commit gest pushed to main or a PR is opened on main.
+on:
+  push:
+    branches:    
+      OPTION-1 >> main <<
+      OPTION-2 >> feature/* <<
+    pull_request:
+      OPTION-3 >> main <<
+      OPTION-4 >> feature/* <<
+
+jobs:
+  build:
+    name: Call Azure Pipeline
+    runs-on: OPTION-5 >>Azurepipelines@v1<< | OPTION-6 >>ubuntu-latest<<
+    steps:
+    - name: Azure Pipeline Action
+      uses: OPTION-7 >>Azurepipelines@v1<< | OPTION-8 >>ubuntu-latest<<
+      with:
+        azure-devops-project-url: https://dev.azure.com/organization/project-name
+        azure-pipeline-name: 'First Pipeline'
+        OPTION-9>><< >>
+
+```
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
