@@ -408,6 +408,106 @@ required to recreate the connection.
 
 ---
 
+### Question 16:
+
+Your company uses Azure DevOps Services. 
+You are using GitHub Actions to trigger a run in Azure Pipelines.
+
+You need to check out multiple repos in Azure Pipelines.
+The YAML exhibit below has three checkout steps.
+
+```
+resources:
+  repositories:
+  - repository: MyRepo
+    type: github
+    endpoint: MyServiceConnection
+    name: MyOrgOrUser/MyGitHubRepo
+``- repository: MyBitbucketRepo
+    type: bitbucket
+    endpoint: MyBitbucketServiceConnection
+    name: MyBitbucketOrgOrUser/MyBitbucketRepo
+
+trigger:
+- main
+
+pool:
+vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+- checkout: MyRepo
+- checkout: MyBitbucketRepo
+
+-scirpt: dir $(Build.SourcesDirectory)
+
+```
+
+For each of the following statements.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | type: github represents teh GitHub Enterprise Server repository type |
+| Yes | No  | checkout: self represents the repository that contains the pipeline YAML |
+| Yes | No  | The source code will be checked out into a directory called s located in a subfolder of (Agent.BuildDirrectory) |
+
+---
+
+### Answer:
+
+| Answer | Statement |
+| ------ | ------------------------------------------------- |
+| No     | type: github represents teh GitHub Enterprise Server repository type |
+| Yes    | checkout: self represents the repository that contains the pipeline YAML |
+| No     | The source code will be checked out into a directory called s located in a subfolder of (Agent.BuildDirrectory) |
+
+---
+
+### Explanation:
+
+In Git terminology the term **checkout** refers to the act of **switching** betwenn different 
+versions of a target entity. 
+
+The **git checkout** command operates on three distinct entities:
+- files
+- commits 
+- branches
+
+**type: github**
+
+represents the **GitHub.com** repository type and **not** the GitHub Enterprise Server repository type.
+There are four possible types of repos in Azure DevOps Services:
+ - Azure Repo Git ?
+ - GitHub (type: github)
+ - GitHub Enterprise (type: githubeinterprise)
+ - Bitbucket Cloud ?
+
+**checkout: self**
+represents the repository that contains the pipeline YAML and this step causes the repo to be checked out.
+If no other steps are specified, this is the default step of a YAM pipeline.
+However, with **multiple steps** as it is in this scenario the `checkout: self` must be specified
+in order to check out the repo where the YAML file is contained.
+
+**The source code will be checked out into a directory called s located in a subfolder of (Agent.BuildDirrectory)**
+Given that in this case multiple repositories are going to be checked out within the same YAML pipeline,
+these will each be ckecked out into subfolders named after each repo in the `(Agent.BuildDirrectory)/s`
+directory.
+
+The source code is checked out in `(Agent.BuildDirrectory)/s` only when no **cheout** steps are specified
+in the YAML Pipeline.
+
+---
+
+### References:
+
+[Check out multiple repositories in your pipeline](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/multi-repo-checkout?view=azure-devops)   
+
+[Use GitHub Actions to trigger a run in Azure Pipelines - Sprint 161 Update](https://learn.microsoft.com/en-us/azure/devops/release-notes/2019/sprint-161-update)  
+
+[Git Checkout](https://www.javatpoint.com/git-checkout)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
