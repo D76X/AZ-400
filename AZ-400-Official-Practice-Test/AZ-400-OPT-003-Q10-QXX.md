@@ -326,6 +326,77 @@ along with the failure details.
 
 [What Is a Requirements Traceability Matrix (RTM)?](https://www.wrike.com/blog/what-is-requirements-traceability-matrix/)  
 
+
+---
+
+### Question 15:
+
+You use Azure Boards app for GitHub to integrate Azure Boards to your GitHub repos.
+You use `#AB` mention to link from GitHub to Azure Board work items so that `#AB129`
+should link to WI iwth ID=129.
+
+After completing the proccess, you observe that the `#AB129` mention links to the 
+correct work item. However, a few `#AB` mentions produce unexpected or insonsistent
+results.
+
+- The following do not link to the ocrrect WI: `#AB130`, `#AB131`, `#AB132`
+- The following link to the ocrrect WI: `#AB133`, `#AB134`
+
+You need to troubleshoot this issue.
+What is the cause of the issue?
+
+- GitHub might be unavailable owning to a infrastructure/network outage.
+- Connectivity between GitHub and Azure Boards has been revoked or it has failed.
+- Hosted XML definitions for the WI tyeps are old and need updating. 
+- The GitHub Repo is connected to 2 or more projects in more than one Azure DevOps Organization.
+
+---
+
+### Answer:
+The GitHub Repo is connected to 2 or more projects in mode than one Azure DevOps Organization.
+
+---
+
+### Explanation:
+
+The GitHub Repo is connected to 2 or more projects in more than one Azure DevOps Organization.
+When this happens there may be inconsistencies in the `#AB` **mentions** that **link from GitHub**
+**to Azure Boards WIs**.
+
+Assume that **the same GitHub Repo** is connected to the following Azure DevOp Organization/Boards:
+
+- `dev.azure.com\OrgA`
+- `dev.azure.com\OrgB`
+
+Each project within its corresponding organization maintain their WIs and the teams 
+of each organization can link their WI IDs to commits of the same GitHub Repo.
+In this case it is possible that teams working in the two organizations may see liniked WIs that 
+were created by the other team and therefore do not match the expected WI IDs in their own
+Azure Board.
+
+**There is not known workaround for this problem** and the **recommended solution** is to
+connect a single GitHub Repo to a single Azure DevOps Organization/Board.
+
+**The following cannot be causes for this particular issue.**
+
+- GitHub might be unavailable owning to a infrastructure/network outage.
+This may be the case only when you get the following message:
+`Yor credentials are invalid, please remove the connection and create` 
+`a new one with OAth to establish the connection`. 
+To resolve this issue you should follow the instructions given in the message.
+
+- Hosted XML definitions for the WI tyeps are old and need updating.  
+If an Azure DevOps organization uses **Hosted XML process model** 
+**to customize the work tracking experience** and you want to link to and view the 
+GitHub link types from the Development section in the work item forms, then you 
+will need to update the XML definitions for the Work Item Types.
+
+- Connectivity between GitHub and Azure Boards has been revoked or it has failed.
+If a connection that uses OAuth or PAT is broken the reources that should be exposed
+through it will not be available. In order to resolve connection issues it may be 
+required to recreate the connection.
+
+
 ---
 
 ### Question:
