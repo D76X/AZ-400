@@ -396,6 +396,15 @@ If a connection that uses OAuth or PAT is broken the reources that should be exp
 through it will not be available. In order to resolve connection issues it may be 
 required to recreate the connection.
 
+---
+
+### References:
+
+[Install the Azure Boards app for GitHub](https://learn.microsoft.com/en-us/azure/devops/boards/github/install-github-app?view=azure-devops)  
+
+[Connect Azure Boards to GitHub - Resolve connection issues](https://learn.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops#resolve-connection-issues)  
+
+[Link GitHub commits, pull requests, and issues to work items in Azure Boards](https://learn.microsoft.com/en-us/azure/devops/boards/github/link-to-from-github?view=azure-devops)  
 
 ---
 
