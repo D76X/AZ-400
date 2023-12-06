@@ -543,9 +543,127 @@ jobs:
       with:
         azure-devops-project-url: https://dev.azure.com/organization/project-name
         azure-pipeline-name: 'First Pipeline'
-        OPTION-9>><< >>
+        OPTION-9A >>azureSubscriptionEndpoint<< : OPTION-10A >>'$(System.DefaultWorkingDirectory)\TFC\$(ProjectName)'<<
+        OPTION-9B >>azure-devops-token<< : OPTION-10B >>'${{secrets.AZURE_DEVOPS_TOKEN}}<<
 
 ```
+
+---
+
+### Answer:
+
+```
+name: CI
+
+# Run this workflow every time a commit gest pushed to main or a PR is opened on main.
+on:
+  push:
+    branches:    
+      main
+      
+    pull_request:
+      main 
+
+jobs:
+  build:
+    name: Call Azure Pipeline
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure Pipeline Action
+      uses: Azurepipelines@v1
+      with:
+        azure-devops-project-url: https://dev.azure.com/organization/project-name
+        azure-pipeline-name: 'First Pipeline'
+        azure-devops-token : ${{secrets.AZURE_DEVOPS_TOKEN}}
+
+```
+
+---
+
+### Explanation:
+
+1. Use the **main** branch for both triggers `push` and `pull_request`. 
+   This satisy the requirement that this pipeline should run when commits are pushed on the emain branch
+   or when a PR is opened against the main branch.
+
+2. `runs-on: ubuntu-latest` specifies that this pipeline should execute on the latest available 
+    Ubuntu based VM on Azure DevOps infrastructure. This is one of the options available when 
+    a pipeline is run from GitHub Actions.
+    The other option `runs-on: Azurepipelines@v1` does not make any sense!
+
+3. in the steps of the build job for this pipeline use the pipeline task **Azure/pipelines@v1** by specifying 
+   `uses: Azure/pipelines@v1`. The deatis of **Azure/pipelines@v1** are found in the references to this 
+   question.
+
+  ```
+  steps:
+      - name: Azure Pipeline Action
+        uses: Azurepipelines@v1
+  ```
+
+4. Use `azure-devops-token : ${{secrets.AZURE_DEVOPS_TOKEN}}` to provide a PAT token to the pipeline
+   action **Azure/pipelines@v1** so that it can operate on Azure DevOps on the project and pipeline 
+   specified as follows:
+   
+   ```
+   azure-devops-project-url: https://dev.azure.com/organization/project-name
+        azure-pipeline-name: 'First Pipeline'
+   ``` 
+
+   You will need to create the PAT value on Azure DevOps for GitHub Actions and store it as a secret
+   on GitHub. Create the token on Azure DevOps so that it specifies the permnissions that the 
+   GitHub Action  **Azure/pipelines@v1** in this pipeline needs.
+   Then you take the token that has been crafted on Azure DevOps for your organizsation/project/pipeline
+   and store it as a secret on GitHub.
+   When the GitHub Action Workflow execute the pipeline on Azure DevOps the value  
+   ` ${{secrets.AZURE_DEVOPS_TOKEN}}` is provided by GitHub to Azure DevOps so that the 
+   GitHub Action Workflow is authenticated to Azure DevOps for the purpuse of running this
+   action worflow.
+
+The remaining wrong options.
+
+5. The value `feature/*` would set the wrong branches. The requirement says that the pipeline 
+   must trigger for pushes or PR on the main branch and not feature branches.
+
+```
+branches:    
+      feature/*
+    pull_request:      
+      feature/* 
+```
+
+6. `azureSubscriptionEndpoint` is not an option of **Azure/pipelines@v1**. 
+    Instead `$(azureSubscriptionEndpoint)` is the value of a custom pipeline variable named `azureSubscriptionEndpoint`.
+    However, it is not required to create or use the value of such a variabnle in this scenario.
+
+7. `$(System.DefaultWorkingDirectory)\TFC\$(ProjectName)` is also a value built in the pipeline
+  from the values of `System.DefaultWorkingDirectory` and `ProjectName`. This is not required in
+  this scenario.
+
+```
+with:
+  azure-devops-project-url: https://dev.azure.com/organization/project-name
+  azure-pipeline-name: 'First Pipeline'
+  azureSubscriptionEndpoint : '$(System.DefaultWorkingDirectory)\TFC\$(ProjectName)'
+```
+
+
+---
+
+[GitHub Action for Azure Pipelines](https://github.com/Azure/pipelines/releases)  
+[Azure/pipelines@v1](https://github.com/marketplace/actions/azure-pipelines-action)  
+This action enables you to trigger an Azure pipeline run right from inside an Action workflow.
+
+[Use personal access tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows)
+A personal access token contains your security credentials for Azure DevOps. 
+A PAT identifies you, your accessible organizations, and scopes of access. 
+As such, they're as critical as passwords, so you should treat them the same way.
+if you're working with third-party tools that don't support Microsoft or Microsoft Entra accounts
+or you don't want to provide your primary credentials to the tool – use PATs to limit your risk.
+
+[Azure and GitHub integration](https://learn.microsoft.com/en-us/azure/developer/github/?view=azure-devops)  
+[Use GitHub Actions to trigger a run in Azure Pipelines - Sprint 161 Update](https://learn.microsoft.com/en-us/azure/devops/release-notes/2019/sprint-161-update)
+
 
 ---
 
