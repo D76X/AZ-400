@@ -966,6 +966,27 @@ The following are not applicable in this case.
 
 ---
 
+### Question 22:
+
+Your company uses Azure DevOps services to manage development projects internally.
+
+The company has drawn up an internal policy for creation of new projects 
+in Azure DevOps services and it has established the following requirements.
+
+1. Formal project methods which require a framework for process improvement should be used.
+2. All records of decisions for change management should be audited anuualy by the company.
+
+You need to choose a process model that allows you to plan and track Work Item Types (WITs)
+
+Which process model should you use?
+
+- Agile
+- Scrum
+- CMMI
+- Basic
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
