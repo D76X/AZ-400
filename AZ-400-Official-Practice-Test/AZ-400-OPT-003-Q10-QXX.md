@@ -897,6 +897,75 @@ The file also defines how it can extend and enhance the experience.
 
 ---
 
+### Question 21:
+
+Your organization uses Azure DevOps Services team projec tWikis to enhance developer communication.
+You need to assign default permissions to a user named UserA so that they can edit the team project 
+page.
+
+Which security groups should you add UserA to as a team member?
+
+- Project administrator
+- Team administrator
+- Readers
+- Contributors
+
+---
+
+### Answer:
+- Project administrator
+
+---
+
+### Explanation:
+In Azure DevOps assign users to Security Groups in order to assgn to those
+users the permissions of the Security Groups.
+
+>The security group **Project administrator**: 
+ provides the permissions to edit the Project Wikis **among others permissions**.
+ For example, it provides the permission to **set the project-level notifications and alerts**
+ and **creation of pages on the project Wikis**.
+
+The following are not applicable in this case.
+
+>The security group **Team administrator**: 
+ Members of this SG **cannot edit the project Wiki pages**.
+ They can perform action such as 
+ **setting personal notifications / alerts**,
+ **setting teams notifications / alerts**, 
+ **viewing project Wikis**, 
+ **viewing code wikis**, 
+ **publishing code as wiki**, 
+ **viewing the project page**,
+ **navigating using the project pages**, 
+ **request / provide feedback**, 
+ **perform code search and work tracking**.
+
+>The security group **Contributors**:
+ **View project Wikis / Wikis code**, 
+ **publish code wikis**, 
+ **view project page**,
+ **navigate from project page**,
+ **request / provide feedback**, 
+ **perform code search and work tracking**.
+
+>The security group **Readers**:
+**View project Wikis / Wikis code**, 
+ **view project page**,
+ **navigate from project page**,
+ **request / provide feedback**, 
+ **perform code search and work tracking**.
+
+---
+
+### References:
+
+[About wikis, READMEs, and Markdown](https://learn.microsoft.com/en-us/azure/devops/project/wiki/about-readme-wiki?view=azure-devops)  
+
+[Default permissions and access set for collaboration tools](https://learn.microsoft.com/en-us/azure/devops/project/wiki/wiki-readme-permissions?view=azure-devops)    
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
