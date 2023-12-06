@@ -713,6 +713,78 @@ si the consumers of the library. Istead you **could and should** include in the 
 
 ---
 
+### Question 19:
+
+You work as a product owner for a project in Azure DevOps.
+The project follows the Scrum process and Azure Repos, Azure Boards 
+and Azure Puipelines are used for the project lifecycle.
+The stakeholders want to receive reports about the project's progress.
+
+You need to create a custom dashboard in Azure DevOps for the stakeholders.
+
+Which chart widgets should you use for each requirement?
+To answer drag the appropriate widget ot each requirement.
+A widget may be used once, more than once or not at all.
+
+- Lead Time widget
+- Sprint Capacity widget
+- Deplyment status widget
+- Cycle Time widget
+- Releae Pipeline Overview widget
+
+| Widget  |  Statement |
+| ------- | ------------------------------------------------- |
+|  ?      |  Determine how long a WI takes from creation to completion |
+|  ?      |  Estimate the team capacity in a given sprint |
+|  ?      |  Show a consolidated view of the success rate of a deployment pipeline |
+
+
+
+---
+
+### Answer:
+
+| Widget  |  Statement |
+| ------- | ------------------------------------------------- |
+|  Lead Time widget |  Determine how long a WI takes from creation to completion |
+|  Sprint Capacity widget |  Estimate the team capacity in a given sprint |
+|  Deplyment status widget |  Show a consolidated view of the success rate of a deployment pipeline |
+
+---
+
+### Explanation:
+
+- Lead Time widget
+This gives the stakeholders an estimation of how long it may take for a 
+recently requested feature to be completed.
+This means from **created** to **completed**.
+
+- Sprint Capacity widget
+This alloes the stakeholders to determine whether the team is currently caopable 
+of working on all the user stories in the sprint.
+
+
+- Deplyment status widget
+It shows the status of the deployment and the test pass rate accross multuiple 
+environments for a recent set of builds on a deployment pipeline.
+
+The following two widget are not applicable to this question.
+
+- Cycle Time widget
+It shows how long a WI takes from **active** to **completed**.
+
+- Releae Pipeline Overview widget
+It shows the statuis of a release pipeline and its environment when the pipeline was executed.
+It does not show teh success rate but only the current status.
+
+---
+
+### References:
+
+[About dashboards, charts, reports, & widgets](https://learn.microsoft.com/en-us/azure/devops/report/dashboards/overview?view=azure-devops)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
