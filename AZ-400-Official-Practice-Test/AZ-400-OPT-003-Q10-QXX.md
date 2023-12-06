@@ -664,6 +664,52 @@ or you don't want to provide your primary credentials to the tool – use PATs t
 [Azure and GitHub integration](https://learn.microsoft.com/en-us/azure/developer/github/?view=azure-devops)  
 [Use GitHub Actions to trigger a run in Azure Pipelines - Sprint 161 Update](https://learn.microsoft.com/en-us/azure/devops/release-notes/2019/sprint-161-update)
 
+---
+
+### Question 18:
+
+You have a GitHub private Repo for a library used by your organization.
+This Repo is integrated with an Azure Boards project which is used to mage the project backlog.
+You adopt a pull request and commit guidelines to automatically generate release notes.
+Every two weeks you create a new git tag for this library followuing semantic versioning.
+
+You need to define the best place to communicate with the library users to communicate the
+changes in any specific version of teh library.
+
+Where should you store the releas notes?
+
+- GitHub releases
+- Pull request description
+- Work Item description
+- Work Item acceptance criteria
+
+---
+
+### Explanation:
+
+You should store the release notes in **GitHub releases**.
+This makes it easy for the library users to see the changes in any specific version that is published 
+under the related git tag. You can include also links to the library binary files and source code.
+
+The remaining options do not apply.
+
+The **Work Item acceptance criteria** specifies the requirements to fulfill in order to consider the 
+WI **completed**.
+
+The **Pull request description** or the **Work Item description** are for the details related to each
+and not for the release notes as they would lack the required visibility to the target audience that 
+si the consumers of the library. Istead you **could and should** include in the release notes 
+**links to the WIs &/OR PRs** that contrubute to each release.
+
+---
+
+### References:
+
+[About Releases - GitHub Docs](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases)  
+
+[About PRs - GitHub Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)  
+
+[Field descriptions for default and work item fields used in process templates](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/work-item-field?view=azure-devops)  
 
 ---
 
