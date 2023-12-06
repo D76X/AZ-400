@@ -785,6 +785,118 @@ It does not show teh success rate but only the current status.
 
 ---
 
+### Question 20:
+
+Your organization wants to create a custom dashboard widget.
+The proposed widget will use a combination of HTML, JavaScript and CSS.
+You create a **extension's manifets vss-extension.json** in the home directory as shown below.
+
+```
+{
+"manifestVersion": 1,
+    "id": "tools",
+    "version": "0.1.0",
+    "name": "Fabrikam Tools",
+    "publisher": "fabrikam",
+    "description": "Awesome tools to help you and your team do great things everyday.",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+
+    ...
+}
+```
+
+You need to add the follwoing information to the manifest.
+
+- The extension uses version 3.0 APIs
+- The extension does not support older versions
+
+Which property should you add to the file **vss-extension.json**?
+
+- dadges
+- scopes
+- baseUri
+- demands
+
+---
+
+### Answer:
+- demands
+
+---
+
+### Explanation:
+
+The **optional Runtime property: demands**:
+
+An array of demands (strings) listing the capabilities required by your extension.
+
+For example, **api-version/3.0** indicates that your extension uses version 3.0 APIs,
+and so can't run in older products that don't support this version. 
+
+For more information, see the full list of demands.
+
+[Extension manifest reference > Demands](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#demands)  
+
+Demands let you specify capabilities and other features required by your extension. 
+You can use these demands to limit where your extension can be published or installed.
+Demands get used by the Visual Studio Marketplace to list the products and environments 
+your extension is compatible with.
+This helps customers understand whether your extension works with their version of Azure DevOps.
+
+The following options are nopt applicable to this question.
+
+**Runtime properties**
+
+- scopes
+An array of authorization scopes (strings) listing permissions required by your extension.
+
+For example, **vso.work** and **vs.code_write** indicates your extension needs read-only access
+to work items and read/write access to source code (and related resource). 
+Scopes are presented to the user when installing your extension. 
+For more information, see the full list of [scopes](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#scopes)  
+
+Your extension can specify one or more scopes. 
+Scopes control what resources can be accessed by your extension and what operations 
+your extension is allowed to do with those resources.
+The scopes you specify in your extension manifest are the scopes set on access tokens issued to your extension. 
+If no scopes are specified, extensions are only provided access to user profile and extension data.
+
+- baseUri
+(Optional) base URL for all relative URLs specified by the extension's contributions.
+For example: https://myapp.com/{{account.name}}/. 
+This property should be left empty if your extension's contents are packaged with your extension.
+
+
+[**Discovery attributes**](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#discovery-attributes)
+
+- dadges
+Array of links to external metadata badges like TravisCI, Appveyor, and so on, from the approved badges sites.
+[Supported Badge Services](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#approvedbadges)  
+
+Valid keys: 
+`href`: Link the user navigates to when selecting the badge. 
+`uri`: The absolute URL of the badge image to be displayed. 
+`description`: Description of the badge, to be displayed on hover.
+
+
+---
+
+### References:
+
+[Extension manifest reference](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops)
+Every extension has a JSON manifest file that defines basic information about the extension.
+The file also defines how it can extend and enhance the experience.
+
+[Add a dashboard widget](https://learn.microsoft.com/en-us/azure/devops/extend/develop/add-dashboard-widget?view=azure-devops)  
+
+[Adventures with Azure DevOps: Create a Custom Dashboard Widget](https://mattruma.com/adventures-with-azure-devops-create-a-custom-dashboard-widget/)    
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
