@@ -987,6 +987,117 @@ Which process model should you use?
 
 ---
 
+### Answer:
+- CMMI
+
+---
+
+### Explanation:
+
+**Capability Maturity Model Integration (CMMI) process model** is one of the 4 prpcess models
+supported by **Azure DevOps services** or **Azure DevOps Server**.
+
+**Azure DevOps services** refers to the online platform where organizations can manage multiple 
+projects while **Azure DevOps Server** - more on this distinction si found below in the **References**.
+
+The **Work Item Types (WITs)** to be used for **tracking** and **planning** work determine which
+model process should be used within the organization as a default. In this scenario, given that 
+the company has **strick guidelines in regard to compliance policies**, it is recommended that 
+the *Capability Maturity Model Integration (CMMI) process model** is used.
+
+The **Capability Maturity Model Integration (CMMI) process model** the following WITs are used to track work:
+
+ - tests
+ - feedback
+ - code reviews
+  - requirements
+ - chage requests
+ - tasks
+ - bugs
+ - risks
+
+ The **purpose of the CMMI process model** is :
+ 
+ 1. to **assess the maturity** of a company's processes. 
+ 2. **provide guidance** on ways in which the company can improve processes and products. 
+ 3. **measure and manage risks**.
+
+
+The remaining options do not apply to this question.
+
+- Basic:
+This process model is **suitable for a team to get started with**. 
+
+It employes the following artifacts in order **to track work**:  
+  - issues
+  - tasks
+  - epics
+
+
+In the Bsic model: 
+  - there are **not formal project methods** 
+  - **it does not provide auditing** for records and decisions.
+
+- Agile:
+With the **Agile** and also with **Scrum** process model for projects 
+**development and test activities are tracked separately**.
+
+It employes the following WITs in order **to track work**:  
+  - user stories 
+  - bug (optionally)
+  - tasks
+  - a Kanban board
+  - a Taskboard (optional)
+
+In the Agile model:
+  - **does not demand formal project methods**
+  -  **it does not provide auditing** for records and decisions.
+
+- Scrum:
+The **Scrum process model** should be employed in the following two scenarios:
+  - Your company is already using Scrum to manage projects.
+  - Produck Backlog Items **(PBIs) and Bugs** are required to be tracked on a **Kanban board**.
+  - PBIs may also be broken down into **tasks** on a **Taskboard**.
+
+In the Scrum model:
+  - **does not demand formal project methods**
+  -  **it does not provide auditing** for records and decisions.
+
+---
+
+### References:
+
+[Compare Azure DevOps Services with Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/user-guide/about-azure-devops-services-tfs?view=azure-devops)  
+
+ > **Azure DevOps services**
+   The cloud offering, Azure DevOps Services, provides a scalable, reliable, and globally available hosted service. 
+   It's backed by a 99.9% SLA, monitored by our 24/7 operations team, and available in local data centers around 
+   the world.
+
+> **Azure DevOps Server**
+  The on-premises offering, Azure DevOps Server, is built on a **SQL Server back end**. 
+  Customers usually choose the on-premises version when they need their data to stay 
+  within their network. Or, when they want **access to SQL Server reporting services** 
+  that integrate with Azure DevOps Server data and tools.
+
+  Both offerings provide the same essential features and services, but Azure DevOps Services 
+  offers the following added benefits:
+
+  - Simplified server management
+  - Immediate access to the latest and greatest features
+  - Improved connectivity with remote sites
+  - A transition from capital expenditures (servers and the like) to operational expenditures (subscriptions)
+
+[About default processes and process templates](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process)    
+
+[Understand CMMI process template artifacts](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/cmmi-process?view=azure-devops)  
+
+[Background to Capability Maturity Model Integration (CMMI)](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/cmmi/guidance-background-to-cmmi?view=azure-devops)  
+
+[Agile Essentials](https://www.agilealliance.org/agile-essentials/)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
