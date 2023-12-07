@@ -1274,6 +1274,86 @@ the the PR lables that must be included in the automatically generated RNs.
 
 ---
 
+### Question 25:
+
+You are using the **Azure DevOps Service REST API 6.0 Service Hooks Services** to create 
+a notification.
+
+The code exhibit is the following:
+
+```
+ POST https://dev.azure.com/{organization}/_apis/hooks/testnotifications?useRealData={useRealData}&api-version=6.0
+```
+
+You check the status of the above request after some time.
+It shows that the notification has been **dequeued**.
+
+What is the current status of the notification?
+
+- completed
+- processing
+- queued
+- requestInProgress
+
+---
+
+### Answer:
+- processing
+
+---
+
+### Explanation:
+
+If the notification has been **dequeued**, it means that its **status** is **processing**.
+The **consumer action** has not yet finished processing the notification.
+
+The other options do not apply:
+
+[NotificationStatus](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/notifications/create?view=azure-devops-rest-6.0&viewFallbackFrom=azure-devops-rest-6.0s#notificationstatus)   
+
+### Note:
+
+
+---
+
+### References:
+
+[Service hooks](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/?view=azure-devops-rest-6.0)  
+The service hook publishers define a set of events. 
+You create **subscriptions** based on an event and select the **service hook consumer and action to take** 
+in response to that event from the publisher.
+
+[Subscriptions - Create](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/subscriptions/create?view=azure-devops-rest-6.0&tabs=HTTP)  
+`POST https://dev.azure.com/{organization}/_apis/hooks/subscriptions?api-version=6.0`
+
+> [Notifications - Create](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/notifications/create?view=azure-devops-rest-6.0)
+  Sends a test notification. 
+  **This is useful for verifying the configuration of an updated or new service hooks subscription.**
+  This means that this API can be use to generate artificial notifications in order to check 
+  whether the subscriptions that have been set with any number of consumer work properly and
+  process the event as planned.
+
+  ```
+  POST https://dev.azure.com/{organization}/_apis/hooks/testnotifications?api-version=6.0
+  POST https://dev.azure.com/{organization}/_apis/hooks/testnotifications?useRealData={useRealData}&api-version=6.0
+  ```
+
+[NotificationStatus](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/notifications/create?view=azure-devops-rest-6.0&viewFallbackFrom=azure-devops-rest-6.0s#notificationstatus)   
+
+**NotificationStatus**:
+
+completed	        string  The request completed
+processing	      string  The notification has been **dequeued** and has begun processing.
+queued	          string  The notification has been queued
+requestInProgress	string  The consumer action has processed the notification. The request is in progress.
+
+**NotificationResult**:
+
+filtered	        string The notification was filtered by the Delivery Job
+pending	          string The notification has not yet completed
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
