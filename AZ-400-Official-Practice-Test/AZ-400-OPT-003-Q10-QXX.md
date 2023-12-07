@@ -1354,6 +1354,30 @@ pending	          string The notification has not yet completed
 
 ---
 
+### Question 26:
+
+An organization plans to integrate Azure DevOps with a wide variety of applications.
+
+A developer uses **Service Hooks** for a specific consumer service on successful 
+completion of a build process. The developer wants to track the diagnostics settings 
+for troubleshooting vent matching using the  **Azure DevOps Service REST API 6.0**
+**Diagnostics API version 6.0**.
+
+You need to implement a solution to meet the requirement.
+
+Which **SubscriptionDiagnostics** diagnostic settings should you use?
+
+- deliveryTracing
+- evaluationTracing
+- deliveryResults
+
+---
+
+### Answer:
+- evaluationTracing
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
