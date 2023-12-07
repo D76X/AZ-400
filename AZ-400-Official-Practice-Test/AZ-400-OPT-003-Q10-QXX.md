@@ -1176,6 +1176,102 @@ A: No. You must use HTTPS when utilizing basic authentication on a webhook.
 
 ---
 
+### Question 24:
+
+Your company used Azure DevOps projects to build and release commercial cloud-native 
+software applications. The team uses GitHub for software development and it uses 
+Azure Boards to plan and track the work.
+
+You want to use **automatically generated Release Notes** for your GitHub releases
+instead of having to write them manually.
+
+On **GitHub.com** you have created the **/release.yml** file in the **.github**
+directory as shown below:
+
+```
+# .github/release.yml
+
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - sarah
+  categories:
+    - title: Breaking Changes, v2
+      labels:
+        - Major-changes
+        - breaking-change
+    - title: New Features
+      labels:
+        - Minor-changes
+        - enhancement
+    - title: Other Changes
+      labels:
+        - "*"
+```
+
+You need to diagnose the output.
+For each of the following statements, select Yes or No according to whether the 
+statement is true or false.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | The **ignore-for-release label** excludes a PR from appearing in the automatically generated Release Notes |
+| Yes | No  | The yml file specifies that PRs from all authors except Sarah are to be excluded from automatically generated release notes. |
+| Yes | No  |  The **enhancement labels** will be considered for a PR and will be included in the automatically generated release notes.|
+
+
+---
+
+### Answer:
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | The **ignore-for-release label** excludes a PR from appearing in the automatically generated Release Notes. |
+| No  | The yml file specifies that PRs from all authors except Sarah are to be excluded from automatically generated release notes. |
+| Yes |  The **enhancement labels** will be considered for a PR and will be included in the automatically generated release notes.|
+
+---
+
+### Explanation:
+
+```
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+    authors:
+      - sarah
+
+```
+
+The excerpt of **.github/release.yml** above specifies that 
+
+**exclide:/labels:/ ignore-for-release label1, lable2, label3**:
+Excludes a PR that has the specified lable value from appearing in the auomatically generated RNs.
+
+**exclide:/authors:/ sarah, otherAuthor1, otherAuthor2**:
+Excludes a PR that has the specified author value from appearing in the auomatically generated RNs.
+The second statement is false becase the given YAML causes only the PRs with author Sarah to be excluded
+which is the opposite of what is specified in the second statement.
+
+The label `- enhancement` causes PRs that are labeled with `enhancement` to be included 
+in the automatically generated RNs.
+
+You can also customize your automated release notes, using labels to create custom 
+categories to organize pull requests you want to include, and exclude certain labels
+and users from appearing in the output. You can also **create new categories** and list
+the the PR lables that must be included in the automatically generated RNs.
+
+---
+
+### References:
+
+[GitHub - Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes)   
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
