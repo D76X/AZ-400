@@ -1543,9 +1543,69 @@ Azure Artifacts enables developers to share their code efficiently and manage al
 
 ---
 
+### Question 29:
+
+You are a DevOps consultant and you are helping a software development company to
+migrate their codebase to Azure DevOps Repos. The company has remote development 
+teams that work on different projects and with different features at the same time.
+Some developer have limited internet connectivity, which requires them to work
+offiline occasionally.
+
+Which source control system should you recommend?
+
+- Team Foundation Vesrion Control (TFVC)
+- Git
+- Subversion (SVN)
+- Mercurial
+
+---
+
+### Answer:
+- Git
+
+---
+
+### Explanation:
+
+**Git allows developers to keep a local copy of the source code repo** and work on different 
+features uisng branches. Being the repo local to their machines this would laso work well
+in all cases with limited connectivity to the cenral Git Repo as it is the case in this scenario.
+**Developers can work on their branches completely offline and need to be online only when they**
+**need to synch their changes with thiose on the remote repos**.
+
+The other options are not suitable in this scenario.
+
+- Team Foundation Vesrion Control (TFVC):
+This is a **cenralized version control system**. Its use case is for Repos that are 
+**very large!**. In this cases it might be an alternative for Giot Repos as it allows 
+the developer to only check out to their development machines the files they need to work 
+on and not the whole repository as it is the case with Git Repos.
+**This is not suitable in all cases whth limited connectivity to the TFVS server**.
+
+- Subversion (SVN)
+- Mercurial
+These source control systems **are not supported by Azure Repos**.
+In these case the source control system ought ot be changed to Git / TFVC before it 
+is possible to migrate it to Azure Repos.
+
+
+---
+
+### References:
+
+[Choosing the right version control for your project](https://learn.microsoft.com/en-us/azure/devops/repos/tfvc/comparison-git-tfvc?view=azure-devops)  
+
+[Azure Repos Git Documentation](https://learn.microsoft.com/en-us/azure/devops/repos/git/?view=azure-devops)  
+
+[What is Team Foundation Version Control?](https://learn.microsoft.com/en-us/azure/devops/repos/tfvc/what-is-tfvc?view=azure-devops)  
+
+
+
+
+---
+
 ### Question:
 ### Answer:
-### Explanation:
 ### References:
 
 ---
