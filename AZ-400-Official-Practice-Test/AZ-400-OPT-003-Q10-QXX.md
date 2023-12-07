@@ -1360,7 +1360,7 @@ An organization plans to integrate Azure DevOps with a wide variety of applicati
 
 A developer uses **Service Hooks** for a specific consumer service on successful 
 completion of a build process. The developer wants to track the diagnostics settings 
-for troubleshooting vent matching using the  **Azure DevOps Service REST API 6.0**
+for troubleshooting event matching using the  **Azure DevOps Service REST API 6.0**
 **Diagnostics API version 6.0**.
 
 You need to implement a solution to meet the requirement.
@@ -1375,6 +1375,49 @@ Which **SubscriptionDiagnostics** diagnostic settings should you use?
 
 ### Answer:
 - evaluationTracing
+
+---
+
+### Explanation:
+
+The **Azure DevOps Service REST API 6.0** **Diagnostics API version 6.0** has two operations.
+
+[Service Hooks > Diagnostics](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/diagnostics?view=azure-devops-rest-6.0)
+
+- [Get](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/diagnostics/get?view=azure-devops-rest-6.0&tabs=HTTP)  
+- [Update](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/diagnostics/update?view=azure-devops-rest-6.0&tabs=HTTP)  
+
+
+SubscriptionDiagnostics
+
+
+Name	                  Type	                Description
+
+deliveryResults	        SubscriptionTracing   Diagnostics settings for retaining delivery results. Used for Service Hooks subscriptions.
+deliveryTracing   	    SubscriptionTracing   Diagnostics settings for troubleshooting notification delivery.
+**evaluationTracing**	  SubscriptionTracing   **Diagnostics settings for troubleshooting event matching.**
+
+
+---
+
+### References:
+
+[Service hooks events](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops)
+
+[Exercise - set up service hooks to monitor the pipeline](https://learn.microsoft.com/en-us/training/modules/automate-inspection-health/5-exercise-set-up-service-hooks-to-monitor-pipeline)  
+
+In this exercise, you'll investigate Service Hooks.
+This exercise is about how a release pipeline can communicate with other services by using **service hooks**.
+By using service hooks, we can notify other applications that an event has occurred within Azure DevOps. 
+We could also send a message to a team in Microsoft Teams or Slack.
+We could also trigger an action in Bamboo or Jenkins.
+
+Suppose the application that you want to communicate with isn't in the list of available **application hooks.**
+In that case, you can almost always use the **Web Hooks** option as a generic way to communicate. 
+**It allows you to make an HTTP POST when an event occurs.**
+**So, if, for example, you wanted to call an Azure Function or an Azure Logic App, you could use this option.**
+
+
 
 ---
 
