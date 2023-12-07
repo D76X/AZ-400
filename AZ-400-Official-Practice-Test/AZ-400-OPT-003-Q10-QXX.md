@@ -1483,6 +1483,66 @@ It is **not appropriate to server to server authentication**.
 
 ---
 
+### Question 28:
+
+Your Team uses a GitHub Repo to build a project. As part of the development process
+UX designers need to **manage and version** screen mockups and Photoshops Documents 
+(PSD) files in the same repository.
+
+You need to recomment a solution to store the PSD files.
+The solution must not have an impact on the rpository fetch and cloning performance or
+change the current Git Workflow.
+
+Whcih solution should you recommend?
+
+- Azure Artifacts
+- Git Large File Storage (LFS)
+- Azure Blob sTORAGE
+- OneDrive
+
+---
+
+### Answer:
+- Git Large File Storage (LFS)
+
+---
+
+### Explanation:
+
+**Git Large File Storage (LFS)** can be used to store large files such as PSDs, audio and video,
+large datasets, large images and graphics into a Git Repo. The Git Repo actually stores only 
+**references to teh files and not the files themselves**. The large files are stored on a
+service that is more suitable to store large files while the Git Repo provides the functinality
+to version them.
+
+The other options are not suitable in this scenario.
+
+- Azure Blob Storage
+- OneDrive
+These can bes used as **Storage** for teh large files. However, these are not directly integrated
+with the git workflow or versioning.
+
+- Azure Artifacts
+This is used **to manage code packages repositories** such as private feeds from Npm, NuGet or Python 
+packages.
+
+---
+
+### References:
+
+[Git Large File Storage](https://git-lfs.com/)  
+
+
+[Introduction to Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)  
+
+[Azure Artifacts overview](https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nugettfs%2Cnuget%2Corgstorage)  
+
+Azure Artifacts enables developers to share their code efficiently and manage all their packages from one place. With Azure Artifacts, developers can publish packages to their feeds and share it within the same team, across organizations, and even publicly. Developers can also consume packages from different feeds and public registries such as NuGet.org or npmjs.com. Azure Artifacts supports multiple package types such as NuGet, npm, Python, Maven, Cargo, and Universal Packages.
+
+[Plan for SharePoint and OneDrive in Microsoft 365](https://learn.microsoft.com/en-us/sharepoint/plan-for-sharepoint-onedrive)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
