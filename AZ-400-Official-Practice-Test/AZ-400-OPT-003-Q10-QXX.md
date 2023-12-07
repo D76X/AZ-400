@@ -1421,6 +1421,68 @@ In that case, you can almost always use the **Web Hooks** option as a generic wa
 
 ---
 
+### Question 27:
+
+Your company decides to integrate the **GitHub Enterprise Server** into their Azure DevOps Server CI/CD
+pipeline.
+
+You need to make sure that the connection bewteen **GitHub Enterprise Server** and the 
+**Azure DevOps Server** is protected.
+
+What should you choose?
+
+- OAuth
+- Windows Authentication
+- A secured username & password
+- Personal Access Tokens (PATs)
+
+---
+
+### Answer:
+- OAuth
+
+---
+
+### Explanation:
+
+**OAuth** is the **preferred authentication method between GitHub Enterprise Server and Azure DevOps**.
+**OAuth** allows **unrelated servers and services** to safely allow authenticated access to their 
+resources.
+
+The other options cannot be applied to this question.
+
+- Personal Access Tokens (PATs):
+
+PATs are a better alternative to passwords that may be used to authenticate to Azure DevOps.
+Hiowever, in this specific case this is not the preferred method.
+With PATs the admin of teh Azure DevOps organization / project create a PAT from the 
+Azure DevOps portal. In the process of creation of the PAT the admin provides the details
+of the service/server that will make use of the PAT to call into Azure DevOps.
+This process ivolves a manual authetication to this service / server and the specification
+of the permission to associate with the PAT.
+Finally, the Azure DevOps portal produces the PAT code that **should be treated as a secure code**
+**to be stored safely on the server / service that calls into Azure DevOps**.
+PAT usually have also a **expiration date**.
+
+- Windows Authentication:
+This is specific to **user authentication on the same AD Domain**.
+It is **not appropriate to server to server authentication over the internet**.
+
+- A secured username & password:
+This kind of credential is only meant for human interaction and it is not particualrly secure.
+It is **not appropriate to server to server authentication**.
+
+
+---
+
+### References:
+
+[Connect Azure Boards to GitHub (cloud)](https://learn.microsoft.com/en-us/azure/devops/boards/github/connect-to-github?view=azure-devops)  
+
+[About Azure Boards-GitHub integration](https://learn.microsoft.com/en-us/azure/devops/boards/github/?view=azure-devops)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
