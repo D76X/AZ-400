@@ -1098,6 +1098,84 @@ In the Scrum model:
 
 ---
 
+### Question 23:
+
+Your company uses Azure DevOps Services tp build and release cloud-native modern applications on Azure.
+
+You wamt to use **Azure DevOps Release Notes Generator** to create Release Notes for Azure DevOps.
+**Release Notes Generator** is **deployed as a Functiion App in App Service** and requires 
+authentication to access the endpoint.
+
+You need to set up a Webhook function to send the event to Azure DevOopa Release Notes Generator
+function endpoint.
+
+Which action setting should you configure to invoke the endpoint securely?
+
+- HTTP header
+- URL with HTTPS endpoint
+- URL with HTTP endpoint
+- Basic Authentication
+
+---
+
+### Answer:
+- URL with HTTPS endpoint
+
+---
+
+### Explanation:
+
+A **Webhook** provides a way to send the data that describes an event in the form of a JSON representation
+to any service. In this case the service that needs to receive the event data is the 
+**Azure DevOps Release Notes Generator** and it is required that this data is sent to this endpoint securely.
+
+The  **endpoint** in this case uses **authentication** that is it is an authenticated endpoint. 
+The **URL with HTTPS endpoint** employs **encryption** of the payload **to protect the authentication details**.
+
+The remaining options do not apply in this question.
+
+- URL with HTTP endpoint:
+If the Webhook used this option the data would be sent **unecrypted** to the **service endpoint**.
+
+- Basic Authentication:
+With **Basic Authentication** it is required to provide authentication details in order to access 
+a **service endpoint**. 
+However, **Basic Authentication** by itself requires **no encryption** in transit of the 
+authentication details. With Webhooks it is possible to use **Basic Authentication** with which the 
+**payload contains the data related to the event and the authetication credentials** to authenticate
+to the endpoint. 
+When a **Webhook with Basic Authentication** is setup **HTTPS is required!** as it is discussed in the 
+reference. The reason is to make sure that even if the **service endpoint requires BA** then the 
+authetication details will always be **encrypted in transit** and never as plain text.
+
+- HTTP header:
+These are used in a HTTP requests to send to the endpoint additional data that should not be in the payload.
+There are **authentication headers** which may be used to supply authetication credentials sucuh as, for example,
+**Bearer Tokens**.
+
+---
+
+### References:
+
+[Azure DevOps Release Notes Generator](https://github.com/azure-samples/azure-devops-release-notes/tree/master/)  
+
+The generator is a function app containing a HTTP triggered function that creates a Markdown file whenever a new release is created in Azure DevOps, using Azure Blob Storage.
+
+[Webhooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops)  
+Webhooks provide a way to send a JSON representation of an event to any service. 
+All that is required is a public endpoint (HTTP or HTTPS).
+Only organization Owners or Project Collection Administrators can manage webhooks for an organization.
+In **Azure DevOps Services** webhooks are managed in the tab **Project Settings > Service hooks**.
+
+[Q: Can I send webhooks to non HTTPS endpoints?](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops#q-can-i-send-webhooks-to-non-https-endpoints)   
+
+A: Yes. However, it's recommended that you only use HTTPS endpoints for your webhooks. Using HTTP means there is a the potential for private data being sent unencrypted. **This includes any authentication headers in your webhook**.
+
+[Q: Can I use basic authentication when setting up a webhook that isn't HTTPS?](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops#q-can-i-use-basic-authentication-when-setting-up-a-webhook-that-isnt-https) 
+A: No. You must use HTTPS when utilizing basic authentication on a webhook.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
