@@ -1270,6 +1270,8 @@ the the PR lables that must be included in the automatically generated RNs.
 
 [GitHub - Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes)   
 
+[How to automate your release notes](https://cloudblogs.microsoft.com/opensource/2018/09/06/how-to-automate-software-release-notes/)  
+
 ---
 
 ### Question:
