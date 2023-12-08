@@ -2030,6 +2030,44 @@ commands by using the multi-pack-index.
 
 ---
 
+### Question 34:
+
+You manage project in Azure DevOps Repos. The Developemnt team requires that at least
+three team members (including the pull requester) review pull requests. 
+All team members must approve the code changes on pull requests before it is merged
+with teh master.
+
+Which three actions should you perform?
+
+- Set the minimum number of reviewer to three
+- Set the minimum number of reviewer to two
+- Enable the Reset all code reviwer votes option when new changes are pushed
+- Enable the Allow requestors to approve their own changes options
+- Enable Require a minimum nuner of reviewers options
+
+---
+
+### Answer:
+
+- Enable Require a minimum nuner of reviewers options
+- Set the minimum number of reviewer to three
+- Enable the Allow requestors to approve their own changes options
+
+The reasons are pretty obvous just by looking at the requirements in the 
+question.
+
+The following options do not applyu in this case.
+
+- Set the minimum number of reviewer to two
+This is the dfault number when the `nable Require a minimum nuner of reviewers`
+option is enabled.
+
+- Enable the Reset all code reviwer votes option when new changes are pushed
+This options enusre that new changes ot a PR are reviwed by already approved
+reviewers.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
