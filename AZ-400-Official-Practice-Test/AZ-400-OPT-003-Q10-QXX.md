@@ -2144,6 +2144,51 @@ scenario.
 
 ---
 
+### Question 36:
+
+A company decides to use a Git Repo as part of their DevOps solution.
+You need to adopt a branching model for the main branch policy.
+
+Which two options should you choose?
+
+- Require automatic merging of the feature branches when a pull request is made
+- Require automatic reviews when a pull request is created
+- Require a stakeholder feedback to complete a pull request 
+- Require a pull requerst to merge code
+
+---
+
+### Answer:
+
+- Require a pull requerst to merge code
+- Require automatic reviews when a pull request is created
+
+---
+
+### Explanation:
+
+- Require a pull requerst to merge code
+This prevents code from being merged into **main** by direct git push.
+In order to merge code a PR is reaquired which promotes code review and discussion.
+
+- Require automatic reviews when a pull request is created
+This option makes usre that **reviews are performed in a timely fashion**.
+
+The following options are not suitable in this scenario.
+
+- Require automatic merging of the feature branches when a pull request is made
+
+- Require a stakeholder feedback to complete a pull request 
+Gathering feedback from a stakeholder is more appropriate **after building and testing**.
+
+---
+
+### References:
+
+[Adopt a Git branching strategy](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
