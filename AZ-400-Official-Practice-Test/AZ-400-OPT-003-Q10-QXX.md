@@ -1688,6 +1688,195 @@ You can securely access your account's resources on GitHub Desktop by authentica
 
 ---
 
+### Question 31:
+
+**This is the same as Q30 but the error message in one of the other options**.
+
+You want to use **GitHGub Desktop 3.0 to manage GitHub Pull Request workflow effectively**.
+You are trying to authenticate your account from GitHub Desktop in order to be able to access 
+the existing resources on GitHub.com.
+
+You receive the following error message:
+
+```
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exists.
+```
+
+---
+
+### Answer:
+
+- You do not have a valid SSH key setup.
+[GitHub Desktop - Could not read from remote repository](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#could-not-read-from-remote-repository)
+```
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exists.
+```
+This error means that you do not have a valid SSH key set up.
+To troubleshoot, see:
+[Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  
+
+---
+
+### Explanation: 
+refer to the **Explanation for Q30**.
+
+---
+
+### Question 32:
+
+**Refer to Q28.**
+
+Your company uses **Git Large File Storage (LFS) extension** for versioning large files.
+
+Your team is working with large assest such as videos.
+Concurrent edits of different files in Git repositories lead often to merge conflicts.
+
+You need to solve this issue.
+What should you do?
+
+- Use the `git lfs unlock --force` command
+- Use the `git lfs track --lockable` command
+- Use the `git lfs fetch --include` command
+- Use the `git lfs fetch --exclude` command
+
+---
+
+### Answer:
+- Use the `git lfs track --lockable` command
+
+---
+
+### Explanation:
+
+- Use the `git lfs track --lockable` command
+
+In particular the argument: `--lockable` `-l`
+Makes the paths 'lockable' meaning **they should be locked to edit them** 
+and will be made read-only **in the working copy when not locked**.
+
+This command allows developers to **lock their files when they are updating them** and as 
+long as one develioper holds the lock other developers will not be able to edit those large
+files.
+
+**This solves the problem of concurrent edits and therefore the merge conflich that may arise.**
+
+The other options do not apply in this case.
+
+- Use the `git lfs unlock --force` command
+With this command a developer can force out the lock on a file held by another developer.
+This  might  be necessary when someone has forgotten to release their lock on a file.
+
+- Use the `git lfs fetch --exclude` command (also -X)
+**This command is typically used when you are configuring the CI/ build or tio run unit tests**
+**and you want to exclude large files which are not necessary to the build or the test run**.
+You can exclude a directory or a path pattern.
+
+- Use the `git lfs fetch --include` command (also -I)
+This allows to explicetely include a specifies path pattern.
+
+
+---
+
+### References:
+
+[Manage and store large files in Git](https://learn.microsoft.com/en-us/azure/devops/repos/git/manage-large-files?view=azure-devops)   
+
+[Git LFS Documentation](https://github.com/git-lfs/git-lfs/blob/main/docs/README.md)
+
+#### Git LFS Unlock:
+[docs/man/git-lfs-unlock.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-unlock.adoc)  
+Removes the given file path as "locked" on the Git LFS server. 
+Files must exist and have a clean git status before they can be unlocked. 
+The `--force` flag will skip these checks.
+
+`r <name>` `--remote=<name>`
+Specify the Git LFS server to use. Ignored if the lfs.url config key is set.
+
+`-f` `--force`
+Tells the server to remove the lock, even if it’s owned by another user.
+
+`-i <id>` `--id=<id>`
+Specifies a lock by its ID instead of path.
+
+`--json` 
+Writes lock info as JSON to STDOUT if the command exits successfully. 
+Intended for interoperation with external tools. 
+If the command returns with a non-zero exit code, plain text messages will be sent to STDERR.
+
+#### Git LFS Track:
+[docs/man/git-lfs-track.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-track.adoc)  
+Start tracking the given **patterns(s)** through Git LFS. 
+The argument is **written to .gitattributes**. 
+If no paths are provided, simply list the currently-tracked paths.
+
+The gitattributes documentation states that patterns **use the gitignore pattern rules to match paths**. 
+This means that patterns which contain asterisk (*), question mark (?), and the bracket characters 
+([ and ]) are treated specially. 
+To disable this behavior and treat them literally instead, use `--filename` or 
+**escape the character with a backslash**.
+
+`--lockable` `-l`
+Make the paths 'lockable', meaning they should be locked to edit them, and will be made read-only
+**in the working copy when not locked**.
+
+`--not-lockable`
+Remove the lockable flag from the paths so they are no longer read-only unless locked.
+
+`--verbose` `-v`
+If enabled, have git lfs track log files which it will touch. Disabled by default.
+
+`--dry-run` `-d` **Disabled by default.**
+If enabled, have git lfs track log all actions it would normally take 
+(adding entries to .gitattributes, touching files on disk, etc) without performing any mutative
+operations to the disk.
+
+`git lfs track --dry-run [files]` 
+also implicitly mocks the behavior of passing the `--verbose`, and will log in greater detail
+what it is doing.
+
+`--filename`
+Treat the arguments as literal filenames, not as patterns. 
+Any special glob characters in the filename will be escaped when writing the .gitattributes file.
+
+#### Git LFS Fetch:
+[docs/man/git-lfs-fetch.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-fetch.adoc)  
+
+Download Git LFS objects at the given refs from the specified remote. 
+See [_default_remote] and [_default_refs] for what happens if you don’t specify.
+
+`--all:`
+Download all objects that are referenced by any commit reachable from the refs provided as arguments. 
+If no refs are provided, then all refs are fetched. This is primarily for backup and migration purposes.
+Cannot be combined with --recent or --include/--exclude. 
+Ignores any globally configured include and exclude paths to ensure that all objects are downloaded.
+
+`--prune:`
+Prune old and unreferenced objects after fetching, equivalent to running git lfs prune afterwards.
+
+`--recent:`
+Download objects referenced by recent branches & commits in addition to those that would otherwise be downloaded. 
+
+`--include=<paths>` & `--exclude=<paths>`
+[Include and Exclede](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-fetch.adoc#include-and-exclude)  
+
+You can configure Git LFS to only fetch objects to satisfy references in certain paths of the repo
+and/or to exclude certain paths of the repo, to reduce the time you spend downloading things you 
+do not use.
+
+In your Git configuration or in a .lfsconfig file, you may set either or both of 
+lfs.fetchinclude and lfs.fetchexclude to comma-separated lists of paths. 
+If lfs.fetchinclude is defined, Git LFS objects will only be fetched if their path matches one in that list.
+if lfs.fetchexclude is defined, Git LFS objects will only be fetched if their path does not match one in that list. Paths are matched using wildcard matching as per gitignore(5).
+
+Note that using the command-line options -I and -X override the respective configuration settings. 
+Setting either option to an empty string clears the value.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
