@@ -1599,13 +1599,98 @@ is possible to migrate it to Azure Repos.
 
 [What is Team Foundation Version Control?](https://learn.microsoft.com/en-us/azure/devops/repos/tfvc/what-is-tfvc?view=azure-devops)  
 
+---
 
+### Question 30:
 
+You use **GitHub Desktop** to manage your GitHub puill request workflow effectively.
+You are trying to authenticate your account from GitHub Desktop so that you can 
+access your already existing resources on **GitHub.com**.
+
+However, you receive the following error message:
+
+```
+info: [ui] [AppStore.withAuthenticatingUser] account found for repository: node - USERNAME (empty token)
+```
+
+What is causing the problem?
+
+- You do not have a valid SSH key setup.
+- You do not have adequate permissions to access the source code repository.
+- You want to clone a source code repository which has existing submodules that you do not have access to.
+- You cannot find the access token that GitHub.com created in the system keychain.
+
+---
+
+### Answer:
+- You cannot find the access token that GitHub.com created in the system keychain.
+
+---
+
+### Explanation:
+
+- You cannot find the access token that GitHub.com created in the system keychain.
+`info: [ui] [AppStore.withAuthenticatingUser] account found for repository: node - USERNAME (empty token)`
+
+In this scenario there is an **empty token** `USERNAME (empty token)`. This means that **GitHub Desktop**
+**cannot find the relevant access token that it previously created in the system keychain**.
+In order to correct this error you must **sign out of your GitHub Desktop, clear the cache and then**
+**sign in again**.
+
+The other options do not apply in this case.
+
+- You do not have adequate permissions to access the source code repository.
+
+[GitHub Desktop - Repository Not Found](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#repository-not-found)  
+
+This would be the cause of the problem if the error message was the following:
+```
+fatal: repository 'https://github.com/<user>/<repo>.git' not found
+(The error was parsed as 8: The repository does not seem to exist anymore. 
+You may not have access, or it may have been deleted or renamed.)
+```
+To troubleshoot, contact the person in your organization who administers permissions.
+
+- You do not have a valid SSH key setup.
+[GitHub Desktop - Could not read from remote repository](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#could-not-read-from-remote-repository)
+```
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights and the repository exists.
+```
+This error means that you do not have a valid SSH key set up.
+To troubleshoot, see:
+[Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  
+
+- You want to clone a source code repository which has existing submodules that you do not have access to.
+[GitHub Desktop - Failed to clone](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#failed-to-clone)  
+```
+fatal: clone of 'git@github.com:<user>/<repo>' into submodule path '<path>' failed
+Failed to clone 'src/github.com/<user>/<repo>'. Retry scheduled
+Cloning into '<path>'...
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+Please make sure you have the correct access rights
+and the repository exists.
+```
+This error means that either the repository that you are trying to clone has submodules 
+that you do not have access to or you do not have a valid SSH key set up.
+If you do not have access to the submodules, troubleshoot by contacting the person who
+administers permissions for the repository.
+
+---
+
+### References:
+
+[Authenticating to GitHub in GitHub Desktop](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop)   
+
+You can securely access your account's resources on GitHub Desktop by authenticating to GitHub.
 
 ---
 
 ### Question:
 ### Answer:
+### Explanation:
 ### References:
 
 ---
