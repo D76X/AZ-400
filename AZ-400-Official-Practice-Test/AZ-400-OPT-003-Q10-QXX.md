@@ -2189,6 +2189,57 @@ Gathering feedback from a stakeholder is more appropriate **after building and t
 
 ---
 
+### Question 37:
+
+A development team decides to replace their centralized version control system with Git.
+
+As the concept of branching is new to teh team, you need to develop
+a branching strategy that is easy to adopt and causes minimal disruption.
+
+Which action should you perform to define a branching strategy?
+
+- Keep long-running feature branches
+- Commit changes to the main branch
+- Use feature branches for features and bug fixes
+- Keeps all features and bug fixes local until they are ready to merge in the main branch
+
+---
+
+### Answer:
+- Use feature branches for features and bug fixes
+
+---
+
+### Explanation:
+
+Use feature branches for features and bug fixes **to isolate work that is in progress**
+**from a potentially releasable code**.
+
+The other options do not apply in this case.
+
+- Keeps all features and bug fixes local until they are ready to merge in the main branch
+This defeats the purpose of moving to a decentralized version control system and will cause
+problems on merging.
+
+- Commit changes to the main branch
+Commits are performed on **local repositories and not on the main branch**.
+New code flows into teh main branch through the process of merging. 
+
+- Keep long-running feature branches
+This has always negative effects and normally results in many merge conflicts.
+It is a bad branching strategy.
+
+---
+
+### References:
+
+[Adopt a Git branching strategy](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops)  
+
+---
+
+### Question 38:
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
