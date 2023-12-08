@@ -1778,7 +1778,6 @@ You can exclude a directory or a path pattern.
 - Use the `git lfs fetch --include` command (also -I)
 This allows to explicetely include a specifies path pattern.
 
-
 ---
 
 ### References:
@@ -1874,6 +1873,160 @@ if lfs.fetchexclude is defined, Git LFS objects will only be fetched if their pa
 
 Note that using the command-line options -I and -X override the respective configuration settings. 
 Setting either option to an empty string clears the value.
+
+---
+
+### Question 33:
+
+Your company uses Git source code versioning as part fo an Azure DevOps services project
+to build and release mobile applications. Ypu have noticed that during teh execution of 
+simple commands, such as `git commit`, `git fetch` the commands remain stuck for several 
+minutes.
+
+You decide to use **Scalar**.
+
+Which four actionsa should you perform?
+Each correct answer presents part of the solution.
+
+- Enable `status.aheadBehind=true` to calculate how far ahead or behind
+  your branch is compared to the remote-tracking branch
+
+- Disable `status.aheadBehind=false` to remove the calculation of 
+  how far ahead or behind your branch is compared to the remote-tracking branch
+
+- Use the `git-repack` command
+
+- Use the `core.fsmonitor` command hook to Watchman
+
+- Use the `git gc --aggressive` command
+
+- Disable autio-GC by setting `gc.auto=0`
+
+- Disable writing the commit-graph during fetch vby setting `fetch.writeCommitGraph=false`
+
+---
+
+### Answer:
+
+- Disable `status.aheadBehind=false` to remove the calculation of 
+  how far ahead or behind your branch is compared to the remote-tracking branch
+- Use the `core.fsmonitor` command hook to Watchman
+- Disable autio-GC by setting `gc.auto=0`
+- Disable writing the commit-graph during fetch vby setting `fetch.writeCommitGraph=false`
+
+---
+
+### Explanation:
+
+With **Scalar** it is possible to **accelerate the Git Workflow** 
+**irrespective of the size and shape of your Git Repo**.
+It allows Git Config Settings to be modified in order to overcome performance issues
+and bottlenecks.
+
+- Disable autio-GC by setting `gc.auto=0`
+This prevents Git commands from being blocked by **maintenance**, that is
+the **Garbage Collection** that is built into Git.
+he background maintenance keeps your Git object database clean.
+
+- Disable writing the commit-graph during fetch vby setting `fetch.writeCommitGraph=false`
+**Scalar ensures that the fetch step is run once about every 1h, which saves precious time**
+**and makes sure that new objects are not downloaded while your git commands are executed**.
+
+**Fetch in the background**
+The fetch step runs git fetch about once an hour. This allows your local repository to keep
+its object database close to that of your remotes. This means that the time-consuming part
+of git fetch that downloads the new objects happens when you are not waiting for your command
+to complete.
+
+We intentionally do not change your local branches, including the ones in refs/remotes.
+You still need to run git fetch in the foreground when you want ref updates from your remotes.
+We run git fetch with a custom refspec to put all remote refs into a new 
+ref namespace: refs/scalar/hidden/<remote>/<branch>. 
+This allows us to have starting points when writing the commit-graph
+
+- Disable `status.aheadBehind=false` to remove the calculation of 
+  how far ahead or behind your branch is compared to the remote-tracking branch
+This removes the calculation of how far ahead or behind your branch is compared to the 
+remote-tracking branch. This message is frequently ignored, but can cost precious 
+seconds when you just want to see your unstaged changes.
+
+- Use the `core.fsmonitor` command hook to **Watchman**
+If you are using the [GitHub Watchman](https://github.com/facebook/watchman)  
+The **Watchman** watches files and records for changes and can also trigger actions such
+as the rebuild of assets when matching files have changed.
+The **hooks folder** in **.git** that is **.git/hooks** holds a few **Git Hooks** scripts.
+These are executed **before of after Git Events**. 
+
+In other words, by installong **Watchman** in your repo and by using `core.fsmonitor`
+within Scalar: 
+
+[Improve Git Repo performance with File System NMonitor](https://github.blog/2022-06-29-improve-git-monorepo-performance-with-a-file-system-monitor/)  
+The Git file system monitor (FSMonitor) feature can speed up these commands by 
+**reducing the size of the search**, and this can greatly reduce the pain of working
+in large worktrees. 
+For example, this chart shows status times dropping to under a second on three 
+different large worktrees when FSMonitor is enabled!
+
+---
+
+The following options do not apply in this case.
+
+- Enable `status.aheadBehind=true` to calculate how far ahead or behind
+  your branch is compared to the remote-tracking branch
+This would add additional time to the overall process and slow down your Git Workflow!
+
+- Use the `git gc --aggressive` command
+Cause the **Git Garbage Collector** to run more often and therefore it will 
+slow down your Git Workflow!
+
+- Use the `git-repack` command
+[git gc --aggressive vs git repack](https://stackoverflow.com/questions/28720151/git-gc-aggressive-vs-git-repack)  
+[git-repack](https://git-scm.com/docs/git-repack/2.8.6)
+This command is used to combine all objects that do not currently reside in a "pack", into a pack. 
+It can also be used to re-organize existing packs into a single, more efficient pack.
+A pack is a collection of objects, individually compressed, with delta compression applied, stored
+in a single file, with an associated index file.
+
+***Packs are used to reduce the load on mirror systems, backup engines, disk storage, etc.** 
+In this case it would not help with the issue of a developer who waits for minutes following the commands:
+`git commit`, `git fetch`
+
+---
+
+### References:
+
+[Introducing Scalar: Git at scale for everyone](https://devblogs.microsoft.com/devops/introducing-scalar/)  
+
+[Git at Scale: Scalar! | Derrick Stolee's virtual talk at the Git London user group, July 2021.](https://www.youtube.com/watch?v=8iZqagosc5w)  
+
+[Scalar Documentation](https://github.com/microsoft/git/blob/HEAD/contrib/scalar/docs/index.md)  
+
+[Scalar](https://github.com/microsoft/scalar)  
+Scalar is a tool that helps Git scale to some of the largest Git repositories. 
+It achieves this by **enabling some advanced Git features**, such as:
+
+- Partial clone: 
+reduces time to get a working repository by not downloading all Git objects right away.
+
+- Background prefetch: 
+downloads Git object data from all remotes every hour, reducing the amount of time
+for foreground git fetch calls.
+
+- Sparse-checkout: 
+limits the size of your working directory.
+
+- File system monitor: 
+tracks the recently modified files and eliminates the need for Git to scan the entire worktree.
+
+- Commit-graph: 
+accelerates commit walks and reachability calculations, speeding up commands like git log.
+
+- Multi-pack-index: 
+enables fast object lookups across many pack-files.
+
+- Incremental repack: 
+Repacks the packed Git data into fewer pack-file without disrupting concurrent 
+commands by using the multi-pack-index. 
 
 ---
 
