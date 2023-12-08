@@ -2308,7 +2308,7 @@ The following additional contitions must be met:
   as long as the minimum number of upvotes required is met
 - Push request to the source branch will not reset votes.
 
-How should you complete teh Azure CLI command?
+How should you complete the **Azure CLI** command?
 
 Select the appropriate options.
 
@@ -2371,6 +2371,59 @@ az repos policy approver-count create --allow-downvotes {false, true}
                                       [--detect {false, true}]
                                       [--org]
                                       [--project]                                      
+```
+
+---
+
+### Question 40:
+
+You are creating **Azure DevOps CLI** to **create a merge strategy policy** for PRs.
+
+You need to create a **semi-linear history** by replacing the source branch commits
+onto teh target branch and then create a merge commit.
+
+How should you complete teh code?
+Select the appropriate option.
+
+```
+az repos policy merge-strategy create --blocking true \
+--brancg main \
+--enabled >> OPTION-1A | 1B << \
+--repository-id SOME-GUID \
+--output table \
+-->> OPTION-2A | 2B | 2C << true
+```
+
+OPTION-1A/1B: true / false
+
+OPTION-2A: --allow-rebase
+OPTION-2B: --allow-rebase-merge
+OPTION-2C: --allow-no-fast-forward
+
+---
+
+### Answer:
+
+
+---
+
+### References:
+
+[az repos policy merge-strategy](https://learn.microsoft.com/en-us/cli/azure/repos/policy/merge-strategy?view=azure-cli-latest)  
+
+```
+az repos policy merge-strategy create --blocking {false, true}
+                                      --branch
+                                      --enabled {false, true}
+                                      --repository-id
+                                      [--allow-no-fast-forward {false, true}]
+                                      [--allow-rebase {false, true}]
+                                      [--allow-rebase-merge {false, true}]
+                                      [--allow-squash {false, true}]
+                                      [--branch-match-type {exact, prefix}]
+                                      [--detect {false, true}]
+                                      [--org]
+                                      [--project]
 ```
 
 ---
