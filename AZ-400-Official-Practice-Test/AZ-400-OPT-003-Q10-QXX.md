@@ -2048,6 +2048,7 @@ Which three actions should you perform?
 ---
 
 ### Answer:
+### Explanation:
 
 - Enable Require a minimum nuner of reviewers options
 - Set the minimum number of reviewer to three
@@ -2065,6 +2066,81 @@ option is enabled.
 - Enable the Reset all code reviwer votes option when new changes are pushed
 This options enusre that new changes ot a PR are reviwed by already approved
 reviewers.
+
+---
+
+### Question 35:
+
+Your company is working with an **external team** to develp a checkout module
+for your e-commenrce platform.
+
+Your company uses **Azure Boards** to manage the platform backlog and 
+**the external team** uses **Trello**.
+
+You need to add new cards to the external team board when 
+**your product team** creates new backlog items in Azure Boards.
+
+This process should be as automatic as possible.
+
+Which two actions should you perform?
+
+- Grant access to Azure Devops in the Trello account
+- Import CSV cards into Trello with Import2 Widzard
+- Configure a Service Hook Subscription in Azure DevOps
+- Install Trello integration from Visual Studio Marketplace
+- Create a quey in Azure Board and export the work items as a CSV file.
+
+---
+
+### Answer:
+- Grant access to Azure Devops in the Trello account
+- Configure a Service Hook Subscription in Azure DevOps
+
+---
+
+### Explanation:
+
+- Grant access to Azure Devops in the Trello account
+This allows the Trello Account to subscribe to Azure Boards events that is to 
+listen to/receive them from Azure Boards and Azure Boards to perform some 
+actions on the Trello Board.
+Then Azure Board will be able to create new Cards and lists on the Trello Board 
+used by the external team.
+
+- Configure a Service Hook Subscription in Azure DevOps
+The service hook should be set up such that when the event of the creation 
+of a new Backlog Item occurs in Azure Boards then a task is run such that 
+it creates a new Card on the Trello Board.
+In order to do so Azure Boards needs some kind of token to be used by this 
+service hook. This token is created in Trello at the step above and will be
+used by Azure Boards when the hook runs.
+
+The remaining options do not apply in this case.
+
+- Install Trello integration from Visual Studio Marketplace
+This page conatains only a link to Micorsoft Docs that describe stet by step
+how to configure Trello integration with Azure Boards.
+There is no extension for Trello that can be installed into Azure Boards!
+
+- Create a quey in Azure Board and export the work items as a CSV file.
+This would work only for one-off jobs and would not be automatic!
+
+- Import CSV cards into Trello with Import2 Widzard
+This **Import2 Widzard** ios a 3rd-oparty tool that performs the import of 
+CSV cards into Trello. It is a manual process therefore not suitable to this 
+scenario.
+
+---
+
+### References:
+ 
+[Create a service hook for Azure DevOps Services and TFS with Trello](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/trello?view=azure-devops)   
+
+[Trello Integration](https://marketplace.visualstudio.com/items?itemName=ms-vsts.services-trello)  
+
+[Send an email with work items](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/email-work-items?view=azure-devops&tabs=browser)    
+
+[Integrate with service hooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/overview?view=azure-devops)  
 
 ---
 
