@@ -2239,6 +2239,140 @@ It is a bad branching strategy.
 
 ### Question 38:
 
+A company decides to use Azure DevOps together with a Git repository.
+The copany wants to use Git with a **trunk-based branching strategy**.
+
+You need to ensure that code is delivered ot production safely.
+
+Which four action should you perform and in which order?
+
+- merge changes to the main branch
+- create a build agent
+- create a feature branch
+- generate a pull request
+- commit changes to the main branch
+- commit and push the changes to the feature branch
+
+---
+
+### Answer:
+
+1. create a feature branch
+2. commit and push the changes to the feature branch
+3. generate a pull request
+4. merge changes to the main branch
+
+---
+ 
+### Explanation:
+
+The essence of a **trunk-based branching strategy** is summarized in the \
+sequence of these four actions.
+
+1. create a feature branch
+2. commit and push the changes to the feature branch
+3. generate a pull request
+4. merge changes to the main branch
+
+The remaining options do not apply.
+
+- commit changes to the main branch
+Commits are performed on **local repositories and not on the main branch**.
+New code flows into teh main branch through the process of merging. 
+
+- create a build agent
+Build agents are created as part of a CI pipeline and have nothing ot do with 
+the definition of a **branching strategy**.
+
+---
+
+### References:
+
+[Trunk Based Development](https://trunkbaseddevelopment.com/)   
+
+[https://learn.microsoft.com/en-us/devops/plan/how-microsoft-plans-devops](https://learn.microsoft.com/en-us/devops/plan/how-microsoft-plans-devops)  
+
+[Adopt a Git branching strategy](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops)  
+
+---
+
+### Question 39:
+
+You are creating a **pull request policy** as part of Azure DevOps services in which a 
+specified number of reviewers are required to approve tyhe code in your project with no 
+rejections.
+
+The following additional contitions must be met:
+
+- PRs can complete successfully even if some of the code reviewers do not approve 
+  as long as the minimum number of upvotes required is met
+- Push request to the source branch will not reset votes.
+
+How should you complete teh Azure CLI command?
+
+Select the appropriate options.
+
+```
+az policy approver-count create >> OPTION-1A | 2A | 3A << true \
+--blocking true \
+--branch main \
+--creator-vote-counts true \
+--repository-id SOME-GUID
+>> OPTION-2A | 2B | 2C << false \
+--output table
+--
+
+OPTION-1A: --allow-downvotes
+OPTION-1B: --creator-vote-counts
+OPTION-1C: --reset-on-source-push
+
+OPTION-2A: --creator-vote-counts
+OPTION-2B: --allow-downvotes
+OPTION-2C: --reset-on-source-push
+
+```
+
+---
+
+### Answer:
+
+OPTION-1A: --allow-downvotes
+OPTION-2C: --reset-on-source-push
+
+---
+
+### Explanation:
+
+`--allow-downvotes`:
+ This policy allows downvotes. PRs can complete successfully even if some of the code reviewers 
+ do not approve as long as the minimum number of upvotes required is met.
+
+`--reset-on-source-push`:
+Push request to the source branch will not reset votes.
+
+---
+
+### References:
+
+[Branch policies and settings](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser)  
+
+[az repos policy approver-count](https://learn.microsoft.com/en-us/cli/azure/repos/policy/approver-count?view=azure-cli-latest) 
+
+```
+az repos policy approver-count create --allow-downvotes {false, true}
+                                      --blocking {false, true}
+                                      --branch
+                                      --creator-vote-counts {false, true}
+                                      --enabled {false, true}
+                                      --minimum-approver-count
+                                      --repository-id
+                                      --reset-on-source-push {false, true}
+                                      [--branch-match-type {exact, prefix}]
+                                      [--detect {false, true}]
+                                      [--org]
+                                      [--project]                                      
+```
+
 ---
 ### Question:
 ### Answer:
