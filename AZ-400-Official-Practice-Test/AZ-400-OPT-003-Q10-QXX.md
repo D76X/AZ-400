@@ -2339,6 +2339,17 @@ OPTION-2C: --reset-on-source-push
 OPTION-1A: --allow-downvotes
 OPTION-2C: --reset-on-source-push
 
+```
+az policy approver-count create --allow-downvotes true \
+--blocking true \
+--branch main \
+--creator-vote-counts true \
+--repository-id SOME-GUID
+--reset-on-source-push false \
+--output table
+```
+
+
 ---
 
 ### Explanation:
@@ -2370,7 +2381,7 @@ az repos policy approver-count create --allow-downvotes {false, true}
                                       [--branch-match-type {exact, prefix}]
                                       [--detect {false, true}]
                                       [--org]
-                                      [--project]                                      
+                                      [--project]
 ```
 
 ---
@@ -2380,14 +2391,14 @@ az repos policy approver-count create --allow-downvotes {false, true}
 You are creating **Azure DevOps CLI** to **create a merge strategy policy** for PRs.
 
 You need to create a **semi-linear history** by replacing the source branch commits
-onto teh target branch and then create a merge commit.
+onto the target branch and then create a merge commit.
 
-How should you complete teh code?
+How should you complete the code?
 Select the appropriate option.
 
 ```
 az repos policy merge-strategy create --blocking true \
---brancg main \
+--branch main \ 
 --enabled >> OPTION-1A | 1B << \
 --repository-id SOME-GUID \
 --output table \
@@ -2404,10 +2415,46 @@ OPTION-2C: --allow-no-fast-forward
 
 ### Answer:
 
+OPTION-1A: true 
+OPTION-2B: --allow-rebase-merge
+
+```
+az repos policy merge-strategy create --blocking true \
+--branch main --enabled true \
+--repository-id SOME-GUID \
+--output table \
+--allow-rebase-merge true
+```
+
+---
+
+### Explanation:
+
+`--branch main --enabled true`:
+This applies the policy to the branch **main** and  **enables it**.
+
+`--allow-rebase-merge true`:
+This makes it possible to rebase the merge commits on top of the target branch 
+and add a merge commit afterwards which creates a **semi-linear history**.
+
+The remaining options do not apply to this case.
+
+OPTION-2A: `--allow-rebase`
+This allows **rebase and fast-forward** and **creates a linear history** on the target branch.
+There will be no merge commits and the commits from a merged branch are replayed on top of the
+target branch.
+
+OPTION-2C: `--allow-no-fast-forward`
+This allows for **basic merge without fast-forward**. 
+It allows **to preserve the whole history from the feature and bug branches** onto the main branch.
+It creates a **non linear history** but it is faithfull to the work that was done on the feature or
+bug branches.
 
 ---
 
 ### References:
+
+[Branch policies and settings](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser)  
 
 [az repos policy merge-strategy](https://learn.microsoft.com/en-us/cli/azure/repos/policy/merge-strategy?view=azure-cli-latest)  
 
@@ -2425,6 +2472,63 @@ az repos policy merge-strategy create --blocking {false, true}
                                       [--org]
                                       [--project]
 ```
+
+---
+
+### Question 41:
+
+You manage a Azure Subscription which has appplications that were specifically
+developed for different teams in youur company.
+
+You made to be sure that every resource in this subscription contains a tag
+that identifies the team that is responsible for each resource.
+
+Which tool should you use to meet this **compliancerequirement**?
+
+- a Chef server
+- a resource group
+- Azure Policy
+- Role-Based Access Control (RBAC)
+
+---
+
+### Answer:
+- Azure Policy
+
+---
+
+### Explanation:
+
+**Azure Policy is a set of rules that rea used to ensure that the resources in a**
+**subscription comply with these rules** and adhere to a specified configuration.
+It is possible to create an Azure Policy that has a rule by which all resources
+in the subscription or a specific resource group have a specific tag from a chosen
+set.
+
+The other options do not apply in this case.
+
+- a Chef server
+Chef is an **infrastructure automation tool** that can guarantee that 
+reosurces are **in a desired state**. This may include the presence of a tag.
+
+- a resource group
+This is only a logical grouping and **tags** are not hinhereted down from the RG
+to the resources in it.
+
+- Role-Based Access Control (RBAC)
+**RBAC** is only an access control strategy to access Azure Resources based on
+the roles assigned to the agent that needs to access them.
+
+---
+
+### References:
+
+[What is Azure Policy?](https://learn.microsoft.com/en-us/azure/governance/policy/overview)  
+[Azure Policy Samples](https://learn.microsoft.com/en-us/azure/governance/policy/samples/)  
+
+[Azure Marketplace - Chef](https://docs.chef.io/azure_marketplace/) 
+[RBAC](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)  
+[What is Azure Resource Manager?](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview)  
 
 ---
 ### Question:
