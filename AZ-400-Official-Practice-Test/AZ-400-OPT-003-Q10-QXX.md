@@ -2908,7 +2908,51 @@ The following options do nopt apply as are not supported by Azure DevOps Service
 
 ---
 
-### Question:
+### Question 48:
+
+You are building an **automated test pipeline for a Java application** using **Azure Pipelines**.
+Yoou create a task to run **code coverage** tests. 
+However the results are not available in the test summary.
+
+Which **two** actions should you perform?
+
+- include a Publish code coverage task
+- enable the code coverage tool in Visual Studio test task
+- enable the code ocverage tool in a Maven task
+- include a Shell script task to publish to **Coveralls**
+
+
+---
+
+### Answer:
+### Explanation:
+
+- include a Publish code coverage task
+- enable the code ocverage tool in a Maven task
+
+The **Publish code coverage task** publishes test a coverage summary generated in 
+**Cobertura or JaCoCo** formats to Azure Pipelines. These are the code coverage 
+summary formats supported by Azure Pipelines.
+
+**Alternatively** by **enabling the code ocverage tool in a Maven task** you can achieve 
+teh same result from within Maven, whcich can publish test cover results in the supported
+formats.
+
+The remaining options do not apply in this case.
+
+- enable the code coverage tool in Visual Studio test task
+This task can indeed publish code cover results to Azure Pipelines but only for **.Net**
+not for Java applications as it is the case.
+
+- include a Shell script task to publish to **Coveralls**
+This is another service [COVERALLS](https://coveralls.io/)
+
+---
+
+### Question 49:
+
+---
+
 ### Answer:
 ### Explanation:
 ### References:
