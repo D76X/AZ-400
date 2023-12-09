@@ -2949,10 +2949,74 @@ This is another service [COVERALLS](https://coveralls.io/)
 
 ---
 
-### Question 49:
+### References:
+
+[PublishCodeCoverageResults@1](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-code-coverage-results-v1?view=azure-pipelines)   
+
+[](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/maven-v3?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+[ShellScript@2](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/shell-script-v2?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+[MSBuild@1 - MSBuild v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/msbuild-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+[COVERALLAS - API](https://docs.coveralls.io/api-introduction)  
 
 ---
 
+### Question 49:
+
+You use Azure DevOps services to build amd release software.
+You need to **implement Dynamic Security Scanning** against a running web applicatiions
+as part of the **CD pipeline**.
+
+Which tool should you intergate with your CD pipeline?
+
+- OSWAP ZAP
+- SonarQube
+- MendBold (formerly Whitesource)
+- FindBugs
+
+---
+
+### Answer:
+- OSWAP ZAP
+
+---
+
+### Explanation:
+
+[Azure DevOps Pipelines: Leveraging OWASP ZAP in the Release Pipeline](https://devblogs.microsoft.com/premier-developer/azure-devops-pipelines-leveraging-owasp-zap-in-the-release-pipeline/)  
+
+**OSWAP ZAP stands for Zed Attack Proxy by OSWAP**, **Open Worldwide Application Security Project**.
+**ZAP** is an **extension** that allows to perform **Dynamic Security Scanning** against a running
+application. It **requires a CD Pipeline** to be in place.
+The extension **pretends** to be an attacker and it fiddles the web app with requests in  order to
+identify possible vulerabilities.
+
+The other options do not apply in this case.
+
+- [MendBold (formerly Whitesource)](https://marketplace.visualstudio.com/items?itemName=whitesource.whiteSource-bolt-v2)  
+This is a **Deopendency Scanner** and provides information on the dependencies that are consumed 
+in your project. It provides details about their **vulerabilities and licencing issues**.
+Azure DevOp Services integrates with MendBold, it **detects open source components used by your** 
+**software without scannign your code**.
+It **provides real-time allerts** on **vulnerabilities and licencing uissues** realted to 
+**open source component**.
+
+- SonarQube
+[SonarQube extension for Azure DevOps](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarqube-extension-for-azure-devops/)  
+[SonarQube Extension for Azure DevOps Pipelines](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarqube)
+This is a **static code analysis** tool for applications written in any of the supported languages.
+**Java, .Net C#, Kotlin, etc.**
+
+- [FindBugs](https://findbugs.sourceforge.net/)  
+This is a **static code analysis** tool for Java applications.
+
+
+---
+
+
+### Question:
 ### Answer:
 ### Explanation:
 ### References:
