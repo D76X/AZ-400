@@ -3074,7 +3074,13 @@ There are **two types of code coverager**:
 It rerpesents the target threshold value for **diff coverage and not dull coverage** 
 in order for a success status for the PR to be posted.
 
+---
 
+### References:
+
+[Code coverage for pull requests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/codecoverage-for-pullrequests?view=azure-devops)  
+
+[codecoverage-yaml-samples](https://github.com/MicrosoftDocs/codecoverage-yaml-samples)  
 
 ---
 
