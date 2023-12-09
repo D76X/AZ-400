@@ -3012,6 +3012,69 @@ This is a **static code analysis** tool for applications written in any of the s
 - [FindBugs](https://findbugs.sourceforge.net/)  
 This is a **static code analysis** tool for Java applications.
 
+---
+
+### Question 50:
+
+Your company uses Azure DevOps Services to build and release **enterprise software**.
+You use **Pull Requests code coverage** to measure the percentage of your code that 
+si tested.
+
+You create the following YAML file:
+
+```
+coverage:
+  status:
+    comments: on
+    diff:
+      target: 50%
+```
+
+You need to ensure that the YAML file will achieve the desired outcome.
+
+For each of the following statements select Yeas or No.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | The details about coverage for each changed file will be posted as a PR comment |
+| Yes | No  | The file provides code coverage only for the lines changed in a PR|
+| Yes | No  | 50% represents the threshold value for a sucessful full coverage status to be posted |
+
+
+---
+
+### Answer:
+
+| Yes | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | The details about coverage for each changed file will be posted as a PR comment |
+| Yes | The file provides code coverage only for the lines changed in a PR|
+| No  | 50% represents the threshold value for a sucessful full coverage status to be posted |
+
+---
+
+### Explanation:
+
+```
+diff:
+  target: 50%
+```
+
+`diff:`
+There are **two types of code coverager**:
+
+1. **Full coverage**: for the entire code base.
+2. **Diff coverage**: in the context of a Pull Request.
+  Measures the test coverage of the code **added or changed** by the PR.
+
+`comments: on`: 
+**details about coverage for each file** will be posted as **PR comments**. 
+
+`target: 50%`
+It rerpesents the target threshold value for **diff coverage and not dull coverage** 
+in order for a success status for the PR to be posted.
+
+
 
 ---
 
