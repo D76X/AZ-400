@@ -2718,6 +2718,90 @@ However:
 
 ---
 
+### Question 45:
+
+You use Git for source code versioning for all yourprojects.
+
+You need to **undo the changes made by a shared commit for one of the projects**
+**and ensure that the original commit is not deleted**.
+
+- git revert
+- git reset
+- git switch
+- git checkout
+
+---
+
+### Answer:
+### Explanation:
+
+- git revert #commitID
+This **undoes / reverses** the changes of `commitID` by **adding a new commit** and  
+**without deleting teh original commit**.
+
+The other options do not apply to this case.
+
+---
+
+- git checkout
+You can use this command to **quickly discard the changes you have made on you local repo**.
+This returns the source code to the last committed version.
+
+--- 
+
+- git switch
+This **gets your commit out of Git into your working tree**.
+
+[What's the difference between git switch and git checkout <branch>](https://stackoverflow.com/questions/57265785/whats-the-difference-between-git-switch-and-git-checkout-branch)  
+
+the **switch** and **restore** commands were introduced to split the 
+**checkout** command into two separate pieces:
+
+1. "checking out a branch to work on advancing its history"
+2. "checking out paths out of the index and/or a tree-ish to work on advancing the current history"
+
+In other words, **checkout** does two different things and this release split each of those different
+things into its own focused command.
+
+```
+git-checkout - Switch branches or restore working tree files
+```
+
+switch has some limitations: at the moment you can switch from any commit to <branch name>, 
+however it's impossible to switch from <branch name> to a particular commit with a status 
+of detached HEAD. 
+So you need to use git **checkout 5efb** 
+(where 5efb is an example of a hash reference to arbitrary commit)
+
+--
+
+- git reset
+
+**Reverst a branch to its state in a previous commit**.
+**It affetcs all files in the branch!**.
+This command can be used with multiple flags.
+
+`git reset #id --hard`:
+This resets the branch to the commit #id **nd discards all changes made to the branch following this commit**.
+That is these changes will no longer be in teh working tree and are lost!
+
+`git reset #id --mixed`:
+It does the same as with `--hard` **but it preserves the subsequent changes as unstaged**.
+This is the **deafult** option!
+
+`git reset #id --soft`:
+It does the same as with `--mixed` **but it preserves the subsequent changes as staged & unstaged**.
+
+---
+
+### References:
+
+[Azure Repos - Undo changes](https://learn.microsoft.com/en-us/azure/devops/repos/git/undo?view=azure-devops&tabs=visual-studio-2022)  
+
+[What is the `git restore` command and what is the difference between `git restore` and `git reset`?](https://stackoverflow.com/questions/58003030/what-is-the-git-restore-command-and-what-is-the-difference-between-git-restor)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
