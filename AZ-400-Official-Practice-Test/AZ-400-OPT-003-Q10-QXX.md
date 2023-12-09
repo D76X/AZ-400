@@ -3216,6 +3216,19 @@ This permission enables users to queue new builds.
 
 ---
 
+### References:
+
+[Run automated tests from test plans](https://learn.microsoft.com/en-us/azure/devops/test/run-automated-tests-from-test-hub?view=azure-devops)  
+
+[Set pipeline permissions](https://learn.microsoft.com/en-us/azure/devops/pipelines/policies/permissions?view=azure-devops)  
+
+---
+
+### Question 53:
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
