@@ -2802,6 +2802,56 @@ It does the same as with `--mixed` **but it preserves the subsequent changes as 
 
 ---
 
+### Question 46:
+
+You use **Git Repos to store source code and mamage features** as part of a project
+on Azure DevOps Services.
+
+A user has added a **large binary file** into teh repository.
+You need to remove the file in order to keep the rpository clean and lightweight.
+
+Which **two commands** should you use?
+
+- git push --force
+- git revert
+- git checkout
+- git rebase
+
+---
+
+### Answer:
+### Explanation:
+
+- git rebase
+- git push --force
+
+To solve this problem:
+
+1. ask your team to **stop pushing to the repo** that is freeze the history until the problem is solved.
+2. **rebase** wirh `git rebase #SHA` where `#SHA` is the hash value of the commit you want to go back to.
+   You can use `git log` to find the **SHA values** of recent commits.
+3. Once you have been able to remove the offending file(s) use  `git push --force`.
+   This forces your repository to **override the history on the origin**.
+
+The offending commits and files will be permanenlty lost on the remote!
+
+
+The following do not apply to this case.
+
+- git revert
+This does not remove commits and their contents from a repository.
+
+- git checkout
+This is only to restore the repo to a particular branch or files to a particolar versions.
+
+---
+
+### References:
+
+[Learn how to remove a large binary from your Git history to manage the size of cloned repositories](https://learn.microsoft.com/en-us/azure/devops/repos/git/remove-binaries?view=azure-devops)  
+ 
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
