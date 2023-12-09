@@ -2531,6 +2531,82 @@ the roles assigned to the agent that needs to access them.
 [What is Azure Resource Manager?](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview)  
 
 ---
+
+### Question 42:
+
+Your team has decided to make all projects private due to security concerns.
+You were involved in developing sa project which now you must make private.
+
+Which actions should you perform in Azure DevOps to make your project private?
+
+- change the external guest access setting under security policies
+- change the SSH authentication setting under application policies
+- change the project visibility under the project overview tab
+- change the allow public project settings under security policies
+
+---
+
+### Answer:
+- change the project visibility under the project overview tab
+
+---
+
+### Explanation:
+
+By **changing the project visibility under the project overview tab** to private the project 
+will no longer publicly available.
+
+The other options do not apply tio this case.
+
+- change the allow public project settings under security policies
+
+[Enable anonymous access to projects](https://learn.microsoft.com/en-us/azure/devops/organizations/projects/make-project-public?view=azure-devops#1-enable-anonymous-access-to-projects)
+
+Before you can change a private project to a public project, 
+you must enable anonymous access for your organization.
+
+[Set the project visibility](https://learn.microsoft.com/en-us/azure/devops/organizations/projects/make-project-public?view=azure-devops#2-set-project-visibility)  
+
+---
+
+- change the external guest access setting under security policies
+This setting is for **external users** who **do not have Azure AD indentities**.
+
+[Add external users to your organization](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/add-external-user?view=azure-devops)  
+
+Invite external users to your organization. 
+If you access Azure DevOps via Microsoft Entra ID, you must add the identities
+of those users to your Microsoft Entra ID. Doing so also grants the users more
+privileges. 
+
+---
+
+- change the SSH authentication setting under application policies
+
+This setting is a **network protocol** that is used **to connect to your code repository**.
+
+[Use SSH key authentication](https://learn.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops)
+
+You can connect to your Git repos through SSH on macOS, Linux, or Windows 
+to securely connect with HTTPS authentication.
+SSH public key authentication works with an asymmetric pair of generated encryption keys. 
+The public key is shared with Azure DevOps and used to verify the initial ssh connection.
+The private key is kept safe and secure on your system.
+
+You must be a member of the either of the following two security groups: 
+**Project Collection Administrators**  
+**Project Administrators**  
+
+for the organization that you want to invite external users to.
+
+---
+
+### References:
+
+[Change project visibility to public or private](https://learn.microsoft.com/en-us/azure/devops/organizations/projects/make-project-public?view=azure-devops)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
