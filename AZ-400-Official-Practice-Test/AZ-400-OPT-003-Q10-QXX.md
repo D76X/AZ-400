@@ -3226,6 +3226,64 @@ This permission enables users to queue new builds.
 
 ### Question 53:
 
+You are implementing **GitHub Actions** to **automate the development workflow** 
+from withing GitHub. Your team si trying to use **Azure Command Line Interface**
+**Azure CLI** in a GitHub Action Workflow.
+
+You need to **establish an authentication method** that enables you to use the Azure CLI
+in a GitHub Action Workflow to be used.
+
+Which **two** authetication methods could you use **to authenticate your login action**
+with Azure?
+
+- Azure login action with OpenID conncet (OIDC)
+- Azure login action with a srvice principal secret
+- Azure login action with SAML 2.0
+- Azure login action with Micorsoft Authentication Library (MSAL)
+
+---
+
+### Answer:
+### Explanation:
+
+- Azure login action with a srvice principal secret
+In this case you **create a Service Pincipal in Azure AD** i.e. from the Azure Portal.
+This **Service Pincipal** is an identity that is created to represent an application
+in your Azure AD tenant. 
+During the process of creation of this identity some tokens such as **Application ID**
+and **application secret** are provided by Azure AD and are meant to be used by the 
+application to authenticate.
+In this case the application that makes use of these credentials would be the Azure CLI
+task used in the GitHub Action Workflow. 
+The GitHub Action Workflow **provides means to store the credentials** 
+**Application ID** and **application secret** as secrets and therefore to keep them 
+safe from accidental leaks.
+
+- Azure login action with OpenID conncet (OIDC)
+**OpenID Connect (OIDC) with an Azure Service Principla using a Federated Identity Credential**.
+ **OIDC** is an **authentication & authorization layer** build on top of **OAuth 2.0**.
+ In this scenario, you require:
+ 
+ 1. a **Service Pincipal in Azure AD** wity the  **Contributor role** on the Azure subscription.
+ 2. a **Azure AD application** configured with **federated credentials** to trust tokens issued by
+    GHitHub Actions   
+
+The remaining options do not apply.
+
+- Azure login action with SAML 2.0
+- Azure login action with Micorsoft Authentication Library (MSAL)
+
+?????????????????????
+
+---
+
+### Explanation:
+
+[Azure and GitHub integration](https://learn.microsoft.com/en-us/azure/developer/github/?view=azure-devops)  
+
+[What is GitHub Actions for Azure](https://learn.microsoft.com/en-us/azure/developer/github/github-actions)  
+
+[Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)  
 
 ---
 
