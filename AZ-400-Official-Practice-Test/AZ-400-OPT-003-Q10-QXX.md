@@ -3164,6 +3164,57 @@ The **2880** is the timeout in minutes for the **task**.
 
 ---
 
+### Question 52:
+
+Your company uses Azure DevOps Services to build and release software.
+Your team uses **Azure Test Plans** to integrate automated test cases in its test plans
+and run them as part of an Azure DevOps project.
+
+UserA receices the error:
+`You do not have sufficient permissio to trigger a release`.
+
+You needd to troubleshoot this issue.
+
+Which **four** permissions could you assign to UserA in the **Security menu**
+of the release pipeline?
+
+- create release
+- edit release stage
+- edit build quality
+- queue builds
+- manage deployments
+- manage releases
+
+
+---
+
+### Answer:
+
+- create release
+- edit release stage
+- manage deployments
+- manage releases
+
+---
+
+### Explanation:
+
+Pipeline permissions are permissions associated with pipelines in a Azure DevOps project. 
+For a user to be able **to run automated tests fro Azure Test Plans**, the user can
+either:
+
+1. be assigned to teh security group **Project Contributor**
+2. be assigned the **four permissions above**.
+
+The remaining options do not apply.
+
+- edit build quality
+This permission enables users to add tags to a build.
+
+- queue builds
+This permission enables users to queue new builds.
+
+---
 
 ### Question:
 ### Answer:
