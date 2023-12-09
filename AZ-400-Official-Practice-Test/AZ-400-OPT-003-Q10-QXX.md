@@ -2677,6 +2677,47 @@ Assign to users who define and manage release pipelines.
 
 ---
 
+### Question Q44:
+
+You use **Git repositories to store source code and manage features** as part of an 
+Azure DevOps services project in your company.
+
+You are a member of teh **Contributors** security group.
+
+You need to **create git tags**.
+
+Which**three name convenctions** should you consider?
+
+- a name without ASCII control characters such as spaces and colons
+- a name length which does not exceed 250 ACII characters
+- a name length which does not exceed 40 hexadecimal characters
+- a name without hyphens
+- a name length which does not exceed 300 ACII characters
+
+---
+
+### Answer:
+### Explanation:
+
+- a name without ASCII control characters such as spaces and colons
+- a name length which does not exceed 250 ACII characters
+- a name length which does not exceed 40 hexadecimal characters
+
+The convensions for Git tags are the following:
+- a name without ASCII control characters such as spaces and colons, **tilde**
+- a name length which does not exceed 250 ACII characters
+- a name length which does not exceed 40 hexadecimal characters
+However:
+- lowercase chars and hyphens can be used
+
+---
+
+### References:
+
+[Use Git Tags](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-tags?view=azure-devops&tabs=browser)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
