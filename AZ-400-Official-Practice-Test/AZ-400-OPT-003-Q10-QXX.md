@@ -2849,7 +2849,63 @@ This is only to restore the repo to a particular branch or files to a particolar
 ### References:
 
 [Learn how to remove a large binary from your Git history to manage the size of cloned repositories](https://learn.microsoft.com/en-us/azure/devops/repos/git/remove-binaries?view=azure-devops)  
- 
+
+[Git command reference](https://learn.microsoft.com/en-us/azure/devops/repos/git/command-prompt?view=azure-devops)   
+
+---
+
+### Question 47:
+
+Company2 is a software company which has branch offices around teh world.
+
+Each office can choose which source control system or service they use in their projects.
+You have been hired to integrate these projects with Azure Pipelines.
+
+You need to determine which source control services Company2 can use wirh Azure Pipelines.
+
+Which **three source control services** can they use?
+
+
+- CSV
+- GitHub
+- GitHub Enterprise
+- Bitbucket
+- Mercurial
+
+---
+
+### Answer:
+
+- GitHub
+- GitHub Enterprise
+- Bitbucket
+
+The following are the only source control systems supported by Azure DevOps Services Azure Pipelines:
+
+- GitHub
+- GitHub Enterprise
+- Bitbucket **Cloud**
+- **Azure DevOps Repos Git**
+
+The following is only supported in **Azure Pipelines Classic**!
+
+- **Azure DevOps Repos TFVC**
+- Subversions (CSV)
+
+The following options do nopt apply as are not supported by Azure DevOps Services.
+
+- CSV
+- Mercurial
+- Bitbucket Server
+
+---
+
+### References:
+
+[Supported source repositories](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/?view=azure-devops)  
+
+[What is Azure Pipelines?](https://learn.microsoft.com/en-us/azure/devops/pipelines/get-started/what-is-azure-pipelines?view=azure-devops)  
+
 ---
 
 ### Question:
