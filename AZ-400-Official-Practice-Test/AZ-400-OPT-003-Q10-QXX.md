@@ -2607,6 +2607,76 @@ for the organization that you want to invite external users to.
 
 ---
 
+### Question 43:
+
+You use Git Repos to store source code and manage features as part of
+an Azure DevOps services project in your company.
+
+You need to set permissions for a user UserA so that they can perform
+the following operations:
+
+- create branches
+- create tags
+- mamange notes
+
+Which **three security groups** cpould tou add UserA to?
+
+- Contributors
+- Project Administrators
+- Release Administrators
+- Build Administrators
+- Readers
+
+---
+
+### Answer:
+
+- Contributors
+- Project Administrators
+- Build Administrators
+
+---
+
+### Explanation:
+
+You may add UserA to any of the following  security groups:
+- Contributors
+- Project Administrators
+- Build Administrators
+
+UserA would then be able to 
+- create branches
+- create tags
+- mamange notes
+
+The following do not apply.\
+
+- Readers
+This security group **lacks the permissions** to:
+Contribute, Create branches, Create tags, and Manage notes.
+
+[Default repository permissions](https://learn.microsoft.com/en-us/azure/devops/repos/git/set-git-repository-permissions?view=azure-devops#default-repository-permissions)
+
+- Release Administrators
+[](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page)  
+
+[Security groups, service accounts, and permissions in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page)  
+Release Administrators
+Has permissions to manage all release operations.
+Assign to users who define and manage release pipelines.
+
+---
+
+### References:
+
+[Security groups, service accounts, and permissions in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page)  
+
+[Set Git repository permissions](https://learn.microsoft.com/en-us/azure/devops/repos/git/set-git-repository-permissions?view=azure-devops)  
+
+[Get started with permissions and access](https://learn.microsoft.com/en-us/azure/devops/organizations/security/about-permissions?view=azure-devops&tabs=preview-page)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
