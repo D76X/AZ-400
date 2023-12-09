@@ -3046,7 +3046,7 @@ For each of the following statements select Yeas or No.
 ### Answer:
 
 | Yes | Statement |
-| --- | --- | ------------------------------------------------- |
+| --- | ------------------------------------------------- |
 | Yes | The details about coverage for each changed file will be posted as a PR comment |
 | Yes | The file provides code coverage only for the lines changed in a PR|
 | No  | 50% represents the threshold value for a sucessful full coverage status to be posted |
@@ -3081,6 +3081,86 @@ in order for a success status for the PR to be posted.
 [Code coverage for pull requests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/codecoverage-for-pullrequests?view=azure-devops)  
 
 [codecoverage-yaml-samples](https://github.com/MicrosoftDocs/codecoverage-yaml-samples)  
+
+---
+
+### Question 51:
+
+Your company uses Azure DevOps Services to build and release enterprise software.
+You use **manual validation** to pause an Azure Pipelien Task and validate 
+configuration settings before starting a computation-intensive task.
+
+You have crerated the following YAML code:
+You meed 5to ensure that the YAML file will achieve the desired outcome.
+
+```
+ pool:
+   vmImage: 'ubuntu-latest'
+
+jobs:
+- job: WaitForValidation
+  displayName: Wait For Validation
+  pool: server
+  timeoutInMinutes: 4320
+  steps:
+  - task: ManualValidation@0
+    timeoutInMinutes: 2880
+    inputs:
+      notifyUsers: |
+        jdoe@mycompany.com
+      instructions: 'Please validate the build configuration and resume the build'
+      onTimeout: 'resume' 
+```
+
+For each of the following statements select Yeas or No.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | jdoe@mycompany.com will be able to approve or deny the pipeline run. |
+| Yes | No  | Users with teh View builds, Queue builds and Stop builds permissions can act on a manual validation |
+| Yes | No  | The job will time out in 48 hours |
+
+
+---
+
+### Answer:
+
+| Yes | Statement |
+| --- | ------------------------------------------------- |
+| Yes | jdoe@mycompany.com will be able to approve or deny the pipeline run. |
+| No  | Users with the View builds, Queue builds and Stop builds permissions can act on a manual validation |
+| No  | The job will time out in 48 hours |
+
+---
+
+### Explanation:
+
+`notifyUsers: jdoe@mycompany.com`
+This user will be able to approve or deny the pipeline run.
+The **optional parameter** `notifyUsers` denotes the list of email addresses of users that will be notified
+when the task runs. They will be able to approve or deny the pipeline run.
+
+However, only users with **Queue builds permission** can act on a manula validation.
+Users with **Stop builds and View builds permissions** **cannot perform** manual validation.
+
+` timeoutInMinutes: 2880`
+The **job** times out in 72 h and not 48 h.
+The **2880** is the timeout in minutes for the **task**. 
+
+- 1 h = 60 min
+- 24 h = 1440min
+- 48h = 2880 min
+- 72h = 4320 min
+
+---
+
+### References:
+
+[Use gates and approvals to control your deployment](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-using-approvals?view=azure-devops)  
+
+[ManualValidation@0 Task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/manual-validation-v0?view=azure-pipelines&viewFallbackFrom=azure-devops&tabs=yaml)  
+
+[Security groups, service accounts, and permissions in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page)  
 
 ---
 
