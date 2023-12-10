@@ -3322,6 +3322,110 @@ to write simple code to:
 
 ---
 
+### Question 54:
+
+You use Azure DevOps to manage complex software development projects.
+
+You want to **perform statistical analysis** and 
+**visualize results into a chart to identify trends**.
+
+You need to author **advanced queries with Kusto Query Language**.
+
+What should you integrate with your DevOps pipelines?
+
+- Azure Monitor Container Instances
+- Azure Log Analytics
+- Azure Data Explorer
+- Azure Monitor Application Insignts
+
+---
+
+### Answer:
+### Explanation:
+- Azure Data Explorer
+
+You can integrate **Azure Data Explorer** with Azure DevOps Pipelines!
+
+[Azure Data Explorer - Pipeline Tools](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX)  
+
+Azure Pipelines task facilitates an integration between Azure DevOps Pipeline 
+(Build / Release) and Azure Data Explorer (ADX) databases. 
+
+This extension includes 3 basic tasks:
+
+1. Azure Data Explorer Command - Run Admin Commands against ADX cluster
+2. Azure Data Explorer Query - Run Queries against ADX cluster and parse the results
+3. Azure Data Explorer Query Server Gate - Agentless task to Gate releases depending on the query outcome
+
+The content and functionality of the tasks can be taken from either:
+
+- a git source control 
+- build sources 
+- build artifacts 
+- inline the task. 
+
+The tasks **authenticates with AAD App details (ID / Key)** 
+either from variabes or an Azure DevOps Service endpoint.
+
+---
+
+The remaining options do not apply in this case.
+
+- Azure Monitor Application Insignts
+
+This step would be required if you wanted:
+**to implement a mechanism that allows the continuous monitoring** 
+**of your Azure DevOps release pipelines** throughout the complete
+development lifecycle. 
+The intergation of **Azure DevOps Release Pipelines** with 
+**Azure Monitor Application Insights** allows you to create:
+
+- alerts
+- gates
+- rollback deployments
+
+--- 
+
+- Azure Monitor Container Instances
+
+[Container insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)  
+[Monitor container resources in Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-monitor)  
+
+**Container insights** is a **feature of Azure Monitor** that monitors 
+the **performance and health** of container workloads deployed to Azure 
+or that are **managed by Azure Arc-enabled Kubernetes**. 
+
+It collects **memory and processor metrics** and **logs** from :
+- controllers 
+- nodes
+- containers 
+- gathers container logs
+
+You can **analyze** the collected data for the different components in your cluster
+with a collection of views and **pre-built workbooks**.
+
+---
+
+- Azure Log Analytics
+
+With **Azure Log Analytics** you can edit and run log queries from data collected by
+**Azure Monitor** as logs.
+
+---
+
+### References:
+
+[Azure DevOps Task for Azure Data Explorer](https://learn.microsoft.com/en-us/azure/data-explorer/devops)  
+[Azure Data Explorer - Pipeline Tools](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX)  
+
+
+[Overview of Log Analytics in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview)  
+[Application Insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)  
+[Azure Monitor overview](https://learn.microsoft.com/en-us/azure/azure-monitor/overview)  
+
+---
+
+
 ### Question:
 ### Answer:
 ### Explanation:
