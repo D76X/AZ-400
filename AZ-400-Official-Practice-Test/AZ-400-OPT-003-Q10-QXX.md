@@ -3833,6 +3833,54 @@ The Test Platform currently ships as part Visual Studio 2019, and in the .NET Co
 
 ---
 
+### Question 59:
+
+Your team intends to **release** a project following **semantic versioning**.  
+
+The developer are not sure when to increment the **Major, Minor or Patch** versions.
+
+You need to **help the developers to decide** which version they should increase
+in any given situation.
+
+Which version should a developer increase for each of the following?
+
+
+| Major | Minor | Patch | Statement |
+| ----- | ----- | ------| ------------------------------------------- |
+| Major | Minor | Patch |  To introduce a new backward compatible feature |
+| Major | Minor | Patch |  To deprecate a feature |
+| Major | Minor | Patch |  To remove a deprecated feature |
+| Major | Minor | Patch |  To release a bug fix |
+
+---
+
+### Answer:
+### Explanation:
+
+| XXXXX |  Statement |
+| ----- | ------------------------------------------- |
+| Minor |  To introduce a new backward compatible feature |
+| Minor |  To deprecate a feature |
+| Major |  To remove a deprecated feature |
+| Patch |  To release a bug fix |
+
+**Semantic Versioning (SemVer)**: read the references. 
+
+The answer is self-explanatory.
+
+To introduce a new backward compatible feature: no breaking change + new funtionality
+To deprecate a feature: no breaking change bu the feature is still present
+To remove a deprecated feature: breaking change
+To release a bug fix: all safe
+
+---
+
+### References:
+
+[Semantic Versioning 2.0.0](https://semver.org/)  
+[npm SemVer Calculator](https://semver.npmjs.com/)  
+[About semantic versioning](https://docs.npmjs.com/about-semantic-versioning)  
+
 ---
 ### Question:
 ### Answer:
