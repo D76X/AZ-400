@@ -4239,12 +4239,78 @@ Nor should be copied ot the file `pom.xml` for the package.
 Maven uses the `pom.xml` file to **build and publish** a package you do not need to use the 
 Azure Pipeline Variables for the build.  
 
-
 ---
+
+### References:
 
 [Get started with Maven packages and Azure Artifacts](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-maven?view=azure-devops)  
 
 [DownloadSecureFile@1 ](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/download-secure-file-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+---
+
+### Question 64:
+
+You are the Tech Lead of a developemt team.
+You plan to open-source modules of the .NET application as NuGet packages.
+
+You need to **communicate ot the possible users of this package what is new**
+**for each package release**. You **must diffentiate between releases that contain**
+**breaking changes** and those that contain only security patches.
+
+Which **two** actions should you perform?
+
+- Use a Git Wprkflow based on feature branches
+- Implement automated tests
+- Generate a Changelog
+- Follow Semantic Vesrioning (SemVer)
+
+
+---
+
+### Answer:
+### Explanation:
+
+- Generate a Changelog
+- Follow Semantic Vesrioning (SemVer)
+
+The remaining options do not apply to this case.
+
+- Use a Git Wprkflow based on feature branches
+- Implement automated tests
+
+---
+
+- Generate a Changelog:
+This is a means to communicate changes to the consumers of a library.
+This can be used in combination with a tool sucha as [release-changelog-builder-action](https://github.com/marketplace/actions/release-changelog-builder) to automate teh process of generating the changelog
+entries from the commit messages.  
+
+- Follow Semantic Vesrioning (SemVer)
+This topic has already been discussed in depth by preceding questions and references.
+
+---
+
+The remaining options do not apply to this case.
+
+- Implement automated tests
+This is obviously off-topic in this question and would only guarantee some
+quality to the library.
+
+- Use a Git Wprkflow based on feature branches
+This is only a common way library projects can try to promote the contribution
+from the community by allowing them to create PRs and discuss the feature in 
+a collaborative fashion which is suitable for open-source projects.
+**A Git Workflow that implements this idea is indeed the GitHub flow**.
+
+---
+
+### References:
+
+[.Net Architecture - Library guidance](https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/)  
+[NuGet - Package versioning](https://learn.microsoft.com/en-us/nuget/concepts/package-versioning)
+
+[release-changelog-builder-action](https://github.com/marketplace/actions/release-changelog-builder)   
 
 ---
 ### Question:
