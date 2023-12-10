@@ -3627,6 +3627,98 @@ However, those that do not specify an order are run randomly.
 
 ---
 
+### Question 57:
+
+Your company uses Azure DevOps. You are **automating the UI testing process**
+for  your company. You have chosen **Selenium** to do so.
+
+You have decided to **deply a Microsoft Hostet Agent in Azure to run the**
+**tests on Selenium** for a Web App.
+
+You need to implement a soulition using **Headless** mode.
+
+What should you do?
+
+- Configure Windows Agents to run as interactive process with auto-logon enabled
+- Configure Windows Agents to run as interactive process with auto-logon disabled
+- Enable Selenium to use popular browser and matching web-driver version to run the tests
+- Create a Batch File with `%windir%\System32\tscon.exe 1 /dest:console` on  the remote computer
+  to disconnect from the Remote Desktop
+
+
+---
+
+### Answer:
+- Enable Selenium to use popular browser and matching web-driver version to run the tests
+
+---
+
+### Explanation:
+
+In this scenario you have decided to **deply a Microsoft Hostet Agent in Azure to run the**
+**tests on Selenium** for a Web App on Azure DevOps pipelines.
+
+There are **two ways you can deploy your Web App with Selenium** on an Agent in a Azure DevOps pipeline.
+
+1. Microsoft Hostet Agent 
+2. Self-Hosted (Windows) Hostet Agent 
+
+1. Microsoft Hostet Agent: 
+In this case you can enable Selenium to use popular browser and matching web-driver version to run the tests.
+This is **referred as running headless mode** as teh browsers will run without their UI.
+This is ideal when you want to run UI **unattenmded UI tests** in CI/CD pipelines.
+This way of testing UI is much faster when compared with the interactive alternative where the UI of 
+the browser is used.
+
+**Important**:
+
+The following browsers **can run in headless mode**:
+- **Microsoft Internet Explorer**
+- **Chrome**
+- **Firefox**
+
+The following browsers **cannot run in headless mode**:
+- Micorsoft Edge
+
+---
+
+The other optios do nto apply in this case:
+
+- Configure Windows Agents to run as interactive process with auto-logon disabled
+This does not enable Selenium to run in headless mode, which is a requirement in this scenario.
+
+- Configure Windows Agents to run as interactive process with auto-logon enabled
+**The interactive process with auto-log on** is used when UI tests are run for:
+- Desktop Apps
+- test that do not use a headless browser
+
+- Create a Batch File with `%windir%\System32\tscon.exe 1 /dest:console` on  the remote computer
+  to disconnect from the Remote Desktop
+
+**This is not very clear > refer to the docs & refs for more..**  
+You should perform this action when Selenium runs with a visible UI on a self-hosted Windows agent.
+This **batch file prevents any UI tests that run on a remote computer to access the computer on which the**
+**agent is running with auto-logon** (when using Remote Desktop). 
+
+
+---
+
+### References:
+
+[UI test with Selenium](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/continuous-test-selenium?view=azure-devops)  
+
+[Using Azure DevOps for UI Testing](https://learn.microsoft.com/en-us/appcenter/test-cloud/vsts-plugin)  
+
+[UI testing considerations](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest)  
+
+[Microsoft-hosted agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml)  
+
+[Self-hosted Windows agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops)  
+
+---
+
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
