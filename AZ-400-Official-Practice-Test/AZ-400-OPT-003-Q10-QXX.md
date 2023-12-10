@@ -4095,6 +4095,76 @@ A Dependency Manager for PHP
 ---
 
 ---
+
+### Question 62:
+
+You manage a NuGet feed with a C# library in Azure Artifacts.
+
+Users report that NuGet restore takes too long to run.
+
+You investigate and siscover that there are too many package versions
+in Azure Artifacts.
+
+You need to **choose a solution that will remove old package versions**
+in order to improve NuGet client performance.
+**Your solution should minimize administrative overhead**.
+
+Which solution should you choose?
+
+- Unlist old packages versions
+- add a retention policy
+- set up a `nuget.org` as an upstream source
+- delete old package versions
+
+---
+
+### Answer:
+### Explanation:
+- add a retention policy
+
+By adding a **retention policy** to Azure Artifacts you can choose the max number of versions
+to retain and for how long a version should be retained from the time it was last downloaded.
+**This improves performance**.
+
+The remainign options do not apply in this case.
+
+- Unlist old packages versions
+**This would only modify how packages are displayed to clients** i.e. to prevent the installation 
+of certain package versions. For example, in order to prevent braking changes to reach consumers.
+This is a manual process.
+
+- delete old package versions
+This would work but it is a manual process.
+
+- set up a `nuget.org` as an upstream source
+This is done only to make available one or more upstream sources through a single private feed
+on Azure Artifatcs. This also store a copy of each packages that is downloaded from any upstream
+locally to Azure Artifacts therefore eliminating the dependency on the upstream sources.
+
+---
+
+### References:
+
+[Delete packages automatically with retention policies](https://learn.microsoft.com/en-us/azure/devops/artifacts/how-to/delete-and-recover-packages?view=azure-devops&tabs=nuget#delete-packages-automatically-with-retention-policies)  
+
+The number of versions for each package hosted in your feed can grow quickly. 
+To free up storage space, you can set up retention policies to automatically delete old packages.
+If you want to retain a package indefinitely, you can promote it to a view. 
+Packages promoted to a view are exempt from retention policies and will not be subject to deletion.
+ To configure retention policies for your feed, please follow the steps below:
+
+
+[Delete and recover packages](https://learn.microsoft.com/en-us/azure/devops/artifacts/how-to/delete-and-recover-packages?view=azure-devops&tabs=nuget)  
+
+[Azure Artifacts Upstream Sources](https://learn.microsoft.com/en-us/azure/devops/artifacts/concepts/upstream-sources?view=azure-devops)  
+
+Using upstream sources, you can conveniently store packages from various sources in a single feed. 
+This includes packages you publish and those you consume from external feeds and public registries
+like NuGet.org, npmjs.com, Maven Central, and PyPI. 
+Once you've enabled upstream sources, any package installed from these upstream sources, 
+a copy will be automatically saved to your feed.
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
