@@ -3998,6 +3998,101 @@ Semantic release plugin for automatic builds on Azure DevOps pipelines.
 
 ---
 
+### Question 61:
+
+Your company manages a Java library to integrate an e-commerce platform with
+an **Enterprise Resource Planning (ERP)** solution.
+
+The company wants to **improve the distribution of the library** 
+**to allow their customers developers to download and update the library using Maven**.
+The library **shoul not** be publicly accessible.
+
+Which **three** solutions should you recommend?
+
+- Azure Artifacts
+- Nexus Repositories
+- Maven Central Repository
+- Packagist
+- Artifactory
+
+---
+
+### Answer:
+
+- Azure Artifacts
+- Nexus Repositories
+- Artifactory
+
+- **Azure Artifacts**: 
+It is a service to store and distributes software packages.
+It supports all packages types and dependency management tools for all languages including Java and Maven.
+You can create private feeds and grant access only to specific developers.
+This is a requirement in this case.
+
+- **Nexus Repositories**:
+is a **self-hosted repository** solution for software packages.
+It supports java and Maven packages formats.
+It can manage tokens to grant access to private developers.
+
+- **Artifactory**:
+it is available as **self-hosted** and/or **as service** **universal repository manager for**:
+- application apckages
+- Linux Packages
+- Docker images
+It can manage tokens to grant access to private developers.
+
+---
+
+The remaining options do not apply to this case.
+
+- Maven Central Repository: 
+thisis the central repository for Maven packages and it is not private
+
+- Packagist:
+This is a Dependency Manager for PHP
+
+---
+
+### References:
+
+[Get started with Maven packages and Azure Artifacts](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-maven?view=azure-devops)  
+
+
+This quickstart will guide you through setting up your Maven project to connect to
+Azure Artifacts feeds and publish and download your Maven packages.
+
+---
+
+[JFrog - Artifactory - Maven Repo](https://jfrog.com/help/r/jfrog-artifactory-documentation/maven-repository)
+
+As a Maven repository, Artifactory is both  
+
+- **source for artifacts needed for a build** and 
+- **a target to deploy artifacts generated in the build process**
+
+Maven is configured using a **settings.xml** file located under your Maven home directory 
+(typically, this will be /user.home/.m2/settings.xml). 
+
+---
+
+[sonatype nexus repository oss](https://www.sonatype.com/products/sonatype-nexus-oss?topnav=true)   
+
+- Universal repository support
+- Billions of components served to developers weekly
+
+Build and Distribute Software Fast:
+- Build quickly and reliably: Publish and cache components in a central repository that connects natively to all popular package managers.
+- Manage storage space efficiently: Automatically clean up old or unused artifacts from your repositories
+
+Secure Your Software Supply Chain:
+...
+
+---
+
+[packagist](https://packagist.org/)  
+A Dependency Manager for PHP
+ 
+---
 
 ---
 ### Question:
