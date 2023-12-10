@@ -4165,6 +4165,88 @@ Once you've enabled upstream sources, any package installed from these upstream 
 a copy will be automatically saved to your feed.
 
 ---
+
+### Question Q63:
+
+You have a **release pipeline for a Maven project** in Azure Pipelines.
+You **use Maven to build and publish** the package.
+The package source code is in a Git Repo hosted in Azure Repos.
+
+You need to: 
+**integrate the release pipeline with Azure Artifatcts feed managed by another team**.
+
+The other team send you the feed repository configuration and **settings.xml** file
+with the Maven credentials.
+
+Which **four** action should you perform?
+Arrange the actions in any orther.
+
+- Upload the `settings.xml` file in Azure Pipelines library
+- Copy the `settings.xml` file to the `~/.m2` directory in the pipeline
+- include the feed repository configuration in the package `pom.xml` file
+- commit the `settings.xml` in the package repository
+- add a **download secure file task** in the pipeline
+- add the credential in the package `pom.xml` file
+- include the feed repository configuration in the pipeline build variables
+
+---
+
+### Answer:
+
+- Upload the `settings.xml` file in Azure Pipelines library
+- include the feed repository configuration in the package `pom.xml` file
+- add a **download secure file task** in the pipeline
+- Copy the `settings.xml` file to the `~/.m2` directory in the pipeline
+
+The remaining options do not apply in this case.
+
+- commit the `settings.xml` in the package repository
+- add the credential in the package `pom.xml` file
+- include the feed repository configuration in the pipeline build variables
+
+---
+
+### Explanation:
+
+- Upload the `settings.xml` file in Azure Pipelines library
+
+The **Azure DevOps Pipelines** allow you to securely store **secret files** that can be used in 
+build or release pipelines.
+
+- include the feed repository configuration in the package `pom.xml` file
+
+This configure Maven to publish the package to the feed.
+
+- add a **download secure file task** in the pipeline
+This goes hand in hand with the first step and allows the release pipeline to consume the 
+`settings.xml` with the secrets.
+
+- Copy the `settings.xml` file to the `~/.m2` directory in the pipeline
+
+In order to publish the package to the feed Maven needs to access the credentials that are
+in the file `settings.xml` and this is possible when it is in the `~/.m2` directory.
+
+---
+
+The remaining options do not apply in this case.
+
+- add the credential in the package `pom.xml` file
+- commit the `settings.xml` in the package repository
+Sensitive information should never be committed to a repository it is a security flaw.
+Nor should be copied ot the file `pom.xml` for the package.
+
+- include the feed repository configuration in the pipeline build variables
+Maven uses the `pom.xml` file to **build and publish** a package you do not need to use the 
+Azure Pipeline Variables for the build.  
+
+
+---
+
+[Get started with Maven packages and Azure Artifacts](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-maven?view=azure-devops)  
+
+[DownloadSecureFile@1 ](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/download-secure-file-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
