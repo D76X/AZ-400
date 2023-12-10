@@ -3882,6 +3882,124 @@ To release a bug fix: all safe
 [About semantic versioning](https://docs.npmjs.com/about-semantic-versioning)  
 
 ---
+
+### Question 60:
+
+Your team developed a **Python Library** and uses Azure DevOps Pilelines for its CI/CD.
+The team uses a **Git Repo** and follows a **formalized commit message convention**.
+
+You need to implement a solution that will **automatically generate** a **version number**
+in the **realease pipeline** based on the commit history!
+The version number **must follow the Semantic Versioning (SemVer)**.
+
+Which **two** solutions would meet the requirements?
+
+- GitVersion
+- Release It
+- GitKraken
+- Semantic release
+- Git version number bumper
+
+---
+
+### Answer:
+### Explanation:
+- GitVersion
+- Semantic release
+
+The **Semantic release** use the **AngularJS** commit message convenction as its default
+but this can be changed through configuration. 
+
+**Both tools can be set up so that they understandthe teams's message convention.**
+Thy both intergate with Azure DevOps.
+
+The remaining options do not apply in this case.
+
+- Git version number bumper
+- Release It
+These do not satisfy teh requirement because are both **command line tools** that 
+operate **interactively and not automatically** within a Azure DevOps Release pipeline.
+
+- GitKraken
+**This is a graphical Git client** with lost of features to make it easier for developer to 
+interact with Git. It is not a tool that is meant to be integrated with Azure DevOps release
+pipelines.
+
+---
+
+### References:
+
+---
+
+[GitTools/GitVersion](https://github.com/GitTools/GitVersion)
+[GitTools](https://marketplace.visualstudio.com/items?itemName=gittools.gittools)  
+
+Versioning when using Git, solved. GitVersion looks at your Git history and works
+out the semantic version of the commit being built.
+
+It works with most branching strategies but has been designed mainly around 
+- GitFlow
+- GitHubFlow (pull request workflow). 
+
+The calculated version numbers can then be accessed through variables such as 
+`$(GitVersion.NuGetVersion)` and `$(GitVersion.SemVer)`. 
+It is also very configurable to allow it to work with most release workflows!
+
+---
+
+[git-version-bumper](https://github.com/AmmarCodes/git-version-bumper)
+
+Do you go to check your git tags list, then search for the latest (larger) tag
+before you create new bumped tag?
+This cli tool will help you bumping the version by just selecting which part of
+the version you want to increase.
+
+---
+
+[release-it](https://github.com/release-it/release-it)  
+
+Use release-it for version management and publish to anywhere with 
+its versatile configuration, a powerful plugin system, and hooks to execute 
+any command you need to test, build, and/or publish your project.
+
+Generic CLI tool to automate versioning and package publishing-related tasks:
+
+- Bump version (in e.g. package.json)
+- Git commit, tag, push
+- Execute any (test or build) commands using hooks
+- Create release at GitHub or GitLab
+- Generate changelog
+- Publish to npm
+- Manage pre-releases
+- Extend with plugins
+- Release from any CI/CD environment
+
+---
+
+[semantic release](https://semantic-release.gitbook.io/semantic-release/)
+
+semantic-release automates the whole package release workflow including: 
+determining the next version number, generating the release notes, and 
+publishing the package.
+
+This removes the immediate connection between human emotions and version numbers,
+strictly following the Semantic Versioning specification and communicating the
+impact of changes to consumers.
+
+---
+
+[semantic-release-ado](https://github.com/lluchmk/semantic-release-ado)   
+
+Semantic release plugin for automatic builds on Azure DevOps pipelines.
+
+---
+
+[GitKraken](https://help.gitkraken.com/)  
+
+---
+
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
