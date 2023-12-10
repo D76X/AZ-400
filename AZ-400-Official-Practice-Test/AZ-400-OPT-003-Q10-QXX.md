@@ -3554,6 +3554,79 @@ aspects of PowerShell code such as:
 
 ---
 
+### Question 56:
+
+Your company uses Azure DevOps.
+
+You have a .Net Application written in C# an you use NUnit for unit testing.
+The following are forur tests in your code:
+
+```
+namespace MyCompany.SomeNamespace
+{
+    
+    public class TestClass
+    {
+        [Test]
+        public void TestA()  {  ...   }
+
+        [Test, Order(1)]
+        public void TestB()  {  ...   }
+
+        [Test, Order(2)]
+        public void TestC()  {  ...   }
+        
+        [Test]
+        public void TestD()  {  ...   }
+    }
+}
+```
+
+You need to make usre that the tests run in a specific order.
+For each statement select Yes or No.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | TestB & TectC execute before TestA & TestD |
+| Yes | No  | TestC always executes before TestB |
+| Yes | No  | TestA always executes before TestD  |
+
+---
+
+### Answer:
+
+| Answer | Statement |
+| ------ | ------------------------------------------------- |
+| Yes | TestB & TectC execute before TestA & TestD |
+| No  | TestC always executes before TestB |
+| No  | TestA always executes before TestD  |
+
+---
+
+### Explanation:
+
+**In NUnit** the **Order attribute** specifies the **exact execution order** of the tests.
+**The tests with the Order attribute (TestB and TectC) are run first!**
+Among those with the Order attribute tests are run in **ascending order** thetrefore 
+**TestB always before TestC**.
+The tests **that do not specify a Order attribute** are run after those that do so.
+However, those that do not specify an order are run randomly.
+
+---
+
+### References:
+
+[Unit testing C# with NUnit and .NET Core](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit)  
+
+[Order unit tests](https://learn.microsoft.com/en-us/dotnet/core/testing/order-unit-tests?pivots=nunit)  
+- Nunit
+- XUnit
+- MSTest
+
+[NUnit -Order](https://docs.nunit.org/articles/nunit/writing-tests/attributes/order.html)
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
