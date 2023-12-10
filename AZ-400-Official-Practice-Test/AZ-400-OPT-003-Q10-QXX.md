@@ -3425,6 +3425,134 @@ With **Azure Log Analytics** you can edit and run log queries from data collecte
 
 ---
 
+### Question 55:
+
+Your company uses Azure DevOps. 
+You **integrate** a **cloud-hosted Jenkins Server** and a new Azure DevOps deployment.
+The DevOps project is named Project1.
+
+You need to perform **end-to-end load testing** under the following conditions:
+
+1. Support multiple operating systems that run Java i.e. Windows, Linux, Mac, etc. 
+2. Integration with Jenkins
+3. No licencing costs
+
+What should you use?
+
+- PSScriptAnalyzer
+- Pester
+- JMeter
+- WebLOAD
+
+---
+
+### Answer:
+- JMeter
+
+---
+
+### Explanation:
+
+Use **JMeter to run end-to-end load testing** for your Azure DevOps project.
+
+**JMeter** satisfies the three conditions:
+
+1. Support multiple operating systems that run Java i.e. Windows, Linux, Mac, etc. 
+2. Integration with Jenkins
+3. No licencing costs
+
+It also support integration with several popular **Application Lifecycle Management Tools (ALM)**
+such as:
+
+- Visual Studio Team Foundation Services (VSTS)
+- Jenkins
+
+The remaining options do not apply in this case.
+The details are inthe references.
+However, in summary:
+
+- PSScriptAnalyzer:
+**PSScriptAnalyzer is a static code checker for PowerShell modules and scripts**. 
+**It is not meant to run end-to-end load testing**.
+
+- Pester
+Pester is a testing and mocking framework for **PowerShell**.
+**It integrates with Jenkins** but **it is not meant to run end-to-end load testing**.
+
+- WebLOAD
+**WebLoad is a full-featured enterprise-level load testing tool by RadView**. 
+It is a licensed product therefore not free like JMeter!
+---
+
+### References:
+
+[Customize a load test with Apache JMeter plugins and Azure Load Testing](https://learn.microsoft.com/en-us/azure/load-testing/how-to-use-jmeter-plugins?tabs=portal)  
+
+[JMeter implementation for a load testing pipeline](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/banking/jmeter-load-testing-pipeline-implementation-reference)  
+
+[What are the best Performance Testing Tools?](https://techcommunity.microsoft.com/t5/testingspot-blog/what-are-the-best-performance-testing-tools/ba-p/367774)   
+
+---
+
+[Pester](https://gaunacode.com/pester-test-results-on-azure-devops)
+[What is Pester?](https://pester.dev/docs/quick-start)   
+Pester is a testing and mocking framework for **PowerShell**.
+Pester provides a framework for writing and running tests. 
+Pester is most commonly **used for writing unit and integration tests**, but
+**it is not limited to just that**. 
+
+**It is also a base for tools that validate whole**: 
+
+- environments
+- computer 
+- deployments
+- database configurations 
+- and so on..
+
+You can publish test results from common unit test frameworks to Azure DevOps so that they’re associated with a build.
+
+[Azure DevIOps - Pester](https://pester.dev/docs/usage/test-results/#azure-devops)  
+[Increase the success rate of Azure DevOps pipelines using Pester](https://www.logitblog.com/increase-the-success-rate-of-azure-devops-pipelines-using-pester/)  
+
+---
+
+[Cloud Load Testing - WebLOAD SaaS – Fully Managed Cloud Load Testing](https://www.radview.com/solution/cloud-load-testing/?gad_source=1&gclid=Cj0KCQiA4NWrBhD-ARIsAFCKwWtEn6HJU1B-CzRJXQq8ZeGeEL0UgCj3g0EGlCrEDX8qIxlAdXywH5waAowmEALw_wcB)  
+
+[WebLOAD - Microsoft’s Visual Studio And Azure DevOps: Load Testing Replacement](https://www.softwaretestinghelp.com/webload-for-visual-studio-and-azure-devops-replacement/)  
+
+Web Performance and Load Tests via Visual Studio Enterprise and Azure DevOps used to be a good option.
+However, since Microsoft recently published that **Visual Studio 2019 will be the last version** 
+**of Visual Studio with load testing functionality**.
+
+**WebLoad is a full-featured enterprise-level load testing tool by RadView**. 
+It has many similar features compared to LoadRunner or Visual Studio Load Tests while
+it has a lower cost than LoadRunner. It is a pretty popular LoadRunner competitor and
+has been gaining market in the last years.
+
+---
+
+[GitHub-PowerShell/PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer)  
+
+[A Fundamental Tutorial of PSScriptAnalyzer](https://www.devopsschool.com/blog/a-fundamental-tutorial-of-psscriptanalyzer/)  
+
+**PSScriptAnalyzer is a static code checker for PowerShell modules and scripts**. 
+PSScriptAnalyzer checks the quality of PowerShell code by running a set of rules.
+The **rules are based on PowerShell best practices** identified by the 
+**PowerShell Team and the community**. 
+
+It **generates DiagnosticResults (errors and warnings)** to inform users about
+potential code defects and suggests possible solutions for improvements.
+
+PSScriptAnalyzer ships with a collection of built-in rules that check various 
+aspects of PowerShell code such as:
+
+- The presence of uninitialized variables
+- Use of PSCredential type
+- Use of Invoke-Expression
+- And many more
+
+
+---
 
 ### Question:
 ### Answer:
