@@ -3230,11 +3230,11 @@ You are implementing **GitHub Actions** to **automate the development workflow**
 from withing GitHub. Your team si trying to use **Azure Command Line Interface**
 **Azure CLI** in a GitHub Action Workflow.
 
-You need to **establish an authentication method** that enables you to use the Azure CLI
-in a GitHub Action Workflow to be used.
+You need to **establish an authentication method** that enables you to use the 
+Azure CLI in a GitHub Action Workflow to be used.
 
-Which **two** authetication methods could you use **to authenticate your login action**
-with Azure?
+Which **two** authetication methods could you use to 
+**authenticate your login action** with Azure?
 
 - Azure login action with OpenID conncet (OIDC)
 - Azure login action with a srvice principal secret
@@ -3246,34 +3246,69 @@ with Azure?
 ### Answer:
 ### Explanation:
 
-- Azure login action with a srvice principal secret
+- The 1st option: Azure login action with a srvice principal secret
+
 In this case you **create a Service Pincipal in Azure AD** i.e. from the Azure Portal.
 This **Service Pincipal** is an identity that is created to represent an application
 in your Azure AD tenant. 
+
 During the process of creation of this identity some tokens such as **Application ID**
 and **application secret** are provided by Azure AD and are meant to be used by the 
-application to authenticate.
-In this case the application that makes use of these credentials would be the Azure CLI
-task used in the GitHub Action Workflow. 
-The GitHub Action Workflow **provides means to store the credentials** 
-**Application ID** and **application secret** as secrets and therefore to keep them 
-safe from accidental leaks.
+application to authenticate to Azure AD as the Service Principal Identity above.
 
-- Azure login action with OpenID conncet (OIDC)
+In this case the application that makes use of these credentials would be the Azure CLI
+task used in the GitHub Action Workflow. The GitHub Action Workflow **provides means**
+**to store the credentials** **Application ID** and **application secret** as secrets
+and therefore to keep them safe from accidental leaks.
+
+An user with permission to create secrets on the GitHub Workflow i.e. can store the 
+**Application ID** and **application secret** in a one-off operation in that this user
+will be the only one to actually know the values of these secrets. The other users such
+as developers may make use of them in their Workflow referrenging to them through the 
+labels givent to these secrects and therefore only indirectly. These users have therefore
+no access to the values of this secrets and moreover these are never witten as such to 
+any of teh Workflow logs.
+
+- The 2nd option:  Azure login action with OpenID connect (OIDC)
+
 **OpenID Connect (OIDC) with an Azure Service Principla using a Federated Identity Credential**.
  **OIDC** is an **authentication & authorization layer** build on top of **OAuth 2.0**.
+
  In this scenario, you require:
  
- 1. a **Service Pincipal in Azure AD** wity the  **Contributor role** on the Azure subscription.
- 2. a **Azure AD application** configured with **federated credentials** to trust tokens issued by
-    GHitHub Actions   
+  1. a **Service Principal in Azure AD** withy the **Contributor role** on the Azure subscription.
+  2. **this same Azure AD application** must be configured with **federated credentials** to trust
+      tokens issued by GHitHub Actions to your GitHub Repo.
+  3. a GitHub Action Workflow that requests GitHub to issue tokens to it and use them in its
+     Login Action.  
+
+In the GitHub Action of the Workflow the action with the **Azure Command Line Interface (Azure CLI)**
+will then request an authetication token from GitHub and present this token together with the identity
+of the Azure AD application of  **STEP-1** above to autheticate on Azure AD as this **Service Pricipal**.
+**Azure AD** will trust the token issued by GitHub because of the **federation** to GitHub that was 
+set up in **STEP-2**. At this point the login can succeed and the action will run under an identity that
+has **Contributor role** on the Azure subscription.  
+
+---
 
 The remaining options do not apply.
 
-- Azure login action with SAML 2.0
-- Azure login action with Micorsoft Authentication Library (MSAL)
+- Azure login action with SAML 2.0 (Security Assertion Markup Language)
+This authentication method is **not supported** by Azure.
 
-?????????????????????
+- Azure login action with Micorsoft Authentication Library (MSAL)
+ 
+ **MSAL** is **not a supported** as authentication method on Azure AD.
+ It is not possible to use **MASL** in a GitHub Action with the **Azure Command Line Interface (Azure CLI)**
+ in order to log in to an Azure AD tenant and thereofre gain access as a valid identity on a subscription
+ under that tenant.
+
+**MSAL** makes it posiible for code to interact with the **Micorsoft Identity Platform** and allows developers
+to write simple code to: 
+
+1. **authenticate users** 
+2. **access secured Micorsoft Web APIs** such as **Micorsoft APIS** i.e. **Microsoft Graph** 
+2. **access secured 3rd-party APIs** 
 
 ---
 
