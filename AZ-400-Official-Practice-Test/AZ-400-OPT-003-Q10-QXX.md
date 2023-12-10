@@ -3717,6 +3717,121 @@ This **batch file prevents any UI tests that run on a remote computer to access 
 
 ---
 
+### Question 58:
+
+Your company uses Azure DevOps. 
+You are running automated tests in the CI/CD pipeline.
+You have decided to **use Visual Studio test task** to run tests.
+
+**This enables you to automatically capture teh video of teh tests!**
+**This video is then available as an attachment to the test results**.
+
+You need to isolate a problematic test that casuses the host to crash.
+
+How should you complete the XML code in teh given `*.runnsettings` file?
+
+Select the appropriate options.
+
+https://github.com/microsoft/vstest/issues/2375
+```
+<RunSettings>
+  <RunConfiguration>
+    <MaxCpuCount>4</MaxCpuCount>
+  </RunConfiguration>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="blame" enabled="True">
+        <Configuration>
+          <ResultsDirectory>...\build</ResultsDirectory>
+      	  <CollectDump DumpType="**?????**" />
+            <CollectDumpOnTestSessionHang TestTimeout="120000" HangDumpType="**?????**"/>
+      	  <CollectDump>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>    
+</RunSettings>
+```
+
+**The options**:
+
+**??** : "full | mini | none"
+
+---
+
+### Answer: 
+### Explanation:
+**full** should be used in both places.
+
+```
+<DataCollectors>
+      <DataCollector friendlyName="blame" enabled="True">
+        <Configuration>    
+          <ResultsDirectory>...\build</ResultsDirectory>
+                    <CollectDump DumpType="full" />
+                      <CollectDumpOnTestSessionHang TestTimeout="120000" HangDumpType="full"/>
+                    <CollectDump>          
+
+```
+
+In `.runnsettings` the element **DataCollector** speciies the **settings of the diagnostic data adapterr**.
+Since you want to **isolate a problematic test that causes the host to crash** you need to use
+the `blame` **data collector feature**.
+
+```
+<DataCollector friendlyName="blame" enabled="True">
+```
+
+Running **this collector creates a output file: Sequence.xml in TestResults** and in this file
+the oorder of execution of teh  test is captured up to the crash.
+
+**There are three differnt ways to execute the blame data collector:**
+
+1. Simply enable the Sequence.xml file but do not collect the dump
+2. enable the Crash Dump when the Host crashes
+3. enable the Hang Dump when the Host hangs and does not finish running teh test before its timeout
+
+Moreover
+
+`<CollectDump DumpType="full" />`: with full | mini
+**enables the Crash Dump** with either the Full or the Mini Dump type.
+**Full** ensures that the files contain the containts of teh **Vitual Memory** for a proccess.
+**Mini** do not do the same but are far smaller files.
+The recommendation is to use **full**.
+
+`<CollectDumpOnTestSessionHang TestTimeout="120000" HangDumpType="full"/>`
+The value `TestTimeout="120000"` is millisencods but it could also be something like 
+`TestTimeout="10min"` and it sets the threshold for a test to be considered hanging.
+Then the meaning of the attribute `DumpType="full | mini"` is a s described above.
+
+**You should not use Mini in this case for the follwoing reason:**
+You might not be able ot extract the necessary information and therefore debug teh problem.
+
+**Do not use the value none** as this does not capture anything and simply **kills the processes on  the host**!
+This would prevent any debugging at all.
+
+---
+
+### References:
+
+[docs/extensions/blame-datacollector.md](https://github.com/Microsoft/vstest-docs/blob/main/docs/extensions/blame-datacollector.md)  
+
+Certain execution sequences can crash the testhost process spawned by the vstest runner. However there is no easy way to diagnose such an aborted test run since there is no way to know what specific test case was running at the time. The "blame" mode in vstest tracks the tests as they are executing and, in the case of the testhost process crashing, emits the tests names in their sequence of execution up to and including the specific test that was running at the time of the crash. This makes it easier to isolate the offending test and diagnose further.
+
+[VSTest](https://github.com/microsoft/vstest)
+The Visual Studio Test Platform is an open and extensible test platform that enables running tests, collect diagnostics data and report results. The Test Platform supports running tests written in various test frameworks, and using a pluggable adapter model. Based on user-choice, the desired test framework and its corresponding adapter can be acquired as a vsix or as NuGet package as the case may be. Adapters can be written in terms of a public API exposed by the Test Platform.
+
+The Test Platform currently ships as part Visual Studio 2019, and in the .NET Core Tools Preview 3.
+
+[VSTest - Configure a test run](https://github.com/Microsoft/vstest-docs/blob/main/docs/configure.md)  
+
+[Visual Studio Testing - Configure unit tests by using a .runsettings file](https://learn.microsoft.com/en-us/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file?view=vs-2022)  
+
+[UI testing considerations](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/ui-testing-considerations?view=azure-devops&tabs=mstest)  
+
+[GiotHub - vstests -CollectDumpOnTestSessionHang doesn't produce a dump file #2375](https://github.com/microsoft/vstest/issues/2375)  
+
+---
 
 ---
 ### Question:
