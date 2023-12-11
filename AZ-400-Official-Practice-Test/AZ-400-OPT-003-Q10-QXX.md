@@ -4625,6 +4625,109 @@ triggering pipeline using build completion triggers.
 [Define your Classic pipeline](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/define-multistage-release-process?view=azure-devops)  
 
 ---
+
+### Question 67:
+
+Your company has a **release process in Azure Pipelines** that contains a
+**manual approval step** that **must occur two hours before deployment**.
+
+The approval step notifies users inside the Azure DevOps portal.
+
+The project stakeholder reports that deployments in which the approval takes
+longer than two hours do not fail automatically.
+
+You must ensure that if the approval takes longer than 2h the deployment fails.
+
+What should you do?
+
+- invoke a Azure function task for a pre-deployment gate
+- set a timeout for the pre-deployment approval
+- set the timeout after which gates fail
+- update the pre-deployment trigger
+
+---
+
+### Answer:
+### Explanation:
+- set a timeout for the pre-deployment approval
+
+**In Azure DevOps you can define three types of pre-deployment conditions**:
+
+1. Triggers
+2. Gates
+3. Pre-deployment approvals
+
+These **conditions** are evaluated and executed **before** a pipeline task is executed.
+
+---
+
+1. Triggers
+
+are used to define either: 
+
+- **when** a deployment stage should start when it is a manual deployment
+- **when** a deployment stage should start **according to a schedule**
+- to start a  deployment after an artifact has been release and published
+
+---
+
+2. Gates
+
+are used to **check the state of exteranl services** or **Azure Monitor** alerts or health signals.
+On the basis  of the outcome of these checks it is determined whether the stage tasks should be 
+executed or not.
+
+---
+
+3. Pre-deployment approvals
+
+these are **notifications to Azure DevOps users** in order to get them to check and approve or reject
+the execution of a deployment stage.
+
+---
+
+In this specific case there is a **manual approval step** that is a **Pre-deployment approvals step**.
+It is possible to **set a timeout** for a **pre-deployment approvals step**.
+If the approval is not given by the people that are notified by the **pre-deployment approvals step**
+it is also possible to specify that the condition is failed and the following step will not be 
+executed as it is requeted.
+
+--- 
+
+The remaining options do not apply to this case.
+
+- set the timeout after which gates fail
+
+this does not apply because **gates are used to check the state of exteranl services** 
+or **Azure Monitor** alerts or health signals.On the basis  of the outcome of these 
+checks it is determined whether the stage tasks should be executed or not.
+In this case there is not a gate but rather a **pre-deployment approval** that is a 
+**manual approval process** that implies the notifi9cation of people and not the 
+querying of the state of services or Azure Monitor.
+
+**Gates and pre-deployment approvals are independent** in that you can have both
+and each can also be set up with its own timeout.
+
+- invoke a Azure function task for a pre-deployment gate
+This can be done as a programmatic way to check a condition to determine whether a 
+stage shoulod be executed. However, it doesn not apply to this case.
+
+- update the pre-deployment trigger
+?
+
+---
+
+### References:
+
+[Use gates and approvals to control your deployment](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-using-approvals?view=azure-devops)  
+
+[Deployment control using approvals](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/approvals?view=azure-devops)  
+
+[Deployment gates](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops)    
+
+[AzureFunction@1 - Invoke Azure Function v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-function-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
