@@ -5373,7 +5373,67 @@ Caching is currently supported in **CI and deployment jobs, but not classic rele
 
 [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser)  
 
+[Azure Virtual Machine Scale Set agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents?view=azure-devops)  
+
 [npm-update](https://docs.npmjs.com/cli/v7/commands/npm-update)  
+
+
+---
+
+### Question 80:
+
+You work as a DevOps Engineer for a gaming company.
+They use a **Self-Hosted Ubuntu based Build Agent** run in a **Azure VM Scale Set (VMSS)**.
+
+You need to regularly update the tooling installed on the Agent VMs to support
+new projects and security patches by creating a new VM image.
+
+You need to automate the process of building the VM image.
+
+What should you use?
+
+- Azure Automation State Configuration
+- Terraform
+- Azure Resource Manager Template (ARM)
+- Packer
+
+---
+
+### Answer:
+- Packer
+
+The other opptions do not apply in this case.
+
+---
+
+### References:
+
+[Introduction to Packer](https://developer.hashicorp.com/packer/docs/intro)
+
+What is Packer?
+Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. Packer is lightweight, runs on every major operating system, and is highly performant, creating machine images for multiple platforms in parallel. 
+**Packer does not replace configuration management like Chef or Puppet**. 
+**In fact, when building images, Packer is able to use tools like Chef or Puppet to install software onto the image**.
+
+A machine image is a single static unit that contains a pre-configured operating system and installed software which is used to quickly create new running machines. Machine image formats change for each platform. Some examples include AMIs for EC2, VMDK/VMX files for VMware, OVF exports for VirtualBox, etc.
+
+---
+
+[Choose a Microsoft-hosted or self-hosted build agent](https://learn.microsoft.com/en-us/training/modules/host-build-agent/2-choose-a-build-agent)  
+
+[Azure Virtual Machine Scale Set agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents?view=azure-devops)  
+
+---
+
+[Terraform](https://developer.hashicorp.com/terraform/intro)
+
+HashiCorp Terraform is an infrastructure as code tool that lets you define both cloud and on-prem resources in human-readable configuration files that you can version, reuse, and share. You can then use a consistent workflow to provision and manage all of your infrastructure throughout its lifecycle. Terraform can manage low-level components like compute, storage, and networking resources, as well as high-level components like DNS entries and SaaS features.
+
+---
+
+[Azure Automation State Configuration overview](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-overview)  
+
+[What are ARM templates?](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)
 
 ---
 
