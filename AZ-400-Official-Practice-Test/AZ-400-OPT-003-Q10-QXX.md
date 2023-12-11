@@ -4898,8 +4898,6 @@ Availability zones offer the highest reliability since each VM is deployed in mu
 protecting you from loss of either power, networking, or cooling in an individual datacenter. 
 **If your highest priority is the best reliability for your workload, replicate your VMs across** 
 **multiple availability zones**.
-
-<<<<<<< HEAD
 ---
 
 ### Question 70:
