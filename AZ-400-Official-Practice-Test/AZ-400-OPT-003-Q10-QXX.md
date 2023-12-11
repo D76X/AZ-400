@@ -5278,7 +5278,41 @@ The same as with AKS. They could be used but is overkill in cost andadmin comple
 
 ---
 
-### Question:
+### Question 78:
+
+You use Azure DevOps to develop an open-source project.
+You create a build pipeline to update the project documentation.
+The documentation is sotred in the same Azure Repos Git of you project source code inside the
+`/docs` folder.
+
+You need to trigger this pipeline only when the docimentation changes in the main branch.
+
+Which **two filters** dhould you configure to trigger this pipeline?
+
+- set **path filter** to exclude `/docs`
+- set **branch filter** to include `/docs`
+- set **branch filter** to include `main`
+- set **branch filter** to include `*`
+- set **path filter** to exclude `/.`
+- set **path filter** to include `/docs`
+
+---
+
+### Answer:
+
+- set **branch filter** to include `main`
+- set **path filter** to include `/docs`
+
+This is equivalent to say that the trigger for this main branch build whatches only changes
+in the `/docs` folder.
+
+The other opptions do not apply in this case.
+
+---
+
+### References:
+
+[Build Azure Repos Git or TFS Git repositories](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/azure-repos-git?view=azure-devops&tabs=classic)  
 
 ---
 
