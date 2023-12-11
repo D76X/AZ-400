@@ -5046,9 +5046,55 @@ This is unncesessary.
 
 ---
 
+### Question 73:
+
+a company has several IT development departments which constantly work on new features.
+
+You need to specify which branches should trigger a CI pipeline when new code is pushed.
+The pipeline should run even if the branch does not have an open PR.
+
+Which action should you perform to accomplish this task?
+
+- create a CI trigger and specify which branches should be proccessed
+- create a PR trigger and specify which branches should be proccessed
+- create a Scheduled trigger that contains only the feature branches and set this trigger to run every hour
+- create a Release trigger and specify which branches should be proccessed
+
 
 ---
 
+### Answer:
+- create a CI trigger and specify which branches should be proccessed
+When new code is pushed to these branches the trigger starts the build of the corresponding branch.
+
+The other opptions do not apply in this case.
+
+- create a PR trigger and specify which branches should be proccessed
+This runs a CI pipline only when a PR against the specified branches is open 
+**OR** 
+when changes are pushed to the PR.
+This would not build the branch if code is pushed directly to the branch which is a requirement in the question.
+
+- create a Scheduled trigger that contains only the feature branches and set this trigger to run every hour
+The same as above it misses that it does not build the branch on pushing code to it.
+
+- create a Release trigger and specify which branches should be proccessed
+**Release triggers** are used to **trigger a deplyment and not a build**.
+A set of assets are deployed to a target Environment.
+
+---
+
+### References:
+
+[Specify events that trigger pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops)  
+
+[Configure schedules for pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=classic)  
+
+[Build Azure Repos Git or TFS Git repositories](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/azure-repos-git?view=azure-devops&tabs=yaml)
+
+[Release triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/triggers?view=azure-devops)   
+
+---
 
 ### Question:
 ### Answer:
