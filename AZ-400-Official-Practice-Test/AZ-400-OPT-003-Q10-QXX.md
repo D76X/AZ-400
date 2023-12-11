@@ -4940,6 +4940,58 @@ This would not guarantee that the maibnual interaction occurs.
 
 [Use gates and approvals to control your deployment](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-using-approvals?view=azure-devops)
 
+---
+
+### Question 71:
+
+You work as a project manager and you want to use a Microsoft-hosted angent in your
+dvelopment team's CI/CD pipelien. There are both advantages and disadvantages to using 
+a Microsoft-hosted angent instead of a Self-Hosted agent.
+
+Which **two** features would you sacrifise if you chose a Micorsoft-Hosted agent
+over a Self-Hosted agent?
+
+- the ability to run more that one agent simultaneoulsy
+- the ability to pre-load custom software
+- the ability to do maintenance and upgrades
+- the ability to run the agent in a VM
+- Velocity
+
+---
+
+### Answer:
+
+- the ability to pre-load custom software
+- Velocity (?)
+
+With **Microsoft-hosted angent** you cannot pre-load custom software.
+Whena a **Microsoft-hosted angent** is instantiated to run a pipelien a **fresh VM**
+is started and there is **no caching** and **no saved configuration** therefore if you
+then need to do any of this it is going to be slower than using a **Self-Hosted agent**.
+
+
+The other opptions do not apply in this case.
+
+- the ability to do maintenance and upgrades
+Upgrades and maintenance of **VMs for Microsoft-hosted angent** is managed automatiacll for you by Micosoft.
+However, they still happen therefore you do not give up these!
+
+- the ability to run the agent in a VM
+This is obviosly not the case as a **Microsoft-hosted angent**  runs indeed in a VM on 
+Azure infrastructure.
+
+- the ability to run more that one agent simultaneoulsy
+*Microsoft-hosted angent** can indeed run in parallel if required.
+
+---
+
+### References:
+
+[Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser)  
+
+[Microsoft-hosted agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml)  
+
+[Self-hosted Windows agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops)  
 
 ---
 
