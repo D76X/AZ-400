@@ -5169,6 +5169,70 @@ The other opptions do not apply in this case.
 
 ---
 
+### Question 76:
+
+Ypu are standardizing some pipelines accross your organization.
+
+You find three pipelines with similar tasks:
+
+- Pipeline A: a classic build pipeline that builds and deploys a helm chart
+- Pipeline B: a YAML build pipeline that builds a helm chart
+- Pipeline C: a classic RELEASE pipeline that deploys a helm chart
+
+You create a **task grouop** in order to combine similar tasks used by these pipelines.
+
+You need to evaluate which pipelines the task group can use.
+Selct Yes if you can replace the similar atsk with the task group.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | You can replace the similar task in PipelineA with the task group |
+| Yes | No  | You can replace the similar task in PipelineB with the task group |
+| Yes | No  | You can replace the similar task in PipelineC with the task group |
+
+
+---
+
+### Answer:
+
+- Pipeline A: a classic build pipeline that builds and deploys a helm chart
+- Pipeline B: a YAML build pipeline that builds a helm chart
+- Pipeline C: a classic RELEASE pipeline that deploys a helm chart
+
+| xxx | Statement |
+| --- | ------------------------------------------------- |
+| Yes | You can replace the similar task in PipelineA with the task group |
+| No  | You can replace the similar task in PipelineB with the task group |
+| Yes | You can replace the similar task in PipelineC with the task group |
+
+**You can use task groups in classic build and deployment pipelines**.
+This is why **PipelineB** cannot make use of task groups.
+With **YAML** pipelines **Templates** are used to replace similar tasks.
+
+---
+
+### References:
+
+[Task groups for builds and releases (classic)](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/task-groups?view=azure-devops)  
+
+A task group allows you to **encapsulate a sequence of tasks, already defined in a build or a release pipeline**, 
+into a single reusable task that can be added to a build or release pipeline, just like any other task. You can 
+choose to extract the parameters from the encapsulated tasks as configuration variables, and abstract the rest of the task information.
+
+The new task group is automatically added to the task catalog, ready to be added to other release and build pipelines. **Task groups are stored at the project level, and are not accessible outside the project scope**.
+
+**Task groups are a way to standardize and centrally manage deployment steps for all your applications**. 
+When you include a task group in your definitions, and then make a change centrally to the task group, 
+the change is automatically reflected in all the definitions that use the task group. 
+There is no need to change each one individually.
+
+---
+
+[Template usage reference](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops&pivots=templates-includes)    
+
+---
+
+
 ### Question:
 ### Answer:
 ### Explanation:
