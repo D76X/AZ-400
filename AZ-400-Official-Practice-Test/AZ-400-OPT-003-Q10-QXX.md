@@ -4313,6 +4313,195 @@ a collaborative fashion which is suitable for open-source projects.
 [release-changelog-builder-action](https://github.com/marketplace/actions/release-changelog-builder)   
 
 ---
+
+### Question 65:
+
+**Your company maintains a Node.js SDK to integrate developers with its service**.
+**Newer versions of this SDK are deployed manually to a File Transfer Protocol (FTP) Server**. 
+
+The developers that use the SDK provided by the company **rarely update the SDK**
+**because it is not integrated with npm or yarn**, which are the **dependency nanagement tools**
+that they use.
+
+You need to **publish the SDK in a Node.js package registry** to enable the developers
+to install it from their dependency nanagement tools.
+The SDK package **must be private and available only to these developers**.
+
+Which **three** actions should you perform?
+
+- configure a `.npmrc` file in the root of your Git repo
+- run `npm ci` during the build pipeline
+- create a new feed in **Azure Artifacts** to store the builds
+- store the build packages in **Azure Storage**
+- commit the `npm-shrinkmap.json` file in the root of your project
+- run `npm publish` during the build pipeline
+
+---
+
+### Answer:
+
+- configure a `.npmrc` file in the root of your Git repo
+- create a new feed in **Azure Artifacts** to store the builds
+- run `npm publish` during the build pipeline
+
+---
+
+### Explanation:
+
+1. create a new feed in **Azure Artifacts** to store the builds
+2. configure a `.npmrc` file in the root of your Git repo
+3. run `npm publish` during the build pipeline
+
+---
+
+1. create a new feed in **Azure Artifacts** to store the builds
+[Create a feed](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-npm?view=azure-devops&tabs=Windows#create-a-feed)    
+
+This feed must be **compatible with Node.js package registry** in the sense that 
+instead of publishing the Node.js SDK used by the company developers to a public
+Node.js registry you will publish to this Azure Artifact feed.
+This must be a **private feed** as requested. 
+
+---
+
+2. configure a `.npmrc` file in the root of your Git repo
+
+[Set up your .npmrc files](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-npm?view=azure-devops&tabs=Windows#set-up-your-npmrc-files)  
+
+We recommend using two .npmrc files. 
+The first one should be located in the same directory as your package.json file. 
+The second should be placed in the $home directory (Linux/macOS) or $env.HOME (Windows) to securely store your credentials. 
+The npm client will then be able to look up this file and fetch your credentials for authentication. 
+This enables you to share your config file while keeping your credentials secure.
+
+[Setup credentials](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-npm?view=azure-devops&tabs=Windows#setup-credentials)
+
+npm supports a single registry in your .npmrc file. Multiple registries are possible with scopes and upstream sources.
+
+(**This was not well explained in the question**)
+The file `.npmrc` is used to **store feed URLs and credentials fo registries**.
+This file will contain the registry configuration to the feed.
+
+---
+
+3. run `npm publish` during the build pipeline
+
+[Publish packages](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-npm?view=azure-devops&tabs=Windows#publish-packages)  
+
+To publish your npm package, run the following command in your project directory: `npm publish`
+
+When the command `npm publish` ececutes **it will read the resistry= property** in the file
+`.npmrc` and publish the build to the right place.
+
+---
+
+The remaining options do not apply in this case.
+
+- commit the `npm-shrinkmap.json` file in the root of your project
+
+This file is used **published lockfile** to keep the same dependency versions for an immutable build.
+It does not configure the `npm publish` to send teh build to the right registry.
+
+- run `npm ci` during the build pipeline
+
+This command coyuld be used to **download npm dependencies**, that are necessary to build 
+your project, **more quikly** than the command `npm install` does.
+However, this command **does not publish the build artifacts**.
+
+- store the build packages in **Azure Storage**
+This is obviously the worng solution.
+
+---
+
+### References:
+
+[Get started with npm packages in Azure Artifacts](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-npm?view=azure-devops&tabs=Windows)  
+
+Using Azure Artifacts, you can **publish and download npm packages** from 
+**feeds and public registries** like **npmjs.com**. 
+
+This quickstart will walk you through the process of 
+
+- creating your feed 
+- configuring your project 
+- publishing and downloading npm packages to and from your Azure Artifacts feed.
+
+---
+
+[npm-install](https://docs.npmjs.com/cli/v7/commands/npm-install)  
+
+Install a package.
+
+**Description**
+This command **installs a package and any packages that it depends on**. 
+If the package has 
+- a `package-lock` 
+- or an npm `shrinkwrap` file 
+- or a yarn lock file 
+
+the installation of dependencies will be driven by that, 
+respecting the following order of precedence:
+
+1. npm-shrinkwrap.json
+2. package-lock.json
+3. yarn.lock
+
+---
+
+[npm-ci](https://docs.npmjs.com/cli/v7/commands/npm-ci)  
+
+This command is similar to `npm install`, except it's meant to be used in 
+**automated environments** such as 
+
+- test platforms 
+- continuous integration & deployment 
+- any situation where you want to make sure you're doing a clean install of your dependencies
+
+npm ci will be significantly faster when:
+
+1. There is a `package-lock.json` or `npm-shrinkwrap.json` file.
+2. The node_modules folder is missing or empty.
+
+In short, the main differences between using `npm install` and `npm ci` are:
+
+1. The project must have an existing `package-lock.json` or `npm-shrinkwrap.json`.
+
+2. If dependencies in the **package lock** do not match those in `package.json` 
+   **npm ci will exit with an error instead of updating the package lock**.
+
+3. **npm ci** can only install entire projects at a time: 
+  **individual dependencies cannot be added with this command**.
+
+4. If a `node_modules` is already present 
+   it will be **automatically removed** before `npm ci` begins its install.
+
+5. It will **never write** to `package.json` or any of the `package-locks`: 
+   installs are essentially frozen.
+
+---
+
+[npm-shrinkwrap.json](https://docs.npmjs.com/cli/v7/configuring-npm/npm-shrinkwrap-json)  
+
+**Description**
+
+`npm-shrinkwrap.json` is a file created by **npm shrinkwrap**. 
+It is **identical to** `package-lock.json` **with one major caveat**: 
+Unlike `package-lock.json`, `npm-shrinkwrap.json` may be included when publishing a package.
+
+The **recommended use-case** for `npm-shrinkwrap.json` is applications deployed through
+the publishing process on the registry: for example, **daemons and command-line tools** 
+intended as global installs or devDependencies. 
+
+**It's strongly discouraged for library authors to publish this file**, 
+since that would prevent end users from having control over transitive dependency updates.
+
+If both `package-lock.json` and `npm-shrinkwrap.json` are present in a package root, 
+`npm-shrinkwrap.json` **will be preferred** over the `package-lock.json` file.
+
+For full details and description of the npm-shrinkwrap.json file format, 
+refer to the manual page for package-lock.json.
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
