@@ -5129,6 +5129,46 @@ The other opptions do not apply in this case.
 
 ---
 
+### Question 75:
+
+You are building a new **GitHub Actiosn pipeline**.
+This pipeline automates your software development workflowa from within GitHub.
+You decide to use `Azure\pipelines@v1` and you need to set the ncecessary params.
+
+Which **three** parameters should you define?
+
+- the Azure Pipeline name
+- Container Registry Credentiala
+- Azure Credentials
+- a personal access token (PAT)
+- the Azure DevOps project URL
+
+---
+
+### Answer:
+
+- the Azure DevOps project URL
+- a personal access token (PAT)
+- the Azure Pipeline name
+
+Refer to the documentation in the reference for the details.
+
+The other opptions do not apply in this case.
+
+- Container Registry Credentiala
+- Azure Credentials
+
+---
+
+### References:
+
+[Azure/actions-workflow-samples](https://github.com/Azure/actions-workflow-samples/blob/master/AzurePipelines/trigger-azure-pipelines.yml)  
+[Azure/pipelines](https://github.com/Azure/pipelines)  
+[GitHub Action for Azure Pipelines](https://github.com/Azure/pipelines/releases)  
+[GitHub Action to trigger a run in Azure pipelines](https://github.com/marketplace/actions/azure-pipelines-action)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
