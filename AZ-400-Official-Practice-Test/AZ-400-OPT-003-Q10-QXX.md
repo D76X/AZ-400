@@ -4502,6 +4502,129 @@ For full details and description of the npm-shrinkwrap.json file format,
 refer to the manual page for package-lock.json.
 
 ---
+
+### Question 66:
+
+You have a **release pipeline** for an Azure DevOps project **with three stages**.
+
+1. Development
+2. QA
+3. Production
+
+<img src="./Q66-exhibit.png">
+
+Which type of **pre-deployment trigger** is used to each stage?
+
+1. Development : `After Release | After Stage | Manual Only`
+2. QA          : `After Release | After Stage | Manual Only` 
+3. Production  : `After Release | After Stage | Manual Only`
+
+--
+
+### Answer:
+
+1. Development : `Manual Only`
+2. QA          : `After Release` 
+3. Production  : `After Stage`
+
+---
+
+### Explanation:
+
+The **Development stage** is isolated in the sense that there is no other stage 
+preceeding it **and it is not linked to any artifatcs** that is the cannot be any
+releases that can be used to trigger deployment to the Development stage to. 
+Ttherefore deploing to this stage (environment) can only be done with a `Manual Only` trigger.
+
+The Artficats of a build preceed a QA stage and this preceedes the the Production stage.
+This chain can be used to chain the corresponding deployments with **pre-deployment triggers**.
+
+2. QA : `After Release` 
+
+Will deploy teh artifacts to a QA Environment by running the QA stange when new artifacts 
+are available in the Artifacts feed follwing a new build and release pipeline.
+
+3. Production  : `After Stage`
+
+This means that the samne artifacts are goimng to be deplyed to the Environment Production
+only after the deployment stage to QA has run successfully.
+
+---
+
+### References:
+
+[Release Triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/triggers?view=azure-devops)
+
+This topic covers **classic release pipelines**. 
+
+To understand triggers in YAML pipelines, see pipeline triggers.
+[Specify events that trigger pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops)
+
+Release triggers are an **automation tool to deploy your application**. 
+When the trigger conditions are met, the pipeline will deploy your artifacts to
+the **environment/stages** you already specified.
+
+There exist different kinds of triggers.
+
+1. Continuous integration (CI) triggers 
+vary based on the type of repository you build in your pipeline.
+
+- CI triggers in Azure Repos Git
+- CI triggers in GitHub
+- CI triggers in Bitbucket Cloud
+- CI triggers in TFVC
+- Pull request validation (PR) triggers also vary based on the type of repository.
+
+2. Pull request validation (PR) triggers also vary based on the type of repository.
+
+- PR triggers in Azure Repos Git
+- PR triggers in GitHub
+- PR triggers in Bitbucket Cloud
+
+There are also special triggers.
+
+- [Gated check-in](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/tfvc?view=azure-devops#gated)  
+  is supported for TFVC repositories.
+
+- [Comment triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#comment-triggers)  
+  are supported only for GitHub repositories
+
+- [Configure schedules for pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml)  
+  are independent of the repository and allow you to run a pipeline according to a schedule.
+
+---
+
+[Trigger one pipeline after another (classic)](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers-classic?view=azure-devops)  
+
+Large products have several components that are dependent on each other. These components are often independently built. When an upstream component (a library, for example) changes, the downstream dependencies have to be rebuilt and revalidated.
+
+In situations like these, add a pipeline trigger to run your pipeline upon the successful completion of the triggering pipeline.
+
+---
+
+There are also triggers that are specific to build pipelines that are **not classic**
+therefore those entirely written in YAML.
+
+[Specify events that trigger pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops)  
+
+[Trigger one pipeline after another](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops)  
+
+Previously, you may have navigated to the classic editor for your YAML pipeline and configured build completion triggers in the UI. While that model still works, **it is no longer recommended**. 
+
+**The recommended approach is to specify pipeline triggers directly within the YAML file**.
+
+**Build completion triggers** as defined in the classic editor have various drawbacks, 
+which have now been addressed in pipeline triggers. 
+
+**Important Limitation of Triggers in Classic Pipelines**:
+For instance, there is no way to trigger a pipeline on the same branch as that of the 
+triggering pipeline using build completion triggers.
+
+---
+
+[Define your Classic pipeline](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/define-multistage-release-process?view=azure-devops)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
