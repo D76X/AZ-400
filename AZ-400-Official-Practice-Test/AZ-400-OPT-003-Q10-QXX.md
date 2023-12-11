@@ -4899,6 +4899,7 @@ protecting you from loss of either power, networking, or cooling in an individua
 **If your highest priority is the best reliability for your workload, replicate your VMs across** 
 **multiple availability zones**.
 
+<<<<<<< HEAD
 ---
 
 ### Question 70:
@@ -4942,6 +4943,8 @@ This would not guarantee that the maibnual interaction occurs.
 [Use gates and approvals to control your deployment](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-using-approvals?view=azure-devops)
 
 
+=======
+>>>>>>> 406d7a698c472a7fd50af695084832bc337039d5
 ---
 
 ### Question:
