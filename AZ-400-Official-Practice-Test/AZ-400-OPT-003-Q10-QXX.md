@@ -4995,6 +4995,61 @@ Azure infrastructure.
 
 ---
 
+### Question 72:
+
+A company creates a Azure DevOops pipeline.
+The company has a large amount of test scripts that perform a sereis of 
+regression tests which takes a lot of time.
+
+You need to reduce the amount of time that is required to complete a test run.
+
+What should you do?
+
+- divide the pipeline into multiple pipeliens that can run in a queue
+- create multiple pipelines with a single agent to be run simultaneously
+- combine the test scripts
+- configure multiple agents and run the test in parallel
+
+---
+
+### Answer:
+### Explanation:
+- configure multiple agents and run the test in parallel
+
+This will reduce the amount of time required to run teh tests.
+**You must also change the build pipeline in order to slice the tests suite into**
+**parts that are goinf to be run each on its agent**.
+
+### References:
+[Run tests in parallel for any test runner](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-any-test-runner?view=azure-devops)
+
+Running tests to validate changes to code is key to maintaining quality. For continuous integration practice to be successful, it is essential you have a good test suite that is run with every build. However, as the codebase grows, the regression test suite tends to grow as well and running a full regression test can take a long time. Sometimes, tests themselves may be long running - this is typically the case if you write end-to-end tests. 
+
+**This reduces the speed with which customer value can be delivered as pipelines cannot process builds quickly enough**.
+**Running tests in parallel is a great way to improve the efficiency of CI/CD pipelines**. 
+
+This can be done easily by employing the additional capacity offered by the cloud. 
+This article discusses how you can parallelize tests by using multiple agents to process jobs.
+
+---
+
+The other opptions do not apply in this case.
+
+- divide the pipeline into multiple pipeliens that can run in a queue
+This would not achieve the objective, of course.
+
+- create multiple pipelines with a single agent to be run simultaneously
+**Azure DevOps recommendation is to collate all realted jobs of a build pipeline in a single pipeline**.
+
+- combine the test scripts
+This is unncesessary.
+
+---
+
+
+---
+
+
 ### Question:
 ### Answer:
 ### Explanation:
