@@ -4765,7 +4765,7 @@ However, in summary this tool is used to make a diff of the work doen in a relea
 same Azure Boards API that is used by Azure Boards.
 **You can use a template to retrieve the related WIs and customize the release notes summary**
 
-There is alsio an alternative to this:
+There is also an alternative to this:
 - add a generate release notes task to the release pipeline  
 [Generate Release Notes](https://marketplace.visualstudio.com/items?itemName=SpeedTechSolutions.GenerateReleaseNotes)  
 
@@ -4818,6 +4818,129 @@ This Extension is used to Generate Release Notes based on difference in Commits 
 ---
 
 ### Question 69:
+
+
+Your company moves to development to Azure DevOps.
+**The build jobs rely on external devices**.
+
+You need to **build a secure pipeline by monitoring the health signals from external devices**.
+
+What should you do?
+
+- enable pre- and post- deployment release gate
+- use Azure REST API to send emnail alerts
+- use qustomized queries with Azure Monitor
+- add build pipeline devices to an availability set
+
+---
+
+### Answer:
+- enable pre- and post- deployment release gate
+
+This option allows the build process to monitor the health of external devices
+that may be needed before or after the build is finished.
+
+Gates are used to **check the state of exteranl services** or **Azure Monitor** alerts or health signals.
+On the basis  of the outcome of these checks it is determined whether the stage tasks should be 
+executed or not.
+
+---
+
+The remaining options do not apply in this case.
+
+- add build pipeline devices to an availability set
+**Availability set** are used to ensure that **downtime is minimized**. 
+
+- use Azure REST API to send emnail alerts
+This is a set of CRUD service endpoints and does not apply here.
+
+- use qustomized queries with Azure Monitor
+Azure monitor may be used to quuery **application data and logs** but also **performance metrics**
+from infrastructure within Azure. The **nable pre- and post- deployment release gate** above has 
+this built into it. 
+
+---
+
+### References:
+
+[Deployment gates](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops)
+
+Gates allow automatic collection of health signals from external services and then promote the release when all the signals are successful or stop the deployment on timeout. Typically, gates are used in connection with incident management, problem management, change management, monitoring, and external approval systems.
+
+Some common use cases for deployment gates are:
+
+- Incident management
+- Quality validation
+- Security scan
+- User experience relative to baseline
+- Change management
+- Infrastructure health
+
+---
+
+[Availability sets overview](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview)  
+[Availability options for Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/availability)  
+
+[What is an availability set?](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview#what-is-an-availability-set) 
+
+Availability sets are logical groupings of VMs that reduce the chance of correlated failures bringing down related VMs at the same time. Availability sets place **VMs in different fault domains** for better reliability, 
+**especially beneficial if a region doesn't support availability zones**. 
+
+**When using availability sets, create two or more VMs within an availability set**.
+Using two or more VMs in an availability set helps highly available applications and meets the 99.95% Azure SLA. **There's no extra cost for using availability sets**, you only pay for each VM instance you create.
+
+**Availability sets offer improved VM to VM latencies compared to availability zones**, since VMs in an availability set are allocated in closer proximity. 
+**Availability sets have fault isolation for many possible failures**, minimizing single points of failure, and offering high availability. 
+**Availability sets are still susceptible to certain shared infrastructure failures**, like datacenter network failures, which **can affect multiple fault domains**.
+
+**For more reliability than availability sets offer, use availability zones**. 
+Availability zones offer the highest reliability since each VM is deployed in multiple datacenters, 
+protecting you from loss of either power, networking, or cooling in an individual datacenter. 
+**If your highest priority is the best reliability for your workload, replicate your VMs across** 
+**multiple availability zones**.
+
+---
+
+### Question 70:
+
+Your team decides to use Azure DevOps as their development platform.
+
+You need to **create a build pipeline that contains task that require**
+**a human interaction before a deployment can be approved**.
+
+What should you do?
+
+- create a Azure Logic App that sends out a notification when the interaction is required
+- create a release gates that update the Kanban board when manual interaction is required
+- create build scripts that replace manual interaction with automation 
+- create a manual intervention task in the build pipeline
+
+---
+
+### Answer:
+- create a manual intervention task in the build pipeline
+
+Manual intervention tasks are used when automation is not possible.
+
+---
+
+The remaining options do not apply in this case.
+
+- create a Azure Logic App that sends out a notification when the interaction is required
+**Azure Logic Apps** cannot handle manual interaction from within Azure DFevOps pipelines.
+
+- create a release gates that update the Kanban board when manual interaction is required
+This would not guarantee that the maibnual interaction occurs.
+
+- create build scripts that replace manual interaction with automation 
+?
+
+---
+
+### References:
+
+[Use gates and approvals to control your deployment](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-using-approvals?view=azure-devops)
+
 
 ---
 
