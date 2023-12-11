@@ -5096,6 +5096,39 @@ A set of assets are deployed to a target Environment.
 
 ---
 
+### Question 74:
+
+Your company's Azure DevOps team has several developers that use a single pipeline.
+The push changes constantly which triggers frequent build runs.
+**You turn the trigger setting for batch** paramater to **true**.
+
+How does this improve build runs?
+
+- it reduces the number of builds by allowing you to schedule a time for the pipeline run
+- it reduces the number of builds by allowing the system to wait until a build is finished and then
+  a new build is queued to handle any changes that were not included in the last build run.
+- it reduces the number of builds by automatically creating feature branch batches that run simultaneously
+- it reduces the number of builds by creating and running simultaneous batch runs
+
+---
+
+### Answer:
+
+- it reduces the number of builds by allowing the system to wait until a build is finished and then
+  a new build is queued to handle any changes that were not included in the last build run.
+
+[Specify events that trigger pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml)    
+
+[trigger definition](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/trigger?view=azure-pipelines)   
+
+The other opptions do not apply in this case.
+
+- it reduces the number of builds by allowing you to schedule a time for the pipeline run
+- it reduces the number of builds by automatically creating feature branch batches that run simultaneously
+- it reduces the number of builds by creating and running simultaneous batch runs
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
