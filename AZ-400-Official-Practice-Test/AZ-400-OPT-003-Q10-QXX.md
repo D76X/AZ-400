@@ -5316,6 +5316,67 @@ The other opptions do not apply in this case.
 
 ---
 
+### Question 79:
+
+You are a frontend engineer on an AngualJS app.
+Azure Pipeline is used to build the app and test it as a single job.
+The pipelines takes about 7 mins every time it runs in order to download and install
+the app dependencies with npm.
+
+Yoyu want to reduce the pipeline execution time.
+ 
+Which solution should results in the greatest reduction of build time?
+
+- include a step to upgrade npm befre installing the app dependencies
+- implement pipeline cahcing
+- use a self-hosted agaent
+- enable parallel jobs for the puipeline
+
+---
+
+### Answer:
+- implement pipeline cahcing
+
+Include a cach task in your pipeline and configure a `node_modules` path to be reused later.
+You should use the `package-lock.json` as **cache key** to invalidate the cache every time 
+the app dependencies have changed.
+
+The other opptions do not apply in this case.
+
+- use a self-hosted agaent
+This could also work but its benefits would not match those possible with the **caching task**.
+
+- include a step to upgrade npm befre installing the app dependencies
+Tis would acually increase the build time
+
+- enable parallel jobs for the puipeline
+Thisi is something else alltogether, of course.
+
+---
+
+### References:
+
+[Pipeline caching](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops)  
+
+Pipeline caching can **help reduce build time by allowing the outputs or downloaded dependencies from one run** 
+**to be reused in later runs**, thereby reducing or avoiding the cost to recreate or redownload the same files again. **Caching is especially useful in scenarios where the same dependencies are downloaded over and over** 
+**at the start of each run**. 
+This is often a time consuming process involving hundreds or thousands of network calls.
+
+Caching can be effective at improving build time **provided the time to restore and save the cache is less** 
+**than the time to produce the output again from scratch**. 
+**Because of this, caching may not be effective in all scenarios and may actually have a negative impact on build time**.
+
+Caching is currently supported in **CI and deployment jobs, but not classic release jobs**.
+
+[Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+[Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser)  
+
+[npm-update](https://docs.npmjs.com/cli/v7/commands/npm-update)  
+
+---
+
 
 ### Question:
 ### Answer:
