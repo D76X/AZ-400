@@ -5230,6 +5230,56 @@ There is no need to change each one individually.
 
 [Template usage reference](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops&pivots=templates-includes)    
 
+
+---
+
+### Question Q77:
+
+You are bulding an Azure Pipeliene for a new project.
+The pipeline requires a **Linux Self-Holsted Agent**.
+The pipeline must run twice a day and should take about 15 minutes to complete.
+
+You need to use a compute service that runs this self-hosted agent and minimize costs.
+
+Which should you choose?
+
+- Azure Kubernetes Services (AKS)
+- Azure Vistual Machine Scale Set
+- Azure Vistual Machine VM
+- Azure Container Instances (ACI)
+
+---
+
+### Answer:
+
+- Azure Container Instances (ACI)
+This is the most cost-effective solution to run Self-Hosted Linux Agent inside a Docker container.
+This service is charged by teh seconds of execution time.
+
+The other opptions do not apply in this case.
+
+- Azure Kubernetes Services (AKS)
+This **requires much greater administrative effort** and larger costs due to the necessary controller node.
+
+- Azure Vistual Machine Scale Set
+- Azure Vistual Machine VM
+The same as with AKS. They could be used but is overkill in cost andadmin complexity.
+
+---
+
+### References:
+
+[Run a self-hosted agent in Docker](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops)  
+
+[Self-hosted Linux agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/linux-agent?view=azure-devops)  
+
+[Azure Virtual Machine Scale Set agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/scale-set-agents?view=azure-devops)  
+
+
+---
+
+### Question:
+
 ---
 
 
