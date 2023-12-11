@@ -4728,6 +4728,99 @@ stage shoulod be executed. However, it doesn not apply to this case.
 [AzureFunction@1 - Invoke Azure Function v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-function-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
 
 ---
+
+### Question 68:
+
+**Your company maintains a Node.js SDK in an Azure DevOps project**.
+
+Your team uses **Azure Boards** to register the work items for the SDK.
+You **automate the release pipeline** to **build and publish a Linux Node.js binary**
+using an agent.
+
+When the new SDK version is released, your team is asked to include a 
+**release notes document** that contain a summary of the work items that are present
+in this new release.
+
+You need to **automate the release notes generation** process 
+**using the least amount of administrative effort**.
+
+Whcich **two** action should you perform?
+
+- create a **managed query in Azure Boards**
+- add a generate release notes task to the release pipeline
+- install the Generate Release Notes **cross-platform extension** from the Visual Studio Marketplace
+- install the Generate Release Notes extension from the Visual Studio Marketplace
+- use an Azure Function task to the release pipeline
+
+---
+
+### Answer:
+### Explanation:
+
+- install the Generate Release Notes **cross-platform extension** from the Visual Studio Marketplace
+- add a generate release notes task to the release pipeline
+
+The details for the **Generate Release Notes cross-platform extension** are below in the references.
+However, in summary this tool is used to make a diff of the work doen in a release by using the
+same Azure Boards API that is used by Azure Boards.
+**You can use a template to retrieve the related WIs and customize the release notes summary**
+
+There is alsio an alternative to this:
+- add a generate release notes task to the release pipeline  
+[Generate Release Notes](https://marketplace.visualstudio.com/items?itemName=SpeedTechSolutions.GenerateReleaseNotes)  
+
+This Extension is used to Generate Release Notes based on difference in Commits and WorkItems between two BuildId's
+
+---
+
+The remaining options do not apply in this case.
+
+- install the Generate Release Notes extension from the Visual Studio Marketplace
+This this referers tio the **Powershell** version in the reference below and it is **deprecated**.
+This **would only work on Windows agents and not in Linux agents** as it is required in this case.
+
+- create a **managed query in Azure Boards**
+You may as well create the query in Azure Board that filters the WIs in the release.
+However, it does not by itself create the RNs and therefore it requires additional 
+administrative effort.
+This option therefore vilolates one of the requitments of this question. 
+
+- use an Azure Function task to the release pipeline
+The same as the item above. You can do it but it requires far more administrative effort.
+
+---
+
+### References:
+
+[Generate Release Notes (Crossplatform)](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-XplatGenerateReleaseNotes)  
+
+This task generates a release notes file based on a user defined Handlbars template. 
+**It can be using inside any Azure DevOps Classic Build, Classic Release or Multistage YAML Pipeline**.
+
+The data source for the generated Release Notes is the Azure DevOps REST API's comparison calls that are also used by the Azure DevOps UI to show the associated Work items and commit/changesets between two builds/releases. Hence this task should generate the same list of work items and commits/changesets as the Azure DevOps UI, though it attempts to enrich this core data with extra information where possible.
+
+---
+
+[(deprecated) Generate Release Notes Build Task (PowerShell)](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-GenerateReleaseNotes-Task)  
+
+---
+
+[Generate Release Notes](https://marketplace.visualstudio.com/items?itemName=SpeedTechSolutions.GenerateReleaseNotes)  
+This Extension is used to Generate Release Notes based on difference in Commits and WorkItems between two BuildId's
+
+
+---
+
+[Define a work item query in Azure Boards](https://learn.microsoft.com/en-us/azure/devops/boards/queries/using-queries?view=azure-devops&tabs=browser)  
+
+[AzureFunction@1 - Invoke Azure Function v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-function-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+---
+
+### Question 69:
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
