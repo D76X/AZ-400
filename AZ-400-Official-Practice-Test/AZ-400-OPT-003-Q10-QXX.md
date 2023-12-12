@@ -5881,6 +5881,22 @@ What startegy should you use?
 ---
 
 ### Answer:
+- the developers should use features flags
+
+With **feature flags** a developer can turn a feature off until it is ready (for pruduction).
+This also ensures that code that is merge does not brak the build.
+
+
+The other options do not apply in this case.
+ 
+- the developers should store code changes locally and 
+  merge changes with the main source code branch after completing their work
+
+- the developers should create a log-running feature branch 
+  and merge changes after the feature is complete
+
+- the developes should merge their code to the main code branch
+  daily with unfinished features commented out
 
 ---
 
