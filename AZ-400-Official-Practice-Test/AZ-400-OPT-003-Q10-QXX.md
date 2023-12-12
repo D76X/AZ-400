@@ -5541,6 +5541,7 @@ traffic will be moved to the new version.
 
 [What is Azure DNS?](https://learn.microsoft.com/en-us/azure/dns/dns-overview)  
 
+[Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
 ---
 
 ### Question 83:
@@ -5737,9 +5738,61 @@ You can install the agent in any one of these ways:
 
 [Use personal access tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows)   
 
+[Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
+
 ---
 
+### Question 85:
 
+You manage a Azure Web App.
+
+You need to implement a **release pipeline** for a **blue/green deployment** using **deplyment slots**.
+Your solution **must minimize administrative effort and application downtime** during the deployment.
+
+Which **five actions**  should you perform?
+Arrange the actions in any order.
+
+- create a task to deploy the app to the staging slot
+- create an Azure CLI task to swap the staging slot to the production slot
+- add a production stage in the release pipeline
+- create a new deployment slot named staging in the Azure App Service
+- create an App Service Manage task to swap the production slot to staging
+- add a staging stage in the release pipeline
+- create a task to deploy the application to the production slot
+- create an App Service Manage task to swap the staging slot to production
+
+---
+
+### Answer:
+
+- create a new deployment slot named staging in the Azure App Service
+- add a staging stage in the release pipeline
+- create a task to deploy the app to the staging slot
+- add a production stage in the release pipeline
+- create an App Service Manage task to swap the staging slot to production
+
+
+The other options do not apply in this case.
+
+- create an Azure CLI task to swap the staging slot to the production slot
+- create an App Service Manage task to swap the production slot to staging
+- create a task to deploy the application to the production slot
+
+---
+
+### References:
+
+[Set up staging environments in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)  
+
+[Azure App Service Management: ARM](https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/AzureAppServiceManageV0/README.md)  
+
+[Azure App Service Deployment: ARM](https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/AzureRmWebAppDeploymentV4/README.md)  
+
+[What is the Azure CLI?](https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli)  
+
+[Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
