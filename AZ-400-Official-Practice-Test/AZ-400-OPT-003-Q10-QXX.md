@@ -5460,7 +5460,7 @@ What should you do?
 
 This will increase the throughput of the pipelines, consequently reducing the queueing time.
 
-The other opptions do not apply in this case.
+The other options do not apply in this case.
 
 - decrease the number of parallel jobs  for Miscrosoft-Hosted agents
 obvious
@@ -5483,6 +5483,63 @@ However, the problem here is with the Microsoft-Hosted agent you must address it
 [Configure and pay for parallel jobs
 Article
 04/27/2](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+---
+
+### Question 82:
+
+You are updating an application **release pipeline** to support **canary deployment**.
+The app is hosted in **Azure App Services**.
+
+The deployment has three stages as shown in the exhibit.
+<img src="./Q82-exhibit.png">
+
+- Ring 0: released to 5% of the user
+- Ring 1: released to 30% of the user
+- Public: released to all users
+
+You must recommend solutions that support the gradual availability of each stage to users.
+
+Which **two** solutions should you recomment?
+
+- Azure Load Balancer
+- Azure DNS
+- Traffic Manager
+- Deployment Slots 
+
+---
+
+### Answer:
+- Traffic Manager
+- Deployment Slots 
+
+With **Azure App Services Deployment Slots** you can define a **route traffic percentage for the deployment slot**!
+You can gradually move the traffic from one deplyment slot to another for each deployment stage.
+
+With **Traffic Manager** you can set **weighted traffing routing** to gradually route traffic from older apps version
+to new ones **on each deployment stage**.
+
+---
+
+The other options do not apply in this case.
+- Azure Load Balancer
+- Azure DNS
+
+Both of these solutions move traffic from the current app version to the new one
+**but not gradually**! If you modify the DNS record or the load balancer pools all
+traffic will be moved to the new version.
+
+---
+
+### References:
+
+[Tutorial: Configure the weighted traffic routing method in Traffic Manager](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-configure-weighted-routing-method)  
+
+[Set up staging environments in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?tabs=portal)  
+
+[What is Azure Load Balancer?](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)  
+
+[What is Azure DNS?](https://learn.microsoft.com/en-us/azure/dns/dns-overview)  
 
 ---
 
