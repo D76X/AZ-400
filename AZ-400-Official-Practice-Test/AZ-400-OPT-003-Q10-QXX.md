@@ -5437,6 +5437,55 @@ HashiCorp Terraform is an infrastructure as code tool that lets you define both 
 
 ---
 
+### Question 81:
+
+You are responsible for maintaining the build pipelines in Azure Pipelines in your company.
+The developers reported that during working hours some of the pipelines are queued for over 15 minutes.
+This slows down their development work.
+This issue does not happen with pipelines that run on self-hosted agents.
+
+You need to reduce the queue waiting time during working hours.
+
+What should you do?
+
+- add an extra self-hosted agent pool
+- increase the number fo parallel jobs for Miscrosoft-Hosted agents
+- decrease the number of parallel jobs  for Miscrosoft-Hosted agents
+- scale up the current self-hosted agent pool
+
+---
+
+### Answer:
+- increase the number fo parallel jobs for Miscrosoft-Hosted agents
+
+This will increase the throughput of the pipelines, consequently reducing the queueing time.
+
+The other opptions do not apply in this case.
+
+- decrease the number of parallel jobs  for Miscrosoft-Hosted agents
+obvious
+
+- add an extra self-hosted agent pool
+- scale up the current self-hosted agent pool
+this would also increase the throughput of the pipelines, consequently reducing the queueing time.
+However, the problem here is with the Microsoft-Hosted agent you must address it there.
+
+---
+
+### References:
+
+[Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser)  
+
+[Create and manage agent pools](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/pools-queues?view=azure-devops&tabs=yaml%2Cbrowser)  
+
+[Troubleshoot pipeline runs](https://learn.microsoft.com/en-us/azure/devops/pipelines/troubleshooting/troubleshooting?view=azure-devops)  
+
+[Configure and pay for parallel jobs
+Article
+04/27/2](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+---
+
 
 ### Question:
 ### Answer:
