@@ -5793,6 +5793,69 @@ The other options do not apply in this case.
 [Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
 
 ---
+
+### Question 86:
+
+You have a Web App developed in **Django** running in **Azure App Service**.
+
+You need to implement **feature toggles** to test **canary features** with a
+specific group of users.
+
+The features should be available to the users **as fast as possible** with 
+**minimal changes in the application code**. 
+**Administrative effort should also be kept to a minimum**.
+
+Which solution should you recommend?
+
+- set an application settin in Azure App Service
+- include the users to test the features using an admin site
+- deploy a new version of the Web App for the canary users
+- use LauchDarkly to manage feature toggles
+
+
+---
+
+### Answer:
+- use LauchDarkly to manage feature toggles
+
+[LauchDarkly](https://launchdarkly.com/demo/)
+LaunchDarkly unites feature flags, context-aware targeting, and experimentation in one powerful software delivery platform.
+
+This is a solution that manages feature toggles in your application.
+You can integrate it with **Python** apps via a SDK **and instantly denable the feature toggles to a specific group of users**.
+This is doen through the **LauchDarkly Portal**.
+
+---
+
+The other options do not apply in this case.
+
+- set an application settin in Azure App Service
+This could alos be done to implement a **general feature toggle** in any app.
+However, with this method you cannot select a specific group of canary users
+as required in this scenario.
+
+- deploy a new version of the Web App for the canary users
+Thsi would require a duplication of the app and larger admin effort.
+You would need a **reverse Proxy**.
+
+- include the users to test the features using an admin site
+This would require the development of the admin site and therefore this options 
+does not meet the requirement of minimum effort.
+
+---
+
+### References:
+
+[LauchDarkly](https://launchdarkly.com/demo/)
+LaunchDarkly unites feature flags, context-aware targeting, and experimentation in one powerful software delivery platform.
+
+[LauchDarkly - Targeting with flags](https://docs.launchdarkly.com/home/targeting-flags)
+
+[Configure an App Service app](https://learn.microsoft.com/en-us/azure/app-service/configure-common?tabs=portal)  
+
+[The Django admin site](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
