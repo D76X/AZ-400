@@ -5543,6 +5543,104 @@ traffic will be moved to the new version.
 
 ---
 
+### Question 83:
+
+You are developing the release pipeline for an application.
+You plan to deploy the application using **progressive exposure deployments**.
+
+Which **two** techniques could you use?
+
+- gradual deployment
+- Feature flags
+- Blue/Green deployment
+- Deployment rings
+
+---
+
+### Answer:
+- Feature flags
+- Deployment rings
+
+**Progressive exposure deployment** is a technique that has:
+
+- a limited impact on end users 
+- gradually deploys and validates changes in production
+
+The **impact is evaluated through**: 
+
+- observation
+- testing
+- analysis of telemetry
+- user feedback
+
+---
+
+You could use **Deployment Rings aka Canary Deployment**.
+It allows to **gradually expose** a new version of an application to some but not all users.
+This provides a **controlled exposure of user to the new versions of an app**.
+The **control** is normally achived by means of a:
+
+- **load balancying layer** (in Azure use the Traffic Manager) 
+- **application settings** 
+- **runtime settings**
+
+---
+
+You could use **Feature Flags**.
+
+**Feature Flags** are used to turn features on and off. 
+**Feature Flags** are usually used to: 
+
+1. test experimental features with a limited number 
+2. disable application features 
+
+**without requiring a new deployment**!
+
+The activation / deactivation of features are controlled with either:
+
+- application configuration: at application level
+- opt-in feature: at individual user level
+
+---
+
+The other options do not apply in this case.
+- gradual deployment
+- Blue/Green deployment
+
+- gradual deployment
+It replaces an existing deployment with newer versions and therefore the old version and the
+new versions are both in production at the same time. With this technique alone 
+**it is not possible to control how the new version is rolled out to users.**
+
+- Blue/Green deployment
+This techinque **duplicates your production workload** as follows:
+- blue : old version
+- green: new version
+
+Onnce the **green** is deplyed you would run all possible test on it that is automated and manual
+and decide whether the **green** is ready to be promoted to **blue** that is production.
+Then in a **single event** you would simply switch all users to the new versions.
+
+---
+
+### References:
+
+[Use deployment rings with extension releases](https://learn.microsoft.com/en-us/azure/devops/migrate/phase-rollout-with-rings?view=azure-devops)  
+
+With deployment rings, you can gradually deploy and validate changes to your extension in production, while limiting the affect on your users.
+We don't recommend deploying to all production environments at the same time, which exposes all users to the changes. A gradual rollout exposes
+users to the changes over time, validating the changes in production with fewer users.
+
+[Progressive experimentation with feature flags](https://learn.microsoft.com/en-us/devops/operate/progressive-experimentation-feature-flags)  
+
+---
+
+[Deployment Strategies Defined](https://blog.itaysk.com/2017/11/20/deployment-strategies-defined)  
+
+[How Microsoft plans with DevOps](https://learn.microsoft.com/en-us/devops/plan/how-microsoft-plans-devops)  
+
+---
+
 
 ### Question:
 ### Answer:
