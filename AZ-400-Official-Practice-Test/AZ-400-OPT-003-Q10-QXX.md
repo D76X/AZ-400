@@ -5856,6 +5856,34 @@ LaunchDarkly unites feature flags, context-aware targeting, and experimentation 
 [The Django admin site](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/)  
 
 ---
+
+### Question 87:
+
+A deployment team uses a Azure DevOps CI/CD pipeline.
+The developers finish their work at different times.
+
+You need to ensure that the software only allows the features that are fully functional.
+
+What startegy should you use?
+
+- the developers should store code changes locally and 
+  merge changes with the main source code branch after completing their work
+
+- the developers should create a log-running feature branch 
+  and merge changes after the feature is complete
+
+- the developers should use features flags
+
+- the developes should merge their code to the main code branch
+  daily with unfinished features commented out
+
+
+---
+
+### Answer:
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
