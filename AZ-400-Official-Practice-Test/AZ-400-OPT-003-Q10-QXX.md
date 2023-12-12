@@ -5641,6 +5641,104 @@ users to the changes over time, validating the changes in production with fewer 
 
 ---
 
+### Question 84:
+
+An application runs **20 VMs instances** that are managed by **Azure as a Scale Set (VMSS)**.
+
+You need to configure a **release pipeline to deploy** this app through a **deployment group**
+while **minimizing administrative effort**.
+
+Which **three actions** should you perform and in which sequence?
+
+- configure the agent extension with a personal access token (PAT)
+- configure the agent extension with a credential
+- create a deployment group in Azure DevOps
+- install the deployment group agent extension in the VMSS
+- create a deployment group in the Azure Portal
+- install the deployment group agent extension in each instance of the VMSS
+
+---
+
+### Answer:
+
+1. create a deployment group in Azure DevOps
+2. install the deployment group agent extension in the VMSS
+3. configure the agent extension with a personal access token (PAT)
+
+There are several ways to set up the agent on the instances of a VMSS.
+Howver, **the most effective** is to install the **Azure Pipelines agent in the extensions blade of the VMSS**.
+This installs the agent automatically on each instance of the VMSS.
+
+**To configure the agent extension in the Azure Portal you need first to generate a PAT**
+**in Azure DevOps and use it to configure the script that will then be run on each VM of the VSMM**.
+The PAT should be generated to have the permissions:
+- Deployment Group Read
+- Deployment Group Manage
+
+---
+
+The other options do not apply in this case.
+
+- create a deployment group in the Azure Portal
+Deployment group is a concept that belongs to Azure DevOps and not the Azure Portal!
+
+- install the deployment group agent extension in each instance of the VMSS
+This is obviously not the way to minimize admin effort and it is prone to error!
+
+- configure the agent extension with a credential
+Ti configure the Azure Pipelines agent in the extensions a PAT is required
+
+---
+
+### References:
+
+[Provision deployment groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/?view=azure-devops)  
+
+A deployment group is a **logical set of deployment target machines that have agents installed on each one**. 
+**Deployment groups represent the physical environments**, for example: "Dev", "Test", or "Production" environment. 
+
+In effect, a deployment group is just another grouping of agents, much like an agent pool.
+
+Deployment groups are **only available with Classic release pipelines** and **are different from deployment jobs**. 
+**A deployment job** is a collection of deployment-related steps defined in a YAML file to accomplish a specific task.
+
+With deployment groups you can:
+
+1. Specify the security context and runtime targets for the agents. 
+   As you create a deployment group, you add users and give them appropriate permissions to 
+   administer, manage, view, and use the group.
+
+2. Let you view live logs for each server as a deployment takes place, and download logs for all servers to track
+   your deployments down to individual machines.
+
+3. Enable you to use machine tags to limit deployment to specific sets of target servers.
+
+---
+
+[Provision agents for deployment groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/howto-provision-deployment-group-agents?view=azure-devops)  
+
+Deployment groups make it easy to **define logical groups of target machines for deployment** and 
+**install the required agent on each machine**. 
+
+This topic explains how to create a deployment group, and how to install and provision the agent on each virtual or 
+physical machine in your deployment group.
+
+You can install the agent in any one of these ways:
+
+1. Run the script that is generated automatically when you create a deployment group.
+2. Install the Azure Pipelines Agent Azure VM extension on each of the VMs.
+3. Use the ARM Template deployment task in your release pipeline.
+
+---
+
+[Azure virtual machine extensions and features](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/overview)  
+
+[What are Virtual Machine Scale Sets?](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview)  
+
+[Use personal access tokens](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate?view=azure-devops&tabs=Windows)   
+
+---
+
 
 ### Question:
 ### Answer:
