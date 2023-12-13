@@ -6207,6 +6207,87 @@ Ansible® is an open source, command-line IT automation software application wri
 
 ---
 
+### Question 90:
+
+You have a Windows Server 2016 VM named server02 in Azure.
+The VM will be used as a Web Server and a SMPT server.
+
+You need to configure the VM using **PowerShell Desired State Configuration (DSC)**.
+
+How should you complete the PowerShell DSC configuration?
+Select the appropriate options.
+
+```
+Node OPTION-1
+{
+  OPTION-2 ConfigureVmServices
+  {
+    Name = OPTION-3
+    Ensure = OPTION-4
+    IncludeAllSubFeature = $true
+  }
+}
+```
+
+OPTION-1: localhost | server01 | server02
+OPTION-2: WindowsFeature | WindowsFeatureSet | WindowsOptionalFeature | WindowsFeatureSet
+OPTION-3: @("SMTP-Server","WebServer") | "SMTP-Server" | "WebServer"
+OPTION-4: "Absent" | "Enable" | "Present"
+
+ 
+---
+
+### Answer:
+
+```
+Node server02
+{
+  WindowsFeatureSet ConfigureVmServices
+  {
+    Name = @("SMTP-Server","WebServer")
+    Ensure = "Present"
+    IncludeAllSubFeature = $true
+  }
+}
+```
+The remaining options do no apply to this case.
+
+OPTION-4: "Absent"
+ensures tha the features in the sets are not installled
+
+OPTION-4: "Enable"
+this option is only valid for individual features resources and not a features sets.
+
+[Ensure](https://learn.microsoft.com/en-us/powershell/dsc/reference/resources/windows/windowsfeatureresource?view=dsc-1.1):	
+Indicates if the role or feature is added. To ensure that the role or feature is added,
+set this property to Present. To ensure that the role or feature is removed, set the 
+property to Absent. 
+The default value is Present.
+
+---
+
+### References:
+
+[DSC Configurations](https://learn.microsoft.com/en-us/powershell/dsc/configurations/configurations?view=dsc-1.1&viewFallbackFrom=powershell-7)  
+
+---
+
+[DSC WindowsFeature Resource](https://learn.microsoft.com/en-us/powershell/dsc/reference/resources/windows/windowsfeatureresource?view=dsc-1.1)   
+provides a mechanism to ensure that roles and features are added or removed on a target node.
+
+[DSC WindowsFeatureSet Resource](https://learn.microsoft.com/en-us/powershell/dsc/reference/resources/windows/windowsfeaturesetresource?view=dsc-1.1)  
+provides a mechanism to ensure that roles and features are added or removed on a target node. This resource is a composite resource that calls the WindowsFeature resource for each feature specified in the Name property.
+
+---
+
+[DSC WindowsOptionalFeature Resource](https://learn.microsoft.com/en-us/powershell/dsc/reference/resources/windows/windowsoptionalfeatureresource?view=dsc-1.1)   
+provides a mechanism to ensure that optional features are enabled on a target node.
+
+[DSC WindowsOptionalFeatureSet Resource](https://learn.microsoft.com/en-us/powershell/dsc/reference/resources/windows/windowsoptionalfeaturesetresource?view=dsc-1.1)  
+This resource is a composite resource that calls the WindowsOptionalFeature resource for each feature specified in the Name property.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
