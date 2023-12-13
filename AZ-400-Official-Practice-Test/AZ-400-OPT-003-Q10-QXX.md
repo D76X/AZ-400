@@ -5930,6 +5930,280 @@ This is obviously not a good practice and it is prone to human error.
 
 [How Microsoft plans with DevOps](https://learn.microsoft.com/en-us/devops/plan/how-microsoft-plans-devops)  
 
+---
+
+### Question 88:
+
+Your development team is constantly implementig features.
+You need to **implement a delivery strategy to use feature flags**.
+
+Which **five actions** should you perform and **in which order**?
+
+- design the feature's functionality 
+- create a release strategy
+- test the feature
+- release the feature
+- build the feature
+- create a push request
+- create a pull request
+
+---
+
+### Answer:
+
+1. design the feature's functionality 
+2. create a release strategy
+3. build the feature
+4. test the feature
+5. release the feature
+
+---
+
+### Explanation:
+
+1. design the feature's functionality:
+
+  - consider the target audience
+  - create use cases
+  - develop a timeline
+
+2. create a release strategy:
+
+You need to determine whether f which ones.eature flags are used and if
+so which ones. You also need to know how to incorporate user feedback
+and acceptance.
+
+3. build the feature:
+This includes:
+  - coding
+  - integration
+  - feature flag management 
+
+4. test the feature:
+This includes:
+  - QA environment testing
+  - Staging environment testing
+
+5. release the feature:
+The release of the feature can be **incremental** or **full a release**.
+It may target the entire user pool or just one or more specific groups of users.
+
+---
+
+The remaining options do not apply in this case.
+
+- create a pull request:
+PRs should be part of the build strategy. PRs are used to notify others about changes
+that you want ot make to a branch in a repository. 
+
+- create a push request:
+Push of changes are not part of a delivery strategy. They transfer changes from
+one local branch to a remote branch.
+
+---
+
+### References:
+
+[How to implement feature flags and A|B testing](https://learn.microsoft.com/en-gb/archive/blogs/visualstudioalmrangers/how-to-implement-feature-flags-and-ab-testing)  
+
+[How Microsoft plans with DevOps](https://learn.microsoft.com/en-us/devops/plan/how-microsoft-plans-devops)  
+
+---
+
+### Question 89:
+
+Your company is evaluating using an **Infrastructure as Code (IaC)** solution
+to manage resources in Azure.
+
+This solution must ensure that **Infrastructure as Service (IaaS)** resources
+have a specific configuration, such as which services are installed in VMs.
+The solution **must minimize configuration drift**.
+
+You need to recommend an IaC solution to meet these requirements.
+
+Which **two** solutions should you recomment?
+
+- Chef Infra
+- Terraform
+- Azure Automation Runbook
+- PowerShell Desired State Configuration (DSC)
+- Ansible
+
+---
+
+### Answer:
+
+- Chef Infra
+- PowerShell Desired State Configuration (DSC)
+
+---
+
+### Explanation:
+
+- Chef Infra
+
+[Chef Infra Overview](https://docs.chef.io/chef_overview/)  
+Chef Infra is a powerful automation platform that transforms infrastructure into code. Whether you’re operating in the cloud, on-premises, or in a hybrid environment, Chef Infra automates how infrastructure is configured, deployed, and managed across your network, no matter its size.
+
+Chef uses **cookbooks** to sotre **IaC** Each node managed by Chef has a **Chef Client** agent installed on it.
+The **Chef Client** communicate with a **Chef Server** and reports its state to it nad if the Server detects 
+any drift it then instructs the **Chef Client** to perform actions to remove the drift. The desired configuration
+for each managed node is store on teh Chef Server.
+
+- PowerShell Desired State Configuration (DSC)
+
+In this case the configuration of resources is held in configuration files.
+DSC works according to a **Push & Pull models**. Both modes create a **local configuration state**
+**in the target machines** called **Local Configuration Manager (LCM)** that determines which 
+configurations should be applied to the node.
+
+- **In the Pull mode** the LCM is configured to regularly check a pull service for newer 
+  configurations and uensure that the target is in line with the IaC code.
+  It is recommended to use **Azure Automation** as a **managed pull service**.
+
+---
+
+The remaining options do not apply in this case.
+
+- Azure Automation Runbook:
+A Runbook is an automation script written in either PowersShell or Python.
+A Runbook could be used in operations like starting or stopping a VM during specified hours.
+However, **Runbooks are not designed to define the configuration of a machine (VM) as IaC**.
+For this **Desired State Configuration (DSC)** should be used instead.
+
+- Terraform:
+Terraform connectes to Azure via the Azure Resource Manager API. It can create and update 
+infrastructure from IaC files. However, it **cannot maintain the state of what has been**
+**deplyed** the same way Chef or DSC do, thus it cannot work against configuration drift,
+which is one of the requirements in this case.
+
+- Ansible:
+Using **Ansible Palybooks** yoi can **apply resource configurations** to targets.
+However, Ansible **uses only a Push model** therefore it cannot guard against configuration drift.
+
+---
+
+### References:
+
+[Desired State Configuration overview for decision makers](https://learn.microsoft.com/en-us/powershell/dsc/overview/decisionmaker?view=dsc-1.1)  
+
+This document describes the business benefits of using PowerShell Desired State Configuration (DSC) 
+and isn't a technical guide.
+
+#### What Is DSC?
+
+PowerShell DSC is a configuration management platform **built into Windows** that is based 
+on open standards. DSC is flexible enough to function reliably and consistently 
+**in each stage of the deployment lifecycle** (development, test, pre-production, production)
+and during scale-out.
+
+**DSC centers around configurations**. 
+**A configuration is PowerShell script that describes an environment made up of computers or nodes**
+**with specific characteristics**. 
+
+These characteristics can be as simple as ensuring a specific Windows feature is enabled or 
+as complex as deploying SharePoint.
+
+DSC has monitoring and reporting built-in. If a system is no longer compliant, 
+**DSC can raise an alert and act to correct the system**.
+
+####  Benefits of using DSC
+
+The configuration's design simplifies how they're read, stored, and updated. 
+**Configurations declare the state of target devices, rather than writing instructions** 
+**for how to place devices in that state**. 
+**These factors reduce the costs to learn, adopt, implement, and maintain configuration** 
+through DSC.
+
+#### DSC and DevOps
+
+**DSC was designed with DevOps in mind**.
+
+A combination of people, processes, and tools that allow for rapid deployment and iteration focused on delivering value to end users whether internal or external. A single configuration that defines an environment means that developers can encode their requirements into a configuration and check that configuration into source control. Operations teams can then deploy code without going through error-prone manual processes.
+
+---
+
+DSC is applicable to VMs that run Windows, Linux and Nano Server.
+
+[Get started with Desired State Configuration (DSC) for Windows](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1&viewFallbackFrom=powershell-7)  
+
+[Get started with Desired State Configuration (DSC) for Linux](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/lnxgettingstarted?view=dsc-1.1)  
+
+Desired State Configuration for Linux requires the Open Management Infrastructure (OMI) CIM server, version 1.0.8.1 or later. OMI can be downloaded from The Open Group: Open Management Infrastructure (OMI).
+
+[Using DSC on Nano Server](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/nanodsc?view=dsc-1.1)  
+
+---
+
+[Get started with Azure Automation State Configuration](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-getting-started?view=dsc-1.1)  
+
+Azure Automation State Configuration is an Azure configuration management service that allows you to write, manage, and compile PowerShell Desired State Configuration (DSC) configurations for nodes in any cloud or on-premises datacenter. The service also imports DSC Resources, and assigns configurations to target nodes, all in the cloud. You can access Azure Automation State Configuration in the Azure portal by selecting State configuration (DSC) under Configuration Management.
+
+You can use Azure Automation State Configuration to manage a variety of machines:
+
+- Azure virtual machines
+- Azure virtual machines (classic)
+- Physical/virtual Windows machines on-premises, or in a cloud other than Azure (including AWS EC2 instances)
+- Physical/virtual Linux machines on-premises, in Azure, or in a cloud other than Azure
+
+If you aren't ready to manage machine configuration from the cloud, you can use Azure Automation State Configuration as a report-only endpoint. This feature allows you to set (push) configurations through DSC and view reporting details in Azure Automation.
+
+####  Why use Azure Automation State Configuration 
+
+The Azure Automation State Configuration service is to DSC what Azure Automation runbooks are to PowerShell scripting.  In other words, in the same way that Azure Automation helps you manage PowerShell scripts, it also helps you manage DSC configurations.
+
+Azure Automation State Configuration provides several advantages over the use of DSC outside of Azure. This service enables scalability across thousands of machines quickly and easily from a central, secure location. You can easily enable machines, assign them declarative configurations, and view reports showing each machine's compliance with the desired state you specify.
+
+---
+
+[Understand the machine configuration feature of Azure Automanage](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview)   
+
+```
+Before you enable Automation State Configuration, we would like you to know that 
+a newer version of DSC is now generally available, managed by a feature of 
+Azure Policy named guest configuration. 
+```
+
+Azure Policy's machine configuration feature provides native capability to audit or configure operating system settings as code for machines running in Azure and hybrid Arc-enabled machines. You can use the feature directly per-machine, or orchestrate it at scale by using Azure Policy.
+
+---
+
+[Chef Infra Overview](https://docs.chef.io/chef_overview/)  
+Chef Infra is a powerful automation platform that transforms infrastructure into code. 
+Whether you’re operating in the cloud, on-premises, or in a hybrid environment, Chef Infra 
+automates how infrastructure is configured, deployed, and managed across your network, 
+no matter its size.
+
+---
+
+[What is Azure Automation?](https://learn.microsoft.com/en-us/azure/automation/overview)  
+
+Automation is needed in three broad areas of cloud operations:
+
+1. Deploy and manage - Deliver repeatable and consistent infrastructure as code.
+2. Response - Create event-based automation to diagnose and resolve issues.
+3. Orchestrate - Orchestrate and integrate your automation with other Azure or third party services and products.
+
+---
+
+[How Terraform Works With Plugins](https://developer.hashicorp.com/terraform/plugin/how-terraform-works)  
+
+Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently. Terraform is built on a plugin-based architecture, enabling developers to extend Terraform by writing new plugins or compiling modified versions of existing plugin
+
+---
+
+[How Ansible works](https://www.ansible.com/overview/how-ansible-works)  
+
+Ansible® is an open source, command-line IT automation software application written in Python. It can configure systems, deploy software, and orchestrate advanced workflows to support application deployment, system updates, and more.
+
+---
+
+[Azure Automation runbook types](https://learn.microsoft.com/en-us/azure/automation/automation-runbook-types?tabs=lps72%2Cpy27)  
+
+- PowerShell runbooks
+- PowerShell Workflow runbooks
+- Python runbooks
+- Graphical runbooks
 
 ---
 
