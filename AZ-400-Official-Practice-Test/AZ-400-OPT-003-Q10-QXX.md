@@ -5877,26 +5877,50 @@ What startegy should you use?
 - the developes should merge their code to the main code branch
   daily with unfinished features commented out
 
+### Note:  
+this question is not particularly clear, therefore a bit of clarification
+is added here in forme of an appended note.
+The problem here is about **the management of unfinished features**.
+How would one manage the possibility of features not been yet completed
+in the contest of a CI/CD pipeline?
+
 
 ---
 
 ### Answer:
 - the developers should use features flags
 
-With **feature flags** a developer can turn a feature off until it is ready (for pruduction).
-This also ensures that code that is merge does not brak the build.
+With **feature flags** a developer can turn a feature off until it is ready 
+(for production / QA testing or just functional). This also ensures that code
+that is merged does not break the build.
+**Feature flags** provides a way to **avoid long-standing** feature branches
+and at the same time allows developers of new features to merge their changes
+as early and as often as possible so that these can be verified by the 
+CI/CD pipeline as part of the **main** branch evebn when these features are
+not yet finished and are therefore switched off.
 
 
 The other options do not apply in this case.
  
-- the developers should store code changes locally and 
-  merge changes with the main source code branch after completing their work
-
 - the developers should create a log-running feature branch 
   and merge changes after the feature is complete
+Thi is possible and does indeed happen in some projects but is is obviously 
+not a good practice or the best option because a **log-running feature branch**
+tend to **diverge significanlty from the main branch** over time if developer
+do not take care of **merging in the main** branch often.
+There is obviously overhead to this practice.
+Remember that a CI/CD pipeline has among others the objektive of increasing
+the velocity of a development team, therefore diffult merges imply the 
+exact opposite.
+
+- the developers should store code changes locally and 
+  merge changes with the main source code branch after completing their work
+This suffers from teh same problems that affect the option above but it is 
+even worse because the changes are only kept locally.
 
 - the developes should merge their code to the main code branch
   daily with unfinished features commented out
+This is obviously not a good practice and it is prone to human error.
 
 ---
 
