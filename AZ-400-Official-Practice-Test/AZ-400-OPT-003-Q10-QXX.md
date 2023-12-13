@@ -6381,6 +6381,42 @@ To schedule a runbook in Azure Automation to start at a specified time, you link
 
 ---
 
+### Question 92:
+
+Your company monitors resource compliance through security scans.
+Your development team must make sure that all resources stay compliant.
+
+You need to create a list of all non-comliant resources based on
+existing policies using PowerShell in Azure DevOps.
+
+What should you use?
+
+- Get-AzPolicyState
+- Start-AzPolicyRemediation
+- Get-AzPolicyRemediation
+- Get-AzPolicyEvent
+
+---
+
+### Answer:
+- Get-AzPolicyState
+
+The remaining options do not apply to this case.
+
+- Start-AzPolicyRemediation
+- Get-AzPolicyRemediation
+- Get-AzPolicyEvent
+
+---
+
+### References:
+
+[Quickstart: Create a policy assignment to identify non-compliant resources using Azure PowerShell)  
+
+[Az.PolicyInsights](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/?view=azps-11.1.0&viewFallbackFrom=azps-2.4.0)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
