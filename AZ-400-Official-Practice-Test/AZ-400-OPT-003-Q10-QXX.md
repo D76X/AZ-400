@@ -6731,6 +6731,76 @@ Turn off autosaving Azure credentials. Your login information will be forgotten 
 
 ---
 
+### Question 96:
+
+You manage a CI pipeline in Azure Pipelines. 
+The development team reports that some builds fail in the unit tests phase.
+You need to recommend to the development team **a solution to find out which tests** 
+**fail intermittenlty** and fix these tests.
+
+Which solution should you recommend?
+
+- check the test summary for the last failed build
+- check the pipeline failures analytics report
+- check the test failures analytics report
+- check the test failures analytics metric
+- check the pipeline failures analytics metric
+
+
+---
+
+### Answer:
+- check the test failures analytics report
+
+This report is available in the **build tests analytics tab** and includes metrics on how many
+tests are executed in the pipeline and their outcome and some metrics for each test.
+You can sort the tests by pass rate and identify the tests that fail intermittently as they will 
+have the lowest passing rate.
+
+---
+
+The remaining options do not apply in thuis case.
+
+- check the test summary for the last failed build
+From a test summary it would not be possible to identify tests that fail intermittently.
+
+- check the pipeline failures analytics report
+This reports focusses on the failires of the tasks in CI pipeline which might include
+**static code analysis, code standard checks, unit / feature / integration tests**.
+In this case the development team is interested in the unit tests.
+
+- the **analytics metric**
+The Azure Pipelines build analytics tab has trhree summary metrics:
+
+- pipeline failurea
+- test failures
+- pipeline duration
+
+Each of this tabs take you to **more detailed reports**.
+However, none of these would make it possible to identify tests that fail intermittently.
+
+
+
+---
+
+### References:
+
+[Azure DevOps - Test Analytics](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/test-analytics?view=azure-devops)
+Tracking test quality over time and improving test collateral is key to maintaining a healthy DevOps pipeline.
+**Test analytics** provides near real-time visibility into your test data for builds and releases. 
+It helps improve the efficiency of your pipeline by identifying repetitive, high impact quality issues.
+
+[Azure DevOps - Review test results](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/review-continuous-test-results-after-build?view=azure-devops)  
+
+[Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops&source=recommendations)  
+
+Flaky tests present a barrier to finding real problems, since the failures often don't relate to the changes being tested. 
+A flaky test is a test that provides different outcomes, such as pass or fail, even when there are no changes in the source
+code or execution environment. Flaky tests also impact the quality of shipped code
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
