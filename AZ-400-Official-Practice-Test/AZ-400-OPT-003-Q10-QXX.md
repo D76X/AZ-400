@@ -6550,10 +6550,106 @@ Specifies the DSC configuration mode. Valid values are:
 
 ---
 
+### Question 94:
+
+You work for a financial company. 
+You maintain an application that runs in a group of Azure VMs with Red Had Enterprise 
+as OS. You plan to maintain therse VMs desired configuration by using a configuration 
+management tool. 
+
+Due to compliance policies the VMs should not have agents installed or any background
+jobs running on them.
+
+Which is the configuration management tool that you should recommend?
+
+- Chef
+- Ansible
+- Terraform
+- Puppet
+
+---
+
+### Answer:
+- Ansible
+Ansible is a configuration tool based on Python that is capable of configuring VMs.
+Ansible **does not require an agent** on the target machine.
+It only **needs Python to be installed on both machines and access to SSH**.
+
+
+- Ansible:
+Using **Ansible Palybooks** yoi can **apply resource configurations** to targets.
+However, Ansible **uses only a Push model** therefore it cannot guard against 
+configuration drift.
+
+The remaining options do not apply in this case.
+
+- Terraform:
+Terraform is provider-agnostic a IaC deployment tool and not a configuration management tool.
+
+- Chef & Puppet:
+These require an agent to be installed on the target machine.
+
+---
+
+### References:
+
+[Ansible - How does it work?](https://www.ansible.com/overview/how-ansible-works)
+[Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html)  
+
+Ansible provides open-source automation that reduces complexity and runs everywhere. 
+Using Ansible lets you automate virtually any task. 
+Here are some common use cases for Ansible:
+
+- Eliminate repetition and simplify workflows
+- Manage and maintain system configuration
+- Continuously deploy complex software
+- Perform zero-downtime rolling updates
+
+As automation technology, Ansible is designed around the following principles:
+
+- Agent-less architecture:
+Low maintenance overhead by avoiding the installation of additional software across IT infrastructure.
+
+- Simplicity
+Automation playbooks use straightforward YAML syntax for code that reads like documentation. 
+Ansible is also decentralized, using SSH existing OS credentials to access to remote machines.
+
+- Scalability and flexibility
+Easily and quickly scale the systems you automate through a modular design that supports a large
+range of operating systems, cloud platforms, and network devices.
+
+- Idempotence and predictability
+When the system is in the state your playbook describes Ansible does not change anything, 
+even if the playbook runs multiple times.
+
+---
+
+[What is Puppet?](https://www.puppet.com/docs/puppet/7/what_is_puppet)  
+
+Puppet is a tool that helps you manage and automate the configuration of servers.
+When you use Puppet, you define the desired state of the systems in your infrastructure that 
+you want to manage.
+You do this by writing infrastructure code in Puppet's Domain-Specific Language (DSL) 
+which you can use with a wide array of devices and operating systems. 
+Puppet code is declarative, which means that you describe the desired state of your systems, 
+not the steps needed to get there. 
+**Puppet then automates the process of getting these systems into that state and keeping them there**.
+**Puppet does this through Puppet primary server and a Puppet agent**.
+The Puppet primary server is the server that stores the code that defines your desired state.
+The Puppet agent translates your code into commands and then executes it on the systems you specify, 
+in what is called a Puppet run.
+
+---
+
+[What is Terraform?](https://developer.hashicorp.com/terraform/intro) 
+
+Terraform is provider-agnostic a IaC deployment tool and not a configuration management tool.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
-### References:
 
 ---
 
