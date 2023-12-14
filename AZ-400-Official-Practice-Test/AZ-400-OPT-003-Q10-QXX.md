@@ -6401,17 +6401,69 @@ What should you use?
 ### Answer:
 - Get-AzPolicyState
 
+[Get-AzPolicyState](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/get-azpolicystate?view=azps-11.0.0)   
+
+Gets policy compliance states for resources. Policy state records can be queried at various scopes. 
+Based on the time interval specified (defaults to last day), either latest policy states or 
+all policy state transitions can be queried. 
+Results can be filtered, grouped, and group aggregations can be computed.
+
+There is also a similar command:
+[Get-AzPolicyStateSummary](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/get-azpolicystatesummary?view=azps-11.0.0)  
+Gets latest policy compliance states summary for resources.
+
+Gets a summary view of latest policy compliance state numbers at various scopes, broken down into policy assignments and policy definitions. It includes only non-compliant policy states.
+
+---
+
 The remaining options do not apply to this case.
 
-- Start-AzPolicyRemediation
-- Get-AzPolicyRemediation
 - Get-AzPolicyEvent
+[Get-AzPolicyEvent](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/get-azpolicyevent?view=azps-10.4.1)   
+
+Gets policy evaluation events generated as resources are created or updated. 
+Policy event records can be queried at various scopes based on the time interval specified 
+(defaults to last day). Results can be filtered, grouped, and group aggregations can be computed.
+
+---
+
+#### Remediation:
+
+[Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources?tabs=azure-portal)  
+
+Resources that are non-compliant to policies with: 
+ - deployIfNotExists or 
+ - modify effects 
+
+ can be put into a compliant state through Remediation. Remediation is accomplished through 
+ **remediation tasks** that deploy the **deployIfNotExists template** or the 
+ **modify operations** of the assigned policy on your existing resources and subscriptions, 
+ whether that assignment is on a management group, subscription, resource group, or 
+ individual resource. 
+ 
+ This article shows the steps needed to understand and accomplish remediation with Azure Policy.
+
+---
+
+- Start-AzPolicyRemediation   
+
+[Start-AzPolicyRemediation](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/start-azpolicyremediation?view=azps-11.1.0&viewFallbackFrom=azps-10.1.0)
+
+creates a policy remediation for a particular policy assignment. All non-compliant resources 
+at or below the remediation's scope will be remediated. Remediation is only supported for
+policies with the **'deployIfNotExists'** effect.
+
+- Get-AzPolicyRemediation  
+
+[Get-AzPolicyRemediation](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/get-azpolicyremediation?view=azps-11.0.0)  
+
+gets all policy remediations in a scope or a particular remediation.
 
 ---
 
 ### References:
 
-[Quickstart: Create a policy assignment to identify non-compliant resources using Azure PowerShell)  
+[Quickstart: Create a policy assignment to identify non-compliant resources using Azure PowerShell](https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-powershell)    
 
 [Az.PolicyInsights](https://learn.microsoft.com/en-us/powershell/module/az.policyinsights/?view=azps-11.1.0&viewFallbackFrom=azps-2.4.0)  
 
