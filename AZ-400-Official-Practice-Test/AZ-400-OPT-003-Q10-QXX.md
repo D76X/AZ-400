@@ -6469,6 +6469,87 @@ gets all policy remediations in a scope or a particular remediation.
 
 ---
 
+### Question 93:
+
+You are the infrastructure engineer of your team.
+You use **Automation State Configuration** to ensure the configuration of the 
+application server.
+
+When a **new** application server is deployed, it is configured correctly.
+However, **the servers** experience **configuration drift** over time.
+
+You use the following PowerShell command to register the server nodes:
+
+```
+Register-AzAutomationDscNode `
+-ResourceGroupName "myResourceGroup" `
+-AutomationAccountName "automationAccount" `
+-ConfigurationMode "ApplyOnly"
+-ConfigurationModeFrequencyMins 60
+-AzureVMName $vmName `
+```
+
+You need to fix the PowerShell to **avid configuration drift**.
+
+What should you do?
+
+- add the -RebootNodeIfNeeded parameter as true
+- replace the ConfigurationModeFrequencyMins withe the RefreshFrequencyMins 
+- decrese the ConfigurationModeFrequencyMins to 20
+- change the ConfigurationMode param
+
+---
+
+### Answer:
+- change the ConfigurationMode param
+
+ConfigurationMode:
+Specifies the DSC configuration mode. Valid values are:
+- ApplyAndMonitor
+- ApplyAndAutocorrect
+- ApplyOnly
+
+You should set this parameter to **ApplySAndAutocorrect** in order to eliminate the configuration drift.
+The **ApplyOnly** updates the server configuration only the first time and neither detects not correct
+any configuration drift afetrwards. \
+
+**ApplyAndMonitor**:
+
+ApplyAndMonitor: This is the default value. The LCM applies any new configurations. 
+After initial application of a new configuration, if the target node drifts from the
+desired state, **DSC reports the discrepancy in logs**. 
+Note that DSC will attempt to apply the configuration until it is successful before
+ApplyAndMonitor takes effect.
+
+---
+
+The following options do not apply.
+
+- RebootNodeIfNeeded
+Specifies whether to restart the virtual machine, if needed.
+
+- ConfigurationModeFrequencyMins
+Specifies the frequency, in minutes, at which the background application of DSC attempts to implement the current configuration on the target node.
+
+- RefreshFrequencyMins
+Specifies the frequency, in minutes, at which the local Configuration Manager 
+contacts the Azure Automation DSC pull server to download the latest node configuration.
+
+---
+
+### References:
+
+[Register-AzAutomationDscNode](https://learn.microsoft.com/en-us/powershell/module/az.automation/register-azautomationdscnode?view=azps-11.0.0)  
+Registers an Azure virtual machine running Windows OS as a DSC node for an Automation account.
+
+ConfigurationMode:
+Specifies the DSC configuration mode. Valid values are:
+- ApplyAndMonitor
+- ApplyAndAutocorrect
+- ApplyOnly
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
