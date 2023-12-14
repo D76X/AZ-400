@@ -6647,9 +6647,94 @@ Terraform is provider-agnostic a IaC deployment tool and not a configuration man
 
 ---
 
+### Question 95:
+
+You plan to **automate the desired state configuration of an application that runs in Azure VMs**.
+Each Azure VM corresponds to a different environment of the application and requires a different
+configuration managed by **PowerShell Desired State Configuration (DSC)** configurations.
+
+You are configuring a **proof of concept** to **compile the DSC configuration** using 
+**Azure Automate runbooks**. 
+
+You write the runbook script as shown in the exhibit.
+You need to run this runbook in your Azure subscription.
+
+<img src="./Q95-exhibit.png">
+
+Which **three actions** and in which order should you perform?
+
+- Import the necessary submodules from the modules gallery
+- create a PowerShell runbook and execute it
+- create a PowerShell Workflow runbook and execute it
+- create a PowerShell graphical runbook and execute it
+- create an Azure Automation Account
+
+---
+
+### Answer:
+
+1. create an Azure Automation Account
+2. Import the necessary submodules from the modules gallery
+3. create a PowerShell runbook and execute it
+
+You need an **Azure Automation Account** to :
+
+  - manage runbooks 
+  - configuration management
+  - compiling DSC configurations
+
+In this case you need to import into into the **Azure Automation Account** the
+PowerShell modules that provide the functions that are used in the runbook:
+
+ - Az.Accounts      > Connect-AzAccount & Disable-AzContextAutosave
+ - Az.Automation    > Get-AzAutomationConnection & Start-AzAutomationDscCompilationJob
+
+---
+
+The remaining options do not apply in this case:
+
+- create a PowerShell Workflow runbook and execute it
+
+**PowerShell Workflow runbooks** support additional features, 
+like **checkpoints, parallel execution and runspaces**.
+Their syntax is slightly different form plain PowerShell runbooks.
+
+- create a PowerShell graphical runbook and execute it
+
+This type of runbook is created a GUI in Azure Automate.
+You cannot use the current script in this GUI as it is.
+
+---
+
+### References:
+
+[Start-AzAutomationDscCompilationJob](https://learn.microsoft.com/en-us/powershell/module/az.automation/start-azautomationdsccompilationjob?view=azps-11.0.0)  
+compiles an APS Desired State Configuration (DSC) configuration in Azure Automation.
+
+[Get-AzAutomationConnection](https://learn.microsoft.com/en-us/powershell/module/az.automation/get-azautomationconnection?view=azps-11.0.0)  
+gets one or more Azure Automation connections. By default, this cmdlet retrieves all connections. Specify the name of a connection to get a specific connection. Specify the connection type name to get all connections of a specific type.
+
+[Connect-AzAccount](https://learn.microsoft.com/en-us/powershell/module/az.accounts/connect-azaccount?view=azps-11.1.0)   
+Connect to Azure with an authenticated account for use with cmdlets from the Az PowerShell modules.
+
+[Disable-AzContextAutosave](https://learn.microsoft.com/en-us/powershell/module/az.accounts/disable-azcontextautosave?view=azps-11.1.0)  
+Turn off autosaving Azure credentials. Your login information will be forgotten the next time you open a PowerShell window
+
+---
+
+[Tutorial: Create Automation PowerShell runbook using managed identity](https://learn.microsoft.com/en-us/azure/automation/learn/powershell-runbook-managed-identity)  
+
+[Create a standalone Azure Automation account](https://learn.microsoft.com/en-us/azure/automation/automation-create-standalone-account?tabs=azureportal)  
+
+[Azure Automation runbook types](https://learn.microsoft.com/en-us/azure/automation/automation-runbook-types?tabs=lps72%2Cpy27)  
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
+### References:
 
 ---
 
