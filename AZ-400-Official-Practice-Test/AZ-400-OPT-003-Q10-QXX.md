@@ -6801,9 +6801,53 @@ code or execution environment. Flaky tests also impact the quality of shipped co
 
 ---
 
-### Question:
+### Question 97:
+
+You manage a **GitHub organization with two open-source projects**.
+You plan to **integrate these projects with Azurre Pipeline**.
+
+**Project1**: 
+- is a very popular project. 
+- It receives an average of **15 contributions per hour**
+- the **build pipeline runs in 20 minutes**
+- The **release pipeline is composed of 12 multiple stages to support cross-platform operating systems**.
+
+**Project2**: 
+- it is a simpler project
+- It receives an average of **5 contributions per day**
+- the **build pipeline runs in 3 minutes**
+- it is a single stage release pipeline
+
+You have a sponsor that covers the project infrastructure costs in necessary.
+
+You need to **recommend an appropriate agent** to run the projects pipelines.
+You need to **minimize the in-queue build time for both projects and the administrative effort to maintain the host agents**.
+
+Which agent should you recommend for each project?
+
+Project1: ?
+Project2: ?
+
+OPTIONS
+1. Microsoft-Hosted Agent
+2. Self-Hosted Agent
+
+---
 ### Answer:
 ### Explanation:
+
+Project1: Self-Hosted Agent
+Project2: Microsoft-Hosted Agent
+
+
+Project1: Self-Hosted Agent
+Microsoft offer a free tier
+
+---
+
+
+### Question:
+### Answer:
 ### References:
 
 ---
