@@ -6956,6 +6956,90 @@ Filters can be applied to all pipeline reports.
 
 ---
 
+### Question 99:
+
+Your company uses Azure DevOps Services to build, release an manage large customer software projects.
+
+You manage a team of developers and you aim at increasing their productivity by helping them to find
+**real problems** in the code under development.
+
+YOU need to use a pipeline test to test different outcomes such as pass of fail.
+The data should be available for all pipelines for a given branch.
+
+Which pepeline test should you use?
+
+- UI testing
+- Parallel testing
+- Test Impact Analysis (TIA)
+- Flaky Testing
+
+---
+
+### Answer:
+- Flaky Testing
+
+By using **Flaky Testing development effort is reduced** bevause this feature **automatically detects thiose tests**
+**that fail intermittently** and therefore are not caused by systematic errors in the code base.
+Once a test is marked as flaky the corresponding data is made available for all Azure Pipelimnes for a given branch.
+You can also use other features such as tags for troubleshooting purposes, manual bug creation, marking and unmarking
+a test as flaky based on your analysis and close a lloop by resetting a falkty test. 
+
+The remaining options do not apply in this case.
+
+- Parallel testing
+This only aims at reducing the build time and improving the CI feedback time.
+One technique is **test slicing** that was discussed in a prior question. 
+When there are too many tests and this cause the build time to become too long then it is possible to 
+split the test runs on parallel pipelines to improve the situation.
+
+- Test Impact Analysis (TIA)
+This is discessed in the references below.
+
+- UI testing
+obvious
+
+---
+
+### References:
+
+
+[Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops&source=recommendations)  
+
+Flaky tests present a barrier to finding real problems, since the failures often don't relate to the changes being tested. 
+A flaky test is a test that provides different outcomes, such as pass or fail, even when there are no changes in the source
+code or execution environment. Flaky tests also impact the quality of shipped code
+
+[Speed up testing by using Test Impact Analysis (TIA)](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/test-impact-analysis?view=azure-devops)  
+
+As the codebase grows and matures, its regression test suite tends to grow as well - to the extent that running a full regression test might require hours.
+This slows down the frequency of integrations, and ultimately defeats the purpose of continuous integration. 
+In order to have a CI pipeline that completes quickly, some teams defer the execution of their longer running tests to a separate stage in the pipeline.
+However, this only serves to further defeat continuous integration.
+
+Instead, enable Test Impact Analysis (TIA) when using the **Visual Studio Test task in a build pipeline**. 
+**TIA performs incremental validation by automatic test selection**. 
+**It will automatically select only the subset of tests required to validate the code being committed**. 
+For a given code commit entering the CI/CD pipeline, TIA will select and run only the relevant tests required to validate that commit. 
+Therefore, that test run will complete more quickly, if there is a failure you will get to know about it sooner, and because it is all
+scoped by relevance, analysis will be faster as well.
+
+---
+
+[Run tests in parallel using the Visual Studio Test task](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-vstest?view=azure-devops)  
+#### Test Slicing:
+The **Visual Studio Test task (version 2)** is designed to work seamlessly with **parallel job settings**. 
+When a pipeline job that contains the Visual Studio Test task (referred to as the "VSTest task" for simplicity) is configured 
+to run on multiple agents in parallel, it **automatically detects that multiple agents are involved** and **creates test slices** 
+that can be run in parallel across these agents.
+
+The task can be configured to create test slices to suit different requirements such as batching based on the number of tests 
+and agents, the previous test running times, or the location of tests in assemblies.
+
+---
+
+[Requirements traceability - Agile teams running automated tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/requirements-traceability?view=azure-devops)  
+
+---
 
 ### Question:
 ### Answer:
