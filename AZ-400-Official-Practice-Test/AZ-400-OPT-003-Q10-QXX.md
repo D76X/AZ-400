@@ -6891,6 +6891,72 @@ and
 
 ---
 
+### Question 98:
+
+Your company uses Azure DevOps Services to build and release commercial software.
+Teams track the health and efficiency of their Azure pipelines to ensure continuous 
+deliver (CD) to their customers.
+
+You use **Azure Pipeline Anaystics** to gain insights into the Azure Pipeline health.
+
+You obeserve that a large number of tasks fail. 
+You need to analyse the appropriate report in order to understand the reason for the 
+top failing tests.
+
+Whato should you analyse?
+
+- The pipeline pass rate
+- a report with filters applied to it
+- the test failures report
+- the pipeline duration report
+
+
+---
+
+### Answer:
+- The pipeline pass rate
+
+This report provides an **in-depth view** of the pipeline pass rate and its trend over time.
+It provides insights into which tasks have failed and have contributed to failures.
+
+The **pipeline pass rate report consist of three sections**:
+
+1. Summary:
+this provides a summary of the key rare metrics for the pipeline over a specific time range.
+
+2. Failure trend:
+this provides the number of pipeline failures per day.
+
+3. Top failing tasks and their failed runs:
+this section **lists the top failing tasks and their trends over time and provides insight into their failed runs**.
+This is the section of the report that is most relevant to this question.
+
+---
+
+The remaining options do not apply in this case.
+
+- the pipeline duration report
+This report shows how long the pipeline takes to complete successfully.
+
+- the test failures report
+This report gives a **granular view of the top failing tests in the pipeline along the test details**.
+It also provides a summary of the key metrics for the tests that are run in the pipeline and also the
+trends i.e. the average pass rate on each day over a period of time.
+
+- a report with filters applied to it
+Filters can be applied to all pipeline reports.
+
+
+---
+
+### References:
+
+[Pipeline reports](https://learn.microsoft.com/en-us/azure/devops/pipelines/reports/pipelinereport?view=azure-devops)  
+[Azure Pipelines-Test Analytics](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/test-analytics?view=azure-devops)  
+
+---
+
+
 ### Question:
 ### Answer:
 ### Explanation:
