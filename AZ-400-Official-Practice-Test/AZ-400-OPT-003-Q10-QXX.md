@@ -7301,6 +7301,75 @@ The Library tab can be accessed directly in Azure Pipelines.
 
 ---
 
+### Question 104:
+
+You are the Tech Lead of a development team. Your team maintains an open-source project
+hosted in a public GitHub repository.
+
+You receive a notificatuion from the security team that a sensitive API key was commited 
+in a configuration file.
+
+You **must remove the sensitive data from the repository**.
+
+What should you do?
+
+- run the **BFG Repo-Cleaner** tool and push force the changes to GitHub
+- cherry-pick the commit that adds the sensitive data to the main branch
+- create a new commit removing the sensitive data
+- revert the PR that changes thsi configuration file
+
+---
+
+### Answer:
+- run the **BFG Repo-Cleaner** tool and push force the changes to GitHub
+
+---
+
+### References:
+
+[Removing sensitive data from a repository](*https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)  
+
+If you commit sensitive data, such as a password or SSH key into a Git repository, 
+you can remove it from the history. To entirely remove unwanted files from a 
+repository's history you can use either 
+
+- the git filter-repo tool or 
+- the [BFG Repo-Cleaner open source tool](https://rtyley.github.io/bfg-repo-cleaner/)  
+
+```
+$ bfg --strip-blobs-bigger-than 100M --replace-text banned.txt repo.git
+```
+
+an alternative to `git-filter-branch`
+
+The BFG is a simpler, faster alternative to `git-filter-branch` for cleansing 
+bad data out of your Git repository history:
+
+- Removing Crazy Big Files
+- Removing Passwords, Credentials & other Private data
+
+The `git-filter-branch` command is enormously powerful and can do things that the BFG can't
+but the BFG is much better for the tasks above, because:
+
+- Faster : 10 - 720x faster
+- Simpler : The BFG isn't particularily clever, but is focused on making the above tasks easy
+- Beautiful : If you need to, you can use the beautiful Scala language to customise the BFG. Which has got to be better   than Bash scripting at least some of the time.
+
+---
+
+[Git cherry pick](https://www.atlassian.com/git/tutorials/cherry-pick)  
+When to use git cherry pick:
+git cherry-pick is a useful tool but not always a best practice. 
+Cherry picking can cause duplicate commits and many scenarios where cherry picking would work, 
+traditional merges are preferred instead. With that said git cherry-pick is a handy tool for 
+a few scenarios:
+
+- Team collaboration
+- Bug hotfixes
+- Undoing changes and restoring lost commits
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
