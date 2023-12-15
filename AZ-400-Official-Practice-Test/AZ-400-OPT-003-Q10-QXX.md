@@ -7134,8 +7134,67 @@ steps:
 
 ```
 
+---
+
+### Question 101:
+
+Your company uses Azure DevOps Services to MANAGE the development AND release of large software projects.
+
+According to cusotmer compliance policy, it is required to store runs, releases and tests stored in the
+system.
+
+You need to **set automatic retention leases on Azure Pipeline runs**, allowing retrivial of any leases
+owned by a specific entry and optionally being scoped to a single Azure pipeline definition.
+
+Which **retention lease operation** should you perform?
+
+- Gete Retentionl Lease By User Id
+- Gete Retentionl Lease By Owner Id
+- Gete Retentionl Lease By Minimal Retention Leases
 
 ---
+
+### Answer:
+
+- Gete Retentionl Lease By Owner Id
+Returns any leases owned by the specified entity, optionally scoped to a single pipeline definition and run.
+
+---
+
+### References:
+
+[Set retention policies for builds, releases, and tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/policies/retention?view=azure-devops&tabs=yaml)  
+
+Retention policies let you set how long to keep runs, releases, and tests stored in the system. 
+To save storage space, you want to delete older runs, tests, and releases.
+
+The following retention policies are available in Azure DevOps in your Project settings:
+
+1. Pipeline - Set how long to keep artifacts, symbols, attachments, runs, and pull request runs.
+2. Release (classic) - Set whether to save builds and view the default and maximum retention settings.
+3. Test - Set how long to keep automated and manual test runs, results, and attachments.
+
+By default, members of the **Contributors, Build Admins, Project Admins, and Release Admins** 
+groups can manage retention policies.
+
+---
+
+[Azure Pipelines - Leases](https://learn.microsoft.com/en-us/rest/api/azure/devops/build/leases?view=azure-devops-rest-6.0)  
+
+Retention leases are used to manage the lifetime of pipeline runs beyond the configured retention periods.
+
+| Operation | Description |
+| --------- | ------------------------------------------------- |
+| Add  |  Adds new leases for pipeline runs. |
+| Delete  |  Removes specific retention leases. |
+| Get  |  Returns the details of the retention lease given a lease id. |
+| Get Retention Leases By Minimal Retention Leases  |  Returns any leases matching the specified MinimalRetentionLeases |
+| Get Retention Leases By Owner Id  | Returns any leases owned by the specified entity, optionally scoped to a single pipeline definition and run. |
+| Get Retention Leases By User Id | Returns any leases owned by the specified user, optionally scoped to a single pipeline definition and run. |
+
+
+---
+
 
 ### Question:
 ### Answer:
