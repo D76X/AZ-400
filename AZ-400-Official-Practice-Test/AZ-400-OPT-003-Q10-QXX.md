@@ -7779,6 +7779,54 @@ The remaining options obviously do nto apply here and heave been discussed in pr
 
 ---
 
+### Question 111:
+
+You have been asked to create a project in a new Azure DevOps organization.
+This project will be integrated with **SonarQube**.
+The infrastructure team creates teh SonarQube server and gives you the admin credentials to acces the SonarQube portal.
+
+You need to integrate this nes project with the SonareQube server.
+
+Which **three actions** and in which sequence should you perform?
+
+- install the SQ extension in your project
+- generate a new account in SQ
+- create a service endpoint in Azure DevOps
+- create a deployment group im Azure DevOps
+- install the SQ extension in your organization
+- generate an authentication token in SQ
+
+---
+
+### Answer:
+
+1. generate an authentication token in SQ
+using the admin credentials that were given to you by the infrastructure team create an 
+authetication token to the SQ server in the SQ portal. Azure DevOps will use this token 
+to autenticate to the server.
+
+2. create a service endpoint in Azure DevOps
+Create a SE in Azure DevOps with the token above.
+This SE represents the authenticated connection to the SQ Server that can be used in the pipelines.
+
+3. install the SQ extension in your project
+From the Azure DevOps Marketplace install the extension **to your organization**.
+This allows to use **SQ tasks** in your pipeline that will consume the SE above.
+
+The remaining optins do not apply.
+
+---
+
+### References:
+
+[SQ-Generating and using tokens](https://docs.sonarsource.com/sonarqube/latest/user-guide/user-account/generating-and-using-tokens/)  
+
+[SQ-extension for Azure DevOps](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarqube-extension-for-azure-devops/)  
+
+[SQ-aZURE dEVoPS iNTEGRATION](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/)    
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
