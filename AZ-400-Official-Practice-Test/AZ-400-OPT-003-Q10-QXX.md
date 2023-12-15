@@ -7745,7 +7745,37 @@ The other option do not apply, obviously.
 
 ---
 
-### Question:
+### Question 110:
+
+You worj at a large consulting company with projects in multiple languages integrated 
+in Azure Devosp. The **legal team** is concerned about the ise of open-source software 
+without  proper licencing model.
+
+You need to use an automated ptocess to detect when common oprn-source libraries are 
+added to the projects.
+
+What should you ise?
+
+- Sourcetree
+- Dependabox
+- OWASP ZAP
+- Mend Bolt
+
+---
+
+### Answer:
+- Mend Bolt
+
+Mn bolt can scann all your projects and detect open-source component and report on their
+licencing models and known vulnerabilities. It integrates with Azure DevOps.
+
+The following does not apply here:
+- Dependabox
+**is a native tool in GitHub** that perform analysis on software package dependencies.
+**It creates PRs** or **automatically merging updates** when new versions of a package 
+is detected.
+
+The remaining options obviously do nto apply here and heave been discussed in prior questions.
 
 ---
 
