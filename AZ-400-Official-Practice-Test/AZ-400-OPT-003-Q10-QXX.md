@@ -7237,6 +7237,70 @@ If there are multiple teams and multiple branches then use parallen jobs.
 
 ---
 
+### Question 103:
+
+You manage a release pipeline in Azure Pipeline.
+**During the release phase you need to use a private SSH key stored in a file**.
+You need to **store the ket securely and use it without exposing it**.
+
+Which **two actions** sould you perform?
+
+- use the Dowwnload Secure File task to download the SSH key
+- Create a pipeline variable with the SSH key
+- upload the SSH key in the Azure Pipeline Library as a secure file
+- add the SSH key to the code repository
+- read the SSH key from an Environment Variable
+
+---
+
+### Answer:
+- upload the SSH key in the Azure Pipeline Library as a secure file
+- use the Dowwnload Secure File task to download the SSH key
+
+With Azure Pipilines you can create variable groups and store secure files 
+to be shared in all your build and release pipelines. 
+Then you can use **the Download Secure File task** to download the SSH key
+and use in tasks of the pipeline on an agent.
+`$(Agent.TempDirectory)` is the default folder to which the task downloads
+files. The following tasks may access this fiolder and use the files within.
+
+The following do not apply:
+
+- add the SSH key to the code repository
+not a good practice, obviously!
+
+- Create a pipeline variable with the SSH key
+**pipeline variables are used to store simple values and not complex secrets such as a SSH key or files**.
+
+- read the SSH key from an Environment Variable
+**Environement Variable** can be access in a pipeline but these are **not encrypted**.
+You must make use of **secret variables** instead which are not saved to Environment Variables.
+In this case though you need a file therefore use use **the Download Secure File task** 
+to download the SSH key. This task and all task set **Environement Variable** i.e.
+**the Download Secure File task** sets a EV to the path of the files that are downloaded. 
+
+---
+
+### References:
+
+[Use secure files](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/secure-files?view=azure-devops)  
+
+[DownloadSecureFile@1 - Download secure file v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/download-secure-file-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+---
+
+[Azure Pipeline - Library of assets](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/?view=azure-devops)   
+
+**A library is a collection of build and release assets** for an Azure DevOps project. 
+Assets defined in a library can be used in multiple build and release pipelines of the project. 
+The Library tab can be accessed directly in Azure Pipelines.
+
+---
+
+[Azure Pipeline - Define variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
