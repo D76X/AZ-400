@@ -7370,6 +7370,82 @@ a few scenarios:
 
 ---
 
+### Question 105:
+
+You are building a pipeline for three projects:
+
+- ProjectA:
+uses Azure Pipelines to deploy Azure Resources using a Azure Resource Manager (ARM)
+template with a secure parameter value.
+
+- ProjectB:
+uses GitHub Actions to publis a Node.js package to a nepm registru unisn a secret npm token.
+
+- ProjectC:
+uses Azure Pipelines to notify a 3rd-party monitoring system about successful deployments
+using a secret API key.
+
+You need to **implement the appropriate secret storage for each project** 
+**with minimal changes to the pipeline tasks**.
+
+Which secret storage should you use for each project?
+
+- Azure Key Vault secret
+- GitHub Action secret
+- Azure Pipeline secret variable
+- Predefined variables
+- Runtime parameters
+
+---
+
+### Answer:
+
+- ProjectA:
+Azure Key Vault secret
+This is a special case because in ARM templates a secure param is a reference to a secret 
+held in an Azure Key Vault.
+
+- ProjectB:
+GitHub Action secret
+You can store secrets for a GitHub repository under the **Envirnmoent secret settings**.
+You can then use these secrets directly from GitHub Actions using the syntax `${{secrets.SECRETE_NAME}}`.
+There is no need for extra steps.
+
+- ProjectC:
+Azure Pipeline secret variable
+In Azure Pipelines use **secret variables** which are **encrypted at rest**.
+The pipeline can then access these values through the variabkle names without requiring extra steps.
+
+---
+
+The following do not apply to this case.
+
+- Predefined variables
+in Azure Pipelines these are  regual variables accessible by name in the pipelines.
+
+- Runtime parameters
+---
+
+### References:
+
+[Use Azure Key Vault to pass secure parameter value during deployment](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli)  
+
+---
+
+[GitHub Actions - Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)  
+Secrets allow you to store sensitive information in your organization, repository, or repository environments.
+
+[GitHub Actions - Publishing Node.js packages](https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages)   
+
+---
+
+[Azure Pipeline-Define variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch)  
+
+[Azure Pipeline-Runtime parameters](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/runtime-parameters?view=azure-devops&tabs=script)  
+
+[Azure Pipeline-use predefined variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml)  
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
