@@ -7195,6 +7195,47 @@ Retention leases are used to manage the lifetime of pipeline runs beyond the con
 
 ---
 
+### Question 102:
+
+Your company uses Azure DevOps Services to OPTIMIZE the BUILD and RELEASE cycle of commercial software.
+You want to understand hoe to run parallel jobs as part of a pipeline.
+
+You need to **identify shich scenarios are appropriate for running parallel jobs on Microsoft-Hosted infrastructure**.
+
+Which **two scenarios** should you identify?
+
+- if you have multiple teams and each requires CI
+- if you have multiple teams and each DOES NOT require CI
+- if you develop multiple applications using one organization or server
+- if your CI trigger applies to a single branch
+
+---
+
+### Answer:
+
+You should opt for **parallel jobs to optimize your pipelines** in the following scenarios:
+
+- if you have multiple teams and each requires CI
+allocate to each team its own pipeline
+
+- if you develop multiple applications using one organization or server
+use a job for each application in order to deply each app concurrently 
+
+The following do not apply.
+
+- if you have multiple teams and each DOES NOT require CI
+- if your CI trigger applies to a single branch
+
+If there are multiple teams and multiple branches then use parallen jobs.
+
+---
+
+### References:
+
+[Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+
+---
 
 ### Question:
 ### Answer:
