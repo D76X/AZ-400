@@ -7446,6 +7446,135 @@ Secrets allow you to store sensitive information in your organization, repositor
 [Azure Pipeline-use predefined variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml)  
 
 ---
+
+### Question 106:
+
+You are migrating an on-premise web application to Azure.
+You decide to lift and shift to  Azure Virtual Machines (Azure VMs).
+
+You plan to use Azure Resource Manager (ARM) templates to create a Azure VM via a build pipeline.
+**These templates will need to reference secrets stored in Azure Key Vayult during deployment**.
+
+How should you complete the ARM template?
+
+```
+"resources": [
+  {
+    "apiVersion": "2018-05-01",
+    "name": "dynamicSecret",
+    "type": OPTION-1,
+    "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+                "contentVersion": "1.0.0.0",
+                "uri":"some-template-link-uri"                 
+            },
+        "parameters": {
+          "adminPassword": {
+            "reference": {
+              "OPTION-2": {
+                "id": "[parameters('id')]"
+              },
+             "secretName": "[parameters('secretName')]"
+          }
+        }
+      },
+    }
+  }
+]
+```
+---
+
+OPTION-1: 
+Microsoft.Comnpute/virtualMachines
+Microsoft.KeyVault/vaults
+Microsoft.Resources/deployments
+
+OPTION-2:
+keyVault
+secret
+value
+
+
+### Answer:
+
+OPTION-1: 
+Microsoft.Resources/deployments
+
+OPTION-2:
+keyVault
+
+```
+"resources": [
+  {
+    "apiVersion": "2018-05-01",
+    "name": "dynamicSecret",
+    "type": "Microsoft.Resources/deployments",
+    "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+                "contentVersion": "1.0.0.0",
+                "uri":"some-template-link-uri"                 
+            },
+        "parameters": {
+          "adminPassword": {
+            "reference": {
+              "keyVaultId": {
+                "id": "[parameters('id')]"
+              },
+             "secretName": "[parameters('secretName')]"
+          }
+        }
+      },
+    }
+  }
+]
+```
+
+OPTION-1: 
+
+`"type": "Microsoft.Resources/deployments"`:
+this resource type can retrieve values from Azure Key Vault during deployment.
+In this way secrets do not appear in ARM templates.
+
+The following does not apply:
+
+`"type": "Microsoft.KeyVault/vaults"`:
+This is wrong in this case and would be used to deploy a Key Vault resource.
+In this case the task is to read a secret from the Key Vault in order to use this secret to create the VM.
+
+`"type": "Microsoft.Comnpute/virtualMachines"`:
+likewise this is to deploy the VM but the exerpt refers to ` "name": "dynamicSecret",` which obviously 
+indicates that this part of teh template is to read a secret from a Key Vault.
+
+OPTION-2: 
+
+```
+"adminPassword": {
+            "reference": {
+              "keyVaultId": {
+                "id": "[parameters('id')]"
+              },
+             "secretName": "[parameters('secretName')]"
+          }
+        }
+```
+
+It is pretty obvoius here that you need `"keyVaultId":` to refetrence the KV by its id.
+---
+
+### References:
+
+[Use Azure Key Vault to pass secure parameter value during deployment](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/key-vault-parameter?tabs=azure-cli)   
+
+[Microsoft.KeyVault vaults 2018-02-14](https://learn.microsoft.com/en-us/azure/templates/microsoft.keyvault/2018-02-14/vaults?tabs=json&pivots=deployment-language-arm-template)   
+
+---
+
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax
+https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
