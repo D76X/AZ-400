@@ -6834,20 +6834,66 @@ OPTIONS
 
 ---
 ### Answer:
-### Explanation:
 
 Project1: Self-Hosted Agent
 Project2: Microsoft-Hosted Agent
 
+---
+
+### Explanation:
 
 Project1: Self-Hosted Agent
-Microsoft offer a free tier
+
+Microsoft offers a free self-hosted tier: [Azure DevOps Services](https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/)
+With the **free self-hosted tier** you get an **unlimited bild time per month**.
+However, you will have to pay for the infrastructure that your self-hosted agent runs on.
+In this specific case there is a sponsor that pays for these costs.
+Moreover, you are required to **minimize the in-queue build time** and a way to achieve this goal is 
+obviously to parallelize the builds over as many agents as possible, thus you will have to provision 
+as many hosted server as required  in order to keep the **in-queue build time** for **Project1** within
+acceptable limits i.e. for eaxample the current **20 minutes** with **15 contributions per hour**.
+Should **Project1** become more complex and more popular and therefore the contribution rate increase
+from its present value of **15 contributions per hour**, you could then provision additional self-hosted
+agents to keep the performance within acceptable limits.
+
+Project2: Microsoft-Hosted Agent
+
+For **public & open-source projects** Micorsoft offers a **free tear ofr Azure Pipelines of 10 parallel builds**
+**on Microsoft-Hosted Agents and unlimited build time per month!** This is plenty co cover the requiremnts for 
+Project2. This choice **minimize not only the costs but also the administrative effort** which is a requirement.
+
 
 ---
 
+#### Azure Pipelines:
+
+- 1 Free Microsoft-hosted CI/CD
+1 Microsoft-hosted job with 1,800 minutes per month for CI/CD 
+
+and 
+- 1 Free Self-Hosted CI/CD
+1 self-hosted job with unlimited minutes per month
+
+€36.43 per extra Microsoft-hosted CI/CD parallel job 
+and 
+€13.66 per extra self-hosted CI/CD parallel job with unlimited minutes
+
+---
+
+#### Azure Artifacts:
+2 GiB free, then starting at €1.83 per GiB
+
+---
+
+### References:
+
+[Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+---
 
 ### Question:
 ### Answer:
+### Explanation:
 ### References:
 
 ---
