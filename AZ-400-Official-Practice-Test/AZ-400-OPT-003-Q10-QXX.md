@@ -7607,7 +7607,7 @@ account that has permission to deploy the app.
 The option below does not apply in this case: 
 - a service connection with automatic subscription detection
 **Automatic subscription detection** can detect the Azure subscription your credential has access to.
-This i not the case here.
+This iS not the case here.
 
 
 ---
@@ -7668,6 +7668,45 @@ limited to the following properties:
 - User names and passwords
 
 ---
+
+### Question 108:
+
+You are creating a deployment pipeline in Azure DevOps.
+The pipeline needs to access a secret stored in Azure Key Vault.
+The KV is provisioned in a subscription namend company1.
+
+The secret is referenced with thsi URI:
+`https://acme.vault.azure.net/secrets/apiKey/THE-API-KEY-ID`
+
+You need to configure the AKV task in the pipelien to read this secret.
+Select the appropriate options.
+
+Azure Subscription: apiKey | company1 | acme | THE-API-KEY-ID
+Key vault: apiKey | company1 | acme | THE-API-KEY-ID
+Secret filter: apiKey | company1 | acme | THE-API-KEY-ID
+
+---
+
+### Answer:
+
+Azure Subscription: company1 
+Key vault: acme
+Secret filter: apiKey
+
+### Explanation:
+
+`https://{key Vault Name}.vault.azure.net/secrets/{secret name}/{secret version}`
+
+---
+
+### References:
+
+[Use Azure Key Vault secrets in Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml)  
+
+[Azure Key Vault keys, secrets and certificates overview](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
