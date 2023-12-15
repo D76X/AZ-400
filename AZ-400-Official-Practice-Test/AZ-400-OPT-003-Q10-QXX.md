@@ -7041,6 +7041,102 @@ and agents, the previous test running times, or the location of tests in assembl
 
 ---
 
+### Question 100:
+
+Your company uses Azure DevOps Services to build AND release software.
+Your project downloads the same set of dependencies at the start of every run.
+
+Your team needs to reduce the build time and cost associated with creating or
+re-downloading dependencies from earlies runs.
+
+What should you implement?
+
+- Pipeline caching
+- Parallel Jobs
+- Pipeline Artifacts
+- Cross-platform scripts
+
+---
+
+### Answer:
+- Pipeline caching
+
+---
+
+### References:
+
+[Pipeline caching](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops)  
+
+---
+
+[Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+
+---
+
+[Artifacts in Azure Pipelines - overview](https://learn.microsoft.com/en-us/azure/devops/pipelines/artifacts/artifacts-overview?view=azure-devops&tabs=nuget%2Cnugetserver%2Cnugettfs)  
+
+Azure Artifacts allow developers to publish and consume various types of packages from feeds and public registries
+like PyPI, Maven Central, and NuGet.org. You can combine Azure Artifacts with Azure Pipelines to publish build and
+pipeline artifacts, deploy packages, or integrate files across different stages of your pipeline for building, 
+testing, or deploying your application.
+
+---
+
+[Run cross-platform scripts](https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml)  
+With Azure Pipelines, you can run your builds on macOS, Linux, and Windows machines. 
+If you develop on cross-platform technologies such as .NET Core, Node.js and Python, these capabilities bring both benefits and challenges.
+For example, most pipelines include one or more scripts that you want to run during the build process. 
+But scripts often don't run the same way on different platforms. 
+You can use the script keyword shortcut to make writing scripts easier and also can use conditions to target specific platforms with your scripts.
+
+[Consider Bash or pwsh](https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml)  
+
+If you have more complex scripting needs than the examples shown above, then consider writing them in Bash. 
+Most macOS and Linux agents have Bash as an available shell, and Windows agents include Git Bash or 
+Windows Subsystem for Linux Bash.
+
+**For Azure Pipelines, the Microsoft-hosted agents always have Bash available!**
+
+[Switch based on platform](https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml#switch-based-on-platform)  
+In general, we recommend that you avoid platform-specific scripts to avoid problems such as duplication of your pipeline logic. 
+However, if there's no way to avoid platform-specific scripting, then you can use a condition to detect what platform you're on.
+
+For example, suppose that for some reason you need the IP address of the build agent. 
+
+- On Windows, ipconfig gets that information 
+- On macOS, it's ifconfig
+- on Ubuntu Linux, it's ip addr
+
+```
+steps:
+# Linux
+- bash: |
+    export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+    echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Linux' )
+  displayName: Get IP on Linux
+# macOS
+- bash: |
+    export IPADDR=$(ifconfig | grep 'en0' -A3 | grep inet | tail -n1 | awk '{print $2}')
+    echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Darwin' )
+  displayName: Get IP on macOS
+# Windows
+- powershell: |
+    Set-Variable -Name IPADDR -Value ((Get-NetIPAddress | ?{ $_.AddressFamily -eq "IPv4" -and !($_.IPAddress -match "169") -and !($_.IPaddress -match "127") } | Select-Object -First 1).IPAddress)
+    Write-Host "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  displayName: Get IP on Windows
+
+# now we use the value, no matter where we got it
+- script: |
+    echo The IP address is $(IP_ADDR)
+
+```
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
