@@ -7575,6 +7575,99 @@ https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/syntax
 https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/parameters
 
 ---
+
+### Question 107:
+
+You are building a delivery pipeline in Azure DevOps.
+This pipeline will deploy to an Azure App Service that is in a 3rd-party Azure subscription
+that your credential does not have access to.
+
+You need to configure this pipeline to deply the application in the 3rd-party subscription.
+
+What should you use?
+
+- a service hook subscription
+- a service connection with automatic subscription detection
+- a service connection with manual subscription pipeline
+- a service endpoint
+
+---
+
+### Answer:
+- a service connection with manual subscription pipeline
+
+A **Service Connection** in this case allows to connect the Azure DevOps Pipeline 
+to the Azure Resource Manager and other serices in order to execute tasks such as
+deploying to App Services.
+
+Since in this case your credential does not have access to the 3rd-party Azure 
+subscription, you shluod use a manual subscription pipeline and set a different 
+account that has permission to deploy the app.
+
+The option below does not apply in this case: 
+- a service connection with automatic subscription detection
+**Automatic subscription detection** can detect the Azure subscription your credential has access to.
+This i not the case here.
+
+
+---
+
+### References:
+
+[Manage service connections](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)    
+
+You can create a connection from Azure Pipelines to external and remote services 
+for executing tasks in a job. Once you establish a connection, you can view, edit, 
+and add security to the service connection.
+
+For example, you might want to connect to one of the following categories and their services.
+
+
+- Your Microsoft Azure subscription: 
+Create a service connection with your Microsoft Azure subscription and use the name 
+of the service connection in an Azure Web Site Deployment task in a release pipeline.
+
+- A different build server or file server: 
+Create a standard GitHub Enterprise Server service connection to a GitHub repository.
+
+- An online continuous integration environment: 
+Create a Jenkins service connection for continuous integration of Git repositories.
+
+- Services installed on remote computers: 
+Create an Azure Resource Manager service connection to a VM with a managed service identity.
+
+---
+
+[Integrate with service hooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/overview?view=azure-devops)  
+
+Service hooks let you run tasks on other services when events happen in your project in Azure DevOps.
+
+For example, you can: 
+
+- create a card in Trello when a work item gets created or
+- send a push notification to your team's mobile devices when a build fails 
+
+You can also use service hooks in custom apps and services as a more efficient way to drive activities
+when events happen in your projects.
+
+How do service hooks work?
+Service hook publishers define a set of events that you can subscribe to. 
+Subscriptions listen for these events and define actions to take based on the event.
+
+---
+
+[Create a service endpoint](https://learn.microsoft.com/en-us/azure/devops/extend/develop/service-endpoints?view=azure-devops)  
+Service endpoints are a way for Azure DevOps to connect to external systems or services. 
+They're a bundle of properties securely stored by Azure DevOps, which includes but isn't 
+limited to the following properties:
+
+- Service name
+- Description
+- Server URL
+- Certificates or tokens
+- User names and passwords
+
+---
 ### Question:
 ### Answer:
 ### Explanation:
