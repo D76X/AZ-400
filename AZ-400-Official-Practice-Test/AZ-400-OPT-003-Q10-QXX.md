@@ -7707,6 +7707,48 @@ Secret filter: apiKey
 
 ---
 
+### Question 109:
+
+You manage an Azure SQL DB in your company subscription.
+The DB password is stored as a secret in AKV with an expiration of 14 days.
+The expiration of the secret may vary according to the new security policies.
+An Azure Wb App connects to thsi DB using this secret.
+
+You need to **automate the secret rotation** for this DB while keeping the password available.
+
+Which **three actions** and in which sequence should you perform?
+
+- create an Azure function that is triggered on an every 2 weeks schedule
+- create a new password and set a new secret version in the KV
+- create a new password and set a new secret in the KV
+- update the DB with the new password
+- create an Azure function that is triggered by the Key Vauklt Near Expiry event
+
+---
+
+### Answer:
+
+1. create an Azure function that is triggered by the Key Vauklt Near Expiry event
+2. create a new password and set a new secret version in the KV
+3. update the DB with the new password
+
+Step 2. allows the web app to access the new value of the password without code changes.
+Step 3. is the rotation of the passowrd value to the latest version.
+
+The other option do not apply, obviously.
+
+---
+
+### References:
+
+[Automate the rotation of a secret for resources that use one set of authentication credentials](https://learn.microsoft.com/en-us/azure/key-vault/secrets/tutorial-rotation)  
+
+---
+
+### Question:
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
