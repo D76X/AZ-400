@@ -7823,7 +7823,65 @@ The remaining optins do not apply.
 
 [SQ-extension for Azure DevOps](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarqube-extension-for-azure-devops/)  
 
-[SQ-aZURE dEVoPS iNTEGRATION](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/)    
+[SQ-Azure DevOps Integration](https://docs.sonarsource.com/sonarqube/latest/devops-platform-integration/azure-devops-integration/)    
+
+---
+
+### Question 112:
+
+Your company wants to increase the security of your team development process.
+
+Your identify three main stages tha need security improvements:
+
+1. during a PR
+2. in the CI checks 
+3. in the CD release
+
+You need to recommend a technique to improves security for each stage of the development process.
+The technique should have little impact on the team productivity during each stage and
+on the time necessary to run CI checks.
+
+Which technique should you recommend for each of the three stages?
+
+- Satic Code Analysis
+- Package Vulnerability
+- Penetration test
+
+---
+
+### Answer:
+
+1. during a PR
+Satic Code Analysis
+
+2. in the CI checks
+*Satic Code Analysis + 
+Package Vulnerability
+
+3. in the CD release
+Penetration test
+
+Keep in mind that this question is about improving security and not improving code quality!
+
+With **Satic Code Analysis** performed in Pull Requests it is possible to ensure that new code
+does not introduce vulnerabilities as the SA can warn against these types of issues and does 
+so without executing any code.
+
+In the **CI stange**  both **Satic Code Analysis AND Package Vulnerability** are useful.
+With **Satic Code Analysis** the benefit is the same as it has been discussed for PRs and
+a **Package Vulnerability** scan makes sure that security issues are not introduced by means 
+of 3rd-party software packages. **Mend Bolt (formerly WhiteSource)** can report on these 
+kinds of vulnerabilities **before code is merged from a feature branch into the main branch**.
+
+**In the CD release** yopu may use something like **[OSWAP ZAP](https://www.zaproxy.org/)**
+that is a **dynamic scanner** to perform **penetration tests** 
+in the **development and/or QA environments**.
+
+---
+
+### References:
+
+[Securing Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/overview?view=azure-devops)  
 
 ---
 
