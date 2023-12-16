@@ -8226,6 +8226,55 @@ App Center continuously exports Analytics data to Application Insights from the 
 
 ---
 
+### Question 120:
+
+You are a Site Reliability Engineer (SRE) of an e-learning platform in Azure App Service.
+The developers of teh platform work remotely and use Microsoft Teams as their main 
+communication channel.
+
+You need to send alerts to the developers whe users see erriors on the production website.
+The developers should be able to debug those errors using stack traces.
+
+Which **two services** should you recommend?
+
+- Event Hub
+- Application Insights
+- Logic Apps
+- App Service metrics
+
+---
+
+### Answer:
+
+- Application Insights
+- Logic Apps
+
+**Application Insights is an Application Performance Monitor (APM)** service in Azure.
+The website on App Service can be easily integrated with this APM service.
+The configuration of the App Service with App Insights can be such that all the stack traces
+are preserved and sent to teh App Insights service.
+
+Eith **Logic Apps** it is then possible to connect App Insights to Microsoft Teams and 
+**post a message on a Teams channel on running a query on App Insights**.
+
+---
+
+The other options do not apply in this case.
+
+**App Service metrics** are useful to verify that the resource is healthy and the number of
+the responses with 5xx codes. However, there are no stack traces in these metrics and therefore
+would not be usefult ot the developers in order to perofrm debugging.
+
+---
+
+### References:
+
+[Sending Your Azure Application Insights Alerts to Team Sites using Azure Logic App](https://dailydotnettips.com/sending-your-azure-application-insights-alerts-to-team-sites-using-azure-logic-app/)  
+
+[Monitor availability with URL ping tests](https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
