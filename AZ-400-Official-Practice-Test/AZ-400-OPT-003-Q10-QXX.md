@@ -8158,6 +8158,74 @@ The other oprions do not apply in this case.
 
 ---
 
+### Question 119:
+
+Your company has an **Android and backend API** in Azure App Service.
+
+The **backend API has an Application Insights account that centrlizes the application logs**.
+The **Android application si configured with the App Center SDK** to report events to 
+**App Center Analytics**.
+
+You need to **centralize the stamndard analytics data from the Android app in the App Insights account**.
+
+Which **two actions** should you perform?
+
+- export App Center Analytics to App Insights
+- link the Azure subscription with the App Center
+- export App Center Analytics to Blob Storage
+- generate an instrumentation key
+- import Blob Storage data to Application Insights with an Azure Function
+- generat a shared access signature (SAS)
+
+---
+
+### Answer:
+
+- link the Azure subscription with the App Center
+- export App Center Analytics to App Insights
+
+You can **link the Azure subscription with the App Center** and allows you to use a 
+**standard export to eithe App Insights or Blob Storage**. 
+
+By exporting to **App Insights** the back end and the Android app logs are centralized
+into App Insights as required.
+
+The option to export teh Android app logs to Blod Storage could be useful to extend the
+retention periods of logs over the term possible in App Center. However, this does not 
+acvhieve the goal of centralizetion.
+
+The remaining options obviously do not apply in this case.
+
+---
+
+### References:
+
+[App Center- Analytics](https://learn.microsoft.com/en-us/appcenter/analytics/)
+App Center Analytics will help you understand more about your app users and their behavior when using your app.
+
+[App Center- Analytic - Export](https://learn.microsoft.com/en-us/appcenter/analytics/export)
+
+App Center allows you to continuously export all your Analytics raw data into Azure. 
+You can export Analytics data to **both** 
+
+- Blob Storage 
+- Application Insights (Azure Monitor). 
+
+By exporting the data, you benefit from:
+
+- Unlimited data retention
+- Detailed Usage Analysis
+- Unified dashboard
+- Additional rich features from Application Insights such as funnels, retention
+
+App Center continuously exports Analytics data to Application Insights from the moment you configure export along with two days of backfilled data. With the new updated dashboard in Application Insights, App Center users can get a unified view of both Application and Backend Analytics on one dashboard.
+
+---
+
+[Application Insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
