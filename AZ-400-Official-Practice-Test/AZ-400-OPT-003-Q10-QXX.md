@@ -8275,6 +8275,50 @@ would not be usefult ot the developers in order to perofrm debugging.
 
 ---
 
+### Question 121:
+
+You are a Cloud Infrastructure Engineer for your Team. 
+You have configured the **alert rule** using the **All Administrative operations signal**
+**for an Azure App Service Plan** named plan01 as shown in the exhibit.
+
+Yiu need to infiorm your team what will trigger this allert.
+
+<img src="./Q121-exhibit.png">
+
+Which action will trigger this alret?
+
+- a successful attempt to scale up plan01
+- a failed attempt to delete a web app up plan01
+- a successful attempt to delete up plan01
+- a failed attempt to restart a web app in plan01
+
+
+---
+
+### Answer:
+- a failed attempt to restart a web app in plan01
+
+The **All Administrative operations signal** **for an Azure App Service Plan** named plan01
+implies that an alert is generate for any operation through the **Azure Resource Manger** 
+**in a specific resource**.
+
+The **specific resource** here is the App Service Plan plan01.
+The action that are considered **dministrative operations** in this case are:
+
+- create / update /delete / join app service plan
+- restart web apps
+
+Notce that while **restating** a web app in an App Service plan is an admin activity
+**deleting a web app is not**. Moreover, the **exhibit** shown that the alert is 
+configured with `Status=failed` which causes the allert to be genearted only on failues.
+
+This excludes: 
+- a failed attempt to delete a web app up plan01
+
+And leaves as only option the answer.
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
