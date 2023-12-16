@@ -7873,7 +7873,7 @@ a **Package Vulnerability** scan makes sure that security issues are not introdu
 of 3rd-party software packages. **Mend Bolt (formerly WhiteSource)** can report on these 
 kinds of vulnerabilities **before code is merged from a feature branch into the main branch**.
 
-**In the CD release** yopu may use something like **[OSWAP ZAP](https://www.zaproxy.org/)**
+**In the CD release** yopu may use something like **[OWASP ZAP](https://www.zaproxy.org/)**
 that is a **dynamic scanner** to perform **penetration tests** 
 in the **development and/or QA environments**.
 
@@ -7939,6 +7939,44 @@ It does one thing, and it should do it well.
 The Checkstyle plugin performs **quality checks on your project’s Java source files** 
 using Checkstyle and generates reports from these checks.
 
+
+---
+
+### Question 114:
+
+You manage the release pipeline of an e-commerce platform for a large retail store on Azure Pipelines.
+The **security** team wants you to run **web app scanning** before deployment **to prevent security**
+**breaches**.
+
+You need to recommend an **open-source web app scanning tool** that integrates easily with Azure Pipelines.
+
+Which tool should you recomment?
+
+- Probely
+- Whitesource
+- OWASP ZAP
+- Azure Policy
+
+---
+
+### Answer:
+- OWASP ZAP
+
+**[OWASP ZAP](https://www.zaproxy.org/)** can find security vulnerabilities in a web application
+such as a e-commerce platform for a large retail store. It can be **easily intergated with Azure**
+**DevIOps Pipelines** and it is a **open-source tool**.
+
+The remaining options do not apply in this case:
+
+[Probely](https://probely.com/?utm_source=google&utm_medium=cpc&utm_campaign=RP+-+Brand+-+Exact&utm_term=probely&hsa_ad=654489877632&hsa_net=adwords&hsa_grp=147353173825&hsa_tgt=kwd-804841504705&hsa_acc=6027994897&hsa_kw=probely&hsa_cam=19958547983&hsa_mt=p&hsa_src=g&hsa_ver=3&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f-6lMXtRMUs0hTXNabf5tbwFGq2yP205D2nZuPjyV6EwFZyRCHZAh4aAlULEALw_wcB)  
+
+
+is similar to OWASP ZAP but is not open-source and it is not integrated with Azure DevOps Pipelines as easily
+as OWASP ZAP.
+
+---
+
+### Question:
 
 ---
 
