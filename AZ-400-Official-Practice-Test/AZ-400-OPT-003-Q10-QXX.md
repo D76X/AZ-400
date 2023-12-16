@@ -8021,6 +8021,56 @@ jeopardizing exclusive ownership over your proprietary code.
 
 ---
 
+### Question 116:
+
+You manage an Azure DveOps project in your organization account.
+The project has three different teams as shown in the exhibit.
+
+<img src="./Q116A-exhibit.png">
+<img src="./Q116B-exhibit.png">
+
+Initially TeamB and TeamC have default permissions.
+
+You configure a new team dashboard named **dashboard1** for TeamA and 
+configure the team dashboard permissions as shown in exhibit B.
+
+You need to indicate tha access and permissions the teams have to dashboard1.
+
+For eache of teh following statements select yes or no.
+
+| Yes | No  | Statement |
+| --- | --- | ------------------------------------------------- |
+| Yes | No  | the members of TeamA can delete dashboard1 |
+| Yes | No  | the members of TeamB can view dashboard1 |
+| Yes | No  | the members of TeamC can edit dashboard1 |
+
+
+---
+
+### Answer:
+
+| XXX | Statement |
+| --- | ------------------------------------------------- |
+| No  | the members of TeamA can delete dashboard1 |
+| Yes | the members of TeamB can view dashboard1 |
+| No  | the members of TeamC can edit dashboard1 |
+
+TeamA **cannot delete dashboard1** instead they can only edit it according to exhibit B.
+**The only exception in this case is when a member of the TeamA has the Team or Project Admin roles**.
+
+The members of TeamB can view dashboard1 as **by default dashboards are viewable by all memebrs of**
+**the project from any teams**.
+
+The members of TeamC **cannot edit** dashboard1 only the members of TeamA can.
+
+---
+
+### References:
+
+[Default permissions quick reference](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions-access?view=azure-devops)  
+[Set dashboard permissions](https://learn.microsoft.com/en-us/azure/devops/report/dashboards/dashboard-permissions?view=azure-devops)  
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
