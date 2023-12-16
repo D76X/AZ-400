@@ -8375,6 +8375,47 @@ The remaining options obviously do not apply in this case.
 
 ---
 
+### Question 123:
+
+You use Azure DevOps Services to manage complex software development projects.
+
+You need to implement a mechanism to allow continuos monitoring of your DevOps
+release pipeline throguhout the software development lifecycle. This is in order 
+to allow you to create alerts and gats or roll back deployments until an alert in resolved.
+
+What should you integrate with AzurE dEVoPS PIPELINES?
+
+- Azure Monitor Application Insights
+- Azure Monitor Log Analtics
+- Azure Monitor cONTAINER iNSIGHTS
+- Azure Monitor Change Analysis
+
+---
+
+### Answer:
+- Azure Monitor Application Insights
+
+This is **a required step for implementing a mechanism for continuous monitoring** 
+of your DevOps release pipelines throguhout the software development lifecycle.
+Then you can create alerts and gates and roll back of deployments until resolution.
+
+- Azure Monitor Log Analtics
+????????
+
+---
+
+### References:
+
+[An overview of Azure Data Explorer (ADX)](https://learn.microsoft.com/en-us/shows/azure-friday/an-overview-of-azure-data-explorer-adx)  
+
+[Release and work item insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/release-and-work-item-insights?tabs=continuous-monitoring)   
+
+[Overview of Log Analytics in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview)  
+
+[Use Change Analysis in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/change/change-analysis)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
