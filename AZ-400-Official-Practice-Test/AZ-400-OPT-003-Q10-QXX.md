@@ -7976,7 +7976,48 @@ as OWASP ZAP.
 
 ---
 
-### Question:
+### Question 115:
+
+A company uses several open source libraries in their Azure Pipeline.
+These libraries have their own terms and conditions.
+
+You need to make sure the company is using software with approved terms and conditions.
+To meet this requirement, you decide to use Mend Bolt.
+
+Which **two actions** should you perform to achieve this goal?
+
+- DEFINE A WHITE LIST OF LICENCES TO APPROVE
+- DEFINE A BLACK LIST OF LICENCES TO REJECT
+- create scripts that run before adding any open-source components
+- let Mend automatically detect licences any time an open-source component is added
+
+---
+
+### Answer:
+- DEFINE A WHITE LIST OF LICENCES TO APPROVE
+- DEFINE A BLACK LIST OF LICENCES TO REJECT
+
+---
+
+### References:
+
+[med.io - Open Source License Compliance](https://www.mend.io/open-source-license-compliance/)   
+
+Every open source dependency in your code base has a license with its own set of terms and conditions. 
+How can you make sure all the open source licenses are compatible and compliant?
+
+With Mend.io, it’s all automatic. Whenever a new open source component is added to the build, 
+Mend identifies its license and any licenses attached to any of its dependencies.
+
+Which open source licenses are you using?
+With more than 200 different open source licenses out there, each with its own terms and conditions, 
+some copy-left (viral), some permissive, some permissive with strings, and others with no open source 
+license at all (for which default copyright laws apply), it’s tough to keep track of and fulfill all 
+the legal requirements.
+
+**Failing to accurately track licenses is risky business**, and can result in some unfortunate surprises. 
+At best it could be just the headache entails in replacing a component; at worst, it could mean 
+jeopardizing exclusive ownership over your proprietary code.
 
 ---
 
