@@ -8069,6 +8069,34 @@ The members of TeamC **cannot edit** dashboard1 only the members of TeamA can.
 
 [Default permissions quick reference](https://learn.microsoft.com/en-us/azure/devops/organizations/security/permissions-access?view=azure-devops)  
 [Set dashboard permissions](https://learn.microsoft.com/en-us/azure/devops/report/dashboards/dashboard-permissions?view=azure-devops)  
+
+---
+
+### Question 117:
+
+You use Azure DevOps Services to build and release gaming software in your company.
+
+You need to integrate a tool with your build pipelines in order to retrieve information 
+on open-source licences distribution per build.
+
+Which tool should you use?
+
+- SomarQube
+- OWASP ZAP
+- FindBugs
+- Mend Bolt (formerly WhiteSource)
+
+### Answer:
+- Mend Bolt (formerly WhiteSource)
+
+---
+
+### References:
+
+[Test Coverage, Code Scan, Dependency Scan and Security Scan in an Azure DevOps Pipeline](https://medium.com/codex/test-coverage-code-scan-dependency-scan-and-security-scan-in-an-azure-devops-pipeline-136fa37b6b8b)  
+
+[Azure DevOps Pipelines: Leveraging OWASP ZAP in the Release Pipeline](https://devblogs.microsoft.com/premier-developer/azure-devops-pipelines-leveraging-owasp-zap-in-the-release-pipeline/)    
+
 ---
 
 ### Question:
