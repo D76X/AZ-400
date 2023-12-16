@@ -7885,6 +7885,63 @@ in the **development and/or QA environments**.
 
 ---
 
+### Question 113:
+
+Your team maintains a **Java application** that is integrated with Azure Pipelines.
+
+During the **code review process**, developers find **code quality problems** like unused
+variables and empty try/catch blocks. 
+These **code quality problems significantly reduce performance by increasing the time required**
+**to complte code reviews**.
+
+You need to **recommend a solution to improve code quality in the CI pipeline**.
+
+Which **two solutions** do you recommend?
+
+- enable Run SonarQube Analysis in a Maven task
+- enable Use xcpretty in a Xcode task
+- enable Run Checkstyle Analysis in a Gradle task
+- enable Run PMD Analysis in a Maven task
+
+---
+
+### Answer:
+
+Being the question about improving the quality of the code by automatic means for a Java app
+in the CI pipeline the only tasks that can be used are the **Maven tasks**.
+
+- enable Run SonarQube Analysis in a Maven task
+- enable Run PMD Analysis in a Maven task
+
+**SonarQube Analysis and PMD Analysis** are both suitable tools in this case.
+
+[PMD - An extensible cross-language static code analyzer](https://pmd.github.io/)
+PMD is a source code analyzer. It finds common programming flaws like unused variables, 
+empty catch blocks, unnecessary object creation, and so forth. 
+It supports **Java, JavaScript, Salesforce.com Apex and Visualforce, PLSQL, Apache Velocity, XML, XSL**.
+
+Additionally it includes **CPD, the copy-paste-detector**. CPD finds duplicated code in 
+**Java, C, C++, C#, Groovy, PHP, Ruby, Fortran, JavaScript, PLSQL, Apache Velocity, Scala,** 
+**Objective C, Matlab, Python, Go, Swift and Salesforce.com Apex and Visualforce**.
+
+The remaining options do not apply in this case:
+
+- enable Use xcpretty in a Xcode task
+- enable Run Checkstyle Analysis in a Gradle task
+
+[xcpretty](https://github.com/xcpretty/xcpretty)
+
+xcpretty is a fast and flexible formatter for xcodebuild. 
+It does one thing, and it should do it well.
+
+[Gradle - The Checkstyle Plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html)  
+
+The Checkstyle plugin performs **quality checks on your project’s Java source files** 
+using Checkstyle and generates reports from these checks.
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
