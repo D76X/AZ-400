@@ -8099,6 +8099,65 @@ Which tool should you use?
 
 ---
 
+### Question 118:
+
+Your company has a release pipeline in Azure Pipelies to deploy an application 
+to Azure App Service. 
+
+The pipeline has two stages one for each environment:
+1. staging
+2. production
+
+The imfrastructure team requires that the CPU usage metric in the staging environment 
+does not increase by more than 10% after deployment. If this event occur the deployment stage to production should not start.
+
+You need to configure the pipeline in order to meet this requirement.
+
+Which **four action and in which sequence** should you perform?
+
+- select the alert rule
+- select the App Service resource
+- add a Query Azure Monitor alerts task in the production pre-deployment gate
+- add a Query Azure Monitor alerts task in the production post-deployment gate
+- enable Application Insights in App Service
+- configure the task with a resource filter type
+- create an alert rule in Azure Monitor
+- configure the task with an alert rule filter type
+
+
+---
+
+### Answer:
+
+
+1. create an alert tule in Azure Monitor
+2. add a Query Azure Monitor alerts task in the production post-deployment gate
+3. configure the task with an alert rule filter type
+4. select the alert rule
+
+The alert rule in Azure Monitor generates the alert when the CPU usage increases by 10%.
+This can be done with a **dynamic threshould**.
+
+The **Query Azure Monitor alerts task in the production post-deployment gate** and its 
+**configuriguration with an alert rule filter type** checks Azume Monitor alerts after
+the deployment to the staging environment to evaluate the presence of the alert.
+
+The other oprions do not apply in this case.
+
+---
+
+### References:
+
+[Create a metric alert with dynamic thresholds](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds)  
+
+[AzureMonitor@1 - Query Azure Monitor alerts v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-monitor-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+[Release gates and approvals overview](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/?view=azure-devops&tabs=yaml)    
+
+[Application monitoring for Azure App Service overview](https://learn.microsoft.com/en-us/azure/azure-monitor/app/azure-web-apps)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
