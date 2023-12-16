@@ -8319,6 +8319,62 @@ And leaves as only option the answer.
 
 ---
 
+### References:
+
+[What are Azure Monitor alerts?](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)  
+
+---
+
+### Question 122:
+
+Your work as a  Site Reliability Engineer (SRE) for a retail company.
+Your company main solution runs on **VMs deployed to a multicloud environment**
+that includes **Azure, AWS and on-premises**.
+
+You need to **integrate the platform monitoring tools to centralize the solution**
+**operating system logs in Azure Monitor and also use VM Insights**.
+
+What should you recommend?
+
+- Event Grid
+- Azure Monitor activity logs
+- Azure Diagnostics extension
+- Log Analytics Agent
+
+---
+
+### Answer:
+- Log Analytics Agent
+
+The **Log Analytics Agent** allows the collection of telemetry data from Windows and Linux VMs.
+The data is then send to a **Log Analytics Workspace** in **Azure Monitor**.
+The agent can be deplyed on VMs in the cloud and on-premise.
+With the **Log Analytics Agent** you can also enable **VM Insights**.
+
+- Azure Diagnostics extension
+This extension allows the collectuion of telemetry data from Windows and Linux VMs.
+However, **it cannot be used on-premise and AWS**.
+
+- Azure Monitor activity logs
+This is only the collection of logs about events that occur on Azure Resources.
+This logs are scoped to a subscription.
+
+The remaining options obviously do not apply in this case.
+
+---
+
+### References:
+
+[Overview of VM insights](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-overview)  
+
+[Log Analytics agent overview](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/log-analytics-agent)  
+
+[Azure Diagnostics extension overview](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/diagnostics-extension-overview)  
+
+[Azure Monitor activity log](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
