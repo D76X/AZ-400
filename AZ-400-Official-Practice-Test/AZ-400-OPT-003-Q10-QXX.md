@@ -8531,6 +8531,50 @@ of container workloads deployed to Azure or that are managed by Azure Arc-enable
 
 ---
 
+### Question 124:
+
+You have a GitHub repo connected to Azure Borads.
+A product owner reports that some work items do not have traceability with GitHub commits.
+You discover that only the work items developed by a specific developer do not have links 
+in Azure Boards.
+
+You need to help this specific developer to link their commit with the WIs 
+in the most productive way.
+
+What should you tell the developer to do?
+
+- add a GitHub Pull Request link in an Azure Doards WI
+- include AB# followed by the WI ID in every commit message
+- include AB# followed by the WI ID in the GitHub pull request title
+- add a GitHub Pull coomit link in an Azure Boards WI
+
+---
+
+### Answer:
+- include AB# followed by the WI ID in every commit message
+
+After you connect GitHub to Azure Boards thu pattern included in the commit
+message bauses that commit ot be linked to the WI ID on Azure Boards.
+
+---
+
+The remainign options do not apply in this case:
+
+- include AB# followed by the WI ID in the GitHub pull request title
+This **creates a Pull Request Link in Azure Boards from the WI to the GitHub PR** .
+The problem identified by the product owner in this case concenrs the traceability 
+with GitHub commits and not GitHub Pull Request. 
+
+---
+
+### References:
+
+[Azure Boards- Link work items to objects](https://learn.microsoft.com/en-us/azure/devops/boards/backlogs/add-link?view=azure-devops&tabs=visual-studio)  
+
+[Link GitHub commits, pull requests, and issues to work items in Azure Boards](https://learn.microsoft.com/en-us/azure/devops/boards/github/link-to-from-github?view=azure-devops)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
