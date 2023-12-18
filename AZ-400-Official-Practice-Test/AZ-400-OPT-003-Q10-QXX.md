@@ -8635,6 +8635,75 @@ We recommend configuring alert rules with dynamic thresholds on these metrics:
 
 ---
 
+### Question 126:
+
+You are a **Site Reliability Engineer (SRE)** who maintains an **Azure App Service** application.
+This application is instrumentwed with **Application Insights**.
+
+You need to **create a report usning Azure Monitor query** to notify the development team
+about the web page errors and number of users impacted.
+
+How should you complete the query?
+Select the correct options.
+
+OPTION-1: pageViews | performanceCounters | requests
+
+OPTION-2: 
+operation_Name == "GET /"
+resultCode != "200"
+success == false
+
+```
+OPTION-1
+| where OPTION-2 
+| summarize failedCount=sum(itemCount), impactedUsers=dcount(user_Id)
+| order by failedCount desc
+```
+
+---
+
+### Answer:
+
+```
+requests
+| where success == false
+| summarize failedCount=sum(itemCount), impactedUsers=dcount(user_Id)
+| order by failedCount desc
+```
+
+You use **the requests table** which contains information about the requets the 
+application received, as well as the corresponding response HTTP status code.
+The `success == false`is how you can filter all status **that are lower than 400**.
+
+**Therefore 3xx HTTP response codes are successes**  this is laos why the option
+`resultCode != "200"` would not be correct.
+
+The remaining options do not apply to this case:
+
+**pageViews**:
+This **table** contains information about the page view such as 
+**session duration, client browser and regional location**.
+
+**performanceCounters**: 
+This **table** contains information about performance counter such as 
+**CPU occupancy, memory, disk and network usage**.
+
+`operation_Name == "GET /"`
+If this option were used the query would target only the `GET` operation at the 
+address `/` therefore the **home page** pf the web app.
+
+---
+
+### References:
+
+[Application Insights log-based metrics](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/app-insights-metrics)  
+
+[System performance counters in Application Insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/performance-counters?tabs=net-core-new)  
+
+[Application Insights telemetry data model](https://learn.microsoft.com/en-us/azure/azure-monitor/app/data-model-complete)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
