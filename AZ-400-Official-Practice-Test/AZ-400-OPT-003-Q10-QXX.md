@@ -8575,6 +8575,66 @@ with GitHub commits and not GitHub Pull Request.
 
 ---
 
+### Question 125:
+
+You are working as an infrastructure engineer for your company.
+
+You plan to **monitor the compute resource utilization** of your company 
+**Azure App Service Plan**.
+
+You need to receive an alert when the CPU utilization is over 60% for more than five minutes.
+
+How should you configure the alert?
+
+Threshold: Dynamic | Static
+Operator: Greater Than | Greater Than or equal to | Less than | Less than or equal to
+
+---
+
+### Answer:
+
+Threshold: Static
+Operator: Greater Than
+
+You must use a **static threshold** and set it to 60% using the CPU utilization metric.
+
+---
+
+The problem with **Static Thresholds** is that these **are manually adjusted** and tuning 
+it to meet the specific environment and needs of an organization is a major challenge 
+for IT Operations teams. 
+
+**Dynamic Thresholds** reduce noisy, unnecessary alerts, but there are scenarios where
+they aren't always the best option.
+
+---
+
+### References:
+
+[Create or edit a metric alert rule](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule)  
+
+---
+
+[Create a metric alert with dynamic thresholds](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds)  
+
+**Dynamic thresholds apply advanced machine learning** 
+and use a set of algorithms and methods to:
+
+1. Learn the historical behavior of metrics
+2. Analyze metrics over time and identify patterns such as hourly, daily or weekly patterns
+3. Recognize anomalies that indicate possible service issues
+4. Calculate the most appropriate threshold for the metric
+
+When you use dynamic thresholds, **you don't have to know the "right" threshold for each metric**,
+because dynamic thresholds calculate the most appropriate thresholds for you.
+
+We recommend configuring alert rules with dynamic thresholds on these metrics:
+
+- Virtual machine CPU percentage
+- Application Insights HTTP request execution time
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
