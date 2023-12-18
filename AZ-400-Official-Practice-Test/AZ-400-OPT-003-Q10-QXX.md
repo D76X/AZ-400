@@ -8702,6 +8702,23 @@ address `/` therefore the **home page** pf the web app.
 
 [Application Insights telemetry data model](https://learn.microsoft.com/en-us/azure/azure-monitor/app/data-model-complete)  
 
+
+---
+
+### Question 127: 
+
+You have configured **Application Map** to map solution components as shown in the exhibit.
+
+You need to **implement a health check** for the frontend based on the solution components.
+
+Which **three components** should you include for the frontend health check?
+
+- purchases Event Hub
+- authserver SQL Database
+- payments
+- authservice
+- inventory Storage Table
+
 ---
 
 ### Question:
