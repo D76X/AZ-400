@@ -8380,27 +8380,142 @@ The remaining options obviously do not apply in this case.
 You use Azure DevOps Services to manage complex software development projects.
 
 You need to implement a mechanism to allow continuos monitoring of your DevOps
-release pipeline throguhout the software development lifecycle. This is in order 
-to allow you to create alerts and gats or roll back deployments until an alert in resolved.
+release pipeline throughout the software development lifecycle. This is in order 
+to allow you to create alerts and gates or roll back deployments until an alert 
+is resolved.
 
 What should you integrate with AzurE dEVoPS PIPELINES?
 
 - Azure Monitor Application Insights
 - Azure Monitor Log Analtics
-- Azure Monitor cONTAINER iNSIGHTS
+- Azure Monitor Container Insights
 - Azure Monitor Change Analysis
 
 ---
 
 ### Answer:
 - Azure Monitor Application Insights
-
+[Azure Monitor Application Insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
 This is **a required step for implementing a mechanism for continuous monitoring** 
-of your DevOps release pipelines throguhout the software development lifecycle.
-Then you can create alerts and gates and roll back of deployments until resolution.
+of your DevOps release pipelines throughout the software development lifecycle.
+Then you can create alerts and gates and roll back of deployments until the 
+resolution of alerts.
+
+Experiences
+Application Insights provides many experiences to enhance the performance,
+reliability, and quality of your applications.
+
+- Investigate:
+
+    - Application dashboard: 
+      An at-a-glance assessment of your application's health and performance.
+
+    - Application map: 
+      A visual overview of application architecture and components' interactions.
+    
+    - Live metrics: 
+      A real-time analytics dashboard for insight into application activity and performance.
+
+    - Transaction search: 
+      Trace and diagnose transactions to identify issues and optimize performance.
+
+    - Availability view: 
+      Proactively monitor and test the availability and responsiveness of application endpoints.
+    
+    - Performance view: 
+      Review application performance metrics and potential bottlenecks.
+
+    - Failures view: 
+      Identify and analyze failures in your application to minimize downtime.
+
+- Monitoring:
+  - Alerts: 
+    Monitor a wide range of aspects of your application and trigger various actions.
+
+  - Metrics: 
+    Dive deep into metrics data to understand usage patterns and trends.
+
+  - Diagnostic settings: 
+    Configure streaming export of platform logs and metrics to the destination of your choice.
+
+  - Logs: 
+    Retrieve, consolidate, and analyze all data collected into Azure Monitoring Logs.
+
+  - Workbooks: 
+    Create interactive reports and dashboards that visualize application monitoring data.
+
+
+- Usage:
+  
+  - Users, sessions, and events: 
+    Determine when, where, and how users interact with your web app.
+  
+  - Funnels: 
+    Analyze conversion rates to identify where users progress or drop off in the funnel.
+
+  - Flows: 
+    Visualize user paths on your site to identify high engagement areas and exit points.
+
+  - Cohorts: 
+    Group users by shared characteristics to simplify trend identification, segmentation, and performance troubleshooting.
+
+- Code analysis:
+
+  - Profiler: 
+    Capture, identify, and view performance traces for your application.
+
+  - Code optimizations: 
+    Harness AI to create better and more efficient applications.
+
+  - Snapshot debugger: 
+    Automatically collect debug snapshots when exceptions occur in .NET application
+
+
+---
+
+The remaining options do not apply to this case.
 
 - Azure Monitor Log Analtics
-????????
+[Overview of Log Analytics in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview)  
+Azure Monitor Log Analtics or **Log Analytics** for short can be stareted from within 
+the UI for Azure Monitor or the Log Anaytics Workspace menu. 
+It is a **post mortem** log service based on **Azure Data Explorer (ADX)** and it 
+allows to log queries written in **Kusto Query Language (KQL)**. It can be used to  
+investigate the reasons for problems but **NOT** as a **preemptive** mechanism to
+generate alerts.
+
+Log Analytics is a tool in the Azure portal that's used to edit and run log queries 
+against data in the Azure Monitor Logs store.
+You might write a **simple query** that returns a set of records and then use features 
+of Log Analytics to **sort, filter, and analyze** them. 
+You might write a more **advanced query** to **perform statistical analysis** and 
+**visualize the results in a chart** to **identify** a particular **trend**.
+
+---
+
+- Azure Monitor Change Analysis
+[Use Change Analysis in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/change/change-analysis)  
+
+While standard monitoring solutions might alert you to a live site issue, outage, or 
+component failure, they often don't explain the cause. Let's say your site worked 
+five minutes ago, and now it's broken. 
+**What changed in the last five minutes?**
+**Change Analysis is designed to answer that question in Azure Monitor.**
+
+Building on the power of **Azure Resource Graph**, 
+Change Analysis:
+
+- Provides insights into your Azure application changes.
+- Increases observability.
+- Reduces mean time to repair (MTTR).
+
+---
+
+- Azure Monitor Container Insights
+[Container insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+
+Container insights is a feature of Azure Monitor that monitors the performance and health 
+of container workloads deployed to Azure or that are managed by Azure Arc-enabled Kubernetes.
 
 ---
 
