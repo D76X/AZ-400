@@ -8721,6 +8721,38 @@ Which **three components** should you include for the frontend health check?
 
 ---
 
+### Answer:
+
+- payments
+- authservice
+- purchases Event Hub
+
+**To create a health check, you need to include the direct dependencies** that the component relies on.
+According to **the Application Map** in the exhibit these are the three services that are **direct dependencies**
+of the frontend component. This fact is evidet by inspecting the arrows that connect the component named
+frontend to the three components listed in the answer.
+
+
+---
+
+The remaining options do not apply in this case:
+
+- authserver SQL Database
+- inventory Storage Table
+
+These two component **have no direct connection to** the frontend component, therefore should not be used 
+in the setup of the health check for the frontend component.
+
+---
+
+### References:
+
+[Application Map: Triage distributed applications](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-map?tabs=net)  
+
+[Health Endpoint Monitoring pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/health-endpoint-monitoring)  
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
