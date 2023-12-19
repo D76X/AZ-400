@@ -8753,6 +8753,51 @@ in the setup of the health check for the frontend component.
 
 ---
 
+### Question 128:
+
+You are configuring a new freight calculator service for an e-commerce platform.
+
+**This service guarantees a Service Level Objective (SLO) with a 99% availability**.
+
+**What is the maximum approximate downtime per week** you should expect from this service?
+
+- 40 mins
+- 10 mins
+- 1h and 40 mins
+- 5 mins
+
+---
+
+### Answer:
+
+(60 mins/h) * 24h/day * 7 day/week = 10.080 mins/week
+10.080 mins/week * (100%-**90%**) = 100.8 mins/week = (1h 40 mins) / week
+
+This is the maximum downtime per week that is compatible with a **SLO of 90%**.
+
+All the otrher options corresponds to higher values of SLO.
+
+---
+
+### References:
+
+### Well-Architected Framework > Pillars > Reliability:
+[Recommendations for defining reliability targets](https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics)
+
+| Terms                         | Definition
+| ----------------------------- | ------------------------------------------------- |
+| Service-level objective (SLO) | A **percentage target** that **represents the health of the component and the reliability** tier. The higher the tier, the more reliable the component. Composite SLO represents the aggregate target of the entire workload and accounts for the component SLOs.  |
+| Service-level indicator (SLI) | A **metric emitted by a service**. SLI metrics are aggregated to quantify an SLO value. |
+| Service-level agreement (SLA) | A **contractual agreement** between the service provider and the service customer. The agreement defines the SLOs. Failure to meet the agreement might have financial consequences for the service provider. |
+| Mean time to recover (MTTR)   | The time taken to restore a component after a failure is detected. |
+| Mean time between failure (MTBF)  | The duration for which the workload can perform the expected function without interruption, until it fails.  |
+| Recovery time objective (RTO)  | The maximum acceptable time that an application can be unavailable after an incident. |
+| Recovery point objective (RPO)  | The maximum acceptable duration of data loss during an incident. |
+
+
+
+---
+
 ### Question:
 ### Answer:
 ### Explanation:
