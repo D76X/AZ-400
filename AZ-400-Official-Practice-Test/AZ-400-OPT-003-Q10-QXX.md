@@ -8794,7 +8794,83 @@ All the otrher options corresponds to higher values of SLO.
 | Recovery time objective (RTO)  | The maximum acceptable time that an application can be unavailable after an incident. |
 | Recovery point objective (RPO)  | The maximum acceptable duration of data loss during an incident. |
 
+---
 
+[Cloud monitoring service level objectives](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/monitor/service-level-objectives)  
+
+
+---
+
+#### SCOM:  System Center - Operations Manager 
+
+[ System Center - Operations Manager](https://learn.microsoft.com/en-us/system-center/scom/welcome?view=sc-om-2022)  
+
+Operations Manager provides infrastructure monitoring that is flexible and cost-effective, helps ensure the predictable
+performance and availability of vital applications, and offers comprehensive monitoring for your datacenter 
+and cloud, both private and public.
+
+[Monitoring service level objectives by using Operations Manager](https://learn.microsoft.com/en-us/system-center/scom/manage-monitor-sla-overview?view=sc-om-2022)   
+[Running a service level tracking report](https://learn.microsoft.com/en-us/system-center/scom/manage-monitor-sla-reports?view=sc-om-2022)  
+[Creating a service level dashboard](https://learn.microsoft.com/en-us/system-center/scom/manage-monitor-sla-create-dashboard?view=sc-om-2022)  
+
+---
+
+### Question 129:
+
+You are using Azure DevOps Services to manage complex software development projects using 
+**.NET, Node.js, Python**.
+
+You perform continuous monitoring of your DevOps **release pipeline** throughout the software development
+lifecycle. 
+
+You need to **send traces and eventually all application metrics to Azure Monitor Application Insights** 
+for analysis.
+
+What should you use?
+
+- Azure Monitor OpenTelemetry Exporter
+- Azure Monitor Log Analytics
+- Azure Monitore Change Analysis
+- Azure Monitor Container Insights
+
+---
+
+### Answer:
+- Azure Monitor OpenTelemetry Exporter
+
+The **Azure Monitor OpenTelemetry Exporter** can send **traces, metrics and logs** to **Azure Monitor Application Insights**.
+It **allows distributed tracing for Azure DevOps rlease pipelines**
+
+The remoining options do not apply to this case:
+
+- Azure Monitor Log Analytics
+- Azure Monitore Change Analysis
+- Azure Monitor Container Insights
+
+---
+
+### References:
+Refer to Question 123.
+
+---
+
+[Microsoft OpenTelemetry exporter for Azure Monitor](https://learn.microsoft.com/en-us/python/api/overview/azure/monitor-opentelemetry-exporter-readme?view=azure-python-preview)
+
+The exporter for Azure Monitor allows you to export data utilizing the **OpenTelemetry SDK** 
+and send telemetry data to Azure Monitor **for applications written in Python**.
+
+---
+
+[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python and Java applications](https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable?tabs=net)  
+
+---
+
+### References:
+
+[What is distributed tracing and telemetry correlation?](https://learn.microsoft.com/en-us/azure/azure-monitor/app/distributed-trace-data)    
+
+[OperationCorrelationTelemetryInitializer Class](https://learn.microsoft.com/en-us/dotnet/api/microsoft.applicationinsights.extensibility.operationcorrelationtelemetryinitializer?view=azure-dotnet)
+This initializer is responsible for correlation of telemetry items within the same process
 
 ---
 
