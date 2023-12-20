@@ -602,4 +602,99 @@ ssh admin20231020@172.201.121.242
 ```
 
 
+---
+
+[Tutorial: Use Azure Container Instances as a Jenkins build agent](https://learn.microsoft.com/en-us/azure/developer/jenkins/azure-container-instances-as-jenkins-build-agent?ns-enrollment-type=Collection&ns-enrollment-id=5z3diykmy4r0xg)  
+
+[GitHub-Tutorial: Use Azure Container Instances as a Jenkins build agent](https://github.com/MicrosoftDocs/azure-dev-docs/blob/main/articles/jenkins/azure-container-instances-as-jenkins-build-agent.md)
+
+[Test Jenkins Controller Nodes Ports are open On NSG](https://serverfault.com/questions/309357/ping-a-specific-port) 
+
+You need to choose a port over which the inbound Jenkins container node can connect to its Jenkins Controller.
+You must make sure that this port is open over TCP through the NSG.
+
+```
+Test-NetConnection 52.178.43.220 -port 8080
+
+ComputerName     : 52.178.43.220
+RemoteAddress    : 52.178.43.220
+RemotePort       : 8080
+InterfaceAlias   : Ethernet 3
+SourceAddress    : 10.62.4.183
+TcpTestSucceeded : True
+
+Test-NetConnection 52.178.43.220 -port 5000
+
+ComputerName     : 52.178.43.220
+RemoteAddress    : 52.178.43.220
+RemotePort       : 5000
+InterfaceAlias   : Ethernet 3
+SourceAddress    : 10.62.4.183
+TcpTestSucceeded : True
+```
+
+[Create Azure Container Instance with CLI](https://learn.microsoft.com/en-us/azure/developer/jenkins/azure-container-instances-as-jenkins-build-agent?ns-enrollment-type=Collection&ns-enrollment-id=5z3diykmy4r0xg#create-azure-container-instance-with-cli)  
+
+The following is the command as it is presented on the tutorial page.
+
+```
+az container create \
+  --name my-dock \
+  --resource-group my-resourcegroup \
+  --ip-address Public --image jenkins/inbound-agent:latest \
+  --os-type linux \
+  --ports 80 \
+  --command-line "jenkins-agent -url http://jenkinsserver:port <JENKINS_SECRET> <AGENT_NAME>"
+```
+
+However, the command must be modified by merging it with the instuctions presented at
+[GitHub - docker-inbound-agent - Docker image for inbound Jenkins agents](https://github.com/jenkinsci/docker-inbound-agent)
+
+The following have been replaced as shown
+
+| Placeholder       | Value           | Description |
+| ----------------- | --------------- | ----------- |
+| jenkinsserver     | 52.178.43.220   | The IP address or DNS name of the server that hotsts the Jenkins Controller |
+| port              | 5000            | The TCP port on the Jenkins Controller Host that has been designated to receive the inbound connection from the container |
+
+#### Bash
+
+```
+az container create \
+  --name inbound1 \
+  --resource-group "jenkins-get-started-rg" \
+  --ip-address Public --image jenkins/inbound-agent:latest \
+  --os-type linux \
+  --ports 80 \
+  --command-line "jenkins-agent -url http://52.178.43.220:5000 33a18e41c5ebe45427cbc3e6ef947856dcb76d1996a7a8ad0dfd65fce8c3200a docker-inbound-agent-1"
+```
+
+#### PowerShell
+
+```
+az container create `
+  --name inbound1 `
+  --resource-group "jenkins-get-started-rg" `
+  --ip-address Public --image jenkins/inbound-agent `
+  --os-type linux `
+  --ports 80 `
+  --command-line "jenkins-agent -url http://52.178.43.220:8080 33a18e41c5ebe45427cbc3e6ef947856dcb76d1996a7a8ad0dfd65fce8c3200a docker-inbound-agent-1"
+```
+
+---
+
+### Azure Container Agents Jenkins Plugin
+
+This is another way to connect a Jenkins controller to soem kind of Cloud provider such a 
+Azure Container Instances or Azure Kubernettes Services
+
+[Azure Container Agents](https://plugins.jenkins.io/azure-container-agents/)   
+
+[Create an Azure service principal with Azure CLI](https://learn.microsoft.com/en-us/cli/azure/azure-cli-sp-tutorial-1?toc=%2Fazure%2Fazure-resource-manager%2Ftoc.json&tabs=bash)  
+
+[Create a Microsoft Entra application and service principal that can access resources](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal)
+---
+
+
+
 
