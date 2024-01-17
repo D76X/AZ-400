@@ -8796,6 +8796,20 @@ All the otrher options corresponds to higher values of SLO.
 
 ---
 
+[AZ-400: Designing and Implementing Microsoft DevOps Solutions](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/d97bde6b-9f59-4f99-bbb6-a5cbc878e637)  
+
+- SLA: Service Level Agreement
+An agreement with the customer about a set of SLOs that are set as **goals** of the agreement.
+
+- SLO: Service Level Objective
+Any **measurable reliability target** covering the areas: **availability, performance, latency, security**.
+
+- SLI: Service Level Indicator
+Metrics and Data from the system that can be used to create the SLOs.
+
+
+---
+
 [Cloud monitoring service level objectives](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/monitor/service-level-objectives)  
 
 
