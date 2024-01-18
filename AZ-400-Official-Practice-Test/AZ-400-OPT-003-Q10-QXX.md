@@ -8275,6 +8275,45 @@ would not be usefult ot the developers in order to perofrm debugging.
 
 ---
 
+### Implementing Application Health Checks
+
+
+In SRE it is necessary not only to make sure that the infrastructure on which applications run is
+available but also the applications themselves.
+
+As part of SRE we want to be able to test and measure **Availability** therefore means to cerate
+**availability tests** are required. **Azure Monitor** can be used to fashion 
+**availability tests at infrastrucure level** and **Application Insights** which is part of 
+**Azure Monitor** is the product that can be used to create **availability test for applications**.
+
+One way that can be used to test and measure the availabilty of an application is with 
+**Application Insights URL Ping Test**. However, **Application Insights** can also provide information
+over:
+
+- availability: URL Ping Test
+- performance
+- request & failure rates
+- page views counter and stats
+- response times- user retention
+- user engagement
+- user info and stats
+- application usage
+- application exceptions and stack traces
+- application dependencies map
+
+####  Configure URL Ping Test
+[AZ-400: Designing and Implementing Microsoft DevOps Solutions - URL Ping Test](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/dbf97324-0041-4fd4-a3c9-5feafcad8ab0)
+
+- Send a HTTP request to a specific URL to test
+- it returns the time that it takes to get a response and the success rate
+- it is possible to **add dependent requests** in order to test the availability of specific files on a web page i.e. images, css or scripts
+- **Micorsoft recommends enabling retries** as it is offen the case that a failure may come back as a success after a retry
+- set the **frequency** with whcih the test is to be carried out
+- can choose **where the request should come from**: you ca select a **min of 5 locations and a max of 16 locations** for each test run
+- **can create alerts** on any failures
+
+---
+
 ### Question 121:
 
 You are a Cloud Infrastructure Engineer for your Team. 
@@ -8807,6 +8846,7 @@ Any **measurable reliability target** covering the areas: **availability, perfor
 - SLI: Service Level Indicator
 Metrics and Data from the system that can be used to create the SLOs.
 
+**SRE (Site Reliability Engineering)** focuses on production
 
 ---
 
