@@ -8965,6 +8965,49 @@ point to create custom queries to meet specific needs and use these in **runbook
 Provides recommended **metrics and dashboards for an application** and **help to analyse** the 
 causes of deviations from a known state.
 
+---
+
+[Application Insights Smart Detection & Dynamic Thresholds](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/a6a939d6-2651-4a37-9724-cbf3762cd548)    
+
+### Dynamic Thresholds
+
+As changes are implemented and intergated the baseline changes as well. This fact poses a problem
+as to alert that are set up to warn about performace deviation from the baseline. 
+**It is therefore desirable to have a mechanism to dynamically adjust alerts to a changing baseline**.
+
+They present a few advantages over **Static Threshold Alerts**.
+
+- **Dynamic Threshold alerts** can be used in this scenario. 
+- DTA are based on **Machine Learning** so that the baseline can be synamically learned and therefore change over time
+- DTA reduce the amiount of managment work over time and the effort to determine what the right threshold for a service/app should be
+
+Example: 
+
+A VM deoployed to Azure VM and used to run applications is subjected to a security scan at regular intervals
+and during the scan its performance temporarely degrades. A **Static Threshold Alerts** would be generated 
+every single time. However, **Dynamic Threshold alerts** would understand that this deep in performance is 
+part of a regular pattern that is therefore to be included as baseline. Consequenlty, in this latter case, an 
+alert would not be generated.
+
+
+---
+
+### Application Insights Smart Detection
+
+It applies **Machien Learning** to **telemetry data from an application** to **detect performance and failure anomalies**.
+It not only provides detection but also **analysis** in that **it tries to determine the likely causeof the anomaly**.
+
+- This feature is **built-in Application Insights** and will be **automatically configured as soon as there is enough available data!**
+- It **automatically creates near real-time alerts** when it detects anomalies.
+- It **automatically creates near DAILY alerts** when it detects degradation of performance i.e loger respobnse or load times, etc.
+- The alerts **provide Context** that is **relevant information about the app and its dependencies** as they are at the time the failure 
+  OR PERFORMANCE DEGRADATION occurs.
+- For **application Failures** it evaluates the **normal rate of failure** by **also taking account other factors sich as load**.
+
+* Minimum Requirements:
+
+- Samrt Detection of Failures requires **a minimum of 24 hours** to start and a min amount of data
+- Samrt Detection of Performance requires **a minimum of 8 days** to start and a min amount of data
 
 
 ---
