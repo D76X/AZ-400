@@ -8936,6 +8936,41 @@ This initializer is responsible for correlation of telemetry items within the sa
 ---
 
 
+---
+
+## Other important resources
+
+[How to create a baseline](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/e35d73fa-b569-4c06-9cd9-fe5a6b554cba)
+
+A **baseline** is a set of metrics and data that can be used to represent the present
+state and level of service for any particular application and underlying infrastructure.
+Wiht a **baseline** it becomes possible **to mesure the impact of implemented chages** 
+and **alert on deviations** from what is coinsidered **a normal level of service**.
+
+The following tools can be used to **create baselines** for services deployed to Azure.
+
+- **Log Analytics** and **Metrics Explorer**
+
+These tools are used to create **queries against the data** and also to **create charts to analyse data**.
+
+- **Azure Monitor Insights**
+
+this tool provides sets of queries **for each of the Azure Services** that have been fashioned by 
+the teams responsible for the development of each service in order to collate and present those
+metrics that are most relevant for each type of service. These queries can be used as a starting
+point to create custom queries to meet specific needs and use these in **runbooks**.
+
+- **Application Insights**
+
+Provides recommended **metrics and dashboards for an application** and **help to analyse** the 
+causes of deviations from a known state.
+
+
+
+---
+
+
+
 
 
 
