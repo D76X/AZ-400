@@ -9012,6 +9012,44 @@ It not only provides detection but also **analysis** in that **it tries to deter
 
 ---
 
+[Deciding which dependencies to set alerst on](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/84b64c44-dca5-4e63-b20e-2dd9314e7b40)  
+
+### Application Insights Dependency Tracking
+
+**Application Insights** characterises dependencies as follows:
+
+- strong: 
+When the unavailability of teh dependency causes the applications to become completely unavailable.
+
+- xxx
+
+
+**Application Insights** provides varius dependency tracking capabilities.
+
+1. **Track and Monitor
+Helps identify **strong dedendencies** by tracjing and monitoring calls.
+
+2. Automatic Tracking with .NET & .Net Core
+Tracking is configured **by default** with .NET & .Net Core SDKs for Application Insights.
+The following will be automatically tracked:
+
+ - HTTP(S) calls
+ - WCF calls that use the HTTP Binding
+ - SQL callcs using SqlClient
+ - Azure Storage with Azure Storage Client
+ - calls made through the EventHub Clinet SDK
+ - calls made through the ServiceBus Client SDK
+ - calls made to Azurre Cosmos DB only with HTTP(S) 
+   TCP calls to Azure Cosmos DB tracking must be manually configured
+
+3. Manual Dependency Tracking
+By using the **TackDependency API**
+
+3. Tracking with AJAX from Web Pages
+The **Applicatuion Insights JavaScript SDK** will automatically collect AJAX calls.
+
+---
+
 
 
 
