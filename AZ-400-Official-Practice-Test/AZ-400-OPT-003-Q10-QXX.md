@@ -8935,6 +8935,12 @@ This initializer is responsible for correlation of telemetry items within the sa
 
 ---
 
+[SRE vs DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/1b71ae02-eed0-47fc-a1ef-08288ded336f/a90cb7cf-ce10-4ea3-88b6-340fb1ff1041)  
+
+These are similar concepts but there exist differences.
+
+- SRE focuses on production and it is more of a technical engineering set of practices  
+- DevOps is a **culture shift** that focusses on **bringing developers and operators together with common tools for communication, monitoring, deployment, etc**.
 
 ---
 
@@ -9026,8 +9032,8 @@ When the unavailability of teh dependency causes the applications to become comp
 
 **Application Insights** provides varius dependency tracking capabilities.
 
-1. **Track and Monitor
-Helps identify **strong dedendencies** by tracjing and monitoring calls.
+1. Track and Monitor
+Helps identify **strong dedendencies** by tracking and monitoring calls.
 
 2. Automatic Tracking with .NET & .Net Core
 Tracking is configured **by default** with .NET & .Net Core SDKs for Application Insights.
@@ -9039,14 +9045,51 @@ The following will be automatically tracked:
  - Azure Storage with Azure Storage Client
  - calls made through the EventHub Clinet SDK
  - calls made through the ServiceBus Client SDK
- - calls made to Azurre Cosmos DB only with HTTP(S) 
+ - calls made to Azure Cosmos DB only with HTTP(S) 
    TCP calls to Azure Cosmos DB tracking must be manually configured
 
 3. Manual Dependency Tracking
 By using the **TackDependency API**
 
+- TCP calls to Azure Cosmos DB
+- calls made to Redis
+
 3. Tracking with AJAX from Web Pages
 The **Applicatuion Insights JavaScript SDK** will automatically collect AJAX calls.
+
+#### Application Dependency Tracking Data in Application Insights
+
+1.  Application Map
+
+2. Transaction Diagnostics 
+This tracks the transactions as they go through the different system of the monitored solution.
+
+3. Browsers Information
+This is informations such **AJAX calls from user browsers**. 
+
+4. Log Analytics
+This allows to create **custom queries against dependency data**.
+
+#### Dependency Tracking Data in Application Insights on Virtual Machines
+
+- you must install an Agent on the VM
+- the agent shows the dependencies created by any process on the VM that holds a connection to a server
+- the agent gathers in-bount & out-bound latency information
+- the agent shows any TCP conneted ports
+
+- the agent collects **connection metrics**: 
+
+  - response times
+  - number of requests
+  - traffic
+  - links
+  - failed connections
+
+- The **Views** of this information are **scoped** in the sense that when I access
+  it a the **individual VM** the disployed info refers to the specific VM, but if 
+  the VM is part of a **VM Scale Set** then the Views about this information refers
+  to the scale set as a whole. 
+
 
 ---
 
