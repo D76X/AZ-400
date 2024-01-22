@@ -8966,6 +8966,13 @@ the teams responsible for the development of each service in order to collate an
 metrics that are most relevant for each type of service. These queries can be used as a starting
 point to create custom queries to meet specific needs and use these in **runbooks**.
 
+Azure Monitor has covers the following needs:
+
+- Visualise
+- Analyse
+- Alert
+- Automate 
+
 - **Application Insights**
 
 Provides recommended **metrics and dashboards for an application** and **help to analyse** the 
@@ -9092,11 +9099,3 @@ This allows to create **custom queries against dependency data**.
 
 
 ---
-
-
-
-
-
-
-
-
