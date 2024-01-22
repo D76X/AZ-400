@@ -9010,6 +9010,21 @@ every single time. However, **Dynamic Threshold alerts** would understand that t
 part of a regular pattern that is therefore to be included as baseline. Consequenlty, in this latter case, an 
 alert would not be generated.
 
+#### [Action Groups on Alerts](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)  
+
+When an Alter is created in Azure Monitor the recepient of the alert is **an abstration called Action Group**.
+In an **Action Group** the actual recepients of the alertt and other details related specific to the notification
+can be set such as whether the alert is to be sent to an email address, SMS, as vaice call, etc.
+
+It is also possible to define a series of action to be taken such as:
+
+- Automation Runbook: execute a runboob from a Automation account
+- Event Hub Action: publish a notification to an EventHub
+- Azure Function: Invoke an AF
+- ITSM: open a ticket on a proprietry Ticketing System and provide context info
+- Secure Weebhook 
+- Weebhook 
+
 
 ---
 
