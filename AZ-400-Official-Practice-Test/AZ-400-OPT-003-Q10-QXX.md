@@ -8959,6 +8959,14 @@ The following tools can be used to **create baselines** for services deployed to
 
 These tools are used to create **queries against the data** and also to **create charts to analyse data**.
 
+The following are the basic parameter that can be selected when creating a chart with Azure Monitor:
+
+- Scope
+- Namespace
+- Metric
+- Aggregation
+- Time period
+
 - **Azure Monitor Insights**
 
 this tool provides sets of queries **for each of the Azure Services** that have been fashioned by 
