@@ -9012,6 +9012,26 @@ alert would not be generated.
 
 #### [Action Groups on Alerts](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)  
 
+**Action Groups are global services and a collection of notification preferences**.
+Global requests from clients can be processed by action group services in any region. 
+
+Limitis:
+
+- You can add up to five action groups to an alert rule.
+- Action groups are executed concurrently, in no specific order.
+- Multiple alert rules can use the same action group.
+
+Action groups are used by the following to notify users about the alert and take an action.
+
+- Azure Monitor
+- Azure Service Health
+- Azure Advisor 
+
+Each action is made up of:
+ - Type : voice call, SMS, or email.
+ - Name : unique id
+ - Details : The corresponding details that vary by type.
+
 When an Alter is created in Azure Monitor the recepient of the alert is **an abstration called Action Group**.
 In an **Action Group** the actual recepients of the alertt and other details related specific to the notification
 can be set such as whether the alert is to be sent to an email address, SMS, as vaice call, etc.
@@ -9120,5 +9140,147 @@ This allows to create **custom queries against dependency data**.
   the VM is part of a **VM Scale Set** then the Views about this information refers
   to the scale set as a whole. 
 
+
+---
+
+[gET](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/83ab6b21-1d84-425c-ae1d-356f60a6a1bd/ba88afbb-ea2a-4ac3-acc1-6ad8616be606)  
+
+[Git Tools - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)  
+
+### User Case
+
+Often while working on one project, you need to use another project from within it.
+In these scenarios: **you want to be able to treat the two projects as separate** 
+yet **still be able to use one from within the other**.
+
+### Including the library as a package
+
+The issues with including the library are: 
+
+1. it’s difficult to customize the library in any way 
+2. it is often more difficult to deploy it, because you need to make sure every client has that library available. 
+
+### Copying the code into your own project
+
+The issue with copying the code into your own project is that 
+
+1. any custom changes you make are difficult to merge when upstream changes become available.
+
+### What are Git Submodules?
+
+Submodules allow you **to keep a Git repository as a subdirectory of another Git repository**. 
+This **lets you clone another repository into your project and keep your commits separate**.
+
+### Examples
+
+Add an existing Git repository as a submodule of the repository that we’re working on, with the 
+**absolute or relative URL of the project you would like to start tracking as a submodule**.
+By default, submodules will add the subproject into a directory named the same as the repository, 
+in this case “DbConnector”. You can add a different path at the end of the command if you want 
+it to go elsewhere.
+
+```
+$ git submodule add https://github.com/chaconinc/DbConnector
+```
+
+At this point if you check the status of your main project you see that a **.gitmodules** has been
+added. **.gitmodules** stores the mapping between the project’s URL and the local subdirectory 
+you’ve pulled it into.
+
+```
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .gitmodules
+	new file:   DbConnector
+```
+
+This is **.gitmodules**. It’s important to note that **this file is version-controlled with your other files**
+ike your .gitignore file. **It’s pushed and pulled with the rest of your project**. This is how other people
+who clone this project know where to get the submodule projects from.
+
+```
+[submodule "DbConnector"]
+	path = DbConnector
+	url = https://github.com/chaconinc/DbConnector
+```
+
+Although **DbConnector is a subdirectory in your working directory**, **Git sees it as a submodule** 
+and **doesn’t track its contents when you’re not in that directory**. Instead, Git sees it as a 
+particular commit from that repository.
+
+The changes in **.gitmodules** must be commited and then pushed as any other changes.
+
+```
+$ git commit -am 'Add DbConnector module'
+$ git push origin master
+```
+
+### Cloning a Project with Submodules
+
+```
+$ git clone https://github.com/chaconinc/MainProject
+```
+
+When you clone such a project, by default **you get the directories that contain submodules**, 
+**but none of the files within them yet**. The DbConnector directory is there, but empty.
+
+The DbConnector directory is there, but empty. 
+You must run two commands: 
+
+```
+git submodule init
+git submodule update
+```
+
+1. initialize your local configuration file, 
+2. fetch all the data from that project and check out the appropriate commit listed in your superproject
+
+**There is another way to do this which is a little simpler**. However, If you pass `--recurse-submodules` 
+to the git clone command, it will automatically initialize and update each submodule in the repository, 
+including nested submodules if any of the submodules in the repository have submodules themselves.
+
+```
+$ git clone --recurse-submodules https://github.com/chaconinc/MainProject
+```
+
+**If you already cloned the project and forgot** `--recurse-submodules` you can combine the 
+`git submodule init` and `git submodule update` steps by running:
+
+```
+ git submodule update --init
+```
+
+To also **initialize, fetch and checkout any nested submodules**, you can use **the foolproof**:
+
+```
+ git submodule update --init --recursive
+```
+
+---
+
+### Git Submodules in Azure Pipelines
+
+For projects whose source code is in any Git based repository **and makes use of submodules**
+there are **special requirements that must be fullfilled to be able to build the code in the**
+**repository with Azure Pipelines**.
+
+1. If the main project that must be build in Azure Pipeliens and that makes use of submodules is 
+   a  public repository that is unauthenticated. The modules that are part of the project 
+   **must be unauthenticated** that is they **must be publicly available**.
+
+2. Conversely, if the main project is **private** then **the authentication method and the credentials**
+   **for the authentication to the submodules projects must be the same as that employed by the**
+   main project primary repository.  
+
+3. The submodules within the primary repository can only be register with HTTO and not SSH.
+
+---
+
+[Discovering Scalar](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/83ab6b21-1d84-425c-ae1d-356f60a6a1bd/dd7c10bd-4691-4a91-b1ce-3ae7457b7ed8)  
 
 ---
