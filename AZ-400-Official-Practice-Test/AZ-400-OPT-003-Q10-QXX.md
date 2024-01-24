@@ -9283,4 +9283,41 @@ there are **special requirements that must be fullfilled to be able to build the
 
 [Discovering Scalar](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/83ab6b21-1d84-425c-ae1d-356f60a6a1bd/dd7c10bd-4691-4a91-b1ce-3ae7457b7ed8)  
 
+Scalar is a **client side tool** targets **large GitHub Repositories** and that helps with:
+
+1. set up
+2. maintain
+3. optimize
+
+### 1. Setup a cloned local repo with **scalar clone**
+
+`scalar clone [options] <url> [<dir>]`
+
+1. partial clone feature
+2. sparse checkout feature
+3. Git Maintenance aka Background Maintenance with prefetch
+4. Configure Git optimization settings
+
+Clone a GitHub repository with the **partial clone feature**. wich greately reduces the time required to
+produce a **working repository** by avoinding the download of large objects that may not be required to 
+start working with the source code.
+
+It also uses the **sparse checkout feature** which reduces the amount of tracked files. This results in
+a working directory that is smaller in size.
+
+It **sets up** the so called **Git Maintenance aka Background Maintenance** which optimizes the repo by 
+**prefetching data in teh background**. 
+
+It **configures Git optimization settings** such as:
+ - multi-pack index
+ - commit graph
+ - incremental repack
+ - file system monitoring
+
+### 2. Use Scalar on an existing repository with **scalar register**
+
+`scalar register [<path>]`
+
+This automatically applies all features and settings that help with maintaning the repository.
+
 ---
