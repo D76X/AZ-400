@@ -9321,3 +9321,169 @@ It **configures Git optimization settings** such as:
 This automatically applies all features and settings that help with maintaning the repository.
 
 ---
+
+### [Connecting to GitHub with Azure Active Directory](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/83ab6b21-1d84-425c-ae1d-356f60a6a1bd/f4306295-7e2e-4115-a4d5-8e0518d619ed)  
+
+1. The identities on GitHub and AAD are separate
+2. It is possible to manage only one set throuGH **SSO with AAD**
+3. **GitHub Enterprise Cloud Organization Plan** is the only GitHub plan that can make use of **AAD SSO**
+4. **GitHub Team Plan** **cannot** make use of **AAD SSO**
+
+
+#### Permissions
+
+1. GitHub : Administrator
+2. AAD    : Any roles that have the permission **Create SSO** 
+  
+  - Global Admin
+  - Cloud Application Administrator
+  - Application Administrator 
+
+### Outline of the configuration steps
+
+#### Part 1: Configure SSO on the AAD side
+
+1. On AAD add the **GitHub Enterprise Applicatiion**
+2. **Configure SAML SSO** within the application with the **Git Enterprise Account**
+
+  2a. Basic SAML Configuration
+  2b. User Attributes and Claims
+  2c. SAML Signing Certificate - here there are downloads that are to be used omn the HitHub side (next step)
+  2d. Set up GitHub Enterprise Cloud - Enterprise Account
+
+3. Add **AAD Users or Groups** to the **GitHub SSO** that has been just configured
+
+#### Part 2: Configure SSO on the Git Hub Enterprise side
+
+1. Enable SAML autrhentication
+
+2. Configure link / connection to AAD.
+In this step you will need the **public Base64 Certificate** that was downloaded from **AAD in step 2 of the ADD side above**.
+Onve the certificate is pasted into the correspondig fiedl the aother field of the configuration form should be authomatically
+populated.
+
+| AAD side  |  GitHub Enterprise side |
+| --------- | ----------------------- |
+|  Login URL |  Sign on URL |
+|  AAD Identifier |  Issuer |
+
+3. Set Signature / Digest Method to: RSA-SHA256/SHA256
+
+---
+
+[Incorporating Changelogs](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/83ab6b21-1d84-425c-ae1d-356f60a6a1bd/1e33c1ff-36a5-4f3d-8f5e-1ad75a0a1d79)   
+
+#### Examine changelogs
+
+The **pretty** options **removes the commit id** while the `- %s` specifies a prefix `-` and the commit 
+message placeholder `%s`.
+
+```
+git log
+git log --oneline
+git log --pretty="- %s"
+git log --pretty="- %s some-other-info"
+git log --pretty="- %s" > changelog.txt
+```
+
+#### Create Formatted Changelogs
+
+The following applications are tools that can be used to create variously formatted logs
+with minimal effort. However, some IDE may have their own plugins to achieve the same
+goal.
+
+[GitHub Changelog Generator](https://github.com/github-changelog-generator/github-changelog-generator)  
+
+**What’s the point of a changelog?**
+
+To make it easier for users and contributors to see precisely what notable changes have been made between
+each release (or version) of the project.
+
+[Generate Release Notes (Crossplatform)](https://marketplace.visualstudio.com/items?itemName=richardfennellBM.BM-VSTS-XplatGenerateReleaseNotes)  
+
+This is the most popular Vuisual Studio Plugin for automatic changelog generation.
+
+
+[Jenkins ](https://plugins.jenkins.io/git-changelog/)  
+
+There are also Automatic Changelog Generatiin Plugins for CI/CD pipeline. 
+
+
+---
+
+[Configuring Branches](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/8e8e77fb-af20-4469-b90f-0aba0eb25f16)  
+
+#### Branch Policies: Base Safeguard 
+
+- require a Minimum number of reviewers on a pull request
+- check for linked Work Items (enforce traceability)
+- check for comment resolution
+- limit merge types
+
+#### Branch Restrictions: Advance Safeguard
+
+- validate code by pre-merging and building pull request changes
+- status chanchs: Require other services to post success status to complete the PR
+- automatically imclude code reviewers (aka manula approval: these reviewers are always to be added to the required reviewers regardless!)
+- PACKAGE_DIR
+- restric who can push to the branch
+
+#### Branch Protenstios: Minimize catastrophic actions
+
+1. Prevent deletion 
+2. Prevent overwriting the branch commit history with a force push
+
+---
+
+[Barnch Strategies](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/5947b0ee-74ca-4893-b3c8-2b5d028998eb)  
+
+1. [Trunk-Based Branching]
+This is to be used for **quick branches**. 
+In this strategy any single change goes straint into the main branch (The Trunk).
+
+| Pros                            |  Cons                      |
+| ------------------------------- | -------------------------- |
+| Applicable to very small teams |  Large code review process |
+
+2. [Feature (Task) Branching]
+
+This is **a branch per User Story** strategy.
+
+| Pros                                            |  Cons                      |
+| ----------------------------------------------- | -------------------------- |
+| Enables independent and experimental innovation | **Long running feature branches may become difficult to merge back into the main branch |
+| Easy to segment |  Large code review process    |   |
+| It makes it easy to build CI/CD workflows       |   |
+
+3. [Feature Flag Branching]
+
+This is the same as **Feature (Task) Branching** but if fixes the problem ** by using flags to activate or deactivate 
+the feature so that even incomplete featyures cn be safely and often merged back into the main branch without being 
+active and therefore even when they are incopleted or not thorouhhly tested.
+
+4. [Release Branching]
+
+This strategy merges all the **User Storiy Branches** and **merges them all in a single branch**.
+Branches are created **for all features per each release** from the main branch. 
+At the beginning of a Release Cycle **a Release Branch is created from the main branch** then  
+all **Feature Branches and Bug Fixes branches** are created starting from the feauture branch. 
+The feature branches and bug fixes branches are merged back into the release branch and only 
+when the Release Branch is consolidated and released as a new version of the software it is 
+then **merged back into the main branch** before stating the next release cycle. 
+
+| Pros                                            |  Cons                      |
+| ----------------------------------------------- | -------------------------- |
+| If you must support multiple versions       *1  | Difficult to maintain |
+| If you must support multiple custumizations *2  | Cannot have many changes or contributors |
+| It allows the team to focus on a specific topic | It generates more work for the team per each version |
+
+*1, * 2:
+
+In this cases **Release Branching** is **the only possible applicable strategy**.
+This is also the case when **Feature Flag Branching** is used in conjuction with 
+Release Branching.
+
+
+
+
+---
