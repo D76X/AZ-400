@@ -9588,3 +9588,73 @@ can only be an annotated tag. The same can be done in git as illustrated by the 
 `git push origin v1.2`
 
 ---
+
+[How to handle large repositories](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/d0402e23-740b-40d7-8a51-224fb8d1a6ea)  
+
+- Working with **large files** with **Git Large File Storage (LFS)**
+- best practices for Git Repos
+- **clean up** a repo with **git gc**
+
+#### File types that should not be part of a git repo
+
+Git is based on **cloning** a repository whereby **the all history and all assets are copied locally**,
+therefore it was never intended for any repo to become large in size by containing assets different from 
+plain source code. The presense of large files that may also have a long history means that the clones
+will have to download not only the large file but also **all its previous versions**.
+
+Avoid **bloat** by avoiding chacking in files such: images, videos, binary, etc.
+
+- **frequently updated** (large) binaries
+- code output
+- dempendencies: **use a package managing solution instead!**
+
+#### Git LFS: Large File Storage
+
+This is **an optional open-source extension feature built in Git**, it must be installed separately.
+It is a matter of installing the extension **on the developer machine**, with the installer that is
+avauilable for teh corresponding OS.
+
+After the installation of the extension on the developer machine **the git repo must be initialized with it**.
+
+`git lfs install`
+
+Then specific large files ought ot be **tracked locally**, which results in a `.gitattributes` file being 
+added to the repo.
+
+`git lfs track "*.psd"`
+
+On the **first push** to the origin the tacked files will be pushed to it as well. 
+
+**The remote repository storage service must be able to support Git LFS**, most are such as Azure Repo, GitHub, etc.
+Large file will be stored separately from all other assets in the code repository.
+
+---
+
+### Git GC: Garbage Collector
+
+`git gc --(option)`
+
+- remove loose files in unreferenced commits
+- **dispose or compress** large binaries or filoes in a repo
+
+#### Git GC Eamples
+
+`git gc --aggressive`: 
+This triggers a **full GC sweep and optimization cycle**, it has the downside to require time to complete.
+
+`git gc --prune`  
+`git gc --prune=<date>`:
+This deletes all loose (unreferenced) objetcs and with the `<date>` options it considers only loose objects
+introduced after the specified date.
+
+`git gc --no-prune`:
+This causes only the **compression** but not the deletion of any loose objects.  
+
+---
+
+
+
+
+
+
+
