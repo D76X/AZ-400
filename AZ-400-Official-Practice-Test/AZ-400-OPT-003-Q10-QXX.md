@@ -9483,7 +9483,67 @@ In this cases **Release Branching** is **the only possible applicable strategy**
 This is also the case when **Feature Flag Branching** is used in conjuction with 
 Release Branching.
 
+---
 
+[The Pull Request Workflow](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/e944fecb-2b72-4c93-a2e7-0dbab3f799a5)    
+
+#### Waht are the goals of a PR?
+
+1. reduce the introduction of bugs through transparency and verification before merging into the main branch
+2. encorage communication early in the development with feedback and voting about problems, solutions, coding styles in a collaborative fashion
+3. speeding up product development through early, fast, precise and useful reviews
+
+#### What is inside a PR?
+
+1. What
+an explanation fo the changed that have been made in order to provide context.
+
+2. Why
+the business or techinical goal that the implementatuion should achieve.
+
+3. How
+an explanation of the design and the rational behind the design choices that have been made.
+
+4. Tests
+All the verification steps and results to show that the implementation is successful and achives the set goals.
+
+5. Reference
+Work items, screenshots, links, documentation and all related and relevant information that may be useful during the code review.
+
+6. The Rest
+A summary of the challenges that have been experienced during the implementation.
+Any additional improvements and optimizations that could be implemented.
+Any budget requirements. 
+
+---
+
+[Code Reviews](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/2ab0ccbf-1e40-4d7f-8e7e-ef3ab4117199)  
+
+### How can Code Reviews be carried out efficiently?
+
+#### Code Reviews Assignments
+
+**Automatic assignments** of code reviewers is a way to icrease the efficiency of the process. 
+
+#### Scheduled Reminders
+
+**Messages and Reminders** on pending issues or work **especially when automatically generated**
+are a way to icrease the speed of a PR process and therefore its efficency.
+
+#### Pull Analytics
+
+Use Metrics to help find opportunities inside a PR **including coding errors and security vulnerabilities**.
+This is available on **GitHub as a apid plugin tool**.
+
+---
+
+## [Configuring Repositories](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/ea591c9d-0262-44f3-907d-5359eacf39fa)  
+
+- Use of Git Tags to organize a repository  
+- How to handle large repositories
+- repository permissions (on Azure Repos)
+- How to remove data from a repository (the right way!)
+- How to recover data that has been accidentally deleted
 
 
 ---
