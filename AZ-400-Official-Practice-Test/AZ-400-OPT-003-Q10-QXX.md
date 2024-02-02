@@ -9652,6 +9652,142 @@ This causes only the **compression** but not the deletion of any loose objects.
 
 ---
 
+[Repo Permissions](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/291c6cac-52eb-4b1d-913b-fd48be8f7c19)  
+
+- Branch permissions in Azure Repos
+- Branch Locks
+
+A **Branch Lock** freezes a branch and **no new commit can be added or anything changed in its commit history**.
+The branch becomes in effet **read-only** and this applies to all users that may have permissions on it
+**regardless of the permissions**.
+
+The **user case for branch locks** according to the Micorsoft Docs is **to prevent changes to the branch**
+**while a PR is pending / in review**.
+
+Removal of a branch lock can be perform only by:
+
+- the user who set the lock
+- the Project Administrator
+- Any user to whome the **remove lock permissions** has been **explicitely** assigned
+
+---
+
+**Branch permissions in Azure Repos** are different from **Git Repo level permissions**.
+The latter have been discussed earluier and rae repeted here for convenience. 
+
+#### Branch Policies: Base Safeguard 
+
+- require a Minimum number of reviewers on a pull request
+- check for linked Work Items (enforce traceability)
+- check for comment resolution
+- limit merge types
+
+#### Branch Restrictions: Advance Safeguard
+
+- validate code by pre-merging and building pull request changes
+- status chanchs: Require other services to post success status to complete the PR
+- automatically imclude code reviewers (aka manula approval: these reviewers are always to be added to the required reviewers regardless!)
+- PACKAGE_DIR
+- restric who can push to the branch
+
+#### Branch Protenstios: Minimize catastrophic actions
+
+1. Prevent deletion 
+2. Prevent overwriting the branch commit history with a force push
+
+---
+
+However **Branch-Level Permissions** in Azure Repos can be used ot control which
+identities can perform whih oprations on specific branches of a Azure Repo.
+**Branch-Level Permissions are hinerited from the Organization and Project level permissions**.
+All the **branch level permissions** are managed from the tab **Branches > Branch Security**
+on the Azure DevOps Portal.
+
+- restrict access to a branch to a subset of members within an Azure DevOps Organization
+- provide different permissions to those who have access
+
+---
+
+[Remove Data from a Git Reposotory](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/8f6e3f4f-4aac-4acd-aaa0-b6aaaafc6f54)  
+
+You may need to remove files that have been accidentally added to a code repository.
+
+- very larg files
+- sensitive data such as passwords, SSH keys or secrets
+
+There are in general **two cases** when it comes to rmove files from a git repo:
+
+---
+
+#### Scenario 1
+
+1. the file is recorded in the local history but this has not yet been pushed to the origin
+
+In this case the **local commit** can be **either removed or amended**.
+
+In the following the **rm** command on the OS delete the physical file and the file
+is also removed from the **git cache (git index)**.
+
+```
+rm <filename>
+git rm --cached <filename>
+```
+
+After this is done there are two differnt ways to proceded, according to the situation.
+
+- no aother commit needs to be changed other the single ciommit in which the deleted item was (accidentally) added to teh commit
+
+`git reset HEAD^`
+
+This places the **HEAD** pointer of the local repo to the commit prior to the last.
+The last commit is left out of the commit history and it is the same as having deleted it.
+This will cause all the changes in the commit that is left out to be lost.
+
+`git commit --amend - m "comment"`
+
+In this case teh comit is kept with all its changes but only the file that was previously removed
+is left out. This will cause all the **good** changes in the commit that is left out to be retained.
+
+Finally: `git push origin`
+
+---
+
+#### Scenario 2
+
+2. the file is also on the remote branch of the local branch
+
+This situation is tackled in one of the following ways.
+
+1. delete all the commits back to the bad commit
+2. **use a special tool** to remove a specific file without changing the commit history of the origin.
+
+The following illustrates the manual approach through git commands.
+The assumption is also made that the remote repo is isolated and thereore has not yet been merged back
+inot the main branch.
+
+```
+git reset --hard #commitSHA   
+git push --force
+```
+
+`git reset --hard #commitSHA`:
+This rolls back the **local branch** to **the last good commit** in the commit history.
+
+`git push --force`:
+this force-pushes the local commit history to the origin and overwrites it. 
+At this point all the commit that followed **#commitSHA** will be deleted from both the local repo and the origin.
+
+---
+
+#### Scenario 3: wort case scenario
+
+The **bad commit** was not only pushed to the origin of the feature branch but also:
+
+- other commits have been pushed on top of the bad commit on the origin of the feature branch
+- other branches have been created that contains the bad commit i.e. after the feature branch was merged into the main branch
+
+---
+
 
 
 
