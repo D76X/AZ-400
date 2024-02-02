@@ -9545,5 +9545,46 @@ This is available on **GitHub as a apid plugin tool**.
 - How to remove data from a repository (the right way!)
 - How to recover data that has been accidentally deleted
 
+---
+
+[Use of Git Tags to organize a repository](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/e051382d-a905-4990-905f-6d5518b80750)  
+
+The are **two ways to mark a specific state of a git code repository**: tags and annotations.
+
+**Git tags** are essentially special labels that can be attached to a specific commit.
+There exist **two types of git tags**: 
+
+To view the existing tags use `git tag`.
+
+1. Lightweight git tags: 
+`git tag v1.2.3`
+
+2. Annotated git tags
+`git tag -a v1.2.3 -m "This is an annotated tag"`
+
+| Lightweight                         |  Annotated                 |
+| ----------------------------------- | -------------------------- |
+| There are no notes just a tag name  | Used to add info to a plain tag |
+| simple pointer to a commit          | are stored as a full object in git |
+
+
+#### Git tags in Azure Repos
+
+In Azure Repo UI there is a **Tags tab** where you can see the tags that have been pushed to the repo.
+
+- can be created from the portal **but only as annotated tags!**
+- `git tag v1.2.3` or  `git tag -a v1.2.3 -m "This is an annotated tag"`
+- `git push origin <tag>` : you need always a **separate push** to send the tag to the origin.
+
+This menas that `git push` **only oushes the local commits to the origin **not the tags!**
+You **must** use the separate `git push origin <tag>` to push any local tag to the origin.
+
+It is possible to apply a tag to any commit may this be the last commit on your local history or
+**even a previous commit**, this can be used on the Azure Repo UI in the commit tab. However, this
+can only be an annotated tag. The same can be done in git as illustrated by the examples below.
+
+`git tag -a v1.2 9fceb02 -m "Message here"`
+`git tag v1.2 9fceb02`
+`git push origin v1.2`
 
 ---
