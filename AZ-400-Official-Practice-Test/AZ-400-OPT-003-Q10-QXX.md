@@ -9690,7 +9690,7 @@ The latter have been discussed earluier and rae repeted here for convenience.
 - PACKAGE_DIR
 - restric who can push to the branch
 
-#### Branch Protenstios: Minimize catastrophic actions
+#### Branch Protections: Minimize catastrophic actions
 
 1. Prevent deletion 
 2. Prevent overwriting the branch commit history with a force push
@@ -9752,7 +9752,7 @@ Finally: `git push origin`
 
 ---
 
-#### Scenario 2
+### Scenario 2
 
 2. the file is also on the remote branch of the local branch
 
@@ -9779,12 +9779,132 @@ At this point all the commit that followed **#commitSHA** will be deleted from b
 
 ---
 
-#### Scenario 3: wort case scenario
+### Scenario 3: wort case scenario
 
 The **bad commit** was not only pushed to the origin of the feature branch but also:
 
 - other commits have been pushed on top of the bad commit on the origin of the feature branch
 - other branches have been created that contains the bad commit i.e. after the feature branch was merged into the main branch
+
+This is a complicated scenario for which there is not a sigle solution only a few possible approaches
+according to the specific case, the effort that can be affordeed and the severity of the issue.
+
+
+#### Approach with built-in git tools or community supported Git tools
+
+`git filter-branch`: 
+[git-filter-branch](https://git-scm.com/docs/git-filter-branch)  
+This can do the job beut it is hard to use and **it is not officially recommended by the Git community**.
+
+---
+
+` git filter-repo --path src/ --to-subdirectory-filter my-module --tag-rename '':'my-module-'`: 
+[git-filter-repo](https://github.com/newren/git-filter-repo)
+A **community supported Git tool**.
+
+git filter-repo is a tool for rewriting history. It roughly falls into the same space of tool as git filter-branch
+**with much better performance and capabilities** beyond trivial rewriting cases. 
+git filter-repo **is now recommended by the git project instead of git filter-branch**.
+Users with specialized needs can leverage it to quickly create entirely new history rewriting tools.
+
+---
+
+[BFG Repo Cleaner](https://github.com/newren/git-filter-repo?tab=readme-ov-file#bfg-repo-cleaner)  
+
+> great tool for its time, but while it makes some things simple, it is limited to a few kinds of rewrites.
+> its architecture is not amenable to handling more types of rewrites.
+> its architecture presents some shortcomings and bugs even for its intended usecase.
+> fans of bfg may be interested in bfg-ish, a reimplementation of bfg based on filter-repo which includes several new features and bugfixes relative to bfg.
+> a cheat sheet is available showing how to convert example commands from the manual of BFG Repo Cleaner into filter-repo commands.
+
+[BFG Repo-Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
+an alternative to git-filter-branch
+
+1. Removing Crazy Big Files
+2. Removing Passwords, Credentials & other Private data
+
+```
+git clone --mirror git://example.com/some-big-repo.git
+$ java -jar bfg.jar --strip-blobs-bigger-than 100M some-big-repo.git
+$ cd some-big-repo.git
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+$ git push
+```
+
+`git clone --mirror git://example.com/some-big-repo.git`:
+
+First clone a fresh copy of your repo, using the `--mirror` flag.
+This is a **bare repo**, which means your normal files won't be visible, 
+**it is a full copy of the Git database of your repository** at this point 
+you should make a backup of it to ensure you don't lose anything.
+
+`$ java -jar bfg.jar --strip-blobs-bigger-than 100M some-big-repo.git`:
+
+The BFG will update your commits and all branches and tags so they are clean, but 
+**it doesn't physically delete the unwanted stuff**. Examine the repo to make sure your history 
+has been updated, and **then use the standard git gc command to strip out the unwanted dirty data**
+which Git will now recognise as surplus to requirements:
+
+```
+$ cd some-big-repo.git
+$ git reflog expire --expire=now --all && git gc --prune=now --aggressive
+```
+
+
+Finally, once you're happy with the updated state of your repo, push it back up 
+(note that because your clone command used the --mirror flag, this push will update 
+all refs on your remote server):
+
+`$ git push`
+
+---
+
+#### Caveats to the approach with built-in git tools or community supported Git tools
+
+If the git repository is **in Azure Repos** even after any of any of the approaches above 
+have been applied to your Git repo the **file history** as it is shown in the Web Portal 
+**will retain the chached deleted files** and they will be visible. 
+
+If the git repository is in **GitHuib** after the deletion of the bad items has been 
+performed you are officially adviced to reach out to support in order for the cached
+files to be removed from the GitHub portal. 
+
+---
+
+[Recovering Repository Data](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/127f37cf-ecc8-43ed-9c4f-2e7e9e74103b)  
+
+### Recovery Scenarios
+
+### Restore a deleted branch from Azure Repos
+
+This is simply a 2-steps process:
+
+In Azure Repos > Branches > **Search for exact match in deleted branches**.
+From the context menu of the deleted branch select **restore branch**.
+
+### Restore a deleted repository from Azure Repos
+
+Even though **there is a warning of permanent deletion** the delition of a branch from an Azure Repo
+is still a **soft deletion** that makes it possible to recover the branch after the accidental deletion.
+The process of restoring the deleted branch **requires a authenticated API call**.
+
+[Restore a deleted Git branch from the web portal](https://learn.microsoft.com/en-us/azure/devops/repos/git/restore-deleted-branch?view=azure-devops)  
+[Repositories - Restore Repository From Recycle Bin](https://learn.microsoft.com/en-us/rest/api/azure/devops/git/repositories/restore-repository-from-recycle-bin?view=azure-devops-rest-7.1)  
+
+`PATCH https://dev.azure.com/{organization}/{project}/_apis/git/recycleBin/repositories/{repositoryId}?api-version=7.1-preview.1`
+
+
+---
+
+[Designing & Implementing Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/737fc4b5-be05-4295-b354-489762c044c1)  
+
+- Classing Pipelines
+- Integrate Source Control with Azure DevOps Pipelines
+- Build SAgents and Parallelism
+- Self-Hosted Agents
+- Build Triggers
+- Multiple Builds - duplicated Jobs with slightly different inputs
+- Rin a build agent in a Docker container
 
 ---
 
