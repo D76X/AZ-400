@@ -9906,6 +9906,214 @@ The process of restoring the deleted branch **requires a authenticated API call*
 - Multiple Builds - duplicated Jobs with slightly different inputs
 - Rin a build agent in a Docker container
 
+#### Continuous Integration
+
+The process of **continuosly** and **automatically** **building & testing** the code
+in oprder to **produce deployable artifacts**.
+
+#### Continuous Delivery
+
+The process of **continuosly** and **automatically** deploy **deployable build artifacts** to end users.
+
+#### Eaxample: Kubernetes container deployment
+
+The following example illustrates the steps that are to be taken for each 
+change made to the image of a Docker container that is deployed to Kubernetes.
+Each single change or set of changes implies the repetition of the same sequence 
+of steps which makes the case for the process to be automated.
+
+```
+dockr build #build a new container image
+docker push #push teh container to container registry
+# updated kubernetese YAML file
+kubectl apply
+# check that all is till working correctly
+```
+
+
+#### Azure Pipelines: Stages > Jobs > Steps
+
+A pipeline always needs a **trigger**, in other words some kind of event, 
+to start its execution. Tipically this may be the push of new commits to
+a repository branch or even a manual event.
+A trigger is also a **watch mechanism over events** to automate the execution
+of a pipeline.
+
+In most cases there are the following foundamental stages to a pipeline: 
+Build stage > Deployment stage
+
+Within a Stage there are Jobs and **the important thing to remeber** is that 
+**each Job is carried out within a Pipeline Agent&**:
+Build stage: Job build backend > Job build frontend
+
+The last organizational unit is the Step within a Job:
+Job: Step-1: run a script > Step-2: Task > Step-3: deploy to something > Step-4: post message to API, etc....
+
+
+---
+
+[Create your first pipeline](https://learn.microsoft.com/en-us/azure/devops/pipelines/create-first-pipeline?view=azure-devops&tabs=java%2Ctfs-2018-2%2Cbrowser)  
+[Tutorial: Create a multistage pipeline with Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/create-multistage-pipeline?view=azure-devops)  
+
+
+
+```
+trigger:
+- '*'
+
+variables:
+  buildConfiguration: 'Release'
+  releaseBranchName: 'release'
+
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+      vmImage: 'ubuntu-20.04'
+      demands:
+      - npm
+
+    variables:
+      wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+      dotnetSdkVersion: '6.x'
+
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+      inputs:
+        version: '$(dotnetSdkVersion)'
+
+    - task: Npm@1
+      displayName: 'Run npm install'
+      inputs:
+        verbose: false
+
+    - script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
+      displayName: 'Compile Sass assets'
+
+    - task: gulp@1
+      displayName: 'Run gulp tasks'
+
+    - script: 'echo "$(Build.DefinitionName), $(Build.BuildId), $(Build.BuildNumber)" > buildinfo.txt'
+      displayName: 'Write build info'
+      workingDirectory: $(wwwrootDir)
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore project dependencies'
+      inputs:
+        command: 'restore'
+        projects: '**/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build the project - $(buildConfiguration)'
+      inputs:
+        command: 'build'
+        arguments: '--no-restore --configuration $(buildConfiguration)'
+        projects: '**/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Publish the project - $(buildConfiguration)'
+      inputs:
+        command: 'publish'
+        projects: '**/*.csproj'
+        publishWebProjects: false
+        arguments: '--no-build --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+        zipAfterPublish: true
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: drop
+```
+
+---
+
+[Classing Pipelines Editor vs YAML Editor](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/660a8944-ca7b-4eb7-9df1-4bf6a1be965f)  
+
+- New featues are released only for the YAML based editor
+
+---
+
+[Source Control Integration in Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/5f21d2cb-79ea-4e37-be0b-df19d6fe7c1b)  
+
+1. Azure Repos:
+Azure Repos is **natively integrated with Azure DevOps** whch means that the identities 
+used to access the source code anre the same as the Azure DevOps Organization, thus there
+is no need to set up and manage SSO.
+
+2. GitHub & BitBucket: 
+In this case the identies to access the source code repository and those within Azure DevOps
+are different as the latter are in AAD. 
+**In the specific case of GitHub Cloud Enterprise (not GitHub Team) it is possible to set up** 
+**SS0 between GitHub and AAD** as explaned earlier. However, this is not the case with Bitbucket.
+
+When SSO is not an option you then need to **create a connection** to GitHub or Bitbucket 
+**to allow access to the sorce code by the Azure DevOps organization or project**.
+
+3. Subverion (Apache): 
+The typical use case is that of a **central code repository on an on-premise VM**.
+
+---
+
+### Connection Options Azure DevOps to GitHub or BitBucket
+
+1. Install and configure the Azure Pipelines App in GitHub (Microsoft Preferred Method)
+
+This is doen on the GitHub side. This is the preferred method because the connection 
+is going to be associated with the repository or your organization rather than an 
+individual user account.
+
+2. Authenticate to GitHub via OAUth or a PAT for a specific User Account on GitHub
+
+The PAT is a permission token that will be generated in GitHub for the user that 
+we want to use to authenticated the Azure DevOps Organization/Projject to GitHub.
+The PAT is then (securely) stored in Azure DevOps and used every time a pipeline
+consumes it by a reference to it in the YAML of a pipeline.
+
+With AOUth the mechanism is similar
+
+The difference is more conceptual: with OAuth, you authorize an app to talk to 
+Contentful on your behalf, and might not ever see the credentials that the app uses;
+on the other hand, with Personal Access Tokens you are in charge of asking for the
+credentials to the API, and subsequently managing them.
+
+[What is the difference between Bearer Token & PAT Token?](https://learn.microsoft.com/en-us/answers/questions/749709/what-is-the-difference-between-bearer-token-pat-to)
+
+You can google for the differences and when you want to choose one vs the other as it can be complex. 
+But a high level summary.
+
+PAT is a personal access token. Normally a user requests this and the system generates a complex string value. 
+That string value is then used to identify the user in requests. Think of it like a key to a lock. 
+PATs are generally limited to a fixed period of time such as 90 days. 
+
+Bearer tokens are for OAuth2 authentication. 
+A bearer token is an encoded value that generally contains the user ID, authenticated token and a timetamp. 
+It is most commonly used in REST APIs. If the API supports OAuth2 then it'll use a bearer token. 
+The user (or client app) sends credentials to the server to authenticate. 
+They get back a bearer token that is good for a fixed period of time (determined by the server). 
+Subsequent calls to the API pass the bearer token for authentication.
+
+Which do you use? 
+Depends on the circumstance. If you are a user trying to authenticate against and API so you can script 
+something then you'll use a PAT if the API supports it (aka Azure). If you are building an application to 
+consume an API and the API supports OAuth2 then you'll need to get a client ID/secret from the API provider.
+Then you'll use OAuth2 to get the bearer token for your session and then use that until you're done. 
+**The next time you need to contact the API you'll request a new bearer token**.
+
+Both approaches have the same capabilities, it is just dependent upon what the API you're calling wants to use.
+
+---
+
+### Connection Options Azure DevOps to Subverions via Service Connection
+
+In this case to connect an Azure DevOps Organitation/Project to a Subversion Server you need to 
+set up a **Service Connection**. A **Service Connection** is a **general mechanism** used by 
+Azure DEvOps to connect to **outside resources**. The process of setting up a SC always start
+from the Azure DevOps UI, there you use the **New Service Connection** pane to guide the 
+process and at some point it is laways required to authenticate to the service you want 
+Azure DevOps to have access to. 
+
 ---
 
 
