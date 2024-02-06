@@ -10658,6 +10658,289 @@ jobs:
 
 ---
 
+[Containerized Agents](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/ecc815a3-3933-4f5e-a9d6-de10833e0e8f)  
+
+This user case is about running a **self-hosted Agent inside a Docker container**.
+
+- illustrate the use case
+- Scenario 1: Microsoft-Hosted Agent Dockerized Configuration
+- Scenario 2: Self-Hosted Agent Non-Orchestration Configuration 
+- Scenario 3: Self-Hosted Agent  Orchestration Configuration (with Kubernetes, AKS)
+
+---
+
+#### illustrate the use case: why would you need to run an agent in a Docker container?
+
+- you need to **ISOLATE** your build environment from the uderlying host:
+this means that in the container you can use all the tools, OSes and dependencies and
+corresponding sepcific versions of the tools independent of the underlying host.
+
+[Define container jobs (YAML)](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops)  
+
+- Scenario 1: Microsoft-Hosted Agent Dockerized Configuration > Hosted agents
+
+Only windows-2019 and ubuntu-* images support running containers. 
+**The macOS image doesn't support running containers**.
+
+```
+pool:
+  vmImage: 'ubuntu-latest'
+container: ubuntu:18.04
+steps:
+- script: printenv
+```
+
+- A Windows example:
+
+```
+pool:
+  vmImage: 'windows-2019'
+container: mcr.microsoft.com/windows/servercore:ltsc2019
+steps:
+- script: set
+```
+
+---
+
+[Multiple jobs with containers](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops#multiple-jobs)  
+
+```
+pool:
+  vmImage: 'ubuntu-latest'
+
+strategy:
+  matrix:
+    ubuntu16:
+      containerImage: ubuntu:16.04
+    ubuntu18:
+      containerImage: ubuntu:18.04
+    ubuntu20:
+      containerImage: ubuntu:20.04
+
+container: $[ variables['containerImage'] ]
+
+steps:
+- script: printenv
+```
+
+---
+
+### Scenario 2: Self-Hosted Agent Non-Orchestration Configuration  
+### Scenario 3: Self-Hosted Agent  Orchestration Configuration (with Kubernetes, AKS) 
+
+In BOTH these scenarios the following must happen:
+
+- the container is going to be installed on the (slef-)host
+- the Agent is going to be installed and configured into the container
+- the Agent registers itself with Azure DevOps 
+
+[Run a self-hosted agent in Docker](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops)  
+
+You can set up a self-hosted agent in Azure Pipelines to run inside a:
+
+- Windows Server Core (for Windows hosts) 
+- Ubuntu container (for Linux hosts) with Docker. 
+
+In both cases to run your agent in Docker, you'll **pass a few environment variables to docker run**, 
+which configures the agent to connect to Azure Pipelines or Azure DevOps Server.
+
+[Environment variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#environment-variables)
+
+| Environment variable | Description |
+| -------------------- | ------------------------------------------------- |
+|AZP_URL	             | The URL of the Azure DevOps or Azure DevOps Server instance. |
+|AZP_TOKEN             | Personal Access Token (PAT) with Agent Pools (read, manage) scope, created by a user who has permission to configure agents, at AZP_URL. |
+|AZP_AGENT_NAME	       | Agent name (default value: the container hostname). |
+|AZP_POOL	             | Agent pool name (default value: Default). |
+|AZP_WORK	             | Work directory (default value: _work). |
+
+---
+
+### Scenario 2: Self-Hosted Agent Non-Orchestration Configuration  
+
+In this case **no orchestration service such as AKA is used**, you just spin up a containerized
+agent in a pipeline to use it in a build job.
+
+1. Create a Dockerfile and a script on the host machine:
+these are **provided by Microsoft**.
+
+2. build and start the container image:
+at this point the container pulls is the script and runs it and with it 
+performs the authentication and registration to Azure DevOps.
+At this point the container is registered with a pool in Azure DevOps
+and becomes available to run Jobs.
+
+---
+
+[Run a self-hosted agent in Docker on Windows](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#windows)  
+
+1. Enable Hyper-V
+2. Install Docker for Windows
+3. Create and build the Dockerfile
+
+```
+mkdir "C:\azp-agent-in-docker\"
+cd "C:\azp-agent-in-docker\"
+```
+
+`C:\azp-agent-in-docker\azp-agent-windows.dockerfile`:
+```
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+WORKDIR /azp/
+COPY ./start.ps1 ./
+CMD powershell .\start.ps1
+```
+
+4. Save the following content to:
+`C:\azp-agent-in-docker\start.ps1:`
+
+This is the script that will be used by the docker container to download the Azure DevOp build
+agent and register it. It makes use of the **env vars** that have biscussed above.
+
+```
+function Print-Header ($header) {
+  Write-Host "`n${header}`n" -ForegroundColor Cyan
+}
+
+if (-not (Test-Path Env:AZP_URL)) {
+  Write-Error "error: missing AZP_URL environment variable"
+  exit 1
+}
+
+if (-not (Test-Path Env:AZP_TOKEN_FILE)) {
+  if (-not (Test-Path Env:AZP_TOKEN)) {
+    Write-Error "error: missing AZP_TOKEN environment variable"
+    exit 1
+  }
+
+  $Env:AZP_TOKEN_FILE = "\azp\.token"
+  $Env:AZP_TOKEN | Out-File -FilePath $Env:AZP_TOKEN_FILE
+}
+
+Remove-Item Env:AZP_TOKEN
+
+if ((Test-Path Env:AZP_WORK) -and -not (Test-Path $Env:AZP_WORK)) {
+  New-Item $Env:AZP_WORK -ItemType directory | Out-Null
+}
+
+New-Item "\azp\agent" -ItemType directory | Out-Null
+
+# Let the agent ignore the token env variables
+$Env:VSO_AGENT_IGNORE = "AZP_TOKEN,AZP_TOKEN_FILE"
+
+Set-Location agent
+
+Print-Header "1. Determining matching Azure Pipelines agent..."
+
+$base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":$(Get-Content ${Env:AZP_TOKEN_FILE})"))
+$package = Invoke-RestMethod -Headers @{Authorization=("Basic $base64AuthInfo")} "$(${Env:AZP_URL})/_apis/distributedtask/packages/agent?platform=win-x64&`$top=1"
+$packageUrl = $package[0].Value.downloadUrl
+
+Write-Host $packageUrl
+
+Print-Header "2. Downloading and installing Azure Pipelines agent..."
+
+$wc = New-Object System.Net.WebClient
+$wc.DownloadFile($packageUrl, "$(Get-Location)\agent.zip")
+
+Expand-Archive -Path "agent.zip" -DestinationPath "\azp\agent"
+
+try {
+  Print-Header "3. Configuring Azure Pipelines agent..."
+
+  .\config.cmd --unattended `
+    --agent "$(if (Test-Path Env:AZP_AGENT_NAME) { ${Env:AZP_AGENT_NAME} } else { hostname })" `
+    --url "$(${Env:AZP_URL})" `
+    --auth PAT `
+    --token "$(Get-Content ${Env:AZP_TOKEN_FILE})" `
+    --pool "$(if (Test-Path Env:AZP_POOL) { ${Env:AZP_POOL} } else { 'Default' })" `
+    --work "$(if (Test-Path Env:AZP_WORK) { ${Env:AZP_WORK} } else { '_work' })" `
+    --replace
+
+  Print-Header "4. Running Azure Pipelines agent..."
+
+  .\run.cmd
+} finally {
+  Print-Header "Cleanup. Removing Azure Pipelines agent..."
+
+  .\config.cmd remove --unattended `
+    --auth PAT `
+    --token "$(Get-Content ${Env:AZP_TOKEN_FILE})"
+}
+```
+
+5. Start the image:
+
+Now that you have created an image, you can run a container. 
+This installs the latest version of the agent, configures it, and runs the agent.
+It targets the specified agent pool (the Default agent pool by default) of a specified Azure DevOps or Azure DevOps Server instance of your choice:
+
+```
+docker run -e AZP_URL="<Azure DevOps instance>" -e \
+AZP_TOKEN="<Personal Access Token>" -e \ 
+AZP_POOL="<Agent Pool Name>" -e \
+AZP_AGENT_NAME="Docker Agent - Windows" --name "azp-agent-windows" azp-agent:windows
+```
+
+You might need to specify the `--network` parameter if you run into network issues.
+
+`docker run --network "Default Switch" < . . . >`
+
+---
+
+[Run a self-hosted agent in Docker on Linux](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#linux) 
+
+The steps are the same only the **Dockerfile** and the `start.sh` differ a bit from the case for Window.
+
+---
+
+The previous two examples illustrate the process of:
+
+1. creating a container from a basic **Dockerfile** on a self-hosted machine
+2. installling the agent into the container
+3. registering the agent to Azure DevOps by means of a script: `start.sh` / `start.ps1` 
+4. starting the container to add it to a pool on the Azure DevOps Organization ready to take jobs
+
+The limitation here is the **2.** step as you would normally want to customize the container:
+
+[Add tools and customize the containe](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#add-tools-and-customize-the-container)  
+
+You can extend the Dockerfile to include additional tools and their dependencies or
+build your own container by using this one as a base layer. 
+Just make sure that the following are left untouched:
+
+- The `start.sh` script is called by the Dockerfile.
+- The `start.sh` script is the last command in the Dockerfile.
+- Ensure that derivative containers don't remove any of the dependencies stated by the Dockerfile.
+
+---
+
+### Scenario 3: Self-Hosted Agent  Orchestration Configuration (with Kubernetes, AKS) 
+
+[Run a self-hosted agent in Docker start on AKA](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#start-the-image)  
+
+`docker run < . . . > --once`
+
+If you want a fresh agent container for every pipeline job, pass the `--once` flag to the run command.
+With the `--once` flag, you **might want to use a container orchestration system**, like Kubernetes or
+Azure Container Instances, to start a new copy of the container when the job completes.
+
+[Deploy and configure Azure Kubernetes Service](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#deploy-and-configure-azure-kubernetes-service)  
+
+[Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using Azure portal](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli)  
+
+[Configure secrets and deploy a replica set](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#configure-secrets-and-deploy-a-replica-set)  
+
+```
+kubectl create secret generic azdevops \
+  --from-literal=AZP_URL=https://dev.azure.com/yourOrg \
+  --from-literal=AZP_TOKEN=YourPAT \
+  --from-literal=AZP_POOL=NameOfYourPool
+```
+
+---
+
+
 
 
 
