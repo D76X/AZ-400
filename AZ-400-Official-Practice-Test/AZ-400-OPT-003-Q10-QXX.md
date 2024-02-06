@@ -10791,6 +10791,9 @@ COPY ./start.ps1 ./
 CMD powershell .\start.ps1
 ```
 
+Notive the `CMD powershell .\start.ps1` command that **must always** be the present
+at the end of the Dockerfile.
+
 4. Save the following content to:
 `C:\azp-agent-in-docker\start.ps1:`
 
@@ -10931,12 +10934,96 @@ Azure Container Instances, to start a new copy of the container when the job com
 
 [Configure secrets and deploy a replica set](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/docker?view=azure-devops#configure-secrets-and-deploy-a-replica-set)  
 
+- Create the secrets on the AKS cluster:
+
+The following command is run on an existing AKS Cluster and sets the values of the 
+the environment variables below that the AKA cluster will then use to authenticate
+to Azure DevOps: `AZP_URL, AZP_TOKEN, AZP_POOL`.
+
 ```
 kubectl create secret generic azdevops \
   --from-literal=AZP_URL=https://dev.azure.com/yourOrg \
   --from-literal=AZP_TOKEN=YourPAT \
   --from-literal=AZP_POOL=NameOfYourPool
 ```
+
+- Run this command to push your container to Container Registry:
+
+`docker push "<acr-server>/azp-agent:<tag>"` 
+
+- Configure Container Registry integration for existing AKS clusters:
+
+```
+az account set --subscription "<subscription id or subscription name>"
+az aks update -n "<myAKSCluster>" -g "<myResourceGroup>" --attach-acr "<acr-name>"
+```
+
+- Create and deploy a Kubernetes YAML file to the cluster:
+
+Save the following content to `~/AKS/ReplicationController.yml`.
+This files will be used by the AKA cluster to handle the installation of the 
+agen on the container and its registration with the Azure DevOps organization.
+
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azdevops-deployment
+  labels:
+    app: azdevops-agent
+spec:
+  replicas: 1 # here is the configuration for the actual agent always running
+  selector:
+    matchLabels:
+      app: azdevops-agent
+  template:
+    metadata:
+      labels:
+        app: azdevops-agent
+    spec:
+      containers:
+      - name: kubepodcreation
+        image: <acr-server>/azp-agent:<tag>
+        env:
+          - name: AZP_URL
+            valueFrom:
+              secretKeyRef:
+                name: azdevops
+                key: AZP_URL
+          - name: AZP_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: azdevops
+                key: AZP_TOKEN
+          - name: AZP_POOL
+            valueFrom:
+              secretKeyRef:
+                name: azdevops
+                key: AZP_POOL
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: docker-volume
+      volumes:
+      - name: docker-volume
+        hostPath:
+          path: /var/run/docker.sock
+```
+
+- Deply the container to the AKS cluster:
+
+`kubectl apply -f ReplicationController.yml`
+
+Now your agents will run the AKS cluster and is registered on a pool of your 
+Azure DEvOps organization.
+
+---
+
+[Integration of GitHub with Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/337b1560-e260-4387-a53a-a7134db34fde)  
+
+- Install Azure Pipelies on a GitHub repository
+- Build an Azure DevOps project and pipeline
+- Review interactions 
 
 ---
 
