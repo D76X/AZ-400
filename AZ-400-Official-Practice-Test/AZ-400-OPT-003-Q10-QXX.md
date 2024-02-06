@@ -11021,9 +11021,57 @@ Azure DEvOps organization.
 
 [Integration of GitHub with Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/337b1560-e260-4387-a53a-a7134db34fde)  
 
-- Install Azure Pipelies on a GitHub repository
+- Install Azure Pipelies (App from Marketplace) on a GitHub repository
 - Build an Azure DevOps project and pipeline
-- Review interactions 
+- Review interactions OF BUILD STATUS BADGE
+
+#### [In Azure DevOps pipeline add a status badge to be posted to a GitHub repo](https://learn.microsoft.com/en-us/azure/devops/boards/github/configure-status-badges?view=azure-devops)  
+
+Azure DevOps in an Azure Pipeline that builds code in a repository on GitHub **automatically produces markdown** 
+that can be then **copied inside the README.md file of the code repo** at its very beginning, then the file
+can be commited to the repository.
+
+The status badge will now be visible on the REAME.md page on GitHub, this communicate to the contributors
+and visitors of the projects that it is worked on and maintained effectively.
+
+---
+
+[Designing and Implementing a Package Management Strategy](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/d186067c-b598-4e56-898c-e22a39913b34/e0183b8a-568e-4392-aa44-5c3aef671452)  
+
+- Package Management Tools
+- Azure Artifacts
+- Microsoft Recommendation on a Versioning Strategy for Artifacts
+
+#### Typical kinds of packages
+
+A package is typically some kind of **file archive with binary code i.e. dlls or scripts together with metadata files about the contents of the package**.
+
+#### End User Software Packages
+
+| OS          | Package type |
+| ----------- | ------------------------------------------------- |
+| Android	    | APK |
+| macOS  	    | DMG |
+| Linux  	    | RPM |
+| Debian 	    | DEB |
+
+
+#### Development Reated Packages and Package Managers
+
+These tools do not install applications for end users, they are used to simplify the 
+management and deployment of softawre packages in development or production environments 
+and workflows.
+
+| OS          | Package type |
+| ----------- | ------------------------------------------------- |
+| Node.js	    | NPM |
+| .Net  	    | NuGet |
+| Java  	    | Maven |
+| Python 	    | Pip |
+
+---
+
+
 
 ---
 
