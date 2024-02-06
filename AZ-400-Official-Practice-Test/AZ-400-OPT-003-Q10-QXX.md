@@ -10116,6 +10116,548 @@ Azure DevOps to have access to.
 
 ---
 
+[Build Agents and Parallelism](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/a4a83936-2e29-4647-8462-9a7a52042b4a)  
+
+- Microsoft Agents
+- Self-Hosted Agents
+- Parallel Jobs: How many agents are allowed to run in a single Pipeline or Organization.
+
+### Microsoft Agents
+
+This is the simplest and preferred option and can be applied in most cases.
+It presents the advantage that is all that concern the Agent is maintained by
+Microsoft. 
+
+There are limitations you must be aware of:
+
+- Microsoft Agents have nothing specific installed on them. If you need anything specific that must be present at build time then the Job must include astep to install this dependency on the Agent before the dependency can be used in the pipeline Job.
+
+- Microsoft Agents have limits of size, maximum build time, available stogare size.
+
+The **Harder Configuration is fixed**:
+
+- Standard_DS2_v2: 2 Vcpu + 7 GB RAM
+- 10 GB Storage
+- No GPU
+
+---
+
+### Self-Hosted Agents
+
+This can be any VM on-premise on in cloud and you manage it entirely.
+Self-Hosted Agents makes it possible to use **persistent configuration** that is not possible
+on Microsoft Agents.
+**Self-Hoste Agents habe obviously UNLIMITED USE TIME and cost: $15/month*agent**.
+
+---
+
+### Parallel Jobs: 
+
+This determines how many agents are allowed to run in a single Pipeline or Organization at the same time.
+It is often required when the team grows to reduce the queue time of the builds and releases.
+**Additional parallel agents past the free tier allowance are charged at a flat montly rate**
+**but have UNLIMITED USE TIME: $40/month*agent**.
+
+---
+
+[Self-Hosted Agents](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/9050e92f-238b-40fc-99f5-093df243acbc)  
+
+- Self-Hosted Agents Scenarios
+- Communication Process
+- Agent Pools
+
+### Self-Hosted Agents Scenarios: 
+
+- Hardware Customization: 
+you need a GPU or more than available on a Microsoft Hosted Agent.
+
+- Software Customization: 
+ypu need to use some software in the build that it is difficult and time-consuming 
+to install and configure /set up each time on a managed agent.
+
+- Need to use resources that are NOT hosted on Azure:
+this is aka **hybrid buid scenario** and applies also in cases in which the
+non Azure resource is hosted by a different cloud provider.
+
+- You want to retain state beween builds.
+In some cases it is a requirenet to retain state between builds for example 
+when some required atifacts are time-consuming to rebuild each time.
+
+### Self-Hosted Agents Setup:
+
+1. Install self-hosted agent on the VM or physical machine
+2. Register and authenticate the agent with Azure DevOps into an Agent Pool*
+3. Jobs are sent to an Agent Pool
+
+* Jobs are assigned to Agent Pools and Agents watch the Pool for queued Jobs
+
+### Agent Pools:
+
+- Each Organization has a Default Pool
+- An Organization can create additional Pools each for different Jobs
+- Agents are registered to a corresponding Pool
+
+### Manganed Agent YAML Example:
+
+In this case you specify the **OS image that the Microsoft Hosted Agent** must have:
+
+```
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+      vmImage: 'ubuntu-20.04'
+      demands:
+      - npm
+```
+
+### Self-Hosted Agent YAML Example:
+
+In this case you specify the **name of the pool the agent is registered with**:
+
+```
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+      name: 'MyPool'
+```
+
+If the agent is registered with the default pool:
+
+```
+    pool:
+      name: 'default'
+```
+
+---
+
+[Demo: Self-Hosted Agent](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/9050e92f-238b-40fc-99f5-093df243acbc)
+
+- create a PAT for agent authentication
+- install & configure a self-hosted agent on a Windows VM
+- post install and view agents in the agent pool
+
+You need to create a PAT on Azure DevOps for your organization so that it can later be used to register the self-hosted agent with a pipeline pool. The **bear minimum scope permission to assign to this PAT for the**
+**self-hosted agent is: Read & manage**.
+
+```
+Azure DevOps Organization > User Settings > Peronal Access Tokens > +New Token
+```
+
+The agent pools of your organization: 
+
+```
+Azure DevOps Organization > Organization Settings > Pipelines > Agent Pools
+```
+
+There are always at least two pools:
+
+- Azure Pipelines
+- Default
+
+Create a new pool or use the default pool > New Agent.
+
+This step **produces a detailed guide** on how to istall the agent on a VM and the guide presents
+the isntsructions for: **Windows, macOS, Linux**. There is alos a **Download** button to download
+the agent to be istall on your machine.
+
+The following is the input that is going to be required during the setup process:
+
+> server URL: https://dev.azure.com/.../
+> enter authentication type (press enter for PAT):
+> enter PAT 
+> enter agent pool (press enter for default):
+
+---
+
+[Using Build Trigger Rules](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/2288b3b1-d37a-49ea-bc4d-897f3dae6976)  
+
+Triggers defined events a Pipeline watches for in order to start an execution.
+
+```
+trigger:
+- '*'
+
+variables:
+  buildConfiguration: 'Release'
+  releaseBranchName: 'release'
+
+stages:
+- stage: 'Build'
+  displayName: 'Build the web application'
+  jobs: 
+  - job: 'Build'
+    displayName: 'Build job'
+    pool:
+      vmImage: 'ubuntu-20.04'
+      demands:
+      - npm
+```
+
+- Trigger Types:
+
+1. CI Triggers
+2. Scheduled Triggers
+3. Pipeline Triggers
+4. PR Triggers
+
+1. [CI Triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/azure-repos-git?view=azure-devops&tabs=yaml#ci-triggers)  
+A CI Triggers when a code repo is updated or a specific branch of the repo is updated.
+
+YAML pipelines are configured by default with a CI trigger on all branches, unless the
+**Disable implied YAML CI trigger setting**, introduced in Azure DevOps sprint 227, 
+is enabled. 
+
+```
+trigger:
+  branches:
+    include:
+    - master
+    - releases/*
+    - refs/tags/{tagname}
+    exclude:
+    - releases/old*
+```
+
+2. [Scheduled Triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/scheduled-triggers?view=azure-devops&tabs=yaml)  
+
+
+```
+schedules:
+- cron: string # cron syntax defining a schedule
+  displayName: string # friendly name given to a specific schedule
+  branches:
+    include: [ string ] # which branches the schedule applies to
+    exclude: [ string ] # which branches to exclude from the schedule
+  always: boolean # whether to always run the pipeline or only if there have been source code changes since the last successful scheduled run. The default is false.
+  batch: boolean # Whether to run the pipeline if the previously scheduled run is in-progress; the default is false.
+  # batch is available in Azure DevOps Server 2022.1 and higher
+```
+
+---
+
+[Pipeline Triggers - Trigger one pipeline after another](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops)   
+
+This type of trigger covers the case when pipeline runs must be chained.
+
+Large products have several components that are dependent on each other. 
+These components are often independently built. When an upstream component 
+(a library, for example) changes, the downstream dependencies have to be 
+rebuilt and revalidated.
+
+**In situations like these, add a pipeline trigger to run your pipeline upon** 
+**the successful completion of the triggering pipeline.**
+
+
+### Pipeline 1:
+
+security-lib-ci - This pipeline runs first.
+
+```
+# security-lib-ci YAML pipeline
+steps:
+- bash: echo "The security-lib-ci pipeline runs first"
+```
+
+### Pipeline 2:
+
+app-ci - This pipeline has a pipeline resource trigger that configures the app-ci 
+pipeline to run automatically every time a run of the security-lib-ci pipeline completes.
+
+```
+# app-ci YAML pipeline
+# We are setting up a pipeline resource that references the security-lib-ci
+# pipeline and setting up a pipeline completion trigger so that our app-ci
+# pipeline runs when a run of the security-lib-ci pipeline completes
+resources:
+  pipelines:
+  - pipeline: securitylib # Name of the pipeline resource.
+    source: security-lib-ci # The name of the pipeline referenced by this pipeline resource.
+    project: FabrikamProject # Required only if the source pipeline is in another project
+    trigger: true # Run app-ci pipeline when any run of security-lib-ci completes
+
+steps:
+- bash: echo "app-ci runs after security-lib-ci completes"
+
+```
+
+`trigger: true` :
+ Use this syntax to trigger the pipeline when any version of the source pipeline completes. 
+ See the following sections in this article to learn how to filter which versions of the source pipeline completing will trigger a run. 
+ When filters are specified, the source pipeline run **must match  all of the filters** to trigger a run.
+
+[Branch Filters](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops#branch-filters)  
+
+```
+# app-ci YAML pipeline
+resources:
+  pipelines:
+  - pipeline: securitylib
+    source: security-lib-ci
+    trigger: 
+      branches:
+        include: 
+        - releases/*
+         - main
+        exclude:
+        - releases/old*
+```
+
+[Tag filters](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops#tag-filters)  
+
+```
+resources:
+  pipelines:
+  - pipeline: MyCIAlias
+    source: Farbrikam-CI
+    trigger:
+      tags:        # This filter is used for triggering the pipeline run
+      - Production # Tags are AND'ed
+      - Signed
+```
+
+[Stage Filters](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops#stage-filters)  
+```
+resources:
+  pipelines:
+  - pipeline: MyCIAlias  
+    source: Farbrikam-CI  
+    trigger:    
+      stages:         # This stage filter is used when evaluating conditions for 
+      - PreProduction # triggering your pipeline. On successful completion of all the stages
+      - Production    # provided, your pipeline will be triggered. 
+```
+
+---
+
+[Pull request validation (PR) triggers also vary based on the type of repository](https://learn.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops)  
+
+PR triggers are special in that their configuration depends entirely on the source code 
+repository provider. The following are the most notable cases.
+
+- [PR triggers in Azure Repos Git](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/azure-repos-git?view=azure-devops&tabs=yaml#pr-triggers)  
+
+In constrast to the PR triggers for other providers that are setup in YAML, **In Azure Repos Git**, this functionality is implemented using **branch policies**. 
+To enable PR validation, **navigate to the branch policies for the desired branch**, and configure the
+**Build validation policy** for that branch. 
+
+[Branch policies and settings](https://learn.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser)  
+
+---
+
+- [PR triggers in GitHub](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/github?view=azure-devops&tabs=yaml#pr-triggers)  
+
+- [PR triggers in Bitbucket Cloud](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/bitbucket?view=azure-devops&tabs=yaml#pr-triggers)  
+
+
+In both these cases the YAML syntax is the same as in the following examples:
+
+```
+pr:
+- main
+- releases/*
+```
+
+```
+# specific path
+pr:
+  branches:
+    include:
+    - main
+    - releases/*
+  paths:
+    include:
+    - docs
+    exclude:
+    - docs/README.md
+```
+
+---
+
+[Incorporate Multiple Builds into a single Pipeline](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f5f4b458-7d09-4d32-bc7f-ccf965b4b1bb/988237c8-14ba-4c7d-81d3-015215475a03)  
+
+- Multiple Builds Scenarios
+- YAML Pipeline Schema for Multiple Builds
+
+### Multiple Builds Scenarios
+
+You need to run multiple builds or **multiple Jobs** within a single pipeline.
+
+- You need to run your code in different environment:
+
+For example, you have a Python application that can be run in different version of 
+Python therefore you also want that the pipeline should run the unit tests in each
+of the target Python environments.
+
+Another scenario is that of applications that target cross-platform environments.
+In these cases you need your pipeline to test and deploy the app on each of the 
+targets i.e. Linux, Windown, Mac.
+
+#### How should I implement Multiple Builds Scenarios?
+
+1. Use multiple Jobs within the same pipeline
+
+This would work but it's not the preferred solution.
+
+2. Abstract the Job and use it in the same pipeline with different inputs
+
+This is the preferred way to implement this scenario.
+
+[Azure Pipelines: jobs.job.strategy definition](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/jobs-job-strategy?view=azure-pipelines)  
+
+Use of **a matrix to generate copies of a job**, each with different input. 
+These copies are useful for testing against different configurations or platform versions.
+
+```
+strategy:
+  matrix: # Matrix defining the job strategy; see the following examples.
+    { string1: { string2: string3 }
+  maxParallel: string # Maximum number of jobs running in parallel.
+
+```
+
+#### Example: build on multiple platforms.
+
+```
+strategy:
+  matrix:
+    linux:
+      imageName: 'ubuntu-latest'
+    mac:
+      imageName: 'macOS-latest'
+    windows:
+      imageName: 'windows-latest'
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '8.x'
+
+- script: |
+    npm install
+    npm test
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/TEST-RESULTS.xml'
+    testRunTitle: 'Test results for JavaScript'
+
+- task: PublishCodeCoverageResults@1
+  inputs: 
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+
+- task: PublishBuildArtifacts@1
+```
+
+---
+
+#### [Example: build on multiple platforms using self-hosted and Microsoft-hosted agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/jobs-job-strategy?view=azure-pipelines#build-on-multiple-platforms-using-self-hosted-and-microsoft-hosted-agents)  
+
+For the hosted agent, specify Azure Pipelines as the pool name, and for self-hosted agents, 
+leave the vmImage blank. The blank vmImage for the self-hosted agent may result in some 
+unusual entries in the logs but they won't affect the pipeline.
+
+```
+strategy:
+  matrix:
+    microsofthosted:
+      poolName: Azure Pipelines
+      vmImage: ubuntu-latest
+
+    selfhosted:
+      poolName: FabrikamPool
+      vmImage:
+
+pool:
+  name: $(poolName)
+  vmImage: $(vmImage)
+
+steps:
+- checkout: none
+- script: echo test
+```
+---
+
+[Build using different Python versions](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/jobs-job-strategy?view=azure-pipelines#build-using-different-python-versions)   
+
+```
+jobs:
+- job: Build
+  strategy:
+    matrix:
+      Python35:
+        PYTHON_VERSION: '3.5'
+      Python36:
+        PYTHON_VERSION: '3.6'
+      Python37:
+        PYTHON_VERSION: '3.7'
+    maxParallel: 2
+```
+
+---
+
+[strategy: parallel](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/jobs-job-strategy?view=azure-pipelines#strategy-parallel)   
+
+The parallel job strategy specifies how many duplicates of a job should run.
+
+```
+strategy:
+  parallel: string # Run the job this many times.
+```
+
+---
+
+[GtHub Actions - Using a matrix for your jobs](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs)  
+
+The following matrix has TWO variables
+version with the value [10, 12, 14] 
+os with the value [ubuntu-latest, windows-latest]
+
+A job will run for each possible combination of the variables. 
+In this example, the workflow will run six jobs, one for each combination of the os and version variables.
+
+```
+jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+        os: [ubuntu-latest, windows-latest]
+```
+
+[Example: Using a single-dimension matrix](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#example-using-a-single-dimension-matrix)  
+
+```
+jobs:
+  example_matrix:
+    strategy:
+      matrix:
+        version: [10, 12, 14]
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.version }}
+```
+
+---
+
 
 
 
