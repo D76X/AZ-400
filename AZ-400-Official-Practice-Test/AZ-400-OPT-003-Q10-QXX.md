@@ -9708,6 +9708,20 @@ on the Azure DevOps Portal.
 
 ---
 
+[Amend last commit](https://stackoverflow.com/questions/8981194/changing-git-commit-message-after-push-given-that-no-one-pulled-from-remote)  
+
+The `git push --force` is necessary in order to override the last commit on the 
+origin branch when it has already been pushed to it. If the amendment is to the 
+lats commit on the local branch and it has not been pushed yet then the
+`git commit --amend -m "New commit message"`  is sufficient.
+
+```
+git commit --amend -m "New commit message"
+git push --force
+```
+
+---
+
 [Remove Data from a Git Reposotory](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/5c0a284a-15c5-47b9-a555-4162c2324135/8f6e3f4f-4aac-4acd-aaa0-b6aaaafc6f54)  
 
 You may need to remove files that have been accidentally added to a code repository.
@@ -9735,7 +9749,7 @@ git rm --cached <filename>
 
 After this is done there are two differnt ways to proceded, according to the situation.
 
-- no aother commit needs to be changed other the single ciommit in which the deleted item was (accidentally) added to teh commit
+- no aother commit needs to be changed other the single commit in which the deleted item was (accidentally) added to the commit
 
 `git reset HEAD^`
 
@@ -11042,6 +11056,8 @@ and visitors of the projects that it is worked on and maintained effectively.
 - Azure Artifacts
 - Microsoft Recommendation on a Versioning Strategy for Artifacts
 
+* Packages and Artifacts can be used interchangeavly and are synonims
+
 #### Typical kinds of packages
 
 A package is typically some kind of **file archive with binary code i.e. dlls or scripts together with metadata files about the contents of the package**.
@@ -11059,7 +11075,7 @@ A package is typically some kind of **file archive with binary code i.e. dlls or
 #### Development Reated Packages and Package Managers
 
 These tools do not install applications for end users, they are used to simplify the 
-management and deployment of softawre packages in development or production environments 
+management and deployment of software packages in development or production environments 
 and workflows.
 
 | OS          | Package type |
@@ -11071,7 +11087,45 @@ and workflows.
 
 ---
 
+#### In the context of a build pipeline or CI/CD setup
 
+Artifacts are **upstream dependencies** that are to be used by and integrated into your application by a DevOps workflow. These upstream packages must be stored by a **Upstream Package Hostring Service** and **Azure Artifacts** is such a service.
+**In the build** these sources are called **feeds**.
+
+The other use case is when a CI/CD pipeline needs some storage to store, manage and maintain the packages
+or artifacts that itself produces.
+
+
+| Provider        | Package Hostring Service |
+| --------------- | ------------------------------------------------- |
+| Azure DevOps	  | Azure Artifacts |
+| GitHub   	      | GitHub Packages |
+| JFrog  	        | JFrog Artifactory |
+
+
+---
+
+[Azure Artifacts](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/d186067c-b598-4e56-898c-e22a39913b34/d3953f5d-440d-462f-b67c-16e385995455)  
+
+**Azure Artifats** is the Azure DevOps built-in package management solution that is available to any 
+Azure DevOps Organization. It is designed to be **perfectly integrated with Azure Pipelines**.
+
+- Feeds:
+The primary **management layer** in Azure Artifacts are **feeds**, each feed can be **scoped**
+to either the project or teh organization level withing Azure DevOps. A feed is alos the place
+where any Azure Pipeline can publish the artifacts it produces.
+
+A feed determines:
+
+- how packages are stored
+- how packages are grouped
+- how packages are shared with people in the organization
+
+- private and public registries:
+Azure Artifacts can support **private and public registries**. However **public registries** can 
+only be scoped to the **project** level.
+
+- Developer Workflow in Visual Studio
 
 ---
 
