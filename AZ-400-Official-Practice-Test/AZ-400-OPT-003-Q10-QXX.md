@@ -11445,6 +11445,321 @@ Use this task to **publish Cobertura or JaCoCo** code coverage results from a bu
 
 ---
 
+After the tests results are published from within a Azure DevOps Pipelines 
+the summary view will show the tab **Tetsts**
+
+After the code coverage results are published from within a Azure DevOps Pipelines
+the summary view will show the tab **Coverage**
+
+---
+
+[Maintaining Azure Build Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f4f8bc9c-8999-4a48-b302-f8475f58b4f9/6e9afc8d-b7fe-4b75-a787-3e39972b0a3d)  
+
+- Use Pipeline Health Monitoring
+- Improve Performance and Cost Effinciency of a build Pipeline
+- Pipeline Agent Analytics, Logs and Troubleshooting
+
+---
+
+[Use Pipeline Health Monitoring](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f4f8bc9c-8999-4a48-b302-f8475f58b4f9/b4e5cd69-edd0-4a09-b88d-b87902b4e9d6)
+
+- Monitoring & Health Scenarios
+- **Pipeline Reports**: duration, pipeline pass rate, tests pass rate
+
+#### Pipeline Reports
+
+This reports is a feature built-in Azure DevOps and gives the following breakdown.
+From the Pipeline Overview select the **Analytics tab** to access the reports.
+
+1. pipeline duration report:
+detail breakdown of the duration by **step** and by **task** within the pipeline.
+
+2. pipeline pass rate report:
+isolates these stats by **step** and by **task** within the pipeline.
+
+3. tests pass rate report:
+
+---
+
+[Improve Performance and Cost Effinciency of a build Pipeline](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f4f8bc9c-8999-4a48-b302-f8475f58b4f9/1ab095bb-aac6-4e68-b929-5e3ad42768af)  
+
+- Performance / Costs relationship
+- Pipeline Caching
+- Self-Hosted Agents
+- Agent Poool Consumption Report
+
+#### Performance / Costs relationship
+
+Given a pipeline and a queue time target in order to be under the queue time trarget
+you will have to add **parallel jobs** which in turn cost money, therefore the slower
+the pipeline the more parallel jobs you need and corresponding costs.
+**Inderect costs** should also be taken in account, such as unproductive time of 
+developers that have to wait the pipeline run to complete or for their pipeline run
+in the wait queue.
+
+**The more efficient and faster the build pipeline the lower the costs.**
+
+---
+
+[Pipeline Caching](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops)
+
+Pipeline caching can help reduce build time by allowing the outputs or downloaded dependencies 
+from one run to be reused in later runs reducing or avoiding the cost to recreate or redownload 
+the same files again. Caching is especially useful in scenarios where the same dependencies are 
+downloaded over and over at the start of each run. T
+
+#### Proviso on the Pipeline Cache
+
+Caching can be effective at improving build time provided the time to restore and save the cache 
+is less than the time to produce the output again from scratch. 
+
+**Caching takes the output from one job and it makles it availble to a new job.**
+Jobs are executed on different agents therefore the cache storage is not on the 
+agents or the underlying machine.
+
+#### Pipeline Cache vs. Azure Artifacts
+
+
+| Pipeline Cache                                | Azure Artifacts |
+| -------------------------------------------- | ------------------------------------------------- |
+| Used to improve Pipeline Performance         | Use to manage and access package dependencies and not a performance oriented feature |
+| Cached Outtput are not required dependencies | Holds and manage **required dependencies** |
+
+--- 
+
+[Cache@2 - Cache v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/cache-v2?view=azure-pipelines)  
+
+```
+# Cache v2
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: # string. Required. Key. 
+    path: # string. Required. Path. 
+    #cacheHitVar: # string. Cache hit variable. 
+    #restoreKeys: # string. Additional restore key prefixes.
+```
+
+---
+
+#### Improve Perfomance at lower cost with Self-Hosted Agents
+
+- can use customized hardware and software:
+Any available high-performance on-premise resource can be put to work with lower costs
+when compare to Microsoft Hosted Agents. This might be because the on-premise harder 
+has better specs that makes teh pipeline run faster or just because adding a parallel
+job reduces the queue time of the build.
+
+- may used as a caching mechanism:
+If there are binaries that never change and are used in teh build by placing them 
+on a Slef-Hosted Agent you improve pipeline performance in the same way the Caching 
+mechanism described above does.
+
+---
+
+####  [Agent Pool Consumption Report](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/pool-consumption-report?view=azure-devops)  
+
+[[Agent Pool Consumption Report](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f4f8bc9c-8999-4a48-b302-f8475f58b4f9/1ab095bb-aac6-4e68-b929-5e3ad42768af)  
+
+This tool is designed to answer teh question: 
+**How many Parallel Agents are required at this point in time?**
+
+It helps with figuring out whether more parallel agents have been provisioned 
+than actually required or vice versa therefore by using it you may save on 
+costs of underutilized resources.
+
+The pool consumption report enables you to view jobs running in your agent pools 
+graphed with agent pool job concurrency over a span of up to 30 days. 
+You can use this information to help decide whether your jobs aren't running because 
+of concurrency limits. If you have many jobs queued or running jobs at the concurrency 
+or online agents limit, you may wish to purchase additional parallel jobs or provision 
+more self-hosted agents.
+
+---
+
+[Pipeline Agent Analytics and Troubleshooting](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/f4f8bc9c-8999-4a48-b302-f8475f58b4f9/626828b7-fc92-48a2-9631-3b42e03b7e13)  
+
+- Viewing Agent Logs
+- Downloading Agent Logs
+
+- Enable and Configure Verbose Agent Logs:
+This is done **before a pipeline run by setting the Eanble system diagnostics check** in the
+Run Pipeline menu.
+
+---
+
+[Designing a Process for Standardization of Builds across teh Organization](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/b17de243-116d-4647-8b01-46e923b6cda2/2a5a69dc-6b8f-426a-a57a-949524d0ad85)  
+
+- Implement YAML Templates
+- Use Variable Groups
+
+---
+
+#### [Implement YAML Templates](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/b17de243-116d-4647-8b01-46e923b6cda2/cdd31209-c9f6-4c38-9f6c-5a3c8fe64583)  
+
+
+It is possible to create YAML for Azure DevOps Pipelines that can be used as a template for the 
+`pipeline.yaml` file of pipelines accross an organization in order to achive some degree of 
+standardization.
+
+- YAML Templates Purpose
+- Inserting YAML Templates
+- YAML Templates Location Reference
+
+### YAML Templates Purpose
+
+In practice YAML Templates **is reusable Pipeline Content** as you can defile **steps and other content**
+in the pipelien template and use it in others `pipeline.yaml` files. The big advantage of inserting a 
+template YAML pipeline into a YAML pipeline definition is that this link is not broken that is to say 
+**updates to the template will be reflected into the puipelines that refernce it**.
+
+Notable use cases for YAML Templates are the following:
+
+- Insert & reuse pipeline steps, jobs, stages
+- Restrict allowed parameters:
+which is useful from a security perspective
+
+[Template usage reference](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops&pivots=templates-includes)  
+
+Template files need to exist on your filesystem at the start of a pipeline run. 
+**You can't reference templates in an artifact**.
+
+#### Example 1: Insert a template
+
+```
+# File: templates/include-npm-steps.yml
+steps:
+- script: npm install
+- script: yarn install
+- script: npm run compile
+```
+
+```
+# File: azure-pipelines.yml
+
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - template: templates/include-npm-steps.yml  # Template reference
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - template: templates/include-npm-steps.yml  # Template reference
+```
+
+#### Example 2: step reuse
+
+```
+# File: templates/npm-steps.yml
+steps:
+- script: npm install
+- script: npm test
+
+```
+
+```
+# File: azure-pipelines.yml
+
+jobs:
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - template: templates/npm-steps.yml  # Template reference
+
+- job: macOS
+  pool:
+    vmImage: 'macOS-latest'
+  steps:
+  - template: templates/npm-steps.yml  # Template reference
+
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - script: echo This script runs before the template's steps, only on Windows.
+  - template: templates/npm-steps.yml  # Template reference
+  - script: echo This step runs after the template's steps.
+```
+
+#### Example 3:  Job reuse
+
+```
+# File: templates/jobs.yml
+jobs:
+- job: Ubuntu
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - bash: echo "Hello Ubuntu"
+
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - bash: echo "Hello Windows"
+```
+
+
+```
+# File: azure-pipelines.yml
+jobs:
+- template: templates/jobs.yml  # Template reference
+```
+
+#### Example 3:  Satge reuse
+
+```
+# File: templates/stages1.yml
+stages:
+- stage: Angular
+  jobs:
+  - job: angularinstall
+    steps:
+    - script: npm install angular
+
+# File: templates/stages2.yml
+stages:
+- stage: Build
+  jobs:
+  - job: build
+    steps:
+    - script: npm run build
+```
+
+```
+# File: azure-pipelines.yml
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: Install
+  jobs: 
+  - job: npminstall
+    steps:
+    - task: Npm@1
+      inputs:
+        command: 'install'
+- template: templates/stages1.yml # Template reference
+- template: templates/stages2.yml # Template reference
+```
+
+---
+
+####  Use Variable Groups
+
+Variable Groups allow the definition of a set of variables in a single location that can then
+be used in multiple pipelines in an organization. 
+
+---
+
+
 
 
 
