@@ -11304,6 +11304,28 @@ The three main connections types are the following:
 
 ---
 
+[Demo: Integrate WhiteSource Bolt in Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/c819e319-032e-4ed5-b518-8a0b63d41f8d)  
+
+This illustrate how a tool (app) is integrated with Azure DevOps by means of the **Visual Studio Marketplace**.
+
+---
+
+[Testing Strategies in Azure DevOps Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/0403c09e-b84a-4a85-9a2c-46f2054590fe)  
+
+- Range in Scope Testing
+- Azure Test Plans
+
+#### Range in Scope Testing
+
+| Test Type         | Scope |
+| ----------------- | ------------------------------------------------- |
+| Unit              | Individual Components i.e. function, method, class etc. |
+| Integration       | Multiple component interaction |
+| Functiomal/System | An entire feature or application |
+| UI                | Use a specialized UI Testimng Environemnt/Tool i.e. **Selenium** to test the interaction with the UI|
+
+---
+
 
 
 
