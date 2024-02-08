@@ -11343,6 +11343,27 @@ In the tool you can define a **suite of tests to run** and track the results.
 
 [PublishTestResults@2 - Publish Test Results v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-test-results-v2?view=azure-pipelines&tabs=trx%2Ctrxattachments%2Cyaml)  
 
+**Publish test results to Azure Pipelines.**
+
+```
+# Publish Test Results v2
+# Publish test results to Azure Pipelines.
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit' # 'JUnit' | 'NUnit' | 'VSTest' | 'XUnit' | 'CTest'. Alias: testRunner. Required. Test result format. Default: JUnit.
+    testResultsFiles: '**/TEST-*.xml' # string. Required. Test results files. Default: **/TEST-*.xml.
+    #searchFolder: '$(System.DefaultWorkingDirectory)' # string. Search folder. Default: $(System.DefaultWorkingDirectory).
+    #mergeTestResults: false # boolean. Merge test results. Default: false.
+    #failTaskOnFailedTests: false # boolean. Fail if there are test failures. Default: false.
+    #failTaskOnFailureToPublishResults: false # boolean. Fail if there is failure in publishing test results. Default: false.
+    #failTaskOnMissingResultsFile: false # boolean. Fail if no result files are found. Default: false.
+    #testRunTitle: # string. Test run title. 
+  # Advanced
+    #buildPlatform: # string. Alias: platform. Build Platform. 
+    #buildConfiguration: # string. Alias: configuration. Build Configuration. 
+    #publishRunAttachments: true # boolean. Upload test results files. Default: true.
+```
+
 ```
 - task: PublishTestResults@2
   inputs:
@@ -11386,6 +11407,41 @@ steps:
 | C++        | Bullseye |
 | Python     | Coverage.py, Cobertura |
 | .Net/C#    | NCover, dotCover |
+
+---
+
+[PublishCodeCoverageResults@2 - Publish code coverage results v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-code-coverage-results-v2?view=azure-pipelines)  
+
+**Use this task to get code coverage results from a build.**
+
+```
+# Publish code coverage results v2
+# Publish any of the code coverage results from a build.
+- task: PublishCodeCoverageResults@2
+  inputs:
+    summaryFileLocation: # string. Required. Path to summary files. 
+    #pathToSources: # string. Path to Source files. 
+    #failIfCoverageEmpty: false # boolean. Fail if code coverage results are missing. Default: false.
+```
+
+---
+
+[PublishCodeCoverageResults@1 - Publish code coverage results v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-code-coverage-results-v1?view=azure-pipelines)  
+
+Use this task to **publish Cobertura or JaCoCo** code coverage results from a build.
+
+```
+# Publish code coverage results v1
+# Publish Cobertura or JaCoCo code coverage results from a build.
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'JaCoCo' # 'Cobertura' | 'JaCoCo'. Required. Code coverage tool. Default: JaCoCo.
+    summaryFileLocation: # string. Required. Summary file. 
+    #pathToSources: # string. Path to Source files. 
+    #reportDirectory: # string. Report directory. 
+    #additionalCodeCoverageFiles: # string. Additional files. 
+    #failIfCoverageEmpty: false # boolean. Fail when code coverage results are missing. Default: false.
+```
 
 ---
 
