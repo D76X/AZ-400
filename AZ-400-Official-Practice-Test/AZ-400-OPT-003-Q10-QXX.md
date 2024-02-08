@@ -11321,8 +11321,19 @@ This illustrate how a tool (app) is integrated with Azure DevOps by means of the
 | ----------------- | ------------------------------------------------- |
 | Unit              | Individual Components i.e. function, method, class etc. |
 | Integration       | Multiple component interaction |
-| Functiomal/System | An entire feature or application |
+| Functiomal/System | An entire feature or application (e2e) |
 | UI                | Use a specialized UI Testimng Environemnt/Tool i.e. **Selenium** to test the interaction with the UI|
+
+
+####  Azure Test Plans
+
+- built-in Azure dEVoPS
+- Browser Based Testing tool
+- It is **NOT** an automated testing tool use Azure Pipeline instead
+- Plan & Track testing results: 
+it is a planning and tracking board for your **manual and exploratory** tests especiallty for UI UX tests.
+
+In the tool you can define a **suite of tests to run** and track the results.
 
 ---
 
