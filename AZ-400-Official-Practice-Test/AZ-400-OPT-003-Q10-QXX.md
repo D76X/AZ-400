@@ -11283,6 +11283,24 @@ The three main connections types are the following:
 | Service Hooks  	            | **Service Hooks are used to send events and related info from Azure DevOps to an external tool in order to allow  the tool to take some kind of action.** Example1: ChatOps, you send messages to a service hook in order to be shared with the rest of the team on a specific chat client. Example2: In the integration of Jenkins with Azure DevOps you may create a Service Hook that sends an event to Jenkins on a new commit event detected in Azure DevOps Repos.|
 | Service Connections  	      | This is **compared to Service Hook** a deeper level fo integration between the exteranl tool and Azure Devops. It is suitable when the external tool not only needs to receive enevet and data from Azure DevOps but the tools also must oerform some specific work within Azure DevOps i.e. **a code scanning tool or using Jenkins to actually do teh CI instead of SAzure Pipelines**.|
 
+#### External Tool Authentication with Azure DevOps
+
+
+| Authentication Method     | Details and Scenario |
+| ------------------------- | ------------------------------------------------------------------------ |
+| PAT         	            | PAT are **used by external services** to **autheticate to Azure DevOps**. You create the PAT in Azure DevOps and then you get the integrated tool to store it and use ti when it connects to Azure DevOps. |
+| API Token/ Auth Tokens    | In this cases the tokes is provided by teh external service and used by Azure DevOps to autheticate to it. These are generated in the integration tool and stored in Azure DevOps as secrets and then access by Azure DevOps pipelines or other Azure DevOps services at the time a connection to the external tool needs to be established. Example: Jenkins. |
+
+---
+
+#### Popular Code Scanning Tools
+
+| Tool              | Details |
+| ----------------- | ------------------------------------------------- |
+| WhiteSource Bolt  | Scan the code, find and fix open source vulnerabilities. |
+| Snyk              | the same as above |
+| Octupus Deploy    | DevOps authomation + Dependency scanner |
+
 
 ---
 
