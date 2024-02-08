@@ -11122,10 +11122,136 @@ A feed determines:
 - how packages are shared with people in the organization
 
 - private and public registries:
-Azure Artifacts can support **private and public registries**. However **public registries** can 
-only be scoped to the **project** level.
+Azure Artifacts can support **private and public registries**. However **public registries** can only be scoped to the **project** level.
 
-- Developer Workflow in Visual Studio
+---
+
+- Developer Workflow in Visual Studio and NuGet Packages
+
+1. Visual Studio authenticates to a Azure Artifacts Feed with the built-in **Credential Provider**:
+The advantage of the **Credential Provider** is that there is no need for API keys 
+or access tokens. The **Credential Provider** uses teh **OAuth** authentication method.
+You need to rpovide the **Azure Artifact Feed URL**  
+
+
+In cases in which the IDE is not Visual Studio and/or packages are other than NuGet
+apckages API keys or access tokens are necessary.
+
+2. Create a feed in Azurre Artifacts
+The feed may be scoped to the organization or the project level.
+
+3. In the Azure Pipeline use a task to publish to the fee.
+
+[NuGetCommand@2 - NuGet v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/nuget-command-v2?view=azure-pipelines)  
+
+> Push/Publish a package to an organization scoped feed
+
+```
+# Push a project
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'my-organization-scoped-feed'
+```
+
+> Push/Publish a package to a project scoped feed
+
+```
+# Push a project
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'my-project/my-project-scoped-feed'
+```
+
+---
+
+[Creating a Versiong Strategy for Atifacts](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/d186067c-b598-4e56-898c-e22a39913b34/3e749b22-6f82-414e-a9fb-11cf480e1766)  
+
+- the purpose of versioning
+- Microsoft Versioning Best Parctices and Recommendations: Semantic Versioning
+- Feed Views: control and limit access upstream  packages based on readiness
+
+### The purpose of versioning
+
+In a large team working on interdependent projects several packages mabe be produced and integrated over time.
+You need a way to differentiate not only the packages but also their versions as **packages are immutable**
+in the sense that **they cannot be changed after creation** from their source code.
+
+**Immutability of version packages** means that once a specific softawre archive is given a version label
+that label must no longer be used to identified another archive otherwise the wrong archive may end up
+being integrated in the wrong software.
+
+This means that **how the version number are produced needs a strategy to avoid that the same version number**
+**may be reused to identify different archives**.
+
+---
+
+### Microsoft Versioning Best Parctices and Recommendations: Semantic Versioning
+
+The suggested number scheme adheres to the following pattern:
+
+> `{major}.{minor}.{patch}-{quality_of_change_and_readiness_tag}`
+
+`{major}.{minor}.{patch}`: 
+is used to express the **nature of the change**.
+
+`{quality_of_change_and_readiness_tag}`: 
+can be any meaningful label such as **prerelease, alpha, beta, etc.** or even a **timestamp**. 
+
+```
+2.1.3-YYYYMMDDhhmmssms
+2.1.3-prerelease
+2.1.3
+```
+
+---
+
+### [Feed Views- What are feed views?](https://learn.microsoft.com/en-us/azure/devops/artifacts/concepts/views?view=azure-devops)
+
+Feed views enable developers of upstream archhives **to manage access to and share a subset** 
+**of package-versions with their consumers who may belong to different groups of people**. 
+Consumers who belong to a specific groups will **connect to to a specific view of a feed**.
+
+Access to feed views within Azure DevOps Artifacts is managed by specific permissions 
+to be assigned to the identities of users and groups within the Azure DevOps organization.
+
+A common use of feed views is to share package versions that have been tested and validated 
+but hold back on packages that are still under development and/or didn't meet a certain quality
+bar.
+
+All Artifacts feeds come with three preexisting views: 
+`@local, @prerelease, @release`
+
+Other views can also be created.
+
+`@local` : 
+is the default view that's commonly used in upstream sources and cannot be edited or deleted.
+Wnen a developer pushes an atritfact to a feed this is the view that the artifacts will be 
+available from.
+
+**After** the package is available in the `@local` view it may be **promoted to other views**.
+
+`@prerelease, @release` : are suggested views that you can rename or delete as desired. 
+
+#### Access the Views in Azure Artifacts
+
+> Arifacts > Views Tab ...
+
+#### How to promote an artifact from the @local view to another view
+
+> Arifacts > Overview > select the package > select the **Promote** button > select the view to promote the package to
+
+---
+
+[Designing Build Automation](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/8f76a739-d778-4987-b535-2f71d0636ea9)  
+
+- Integrate External Services with Azure Pipelies
+- Visual Studio Marketplace  
+- Testing Startegies in your build
+- Code Coverage
 
 ---
 
