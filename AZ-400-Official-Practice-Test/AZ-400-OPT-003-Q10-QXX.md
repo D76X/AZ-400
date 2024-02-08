@@ -11312,6 +11312,8 @@ This illustrate how a tool (app) is integrated with Azure DevOps by means of the
 
 [Testing Strategies in Azure DevOps Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/0403c09e-b84a-4a85-9a2c-46f2054590fe)  
 
+Testing is a **Quality Assurance Process**.
+
 - Range in Scope Testing
 - Azure Test Plans
 
@@ -11334,6 +11336,56 @@ This illustrate how a tool (app) is integrated with Azure DevOps by means of the
 it is a planning and tracking board for your **manual and exploratory** tests especiallty for UI UX tests.
 
 In the tool you can define a **suite of tests to run** and track the results.
+
+---
+
+[Code Coverage](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/145616f5-0f57-4988-82a5-a54378dcbe7e)  
+
+[PublishTestResults@2 - Publish Test Results v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-test-results-v2?view=azure-pipelines&tabs=trx%2Ctrxattachments%2Cyaml)  
+
+```
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+    failTaskOnFailedTests: true
+```
+
+```
+# Build Docker image for this app to be published to Azure Container Registry
+pool:
+  vmImage: 'ubuntu-latest'
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- script: |
+    docker build -f Dockerfile.build -t $(dockerId)/dotnetcore-build:$BUILD_BUILDID .
+    docker run --name dotnetcoreapp --rm -d $(dockerId)/dotnetcore-build:$BUILD_BUILDID
+    docker cp dotnetcoreapp:app/dotnetcore-tests/TestResults $(System.DefaultWorkingDirectory)
+    docker cp dotnetcoreapp:app/dotnetcore-sample/out $(System.DefaultWorkingDirectory)
+    docker stop dotnetcoreapp
+
+- task: PublishTestResults@2
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+    failTaskOnFailedTests: true
+
+- script: |
+    docker build -f Dockerfile -t $(dockerId).azurecr.io/dotnetcore-sample:$BUILD_BUILDID .
+    docker login -u $(dockerId) -p $pswd $(dockerid).azurecr.io
+    docker push $(dockerId).azurecr.io/dotnetcore-sample:$BUILD_BUILDID 
+  env:
+    pswd: $(dockerPassword)
+```
+
+| Language   | Typical Testing Coverage Framewokrs |
+| ---------- | ------------------------------------------------- |
+| Java       | JaCoCo, Cobertura*, Clover |
+| C++        | Bullseye |
+| Python     | Coverage.py, Cobertura |
+| .Net/C#    | NCover, dotCover |
 
 ---
 
