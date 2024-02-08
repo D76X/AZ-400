@@ -11255,6 +11255,37 @@ available from.
 
 ---
 
+[Integrate External Services with Azure Pipelies](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7e9d9682-a0c7-4f82-8e4c-2cdba07bb4e4/a2aed1db-7419-4366-8dee-a1531631d1b7)  
+
+- Scenarios for Connecting External Tools
+- External Tool Connection Methods
+- Popular Code Scanning Tools
+
+#### Scenarios for Connecting External Tools
+
+The underlying reason to integrate external tools with Azure DevOps is to provide 
+specializede functionality that is not present natively in Azure DevOps thereby to
+extend Azure DevOps capabilities.
+
+- use specialized code scanners to detect vulnerabilities in code and packages
+- test code coverage
+- monitor code dependencies 
+- integration with other CI/CD tools such as: Jenkins, CircleCI, etc.
+
+#### External Tool Connection Methods
+
+The way Azure DevOps can connect to external integration tools depends on the tool.
+The three main connections types are the following:
+
+| Connection Method           | Details and Scenario|
+| --------------------------- | ------------------------------------------------- |
+| Visual Studio Marketplace	  | a place with extension apps that can be directly embedded in Azure DevOps Pipelines and other Azure DevOps Services|
+| Service Hooks  	            | **Service Hooks are used to send events and related info from Azure DevOps to an external tool in order to allow  the tool to take some kind of action.** Example1: ChatOps, you send messages to a service hook in order to be shared with the rest of the team on a specific chat client. Example2: In the integration of Jenkins with Azure DevOps you may create a Service Hook that sends an event to Jenkins on a new commit event detected in Azure DevOps Repos.|
+| Service Connections  	      | This is **compared to Service Hook** a deeper level fo integration between the exteranl tool and Azure Devops. It is suitable when the external tool not only needs to receive enevet and data from Azure DevOps but the tools also must oerform some specific work within Azure DevOps i.e. **a code scanning tool or using Jenkins to actually do teh CI instead of SAzure Pipelines**.|
+
+
+---
+
 
 
 
