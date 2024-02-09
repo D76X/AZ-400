@@ -11624,6 +11624,54 @@ which is useful from a security perspective
 Template files need to exist on your filesystem at the start of a pipeline run. 
 **You can't reference templates in an artifact**.
 
+---
+
+[Reference template paths](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops&pivots=templates-includes#reference-template-paths)  
+
+[Reference templates in other repositories](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/templates?view=azure-devops&pivots=templates-includes#use-other-repositories)  
+
+When you refer to the core repo, use `@` and the name you gave it in resources
+
+```
+# Repo: Contoso/LinuxProduct
+# File: azure-pipelines.yml
+resources:
+  repositories:
+    - repository: templates
+      type: github                 #use  type: git if the repository is Azure Repo
+      name: Contoso/BuildTemplates #use <identity>/<repo> for GitHub #use <project>/<repo> for Azure Repo
+jobs:
+- template: common.yml@templates  # Template reference
+```
+
+> If your template file is **in a different Azure DevOps oragnization**
+
+If that project is in a separate Azure DevOps organization, you'll need to configure 
+a **service connection** of type Azure Repos/Team Foundation Server with access to 
+the project and include that in YAML:
+
+```
+resources:
+  repositories:
+  - repository: templates
+    name: Contoso/BuildTemplates
+    endpoint: myServiceConnection # Azure DevOps service connection
+jobs:
+- template: common.yml@templates
+```
+
+---
+
+[Task groups for builds and releases (classic)](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/task-groups?view=azure-devops)  
+
+**In Azure DevOps Classic Pipelines** a task group allows you to encapsulate a sequence of tasks, 
+already defined in a build or a release pipeline, into a single reusable task that can be added to
+a build or release pipeline, just like any other task. 
+You can choose to extract the parameters from the encapsulated tasks as configuration variables, 
+and abstract the rest of the task information.
+
+---
+
 #### Example 1: Insert a template
 
 ```
@@ -11752,10 +11800,123 @@ stages:
 
 ---
 
-####  Use Variable Groups
+####  [Use Variable Groups](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/b17de243-116d-4647-8b01-46e923b6cda2/1b6fb0d7-b79e-41a2-a7d3-6ebda3b03e5d)  
 
 Variable Groups allow the definition of a set of variables in a single location that can then
-be used in multiple pipelines in an organization. 
+be used in multiple pipelines in an organization, in other words Variable Groups are sets of 
+reusable variables.
+
+- Pipeline Variables
+- Creating Variable Groups
+- Using Variable Groups
+
+[Azure Pipeline Variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch)
+
+#### Pipeline Variables with macro syntax
+
+This example uses **macro syntax** with Bash, PowerShell, and a script task. 
+
+```
+variables:
+ - name: projectName
+   value: contoso
+
+steps: 
+- bash: echo $(projectName)
+- powershell: echo $(projectName)
+- script: echo $(projectName)
+```
+
+----
+
+#### Pipeline Variables with Template expression syntax
+
+> There is also the **Template expression syntax**: `${{ variables.var }}`
+> Template variables process **at compile time, and get replaced before runtime starts**.
+> **Template expressions are designed for reusing parts of YAML as templates**.
+> Template variables silently coalesce to empty strings when a replacement value isn't found. 
+> Template expressions, unlike macro and runtime expressions, can appear as either keys (left side) or values (right side). The following is valid: ${{ variables.key }} : ${{ variables.value }}.
+
+---
+
+#### Pipeline Variables with Runtime expression syntax
+
+You can use runtime **expression syntax for variables that are expanded at runtime**: `$[variables.var]`
+
+> Runtime expression variables silently coalesce to empty strings when a replacement value isn't found. 
+> Use runtime expressions in job conditions, to support conditional execution of jobs, or whole stages.
+> Runtime expression variables are only expanded when they're used for a value, not as a keyword.
+> values appear on the right side of a pipeline definition. 
+> The following is valid: key: $[variables.value]. 
+> The following **isn't** valid: $[variables.key]: value.
+> The runtime expression must take up the entire right side of a key-value pair. 
+> key: $[variables.value] is valid but 
+> key: $[variables.value] foo isn't.
+
+---
+
+#### What syntax should I use?
+
+> Use **macro syntax** if you're providing input for a task.
+> Choose a **runtime expression** if you're working with conditions and expressions. 
+> don't use a runtime expression if you don't want your empty variable to print 
+> If you're defining a variable in a template, use a **template expression**.
+
+---
+
+
+[Add & use variable groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups?view=azure-devops&tabs=yaml)  
+
+Variable groups **store values and secrets** that you might want to be passed into a YAML pipeline
+or make available across multiple pipelines. You can share and use variable groups in multiple 
+pipelines in the same project.
+
+> Pipelies > **Library** > Create a variable group
+
+There you can define **key-value pairs** with a given value and alos read teh value off a **Key Vault**.
+In particular you would use a variable in a variable group to read **an encryption key stored on a Key Vault**
+and this is a **secure way** to keep secrets and supply them to a Azure DevOps Pipeline.
+
+The following shows how to refer a **variable group in an Azure Pipeline**.
+
+> You can reference multiple variable groups in the same pipeline.
+> You can also reference a variable group in a template. 
+
+```
+variables:
+- group: my-variable-group
+- group: my-second-variable-group
+- name: my-bare-variable
+  value: 'value of my-bare-variable'
+
+steps:
+- script: echo $(myhello) # uses macro syntax
+- script: echo $(my-passed-variable)
+```
+
+---
+
+####  Authorize a variable group
+
+To work with a variable group, you **must** authorize the group.
+If you only name the variable group in YAML, then anyone who can push code to 
+your repository could extract the contents of secrets in the variable group.
+ To authorize the group, use one of the following techniques:
+
+1.  authorize any pipeline to use the variable group
+This might be a good option if you don't have any secrets in the group. 
+> Library > Variable groups 
+and then select the variable group in question and enable the setting 
+**Allow access to all pipelines**. 
+
+2. authorize a variable group for a specific pipeline
+> Select the Pipeline > Edit > then queue a build manually. 
+> You see a resource authorization error and an "Authorize resources" action on the error. 
+>  Choose this action to explicitly add the pipeline as an authorized user of the variable group.
+
+---
+
+[Set secret variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#secret-variables)  
 
 ---
 
