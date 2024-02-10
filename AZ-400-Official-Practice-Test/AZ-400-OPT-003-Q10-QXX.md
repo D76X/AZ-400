@@ -11815,6 +11815,14 @@ reusable variables.
 #### Pipeline Variables with macro syntax
 
 This example uses **macro syntax** with Bash, PowerShell, and a script task. 
+There are two ways Pipeline Variables can be declared, they are equivalent.
+However, **when variable goups are also declared then only the syntax with**
+`- name` is valid.
+
+```
+variables:
+  global_variable: value    # this is available to all jobs
+```
 
 ```
 variables:
@@ -11919,6 +11927,170 @@ and then select the variable group in question and enable the setting
 [Set secret variables](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch#secret-variables)  
 
 ---
+
+[Designing & Implementing IaC - Infrastructure as Code](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/9ee7b561-925c-4762-84bd-c893ae800736)  
+
+- Configuration Manager
+- PowerShell DCS (Desired State Configuration)
+- Use PowerShell DCS for App Infrastructure  
+- Azure Policy for Configuration Management
+- Azure Policy Guest
+
+---
+
+#### [Configuration Manager](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/815e3b41-f0a0-4914-a48b-41904a4cf753)  
+
+- Assess CM Mechanisms
+- Mutable Infrastructure 
+- Abstraction
+- Simplified Code Process
+- Imperative and Declarative Code
+- Centralization
+- Agent-Based Management
+
+---
+
+### What is Configuration Management?
+
+[Azure DevOps Configuration Management](https://learn.microsoft.com/en-us/shows/devops-fundamentals/configuration-management)  
+
+- Mutable vs Immutable Infrastructure
+- Imperative and Declarative Code
+- Centralization vs Decentralized Systems
+- Agent-based vs Agentless Management Systems
+
+
+##### Mutable vs Immutable Infrastructure
+
+> Mutable Infrastructure:
+Infrastructure that is not replaced but just dynamic altered to reach a desired state.
+
+The advantages of mutable are:
+- in-place updates 
+- keep existing servers and services
+- easier to introduce change in the environemnt
+
+> Immutable Infrastructure:
+Infrastructure that is **completely replaced / reconfigured** but to reach a desired state.
+
+The advantages of immutable are:
+- **always zero configuration drift**
+- easy to diagnose
+- easy to scale horizontaly: 
+you can rubberstamp the deployment and these will all be the same
+- simple rollback and recovery:
+in case of problem you can replace the last deployment entirely and restore the last known working environment
+
+---
+
+#### Mutable vs Immutable Infrastructure
+
+| Centralized             | Decentralized |
+| ----------------------- | ------------- |
+|  Granular Management    | Reduce Resources |
+|  Easy Auditing          | Reduce maintenance because there is no need for an extra centralization element |
+|  Continuos emnforcement | Increase security has does not rely on a single point of failure |
+
+---
+
+#### Agent-based vs Agentless Management Systems
+
+| Agent-Based MS          | Agentless MS |
+| ----------------------- | ------------- |
+|  Continuos emnforcement | Reduce bootstrapping as there is no required app to install |
+|   -                     | Increase security ? |
+
+
+---
+
+#### What is best from a **DevOps perspective** ?
+
+1. **Immutable Ifrastructure** choice is preferable.
+
+2. **Declarative Code**:
+> is preferable as it encourages automation and reduces maintenance overhead
+> fits better together with Immutable infrastructure
+> it is easier to understand and maintain than inperatve code
+> it is much more scalable
+
+3. Centralization is better than Decentralized ?
+4. Agent-based vs Agentless Management Systems?
+
+---
+
+[PowerShell DCS (Desired State Configuration)](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/dfc2ac9e-d27c-4858-bd6c-68ee05351026)  
+
+- it applies to **Mutable Infrastructure**:
+the end effect is that it makes targeted changes to the existing infrastructure to attain a desired state.
+
+- it is declarative code therefore easy to understand and easily scalable
+
+- it is **decentralized by default** but **it can also be employed in a centralized configuration**
+
+- it is Agent-Based:
+The agent **must be installed on a Windows System.
+
+#### How can DSC be used in DevOps scenarios?
+
+- **it is used in CI/CD pipelines to maintain state**
+- configuration can be applied in **Azure Automation**
+
+- [DscBaseline](https://github.com/phbits/DscBaseline):
+This PowerShell module was created to expedite the adoption of Microsoft Desired State Configuration (DSC) 
+for configuration management. Building these configuration files by hand takes far too long and lacks the
+benfits of a programmatic solution. DscBaseline covers common DSC modules and **creates configuration files**
+based on the system where it is launched. 
+**The configuration node is specified as localhost allowing it to be applied to any other systems**. 
+Making it useful for: 
+
+- backing up system configuration
+- upgrading a system
+- scaling out (horizontal)
+- adopting Configuration As Code (CAC) methodologies
+- disaster recovery documentation
+
+---
+
+#### Where can DSC can be used?
+
+- Windows 
+- Linux 
+- [Nano Server](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/nanodsc?view=dsc-1.1)  
+- [Azure](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-getting-started?view=dsc-1.1)  
+
+---
+
+[DSC for Windows](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1&viewFallbackFrom=dsc-2.0)
+
+PowerShell Desired State Configuration is included in Windows and updated through 
+**Windows Management Framework**. The latest version is Windows Management Framework 5.1.  
+
+You don't need to enable the **Windows Server feature 'DSC-Service'** to manage a machine
+using DSC. That feature is only needed when building a **Windows Pull Server instance**.
+
+--
+
+[DSC for Linux](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/lnxgettingstarted?view=dsc-1.1&viewFallbackFrom=dsc-2.0)
+
+You must install the **Open Management Infrastructure (OMI)** before installing DSC for Linux.
+DSC for Linux is available for download from the  repository in the repository:
+[PowerShell-DSC-for-Linux](https://github.com/Microsoft/PowerShell-DSC-for-Linux/releases/tag/v1.2.1-0)
+
+---
+
+[DSC in Azure](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-getting-started?view=dsc-1.1)   
+
+Before you enable **Automation State Configuration**, we would like you to know that a newer version of DSC
+is now generally available, managed by a feature of **Azure Policy** named **guest configuration**. 
+
+[Azure Policy guest configuration extension](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy?source=recommendations)  
+
+You can use the Azure Policy guest configuration extension to audit the configuration settings in a virtual machine. Guest configuration supports Azure VMs natively and non-Azure physical and virtual servers through Azure Arc-enabled servers.
+
+---
+
+
+
 
 
 
