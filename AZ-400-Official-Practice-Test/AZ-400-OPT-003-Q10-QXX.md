@@ -12186,6 +12186,69 @@ EnvironmentVariable_Path -OutputPath:"./EnvironmentVariable_Path"
 
 [DSC for Application Infrastructure](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/eb973d4c-a5cc-4169-8cf9-a5e8b2316b36)  
 
+This demo shows how a Azure DevOps Pipeline on a reposiitory can be used to deploy 
+a machine and together with DSC PowerShell scripts held in the same code repo it 
+is aloso possible to enforce configuration on the node.
+
+[Deployment group jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-group-phases?view=azure-devops&tabs=yaml)  
+
+**Deployment groups in Classic pipelines** make it easy to define groups of target servers for deployment. 
+**Tasks that you define in a deployment group job** run on some or all of the target servers, depending on 
+the arguments you specify for the tasks and the job itself.
+
+Given a Virtual Machine that is **part of a Deployment Group** set up in the Azure DevOps
+organization of the Pipeline define a Job and the steps below:
+
+1. Step-1: copy files top the C:\DSC folder (of the target node)
+The VM that is part of a Deployment Group has automatically an Agent installed on it at the 
+time the target node is registered to the Azure DevOps Deployment Group. This **Agent** can
+be used to perform DSC operation on the machine.
+The PS files with the DSC instructions are copied from the code repo to teh target machine in the 
+specific folder `C:\DSC`.
+
+2. Step-2: compilation of the files in `C:\DSC` task.
+In order to be executed the files in `C:\DSC` must first be compiled and thsi can be done 
+in the Pipeline by means of a simple powershell task step.
+
+[DSC - Compile the configuration](https://learn.microsoft.com/en-us/powershell/dsc/configurations/write-compile-apply-configuration?view=dsc-1.1#compile-the-configuration)  
+
+For a DSC configuration to be applied to a node, it must first be compiled into a MOF file.
+Running the configuration, like a function, will compile one .mof file for every Node defined by the Node block.
+In order to run the configuration, you need to **dot source** your HelloWorld.ps1.
+You may then, run your configuration by calling it like a function.  
+You could also invoke the configuration function at the bottom of the script so that you don't need to dot-source.
+
+```
+cd C:\DSC
+. \ThePsDscFileToCompile.ps1 # this is what is called dot source, there must be a space after the .
+ThePsDscFileToCompile
+```
+
+3. Step-3: run the DSC compile file.
+
+[Start-DscConfiguration](https://learn.microsoft.com/en-us/powershell/module/psdesiredstateconfiguration/start-dscconfiguration?view=dsc-1.1)
+`Start-DscConfiguration -Path "C:\DSC\"`
+
+This command applies the configuration settings from C:\DSC\ to every computer that has settings in that folder. 
+The command returns Job objects for each target node deployed to.
+
+`Start-DscConfiguration -Path "C:\DSC\ -Wait -Force -ComputerName localhost"`
+
+`-ComputerName`
+Specifies an array of computer names. This parameter restricts the computers that have configuration 
+documents in the Path parameter to those specified in the array.
+
+`-Wait`
+Indicates that the cmdlet blocks the console until it finishes all configuration tasks.
+If you specify this parameter, do not specify the JobName parameter.
+
+`-Force`
+Stops the configuration operation currently running on the target computer and begins the 
+new Start-Configuration operation. If the RefreshMode property of the Local Configuration Manager 
+is set to Pull, specifying this parameter changes it to Push.
+
+---
+
 The two main scenarios in which PowerShell DSC should be applied are the following:
 
 1. Governance: by means of **Azure Automation** to **enforce Governance accross the enterprise**
