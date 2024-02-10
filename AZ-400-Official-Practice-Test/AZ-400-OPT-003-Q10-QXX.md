@@ -12308,6 +12308,183 @@ Automation Account has also a **Gallery** with a long list of **DSC Files Templa
 
 ---
 
+### [Azure Policy](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/156a061e-55f4-4ff3-94a1-c0041830707d)  
+
+[What is Azure Policy? ](https://learn.microsoft.com/en-us/azure/governance/policy/overview)  
+
+**Azure Policy helps to enforce organizational standards and to assess compliance at-scale**. 
+It is used to **enforce rules and conventions accross your Azure Resources**.
+
+- Naming Conventions
+- Tags
+- Resource sizes
+- Resource settings
+- Data retention
+- etc.
+
+Through its **compliance dashboard**, it provides an aggregated view to evaluate the overall 
+state of the environment, with the ability to drill down to the per-resource, per-policy granularity. 
+
+It also helps: 
+- **to bring your resources to compliance through bulk remediation for existing resources**
+- **automatic remediation for new resources**.
+
+#### Scenario for Azure Policy with Azure DevOps
+
+You typically have different target environments:
+
+- Production
+- Dev
+- Test
+
+The following is desirable:
+
+1. Best practice dictates that the enviroment diverge the minimum possible from the Production.
+2. You want **to enforce and report over a set organizatuion standars (compliance)** on all the infrastructure part of these environments
+
+---
+
+### How do Azure Policy integrates with Azure DevOps?
+
+This happens in Azure DevOps Pipelines through **Pre-/Post- deployment Gates**
+
+[Deployment gates](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops)  
+
+Gates allow **automatic collection of health signals from external services** and 
+**then promote the release when all the signals are successful** or stop the deployment
+on timeout.
+
+[Use Cases](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops#use-cases)
+
+- incident management i.e. proceed only if all bugs in the sprint have been fixed
+- seek approvals: notify specific people in order to provide manual approval to carry on the deployment
+- quality validation: ryun queries i.e. code coverage, test pass rate, etc. to make usre the deployment can continue
+- UX baseline must be met
+- wait on the state of teh target resources
+- query and validate infrastructure for health
+
+- Security and compliance assessment:
+Perform security checks such as artifacts scanning, code signing, and **policy checking**. 
+A deployment gate might initiate the scan and wait for it to complete, or just check for completion. 
+Assess Azure Policy compliance on resources within the scope of a given subscription and resource group, 
+and optionally at a specific resource level. See Check Azure Policy compliance task for more details.
+
+In other word you gcreate an Azure Policy and use an Azure DevOps Gate to verify that the target of a 
+deployment is compliant to that policy and fails the deployment otherwise.
+
+#### Azure Policy integration with Azure DevOps workflow
+
+1. **Create a Policy Definition** - you may start from an existing Azure Policy as a template
+
+2. **Assigne the Policy** by giving it a **scope**:
+
+- Management Group
+- Subscription
+- Resource Group
+- an individual Resource
+
+3. [Optional] **Create an Initiative**
+This is just a set of Azure Policies that can be assigned together to a scope.
+
+4. **In the Azure Policy** define a **Check Condition** that periodically checks the compliance of the assigned targets
+
+For example:
+
+- does the target have ane allowed sizes?
+- does the target have any of a set of specified  resorce tag?
+- is the reource deployed in a compliant region?
+- does the resource have compliant settings and configuration?
+
+5. Check the condition
+
+6. Trigger an action if the condition has not been met
+In this step you can specify in the Policy what to do next:
+
+- disallow the reosurce to be built or changed
+- aufit the event and report it
+- enforce then change to the resource to bring it into policy compliance
+
+---
+
+#### Azure Policy Demo
+
+> Azure Portal > Azure Policy
+> Definitions: a list of all Azure Policy definition that are available
+> Select the policy of interest i.e.** Disk encryption should be applied to VM** 
+> Adapt the **JSON** of the Policy if you need to: Azure Policy has a **declaritive Json-based implementation**
+> If the policy has been adapted then you can **Export** int and then import it again as a custom policy
+> or you can adapt it offline in you editor of choice and repeate the process
+> **Assign the policy to a scope**: select subscription / RG / Resource, etc.
+> Specify **Exclusion**
+
+[Understand Azure Policy effects](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects)
+> **Parameters** > Effect: `AuditifNotExists` | `Disabled` | `Modify` | `Deny` | `DenyAction`...
+
+
+`Append`
+Append is used to add more fields to the requested resource during creation or update. 
+A common example is specifying allowed IPs for a storage resource.
+
+`AuditIfNotExists`
+AuditIfNotExists enables auditing of resources related to the resource that matches the if condition, 
+but don't have the properties specified in the details of the then condition.
+
+`DeployIfNotExists`
+Similar to AuditIfNotExists, a DeployIfNotExists policy definition executes a template deployment 
+when the condition is met. Policy assignments with effect set as DeployIfNotExists require a 
+managed identity to do remediation.
+
+
+`Deny`
+Deny is used to **prevent a resource request that doesn't match defined standards through a policy definition**
+and fails the request.
+
+`DenyAction`
+DenyAction is used to block requests based on intended action to resources at scale. 
+The only supported action today is DELETE. This effect and action name helps 
+**prevent any accidental deletion of critical resources**.
+
+`Disabled`
+This effect is useful **for testing situations** or for when the policy definition has parameterized the effect. 
+This flexibility **makes it possible to disable a single assignment instead of disabling all of that policy's assignments**.
+
+`Manual`
+The new manual effect enables you **to self-attest the compliance of resources or scopes**. Unlike other policy definitions that actively scan for evaluation, the Manual effect allows for manual changes to the compliance state. To change the compliance of a resource or scope targeted by a manual policy, **you need to create an attestation**. The best practice is to design manual policies that target the scope that defines the boundary of resources whose compliance need attesting.
+
+> **Remediation**: in the policy definition the **Remediation Tab** allows the dfinition of actions to make the scope complient to the policy. This **requires the assignment of a Managed Identity** that has the permission to perform the changes on the target scope and resources
+
+---
+
+#### Azure Policy - Azure DevOps Pipelines integration
+
+In **classic pipelines** you can simply ise **Gates** to make use of an Azure Policy.
+The Gate can be defined as a **pre- or post-** deployment condition.
+
+Normally you use a **pre-deployment condition** for the gate as you want to make sure
+that the application that is going to be deployed by the Azure DevOps Pipeline is going
+to be deployed to a compliant environment otherwise testing may be void.
+
+The **post-deployment condition** may also be used i.e. where you do not want to prevent deployment
+but just want to be reported over the compliancy state of the target environment.
+
+In the **Gate definition UI** you can do the fiollowing:
+
+
+- Check Azure Policy Compliance *
+- Invoke Azure Function
+- Invoke REST API
+- Query Azure Monitor alerts:
+- Query Work Items > this allows you to create queries on Azure Boards
+
+* ensure artifacts adhere to Azure Policies
+
+[Implementing Gates in Azure YAML Pipelines](https://stackoverflow.com/questions/61656077/implementing-gates-in-azure-yaml-pipelines)  
+
+In YAML it works in a different way. To use approvals and check you need to define environment first. 
+Once you have an enviroment you can define approvals and checks.
+
+---
+
 
 
 
