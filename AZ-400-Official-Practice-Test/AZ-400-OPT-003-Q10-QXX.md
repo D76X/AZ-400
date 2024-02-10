@@ -12182,9 +12182,38 @@ Configuration EnvironmentVariable_Path
 
 EnvironmentVariable_Path -OutputPath:"./EnvironmentVariable_Path"
 ```
+
+---
+
+---
+
+The two main scenarios in which PowerShell DSC should be applied are the following:
+
+1. Governance: by means of **Azure Automation** to **enforce Governance accross the enterprise**
+2. Applications: this is when DSC is applied to **Azure DevOps CI/CD Pipelines**
+
+[Azure & Desired State Configuration Part 1/4](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-1-4/ba-p/2609032)
+
+In Part 1 Azure & Desired State Configuration Part 1/4 - Microsoft Tech Community we saw 
+how we could deploy a web server on a new VM in using a Desired State Configuration file 
+and the Azure Portal. 
+
+[Azure & Desired State Configuration Part 2/4: Focus on Deploying with DevOps Pipeline](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-2-4/ba-p/2609036)  
+
+Now we will take this a step further and **set up the deployment in a Pipeline on Azure Devops**. 
+This will be most likely one the ways you could **Automate deployments** in your organization 
+and increase collaboration.
+
+[Azure & Desired State Configuration Part 3/4: Focus on Azure Automation Account](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-3-4/ba-p/2609037)
+
+The next section will describe one of the most powerful Automation tools in our arsenal, the Azure Automation Account. 
+
+
 ---
 
 [DSC for Application Infrastructure](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/eb973d4c-a5cc-4169-8cf9-a5e8b2316b36)  
+
+### Demo-1: enforce DSC on a target node by a Azure Pipeline
 
 This demo shows how a Azure DevOps Pipeline on a reposiitory can be used to deploy 
 a machine and together with DSC PowerShell scripts held in the same code repo it 
@@ -12247,28 +12276,35 @@ Stops the configuration operation currently running on the target computer and b
 new Start-Configuration operation. If the RefreshMode property of the Local Configuration Manager 
 is set to Pull, specifying this parameter changes it to Push.
 
+
 ---
 
-The two main scenarios in which PowerShell DSC should be applied are the following:
+### Demo-2: enforce DSC through Azure Automation
 
-1. Governance: by means of **Azure Automation** to **enforce Governance accross the enterprise**
-2. Applications: this is when DSC is applied to **Azure DevOps CI/CD Pipelines**
+[Get started with Azure Automation State Configuration](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-getting-started)
 
-[Azure & Desired State Configuration Part 1/4](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-1-4/ba-p/2609032)
+1. Create an Automation Resource from the Azure Portal
+2. Import a configuration into Azure Automation
+3. Compile a configuration in Azure Automation
+4. Enable an Azure Resource Manager VM for management with State Configuration
 
-In Part 1 Azure & Desired State Configuration Part 1/4 - Microsoft Tech Community we saw 
-how we could deploy a web server on a new VM in using a Desired State Configuration file 
-and the Azure Portal. 
+In the **Automation Account** there is a specific tab named **Sate Configuration (DSC)**
+that is specifically devoted to the set up and implementation of DSC. 
 
-[Azure & Desired State Configuration Part 2/4: Focus on Deploying with DevOps Pipeline](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-2-4/ba-p/2609036)  
+There you can perform the following steps:
 
-Now we will take this a step further and **set up the deployment in a Pipeline on Azure Devops**. 
-This will be most likely one the ways you could **Automate deployments** in your organization 
-and increase collaboration.
+- register nodes that the configurations are to be applied to
+- add a number of configuration files (by simply uploading them to the AA) that define the configuratins that you want to apply accross the set of nodes that are registred on this automation account DSC
+- lets you **compile the PS-DSC files into MOFs** whic will then be present from the tab **Compiled Configuration** 
+- from the **Nodes** tab you can now apply compiled configurations to top the different registered target nodes: **assigned node configuration**
 
-[Azure & Desired State Configuration Part 3/4: Focus on Azure Automation Account](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-3-4/ba-p/2609037)
+At this point the Automation Account takes care of applying the DSC config uration to teh selected nodes.
+This all happens without having to log-on the nodes and thereofre reduces maintenance to a very minimum.
+The Automation Account has also a report view on the state of the nodes and their present configuration and 
+also the outcome of the enforcemnt. It is therefore a centralized point where all teh configuration of 
+nodes  can be easily managed and administered.
 
-The next section will describe one of the most powerful Automation tools in our arsenal, the Azure Automation Account. 
+Automation Account has also a **Gallery** with a long list of **DSC Files Templates**.
 
 ---
 
