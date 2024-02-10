@@ -12089,6 +12089,102 @@ You can use the Azure Policy guest configuration extension to audit the configur
 
 ---
 
+[PowerShell DSC Examples](https://github.com/Saritasa/dsc-examples)
+
+The three main elements are:
+- Configuration
+- Node: the VM or machines that are going to be configures
+
+- Resources: 
+The properties of the Node that can be configured according to a fixed schema.
+Resources also **contains the functions to enforce the configuration**.
+
+[Example-1](https://github.com/Saritasa/dsc-examples/blob/master/01%20BasicConfig/BasicConfig.ps1)
+
+```
+Configuration EnvironmentConfig
+{
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
+
+    Node StagingServer
+    {
+        Environment AspNetCore
+        {
+            Name  = 'ASPNETCORE_ENVIRONMENT'
+            Value = 'Staging'
+        }
+    }
+
+    Node ProdServer
+    {
+        Environment AspNetCore
+        {
+            Name  = 'ASPNETCORE_ENVIRONMENT'
+            Value = 'Production'
+        }
+    }
+}
+
+EnvironmentConfig -OutputPath Out
+```
+
+[Eaxample-2: Parameters](https://github.com/Saritasa/dsc-examples/blob/master/02%20Parameters/Parameters.ps1)
+
+```
+Configuration EnvironmentConfig
+{
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string[]] $Servers,
+        [Parameter(Mandatory=$true)]
+        [string] $Environment
+    )
+
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
+
+    Node $Servers
+    {
+        Environment AspNetCore
+        {
+            Name  = 'ASPNETCORE_ENVIRONMENT'
+            Value = $Environment
+        }
+    }
+}
+
+EnvironmentConfig -Servers Server1, Server2 -Environment Production -OutputPath Out
+```
+
+[Example-3: Define a configuration and generate the configuration document](https://learn.microsoft.com/en-us/powershell/dsc/getting-started/wingettingstarted?view=dsc-1.1#define-a-configuration-and-generate-the-configuration-document)
+
+```
+Configuration EnvironmentVariable_Path
+{
+    param ()
+
+    Import-DscResource -ModuleName 'PSDscResources'
+    
+    # this is a node
+    Node localhost
+    {
+        # this is a Resource: it invokes the PS function CreatePathEnvironmentVariable to enforce a specified state on the node
+        Environment CreatePathEnvironmentVariable
+        {
+            Name = 'TestPathEnvironmentVariable'
+            Value = 'TestValue'
+            Ensure = 'Present'
+            Path = $true
+            Target = @('Process', 'Machine')
+        }
+    }
+}
+
+EnvironmentVariable_Path -OutputPath:"./EnvironmentVariable_Path"
+```
+
+---
+
 
 
 
