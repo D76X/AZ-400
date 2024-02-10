@@ -12732,13 +12732,124 @@ There are thre aspects to a deployment:
 
 [Demo: ARM & Terraform Integration with Azure Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/b2a50452-73e1-4924-a3a1-3792d6e13ec0)  
 
-- Create an Azure Pipelien
+- Create an Azure **Release** Pipeline
 - add a ARM Template task
 - Intsall Terraform on the Pipeline
 - add a Terraform Task
 
+When you create an Azure **Release** Pipeline from **Add Artifacts** you can then select a code repo
+in which the ARM templates are located.
+
+**Add an ARM Template task** to the release pipeline, you need the following data:
+
+01. a Azure service connection to the subscription where the resources are to be deployed to
+02. Specify the Action: **Create or Update a RG** / **Delete a RG**
+03. Specify the details of the RG: name, location, etc.
+04. **Template location**: **Linked artifact** /  **URL of the file**
+05. select the **template.json** 
+06. select the **parameters.json** 
+07. override any of the params in **parameters.json** i.e. `-virtualMachineName "vm0078"`
+08. select deployment mode: `Incremental`, `Complete`, `Validation Only`
+
+
+In order to make use of a **Terrafiorm Task** add **the Terraform tasks** according to the available commands
+and follow the steps:
+[Azure Pipelines Terraform Tasks](https://marketplace.visualstudio.com/items?itemName=JasonBJohnson.azure-pipelines-tasks-terraform)
+
+01. add the command `init`
+
+initialize the working directory for teh configuration files. 
+This **must** be the first Terraform step as it is used in all the following Terraform tasks.
+You will have to provide the details **storage account** and **container** where the terraform 
+files for this deployment are hosted, these have `*.tf` extension.
+There is also a **key file** that is the **state configuration file** that will also be used by 
+the following tasks.
+
+01. add the command `validate` 
+
+02. add the command `plan`
+The plan task **reviews** the changes and identifies the changes that are going to be perform on the 
+target RG based on the existing state of the RG and the target state. 
+
+03. add the command `validate and apply`
+This is the steps that performs the changes determined in the `plan` step
+
 ---
 
+[Use Azure Bicep](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/3e128383-e2a0-49c7-9bd4-fbf3e7a78091)  
+
+- What is Bicep?
+- ARM vs Bicep
+- Bicep Workfloww
+- Bicep Tools
+
+**Bicep files** is a **simpler and cleaner file format than ARM Templates to target ARG** and deploy
+resources to Azure. **Bicep files** are focused on **Human Readability** while ARM Templates are 
+Json files and have more quotes, brakets spaces and are therefore less human-friendly.
+
+[Understand the structure and syntax of Bicep files](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file)  
+
+```
+metadata <metadata-name> = ANY
+
+targetScope = '<scope>'
+
+type <user-defined-data-type-name> = <type-expression>
+
+func <user-defined-function-name> (<argument-name> <data-type>, <argument-name> <data-type>, ...) <function-data-type> => <expression>
+
+@<decorator>(<argument>)
+param <parameter-name> <parameter-data-type> = <default-value>
+
+var <variable-name> = <variable-value>
+
+resource <resource-symbolic-name> '<resource-type>@<api-version>' = {
+  <resource-properties>
+}
+
+module <module-symbolic-name> '<path-to-file>' = {
+  name: '<linked-deployment-name>'
+  params: {
+    <parameter-names-and-values>
+  }
+}
+
+output <output-name> <output-data-type> = <output-value>
+```
+
+```
+metadata description = 'Creates a storage account and a web app'
+
+@description('The prefix to use for the storage account name.')
+@minLength(3)
+@maxLength(11)
+param storagePrefix string
+
+param storageSKU string = 'Standard_LRS'
+param location string = resourceGroup().location
+
+var uniqueStorageName = '${storagePrefix}${uniqueString(resourceGroup().id)}'
+
+resource stg 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: uniqueStorageName
+  location: location
+  sku: {
+    name: storageSKU
+  }
+  kind: 'StorageV2'
+  properties: {
+    supportsHttpsTrafficOnly: true
+  }
+}
+
+module webModule './webApp.bicep' = {
+  name: 'webDeploy'
+  params: {
+    skuName: 'S1'
+    location: location
+  }
+}
+```
 
 ---
 
