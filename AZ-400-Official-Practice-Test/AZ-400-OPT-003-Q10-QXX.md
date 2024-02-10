@@ -12455,7 +12455,18 @@ The new manual effect enables you **to self-attest the compliance of resources o
 
 ---
 
-#### Azure Policy - Azure DevOps Pipelines integration
+#### Azure Policy - Azure DevOps Classic Pipelines integration
+
+[AzurePolicyCheckGate@0 - Check Azure Policy compliance v0 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-policy-check-gate-v0?view=azure-pipelines)
+
+This is the task used behind the scene in Azure Classic Pipelines.
+
+> Could the same task also be used in a YAML Pipeline?
+
+---
+
+[Implement Azure Policy with Azure DevOps release pipelines](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/policy-devops-pipelines)  
+[Controlling Release Pipelines with Gates and Azure Policy Compliance](https://devblogs.microsoft.com/devops/controlling-release-pipelines-with-gates-and-azure-policy-compliance/)  
 
 In **classic pipelines** you can simply ise **Gates** to make use of an Azure Policy.
 The Gate can be defined as a **pre- or post-** deployment condition.
@@ -12478,12 +12489,177 @@ In the **Gate definition UI** you can do the fiollowing:
 
 * ensure artifacts adhere to Azure Policies
 
+---
+
+### Azure Policy - Azure DevOps YAML Pipelines integration
+
 [Implementing Gates in Azure YAML Pipelines](https://stackoverflow.com/questions/61656077/implementing-gates-in-azure-yaml-pipelines)  
 
-In YAML it works in a different way. To use approvals and check you need to define environment first. 
+**In YAML it works in a different way**. 
+To use approvals and check **you need to define environment first**. 
+
+This is the important bit:
+
+```
 Once you have an enviroment you can define approvals and checks.
+```
+
+[Define approvals and checks](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#evaluate-artifact)
+
+A pipeline is made up of **stages**. 
+A pipeline author can control whether a stage should run **by defining conditions on the stage**. 
+Another way to control if and when a stage should run is **through approvals and checks**.
+
+Checks can be configured on 
+ - environments 
+ - service connections
+ - repositories
+ - variable groups
+ - secure files
+ - agent pools.
+
+Service connections cannot be specified by variable.
+
+
+[Evaluate artifact](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#evaluate-artifact)
+
+
+[Create and target an environment](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/environments?view=azure-devops)
+
+An environment is a **collection of resources that you can target with deployments from a pipeline**. 
+Typical examples of environment names are **Dev, Test, QA, Staging, and Production**. 
+An Azure DevOps environment **represents a logical target** where your pipeline deploys software.
+
+**Azure DevOps environments aren't available in classic pipelines.**
+For classic pipelines, **deployment groups** offer similar functionality.
+
+#### [Environments - Approvals](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#approvals)  
+
+We support **manual approval checks on environments**.
+Manually **control when a stage should run** using approval checks. 
+This check is **commonly used to control deployments to production environments**.
+
+Checks are available to the resource Owner to control when a stage in a pipeline consumes a resource. 
+As the owner of a resource, such as an environment, you can define approvals and checks that must be 
+satisfied before a stage consuming that resource starts.
+
+The **Creator, Administrator, and user roles can manage approvals and checks**. 
+The **Reader role** can't manage approvals and checks.
 
 ---
+
+[Environments - Branch control](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#branch-control)
+
+Ensure all the resources linked with the pipeline are built from the allowed branches 
+and that the branches have protection enabled. 
+
+---
+
+[Environments - Business hours](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#business-hours)  
+
+In case you want all deployments to your environment to happen in a specific time window only.
+
+---
+
+[Environments - Invoke Azure function](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#invoke-azure-function)  
+
+Azure functions provide a great way to author your own checks. You include the logic of the check-in Azure function such that each execution is triggered on http request, has a short execution time and returns a response. While defining the check, you can parse the response body to infer if the check is successful. The evaluation can be repeated periodically using the Time between evaluations setting in control options. 
+
+[Environments - Invoke rest api](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#invoke-rest-api)
+
+---
+
+[Environments - Query Azure Monitor Alerts](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#query-azure-monitor-alerts)  
+
+Alerts are a standard means to detect issues with the health of infrastructure or application, and take corrective actions.
+Query Azure Monitor Alerts helps you observe Azure Monitor and ensure no alerts are raised for the application after a deployment. 
+
+> Canary deployments : deployment in stages
+
+After deploying to a stage (set of customers), the application is observed for a period of time.
+Health of the application after deployment is used to decide whether the update should be made to 
+the next stage or not.
+
+---
+
+[Environments - Required template](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#required-template)  
+
+With the required template check, you can enforce pipelines to use a specific YAML template. When this check is in place, a pipeline fails if it doesn't extend from the referenced template.
+---
+
+> This is the close that you get to have a way to check Azure Policy Compliance in YAML Pipelines.
+> In other words in YAML Pipeline there is no way you can ddo what you do with Gates in Classic Pipelies with Azure Policies.
+> You can however define a Deployment Environment and use it as a target of the deployment stage for a YAML Pipeline.
+> An Environment at this time can only be made by VMs or Kubernetes Namespace
+> VMs can be subject to Azure Policies therefore you may chack the state of the policy on them using one of the other mechanisms and use it as a condition to your stage.
+
+[Environments - Evaluate artifact](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/approvals?view=azure-devops&tabs=check-pass#evaluate-artifact)
+
+You can evaluate artifact(s) to be deployed to an environment against custom policies.
+**Currently, this works with container image artifacts only**.
+
+---
+
+
+#### [Create and target an environment - Security](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/environments?view=azure-devops)
+User permissions
+
+Control who can create, view, use, and manage the environments with user permissions. 
+There are four roles:
+
+- Creator (scope: all environments) 
+- Reader
+- User 
+- Administrator. 
+
+In the specific environment's user permissions panel, you can set the permissions that are 
+inherited and you can override the roles for each environment.
+
+---
+
+## [Azure Policy Guest Configuration](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/6e0b7072-c298-41c2-8bd4-58986136d7ef)  
+
+- Configuration as Code
+- can check OS, applications, ENVIRONEMTN SETTINGS
+- it all happens by deploying a VM Extension that deploys the **Guest Configuration Agent**
+- the **Guest Configuration Agent** applies **Congiguration Policies**
+- There are **built-in** and **custom** policies
+
+### Azure Policy Guest Configuration from the Portal
+
+> Azure Portal > Policy > Definitions > **Guest Configuration**
+> Initiative 
+> Deploy prerequisites to enable Guest Configuration Policies on VMs
+> assign the policy to the desired scope: Subscription, RG, Resource, etc.
+> once applied return to Policies in teh Category Guest Configuration Policies
+> select the policy or policies (as part of an initiative) that you wish to apply to the scope
+
+This is a **different way to enforce policies** wehn compared to the two described earlier:
+
+1. Azure Policy assignement from the Portal
+2. Azure Policy assignmentthrough Automation Account
+3. Azure Policy assignment as Guest Configuration
+
+The options 2+3 are in fact an **automated way to enforce Azure Polices on a scope**.
+
+Option 3. required some prerequisite to be installed on the assigned target, it also requires a manage identity
+to be in place in order to perform the enforcement.
+
+Option 2. deos not required prerequisites installation on the target and requires a manage identity only if 
+the effect of the policy or initiative is `Modify`.
+
+The option 1 is instead a **manual** alternative.
+
+---
+
+[Azure Policy guest configuration extension](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy?source=recommendations)  
+
+You can use the Azure Policy guest configuration extension to audit the configuration settings in a virtual machine. Guest configuration supports Azure VMs natively and non-Azure physical and virtual servers through Azure Arc-enabled servers.
+
+[](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/whats-new/migrating-from-dsc-extension)
+---
+
+
 
 
 
