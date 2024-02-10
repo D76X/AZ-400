@@ -12182,6 +12182,30 @@ Configuration EnvironmentVariable_Path
 
 EnvironmentVariable_Path -OutputPath:"./EnvironmentVariable_Path"
 ```
+---
+
+[DSC for Application Infrastructure](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/eb973d4c-a5cc-4169-8cf9-a5e8b2316b36)  
+
+The two main scenarios in which PowerShell DSC should be applied are the following:
+
+1. Governance: by means of **Azure Automation** to **enforce Governance accross the enterprise**
+2. Applications: this is when DSC is applied to **Azure DevOps CI/CD Pipelines**
+
+[Azure & Desired State Configuration Part 1/4](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-1-4/ba-p/2609032)
+
+In Part 1 Azure & Desired State Configuration Part 1/4 - Microsoft Tech Community we saw 
+how we could deploy a web server on a new VM in using a Desired State Configuration file 
+and the Azure Portal. 
+
+[Azure & Desired State Configuration Part 2/4: Focus on Deploying with DevOps Pipeline](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-2-4/ba-p/2609036)  
+
+Now we will take this a step further and **set up the deployment in a Pipeline on Azure Devops**. 
+This will be most likely one the ways you could **Automate deployments** in your organization 
+and increase collaboration.
+
+[Azure & Desired State Configuration Part 3/4: Focus on Azure Automation Account](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-amp-desired-state-configuration-part-3-4/ba-p/2609037)
+
+The next section will describe one of the most powerful Automation tools in our arsenal, the Azure Automation Account. 
 
 ---
 
