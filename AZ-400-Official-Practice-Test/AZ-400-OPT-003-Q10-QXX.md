@@ -12619,6 +12619,10 @@ inherited and you can override the roles for each environment.
 
 ## [Azure Policy Guest Configuration](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/3fb92761-f415-4adf-b6a9-f345ca55712f/6e0b7072-c298-41c2-8bd4-58986136d7ef)  
 
+Thisis part of **Azure Automanage**
+[Manage resources from cloud to edge using Azure Automanage machine con | OD103](https://www.youtube.com/watch?v=cGWA-lW__MY)  
+
+
 - Configuration as Code
 - can check OS, applications, ENVIRONEMTN SETTINGS
 - it all happens by deploying a VM Extension that deploys the **Guest Configuration Agent**
@@ -12656,7 +12660,86 @@ The option 1 is instead a **manual** alternative.
 
 You can use the Azure Policy guest configuration extension to audit the configuration settings in a virtual machine. Guest configuration supports Azure VMs natively and non-Azure physical and virtual servers through Azure Arc-enabled servers.
 
-[](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/whats-new/migrating-from-dsc-extension)
+---
+
+### Exam Tips on PowerShell DSC
+
+- look the main DSC function and their params
+
+- understand the steps of Azure Automation deployment of PS-DSC
+
+- ARM Templates and **Custom Script Exention** have **lower admin effort that PS-DSC** and are more suitable options if the objective is simply the deplyment of VMs. 
+
+---
+
+[Development of Deployment Scripts and Templates](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/84c9e4e2-923c-4a30-9869-7ab872f4907b)  
+
+- Deployment Solution Options
+- Use IaC: ARM vs. Terraform
+- Use Azure Bicep
+- Powershell vs CLI
+- Linting ARM Templates
+- Deploy DBs
+- SQL Data Movement in the contest of DB Deployments
+- Visual Studio App Center 
+- CDN & IoT Deployments
+- Azure Stack & Sovereign Cloud Deployments
+ 
+- LAB: Build & Distribute an App in Visual Studio App Center 
+- LAb: Linting ARM Templates
+- LAB: Building Infrastructure with Azure Pipeliens
+- LAB: Deploy a Python App to an AKS Cluster within Azure Pipelines
+
+---
+
+## Deployment Solution Options
+
+How do we move the code safely and orderly along the environments? 
+> Dev > Test > Stage > Prepruction > Production
+
+Popular deplyment options that can be used to create deployment enviroments are:
+
+- GitHub Actions
+- Azure Pipelines
+- Jenkins
+- CircleCI
+- ARM
+- Terraform
+- VS App Center
+- Octopus Deployment
+
+There are thre aspects to a deployment:
+
+- Infrastructure & Customization
+- Database + Application(s)
+- Process: Triggers, Timing, Unit Tests, Results
+
+---
+
+##  [Use IaC: ARM vs. Terraform](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/b2a50452-73e1-4924-a3a1-3792d6e13ec0)  
+
+| ARM Templates                               | Terraform     |
+| ------------------------------------------- | ------------- |
+|  Azure Specific                             |  multiple cloud providers |
+|  Always up-to-date                          |  it tends to lag behind with the updated resources |
+|  Always up-to-date with latest reources     |  - |
+|  no state file is used                      |  it uses a stae file |
+|  no cean-up commands it is always a new env |  it has built-in clan-up commands |
+|  JSON based declarative code very detailed  |  stramlined code |
+
+
+**Terraform can use ARM Templates** therefore these can be used together!
+
+[Demo: ARM & Terraform Integration with Azure Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/b2a50452-73e1-4924-a3a1-3792d6e13ec0)  
+
+- Create an Azure Pipelien
+- add a ARM Template task
+- Intsall Terraform on the Pipeline
+- add a Terraform Task
+
+---
+
+
 ---
 
 
