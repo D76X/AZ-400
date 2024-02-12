@@ -13024,7 +13024,77 @@ Creates an XML report of the changes that would be made by a publish action.
 
 --- 
 
-- Visual Studio App Center 
+### [Visual Studio App Center](https://visualstudio.microsoft.com/app-center/)  
+
+All in one place:
+
+- Automate the lifecycle of your **iOS, Android, Windows, and macOS** apps. 
+- Connect your repo and within minutes build in the cloud
+- **test on thousands of real devices** > **Hosted Device Lab**
+- distribute to beta testers and app stores
+- monitor real-world usage with crash and analytics data
+- **It interates with Azure DevOps Pipelines**
+
+#### Azure DevOps - App Center Workflow
+
+1. From **App Center** generate a **API Token**:
+>Settings > **App API Tokens** > Ne API Token (Acess: Full or ReadOnly)
+
+2. In Azure DevOps create a **release pipeline**
+
+3. In Stage1 add the tasks: AppCenterTest@1 
+> appFile
+In this tasks you provide the path to a binary file to the application to test.
+Other data will depend on the specific choice of the selected test framework.
+> credentialsOption: serviceEndpoint
+**In all cases you will need to provide the API Token to your App Center** that was created in the previous step.
+> appSlug: username/app_id                       # a user for an app that will be used to perform the tests
+> devices: deviceId1, deviceId2, deviceId3, etc. # the ids of the registered devices on App Center
+
+4. In Stage1 add the tasks: AppCenterDistribute@3 
+> appFile
+> credentialsOption: serviceEndpoint # as described above
+> appSlug: username/app_id
+
+[AppCenterTest@1 - App Center test v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/app-center-test-v1?view=azure-pipelines)  
+
+```
+# App Center test v1
+# Test app packages with Visual Studio App Center.
+- task: AppCenterTest@1
+  inputs:
+    appFile: # string. Alias: app. Required. Binary application file path. 
+    artifactsDirectory: '$(Build.ArtifactStagingDirectory)/AppCenterTest' # string. Alias: artifactsDir. Required. Artifacts directory. Default: $(Build.ArtifactStagingDirectory)/AppCenterTest.
+  # Prepare Tests
+    frameworkOption: 'appium' # 'appium' | 'espresso' | 'calabash' | 'uitest' | 'xcuitest'. Alias: framework. Required when 
+    credentialsOption: 'serviceEndpoint' # 'serviceEndpoint' | 'inputs'. Alias: credsType. Required when enableRun = true.     appSlug: # string. Required when enableRun = true. App slug. 
+    devices: # string. Required when enableRun = true. Devices. 
+    localeOption: 'en_US' # 'da_DK' | 'nl_NL' | 'en_GB' | 'en_US' | 'fr_FR' | 'de_DE' | 'ja_JP' | 'ru_RU' | 'es_MX' | 'es_ES' | 'user'. Alias: locale. Required when enableRun = true. System language. Default: en_US.
+    #userDefinedLocale: # string. Optional. Use when enableRun = true && locale = user. Other locale. 
+    #loginOptions: # string. Alias: loginOpts. Optional. Use when enableRun = true && credsType = inputs. Additional options for login. 
+    #runOptions: # string. Alias: runOpts. Optional. Use when enableRun = true. Additional options for run. 
+    #skipWaitingForResults: false # boolean. Alias: async. Optional. Use when enableRun = true. Do not wait for test result. Default: false.
+  # Advanced
+    #cliFile: # string. Alias: cliLocationOverride. App Center CLI location. 
+    #showDebugOutput: false # boolean. Alias: debug. Enable debug output. Default: false.
+```
+
+[AppCenterDistribute@3 - App Center distribute v3 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/app-center-distribute-v3?view=azure-pipelines)
+Use this task to distribute app builds to testers and users via Visual Studio App Center.
+
+```
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: # string. Required. App Center service connection. 
+    appSlug: # string. Required. App slug. 
+    appFile: # string. Alias: app. Required. Binary file path.    
+    releaseNotesOption: 'input' # 'input' | 'file'. Alias: releaseNotesSelection. Required. Create release notes. Default: input.
+    releaseNotesInput: # string. Required when releaseNotesSelection = input. Release notes.     
+    destinationType: 'groups' # 'groups' | 'store'. Required. Release destination. Default: groups.    
+```
+
+---
+
 - CDN & IoT Deployments
 - Azure Stack & Sovereign Cloud Deployments
  
