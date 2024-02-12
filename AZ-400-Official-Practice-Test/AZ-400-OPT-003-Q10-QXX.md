@@ -13194,6 +13194,50 @@ After this selection step the remaining steps to create the SC are the same.
 - LAB: Building Infrastructure with Azure Pipeliens
 - LAB: Deploy a Python App to an AKS Cluster within Azure Pipelines
 
+---
+
+### Workflows that are often assesed in the exam
+
+[Build and deploy to Azure Kubernetes Service with Azure Pipelines](https://learn.microsoft.com/en-us/azure/aks/devops-pipeline?tabs=cli&pivots=pipelines-yaml)  
+
+[Deploy Azure DevOps Builds with App Center](https://learn.microsoft.com/en-us/appcenter/distribution/vsts-deploy)
+
+---
+
+[Orchestration Automation Solutions](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/89029c70-91fe-4937-9781-0a17438c5f82/053a68d9-1e78-4805-ad6f-6e36e057558d)  
+
+- Release Strategies
+- Stages, Dependencies and Conditions
+- Azure App Configuration
+- Release Gates
+- LAB: Mutli-stage Build in Azure Pipelines to Deploy a .NET App
+
+### Release Strategies
+
+#### Canary Deployment
+
+Deploy to a smallfraction of the production infrastructure in order to validate the deployment
+on the production environment with a small number of users. This strategy is based on the usage
+of a **routing device** such as a **load balencer / application gateway**.
+
+When the validation is approved the new version is rolled out ot the whole production environemnt.
+
+#### Rolling Deployment
+
+In Rolling Deployment the new version of the app **gradually replaces the old one**. 
+This strategy **requires** that the two version can **coexist on the same infrastructure**.
+
+#### Blue/Green Deployment (aka A/B Deployment)
+
+In this case **there are tow distincy environments** one for the old version and one for the 
+new version **identically configured**. One environemtn is idele while the other is active.
+The new code is releaed to the inactive environment and **after testing and approval** the 
+acive and idel environment are switched.
+
+This can ofent be implemented wiith a **load balancing mechanism**.
+
+---
+
 
 
 
