@@ -13095,9 +13095,78 @@ Use this task to distribute app builds to testers and users via Visual Studio Ap
 
 ---
 
-- CDN & IoT Deployments
-- Azure Stack & Sovereign Cloud Deployments
- 
+[CDN & IoT Deployments with Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/8a26b71a-28c1-473e-b3f7-66a739121f12)
+
+### Deployment to CDN
+
+[Create a Content Delivery Network for your Website with Azure CDN and Blob Services](https://learn.microsoft.com/en-us/training/modules/create-cdn-static-resources-blob-storage/)  
+
+In this case you can use an Azure DevOp Pipeline to deploy **compressed anc cached files** to a **Azure Blob Storage**
+that is configured to be used by a **Azure CDN** i.e. as static content for  Web Site that makes use of the CDN.
+
+[AzureFileCopy@4 - Azure file copy v4 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-file-copy-v4?view=azure-pipelines)  
+
+```
+# Azure file copy v4
+# Copy files to Azure Blob Storage or virtual machines.
+- task: AzureFileCopy@4
+  inputs:
+    SourcePath: # string. Required. Source. 
+    azureSubscription: # string. Alias: ConnectedServiceNameARM. Required. Azure Subscription. 
+    Destination: # 'AzureBlob' | 'AzureVMs'. Required. Destination Type. 
+    storage: # string. Alias: StorageAccountRM. Required. RM Storage Account. 
+```
+---
+
+### Deployment to an IoT Hub
+
+In this case you can use an Azure DevOp Pipeline to deploy to an **Azure IoT Hub**.
+
+[IoT concepts and Azure IoT Hub](https://learn.microsoft.com/en-us/azure/iot-hub/iot-concepts-and-iot-hub)  
+
+**Azure IoT Hub** is a managed service hosted in the cloud that acts as a central message hub for 
+**communication between an IoT application and its attached devices**. You can connect millions 
+of devices and their backend solutions reliably and securely. 
+Almost any device can be connected to an IoT hub.
+
+[AzureIoTEdge@2 - Azure IoT Edge v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-iot-edge-v2?view=azure-pipelines)  
+
+Use this task to build and deploy images quickly and efficiently to Azure IoT Edge.
+
+```
+# Azure IoT Edge v2
+# Build and deploy an Azure IoT Edge image.
+- task: AzureIoTEdge@2
+  inputs:
+    action: 'Build module images' # 'Build module images' | 'Push module images' | 'Generate deployment manifest' | 'Deploy to IoT 
+```
+
+> 'Build module images' # Build module images (you can use it to check compilation errors). **Default Action**
+> 'Push module images': pushes modules to the **container registry**.
+> 'Generate deployment manifest': * 
+> 'Deploy to IoT Edge devices': deploys the generated deployment file **to IoT Hub**.
+
+
+* [Configure a deployment manifest](https://learn.microsoft.com/en-us/azure/iot-edge/how-to-deploy-modules-portal?view=iotedge-1.4#configure-a-deployment-manifest)  
+A deployment manifest is a JSON document that describes which modules to deploy, how data flows between the modules, and desired properties of the module twins.
+
+---
+
+###  [Azure Stack & Sovereign Cloud Deployments](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/455e735d-f65d-4f17-adc5-fe32932afb93)  
+
+In the context of Azure DevOps the typical workflow:
+> Push code to repo > Build > Release > Deploy to Test > [Acceptance] > Deploy to Production
+can have as targets:
+- the Cloud
+- On Prmise Environments > Azure Stack
+- Government Agencies > Sovereign Cloud Deployments
+
+#### Azure Stack: 
+
+#### Sovereign Cloud Deployments
+
+---
+
 - LAB: Build & Distribute an App in Visual Studio App Center 
 - LAb: Linting ARM Templates
 - LAB: Building Infrastructure with Azure Pipeliens
