@@ -13158,12 +13158,34 @@ In the context of Azure DevOps the typical workflow:
 > Push code to repo > Build > Release > Deploy to Test > [Acceptance] > Deploy to Production
 can have as targets:
 - the Cloud
-- On Prmise Environments > Azure Stack
+- On Premise Environments > Azure Stack
 - Government Agencies > Sovereign Cloud Deployments
 
 #### Azure Stack: 
 
-#### Sovereign Cloud Deployments
+In some scenarios you can use a hybrid approach whereby you have a Test Environment
+created in Azure (or another Cloud Provider) and the Production Environment remains 
+on-premise.
+
+This kind of hybrid situation can be dealt with **Azure Stack** deployed on-premise
+and in conjunction to this **Terraform** may also be used in order to have to maintain 
+a single pipeline rather than having to customize the two pipeline to each of the 
+environments.
+
+
+#### Sovereign Cloud Deployments:
+
+
+#### Create a Service Connection for Azure Stack or a Sovereign Cloud
+
+> Organization > Project > Project Settings > Service Connections > New Azure Service Connection > Environment:
+- Azure Cloud
+- Azure China Cloud
+- Azure US Government
+- Azure German Cloud
+- Azure Stack
+
+After this selection step the remaining steps to create the SC are the same.
 
 ---
 
