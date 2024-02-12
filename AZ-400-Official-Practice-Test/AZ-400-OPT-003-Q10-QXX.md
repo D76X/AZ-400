@@ -12974,7 +12974,19 @@ a DACPAC via **SqlAzureDacpacDeployment@1**. In that case the action **Publish**
 file is selected, which holds only the schema of the DB.
 
 In this case we want **schema and data** to be deplyed to a new database hence we must first **Export** the
-production databse to a **BACPAC** and the use the action **Publish** with this file in the pipeline task.
+production databse to a **BACPAC** and the use the action **Import** with this file in the pipeline task.
+
+---
+
+#### Summary: DevOps workflows with SQL DB
+
+1. use [SqlAzureDacpacDeployment@1](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/sql-azure-dacpac-deployment-v1?view=azure-pipelines)  
+
+
+| Type of deployment   | File type     | SSMS Operation | SqlAzureDacpacDeployment@1 action    |
+| -------------------- | ------------- | -------------- | ------------------------------------ |
+| Only schema          |  DACPAC       |  Extract       | Publish |
+| schema & data        |  BACPAC       |  Export        | Import  | 
 
 ---
 
