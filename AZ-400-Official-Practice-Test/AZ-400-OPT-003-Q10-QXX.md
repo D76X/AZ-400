@@ -12786,6 +12786,15 @@ This is the steps that performs the changes determined in the `plan` step
 **Bicep files** is a **simpler and cleaner file format than ARM Templates to target ARG** and deploy
 resources to Azure. **Bicep files** are focused on **Human Readability** while ARM Templates are 
 Json files and have more quotes, brakets spaces and are therefore less human-friendly.
+**Behind the scenes Bicep files are compiled into equivalent ARM templates**.
+
+In **Bicep files and ARM Templates** you can use any of the following:
+
+- Azure CLI  v>2.20.0
+- Powershell v>5.6.0
+
+The are also [Bicep Tools for VS COde](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install)  
+
 
 [Understand the structure and syntax of Bicep files](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/file)  
 
@@ -12853,7 +12862,164 @@ module webModule './webApp.bicep' = {
 
 ---
 
+### Powershell vs CLI for IaC deployment
 
+Use the tool tat you and your team is most familiar with.
+They can be used together in the same Azure Pipeline.
+
+[AzurePowerShell@5 - Azure PowerShell v5 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-powershell-v5?view=azure-pipelines)
+
+[AzureCLI@2 - Azure CLI v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-cli-v2?view=azure-pipelines)  
+
+The AzureCLI task is more flexible as you can specify the **script type** which includes also PowerShell:
+`scriptType: # 'ps' | 'pscore' | 'batch' | 'bash'. Required. Script Type. `
+
+
+```
+# Azure CLI v2
+# Run Azure CLI commands against an Azure subscription in a PowerShell Core/Shell script when running on Linux agent or PowerShell/PowerShell Core/Batch script when running on Windows agent.
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: # string. Alias: connectedServiceNameARM. Required. Azure Resource Manager connection. 
+    scriptType: # 'ps' | 'pscore' | 'batch' | 'bash'. Required. Script Type. 
+    scriptLocation: 'scriptPath' # 'inlineScript' | 'scriptPath'. Required. Script Location. Default: scriptPath.
+    scriptPath: # string. Required when scriptLocation = scriptPath. Script Path. 
+    #inlineScript: # string. Required when scriptLocation = inlineScript. Inline Script. 
+    #arguments: # string. Alias: scriptArguments. Script Arguments. 
+    #powerShellErrorActionPreference: 'stop' # 'stop' | 'continue' | 'silentlyContinue'. Optional. Use when scriptType = ps || scriptType = pscore. ErrorActionPreference. Default: stop.
+  # Advanced
+    #addSpnToEnvironment: false # boolean. Access service principal details in script. Default: false.
+    #useGlobalConfig: false # boolean. Use global Azure CLI configuration. Default: false.
+    #workingDirectory: # string. Alias: cwd. Working Directory. 
+    #failOnStandardError: false # boolean. Fail on Standard Error. Default: false.
+    #powerShellIgnoreLASTEXITCODE: false # boolean. Optional. Use when scriptType = ps || scriptType = pscore. Ignore $LASTEXITCODE. Default: false.
+```
+
+---
+
+### [Linting ARM Templates](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/bcd72817-58bb-471f-8483-ead50ad228fb)  
+
+[Jsonlint.com](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/bcd72817-58bb-471f-8483-ead50ad228fb)  
+
+In Azure DevOps Pipeline you can use the following 3-task workflow for linting ARM templates.
+
+[Npm@1 - npm v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/npm-v1?view=azure-pipelines)  
+This tool **validates** a Json from a website but in the contest of an Azure DevOp Pipelines
+you can use an **npm custom task** with `install jsonlit -g` as **commad**. This installs 
+**jsonlint** as a global tool on the build agent.
+
+[CmdLine@2 - Command line v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/cmd-line-v2?view=azure-pipelines)  
+Add a **command line task** with script `jsonlint template.json` and the **working directory**
+of the template file to validate `template.json`.
+
+[AzureResourceGroupDeployment@2 - Azure resource group deployment v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-resource-group-deployment-v2?view=azure-pipelines)  
+
+`deploymentMode - Deployment mode`:
+**Validate mode** enables you to find problems with the template before creating actual resources.
+
+---
+
+### [Deploy DB](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/bf898b0b-97bd-40ae-b89b-882b9ba71767)  
+
+In Azure DevOps the way a SQL DB is deployed is throug **DAC-Pack**. 
+
+You can create a DAC-Pack through SSMS > Tasks: 
+
+- **Extract** Data-tier Application: produces a DACPAC that **can be used in deployments**
+- **Export** Data-tier Application: produces a DAC-Pack: produces a BACPAC that is a **backup file**
+
+You need the former in this workflow.
+Once the **DACPAC** is **extracted** you can deposit it in teh azure repo on which the Azure Release Pipeline runs.
+
+[Data-Tier Application Package](https://learn.microsoft.com/en-us/sql/relational-databases/data-tier-applications/data-tier-applications?view=sql-server-ver16)  
+
+This is a **container** for the following DB assets:
+- objects 
+- teables
+- views
+
+01. Create a Release Pipeline
+02. Select the empty job template
+03. Create a Stage
+
+04. Add the atsk [SqlAzureDacpacDeployment@1](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/sql-azure-dacpac-deployment-v1?view=azure-pipelines)  
+
+This task can deploy a SQL database to a target server from ***.sql scripts** or a **DAC-pack**:
+
+- Sql Dacpac
+- SQL Query file
+- Inline SQL
+
+Server: 
+- Connecton string
+- Publish Profile
+
+Seelect the **DACPAC** file from the assets of the repository for teh pipeline.
+
+---
+
+#### Deploy a backup (BACPAC) database to a test environment 
+
+[SQL Data Movement in the contest of DB Deployments](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20486a18-7a12-4bf1-8e12-f3bdd01c2eda/88e556ce-21e7-4036-8249-8da0bc510f1c)  
+
+**BACPAC** files for a SQL DB can be **Exported** from SSMS Data-tier Application.
+SSMS produces a BACPAC that is a **backup file** containing the **schema and the data** that can be used
+to recreate a **production-ready database**. 
+
+In the context of **DevOps** this process is normally used when a replica of the production DB needs to be
+made available in one of the test environments.
+
+The workflow is similar to that described in the earlier example where a new database is deployed based on 
+a DACPAC via **SqlAzureDacpacDeployment@1**. In that case the action **Publish** is used and the **DACPAC**
+file is selected, which holds only the schema of the DB.
+
+In this case we want **schema and data** to be deplyed to a new database hence we must first **Export** the
+production databse to a **BACPAC** and the use the action **Publish** with this file in the pipeline task.
+
+---
+
+#### [SqlAzureDacpacDeployment@1 - Azure SQL Database deployment v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/sql-azure-dacpac-deployment-v1?view=azure-pipelines)  
+
+Use this task to deploy an Azure SQL Database using DACPAC, or run scripts using SQLCMD.
+
+> DeploymentAction - Action string. 
+Required when TaskNameSelector = DacpacTask. Default value: Publish.
+
+[Allowed values](https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage?view=sql-server-ver16): 
+
+- Publish:
+Incrementally updates a database schema to match the schema of a source .dacpac file. 
+If the database does not exist on the server, the publish operation creates it. 
+Otherwise, an existing database is updated. 
+
+- Script:
+Creates a **Transact-SQL incremental update script** that updates the schema of a target to match the schema of a source.
+
+- Extract:
+Creates a **data-tier application (.dacpac)** file containing **the schema OR schema and user data** from a connected SQL database.
+
+- Export:
+Exports a connected SQL database - **including database schema AND user data** - to a **BACPAC file (.bacpac)**.
+
+- Import:
+Imports the **schema and table data from a BACPAC file** into a new user database.
+
+- DriftReport (Drift Report):
+Creates an XML report of the changes that have been made to a registered database since it was last registered.
+
+- DeployReport (Deploy Report):
+Creates an XML report of the changes that would be made by a publish action.
+
+--- 
+
+- Visual Studio App Center 
+- CDN & IoT Deployments
+- Azure Stack & Sovereign Cloud Deployments
+ 
+- LAB: Build & Distribute an App in Visual Studio App Center 
+- LAb: Linting ARM Templates
+- LAB: Building Infrastructure with Azure Pipeliens
+- LAB: Deploy a Python App to an AKS Cluster within Azure Pipelines
 
 
 
