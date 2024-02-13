@@ -13238,6 +13238,123 @@ This can ofent be implemented wiith a **load balancing mechanism**.
 
 ---
 
+### [Stages, Dependencies and Conditions](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/89029c70-91fe-4937-9781-0a17438c5f82/07bcb4b1-0c50-47dd-ae35-97790924e731)  
+
+
+```
+jobs:
+- job: Foo
+  steps:
+  - bash: |
+      echo "This is job Foo."
+      echo "##vso[task.setvariable variable=doThing;isOutput=true]Yes" #set variable doThing to Yes
+    name: DetermineResult
+- job: Bar
+  dependsOn: Foo
+  condition: eq(dependencies.Foo.outputs['DetermineResult.doThing'], 'Yes') #map doThing and check the value
+  steps:
+  - script: echo "Job Foo ran and doThing is Yes."
+```
+
+`dependsOn: []`:" 
+With this specual case syntax the Jobs Foo & Bar **would run in parallel**
+
+`condition: and(succeeded(), eq(variables['doThing'], 'Yes'))`
+
+---
+
+### [App Configuration](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/89029c70-91fe-4937-9781-0a17438c5f82/e07c7360-a781-4e5c-bf9f-eb244fd67179)  
+
+This is a way to hold and distribute configuration to a number of target services.
+
+- Microservices 
+- Azure Service Fabric
+- Serverless Apps
+- CD Pipelines
+
+[What is Azure App Configuration?](https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview)  
+
+Azure App Configuration provides a service to centrally manage application settings and feature flags. 
+Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. 
+
+**Use App Configuration to store all the settings for your application and secure their accesses in one place**.
+
+Main Features:
+
+- Key-Value based
+- Tagging with Labels
+- Encryption of sensitive information at rest and in transit
+- security through Azure-managed identities
+- Point-in-time replay of settings
+- Dedicated UI for feature flag management
+- Native integration with popular frameworks
+- Comparison of two sets of configurations on custom-defined dimensions
+- App Configuration complements Azure Key Vault*
+
+* 
+There are two types of keys **Key-Value** & **Key Vault References**, the latter allow
+configuration keys in the App Configuration Store to be drown from a Key Vault.
+
+- Dynamically change application settings without the need to redeploy or restart an application
+- Control feature availability in real-time
+- Centralize management and distribution of hierarchical configuration data for different environments and geographies
+
+### App Configuration Workflow
+
+1. [Create an App Configuration Store](https://learn.microsoft.com/en-us/azure/azure-app-configuration/quickstart-azure-app-configuration-create?tabs=azure-portal)  
+
+> Access Keys: there you find Write-Read & Read-Only keys that are to be used in your code to connect to the store
+> Configuration Explorere: here you create and manage your keys
+
+2. [Tutorial: Manage feature flags in Azure App Configuration](https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags)  
+
+> Feature Manager: this is where you can control the Feature Flags. 
+> On the UI for a new FF there is a **enable checkbox**.
+> You can also give a LABEL and a description.
+
+#### App Configuration Store for Feature Flags (FF)
+
+3. [Use feature filters to enable conditional feature flags](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-feature-filters-aspnet-core)  
+
+> **Filters** is how you can control how the FF is made available to it audience.
+
+A **conditional feature flag** allows the feature flag to **be enabled or disabled dynamically**.
+The application may behave differently, depending on the feature flag criteria.
+
+- The typical scenario for FFs:
+
+Suppose you want **to show your new feature to a small subset of users at first**. 
+A conditional feature flag allows you to enable the feature flag for some users while 
+disabling it for others. **Feature filters** determine the state of the feature flag 
+each time it's evaluated.
+
+The **Microsoft.FeatureManagement library** includes three feature filters:
+
+- PercentageFilter: enables the feature flag based on a percentage.
+- TimeWindowFilter: enables the feature flag during a specified window of time.
+- TargetingFilter:  enables the feature flag for specified users and groups.
+- You can also create your own feature filter that implements the **Microsoft.FeatureManagement.IFeatureFilter** interface.
+
+#### Register a feature filter
+
+You register a feature filter by calling the **AddFeatureFilter** method, 
+specifying the type name of the desired feature filter. For example, 
+the following code registers PercentageFilter:
+
+```
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    services.AddFeatureManagement().AddFeatureFilter<PercentageFilter>();
+}
+```
+
+---
+
+
+---
+
+
 
 
 
