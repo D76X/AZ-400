@@ -13377,6 +13377,18 @@ test that the UX has not degraded with respect a give baseline i.e. the previous
 
 - infrastructure health:
 test the availabbility, security and state of the target infrastructure in order to deploy the artifacts
+
+- Manual Intervention & Manual Validation:
+In a **pre-deployment** step you might  use a **Manual Intervention** to **carry out manual operation**
+prior to a deploument i.e. to update a database schema and **Manual Validation** might imply an
+individual **to check** configuration files or the state of the target enviroment or aother assets prior 
+to deployment. **One example is that of a workload that requires enough computational resource to be able**
+**to successfully complete**, you may want to **validate** that such resources are going to be available 
+when the workload is deployed i.e. all previous workloads have completed.
+**Manual Intervention & Manual Validation** in Stage Gates in Azure DevOps will either **show a prompt** 
+and/or send an email notofication including instruction to complete the validation phase. While this is 
+pending the deployment is paused.
+
 ---
 
 
