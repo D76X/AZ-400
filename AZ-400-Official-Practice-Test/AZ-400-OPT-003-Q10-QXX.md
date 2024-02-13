@@ -13259,7 +13259,30 @@ jobs:
 `dependsOn: []`:" 
 With this specual case syntax the Jobs Foo & Bar **would run in parallel**
 
+
+By default, steps, jobs, and stages run if all direct and indirect dependencies have succeeded. 
+It's as if you specified "condition: succeeded()"
+Conditions are evaluated to decide whether to start a **stage, job, or step**. 
+If the built-in conditions don't meet your needs, then you **can specify custom conditions**.
+Conditions are written **as expressions in YAML pipelines**.
+
+`always()`: Even if a previous dependency has failed, even if the run was canceled.
+`succeededOrFailed()`: Even if a previous dependency has failed, unless the run was canceled. 
+`failed()`: Only when a previous dependency has failed.
 `condition: and(succeeded(), eq(variables['doThing'], 'Yes'))`
+
+**When a build is canceled**, it doesn't mean all its stages, jobs, or steps stop running.
+The decision depends on: 
+- the stage, job, or step conditions you specified and 
+- at what point of the pipeline's execution you canceled the build.
+
+- case 1:
+If your condition doesn't take into account the state of the parent of your stage / job / step, 
+then if the condition evaluates to true, your stage, job, or step will run, even if its parent
+is canceled. 
+
+- case 2:
+If its parent is skipped, then your stage, job, or step won't run.
 
 ---
 
@@ -13389,8 +13412,46 @@ when the workload is deployed i.e. all previous workloads have completed.
 and/or send an email notofication including instruction to complete the validation phase. While this is 
 pending the deployment is paused.
 
+#### How to add a Manual Intervention & Manual Validation?
+
+[ManualIntervention@8 - Manual intervention v8 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/manual-intervention-v8?view=azure-pipelines)   
+
+[ManualValidation@0 - Manual validation v0 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/manual-validation-v0?view=azure-pipelines)  
+
+The workflow to do this is a bit different.
+
+1. from your Release Pipeline go to Tasks
+2. **add an Agentless Job** 
+3. add a **Manual Intervention Task** to this Job
+4. add a **Manual Validation Task** to this Job
+
+These manual tasks **are in addition to** **the Approvals that are available in a pre-deployment step**.
+The difference is that in Approvals of a pre-deployment step the people that can be selected as approvers
+are members of the the Azure DevOps Team Project. 
+
 ---
 
+[Examm Tip: Examine a scenario where approvals may take longer than expected and try to rectify it](https://www.examtopics.com/discussions/microsoft/view/17035-exam-az-400-topic-8-question-30-discussion/)
+
+---
+
+## [Design and Implement Deployments](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/107908ad-8470-4d10-a611-af41b5660d88/f57b8a98-5595-4d82-b793-f72d5605b631)
+
+- Release Strategies
+- Implement Deployment Slot Releases
+- Implement Load Balancer & Traffic Manaher Releses
+- Use Feature Toggles
+- LAB: Deploy a Node.js App to a deployment slot in Azure DevOps 
+
+#### Design and Implement Stratey
+
+The general steps are:
+
+1. Enable initialization
+2. Deploy the update
+3. **Route traffic** to the uploaded version
+4. Test the updated version
+5. **In case of failure** run steps to **restore** the last working version
 
 ---
 
