@@ -13507,7 +13507,7 @@ you can choose the % and the target tags.
 
 This task deploys an Azure Web App for Linux or Windows.
 
-[https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines)
+[AzureAppServiceManage@0 - Azure App Service manage v0 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines)  
 
 Start, stop, restart, **slot swap**, slot delete, install site extensions, or 
 enable continuous monitoring for an Azure App Service
@@ -13532,6 +13532,64 @@ enable continuous monitoring for an Azure App Service
     SourceSlot: staging
     SwapWithProduction: true
 ```
+
+---
+
+## [Realse with Load Balancer & Traffic Manager](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/107908ad-8470-4d10-a611-af41b5660d88/7818c128-40ac-4003-96dc-d5c718ce7547)  
+
+| Azure Load Balancer                 |  Azure Traffic Manager       |
+| ----------------------------------- | -------------------------- |
+| Route traffic within a Region       | Route traffic globally     |
+
+
+1. Create a deployment release pipeline
+
+2. In Azure DevOps choose a Pipeline and create a Deployment Group for it:
+This results in a rewgistration script that you can run on the target VMs that you want in this DG.
+
+3. In the Stage add the task **Azure Resource Group Deployment**: 
+Select the deployment group created in the previous step and in the **Load Balancer Name**
+
+4. 
+[Deploy apps to a Windows Virtual Machine](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deploy-webdeploy-iis-deploygroups?view=azure-devops&tabs=net)  
+Learn how to use Azure Pipelines to build and deploy your ASP.NET, ASP.NET Core, or Node.js web 
+app to an IIS web server running on a Windows Virtual Machine.
+
+4. **add load balancing steps** to DISCONNECT
+
+[AzureNLBManagement@1 - Azure Network Load Balancer v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-nlb-management-v1?view=azure-pipelines)  
+Use this task to **connect or disconnect an Azure virtual machine's network interface** 
+to a load balancer's back-end address pool.
+
+```
+# Azure Network Load Balancer v1
+# Connect or disconnect an Azure virtual machine's network interface to a Load Balancer's back end address pool.
+- task: AzureNLBManagement@1
+  inputs:
+    azureSubscription: # string. Alias: ConnectedServiceName. Required. Azure Subscription. 
+    ResourceGroupName: # string. Required. Resource Group. 
+    LoadBalancer: # string. Required. Load Balancer Name. 
+    Action: # 'Disconnect' | 'Connect'. Required. Action.
+```
+
+5. add a Web App Manage step:
+[AzureAppServiceManage@0 - Azure App Service manage v0 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines)  
+
+6. add a Web App Deploy step:
+[AzureWebApp@1 - Azure Web App v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-web-app-v1?view=azure-pipelines)  
+
+7. **add load balancing steps** to CONNECT
+the same VMs to the Load Balancer
+
+The workflow is similar when a **a Azure Traffic Manager** is used instead of a **Azure Load Balancer**.
+In the Azure Portal or some other way you will need to **create a Azure Traffic Manager** with a **public IP** 
+and its back pool must be the set of VMs of the deployment group.
+
+In the Pipeline the tasks `AzureNLBManagement@1` for disconnecting before deployment of the app
+and reconnecting after deployment must be replaced with: ?
+[Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
+ 
+
 
 ---
 
