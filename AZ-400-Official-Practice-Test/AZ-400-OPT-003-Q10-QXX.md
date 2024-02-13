@@ -13351,6 +13351,34 @@ public void ConfigureServices(IServiceCollection services)
 
 ---
 
+### [Release Gates](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/89029c70-91fe-4937-9781-0a17438c5f82/4fbece53-2e08-476c-b219-712e55e399f0)  
+
+In an Azure DEvOps Pipelines **Gates are typically used between stages** as either**pre-deployment or post-deployment** conditions to advance through the release or deployment pipeline.
+
+#### Scenarious for Release Gates
+
+- Incident and issue management: 
+check the Azure Board for connected WIs and their status and that all related bugs have been closed
+
+- seek approval outside Azure Pipelines:
+a business process that involves the approval from people other than the users of the Azure DevOps
+Pipeline i.e. legal department, managers, etc. this process might also involve intergration with 
+collaboration tools such as Teams or Slack.
+
+- quality validation
+in this case you gather quality metrics such as test pass rate, code coverage, etc.
+the deployment should move on only if a specified threshold is satisfied.
+
+- security scan on artifacts:
+antivirus, code scanning, policy checking on artifacts
+
+- UX test against a baseline:
+test that the UX has not degraded with respect a give baseline i.e. the previous release threshold.
+
+- infrastructure health:
+test the availabbility, security and state of the target infrastructure in order to deploy the artifacts
+---
+
 
 ---
 
