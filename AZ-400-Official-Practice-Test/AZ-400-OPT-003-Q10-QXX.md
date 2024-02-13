@@ -13589,6 +13589,17 @@ In the Pipeline the tasks `AzureNLBManagement@1` for disconnecting before deploy
 and reconnecting after deployment must be replaced with: ?
 [Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)  
  
+---
+
+## [Use Feature Toggles in Release Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/107908ad-8470-4d10-a611-af41b5660d88/cc421ca2-a513-41e2-a47e-327b32800dd8)  
+
+[LaunchDarkly Feature Flags](https://launchdarkly.com/features/feature-flags/?_bn=g&_bt=604469846848&creative=604469846848&device=c&gad_source=1&gclid=Cj0KCQiAw6yuBhDrARIsACf94RUwvqIU8Zm_NHzezhUXDHQ7TpYLm2EmJ3m6Gfbp8vwG4mLngErfQp4aAjOrEALw_wcB&matchtype=p&utm_adgroup=Brand_General&utm_campaign=EMEA_Search_Brand&utm_medium=cpc&utm_source=google&utm_term=launchdarkly)  
+
+[LaunchDarkly Integration V2](https://marketplace.visualstudio.com/items?itemName=launchdarkly.launchdarkly-extension)  
+
+
+
+
 
 
 ---
