@@ -13445,6 +13445,12 @@ are members of the the Azure DevOps Team Project.
 
 #### Design and Implement Stratey
 
+[Recommendations for safe deployment practices](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/safe-deployments)   
+
+[Tutorial: Canary Deployment for Azure Virtual Machine Scale Sets](https://cloudblogs.microsoft.com/opensource/2018/06/18/tutorial-canary-deployment-for-azure-virtual-machine-scale-sets/)  
+
+[Blue-Green deployments using Azure Traffic Manager](https://azure.microsoft.com/en-us/blog/blue-green-deployments-using-azure-traffic-manager/)    
+
 The general steps are:
 
 1. Enable initialization
@@ -13452,6 +13458,80 @@ The general steps are:
 3. **Route traffic** to the uploaded version
 4. Test the updated version
 5. **In case of failure** run steps to **restore** the last working version
+
+[Deploy to Azure VMs using deployment groups in Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/deploying-azure-vms-deployment-groups?view=azure-devops)  
+
+[Configure the rolling deployment strategy for Azure Linux virtual machines](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-devops-azure-pipelines-classic)  
+
+**Azure Pipelines** provides a fully featured set of CI/CD automation tools for deployments to virtual machines. 
+This article will show you how to set up a classic release pipeline that uses the **rolling strategy** to deploy 
+your web applications to Linux virtual machines.
+
+In the **Continuos Delivery Tab** of the Virtual Machine Overview on the Azure Portal the available 
+**Deployment Strategy** are **Rolling | Canary | Blue-Green**. This makes sense when the VM is going to be 
+one of the VMs registered in a Deployment Group defined in a Deployment Pipeline in Azure DevOps.
+
+#### VM tags for deployment strategy
+
+You can use leverage tags for the VM i.e. with its role such as web or db. 
+These tags help you target only VMs that have a specific role.
+
+#### Blue-Green
+
+In this scenario there are going to be two deployment groups:
+
+- a DG of VMs with tag Blue  (Active) 
+- a DG of VMs with tag Green (In Wait for Swap) 
+
+Whne the swap is carried out then the VM swap their DM.
+
+#### Canary
+
+In this case only a small subset of server (VMs) are tag "Canary".
+The canary set is tested and after a while the deployment is going to target the 
+servers tagged with "prod".
+
+#### Rolling
+
+In this case you fraction the VMs in the deployment groups with several tags
+i.e. web, test users, pilots, etc. and then in the [Deployment Group Job](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-group-phases?view=azure-devops&tabs=yaml)  
+you can choose the % and the target tags.
+
+---
+
+## [Deployment Slots for WebApps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/107908ad-8470-4d10-a611-af41b5660d88/db5fceca-394e-4047-96ce-adcc496354d7)  
+
+[Deploy to App Service using Azure Pipelines](https://learn.microsoft.com/en-us/azure/app-service/deploy-azure-pipelines?tabs=yaml)  
+
+[AzureWebApp@1 - Azure Web App v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-web-app-v1?view=azure-pipelines)  
+
+This task deploys an Azure Web App for Linux or Windows.
+
+[https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-app-service-manage-v0?view=azure-pipelines)
+
+Start, stop, restart, **slot swap**, slot delete, install site extensions, or 
+enable continuous monitoring for an Azure App Service
+
+```
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<service-connection-name>'
+    appType: webAppLinux
+    appName: '<app-name>'
+    deployToSlotOrASE: true
+    resourceGroupName: '<name of resource group>'
+    slotName: staging
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
+
+- task: AzureAppServiceManage@0
+  inputs:
+    azureSubscription: '<service-connection-name>'
+    appType: webAppLinux
+    WebAppName: '<app-name>'
+    ResourceGroupName: '<name of resource group>'
+    SourceSlot: staging
+    SwapWithProduction: true
+```
 
 ---
 
