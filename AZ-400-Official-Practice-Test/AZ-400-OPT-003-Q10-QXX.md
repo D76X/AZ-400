@@ -13928,6 +13928,15 @@ IOn the **Grant** access control you can select any of the following:
 - require all the selected controls
 - require one of the selected controls
 
+In this scenario all the users that are part of the selected group in the assignment section
+are going to be asked to MFA any time the attempt to authenticate to Office 265 from any device
+an any location. This may be useful to protect this endpoint following the possibility of impersonation
+or compromised identity credentials of any of these identiies which may go undetected for some time.
+These identities have perhaps been granted roles over the Office 365 app that are regarded as having
+high level of permission and therefore it makes sense to ensure that access to the reosurce by these 
+identities happen in conditions that are unlikely to have been compromised and could be abused.
+
+
 ---
 
 [What is Identity Protection?](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection)  
@@ -13958,6 +13967,8 @@ Risk-based Conditional Access policies can be enabled to require access controls
 
 - Manual remediation:
 When user remediation isn't enabled, an administrator must manually review them in the reports in the portal, through the API, or in Microsoft 365 Defender. Administrators can perform manual actions to dismiss, confirm safe, or confirm compromise on the risks.
+
+
 
 ---
 
