@@ -13866,6 +13866,101 @@ Grant or Block controls
 
 ---
 
+## [Implement MFA](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/17d9d525-03ae-4e2a-9ba3-c635965fcf4a)  
+
+The factors to authenticate a an identity part of a group are two of the following:
+
+1. something you know:
+normally a password
+
+2. something you have:
+
+This may be one pf the following:
+- Microsoft Authnticaor App
+- OAth hardware & software Token
+- SMS
+- Voice Call
+
+3. something you are (biometrics):
+This factors is not yet vailable as part of Azure Entra ID.
+
+In Azure Entra ID MFA is enabled as part of a Conditional Access Policy.
+
+#### Azure Entra ID Conditional Access Policy Workflow
+
+> Azure AD > Securiry:
+Here you find **Indentity Protection** *& **Conditional Access**.
+These are different services but there is a logical connection between the two.
+
+> Conditional Access > Create a new Policy:
+Provide the details of the policy:
+1. Name of the policy.
+
+2. Assignments:
+
+- Users and/or groups to apply the policy to: 
+select a user of a user group you wish this policy to be applied to. 
+- Cloud apps or actions to apply the policy to: 
+select a app you wish this policy to be applied to i.e. Office 365.
+
+- Conditions:
+Here you can set conditions on a set of detected signals:
+You can leave these blank in which case the conditional access is going to apply in all cases.
+- User Risk
+- Sign-in risk
+- Device Platforms
+- Locations
+- Client apps
+- Device state
+ - Filter for devices
+
+3. Access controls
+Grant or Block controls.
+IOn the **Grant** access control you can select any of the following:
+> Grant access
+- require MFA
+- require Device to be market compliant
+- require Hybrid Azure AD joined device
+- require approved client app
+- require app protection policy
+- reuire passowrd change
+
+- require all the selected controls
+- require one of the selected controls
+
+---
+
+[What is Identity Protection?](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection)  
+
+Microsoft Entra ID Protection helps organizations detect, investigate, and remediate identity-based risks. 
+These identity-based risks can be further **fed into tools like Conditional Access** to make access decisions 
+or fed back to a security information and event management (SIEM) tool for further investigation and correlation.
+
+
+> Detect risks
+**During each sign-in, Identity Protection runs all real-time sign-in detections generating a sign-in session risk level**, indicating how likely the sign-in is compromised. Based on this risk level, policies are then applied to 
+protect the user and the organization.
+
+> Investigate
+Any risks detected on an identity are tracked with reporting. Identity Protection provides three key reports for administrators to investigate risks and take action:
+- Risk detections: 
+Each risk detected is reported as a risk detection.
+- Risky sign-ins: 
+A risky sign-in is reported when there are one or more risk detections reported for that sign-in.
+- Risky users: 
+A Risky user is reported when either or both of the following are true:
+The user has one or more Risky sign-ins.
+One or more risk detections are reported.
+
+> Remediate risks:
+- Automatic remediation:
+Risk-based Conditional Access policies can be enabled to require access controls such as providing a strong authentication method, perform multifactor authentication, or perform a secure password reset based on the detected risk level. If the user successfully completes the access control, the risk is automatically remediated.
+
+- Manual remediation:
+When user remediation isn't enabled, an administrator must manually review them in the reports in the portal, through the API, or in Microsoft 365 Defender. Administrators can perform manual actions to dismiss, confirm safe, or confirm compromise on the risks.
+
+---
+
 
 
 
