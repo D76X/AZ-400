@@ -14256,21 +14256,124 @@ The Pipeline authenticate to Azure AD as the SP specified in teh Service Connect
 tenant grants the identity of the SP the set of permissions of the roles assigned ot it
 within the Azure Subscription for which the SP has been created.
 
+---
+
+## [Use Secrets in Azure DevOps Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/df0f4c7d-3948-442e-8870-20912cff5c6f)  
+
+There are three ways you can configure pipelines secrets that are going ot be used in an 
+Azure Pipeline:
+
+1. Configure secrets in the Pipeline UI on Azure DevOps:
+Azure DevOps > Pipeline > Variables > New Variable: Name + Value + Keep this value secret
+This variable can then be accessed in teh Pipeline as any other variable $(variableName)
+with the different that will never be oprinted to the console or be readable as it is kept  
+as a secret.
+
+Its value will be encrypted in the Pipeline.
+
+2. Define Variable Groups with encrypted values in Azure DevOps:
+3. Define Secrets in Azure Key Vault and reference them in Azure DevOps Pipelines Variable Groups:
+> Pipeline > Library 
+> +Variable Group: add the variables and for each secret select the lock to encrypt its value
+> | Use a Key Vault Reference
+Here you can also link the value of a variable within a variable group to a secret stored in
+Azure Key Vault through a Key Vault Reference. When you this you **must provide a SC to the**
+**Azure subscription of the Key Vault the secret is to be read from** as done in several of
+the preceding examples.
+
+In the Pipelines then:
+
+```
+variables:
+- group: my-variable-group
+- name: my-passed-variable
+  value: $[variables.myhello] # uses runtime expression
+
+steps:
+- script: echo $(myhello) # uses macro syntax
+- script: echo $(my-passed-variable) 
+```
+
+4. The last alternative is to use something like the task `AzureKeyVault@2`
+In this case the **secrets are read dynamically from the Key Vault** and not stored or refrenced
+in Azure DevOps. You still need the usual Servive Connection as above. 
 
 ---
 
+## [Connet GitHub to Azure by using Secrets](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/4e00abd4-0213-42d5-8385-2d1860919cc4)  
+
+[Use GitHub Actions to connect to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)    
+
+The main purpose is to use a GitHub action in order to deply reosurces to an Azure Subscription.
+
+[Create GitHub secrets](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#create-github-secrets)  
+
+GitHub offers a way to safely store secrtes in order to make them available to Workflow actions.
+For example, in order to use the [Login Action](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows#create-github-secrets) within a GitHub workflow you 
+will need to store the details of the Service Principal that is going to be use to carry out the 
+login.
+
+- **Each Repository has its own secret store**
+- These secrets will be available as **encrypted environment variables** within the GitHub workflows of this repo
+- The secret are stored in a **lipsodium sealed box** and are encrypted before snding them to a GitHub workflow
+  the **sealed box** holds the **PubKey** mapped ot a workflow and the workflow as a recepint holds the **Private Key**
+  so than only the workflow willbe able to decrypt the message containing the secret.
+
+> GitHub Repo > Repo Options > Security > Secrets:
+
+|GitHub secret	        | Microsoft Entra application |
+| --------------------- | ------------------------------ |
+|AZURE_CLIENT_ID	      | Application (client) ID |
+|AZURE_TENANT_ID	      | Directory (tenant) ID |
+|AZURE_SUBSCRIPTION_ID	| Subscription ID |
+
+#### Example 1:
+
+```
+name: Run Azure Login with OpenID Connect and PowerShell
+on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+      
+jobs: 
+  Windows-latest:
+    runs-on: windows-latest
+    steps:
+      - name: OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+          enable-AzPSSession: true
+
+      - name: 'Get resource group with PowerShell action'
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            Get-AzResourceGroup
+          azPSVersion: "latest"
+```
+
+#### Example 2: [GitHub Action for deploying to Azure Web App](https://github.com/Azure/webapps-deploy)  
+
+In this example we use a **Azure Web App Publish Profile** stored as a secret in a GitHub Repo
+and then we use `azure/webapps-deploy@v2` to use this profile to publish a web app to an App Service.
+Notice the syntax `${{ secrets.azureWebAppPublishProfile }}` used in GitHub to read secrets withib a
+workflow action.
+
+```
+...
+...
+
+
+  - name: 'Run Azure webapp deploy action using publish profile credentials'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: node-rn
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+```
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
