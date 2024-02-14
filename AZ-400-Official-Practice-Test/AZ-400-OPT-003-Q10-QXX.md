@@ -13968,7 +13968,148 @@ Risk-based Conditional Access policies can be enabled to require access controls
 - Manual remediation:
 When user remediation isn't enabled, an administrator must manually review them in the reports in the portal, through the API, or in Microsoft 365 Defender. Administrators can perform manual actions to dismiss, confirm safe, or confirm compromise on the risks.
 
+---
 
+## [Use Service Principals](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/ae996308-9e72-48ae-8dd6-e900d73b040c)   
+
+In the context of Azure DevOps you need a way for a Pipeline to have access to resources in Azure.
+This can be done safely by means of **Service Principals that act as proxy accounts in Azure AD** 
+**that represent an app or service within Azure**. 
+
+The way that this works is the following:
+
+> Azure AD > Create a SP for an App which gives you the following details:
+
+- TenantID
+- Application ID (Client ID)
+- Credentials: client secret OR certificate: 
+> These details and especially the secret should then be safely stored in Azure Key Vault.
+> In a Pipeline create a secret to read the necessary values from Azurwe Key Vault
+
+
+---
+
+## [Use MSI](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/881e08be-791c-48c2-8bb8-33877d3d608d)  
+
+---
+
+[Demystifying Service Principals – Managed Identities](https://devblogs.microsoft.com/devops/demystifying-service-principals-managed-identities/)  
+
+Service Principal and Managed Identity are both tools for Azure identity management. 
+However, **their ideal usage differs**. 
+
+- Service Principal:
+is great for apps that need specific access and control. 
+An application whose tokens can be used to authenticate and grant access to specific Azure resources
+from a user-app, service or automation tool, when an organization is using Azure Active Directory.
+In essence, by using a Service Principal, you **avoid creating “fake users”** 
+(we would call them service account in on-premises Active Directory…) in Azure AD to manage authentication
+when you need to access Azure Resources.
+The Service Principals’ access can be restricted by assigning Azure RBAC roles so that they can access
+the specific set of resources only. 
+
+```
+There is one major exception to this RBAC rule, and that is Azure Key Vault, which can be extended by 
+using Key Vault Access Policies to define permissions, instead of Azure RBAC roles.
+```
+
+**Typical use cases where you would rely on a Service Principal is for example when running Terraform** 
+IAC (Infrastructure as Code) deployments, or when **using Azure DevOps** for example, where you define a
+Service Connection from DevOps Pipelines to Azure; 
+or **basically any other 3rd party application requiring an authentication token to connect to Azure resources**.
+
+**SPs are meant as way to authenticate to Apps in Azure AD by aking available a set ot credentials**.
+**They enable also RBAC to be used with the SP in iorder to control the extent of the access of the**
+**app they represent to other reources in azure.**
+
+**This is typically what you need to use in Azure DevOps to acces resources in an Azure Subscruiption!**
+
+---
+
+- Managed Identity:
+is good when you want Azure to handle the login details automatically.
+
+Managed identities are often the preferred choice for Azure resources because they eliminate many of the security risks associated with manually managing credentials. However, service principals offer more flexibility and can be used securely when configured and managed properly.
+
+```
+Managed Identities are in essence 100% identical in functionality and use case than Service Principals.
+In fact, they are actually Service Principals.
+```
+
+**What makes them different though** is:
+They are **always linked to an Azure Resource not to an application or 3rd party connector**!
+They are automatically created for you, including the credentials; big benefit here is that 
+**no one knows the credentials**.
+
+**Managed Identities are meant to be identities that are to be assigned to resources in Azure**
+**in order to grant access to the assignee of the MSI to other resources in the same tenant and**
+**in assign to the MSI the roles with which the MSI can access the target reource**.
+
+---
+
+## [Use Service Connections](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/c856429e-60a0-4cbe-bc94-798e012984fc)  
+
+Service Connections are one of the two mechanism by which access can be granted to an Azure Pipeline
+to an external service.
+
+1. Service Connection:
+Thi is a connection in depth that is normally required by Azure DevOps to make use of 
+external services that extend its functionality.
+
+> Azure DevOps > Project Settings > Pipelines > Service Connections > Create SC
+> there are diffent types of SC according to the service to connect to:
+- Chef, BitBucket, GitHub & GitHub Enterprise Server, Jenkins, Maven, NuGet, Jira, Docker Registry
+- Azure Service Bus, **Azure Resource Manager**, etc.
+
+The choice **Azure Resource Manager** allows a Pipeline to connect to an Azure Resource.
+In this case the SC can be set up based on a **MSI or SP** or a **Publish Profile** i.e. 
+in relese pipelines.
+
+The **SP** is the recommended way and in setting up the SC you are asked the details:
+- TenantID
+- Application ID (Client ID)
+- Credentials: client secret OR certificate:  
+The secret key is the big difference with respect the case with MSI.
+With a SC based oa SP you can access **any tenant thus any subscription** not only the
+**subscription** that is linked to the Azure DevOps Organization.
+
+[Azure DevOps Deployment to Multiple Subscription](https://stackoverflow.com/questions/64120870/azure-devops-deployment-to-multiple-subscription)  
+
+The answer is Yes. you can deploy to multiple Azure Subscription in Azure devops. 
+You just need to create multiple Azure Resource Manager service connections for these Azure subscriptions
+in Azure devops.
+
+---
+
+[Connect your organization to Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops)  
+
+[Could not determine if Azure DevOps belongs to a Azure subscription](https://stackoverflow.com/questions/67666792/could-not-determine-if-azure-devops-belongs-to-a-azure-subscription)  
+
+```
+You must purchase Azure DevOps through an Azure subscription. 
+Think of it as your Azure billing account.
+
+Azure DevOps uses an Azure Subscription for billing purposes. If you delete the Azure Subscription
+that is associated with your Azure DevOps organization, your Azure DevOps organization will be 
+immediately moved to "Free Tier". Though I have not tried it but I believe that the resources 
+you have created in your Azure DevOps organization will not be deleted. 
+I'm not sure what would happen if you have provisioned resources more than allowed in free tier.
+```
+
+---
+
+The **MI** options instead:
+- Subscription ID
+- TenantID
+
+2. PAT:
+This is a fine-control access mechanism based on a semanthic token.
+
+Generate the PAT in the service to access and then stick it as a secret in Azure DevOps or
+create a SC ferom it.
+It works alos the other way round when something such an app need access to Azure DevOps i.e. 
+to Azure Board or Azure Repos (classic example is the code scanning tool). In this case
+you generate the PAT in Azure DevOps and then you give it to the tool during registration. 
 
 ---
 
