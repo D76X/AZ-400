@@ -14377,3 +14377,51 @@ workflow action.
 ```
 
 ---
+
+## [Automation of Security & Compliance Scanning](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20b516b3-1d60-47dc-8ede-e6da1c8adf93/cafcf1ba-ca8c-44fc-95f1-0a5fb3e3d075)  
+
+- Container Dependency Scan
+- White Source Bolt Compliance Scan
+- SonarQube Compliance Scan
+
+In modern software solution there are two types of dependencies:
+
+1. direct dependencies
+2. transitive (nested) dependencies
+
+There are also two types of automatic scans:
+
+1. Security Dependency Scanning:
+This scan maps dependencies to know vulnerabilities held in the Known Vulnerability Database.
+Automatic scanners can then make suggestions as to how remove the vulnerability:
+- upgrade package versions
+- change affectred code pattern
+
+2. Compliance Dependency Scanning:
+This scans check all the existing dependencies and transitive dependencies for their license
+agreement gainst the **Open Source Initiative Databse (OSI)**.
+
+The two most popular licenses are:
+
+1. MIT License:
+grants express permission to reuse code **for any purpose including proprietery software**.
+This is aka **permissive licence**.
+
+1. GNU General Public License (GPL):
+The same as above with the **important difference that it REQUIRES the same license to be applied**
+**to the end product**. This means that proprietary software cannot make use of this license if it
+needs to keep the source code under ownership of teh business.
+This license is akak **copyleft license**.
+
+Dependency Scans provide:
+
+-  Inventory:
+Visibility of all dependency direct or inderect used accross all branches
+
+- Manage Vulnerabilities:
+Assess dpependenciy vulnerability risk and severety
+
+- Manage License Risk:
+see above
+
+---
