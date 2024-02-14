@@ -14052,6 +14052,8 @@ They are automatically created for you, including the credentials; big benefit h
 Service Connections are one of the two mechanism by which access can be granted to an Azure Pipeline
 to an external service.
 
+#### Service Connection:
+
 1. Service Connection:
 Thi is a connection in depth that is normally required by Azure DevOps to make use of 
 external services that extend its functionality.
@@ -14078,6 +14080,52 @@ With a SC based oa SP you can access **any tenant thus any subscription** not on
 The answer is Yes. you can deploy to multiple Azure Subscription in Azure devops. 
 You just need to create multiple Azure Resource Manager service connections for these Azure subscriptions
 in Azure devops.
+
+#### Manage Service Connection Security
+
+> Select the SC > Security:
+
+For **user permissions** there are the following assignable roles:
+- Administrator:
+which members can **manage** the SC that is edit or delete ii and its properties
+- User:
+which members can **use** the SC that is to author a bild or release pipeline that makes use of the SC
+or authorize YAML pipelines to use it.
+- Reader:
+which members can **vire** the SC
+- Creator:	
+Members of this role can create the service connection in the project. 
+Contributors are added as members by default
+
+1. user permissions at Project level:
+The users 
+[Project]\Administrators          => Acesss=Inherited 
+[Project]\TheUserThatCreatedTheSC => Acesss=Assigned 
+
+2. user permissions at Organization level:
+There's no inheritance for organization-level permissions.
+
+3. pipeline permissions:
+here you want to defined which pipelines within the project may use this SC
+default: all pipelines within the project can make use of teh SC
+you can restrict this SC to specific pipelines within the project(S)
+
+4. project permissions:
+here you want ot defined which other projects within the organization may use this SC
+default: only the current project can use the SC
+you can add other projects
+
+[Use a service connection](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#use-a-service-connection)  
+
+Once you've created your service connection, complete the following steps to use it.
+
+```
+- task: ServiceFabricDeploy@1
+  inputs:
+    applicationPackagePath: '$(Build.ArtifactStagingDirectory)\drop\pkg'
+    serviceConnectionName:  'myServiceConnectionName' # cannot be specified by variable i.e. $(connectionName)
+ ... etc ...
+```
 
 ---
 
