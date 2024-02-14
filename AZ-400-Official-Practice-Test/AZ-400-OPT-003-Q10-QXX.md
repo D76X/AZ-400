@@ -13537,7 +13537,7 @@ enable continuous monitoring for an Azure App Service
 
 ## [Realse with Load Balancer & Traffic Manager](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/107908ad-8470-4d10-a611-af41b5660d88/7818c128-40ac-4003-96dc-d5c718ce7547)  
 
-| Azure Load Balancer                 |  Azure Traffic Manager       |
+| Azure Load Balancer                 |  Azure Traffic Manager     |
 | ----------------------------------- | -------------------------- |
 | Route traffic within a Region       | Route traffic globally     |
 
@@ -13598,9 +13598,271 @@ and reconnecting after deployment must be replaced with: ?
 [LaunchDarkly Integration V2](https://marketplace.visualstudio.com/items?itemName=launchdarkly.launchdarkly-extension)  
 
 
+---
+
+### Exam Tips
+
+#### Know the difference between Deployment Groups & Deployment (Group) Job
+
+[Deployment group jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-group-phases?view=azure-devops&tabs=yaml)   
+
+Deployment groups **in Classic pipelines** make it easy **to define groups of target servers for deployment**. 
+Tasks that you define in a **deployment group job** run on some or all of the target servers, depending on the
+arguments you specify for the tasks and the job itself.
+
+You **can select specific sets of servers from a deployment group** to receive the deployment by specifying 
+the machine **tags** hat you've **defined for each server in the deployment group**. 
+
+You **can also** specify **the proportion** of the target servers that the pipeline should deploy to 
+**at the same time**  to ensure that the app running on these servers is capable of handling requests while
+the deployment is taking place.
+
+If you're using a **YAML pipeline**, you should use **Environments with virtual machines** instead.
+
+---
+
+[Azure DevOps YAML Pipeline Environment](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/environments?view=azure-devops)
+
+An environment is a **collection of resources** that you can **target with deployments** from a pipeline. 
+Typical examples of environment names are **Dev, Test, QA, Staging, and Production**. 
+An Azure DevOps **environment represents a logical target** where your pipeline deploys software.
+
+The type of supported target resources of YAML Pipeline Environments:
+
+1. [Kubernetes resource](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/environments-kubernetes?view=azure-devops)  
+
+The Kubernetes resource view shows the status of objects within the namespace that are mapped to the resource. 
+The resource view also overlays pipeline traceability so you can trace back from a Kubernetes object to the 
+pipeline, and then back to the commit.
+Use pipelines to deploy to Azure Kubernetes Service (AKS) and clusters from any other cloud provider.
+You can use Kubernetes resources with public or private clusters. 
+
+2. [virtual machine resource](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/environments-virtual-machines?view=azure-devops)
+
+Use virtual machine (VM) resources to manage deployments across multiple machines with YAML pipelines.
+VM resources let you install agents on your own servers for rolling deployments.
+
+VM resources **connect to environments**. After you define an environment, you can add VMs to target 
+with deployments. The deployment history view in an environment provides traceability from your VM 
+to your pipeline.
+
+**Target VMs in your pipeline by referencing the environment.**
+
+The environment keyword specifies the environment or its resource that is targeted by a deployment job of the pipeline.
+
+```
+environment:            # create environment and/or record deployments
+  name: string          # name of the environment to run this job on.
+  resourceName: string  # name of the resource in the environment to record the deployments against
+  resourceId: number    # resource identifier
+  resourceType: string  # type of the resource you want to target. Supported types - virtualMachine, Kubernetes
+  tags: string          # comma separated tag names to filter the resources in the environment
+strategy:               # deployment strategy
+  runOnce:              # default strategy
+    deploy:
+      steps:
+      - script: echo Hello world
+```
+
+```
+trigger: 
+- main
+
+pool: 
+   vmImage: ubuntu-latest
+
+jobs:
+- deployment: VMDeploy
+  displayName: Deploy to VM
+  environment: 
+   name: VMenv
+   resourceName: VMenv
+   resourceType: virtualMachine
+  strategy:
+     runOnce:
+        deploy:   
+          steps:
+            - script: echo "Hello world"
+```
+
+```
+environment: 'smarthotel-dev.bookings'
+strategy:
+  runOnce:
+    deploy:
+      steps:
+      - task: KubernetesManifest@0
+        displayName: Deploy to Kubernetes cluster
+        inputs:
+          action: deploy
+          namespace: $(k8sNamespace)
+          manifests: $(System.ArtifactsDirectory)/manifests/*
+          imagePullSecrets: $(imagePullSecret)
+          containers: $(containerRegistry)/$(imageRepository):$(tag)
+          # value for kubernetesServiceConnection input automatically passed down to task by environment.resource input
+```
+
+https://learn.microsoft.com/en-us/azure/devops/pipelines/process/deployment-group-phases?view=azure-devops&tabs=yaml 
+
+```
+strategy:
+  rolling:
+    maxParallel: [ number or percentage as x% ]
+    preDeploy:        
+      steps:
+      - script: [ script | bash | pwsh | powershell | checkout | task | templateReference ]
+    deploy:          
+      steps:
+      ...
+    routeTraffic:         
+      steps:
+      ...        
+    postRouteTraffic:          
+      steps:
+      ...
+    on:
+      failure:         
+        steps:
+        ...
+      success:          
+        steps:
+        ...
+```
+
+#### Benefits of YAML Pipeline Environment             
+
+- Deployment history:
+Pipeline name and run details get recorded for deployments to an environment and its resources. 
+In the context of **multiple pipelines targeting the same environment or resource**, deployment 
+history of an environment is useful to identify the source of changes.     |
+
+- Traceability of commits and work items:
+View jobs within the pipeline run that target an environment. You can also view the commits and
+work items that were newly deployed to the environment. Traceability also allows one to track 
+whether a code change (commit) or feature/bug-fix (work items) reached an environment.
+
+- Diagnostic resource health:
+ resource health	Validate whether the application is functioning at its wanted state.
+
+- Security:
+Secure environments by specifying which users and pipelines are allowed to target an environment.
+
+---
+
+## [Azure ID Priviledge Identity Management (PIM)](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/c0f375f6-5a77-4f5a-a311-20d015a66ab9)
+
+#### Waht is PIM:
+
+**PIM** is a mechanism and a service within Azure AD to **limit access to information or resources**.
+
+It enables the following aspects of access to resources:
+- management
+- control
+- monitoring
+
+The features of PIM are:
+
+- JIT & Time-Bound access:
+just-in-time **privileged access to Azure AD Resources** that is the time-bound attribution of specific
+identites to which specific roles on a specific set of Azure Resources so that specific operation can 
+be performed over the resources.
+
+- Approvals and Justification:
+Require approvals from a set of approvers to enable the activation of priviledge roles and require 
+a justification from the identity that appllies for the on-demand priviledge identity.
+
+- Authentication with MFA:
+Require MFA to **authenticate** with identities with priviledged roles.
+
+- Notification:
+when the activiation of a priviledge role occurs notification may be sent to a selected grouop of people
+with details of the process that has granted the activation of the role.
+
+- Conduction of Access Review & Audit History:
+to established whether or not any priviledge role are still useful or should be either reduced in scope or 
+removed or the set of people who might need such priviledge role has changed over time and must be updated.
+Audit History for internal and external audits.
+
+#### Scenario:
+
+In an Azure DevOps Team there are members that may need access to **resources** that are part of a specific 
+group at specific times. For example, deploying to production should be limited at agreed times and roles
+necessary to change the state of the resources of teh production environment  should be granted only to a
+set of known identities and only following a valid and vettted (approved) business reason.
+Further, any change to the production eviroment should be audited.
+
+---
+
+## [Azure AD Conditional Access](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/6ebe31ec-5841-48a5-a041-29ee24851046)  
+
+Azure AD Conditional Access is a mechanism to protect access to resources based on the detection of **Signals**
+in that a set of condition is **automatically evaluated** to establish whether or not the access to the resource 
+should be allowed.
+
+The workflow is the following:
+
+> Analyse Signals > Perform a Decision based on If-Then statements > Enforcement of the Outcome (Allow/Deny)
+
+Common Signals that can be used in Azure AD Conditional Access:
+
+- Membership
+- Location
+- Device & Application
+- Real-Time Risk Analysis
+
+Common Outcomes:
+
+- Block access
+- Grant access
+- require MFA to access
+
+#### Scenario 1: Should a device have access to this office 365 endpoint?
+The Conditional Access Rule specifies that only **complient devices** may access a specific reource
+and therefroe when the access to the office 365 endpoint is attempted from a device that does not 
+satisfy the conditions the acces is denied.
+
+#### Scenario 2: Should a dthis IP have access to this server?
+
+#### How does Azure AD Conditional Access work?
+
+1. Set the scope:
+This is done through **Include & Exclude Rules** to add in users and groups, cloud apps or actions.
+
+2. Determine the conditions:
+This is the logic based ion If-Then statements.
+
+3. Make a decision:
 
 
+[What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview)  
 
+Administrators are faced with two primary goals:
+
+1. Empower users to be productive wherever and whenever
+2. Protect the organization's assets
+
+The modern security perimeter extends beyond an organization's network perimeter to include user and device identity. Organizations now **use identity-driven signals** as **part of their access control decisions**. 
+
+Microsoft Entra Conditional Access **brings signals together, to make decisions, and enforce organizational policies**. Conditional Access is Microsoft's **Zero Trust policy engine** taking signals from various sources into account when enforcing policy decisions.
+
+if a user wants to access a resource, then they must complete an action. 
+For example: If a user wants to access an application or service like Microsoft 365, then they must perform multifactor authentication to gain access.
+
+#### How does an organization create these policies? What is required? How are they applied?
+
+Multiple Conditional Access policies may apply to an individual user at any time. In this case, all policies that apply must be satisfied. For example, if one policy requires multifactor authentication and another requires a compliant device, you must complete MFA, and use a compliant device. All assignments are logically ANDed. If you've more than one assignment configured, all assignments must be satisfied to trigger a policy.
+
+A Conditional Access policy must contain at minimum the following to be enforced:
+
+1. Name of the policy.
+
+2. Assignments:
+Users and/or groups to apply the policy to. 
+Cloud apps or actions to apply the policy to.
+Conditions.
+
+3. Access controls
+Grant or Block controls
 
 ---
 
