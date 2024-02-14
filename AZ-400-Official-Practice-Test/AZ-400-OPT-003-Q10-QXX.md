@@ -14425,3 +14425,9 @@ Assess dpependenciy vulnerability risk and severety
 see above
 
 ---
+
+## [Container Dependency Scan](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20b516b3-1d60-47dc-8ede-e6da1c8adf93/7799ea12-0f4a-4d18-a05a-8f500111cf9d)  
+
+
+
+---
