@@ -14161,6 +14161,107 @@ you generate the PAT in Azure DevOps and then you give it to the tool during reg
 
 ---
 
+## [Use Azure Key Vault in an Azure DevOps Pipeline](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a585dfb4-6d73-45d2-9317-0d7f12950bfd/158ba8af-d1fd-426a-a884-a6bc0c4fed99)   
+
+In order for a Azure DevOps Pipeline to access a Key Vault **you need to use a Service Principal**
+defined in the Azure AD Tenant for the subscription of the Key Vault.
+
+[Use Azure Key Vault secrets in Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml#set-up-azure-key-vault-access-policies)  
+
+> Set up Azure Key Vault access policies:
+In order to access our Azure Key Vault, we **must first set up a service principal** to give access to 
+Azure Pipelines. Set up an **Access Policy on KeyVault assigned to the SP** with Secret the permissions 
+that it needs i.e. Get, List, etc.
+
+
+[Use Azure Key Vault secrets in YAML Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/key-vault-in-own-project?view=azure-devops&tabs=portal)   
+
+The same applies to YAML pipelines, we still need a SP to access the KeyVault and a Key Vault Access Policy applied
+to this SP.
+
+For example if the SP is created through the Azure CLI you should get back this:
+
+`az ad sp create-for-rbac --name YOUR_SERVICE_PRINCIPAL_NAME`
+
+```
+{
+  "appId": "p951q3e2-8e5r-z697-e9q52aviu8a2",
+  "displayName": "MyServicePrincipal",
+  "password": "***********************************",
+  "tenant": "85wes2u6-63sh-95zx-2as3-qw58wex269df"
+}
+```
+
+> [Create a new service connection](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/key-vault-in-own-project?view=azure-devops&tabs=portal#create-a-new-service-connection)  
+
+In this step you create a SC for teh SP above to which the Azure Key Vault Access Policy has been assigned.
+Then in the pipeline you can **Query and use secrets**
+
+```
+steps:
+
+- task: AzureKeyVault@1
+  inputs:
+    azureSubscription: 'repo-kv-demo'                    ## YOUR_SERVICE_CONNECTION_NAME
+    KeyVaultName: 'kv-demo-repo'                         ## YOUR_KEY_VAULT_NAME
+    SecretsFilter: 'secretDemo'                          ## YOUR_SECRET_NAME. Default value: *
+    RunAsPreJob: false                                   ## Make the secret(s) available to the whole job
+
+# you cannot print secrets in a pipeline but you can print env vars
+# therefore you use the trick of reading the value of the secret 
+# secretDemo into the env var MY_MAPPED_ENV_VAR and then you print 
+# the env var
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'run'
+    projects: '**/*.csproj'
+  env:
+    mySecret: $(secretDemo)
+
+- bash: |
+    echo "Secret Found! $MY_MAPPED_ENV_VAR"        
+  env:
+    MY_MAPPED_ENV_VAR: $(mySecret)
+```
+
+`Secret Found! ***`
+
+---
+
+[AzureKeyVault@2 - Azure Key Vault v2 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/azure-key-vault-v2?view=azure-pipelines)  
+
+Use this task to download secrets, such as authentication keys, storage account keys, data encryption keys, .PFX files, and passwords from an Azure Key Vault instance. 
+These secrets are going to be mapped into pipeline secrets that can then be passed to tasks within the jobs
+of the same pipeline.
+
+`SecretsFilter - Secrets filter`
+string. Required. Default value: *.
+
+Downloads secret names according to the entered value. 
+The value can be the default value to download all secrets from the selected key vault, or 
+a comma-separated list of secret names.
+
+One important bit here is:
+`azureSubscription: 'repo-kv-demo'                    ## YOUR_SERVICE_CONNECTION_NAME`
+
+This is typical not only of `AzureKeyVault@2` but of all tasks that somehow need to access
+the **Azure Resource Manager** for a specific subscription. For example in the pipeline
+tasks to create or update a SQL Database or to create a Resource Group.
+**In these tasks you need a Service Connection set up over a Service Pricipal within the**
+**subscription tenant** to which the necessary RBAC roles have been assigned within the 
+subscription.
+
+The Pipeline authenticate to Azure AD as the SP specified in teh Service Connection and the
+tenant grants the identity of the SP the set of permissions of the roles assigned ot it
+within the Azure Subscription for which the SP has been created.
+
+
+---
+
+
+---
+
 
 
 
