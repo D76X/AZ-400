@@ -15038,8 +15038,79 @@ collected from specific resources.
 
 ---
 
+[Log Analytics Built-in Roles](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#built-in-roles)
 
-- use Crash Analytics
+Assign users to these roles to give them access at different scopes:
+
+- Subscription: Access to all workspaces in the subscription
+- Resource group: Access to all workspaces in the resource group
+- Resource: Access to only the specified workspace
+
+> Log Analytics Reader:
+- view all monitoring data and monitoring settings, including the configuration of Azure diagnostics on all Azure resources.
+- View and search all monitoring data.
+- View monitoring settings, including viewing the configuration of Azure diagnostics on all Azure resources.
+
+> Log Analytics Contributor:
+Can do all the above + management operations:
+- create and edit Automation accounts
+- add / remove management solutions
+- view the Storage Account Keys
+- Configure log collection settings from Azure Storage
+- Configure the monitoring settings such as VM Extensions / Resource Diagnostics
+
+> Define a custom Role.
+In this case you can specify which permission to include in the role. 
+Add the permissions (actions) and the deny (notAction) that the identity the role is going to applied to needs.
+
+> Example: Grant access to all tables except the SecurityAlert table:
+
+```
+"Actions":  [
+    "Microsoft.OperationalInsights/workspaces/read",
+    "Microsoft.OperationalInsights/workspaces/query/read",
+    "Microsoft.OperationalInsights/workspaces/query/*/read"
+],
+"notActions":  [
+    "Microsoft.OperationalInsights/workspaces/query/SecurityAlert/read"
+],
+```
+
+---
+
+## [Use Crash Analytics](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/e4096dcd-8a6a-4d00-9850-1fedc0c0ac09)  
+
+- [Visual Studio App Center Diagnostics](https://learn.microsoft.com/en-us/appcenter/diagnostics/features)
+
+1. Install the  App Center SDK  
+App Center SDK in your targeted platform Android, Apache Cordova, iOS, macOS, React Native, tvOS, Unity, UWP,
+WPF/WinForms, and MAUI/Xamarin. You'll find the user ID associated to a crash or error when clicking on an 
+issue inside of a group.
+
+2. the following information is automatically sent to App Center 
+- Device info
+- App info
+- running threads
+- installation ID / ( userID: THIS NEEDS TO BE CONFIGURED)
+
+At the time of the crash the SDK on the device stores the diagnostics locally tio the device.
+The diagnostic info is not sent to App Center yet as the the device is deemed to be not reliable.
+However, notification emails with some details about the incident are sent at this time.
+The diagnostics info is sent to App Center at the next fresh start of the app.
+It also possible to configure a set of info that can be sent right after the crash.
+
+
+---
+
+- [Google Firebase Crashlytics](https://firebase.google.com/docs/crashlytics)
+
+1. need the SDK
+2. Works similarly to App Center Diagnostics with some minor differences
+
+---
+
+
+
 - Implemnt **Distributed Tracing** in a delocalized app environment
 - Application Insights and App Center for User Analytics
 - Performance Indicators on Infrastructure and creation of Alerts on these indicators
