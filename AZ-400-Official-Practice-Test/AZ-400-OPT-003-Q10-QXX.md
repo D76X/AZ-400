@@ -15357,7 +15357,35 @@ The corresponding details that vary by type.
 
 ---
 
-- 
-- Monitoring Feedback Loops
+#### [Create an allert Rule form a Log Query](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/tutorial-log-alert)
+
+> Azure VM > Logs > Query: see reference > New Alert > it continues as in the previous example
+
+```
+Perf
+| where CounterName == "% Processor Time"
+| where ObjectName == "Processor"
+| summarize avg(CounterValue) by bin(TimeGenerated, 15min), Computer, _ResourceId
+```
+
+---
+ 
+### [Monitoring Feedback Loops](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/f941ccb9-c148-4c66-b55c-0ec8375773e2)  
+
+Feedback is real time feedback sent to teh developers forn the end users and operators.
+This allows developers to **very quickly address issues** so that can be fixed as quickly as possible.
+
+- Imnplement a Feedback loop using Azure Enebt Grid and Logic App 
+
+Example you want to create a Feebback loop on an Azure Key Vault to monitor secret changes
+and notify developers and operations when this occurs. This is following an accident in which
+such accidental change has caused outage and a long downtime as aconsequence of a long time
+required to investigate the incident and find the root cause.
+
+[Monitoring Key Vault with Azure Event Grid](https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview)  
+
+You can use Evemnt Grid
+
+---
 
 - LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
