@@ -15176,6 +15176,8 @@ User Analytics can be obtained in two ways:
 1. [Application Insights User Analytics](https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage-overview?tabs=aspnetcore) as part of Azure Monitor
 2. [App Center Analytics](https://learn.microsoft.com/en-us/appcenter/analytics/)
 
+> App Insignts > Usage Section:
+
 - Retention: How many users come back?
 - Explore usage demographics and statistics
 - Custom business events
@@ -15219,17 +15221,143 @@ A page view is counted when a browser loads a page from your app, provided you'v
 Continuously Export all your Analytics data **into Azure Blob Storage or Application Insights**. 
 This allows you to:
 
-- keep your data as long as you need
+- keep your data as long as you need (App Center has a **28 OR 90 days policy**)
 - provide further insights into your data with powerful filtering, data visualizations, and query capabilities*
 > these capabilities are better in App Insights than in App Center.
 
-
-
+> App Center > Settings > Export > New Export: Blob Storage / App Insights*
+With App Insights the difference is that you also need to provide **the Instrumentation Key**.
+You find this in the App Insights resource Overview.
 
 ---
 
-- Performance Indicators on Infrastructure and creation of Alerts on these indicators
-- Integrate Alerts with communication tools: Slack & Teams
+## [Performance Indicators on Infrastructure ](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/740d545a-c32d-47ce-a291-4ba8ac0af7c9)  
+
+- high-level KPI:
+  > request / time
+  > response time avg
+  > network volume / time
+  > latency
+  > error rate
+
+- PI correlation:
+> concurrence user vs request latency
+> concurrence user vs response time
+> error rate vs request rate
+
+- Low-Level PI
+> memory
+> threads
+> CPU
+> Queue depth
+> Disk I/O 
+> Network inbound & outbound traffic rates and totals
+
+### What is Performance
+
+Performance is the meausure of how efficiently a component performs a psecific operation.
+By this measure you may be able to detect a degradation in one of the component of a system
+and pre-emopt a system failere by means of an action such as, for example, the replacement of 
+the component in a Micorsevices application or simply by fixing a Network issue.
+
+Typical KPIs are:
+
+- Throughput (queries/request / time)
+
+## [Create Alerts on metrcs and integrate with communication tools: Slack & Teams](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/ab4d70d3-5c62-4898-94c7-0df66b1fca77)
+
+- Action Groups 
+- Notification Types
+- Action Typs
+- Trgger Logic App to send Notification to Teams & Slack
+
+### [Action Groups](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)  
+
+These are the configuration settings of an alert in Azure Monitor.
+AG is **a collection of notification preferences**. 
+As a **global service**, an action group helps provide a disaster recovery solution. 
+
+- Azure Monitor
+- Azure Service Health 
+- Azure Advisor 
+
+use action groups to notify users about the alert and take an action.
+
+- Type: 
+The notification that's sent or action that's performed. 
+
+Examples include: 
+  > send a voice call, SMS, or email 
+  > send email to Azure Resource Manager Role
+  
+You can also trigger various types of automated actions.
+ > Automation Runbook
+ > Invoke AFs
+ > Logic App 
+ > ITMS
+ > Webhook
+ > Secure Webhokk:
+ This uses Azure AD to securely communicate with the Webbhook EP
+ that is the EP is protected by authentication via AzureAD
+
+- Name: 
+A unique identifier within the action group.
+
+- Details: 
+The corresponding details that vary by type.
+
+> Azure Monitors > Alerts > Action Groups 
+> Create an AG that will be available to your Alerts when you create them in AM
+> AG can also be created at teh time an alert is created
+
+---
+
+### [Create an Alert in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-metric-alert-rule)
+
+> AM > Alerts > New Aklert Rule
+> Select Resource > Subscription > Type of Resource i.e. VM
+> Select the VM Instance whose metrics must be use to set up the alert on
+> Add the condition of teh Alert
+
+> Select the metrics i.e CPU Percentage
+  > Use Static Rule > Threshold: set the static threshold
+  > Use Dynamic Rule > Set level above baseline
+
+> Select Aggregation Period i.e. 30 mins
+> Select Frequency of evaluation i.e. every 40 mins
+
+- Notification:
+> Provide the details of teh notifications to sent when the alert is triggered
+
+- Actions:
+> Select one or more existing Action Groups OR create a new Action Group
+
+### [Action Groups](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups)  
+
+- Action Type: see above > ITMS | Webbhook | Secure EU | Logic Apps | AF | Automation Runbook
+- Action Name: name
+
+#### Create a Logic App with an HTTP trigger that posts the details of the AM alert to Teams
+
+[Customize alert notifications by using Logic Apps](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-logic-apps?tabs=send-email)  
+
+> Portal Create a Logic App > Trigger: When a HTTP request is received
+> copy the JSON of the alert schema to get Logic App to deduce the schema from it
+  you can find this when you test the alert without having set the Log app as its 
+  action group. When a HTTP POST to the EP of this logic app is made with a body
+  that matches this teplate the Logic App runs
+
+> adjust the JSON with the info thet you need i.e. some properties will never change 
+> add a step to teh Logic App for Microsoft Teams
+> Microsoft Teams Post a message template
+> Connect to the Teams Account and select team & channels
+> Save the Logic App
+
+> Go back to the AG and add teh Logic App as one of its action type: Logic App
+
+---
+
+- 
 - Monitoring Feedback Loops
 
 - LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
