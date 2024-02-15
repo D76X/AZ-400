@@ -15109,9 +15109,59 @@ It also possible to configure a set of info that can be sent right after the cra
 
 ---
 
+### [Implemnt **Distributed Tracing** in a delocalized app environment](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/736f5d40-a196-4e35-bf80-0364185e1649)
 
+> Monolithic Applications :
 
-- Implemnt **Distributed Tracing** in a delocalized app environment
+- grow over time and become difficult to change or extend 
+- it takes longer to test a change in one module might requred several other changes in related modules
+- are composed by **tightly coupled modules**. 
+
+> Distributed Applications (Microservices based ond SOA):
+
+- the software is brocken down inti **individual, not-deopendant, communicating via REST API services**
+- scale better at component level
+- easier to extend : improved Agility
+- can be changed and tested individually at service level
+- require distributed resources to run
+- present more complicated deployments
+- present more complicated diagnostics scenarios
+- present more latency as services communicate over a network with RESR API calls
+
+> Applicatication Monitor indicators
+
+- Throughput
+- Response time
+- Error rates 400 & 500
+- Traces: follow the application flow in the context of an error
+
+#### [Distributed Tracing in Application Insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/distributed-trace-data)
+
+Distributed tracing solves this problem by providing a performance profiler that works like call stacks 
+for cloud and microservices architectures.
+
+Azure Monitor provides two experiences for consuming distributed trace data: 
+
+- the transaction diagnostics view for a single transaction/request  
+- the application map view to show how systems interact.
+
+**Application Insights** **can monitor each component separately** and detect which component is responsible for failures
+or performance degradation by **using distributed telemetry correlation**. This article explains the data model, 
+context-propagation techniques, protocols, and implementation of correlation tactics on different languages and platforms 
+used by Application Insights.
+
+To enable distributed tracing for an application, **add the right agent, SDK, or library to each service** based on its 
+programming language. The Application Insights agents and SDKs for .NET, .NET Core, Java, Node.js, and JavaScript all 
+support distributed tracing natively. With the proper Application Insights SDK installed and configured, tracing information 
+is **automatically collected for popular frameworks, libraries, and technologies by SDK dependency autocollectors**. 
+
+The basic idea at the basis of DT in App Insights is to use a unique ID Token that identifies all the services that are
+involved in a distributed call stack. This ID is the trace and is used in the logs produced by each of the involved 
+components on which the SDK is installed. This information is used to correlate the logs and to create a map of the
+component that have produced the trace.
+
+---
+
 - Application Insights and App Center for User Analytics
 - Performance Indicators on Infrastructure and creation of Alerts on these indicators
 - Integrate Alerts with communication tools: Slack & Teams
