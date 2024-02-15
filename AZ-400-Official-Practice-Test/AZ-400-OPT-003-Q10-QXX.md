@@ -14847,20 +14847,6 @@ services such as [Splunk](https://www.splunk.com/en_us/download.html?utm_campaig
 
 or even an oaother Azure Servicve such as an Azure SQL Database.
 
-
----
-
-- Azure Monitor Logs
-- use RBAC to access Logs in Azure 
-- use Crash Analytics
-- Implemnt **Distributed Tracing** in a delocalized app environment
-- Application Insights and App Center for User Analytics
-- Performance Indicators on Infrastructure and creation of Alerts on these indicators
-- Integrate Alerts with communication tools: Slack & Teams
-- Monitoring Feedback Loops
-
-- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
-
 ---
 
 [Azure Monitor Logs overview](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs)  
@@ -14978,5 +14964,86 @@ installed.
 
 ## [Control Acess to Logs](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/3deb767e-b10e-489a-8aa4-d37dd119a288)  
 
+- how to decide how many LAWS you need
+- access modes:
+the way a user acces the LAWS which determine the **scope** of the available data to that user
+- access control modes
+- built-in roles
+- custom roles table access:
+decide which tables users have access to within your logs i.e. you may have multiole teams and you want 
+to make sure that the member of each teams have access to the resources in LAWS that they need to and not more.
+
+### How to decide how many LAWS you need
+
+- compliance may require that data remains confined to a given region
+- you may want to try to reduce costs of your LAWS:
+by reducing the **outbound traffic** from your resources i.e. by keeping the LAWS they send the data to in teh same region as the resources 
+ 
+There are typically two major approaches to this:
+
+> Cemntralized approach:
+
+You use a single LAWS and a single team is in chagre of its management.
+
+Anvantages:
+- easier to search
+- better telemetry correlation
+
+Disadvantages:
+- might be more difficult to manage if differnt teams need different access levels
+- potentially higher costs
+- may brak compliance rules
+
+> Decentralized approach:
+
+Each individual team manage their own LAWS.
+This as pros & cons flipped with the respect the cenrtralized approach.
+
+> Important decicion factor when VMs are the source of logs:
+
+Windows LA Agents can send logs to **multiple LAWS**
+Linux LA Agents can send logs to **only one LAW**
 
 ---
+
+### [Access modes](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode):
+
+The way a user acces the LAWS which determine the **scope** of the available data to that user
+
+**Workspace-context**: 
+
+You can view all logs in the workspace for which you have permission. Queries in this mode are scoped to
+**all data in tables that you have access to in the workspace**. This access mode is used when logs are  
+accessed with the workspace as the scope, such as when you select Logs on the Azure Monitor menu 
+in the Azure portal.
+
+**Resource-context**: 
+
+When you access the workspace for a **particular resource, resource group, or subscription**, such as when
+you **select Logs from a resource menu in the Azure portal**, you can view logs for only resources in all 
+tables that you have access to. Queries in this mode are **scoped to only data associated with that resource**.
+**This mode also enables granular Azure RBAC**. 
+Workspaces use a resource-context log model where every log record emitted by an Azure resource is automatically
+associated with this resource.
+
+You can configure a LAWS in one of two ways:
+
+1. Require Workspace-context Permissions:
+THIS SETUP RULES OUT THE POSSIBILITY OF A GRANULAR rabac CONTROL OVER THE DATA IN THE LAWS.
+Users will be able to access all data and you cannot reduce the permissions of individual users to data 
+collected from specific resources.
+
+2. Require Workspace-context Permissions OR Resource-context Permissions [Default]
+**This mode also enables granular Azure RBAC**.
+
+---
+
+
+- use Crash Analytics
+- Implemnt **Distributed Tracing** in a delocalized app environment
+- Application Insights and App Center for User Analytics
+- Performance Indicators on Infrastructure and creation of Alerts on these indicators
+- Integrate Alerts with communication tools: Slack & Teams
+- Monitoring Feedback Loops
+
+- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
