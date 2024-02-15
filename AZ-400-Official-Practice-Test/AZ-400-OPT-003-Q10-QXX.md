@@ -14428,6 +14428,362 @@ see above
 
 ## [Container Dependency Scan](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20b516b3-1d60-47dc-8ede-e6da1c8adf93/7799ea12-0f4a-4d18-a05a-8f500111cf9d)  
 
+The 3 main feature of a container scanning tool:
+
+| Feature	        | Description |
+| --------------- | ------------------------------ |
+| Scanning	      | parse image files for audit |
+| Updates	        | recommend updates for container image versions and distributions |
+| Vulnerabilities	| match found vulnerabilities between the source and target branches |
+
+
+
+| Scanning Tool        | Container Registry that is scanned |
+| -------------------- | ------------------------------ |
+| Docker Enterprise	   | Docker Trusted Registry |
+| [Docker Hub](https://hub.docker.com/) | [snyk](https://snyk.io/learn/vulnerability-scanner/) | 
+| Azure Container Registry | **Qualys scanning** + Azure Security Center |
+
+- Docker Enterprise is now [Docker Business](https://www.docker.com/products/business/).
+- [Docker Trusted Registry](https://dockerlabs.collabnix.com/beginners/dockertrustedregistry.html)  
+
+- [Enable vulnerability scanning with the integrated Qualys scanner (deprecated)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/deploy-vulnerability-assessment-vm)
+
+You should plan to transition to the Microsoft Defender Vulnerability Management vulnerability scanning solution.
+
+[Transition to Microsoft Defender Vulnerability Management for servers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/how-to-transition-to-built-in)  
+
+### Scan a Docker container for dependencies in Azure
+
+- Review Kubernetes recomendations
+- Review Azure Container imgae recommendations
+- Navigate invetory in Security Center
+
+> Workflow 1: Kuberentes 
+> Azure Security Center > Inventory > Select the Kubernetes service that is monitored > inspect recommendation and fixes
+
+> Workflow 2: Azure Container Registry 
+> Azure Security Center > Inventory > Select the Azure Container Registry 
+
+[Vulnerability scanning for images in Azure Container Registry is now generally available](https://azure.microsoft.com/en-us/updates/vulnerability-scanning-for-images-in-azure-container-registry-is-now-generally-available/)  
+
+[Quickstart: Stay up to date with container image dependency updates and security using Dependabot and Copacetic](https://learn.microsoft.com/en-us/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/cssc-depenadabot)  
+
+---
+
+## [Incorporate Security in Azre DevOps Pipelines](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20b516b3-1d60-47dc-8ede-e6da1c8adf93/54ba1ad6-ae20-4caf-be7b-82d4e4810693)
+
+- secure applications:
+>* > secure infrastructure > secure app architecture > continuos validation > monitoring >*
+> apply layered security architecture patterns
+
+- continuos validation process:
+The process consists in a series of practices applied to each of the pipeline stages.
+The purpose is **to collect feedback from each of this stages** and to **implement corrective actions**
+as soon as possible during the development cycle.
+
+- nightly releases and scanning:
+The scans that are time consuming may be performed on the corresponding enviroments as part of a nightly
+DEV/TEST release.
+  
+  > Level IDE/PRs use:
+  > use PRs for manual valuation + static code scanners
+  > use code reviews
+  > use work item linking 
+  
+  > Level CI pipeline use: 
+  > scanners for OSS Vulnerabilities & OOS License Violations (SonarQube + WhiteSource Bolt)
+  > use static code rules
+  > use Unit Tests
+  > use Code Metrics
+
+  > Level DEV Environment use:
+  > Pen Test Issues + Performance Issues + SSI Issues + Test for Regression Bugs
+  > Infrastructure scan
+
+  > Level TEST Enviroment use:
+  > Penetration Tests
+  > Test for Infrastrucure issues
+  > Infrastructure scan
+  
+  > Passive penetretion testing fast i.e. [ZAP Proxy](https://www.zaproxy.org/docs/desktop/start/features/ascan/) *
+  This can also be integrated in teh DEV Enviroment step and always in the TEST Enviroment
+    1. Pull the OWASP Zap Weekly
+    2. start a container with your app
+    3. run the baseline (1 to 2 Minutes)
+    4. Generate a Report with the test results 
+    5. From all or some of the detected issues and alerts, according to their severity, reate bugs to feed back to the process
+    6. Fail the release if there are high severity alerts
+
+  > Active penetretion testing nightly i.e. [ZAP Proxy](https://www.zaproxy.org/docs/desktop/start/features/ascan/) *
+  This is done only on the TEST Environment on the nightly build
+    1. Pull the OWASP Zap Weekly
+    2. start a container with your app
+    3. **Spider the site**
+    3. **run the afull ctive scan**
+    4. Generate a Report with the test results 
+    5. From all or some of the detected issues and alerts, according to their severity, reate bugs to feed back to the process
+    6. Fail the release if there are high severity alerts
+
+---
+
+## [Use SonarQube to scan for Compliance](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/20b516b3-1d60-47dc-8ede-e6da1c8adf93/ad015be3-4414-4651-9691-60590f4b5f05)  
+
+The process that integrates a SonraQube scan into a Azure DevOps Pipelines is simple and based on two tasks.
+
+[SonarQubePrepare@5 - Prepare Analysis Configuration v5 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/sonar-qube-prepare-v5?view=azure-pipelines)  
+
+Use this task to prepare a SonarQube analysis configuration.
+The **Sever Endpoint** required in this task is the **Service Connection** set up in Azure DevOps to the SonarQube
+account that is used to collect the source code and the reults of the scan. 
+
+[Sonarqube scan takes entire code or just the hashes](https://stackoverflow.com/questions/66378225/sonarqube-scan-takes-entire-code-or-just-the-hashes)
+[How do I tell Sonar not to store the source code in the database?](https://stackoverflow.com/questions/42341938/how-do-i-tell-sonar-not-to-store-the-source-code-in-the-database)
+**SonarQube and SonarQube analysis do not send your code anywhere but to the database you've configured and control**.
+
+```
+# Prepare Analysis Configuration v5
+# Prepare SonarQube analysis configuration.
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: # string. Required. SonarQube Server Endpoint. 
+    scannerMode: 'MSBuild' # 'MSBuild' | 'Other' | 'CLI'. Required. Choose the way to run the analysis. Default: MSBuild.    
+  # Advanced
+    #extraProperties: # string. Additional Properties.
+```
+
+In the **Advanced** section of `SonarQubePrepare@5` you must provide:
+
+cliProjectKey - Project Key
+string. Required when scannerMode = CLI && configMode = manual.
+
+> sonar.projectName=TheNameOfOfTheProjectForThisScanOnYourSonarCloudAccount
+
+Specifies the SonarQube project unique key. For example, sonar.projectKey.
+projectKey - Project Key
+string. Required when scannerMode = MSBuild.
+
+> sonar.projectKet=KeyThatIsGivenToYouBySonarCloudForThisProjectOnYourAccount
+
+---
+
+[SonarQubePublish@5 - Publish Quality Gate Result v5 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/sonar-qube-publish-v5?view=azure-pipelines)
+
+Use this task to publish SonarQube's Quality Gate result on the Azure DevOps build result. Use this after the analysis.
+
+Syntax
+```
+# Publish Quality Gate Result v5
+# Publish SonarQube's Quality Gate result on the Azure DevOps build result, to be used after the actual analysis.
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300' # string. Required. Timeout (s). Default: 300.
+
+```
+
+The results of the scans performed by SonarQube are on the SonarCloud account but can be reached by the link
+that will be added in the Extensions tab iof the Azure DevOps Pipeline. 
+**SonarCloud** checks for **bugs, code quality issues, vulnerabilities and dependencies issues** but 
+it **does not** scan for **Licensing uissues aka Compliance Scan**, for that you need **WhiteSource Bolt**.
+
+[What is branch analysis for?](https://docs.sonarsource.com/sonarcloud/enriching/branch-analysis/#what-is-branch-analysis-for)
+**Branch analysis** in SonarCloud lets you analyze branches of your project other than pull request branches 
+and the main branch.
+
+- Main Branch Analysis:
+his occurs every time a change is pushed to the main branch. The analysis is done on the current state of the 
+main branch, that is, the state recorded in the HEAD commit of the main branch, with a special focus on new code.
+The results of this analysis track the quality of the whole project and are used (via the quality gate) to ensure 
+that the project is always in a releasable state.
+
+- Pull request analysis: 
+This occurs when a pull request is opened and every time a change is pushed to the pull request branch. 
+Analysis results only include issues that have been introduced by the pull request itself. 
+A quality gate on the pull request uses these results to ensure that the code changes introduced are always clean.
+
+- Branch analysis:
+in contrast, allows you to trigger an analysis on a push to any specified branch (not just the main branch) 
+without involving pull requests. This capability can be useful in the following situations:
+
+1. 
+If your project has **long-living branches** other than the main branch that you want to analyze. 
+**One use-case** is having branches for older versions of your software that you still periodically update with 
+critical fixes. 
+**Another** is having separate branches for development and production in your project.
+
+2.
+If you use **short-lived branches (for example, “feature” branches) to introduce changes** to your main branch
+**but do not use them with a pull request mechanism** in a supported CI.
+
+---
+
+### Compliance scan: Licensing issue
+
+[Mend Bolt (formerly WhiteSource)](https://marketplace.visualstudio.com/items?itemName=whitesource.whiteSource-bolt-v2)
+
+Mend Bolt is a FREE extension, which scans all your projects and 
+- detects open source components 
+- their license 
+- their known vulnerabilities. 
+
+Not to mention, we also provide fixes and support for most common programming languages.
+
+---
+
+### Exam Tips
+
+#### Exam Tip 1
+
+1. There might be a simulation to enable **content trust** to madify an Azure Container Registry
+
+[Content trust in Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-content-trust)   
+
+Azure Container Registry **implements Docker's content trust model**, enabling pushing and pulling of signed images. 
+This article gets you started enabling content trust in your container registries.
+
+Important to any distributed system designed with security in mind are:
+
+1. **verifying both the source and the integrity of data** entering the system. 
+2. **Consumers of the data** need to be able to verify both the publisher (source) of the data, as well as ensure it's not been 
+  modified after it was published (integrity).
+
+As an image publisher, content trust allows you to sign the images you push to your registry.  
+Consumers of your images (people or systems pulling images from your registry) can configure their clients to pull only signed images. 
+When an image consumer pulls a signed image, their Docker client verifies the integrity of the image. 
+
+Content trust works with the **tags** in a repository. 
+Image repositories can contain images with both signed and unsigned tags. For example, you might sign only the myimage:stable 
+and myimage:latest images, but not myimage:dev.
+
+Content trust is managed through the **use of a set of cryptographic signing keys associated with a specific repository in a registry**.
+
+[Enable registry content trust](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-content-trust#enable-registry-content-trust)  
+
+1. first step is to enable content trust at the registry level. 
+> navigate to the registry in the Azure portal. Under Policies, select Content Trust > Enabled > Save.
+Enabling content trust on your registry does not restrict registry usage only to consumers with content trust enabled. 
+Consumers without content trust enabled can continue to use your registry as normal.
+Consumers who have enabled content trust in their clients, however, will be able to see only signed images in your registry.
+
+2. Enable client content trust
+To work with trusted images, both image publishers and consumers need to enable content trust for their Docker clients. 
+As a publisher, you can sign the images you push to a content trust-enabled registry. 
+**Content trust is disabled by default in Docker clients**, but you **can enable it per shell session or per command**.
+
+```
+# To enable content trust for a shell session, set the DOCKER_CONTENT_TRUST environment variable to 1.
+# Enable content trust for shell session
+export DOCKER_CONTENT_TRUST=1
+```
+
+Enable or disable content trust for a single command, several Docker commands support the --disable-content-trust argument. 
+```
+# Enable content trust for single command
+docker build --disable-content-trust=false -t myacr.azurecr.io/myimage:v1 .
+
+# Disable content trust for single command
+docker build --disable-content-trust -t myacr.azurecr.io/myimage:v1 .
+```
+
+[Grant image signing permissions](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-content-trust#grant-image-signing-permissions)  
+Only the users or systems you've granted permission can push trusted images to your registry.
+Assign to them the Microsoft Entra identities the `AcrImageSigner`+`AcrPush ` roles. 
+
+You can do this form the Azure Portal in the **Access Control (IAM) of the Container Registry**.
+Or with the Azure CLI in an authenticated Azure CLI session.
+
+```
+# Grant signing permissions to authenticated Azure CLI user
+REGISTRY=myregistry
+REGISTRY_ID=$(az acr show --name $REGISTRY --query id --output tsv)
+az role assignment create --scope <registry ID> --role AcrImageSigner --assignee <user name>
+```
+#### Push signed Docker imgaes to ACR from a Pipeline
+
+You can also grant a **service principal** the rights to push trusted images to your registry.
+**THIS IS OBVIOUSLY THE WAY AN Azure DevIOp CI/CD Pipelines WOULD NEED TO USE IN ORDER TO**
+**BE ABLE TO PUBLISH SIGNED IMAGES TO ACR**
+
+The <service principal ID> can be the service principal's appId, objectId, or one of its servicePrincipalNames. 
+
+```
+az role assignment create --scope $REGISTRY_ID --role AcrImageSigner --assignee <service principal ID>
+```
+
+[Push a trusted image](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-content-trust#push-a-trusted-image)    
+
+```
+$ docker push myregistry.azurecr.io/myimage:v1
+```
+
+To push a trusted image tag to your container registry, enable content trust and push the image with docker push. 
+After push with a signed tag completes the first time, you're asked to create a passphrase for both a root signing 
+key and a repository signing key. Both the root and repository keys are generated and **stored locally on your machine**.
+
+> Key management
+Be sure to back up your root key and store it in a secure location. By default, the Docker client stores signing keys 
+in the following directory:
+
+```
+~/.docker/trust/private
+```
+
+Along with the locally generated root and repository **keys, several others are generated and stored by Azure Container Registry**
+when you push a trusted image. 
+
+[Build and push Docker images to Azure Container Registry using Docker templates](https://learn.microsoft.com/en-us/azure/devops/pipelines/ecosystems/containers/acr-template?view=azure-devops)   
+
+[Sign container images with Notation and Azure Key Vault using a self-signed certificate](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-sign-build-push)  
+
+---
+
+[Pull a trusted image](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-content-trust#pull-a-trusted-image)  
+the `AcrPull` role is enough for normal users. 
+Consumers with content trust enabled can pull only images with signed tags. 
+
+```
+$ docker pull myregistry.azurecr.io/myimage:signed
+```
+
+If a client with content trust enabled tries to pull an unsigned tag, the operation fails with an error similar to the following:
+```
+$ docker pull myregistry.azurecr.io/myimage:unsigned
+Error: remote trust data does not exist
+```
+
+---
+
+#### Exam Tip 2
+
+[Get started with NuGet packages in Azure Artifacts](https://learn.microsoft.com/en-us/azure/devops/artifacts/get-started-nuget?view=azure-devops&tabs=windows)  
+[Publish and restore NuGet packages from the command line (NuGet.exe)](https://learn.microsoft.com/en-us/azure/devops/artifacts/nuget/publish?view=azure-devops)  
+
+With **Azure Artifacts**, you can publish your NuGet packages to **public or private feeds** and share them with others 
+based on your feed's visibility settings. This article will guide you through connecting to Azure Artifacts and publishing
+and restoring your NuGet packages.
+
+> Run the following command to publish your packages to your feed. 
+
+```
+nuget push <PACKAGE_PATH> -src https://pkgs.dev.azure.com/<ORGANIZATION_NAME>/<PROJECT_NAME>/_packaging/<FEED_NAME>/nuget/v3/index.json -ApiKey <ANY_STRING>
+```
+
+The ApiKey is required, but you can use any arbitrary value when pushing to Azure Artifacts feeds.
+
+> Publish packages from external sources
+
+1. Create a personal access token (PAT) with packaging read and write scope.
+
+```
+nuget sources Add -Name <SOURCE_NAME> -Source https://pkgs.dev.azure.com/<ORGANIZATION_NAME>/<PROJECT_NAME>/_packaging/<FEED_NAME>/nuget/v3/index.json -UserName <USER_NAME> -Password <PERSONAL_ACCESS_TOKEN> -config <PATH_TO_NUGET_CONFIG_FILE>
+
+nuget push <PACKAGE_PATH> -src <SOURCE_NAME> -ApiKey <ANY_STRING>
+```
+
+---
+
+## [Configure Monitopring for a DevOps Environment](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/4b522def-55ee-4459-b8e6-fd183dd785a4)  
+
 
 
 ---
