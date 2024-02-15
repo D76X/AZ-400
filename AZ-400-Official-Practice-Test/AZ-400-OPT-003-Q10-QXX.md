@@ -15160,9 +15160,74 @@ involved in a distributed call stack. This ID is the trace and is used in the lo
 components on which the SDK is installed. This information is used to correlate the logs and to create a map of the
 component that have produced the trace.
 
+#### Inspect a trace in the Azure Portal
+
+> Application Insights Resource > Failures.. select 50X/40x failures..
+> Application Insights Resource > Application Map select 50X/40x failures..
+
+The **Operation ID** is the GUID that identifies the trace.
+
 ---
 
-- Application Insights and App Center for User Analytics
+## [Application Insights and App Center for User Analytics](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/171f4606-fdd8-49cb-9420-6f4972f03511)
+
+User Analytics can be obtained in two ways:
+
+1. [Application Insights User Analytics](https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage-overview?tabs=aspnetcore) as part of Azure Monitor
+2. [App Center Analytics](https://learn.microsoft.com/en-us/appcenter/analytics/)
+
+- Retention: How many users come back?
+- Explore usage demographics and statistics
+- Custom business events
+
+- Funnels: how customers are using your application with Application Insights funnels
+ If your application involves multiple stages, you need to know if customers are progressing through 
+ the entire process or ending the process at some point. The progression through a series of steps in 
+ a web application is known as a funnel. You can use Application Insights funnels to gain insights 
+ into your users and monitor step-by-step conversion rates.
+
+- User Flow: user navigation patterns with User Flows in Application Insights
+How do users move away from a page on your site?
+What do users select on a page on your site?
+Where are the places that users churn most from your site?
+Are there places where users repeat the same action over and over?
+
+- Impact:
+analyzes how load times and other properties influence conversion rates for various parts of your app. 
+To put it more precisely, it discovers how any dimension of a page view, custom event, or request affects
+the usage of a different page view or custom event.
+
+- cohorts
+a set of users, sessions, events, or operations that have something in common. In Application Insights, 
+cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or
+events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
+
+- [User, session, and event analysis](https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage-segmentation)
+
+- Users tool: How many people used your app and its features? 
+Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers
+or machines will be counted as more than one user.
+
+- Sessions tool: How many sessions of user activity have included certain pages and features of your app? 
+A session is reset after half an hour of user inactivity, or after 24 hours of continuous use.
+
+- Events tool: How often are certain pages and features of your app used? 
+A page view is counted when a browser loads a page from your app, provided you've instrumented it.
+
+### Export App Center Data to Azure 
+
+Continuously Export all your Analytics data **into Azure Blob Storage or Application Insights**. 
+This allows you to:
+
+- keep your data as long as you need
+- provide further insights into your data with powerful filtering, data visualizations, and query capabilities*
+> these capabilities are better in App Insights than in App Center.
+
+
+
+
+---
+
 - Performance Indicators on Infrastructure and creation of Alerts on these indicators
 - Integrate Alerts with communication tools: Slack & Teams
 - Monitoring Feedback Loops
