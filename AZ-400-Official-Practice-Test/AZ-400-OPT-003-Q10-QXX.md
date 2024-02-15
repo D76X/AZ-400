@@ -14784,6 +14784,82 @@ nuget push <PACKAGE_PATH> -src <SOURCE_NAME> -ApiKey <ANY_STRING>
 
 ## [Configure Monitopring for a DevOps Environment](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/4b522def-55ee-4459-b8e6-fd183dd785a4)  
 
+- Logging in Azure
+- Azure Monitor Logs
+- use RBAC to access Logs in Azure 
+- use Crash Analytics
+- Implemnt **Distributed Tracing** in a delocalized app environment
+- Application Insights and App Center for User Analytics
+- Performance Indicators on Infrastructure and creation of Alerts on these indicators
+- Integrate Alerts with communication tools: Slack & Teams
+- Monitoring Feedback Loops
+
+- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
+
+---
+
+## [Logging in Azure](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/e862f778-13f9-475c-bce2-37c0df27440c)  
+
+Sources of Logs:
+- applications
+- VMs and containers
+- Azure Resources
+- Azure Subscriptions i.e. subscription-level operations
+- Azure Tenant: tenant-level operations
+- Custom sorces: such as APIs: 
+
+> [Send log data to Azure Monitor by using the HTTP Data Collector API (deprecated)](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-collector-api?tabs=powershell)  
+
+> [Send log data to Log Analytics with the HTTP Data Collector API](https://learn.microsoft.com/en-us/rest/api/loganalytics/create-request)
+The Azure Log Analytics HTTP Data Collector API, allows you to POST JSON data to a Log Analytics Workspace from any client that can call the REST API. 
+By using this method, you can send data from third-party applications or from scripts, like from a runbook in Azure Automation
+
+Category of Logs:
+
+1. Control & Mangement (Control Plane Logs):
+These are typically CRUD ARM (Azure Resource Manger) | Subscription | Tenant operations that is management operations.
+
+2. Data Plane Logs:
+Logs about significant events in each monitored resource.
+- Event Logs
+- Security Logs
+- Application Logs
+- Performance Logs
+
+2. Diagnostic Logs:
+In Azure on most resources there is set of Logs that are enabled by default as these are used 
+by Azure itself and fall in one of the cathegoryies above. However, most resources can provide 
+**additional logs that are nbot produced by default**. These information is said to be 
+**diagnostic** and **must** be sent to a specific target in Azure if required.
+The typical targets in Azure are:
+
+- Azure storage:
+for long term storage, not suitable for diagnostic queries, suitabkle for auditing and compliance
+
+- Log Analytics Workspace:
+this is an aggregation space that ingests logs and allows you to perform quesries on it.
+The queries that are crafted on a Log Analytics Workspace **can be used to create alerts**.
+However it costs money!
+
+- Event Hub:
+This is an **data ingestion service** normally used to dorward the data, that is Logs, to other 
+services such as [Splunk](https://www.splunk.com/en_us/download.html?utm_campaign=google_emea_tier2_en_search_brand&utm_source=google&utm_medium=cpc&utm_content=free_trials_downloads&utm_term=splunk&_bk=splunk&_bt=662330344219&_bm=e&_bn=g&_bg=75654874228&device=c&gad_source=1&gclid=CjwKCAiAibeuBhAAEiwAiXBoJKNsY1Z7wnONQ-rJMQKJmTpfEJVYdj8R_jfyrsM2EZowc-V10dmGPRoCRrYQAvD_BwE)  
+
+or even an oaother Azure Servicve such as an Azure SQL Database.
+
+
+---
+
+- Azure Monitor Logs
+- use RBAC to access Logs in Azure 
+- use Crash Analytics
+- Implemnt **Distributed Tracing** in a delocalized app environment
+- Application Insights and App Center for User Analytics
+- Performance Indicators on Infrastructure and creation of Alerts on these indicators
+- Integrate Alerts with communication tools: Slack & Teams
+- Monitoring Feedback Loops
+
+- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
 
 
 ---
