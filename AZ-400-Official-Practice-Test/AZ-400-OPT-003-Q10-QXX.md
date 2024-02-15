@@ -14911,6 +14911,9 @@ StormEvents
 | take 5
 | project State, EventType, DamageProperty
 
+StormEvents
+| sort by State asc, StartTime desc
+
 search in (InsightsMetrics) "casDB2"
 
 InsightsMetrics
@@ -14931,6 +14934,26 @@ InsightsMetrics
 HeartBeat
 | where TimeGenerated > ago(1h)
 | summarize count() by Computer
+
+let Start = datetime('2007-04-07');
+let End = Start + 7d;
+StormEvents
+| where StartTime between (Start .. End)
+| where State == "CALIFORNIA" and EventType == "Strong Wind"
+| summarize PropertyDamage=sum(DamageProperty) by bin(StartTime, 1d)
+
+// Use the union operator to add more rows to the table.
+let Start = datetime('2007-04-07');
+let End = Start + 7d;
+StormEvents
+| where StartTime between (Start .. End)
+| where State == "CALIFORNIA" and EventType == "Strong Wind"
+| union (
+    range x from 1 to 1 step 1
+    | mv-expand StartTime=range(Start, End, 1d) to typeof(datetime)
+    | extend PropertyDamage=0
+    )
+| summarize PropertyDamage=sum(DamageProperty) by bin(StartTime, 1d)
 
 ```
 
@@ -14953,6 +14976,7 @@ installed.
 
 ---
 
+## [Control Acess to Logs](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/3deb767e-b10e-489a-8aa4-d37dd119a288)  
 
 
 ---
