@@ -14861,5 +14861,98 @@ or even an oaother Azure Servicve such as an Azure SQL Database.
 
 - LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
 
+---
+
+[Azure Monitor Logs overview](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs)  
+
+Azure Monitor Logs is a feature of Azure Monitor that collects and organizes log and performance data 
+from monitored resources. you can analyze Logs data by using KQL that is capable of quickly analyzing 
+millions of records.
+
+- Analyse
+- Alert
+- Visualize
+- Get Insights
+- Imprt & Export (app) data via REST API
+- Use Notebooks & ML
+
+[Tutorial: Analyze data in Azure Monitor Logs using a notebook](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/notebooks-azure-monitor-logs)   
+[Create your own machine learning pipeline on data in Azure Monitor Logs](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/aiops-machine-learning#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs)
+
+---
+
+### Azure VM Logs
+
+Sending Logs to Azure Monitors from a Azure VM reires a **bit of extra effert** in that there is an
+**Agent** to be installed oin teh VM so that it scans the Log folders and send its logs to a
+**Log Analytics Workspace**.
+
+For VM in Azure the SAgent can be installed via an VM Extension:
+[Log Analytics agent virtual machine extension for Windows](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/oms-windows)  
+[Log Analytics virtual machine extension for Linux](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/oms-linux)  
+
+**For VMs on-oremise OR IN ANOTHER CLOUD the Agent must be installed manually!**
+
+[Windows virtual machine on-premises or in another cloud](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/log-analytics-agent#windows-virtual-machine-on-premises-or-in-another-cloud)  
+
+**Log Analytics Workspaces are integrated with Azure Monitor**:
+
+> Create a Azure Log Analytics Workspace in the Azure Portal
+> In Azure Monitors > Logs > Log Analytics Workspaces
+
+In particular in Azure Monitor you can see the **Usage & Estimated Costs** of a Log Analytics WS.
+There you are allowed to set **a daily cap GB/day** and a **data retention** as well to control costs.
+You can the use KQL to create queries:
+
+[KQL quick reference](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/kql-quick-reference)
+
+```
+StormEvents
+| take 5
+| project State, EventType, DamageProperty
+
+search in (InsightsMetrics) "casDB2"
+
+InsightsMetrics
+| where Computer == "casDB2"
+| take 5
+
+InsightsMetrics
+| where Computer == "casDB2"
+| top 5 by TimeGenerated asc
+| project TimeGenerated, Computer, Name, Val
+
+InsightsMetrics
+| where TimeGenerated > ago(90Dd)
+| where Computer == "casDB2"
+| where Namespace == "Processor" and Name == ""utilizationPercentage
+| summarize avg(Val) by bin (TimeGenerated, 1h)
+
+HeartBeat
+| where TimeGenerated > ago(1h)
+| summarize count() by Computer
+
+```
+
+### Download the Windows Server Agent to connect an on-premise VM to the Log Analytics Workspace
+
+> LAW > Agent Management > **Download the agent** and display teh setup info :
+> Workspace ID 
+> Primary Key
+
+### Server Agent for Linux on-premise VM to connect it to the Log Analytics Workspace
+
+In this case there is a `wget` command that can be copied and pasted by the admin of the VM.
+This goes together with the information that identify the LAWS and authorize the agent:
+> Workspace ID 
+> Primary Key
+
+> Agent Configuration:
+Here you control the type of logs that the agent will sent to teh LAWS from the VM in which it is
+installed.
+
+---
+
+
 
 ---
