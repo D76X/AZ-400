@@ -15556,8 +15556,8 @@ Estimates the cost savings that could be realized by migrating workloads to Azur
 
  - report deployment status to Work
  - report deployment status to the repository host
- - report deployment status to Jira
- - Enable the deployment status badge
+  - Enable the deployment status badge
+ - report deployment status to Jira: ...
 
 In this example the integration **report deployment status to Boards** results in the fact that 
 when the WI is linked ot a commit and the releaase pipeline runs then the information about the 
@@ -15566,10 +15566,82 @@ Azure Boards in the section **Deployment**.
 This allows user of Azure Boards to record in which releases a specific WI has been integrated 
 into the software.
 
+- report deployment status to Jira: ...
+This is the same concept but it replaces Azure Boards with JIRA and leaves the Releases Pipelines 
+in Azure DevOps. However, it **requires integration betwnn JIRA and Azure DevOps** and this is 
+doen **by installing the Azure Pipelines for JIRA app in JIRA from the App tab**.
+
 ---
 
-- use GitHub as a Repo for Azure Boards
+[use GitHub as a Repo for Azure Boards](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/ad52c671-29d1-4c43-8c8f-89740e73322d)  
 
-- LAB: Create a Scrum Project with Epic, Features & User Stories
+In this scenario you want to use Azure Boards Service on Azure DevOps and keep your code in GitHub.
+
+- Connect Azure Boards to GitHub (this can be done both ways)
+- Link GitHub Items to Azure Boards
+
+> Integrate to GitHub from Azure Boards:
+> Project Settings > HitHub Connections > Connect your GitHub Account > Select the GitHub Repo > Authorize the connection
+In this case there is no required manula installation of the AzurE Boards App in GitHub
+it only asks to authenticate to GitHub and the instalallation of the App in GitHub is 
+performed behind the scenes.
+However, you will find the Azure Boards App in: 
+> Git Hub > Settings > Integrations
+
+> Integrate to Azure Boards from GitHub:
+> In this case you must install the Azure Boards App maually but the flow is the same:
+In this case **the isntallation of the Azure Boards App in GitHub is requred**
+
+In GitHub you can:
+
+1. link commits to AB WIs:  
+**link a commit from the commit message to a WI in Azure Boards**: `AB#WID`, `AB#14`
+
+2. link PRs to AB WIs:
+For **Pull Request** you do the same as above but the `AB#WID` must be in the title of the PR
+
+3. Some keywords will automatically close the workitem in Azure Boards
+`Fix AB#WID`, `Fixes AB#14`, `Fixed AB#14`
+---
+
+## [Generate DevOps Process Documentation](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a430a300-c0ba-43e2-9b1f-b4e6e13797b6/b2d33fe4-35a8-4106-bbdb-f48ba72bbbef)  
+
+- Onboarding new team members and employees (on the DevOps team)
+- Dependency Tracking in Azure DevOps
+- Artifact Versioning
+- Release Notes
+
+---
+
+### [Onboarding new team members and employees (on teh DevOps team)](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a430a300-c0ba-43e2-9b1f-b4e6e13797b6/a57902da-8390-4471-b5df-71fe1a3ea097)
+
+> Azure DevOps Organization > Projects > Teams for each Project organized by component or product
+> Project Settings:
+  > Visibility: Public | Private
+  > Version Control: Git | TFVC
+  > Work Item Process: Agile | Scrum | Basic | CMMI (Capability Maturity Model Integration)
+
+- Agile: People + Processes +m Tools
+> [Backlog Items] > [Iteration Items]
+> Epic > Feature  > User Story | Bug  > Tasks
+> User Story States: New > Active > Resolved > Closed | Removed
+
+- Scrum:
+Like Agile Process but brocken down into a 2 to 4 weeks spreints
+Sprint Planning Meeting at the sprint beginning > Daily > Sprint Review > Retrospective
+> [Backlog Items] > [Iteration Items]
+> Epic > Feature  > PBI  | Bug  > Tasks
+> PBI: Pruduct Backlog Item
+> PBI States: New > **Approved/Reviewed** > Committed > Done | Removed
+
+- Basic: (default on Azure DevOps)
+Lightweight process suitable for small teams
+> Epic > Issue  > Tasks
+> To Do > Doing > Done
+
+- CMMI:  (Capability Maturity Model Integration)
+> Epic > Feature  > Requirement  | Bug  > Tasks
+> Requirement states: Proposed > Active > Resolved > Closed after review
+
 
 ---
