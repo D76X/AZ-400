@@ -15643,5 +15643,40 @@ Lightweight process suitable for small teams
 > Epic > Feature  > Requirement  | Bug  > Tasks
 > Requirement states: Proposed > Active > Resolved > Closed after review
 
+---
+
+[Dependency Tracking in Azure DevOps](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a430a300-c0ba-43e2-9b1f-b4e6e13797b6/41118e71-1121-4add-8bb3-6a5a13eb3601)  
+
+[Review team delivery plans in Azure Boards](https://learn.microsoft.com/en-us/azure/devops/boards/plans/review-team-plans?view=azure-devops)
+
+**Delivery Plans** is a feature of Azure Boards that shows the scheduled work items by sprint (iteration path) 
+of selected teams against a calendar view. This is to ensure that your teams are aligned with your organizational 
+goals.
+
+You can view multiple backlogs and multiple teams across your whole account.
+
+- Links between Work Items:
+> Parent / Child
+> Duplicate / Duplicate Of
+> Related
+> Predecessor /Successor
+> Affected By / Affects
+> Consumes From / Produces For [links WI in another organization under the same Tenant]
+> Remote Related [pweek deopendency in another Organization under the same Tenant]
+
+#### Create a Delivery Plan
+
+> Azure Boards > Delivery Plans > New Delivery Plan > 
+> Select the Project1 + Team1 + Backlog1
+> Select the Project2 + Team2 + Backlog2
+> etc.
+> set filter criteria if necessary..
+
+[Azure Boards with Delivery Plans 2.0](https://www.youtube.com/watch?v=TEJTg5kdYE4&t=307s)  
+
+---
+
+### [Artifact Versioning & Release Notes](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a430a300-c0ba-43e2-9b1f-b4e6e13797b6/829c4d39-d6f7-467a-8397-e7137275ff00)   
+
 
 ---
