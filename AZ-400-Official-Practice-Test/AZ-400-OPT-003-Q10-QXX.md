@@ -15445,11 +15445,64 @@ chsarts that provide data on varioes services such as:
 > example 3: Release Pipelines Overview Widget 
 > each of the widgets are configurable by clicking on it
 
+It is possible to add **charts** from **custom shared queries** to an existing dashboard.
 
+> Azure DevOps > Boards > Queries > Create a New Shared Query
+> In the Query Editor select the tab Charts > create the chart
+> ... > add to dashboard > select the dashboard
 
 ---
 
-- Incorporate Team Analytics into Communications
+## [Incorporate Team Analytics into Communications](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/f928c22d-c297-4948-adcf-bac095af0c28)  
+
+This section is about displaying information about the performance of the team (Taem Analytics).
+
+- Azure DevOps Analytics Service in-context reports:
+> Burnup & Burndown reports:
+How much work is left in the sprint?
+Are we going to complete the work in the sprint?
+> Cumulative Flow Diagram (CFD):
+are there bottlenecks?
+> Velocity Diagram:
+How much work should be plan for the next sprint based on data from previous sprints?
+> Cycle & Lead Time diagrams 
+
+This service is to provide reports on current or past data in your Azure DevOps Project.
+
+> Burndown:
+shows how much work is left vs how much time is left.
+Are we going to complete the work in the sprint?
+Y: remaining work, X: remaining time
+reamining = yet to start
+
+> Burnup:
+shows how much work has been **completed** over time.
+Y: completed work, X: time taken to complete
+
+> Cumulative Flow Diagram (CFD):
+shows how Work Item are progressing for the different states.
+The states depend on the type of process i.e. Scrum, Agile, etc.
+It allows to detect bottlenechs in teh process.
+**Flat lines** mean that items have not progressed over time.
+**Bumps** mean that items have been added to the sprint but have failed to progress alltogether there is an overload.
+**WIP: is the metrics Work In Progress**
+> high WIP: there is too much work for the team or teh work is not evenly distributed among the team
+> low WIP: the team is underloaded
+
+> Velocity:
+It is a diagram that shown the amount of work completed in each sprint vs the amount of work that 
+was vompleted late in the following sprint. **It is an indicator of how well the team can estimate**
+**the WIs**.
+The ideal situation is the balance: **work planned = work completed**
+
+> Cycle & Lead Time diagrams. 
+> Cycle Time:
+measures the time it takes **the development team** to work on the request and deliver it.
+> Lead Time:
+measures the time from the moment **the customer** makes a request to the time they receive something. 
+
+---
+
 - Communicating Costs
 - Incorporate Work Items with Deployments
 - use GitHub as a Repo for Azure Boards
