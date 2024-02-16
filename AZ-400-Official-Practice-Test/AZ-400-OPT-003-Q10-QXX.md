@@ -15372,6 +15372,8 @@ Perf
  
 ### [Monitoring Feedback Loops](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/f941ccb9-c148-4c66-b55c-0ec8375773e2)  
 
+- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
+
 Feedback is real time feedback sent to teh developers forn the end users and operators.
 This allows developers to **very quickly address issues** so that can be fixed as quickly as possible.
 
@@ -15384,8 +15386,74 @@ required to investigate the incident and find the root cause.
 
 [Monitoring Key Vault with Azure Event Grid](https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview)  
 
-You can use Evemnt Grid
+Key Vault integration with Event Grid allows users to be notified when the status of a secret stored in 
+key vault has changed. A status change is defined as:
+- a secret that is about to expire (30 days before expiration)
+- a secret that has expired 
+- a secret that has a new version available
+
+Notifications for all three secret types (key, certificate, and secret) are supported.
+
+Applications can react to these events using modern serverless architectures, without the need for 
+complicated code or expensive and inefficient polling services. Events are pushed through 
+Azure Event Grid to **event handlers such as Azure Functions, Azure Logic Apps,** or even
+**to your own Webhook**, and you only pay for what you use. 
+
+> Key Vault > Events > the options: Logic Apps | Azure Functions | Web Hook | Storage Queue
+> select Logic Apps > this lets you create a Logi App with a Event Grid trigger >
+> Authenticate to the Azure AD Tenant fo the Key Vault whose events are to be used as triggers of the Logic App >
+> select the **Resource Type**: `Microsoft.KeyVault.vaults` >
+> select the **Event Type**: `Microsoft.KeyVault.SecretNewVersionCreated` >
+> new step
+> select the action to take when the event grid sends the event type selected above i.e. outlook.com
+> action: send email > sign in to the Outlook accopunt
+> fill in the details of teh email to send ...
+> save the Logic App..
+
 
 ---
 
-- LAB: Configure Alert Notofication from Azure DevOps Pipelines to Micorsoft Teams
+## [Communicate Build & Release Info with Teams & Stakeholders](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/d4642de9-e68e-4465-b51c-0005ce6efe85)
+
+- Custom Dashborads
+- Incorporate Team Analytics into Communications
+- Communicating Costs
+- Incorporate Work Items with Deployments
+- use GitHub as a Repo for Azure Boards
+
+- LAB: Create a Scrum Project with Epic, Features & User Stories
+
+---
+
+### [Custom Dashborads](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/3a81e640-2ba0-4244-a07c-738e3e0f4dba)  
+
+Use Azure Custom Dashboard to incorporate Azure Boads Data & Azure Pipelines Data
+You can use the following:
+
+- charts: these are plots of data that can be extracted through queries i.e. from Azure Monitor
+- pre-build easy to configure widgets from the Azure DevOps Marketplace that can display data from Azure Boards and Pipelines
+- in-context reports:
+chsarts that provide data on varioes services such as:
+> Team Velocity, Cumulative Flow Diagram (CFD), Test Failures Report, Pipelines pass rate, Power BI reports
+
+> Azure DEvOps > Dashboards > New Dashboards > Select the Type:
+> Team Dashboard    : evryone in the team can view the dashboards but admins can also edit it
+> Project Dashboard : not associated with a team. You decide which users can view the it (its audience) i.e. leaderships
+> Edit or Add a Widget
+> example 1: Query Results Widget - display query results on Azure Boards
+> example 2: Build Results Widget 
+> example 3: Release Pipelines Overview Widget 
+> each of the widgets are configurable by clicking on it
+
+
+
+---
+
+- Incorporate Team Analytics into Communications
+- Communicating Costs
+- Incorporate Work Items with Deployments
+- use GitHub as a Repo for Azure Boards
+
+- LAB: Create a Scrum Project with Epic, Features & User Stories
+
+---
