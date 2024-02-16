@@ -15503,8 +15503,71 @@ measures the time from the moment **the customer** makes a request to the time t
 
 ---
 
-- Communicating Costs
-- Incorporate Work Items with Deployments
+[Communicating Costs](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/214d4576-cdba-4537-b113-ac8574e35a2b)  
+
+[Cost Management discipline template](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/govern/cost-management/template) 
+This is **a template to create a plan of action about how an organization / project can manage costs**.
+
+- Core Business Risks:
+  > overprovisioning: i.e. VM sizes are greater thna required
+  > underutilization: 
+    > there are too many instances of your workloads during times when these are not necessary
+    > or dev & test envs that are idle over weekends but still generate costs
+   
+- Metrics & Indicators:
+  > This basically consists of setting speding thresholds and triggering notifications / alerts 
+  > when the measured costs goes over the set threshold
+
+- Policy Compliance Process:
+  > Planning, Reviewing, Reporting: 
+  > establish process and policies to determine risks, budgets and produce reports
+
+  > Monitoring: you must decide how the environments are going to be monitored in order to 
+  > keep the spending in line with the policies
+
+  > Handle Violaction and Enforce Actions: provide guidance about what todo when cost thresholds are exceeded
+
+- Toolchain
+
+- Use the Azure Pricing Calculator to predict costs and prepare budgets
+- use Azure Advisor & Cost Management + Billing:
+create costs, set a budget, set alerts
+> Azure Advisor: provides guidance on how to save costs: built in the Azure Portal
+> Cost Management + Billing: provides spending & consumpuion data (this is bilt into the Azure Portal)
+
+[Azure Pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/?ef_id=_k_CjwKCAiArLyuBhA7EiwA-qo80AlmKDkjGpdzp8-klexb6WO9ewCcrxzmMnvj-pyWT1KucMuDDj9dqxoCbkEQAvD_BwE_k_&OCID=AIDcmmy6frl1tq_SEM__k_CjwKCAiArLyuBhA7EiwA-qo80AlmKDkjGpdzp8-klexb6WO9ewCcrxzmMnvj-pyWT1KucMuDDj9dqxoCbkEQAvD_BwE_k_&gad_source=1&gclid=CjwKCAiArLyuBhA7EiwA-qo80AlmKDkjGpdzp8-klexb6WO9ewCcrxzmMnvj-pyWT1KucMuDDj9dqxoCbkEQAvD_BwE)
+
+[Total Cost of Ownership (TCO) Calculator](https://azure.microsoft.com/en-us/pricing/tco/calculator/)
+Estimates the cost savings that could be realized by migrating workloads to Azure.
+
+#### Set a budget
+
+ > Cost Management + Billing > Cost Alerts > Create a Budget > ste alert
+ > Cost Management + Billing > Cost Analysis > see the budgets + spending data & projections
+
+
+---
+
+### [Incorporate Work Items with Deployments](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/dfada5b4-4d09-42b3-8912-00a3e32d49b9/463ce455-0b4c-4a2c-89ff-a43abb6a0ac7)  
+
+> Pipelines > Releases > Edit > Options > **Integrations**:
+ - report deployment status to Boards:
+   > seelect the Deployment Group / Stage for each Deployment Type: Development | Testing | Production
+
+ - report deployment status to Work
+ - report deployment status to the repository host
+ - report deployment status to Jira
+ - Enable the deployment status badge
+
+In this example the integration **report deployment status to Boards** results in the fact that 
+when the WI is linked ot a commit and the releaase pipeline runs then the information about the 
+release pipelines that the WI was integrated with are going tobe available on the WI UI of the 
+Azure Boards in the section **Deployment**.
+This allows user of Azure Boards to record in which releases a specific WI has been integrated 
+into the software.
+
+---
+
 - use GitHub as a Repo for Azure Boards
 
 - LAB: Create a Scrum Project with Epic, Features & User Stories
