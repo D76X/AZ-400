@@ -1,6 +1,170 @@
 ﻿
 ---
 
+# Q007:
+
+---
+
+# Q006:
+
+You have a project in Azure DevOps that uses packages from NuGet and Maven public registries.
+You need to verify that project-level package feeds use original packages rather than copies.
+Which Azure Artifacts feature should you implement?
+
+Select only one answer.
+
+1. public feeds
+2. security policies
+3. upstream sources
+4. WinDbg
+
+---
+
+3. upstream sources
+
+One of the advantages of **upstream sources is the control over which package is downloaded**, 
+allowing you to verify that project-level package feeds use original packages. 
+
+**Public feeds** are used to show and control packages, **but upstream sources are not allowed**. 
+
+**A security policy** is used inside of a project-scoped feed, allowing you to control how you 
+can access the feed, but does not provide public registry access or control. 
+
+**To debug Azure Artifacts** by using symbol servers, you can use `WinDbg`. 
+This feature does not provide upstream source control.
+
+---
+
+[Upstream sources overview - Azure Artifacts | Microsoft Learn](https://learn.microsoft.com/en-gb/azure/devops/artifacts/concepts/upstream-sources?view=azure-devops#advantages)
+
+Enabling upstream sources offers several advantages for managing your product's dependencies within a single feed:
+
+- Simplicity: 
+When you publish all your packages to a single feed, it simplifies your configuration files like 
+`NuGet.config, npmrc, or settings.xml`. With just one feed in your config file, you reduce the chances of errors 
+and bugs, streamlining your setup.
+
+- Determinism: 
+your feed resolves package requests in order, resulting in more consistency when rebuilding your code.
+
+- Provenance: 
+Your feed retains information about the packages it saved from upstream sources. This allows you to verify 
+that you're using the original package and not a copy or a potentially malicious version.
+
+- Peace of mind: 
+Every package installed from upstream sources is automatically saved to your feed. This means that even if
+the upstream source is disabled, removed, or undergoing maintenance, you can continue developing and building
+with confidence because you have a copy of that package in your feed.
+
+---
+
+[Configure upstream behavior](https://learn.microsoft.com/en-gb/azure/devops/artifacts/concepts/upstream-behavior?view=azure-devops&tabs=nuget%2Cget)  
+[Training: Explore package dependencies](https://learn.microsoft.com/en-gb/training/modules/explore-package-dependencies/)
+---
+
+
+# Q005:
+
+Your company plans to implement Azure Artifacts.
+The company intends to use public and internal npm packages.
+You need to recommend a method of creating separate groupings of public 
+and private npm packages without the risk of name collisions.
+
+What should you recommend?
+
+1. audit
+2. npm publish
+3. NPMRC
+4. scopes
+
+---
+
+4. scopes
+
+**Scopes allow you to group npm packages**. 
+
+**Audits** scan npm packages, but they do not group them. 
+
+**NPMRC** is a file used to provide npm configuration settings. 
+
+The **npm publish** command is used to upload packages to the feed 
+and make the feed available for consumption.
+
+---
+
+[Use Npm scopes in Azure Artifacts](https://learn.microsoft.com/en-gb/azure/devops/artifacts/npm/scopes?view=azure-devops)  
+Npm scopes serve as a means to categorize related packages into groups.
+hese scopes enable you to create packages with identical names to those created 
+by different users without encountering conflicts.
+By using scopes, you have the **ability to segregate public and private packages** 
+by adding the **scope prefix** `@scopeName` **and configuring the .npmrc file** 
+to exclusively use a feed with that particular scope.
+
+**Azure Artifacts** provides the capability to publish and download both scoped 
+and nonscoped packages from feeds or public registries. 
+
+> Use Cases
+Npm scopes are particularly valuable when working with self-hosted on-premises 
+servers lacking internet access, as configuring upstream sources in such scenarios
+isn't feasible.  
+
+ > We don't have to worry about name collisions.
+ > No need to change the npm registry in order to install or publish our packages.
+ > Each npm organization/user has their own scope, and only the owner or the scope members can publish packages to their scope.
+
+---
+
+# Q004:
+
+You are creating an Azure Artifacts artifact.
+You need to provide assurances of backward compatibility.
+Which element of semantic versioning should you use?
+
+1. label
+2. major
+3. minor
+4. patch
+
+---
+
+4. patch
+**A patch element is the only answer that provides assurances** of backward compatibility. 
+Other answer choices either do not convey versioning, such as label, or do not provide any
+assurances of backward compatibility.
+
+---
+
+# Q003: 
+
+You plan a dependency management solution for a software package for your company.
+You need to recommend which element of semantic versioning to use to designate a 
+beta prerelease of the software package.
+Which element of semantic versioning should you recommend?
+
+Select only one answer.
+
+1. label
+2. major
+3. minor
+4. patch
+
+---
+
+1. label
+
+**A label** element represents prereleases, such as alpha/beta. 
+
+**A major** element represents a version of content that changed significantly, 
+which results in some degree of incompatibility with the previous major version. 
+
+**A minor** element represents a version of content that changed but not as 
+significantly as the major version, **making it more likely** to be compatible 
+with the previous minor version. 
+
+**A patch** element represents a fix that preserves backward compatibility.
+
+---
+
 # Q002: 
 
 You have a project in Azure DevOps named Project1 that contains a continuous integration pipeline named Pipeline1.
