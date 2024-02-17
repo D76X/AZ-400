@@ -1,6 +1,89 @@
 ﻿
 ---
 
+# Q012:
+
+You have a web app that runs on Azure virtual machines in multiple Azure regions. 
+The virtual machines are accessed by using the public IPv6 addresses assigned to 
+their network adapters. 
+The IPv6 addresses are NOT associated with DNS names.
+
+You plan to use **Azure Traffic Manager** to **load balance requests** across all
+instances of the web apps. You need to identify which Traffic Manager traffic 
+distribution method supports targeting IPv6 addresses as its endpoints.
+
+Which Traffic Manager traffic distribution method should you identify?
+
+Select only one answer.
+
+1. MultiValue
+2. Performance
+3. Priority
+4. Weighted
+
+---
+
+1. MultiValue
+
+MultiValue is the only Traffic Manager traffic distribution method that provides
+the ability to specify the IPv4 and IPv6 addresses of its endpoints. 
+
+All others, including Performance, Priority, and Weighted, require that the 
+endpoints be designated as DNS names only.
+
+---
+
+[Examine Traffic Manager](https://learn.microsoft.com/en-gb/training/modules/implement-canary-releases-dark-launching/3-examine-traffic-manager)
+
+To control traffic in Azure, you can use a component called Azure Traffic Manager.
+It is a **DNS-based traffic load balancer** that enables you to distribute traffic optimally to 
+services **across global Azure regions** while providing high availability and responsiveness.
+
+Traffic Manager **uses DNS to direct client requests to the most appropriate service endpoint** 
+**based on a traffic-routing method and the health** of the endpoints.
+
+An **endpoint is an Internet-facing service** hosted inside or outside of Azure.
+
+Traffic Manager is resilient to failure, including the breakdown of an entire Azure region. 
+
+ Traffic Manager currently provides **six options to distribute traffic**:
+
+ 1. Priority:
+ Select Priority when you want to use a primary service endpoint for all traffic 
+ and provide backups if the primary or the backup endpoints are unavailable.
+
+ 2. Weighted:
+ Select Weighted when you want to distribute traffic across a set of endpoints, 
+ either evenly or according to weights, which you define.
+
+ 3. Performance:
+ Select Performance when you have endpoints in different geographic locations, 
+ and you want end users to use the "closest" endpoint for the lowest network latency.
+
+ 4. Geographic:
+Select Geographic so that users are directed to specific endpoints (Azure, External, or Nested) 
+**based on which geographic location their DNS query originates from**. It empowers Traffic Manager
+customers to enable scenarios where knowing a user's geographic region and routing them based on 
+that is necessary. 
+Examples include following: 
+ > **data sovereignty mandates**
+ > localization of content & user experience 
+ > measuring traffic from different regions.
+
+ 5. Subnet:
+ Select the Subnet traffic-routing method to map sets of end-user IP address ranges to a specific
+ endpoint within a Traffic Manager profile. The endpoint returned will be mapped for that request's
+ source IP address when a request is received.
+
+ 6. Muntivalue
+Select MultiValue for Traffic Manager profiles that can only have IPv4/IPv6 addresses as endpoints
+**for example VMs that have IPv6 or IPv4 addresses aasigned to their network cards but these IPs 
+are NOT associated with DNS names**. 
+When a query is received for this profile, all healthy endpoints are returned.
+
+
+---
+
 # Q011:
 
 You plan to create an Azure Pipelines release pipeline that will be used for 
