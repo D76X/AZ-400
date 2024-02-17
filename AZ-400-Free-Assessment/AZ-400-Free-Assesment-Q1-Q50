@@ -1,6 +1,48 @@
 ﻿
 ---
 
+# Q032:
+
+You have an Azure DevOps organization named Organization1 that contains 
+a project named Project1. 
+Project1 contains a CI/CD YAML pipeline named Pipeline1 that deploys 
+resources to an Azure subscription.
+
+You need to ensure that an attempt to access the subscription from any YAML
+pipelines other than Pipeline1 must be explicitly authorized.
+
+What should you configure?
+
+Select only one answer.
+
+1. Microsoft Entra managed identity
+2. Organization permissions
+3. Pipeline permissions
+4. Project permissions
+
+---
+
+3. Pipeline permissions
+
+**Using Pipeline permissions, you can specify which pipeline can consume the service connection**.
+If any other YAML pipelines refer to the service connection, an authorization request is raised,
+**which must be approved by a connection administrator**. 
+
+**Project permissions** are used to control service connection sharing between projects but not for pipelines. 
+
+**Organization permissions** define security groups that control the service connections within an organization. 
+
+A **Microsoft Entra managed identity** is used instead of a service principal for a service connection, 
+but not to request approval to use the service connection.
+
+---
+
+[Manage service connections - Pipeline permissions](https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml#pipeline-permissions)  
+
+[Training -Provision and test environments](https://learn.microsoft.com/en-gb/training/modules/configure-provision-environments/)  
+
+---
+
 # Q031:
 
 You plan to configure GitHub Actions to access GitHub secrets.
