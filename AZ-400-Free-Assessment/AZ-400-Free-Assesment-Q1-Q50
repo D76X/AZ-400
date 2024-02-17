@@ -1,6 +1,27 @@
 ﻿
 ---
 
+# Q016:
+
+You plan to use Azure DevOps to deploy applications in a multi-cloud environment.
+
+You need to identify which technology allows you to implement infrastructure as code (IaC) in a consistent manner, regardless of which cloud provider you choose for the deployment.
+
+What should you use?
+
+Select only one answer.
+
+Azure Blueprints
+
+Azure Resource Manager (ARM) templates
+
+Bicep
+
+Terraform
+
+
+---
+
 # Q015:
 
 You plan to implement the automated validation of Azure Resource Manager (ARM) 

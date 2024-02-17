@@ -15006,7 +15006,7 @@ Linux LA Agents can send logs to **only one LAW**
 
 ---
 
-### [Access modes](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode):
+### [Log Analytics Workspace Access modes](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/manage-access?tabs=portal#access-mode):
 
 The way a user acces the LAWS which determine the **scope** of the available data to that user
 
