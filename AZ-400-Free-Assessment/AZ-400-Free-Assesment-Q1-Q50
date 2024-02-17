@@ -1,6 +1,391 @@
 ﻿
 ---
 
+# Q031:
+
+You plan to configure GitHub Actions to access GitHub secrets.
+You have the following YAML.
+
+```
+01  steps:
+02    - shell: pwsh
+03    
+04        DB_PASSWORD: ${{ secrets.DBPassword }}
+```
+
+You need to complete the YAML to reference the secret.
+The solution must minimize the possibility of exposing secrets.
+Which element should you use at line 03?
+
+Select only one answer.
+
+1. args:
+2. $env:
+3. env:
+4. run:
+
+---
+
+3. env:
+
+**The most secure way to pass secrets to run commands** is to reference them
+as environment variables, **rather than arguments**. This requires the use of
+the `env:` element. 
+
+The `$env:` notation is used to reference an environment variable, 
+but the intention of this question is to define rather than reference. 
+
+The `run:` element defines which command to run, so **it follows** the env: notation.
+
+---
+
+[Learn continuous integration with GitHub Actions  - Use secrets in a workflow](https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/9-use-secrets-workflow)
+
+Secrets aren't passed automatically to the runners when workflows are executed.
+Instead, when you include an action that requires access to a secret, you use the 
+secrets context to provide it.
+
+```
+steps:
+
+  - name: Test Database Connectivity
+    with:
+      db_username: ${{ secrets.DBUserName }}
+      db_password: ${{ secrets.DBPassword }}
+```
+
+> Command-line secrets:
+
+Secrets shouldn't be passed directly as command-line arguments as 
+they may be visible to others. Instead, treat them like environment variables:
+
+> Limitations
+Workflows can use **up to 100 secrets**, and they're **limited to 64 KB** in size.
+
+```
+steps:
+  - shell: pwsh
+    env:
+      DB_PASSWORD: ${{ secrets.DBPassword }}
+    run: |
+      db_test "$env:DB_PASSWORD"
+```
+
+---
+
+# Q030:
+
+You have a Git repository.
+
+You apply a commit that introduces an unintended change to the target branch of the repository.
+You need to run a Git command that will undo the change applied by the commit.
+
+Which command you should run?
+
+Select only one answer.
+
+1. git clean
+2. git rebase
+4. git reset --mixed HEAD
+4. git revert
+
+--
+
+`git revert` 
+allows you **to undo a change in a shared branch**. 
+
+`git rebase` 
+integrates source branch commits into the target branch, it does not undo changes. 
+
+`git clean` [git clean](https://git-scm.com/docs/git-clean)
+deletes untracked files but does not undo a commit. 
+
+`git reset --mixed HEAD` 
+undoes the staging of files but keeps file changes. 
+It does not affect commits.
+
+---
+
+[Azure Repo Undo Changes](https://learn.microsoft.com/en-gb/azure/devops/repos/git/undo?view=azure-devops&tabs=visual-studio-2022#revert-changes-in-shared-commits)
+
+---
+
+# Q029:
+
+You have a project in Azure DevOps that has a Git repository.
+
+You plan to define a pull request strategy for the repository.
+You need to identify the Git branch policy that will condense 
+the source branch commits into a single commit on the target branch.
+
+Which branch policy should you implement?
+
+Select only one answer.
+
+1. Automatically include code reviewers.
+2. Check for comment resolution.
+3. Limit allowed merge types.
+4. Require a minimum number of reviewers.
+
+---
+
+3. Limit allowed merge types.
+
+You can limit the allowed merge types to:
+- squash merge 
+which can be used to condense the history of changes in your default branch. 
+
+Requiring a minimum number of reviewers is not used to reduce the history of merge actions. 
+
+Checking for comment resolution is useful to verify that reviewers’ comments are resolved 
+but not to condense the history of changes. 
+
+A policy can be defined to include specific reviewers, 
+but it is unable to clean the branch history.
+
+---
+
+[Branch policies and settings](https://learn.microsoft.com/en-gb/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#limit-merge-types)  
+
+---
+
+# Q028:
+
+You have an Azure DevOps Agile-based project that includes several team members
+who use build and release pipelines based on continuous integration.
+
+You notice that some pull requests are not associated with requirements captured by 
+user stories.
+
+You need to ensure that pull requests are blocked unless such an association exists.
+
+Which branch policy you should implement?
+
+Select only one answer.
+
+1. Automatically include code reviewers.
+2. Check for comment resolution.
+3. Check for linked work items.
+4. Require a minimum number of reviewers.
+
+---
+
+3. Check for linked work items.
+
+In Agile projects, requirements are implemented as User Story work item types. You can require associations between pull requests and work items. Linking work items provides more context for changes and ensures that updates go through your work item tracking process. 
+
+Requiring a minimum number of reviewers is not used to link a work item with a pull request. 
+
+Checking for comment resolution is useful to verify that reviewers’ comments are resolved, 
+but not to link a work item with a pull request. 
+
+A policy can be defined to include specific reviewers, 
+but it cannot link a work item to the pull request.
+
+
+[Branch policies and settings - Check for linked work items](https://learn.microsoft.com/en-gb/azure/devops/repos/git/branch-policies?view=azure-devops&tabs=browser#check-for-linked-work-items)
+
+[Collaborate with pull requests in Azure Repos](https://learn.microsoft.com/en-gb/training/modules/collaborate-pull-requests-azure-repos/)  
+
+---
+
+# Q027:
+
+You have an Azure DevOps organization.
+You plan to use a new Git repository.
+You need to define a branch strategy. 
+The solution must track all detected bugs in the code in an isolated code configuration.
+
+Which branch strategy should you implement?
+
+Select only one answer.
+
+1. development
+2. feature
+3. release
+4. tags
+
+---
+
+2. feature
+
+Feature provides isolation to work with new features or bugs. 
+
+Development:
+is used in **Team Foundation version control** and is not specific to bug fix isolation. 
+
+Release:
+is used when the code is ready to be implemented. 
+
+Tags:
+ are useful to mark a point in the code history as important. 
+ Tags introduce extra steps that are unnecessary if branches are used for releases.
+
+---
+
+# Q026:
+
+You plan to use a forking workflow as the Git branching strategy for your company.
+
+You need to identify the minimum number of repositories that each developer should use.
+
+What is the minimum number of repositories you should identify?
+
+Select only one answer.
+
+1
+2
+3
+4
+
+---
+
+2
+
+When using a **forking workflow**, each developer should have two repositories, 
+**one private local side** and **the other public server-side**. 
+
+While it is technically possible to use only a server-side repository, this
+violates the principle of the forking workflow.
+
+---
+
+[Forks on Azure Repos](https://learn.microsoft.com/en-gb/azure/devops/repos/git/forks?view=azure-devops&tabs=visual-studio)  
+
+Git repo forks are useful when people want to make **experimental, risky, or confidential** 
+changes to a codebase, but those **changes need to be isolated from the codebase** in the 
+original repo.
+
+A new fork is basically a clone of the original repo pushed to a new remote repo. 
+**The fork is independent of the original repo**, and is a complete copy unless you specify 
+a single branch.
+
+
+
+### Share code between forks
+
+The **original repo** is often referred to as the **upstream repo**. 
+**You can create PRs to merge changes in either direction**: 
+- from fork to upstream 
+- upstream to fork 
+
+The most common direction is from fork to upstream. 
+The destination repo's permissions, policies, builds, and work items will apply to the PR.
+
+### Choose between branches and forks
+
+For a **small team of 2-5 developers** a forking workflow might not be necessary because
+everyone can work in feature branches and branch policies can protect the default branch.
+
+> When the forking workflow may be used:
+
+However, if your team expands and outgrows this arrangement they can switch to a forking workflow.
+If your repo has **a large number of casual or infrequent committers**, such as an open source 
+project might, we recommend the forking workflow.
+Typically, only core contributors to your project should have direct commit rights to your original
+repo.
+Other collaborators should use a forking workflow to isolate their proposed changes until the 
+core contributors have a chance to review their work.
+
+[Enable forks on Azure DevOps](https://learn.microsoft.com/en-gb/azure/devops/repos/git/repository-settings?view=azure-devops&tabs=browser#enable-forks)  
+
+> Project Settings > Repositories > repository > Settings > set Forks to On/Off
+
+[The forking workflow](https://learn.microsoft.com/en-gb/azure/devops/repos/git/forks?view=azure-devops&tabs=visual-studio#the-forking-workflow)  
+
+
+---
+
+# Q025:
+
+You plan to use a trunk-based development workflow as the Git branching strategy
+for your company.
+
+You are documenting the steps of the workflow.
+
+You need to identify the step that immediately follows creating a feature branch.
+
+Which step should you identify?
+
+Select only one answer.
+
+1. adding commits
+2. code review
+3. deployment
+4. opening a pull request
+
+---
+
+1. adding commits
+
+**Adding commits follows creating a feature branch in a trunk-based development workflow**. 
+
+**Opening a pull request** follows adding commits to a trunk-based development workflow. 
+**Code review follows opening a pull request** in a trunk-based development workflow. 
+**Deployment follows code review** in a trunk-based development workflow.
+
+- trunk-based development workflow:
+> Create a Feature Branch > Add Commits > Open a PR > Code Review > Deployment
+
+---
+
+[Explore feature branch workflow](https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/3-explore-feature-branch-workflow)
+
+The core idea behind the Feature Branch Workflow is that all feature development
+should take place in a dedicated branch instead of the main branch.
+
+The encapsulation makes it easy for multiple developers to work on a particular feature
+without disturbing the main codebase. It also means the main branch will never contain
+broken code, a huge advantage for continuous integration environments.
+
+Encapsulating feature development also makes it possible to use pull requests, which 
+are a way to start discussions around a branch. They allow other developers to sign out
+on a feature before it integrates into the official project. Or, if you get stuck in 
+the middle of a feature, you can open a pull request asking for suggestions from your 
+colleagues.
+
+Pull requests make it incredibly easy for your team to comment on each other's work. 
+Also, feature branches can (and should) be pushed to the central repository. It allows
+ sharing a feature with other developers without touching any official code.
+
+Since the main is the only "special" branch, storing several feature branches on the 
+central repository doesn't pose any problems. It's also a convenient way to back up
+everybody's local commits.
+
+---
+
+# Q024:
+
+You plan a Git branching strategy for your company.
+
+You need to ensure that the strategy will allow individual developers to 
+have their own server-side repository.
+
+Which branching strategy should you use?
+
+Select only one answer.
+
+1. centralized
+2. forking
+3. GitFlow
+4. trunk-based
+
+---
+
+2. forking
+
+A forking workflow is **the only Git-based workflow** in which **each developer** 
+**has their own server-side repository**. 
+
+For all others, developers share the same server-side repository.
+
+---
+
+[Branch strategically](https://learn.microsoft.com/en-gb/azure/devops/repos/tfvc/branch-strategically?view=azure-devops)
+
+---
+
+
 # Q023:
 
 You plan a Git branching strategy for your company.

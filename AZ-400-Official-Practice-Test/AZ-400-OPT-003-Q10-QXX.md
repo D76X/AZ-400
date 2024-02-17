@@ -159,18 +159,20 @@ How many items should be in progress per each team member at any given time?
 ### Explanation:
 
 The **WIP metric** meausres the amount fo work or the number of WI that are
-actively being worked on. A large WIP exhibits usualkly as a vertical bulge 
+actively being worked on. A large WIP exhibits usually as a vertical bulge 
 on the CFD.
 
-The best practices guidelines recommend **no more than two items in progress per team memeber**.
+The best practices guidelines recommend:
+**no more than two items in progress per team memeber**.
+
 In this case: `4 * 2 = 8` is the revommended max number of WI.
 
 However, **each member should not have only one item at any given time** 
-as there is a possibility that the owrk on a WI may have to be stopped
+as there is a possibility that the work on a WI may have to be stopped
 and restarted intermittently. 
 
 More than two WI per developer is not recommented as it would be more
-sifficult to keep focus on any of them.
+difficult to keep focus on any of them.
 
 ---
 
@@ -182,7 +184,7 @@ sifficult to keep focus on any of them.
 
 ### Question 13:
 
-Your use Azure Boars as part of Azure DevOps Services to track work.
+You use Azure Boars as part of Azure DevOps Services to track work.
 
 You use **Agile process** to create multiple WI including 
 
@@ -191,7 +193,7 @@ You use **Agile process** to create multiple WI including
 - bugs
 
 You need to connect your Azure Board work items with **GitHub.com** so 
-that you can **link GitHub commits and PRs** wit the WI on the Azure Board.
+that you can **link GitHub commits and PRs** with the WI on the Azure Board.
 
 Which **two** authentication methods should you recommend to meet the 
 requirements above?
@@ -213,18 +215,19 @@ requirements above?
 
 ### Explanation:
 
-Different authentication methods are used depending on the type of GitHub.com
-platform you want to connect to. In this scenario, you need to connect 
-**to** the **GitHub.com platform which support two authetnication methods**. 
-This means that the **Azure Boards App** must be authenticated to the 
-**GitHub platofrm** in order for the **Azure Boards App** to have access to
-the commit history of the corresponding repos!
+Different authentication methods are used **depending on the type of GitHub.com**platform 
+you want to connect to. 
+
+In this scenario, you need to connect **to** the **GitHub.com platform which support** 
+**two authetnication methods**. This means that the **Azure Boards App** must be 
+authenticated to the **GitHub platofrm** in order for the **Azure Boards App** to 
+have access to the commit history of the corresponding repos!
 
 - Personal Access Token (PAT):
 You need to use the URL for your GitHub.com and the **PAT credentials from Azure Boards**
 **which are recognized by GitHub.com**. This means that you create the PAT credentials
 from the Azure DevOps Azure Boards portal with the URL to the repos on **GitHub.com**.
-Then **GitHub.com** will trust the PAT provided by it to Azure Boards when the latter
+Then **GitHub.com** will trust the PAT provided by Azure Boards to GitHub.com when the former
 tries to perform operations on GitHub.com such as, for example, reading the commit history
 on a branch.
 
@@ -245,7 +248,7 @@ OAuth app when it wants to perform oeration on your **GitHub Enterprise Server**
 
 - FIDO2 security key:
 The **Fast IDentity Online (FIDO) Alliance** helps to promote authentication standards
-and reduce the use pf passwords as a form of authentication. **FIDO2** is the latest
+and reduce the use of passwords as a form of authentication. **FIDO2** is the latest
 standard that incorporates the web authentication **(WebAutthn)** standard. 
 However, it is not an option in this scenario in order 
 **to Authenticate Azure Boards with the GitHub platforms, either GitHub.com or GitHub Enterprise Server**.
@@ -264,7 +267,7 @@ You implement **Requirement Traceability Matrix (RTM)** in order to provide
 end-to-end traceability by linking various objects, such as WI, branchen, builds
 and releases.
 
-You need to anlyse the code changes to identify the potentioan root cause of a 
+You need to anlayse the code changes to identify the potential root cause of a 
 test failure.
 
 Which **requirement traceability type** should you use to meet the requirement?
@@ -299,7 +302,7 @@ it is important to trace it back to the original set of changes where the failur
 A **Requirement Traceability Matrix (RTM)** is a **document** which captures the technical 
 details of the requirements for a given test scenario and its current state. It helps the
 **testing team** to understand the level of testing that is performed for a given product.
-It provides the tema with insight into **indicators** such as **the quality requirements**
+It provides the team with insight into **indicators** such as **the quality requirements**
 or **readiness to ship** requirement.
 
 You **should not** use:
@@ -314,7 +317,7 @@ should visit the test report in a build or a release.
 This is to **ensure that user requirements meet the quality goals in the project**.
 **Quality traceability** capures **requirements query** and **quality data**.
 **Requirements query** captures the requirements, for example user stories in a current
-iteration. **Qauality data** specifies the stage of the pipeline for which the requirement
+iteration. **Quality data** specifies the stage of the pipeline for which the requirement
 is being traced.
 
 - Test failures:
@@ -322,7 +325,7 @@ is being traced.
  - builds 
  - releases 
  - test failures.
-The **test failures report** provides a granula view of the top failing tests in the pipeline
+The **test failures report** provides a granular view of the top failing tests in the pipeline
 along with the failure details.
 
 ---
@@ -345,10 +348,10 @@ You use `#AB` mention to link from GitHub to Azure Board work items so that `#AB
 should link to WI iwth ID=129.
 
 After completing the proccess, you observe that the `#AB129` mention links to the 
-correct work item. However, a few `#AB` mentions produce unexpected or insonsistent
+correct work item. However, a few `#AB` mentions produce unexpected or inconsistent
 results.
 
-- The following do not link to the ocrrect WI: `#AB130`, `#AB131`, `#AB132`
+- The following do not link to the correct WI: `#AB130`, `#AB131`, `#AB132`
 - The following link to the ocrrect WI: `#AB133`, `#AB134`
 
 You need to troubleshoot this issue.
@@ -356,7 +359,7 @@ What is the cause of the issue?
 
 - GitHub might be unavailable owning to a infrastructure/network outage.
 - Connectivity between GitHub and Azure Boards has been revoked or it has failed.
-- Hosted XML definitions for the WI tyeps are old and need updating. 
+- Hosted XML definitions for the WI types are old and need updating. 
 - The GitHub Repo is connected to 2 or more projects in more than one Azure DevOps Organization.
 
 ---
@@ -379,9 +382,9 @@ Assume that **the same GitHub Repo** is connected to the following Azure DevOp O
 
 Each project within its corresponding organization maintain their WIs and the teams 
 of each organization can link their WI IDs to commits of the same GitHub Repo.
-In this case it is possible that teams working in the two organizations may see liniked WIs that 
-were created by the other team and therefore do not match the expected WI IDs in their own
-Azure Board.
+In this case it is possible that teams working in the two organizations may see liniked WIs 
+that were created by the other team and therefore do not match the expected WI IDs in their 
+own Azure Board.
 
 **There is not known workaround for this problem** and the **recommended solution** is to
 connect a single GitHub Repo to a single Azure DevOps Organization/Board.
@@ -394,7 +397,7 @@ This may be the case only when you get the following message:
 `a new one with OAth to establish the connection`. 
 To resolve this issue you should follow the instructions given in the message.
 
-- Hosted XML definitions for the WI tyeps are old and need updating.  
+- Hosted XML definitions for the WI types are old and need updating.  
 If an Azure DevOps organization uses **Hosted XML process model** 
 **to customize the work tracking experience** and you want to link to and view the 
 GitHub link types from the Development section in the work item forms, then you 
@@ -456,7 +459,7 @@ For each of the following statements.
 
 | Yes | No  | Statement |
 | --- | --- | ------------------------------------------------- |
-| Yes | No  | type: github represents teh GitHub Enterprise Server repository type |
+| Yes | No  | type: github represents the GitHub Enterprise Server repository type |
 | Yes | No  | checkout: self represents the repository that contains the pipeline YAML |
 | Yes | No  | The source code will be checked out into a directory called s located in a subfolder of (Agent.BuildDirrectory) |
 
@@ -466,7 +469,7 @@ For each of the following statements.
 
 | Answer | Statement |
 | ------ | ------------------------------------------------- |
-| No     | type: github represents teh GitHub Enterprise Server repository type |
+| No     | type: github represents the GitHub Enterprise Server repository type |
 | Yes    | checkout: self represents the repository that contains the pipeline YAML |
 | No     | The source code will be checked out into a directory called s located in a subfolder of (Agent.BuildDirrectory) |
 
@@ -474,7 +477,7 @@ For each of the following statements.
 
 ### Explanation:
 
-In Git terminology the term **checkout** refers to the act of **switching** betwenn different 
+In Git terminology the term **checkout** refers to the act of **switching** between different 
 versions of a target entity. 
 
 The **git checkout** command operates on three distinct entities:
@@ -493,7 +496,7 @@ There are four possible types of repos in Azure DevOps Services:
 
 **checkout: self**
 represents the repository that contains the pipeline YAML and this step causes the repo to be checked out.
-If no other steps are specified, this is the default step of a YAM pipeline.
+If no other steps are specified, this is the default step of a YAML pipeline.
 However, with **multiple steps** as it is in this scenario the `checkout: self` must be specified
 in order to check out the repo where the YAML file is contained.
 
@@ -519,7 +522,7 @@ in the YAML Pipeline.
 
 ### Question 17:
 
-You r company uses Azure DevOps. 
+Your company uses Azure DevOps. 
 You are using GitHub Actions with Azure Pipeliens.
 You are trying to execute a workflow every time a Git commit gets pushed to main or
 when a pull request is initiated.
