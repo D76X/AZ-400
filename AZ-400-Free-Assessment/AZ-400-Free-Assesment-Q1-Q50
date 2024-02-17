@@ -1,24 +1,159 @@
 ﻿
 ---
 
+# Q020:
+
+You manage a GitHub organization named contoso that contains multiple repositories.
+
+For each repository, you plan to create a multi-job workflow by using GitHub Actions and share artifacts between jobs.
+
+You need to ensure that the artifacts are retained for up to 10 days for all the GitHub Actions. The solution must minimize development effort.
+
+At which levels should you configure the retention limit?
+
+Select only one answer.
+
+actions
+
+organization
+
+repositories
+
+workflow
+
+---
+
+# Q019:
+
+You use Azure Pipelines to deploy applications.
+
+You need to publish Microsoft Power BI reports that show Azure Pipelines analytics. 
+The solution must minimize development effort.
+
+What should you create?
+
+Select only one answer.
+
+1. a GraphQL feed
+2. an Azure Data Factory pipeline
+3. an Azure Synapse Analytics pipeline
+4. an OData feed
+
+---
+
+4. an OData feed
+
+An **OData feed** provides a straightforward approach to publishing reports 
+that show Azure Pipelines analytics. 
+
+**GraphQL, Azure Data Factory, and Azure Synapse Analytics** pipelines can potentially
+be used in this case, but they require more significant development effort.
+
+---
+
+[Exercise - Monitor the health of your pipeline](https://learn.microsoft.com/en-gb/training/modules/create-release-pipeline/6-monitor-pipeline-health)  
+
+Examine the analytics features that Azure Pipelines provide.
+
+### How can I track the health of my pipeline?
+
+You could use a dashboard.
+let's look at some of the built-in analytics that Azure Pipelines provides.
+
+### What information does pipeline analytics provide?
+
+Every pipeline provides reports that include **metrics, trends, and insights**.
+
+Built-in Reports include (in-context repoerts):
+
+- The overall pass rate of your pipeline.
+- The pass rate of any tests in your pipeline.
+- The average duration of your pipeline runs; including the build tasks, which take the most time to complete.
+
+---
+
+# Q018:
+
+You have an Azure DevOps organization that uses self-hosted agents to execute long-running jobs.
+You plan to replace self-hosted agents with Microsoft-hosted agents.
+You need to identify the maximum duration of a job run on a Microsoft-hosted agent.
+
+What should you identify?
+
+Select only one answer.
+
+1. 2 hours
+2. 6 hours
+3. 12 hours
+4. 24 hours
+
+---
+
+2. 6 hours
+The maximum duration of a build running on a Microsoft-hosted agent is six hours.
+
+[Integrate with Azure Pipelines](https://learn.microsoft.com/en-gb/training/modules/integrate-azure-pipelines/)  
+[Microsoft-hosted agents for Azure Pipelines Capabilities and limitations](https://learn.microsoft.com/en-gb/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#capabilities-and-limitations)
+
+---
+
+# Q017:
+
+You have an Azure subscription that contains 1,000 virtual machines.
+
+You have an on-premises site that contains 100 physical servers.
+
+You need to recommend an Azure service to centralize configuration management
+across both environments. The solution must minimize administrative effort 
+and support a declarative approach.
+
+Which Azure service should you recommend?
+
+Select only one answer.
+
+1. Azure Automation State Configuration
+2. Azure Resource Manager (ARM)
+3. Microsoft Purview
+4. Microsoft Sentinel
+
+---
+
+1. Azure Automation State Configuration
+
+**Azure Automation State Configuration can work centrally for Azure and on-premises virtual machines**.
+
+Guest configuration in Azure Policy requires Azure Arc-enabled resources to be used outside of Azure. 
+ARM requires Azure Stack Hub to be used outside of Azure. 
+Microsoft Sentinel is a SIEM and SOAR solution. 
+
+[Microsoft Purview](https://www.microsoft.com/en-us/security/business/microsoft-purview ) 
+is a data governance, protection, and management solution.
+
+
+---
+
 # Q016:
 
 You plan to use Azure DevOps to deploy applications in a multi-cloud environment.
 
-You need to identify which technology allows you to implement infrastructure as code (IaC) in a consistent manner, regardless of which cloud provider you choose for the deployment.
+You need to identify which technology allows you to implement infrastructure as code (IaC)
+in a consistent manner, regardless of which cloud provider you choose for the deployment.
 
 What should you use?
 
 Select only one answer.
 
-Azure Blueprints
+1. Azure Blueprints
+2. Azure Resource Manager (ARM) templates
+3. Bicep
+4. Terraform
 
-Azure Resource Manager (ARM) templates
+--
 
-Bicep
+4. Terraform
 
-Terraform
-
+Terraform provides IaC functionality in multi-cloud scenarios. 
+ARM templates, Azure Blueprints, and Bicep provide IaC functionality in Azure.
 
 ---
 
