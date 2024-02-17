@@ -1,25 +1,187 @@
 ﻿
 ---
 
+# Q011:
+
+You plan to create an Azure Pipelines release pipeline that will be used for 
+blue-green deployments of a .NET Core application named App1. 
+The code of App1 implements feature flags.
+
+You need to identify which service to use as the Feature Manager for the 
+feature flag management of App1. 
+The solution must minimize administrative effort.
+
+Which service should you identify?
+
+Select only one answer.
+
+1. Azure Advisor
+2. Azure App Configuration
+3. Azure Automation
+4. Azure Logic Apps
+
+---
+
+2. Azure App Configuration
+
+App Configuration provides built-in Feature Manager functionality. 
+
+**Logic Apps** and **Azure Automation** can potentially be configured for 
+feature flag management, but this requires more effort compared to App Configuration. 
+
+**Azure Advisor** does not provide Feature Manager functionality.
+
+---
+
+[Describe feature toggle maintenance](https://learn.microsoft.com/en-gb/training/modules/implement-blue-green-deployment-feature-toggles/6-describe-feature-toggle-maintenance)  
+
+A feature toggle is just code. And to be more specific, conditional code. 
+**It adds complexity to the code and increases the technical debt**.
+Be aware of that when you write them, and **clean up when you don't need them anymore**.
+While feature flags **can be helpful, they can also introduce many issues of their own**.
+The idea of a toggle is that **it's short-lived** and only stays in the software when it's
+necessary to release it to the customers.
+
+You can classify the different types of toggles based on two dimensions as described by Martin Fowler.
+He states that you can look at the dimension of:
+ 1. how long a toggle should be in your codebase 
+ 2. how dynamic the toggle needs to be
+
+### Planning feature flag lifecycles
+
+**The most important thing is to remember that you need to remove the toggles from the software**.
+If you don't do that, they'll become a form of technical debt if you keep them around for too long.
+As soon as you introduce a feature flag, you've added to your overall technical debt.
+
+Like other technical debt, they're easy to add, but the longer they're part of your code,
+ the bigger the technical debt becomes because you've added scaffolding logic needed for
+ the branching within the code.
+
+**The cyclomatic complexity of your code keeps increasing as you add more feature flags**,
+as the number of possible paths through the code increases.
+
+**Using feature flags can make your code less solid and can also add these issues**:
+
+> The code is harder to test effectively as the number of logical combinations increases.
+> The code is harder to maintain because it's more complex.
+> The code might even be less secure.
+> It can be harder to duplicate problems when they're found.
+
+A plan for managing the lifecycle of feature flags is critical. 
+As soon as you add a flag, you need to plan for when it will be removed.
+
+**Feature flags shouldn't be repurposed**. There have been high-profile failures because
+teams decided to reuse an old flag that they thought was no longer part of the code for a
+new purpose.
+
+### Tooling for release flag management
+
+The amount of effort required to manage feature flags shouldn't be underestimated. 
+It's essential to consider using tooling that tracks:
+
+> Which flags exist.
+> Which flags are enabled in which environments, situations, or target customer categories.
+> The plan for when the flags will be used in production.
+> The plan for when the flags will be removed.
+
+Azure App Configuration offers a Feature Manager. 
+See: 
+
+---
+
+[Tutorial: Manage feature flags in Azure App Configuration](https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags)  
+
+You can store all feature flags in Azure App Configuration and administer them from a single place. App Configuration has a portal UI named Feature Manager that's designed specifically for feature flags. App Configuration also natively supports the .NET Core feature-flag data schema.
+
+---
+
+[Enable staged rollout of features for targeted audiences](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-targetingfilter-aspnet-core)  
+
+The `Microsoft.FeatureManagement` library includes `TargetingFilter`, which enables a feature flag 
+for **a specified list of users and groups, or for a specified percentage of users**. 
+
+> TargetingFilter is "sticky." 
+This means that once an individual user receives a feature, they'll continue to see that feature
+on all future requests. You can use `TargetingFilter` to enable a feature for: 
+- a specific account during a demo 
+- to progressively roll out new features to users in different groups or "rings," 
+and much more.
+
+---
+
+[Use feature filters to enable conditional feature flags](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-feature-filters-aspnet-core)
+
+---
+
 # Q010:
 
-You have a project in Azure DevOps named Project1 that contains a build pipeline. The build pipeline generates an artifact and stores the artifact in Azure Repos.
+You have a project in Azure DevOps named Project1 that contains a build pipeline. 
+The build pipeline generates an artifact and stores the artifact in Azure Repos.
 
 You create a release pipeline in Project1.
-
-You need to automatically execute the release pipeline whenever the build pipeline generates a new artifact.
+You need to automatically execute the release pipeline whenever the build pipeline 
+generates a new artifact.
 
 What should you configure?
 
 Select only one answer.
 
-the default approver settings of the first stage of the release pipeline
+1. the default approver settings of the first stage of the release pipeline
+2. the release gate settings of the first stage of the release pipeline
+3. the service connection settings of an artifact in the build pipeline
+4. the trigger settings of an artifact in the build pipeline
 
-the release gate settings of the first stage of the release pipeline
+---
 
-the service connection settings of an artifact in the build pipeline
+4. the trigger settings of an artifact in the build pipeline
 
-the trigger settings of an artifact in the build pipeline
+**The trigger settings of an artifact in the build pipeline** allow you to
+configure the automatic execution of the release pipeline whenever the build
+pipeline generates a new artifact. 
+
+**A service connection** is not required since the artifact is part of Azure Repos
+for the same project. 
+
+**The default approver settings** do not require explicit approvals, so they do not
+need to be configured to automatically execute the release pipeline if the build 
+pipeline artifact trigger is enabled. 
+
+**The default release gate** settings allow for automatic stage execution, so they 
+do not need to be configured to automatically execute the release pipeline if the build
+pipeline artifact trigger is enabled.
+
+---
+
+[Explore release recommendations](https://learn.microsoft.com/en-gb/training/modules/explore-release-strategy-recommendations/)  
+[Explore release approvals](https://learn.microsoft.com/en-gb/training/modules/explore-release-strategy-recommendations/4-explore-release-approvals)  
+
+[Configure build completion triggers (classic) - Azure Pipelines | Microsoft Learn](https://learn.microsoft.com/en-gb/azure/devops/pipelines/process/pipeline-triggers-classic?view=azure-devops)  
+
+- Add a build completion trigger:
+In the classic editor, pipeline triggers are called build completion triggers. 
+You can select any other build in the same project to be the triggering pipeline.
+After you add a build completion trigger, select the triggering build.
+example: `features/modules/*`
+
+- Download artifacts from the triggering build
+In many cases, you'll want to download artifacts from the triggering build. 
+To do this:
+
+> 1 Edit your build pipeline.
+> 2 Add the Download Build Artifacts task to one of your jobs under Tasks.
+> 3 For Download artifacts produced by, select Specific build.
+> 4 Select the team Project that contains the triggering build pipeline.
+> 5 Select the triggering Build pipeline.
+> 6 Select When appropriate, download artifacts from the triggering build.
+> 7:
+Even though you specified that you want to download artifacts from the triggering build,
+you must still select a value for Build. The option you choose here determines which
+build will be the source of the artifacts whenever your triggered build is run because
+of any other reason than BuildCompletion (e.g. Manual, IndividualCI, Schedule, and so on).
+
+> 8 Specify the Artifact name and make sure it matches the name of the artifact published by the triggering build.
+> 9 Specify the Destination directory to which you want to download the artifacts. 
+For example: `$(Build.BinariesDirectory)`
 
 ---
 
