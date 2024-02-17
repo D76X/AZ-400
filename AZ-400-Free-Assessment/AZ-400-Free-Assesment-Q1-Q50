@@ -1,6 +1,105 @@
 ﻿
 ---
 
+# Q022:
+
+You have an Azure DevOps organization that contains multiple projects, 
+including a project named Project1. 
+All projects contain CI/CD pipelines.
+
+You detect that the pipeline in Project1 is blocking other pipelines 
+from starting due to its long run times.
+You need to identify which pipeline setting will reduce the duration of 
+the pipeline runs.
+
+Which setting should you identify?
+
+Select only one answer.
+
+1. dependencies
+2. maxParallel configuration
+3. multi-job configuration
+4. timeouts
+
+---
+
+3. multi-job configuration
+
+Multi-job configuration is used for pipeline performance optimization, 
+**allowing you to run multiple jobs on multiple agents in parallel**. 
+
+- maxParallel: 
+is used to limit parallelism, since if it is not set, no limit is applied.
+
+**Timeouts** are used to set a limit on how long a job can run, but they 
+do not improve performance. 
+
+**Dependencies** are used to control multiple jobs in a single agent.
+
+---
+
+[Azure Pipelines - Multi-job configuration](https://learn.microsoft.com/en-gb/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#multi-job-configuration)
+
+[Implement multi-agent builds](https://learn.microsoft.com/en-gb/training/modules/implement-pipeline-strategy/3-implement-multi-agent-builds)   
+
+[Azure Pipelines agents - Parallel jobs](https://learn.microsoft.com/en-gb/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser#parallel-jobs)
+---
+
+# Q021:
+
+You have an Azure DevOps organization that hosts a project named Project1. 
+Project1 includes multiple tests.
+
+You need to identify which tests in Project1 provide different outcomes, 
+such as pass or fail, even when there are no changes to the source code.
+
+Which Azure DevOps feature should you use?
+
+Select only one answer.
+
+1. Flaky test detection
+2. Pipeline pass rate
+3. Test pass rate
+4. Test Results Trend
+
+---
+
+1. Flaky test detection
+
+Flaky test detection **is a feature configured at the project level** and
+**supports system and custom detection**. 
+
+**Test pass rate** and **Pipeline pass rate** are (IN-CONTEXT) reports on the 
+**pipeline’s Analytics tab**. 
+
+**Test Results Trend** is a **widget** used to track test results.
+
+---
+
+[Manage flaky tests](https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/flaky-test-management?view=azure-devops)  
+
+> Azure DevIOps Pipeline > Test Management > Flaky test options:
+
+1. Falky tests included in tests pass percentage
+Uncheck to prevent pipeline failure due to flaky tests.
+
+2. Allow users to manually mark & unmark flaky tests
+
+- System detection: 
+The in-product flaky detection uses test rerun data. The detection is via 
+`VSTest task` rerunning of failed tests capability or retry of stage in the pipeline.
+You can select specific pipelines in the project for which you would like to detect 
+flaky tests.
+
+- Custom detection: 
+You can integrate your own flaky detection mechanism with Azure Pipelines and use 
+the reporting capability. With custom detection, you need to update the test results 
+metadata for flaky tests. For details, see Test Results, Result Meta Data - Update REST API.
+
+[Run quality tests in your build pipeline by using Azure Pipelines](https://learn.microsoft.com/en-gb/training/modules/run-quality-tests-build-pipeline/)  
+
+---
+
 # Q020:
 
 You manage a GitHub organization named contoso that contains multiple repositories.
