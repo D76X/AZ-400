@@ -1,6 +1,222 @@
 ﻿
 ---
 
+# Q015:
+
+You plan to implement the automated validation of Azure Resource Manager (ARM) 
+templates for your company.
+
+You need to identify two sections that must be present in every ARM template.
+Which two sections should you identify? 
+
+Each correct answer presents part of the solution.
+
+Select all answers that apply.
+
+1. apiProfile
+2. contentVersion
+3. functions
+4. parameters
+5. schema
+
+---
+
+2. contentVersion
+5. schema
+
+The **schema** and **contentVersion** sections are mandatory in ARM templates.
+
+functions, apiProfile, and parameters are optional in ARM templates.
+
+---
+
+[Explore Azure Resource Manager template structure](https://learn.microsoft.com/en-gb/training/modules/create-azure-resource-manager-template-vs-code/2-explore-template-structure?tabs=azure-cli)  
+
+When you're writing an ARM template, you need to understand all the parts that make up
+the template and what they do.
+
+- schema:
+A **required section** that defines the location of the JSON schema file that describes 
+the structure of JSON data. The version number you use depends on the scope of the deployment
+and your JSON editor.
+
+- contentVersion:
+A **required section** that defines the version of your template (such as 1.0.0.0). 
+You can use this value to document significant changes in your template to ensure you're 
+deploying the right template.
+
+- apiProfile:
+An **optional section** that defines a collection of API versions for resource types. 
+You can use this value **to avoid having to specify API versions for each resource in the template**.
+
+- parameters:
+An **optional section** where you define values that are provided during deployment. 
+These values can be provided by a parameter file, by command-line parameters, or in the Azure portal.
+
+- variables:
+An **optional section** where you define values that are used to simplify template language expressions.
+
+- functions:
+An **optional section** where you can **define user-defined functions** that are available within 
+the template. User-defined functions can simplify your template when complicated expressions are used
+repeatedly in your template.
+
+- resources:
+A **required section** that defines the actual items you want **to deploy or update in a resource group** 
+or a subscription.
+
+-output:
+An **optional section** where you specify the values that will be returned at the end of the deployment.
+
+### Deploy an ARM template to Azure
+
+- Deploy a local template
+- Deploy a linked template
+- Deploy in a continuous deployment pipeline
+
+`az deployment group create`
+
+```
+templateFile="{provide-the-path-to-the-template-file}"
+az deployment group create \
+  --name blanktemplate \
+  --resource-group myResourceGroup \
+  --template-file $templateFile
+```
+
+---
+
+```
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.1",
+  "apiProfile": "",
+  "parameters": {},
+  "variables": {},
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-06-01",
+      "name": "learntemplatestorage123",
+      "location": "westus",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "supportsHttpsTrafficOnly": true
+      }
+    }
+  ],
+  "outputs": {}
+}
+```
+
+---
+
+# Q014:
+
+You plan to control the configuration of Azure virtual machines by using 
+PowerShell Desired State Configuration (DSC).
+
+You need to identify which service provides built-in PowerShell DSC pull 
+server functionality.
+
+Which service should you identify?
+
+Select only one answer.
+
+1. Azure App Configuration
+2. Azure Application Gateway
+3. Azure Automation
+4. Azure Policy
+
+---
+
+3. Azure Automation
+
+**Azure Automation** provides a built-in PowerShell DSC pull server. 
+
+**App Configuration** facilitates implementing feature flags, but 
+it does not provide a built-in PowerShell DSC pull server. 
+
+**Application Gateway is a load balancer**. 
+
+**Azure Policy provides governance** and **policy enforcement**, 
+but it does not function as a PowerShell DSC pull server.
+
+---
+
+[Explore Azure Automation State configuration (DSC)](https://learn.microsoft.com/en-gb/training/modules/implement-desired-state-configuration-dsc/4-explore-azure-automation)  
+
+Azure Automation State configuration DSC is an Azure cloud-based implementation
+of PowerShell DSC, **available as part of Azure Automation**. It allows you to 
+
+> write, manage, and compile PowerShell DSC configurations** 
+> import DSC Resources 
+> assign configurations to target nodes, all in the cloud.
+
+### Why use Azure Automation DSC?
+
+- Built-in pull server. 
+Provides a DSC pull server **like the Windows Feature DSC service** so that
+target nodes automatically receive configurations, conform to the desired state, 
+and report back on their compliance. The built-in pull server in Azure Automation 
+**eliminates the need to set up and maintain your pull server**.
+
+- Management of all your DSC artifacts. 
+You can manage all your DSC configurations, resources, and target nodes from the 
+Azure portal or PowerShell.
+
+- Import reporting data into Log Analytics. 
+Nodes managed with Azure Automation state configuration send detailed reporting status
+data to the built-in pull server. You can configure Azure Automation state configuration
+to send this data to your Log Analytics workspace.
+
+---
+
+# Q013:
+
+You have a web app that runs in Azure App Service and on on-premises web servers
+in multiple locations across the world. 
+Each web app has a unique DNS name.
+
+You plan to use Azure Traffic Manager to load balance requests across all instances
+of the web apps.
+
+You need to identify which Traffic Manager traffic distribution method will direct
+incoming requests to the endpoint that is closest to the origin of the request 
+according to network latency.
+
+Which Traffic Manager traffic distribution method should you identify?
+
+Select only one answer.
+
+1. Geographic
+2. Performance
+3. Priority
+4. Weighted
+
+---
+
+2. Performance
+
+**The Performance** distribution method directs incoming requests to the endpoint 
+that is closest to the origin of the request by **evaluating network latency**. 
+
+**The Geographic** distribution method directs incoming requests to the endpoint 
+that is in the same geographic area as the origin of the request using the DNS
+of the request.
+ 
+**The Priority** distribution method always distributes all requests to the endpoint
+with the highest priority, **if available**. 
+
+**The Weighted** distribution method distributes all requests across endpoints based
+on the weight values assigned to them.
+
+---
+
 # Q012:
 
 You have a web app that runs on Azure virtual machines in multiple Azure regions. 
