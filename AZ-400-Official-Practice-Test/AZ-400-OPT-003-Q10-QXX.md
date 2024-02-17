@@ -27,15 +27,15 @@ Which policy should you implement?
 
 You should implement the **Check for linked work items policy**.
 
-This policy adds a warning in the PR status overview when it is not associated with any
-work items from the project board. If this policy is set, developers are unable to merge
-the PR when it is not associated with a WI.
+This **branch policy** adds a warning in the PR status overview when it is not associated 
+with any work items from the project board. If this policy is set, developers are unable
+to merge the PR when it is not associated with a WI.
 
 This complies with the **company audit policy**.
 
 You **should not** implement:
 
-ThESE policies do not satisfy the **company audit policy** in realation to the linked WI to every PR. 
+These policies do not satisfy the **company audit policy** in realation to the linked WI to every PR. 
 
 - Require a minimum number of reviewers:
 This policy specifies the min number of reviewers on a PR under certain conditions.
@@ -63,8 +63,8 @@ Your company uses Azure Boards to support as part of an Azure DevOps Service pro
  - user stories
  - tasks
 
-As part of the **continuos flow process (CFP)**, you need to monitor how long it takes to 
-complete a request to add a proposed user story.
+As part of the **continuos flow process (CFP)**, you need to monitor how long it takes
+to complete a request to add a proposed user story.
 
 Which **out-of-the-box (OOB) widget** should you add to the dashboard?
 
@@ -82,15 +82,17 @@ Which **out-of-the-box (OOB) widget** should you add to the dashboard?
 
 ### Explanation:
 
-You should add the **Laed Time widget** to teh Azure Board.
+You should add the **Laed Time widget** to the Azure Board.
 
 This widget displays work items that have been closed in a specific timeframe for a single team.
-The **lead time of a WI** is the time taken to close the WI after it was created.
+The **lead time of a WI** is the time taken to close the WI after it was created (not started!).
+Iy is an estimate of how long in average any user story will be integrated into shippable working
+software from the time the riquest for the user story is made by the end user.
 
 - For a **CFP**, the **Laed Time** meausures how long a request takes from **creation** to **closure**.
 
-- For a  **Sprint/Fixed period process** teh **LT** measures how long the work on a request takes from
-  when it **begins** to when it is **completed**, that is from **active** to **closed**.
+- For a  **Sprint/Fixed period process** the **LT** measures how long the work on a request takes from
+when it **begins** to when it is **completed**, that is from **active** to **closed**.
 
 You **should not** use the widgets below.
 
@@ -98,12 +100,19 @@ You **should not** use the widgets below.
 **This is not quite clear!**
 it measure how long it takes to complete WIs from when the team begings to actively work on them.
 The time is calculated from the start of one process to the start of the next process.
+This is the average time any work item / user story takes to be developed by the team.
+It is necessarily a shorter timeframe than teh lead time.
 
 - Burndown:
 The **Burndown chart** focusses on the remaining work within a specific period of time.
+How much work remains to the end of the sprint?
 
 - Velocity:
 The **velocity chart** helps to determine how much work a team can do **sprint-over-sprint**.
+How much work has been done in the previos sprints and how much of what was planned has remained
+at the end of the sprint?
+It is an indicator of how well the team can estimate the work and in the ideal case:
+> work planned = work done => remining work = 0
 
 ---
 
@@ -121,7 +130,7 @@ The **velocity chart** helps to determine how much work a team can do **sprint-o
 
 ---
 
-### Question12:
+### Question 12:
 
 Your organization uses the **Cumulative Flow Diagram (CFD)** widget to monitor 
 the flow of work through a system as part of an Azure DevOps Services Project.
@@ -9435,7 +9444,7 @@ There are also Automatic Changelog Generatiin Plugins for CI/CD pipeline.
 
 ---
 
-[Barnch Strategies](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/5947b0ee-74ca-4893-b3c8-2b5d028998eb)  
+[Branch Strategies](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/5947b0ee-74ca-4893-b3c8-2b5d028998eb)  
 
 1. [Trunk-Based Branching]
 This is to be used for **quick branches**. 
@@ -9443,7 +9452,7 @@ In this strategy any single change goes straint into the main branch (The Trunk)
 
 | Pros                            |  Cons                      |
 | ------------------------------- | -------------------------- |
-| Applicable to very small teams |  Large code review process |
+| Applicable to very small teams  |  Large code review process |
 
 2. [Feature (Task) Branching]
 
@@ -9452,18 +9461,18 @@ This is **a branch per User Story** strategy.
 | Pros                                            |  Cons                      |
 | ----------------------------------------------- | -------------------------- |
 | Enables independent and experimental innovation | **Long running feature branches may become difficult to merge back into the main branch |
-| Easy to segment |  Large code review process    |   |
-| It makes it easy to build CI/CD workflows       |   |
+| Easy to segment                                 |  Large code review process    |   
+| It makes it easy to build CI/CD workflows       |                               |
 
 3. [Feature Flag Branching]
 
 This is the same as **Feature (Task) Branching** but if fixes the problem ** by using flags to activate or deactivate 
-the feature so that even incomplete featyures cn be safely and often merged back into the main branch without being 
+the feature so that even incomplete features cn be safely and often merged back into the main branch without being 
 active and therefore even when they are incopleted or not thorouhhly tested.
 
 4. [Release Branching]
 
-This strategy merges all the **User Storiy Branches** and **merges them all in a single branch**.
+This strategy merges all the **User Story Branches** and **merges them all in a single branch**.
 Branches are created **for all features per each release** from the main branch. 
 At the beginning of a Release Cycle **a Release Branch is created from the main branch** then  
 all **Feature Branches and Bug Fixes branches** are created starting from the feauture branch. 

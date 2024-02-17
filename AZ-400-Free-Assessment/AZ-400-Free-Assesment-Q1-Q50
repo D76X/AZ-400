@@ -1,6 +1,188 @@
 ﻿
 ---
 
+# Q023:
+
+You plan a Git branching strategy for your company.
+
+You need to ensure that the strategy will dictate that pull requests must 
+deploy to production for testing before they can merge to the main branch.
+
+Which branching strategy should you use?
+
+Select only one answer.
+
+1. centralized
+2. forking
+3. GitHub Flow
+4. trunk-based
+
+---
+
+3. GitHub Flow
+
+**GitHub Flow is a popular trunk-based development release flow**, which stipulates 
+that pull requests must deploy to production for testing before they can merge to the 
+main branch. This process means that all pull requests wait in the deployment queue
+for the merge. 
+
+This provision is not part of the centralized, forking, or trunk-based strategy.
+
+---
+
+[Explore branch workflow types](https://learn.microsoft.com/en-gb/training/modules/manage-git-branches-workflows/2-explore-branch-workflow-types)
+
+> Forking workflow:
+The Forking Workflow is fundamentally different than the other workflows discussed 
+in this tutorial.
+
+Instead of using a single server-side repository to act as the "central" codebase, 
+it gives every developer a server-side repository.
+
+It means that each contributor has two Git repositories:
+- A private local one.
+- A public server-side one.
+
+---
+
+[Adopt a Git branching strategy](https://learn.microsoft.com/en-gb/azure/devops/repos/git/git-branching-guidance?view=azure-devops)  
+
+[How Microsoft develops with DevOps](https://learn.microsoft.com/en-gb/devops/develop/how-microsoft-develops-devops)  
+
+
+---
+
+[Branch Strategies](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/a112424c-bbdb-4eaa-9f94-ecbcce6ecba9/5947b0ee-74ca-4893-b3c8-2b5d028998eb)  
+
+1. [Trunk-Based Branching]
+This is to be used for **quick branches**. 
+In this strategy any single change goes straint into the main branch (The Trunk).
+
+| Pros                            |  Cons                      |
+| ------------------------------- | -------------------------- |
+| Applicable to very small teams  |  Large code review process |
+
+2. [Feature (Task) Branching]
+
+This is **a branch per User Story** strategy.
+
+| Pros                                            |  Cons                      |
+| ----------------------------------------------- | -------------------------- |
+| Enables independent and experimental innovation | **Long running feature branches may become difficult to merge back into the main branch |
+| Easy to segment                                 |  Large code review process    |   
+| It makes it easy to build CI/CD workflows       |                               |
+
+3. [Feature Flag Branching]
+
+This is the same as **Feature (Task) Branching** but if fixes the problem ** by using flags to activate or deactivate 
+the feature so that even incomplete features cn be safely and often merged back into the main branch without being 
+active and therefore even when they are incopleted or not thorouhhly tested.
+
+4. [Release Branching]
+
+This strategy merges all the **User Story Branches** and **merges them all in a single branch**.
+Branches are created **for all features per each release** from the main branch. 
+At the beginning of a Release Cycle **a Release Branch is created from the main branch** then  
+all **Feature Branches and Bug Fixes branches** are created starting from the feauture branch. 
+The feature branches and bug fixes branches are merged back into the release branch and only 
+when the Release Branch is consolidated and released as a new version of the software it is 
+then **merged back into the main branch** before stating the next release cycle. 
+
+| Pros                                            |  Cons                      |
+| ----------------------------------------------- | -------------------------- |
+| If you must support multiple versions       *1  | Difficult to maintain |
+| If you must support multiple custumizations *2  | Cannot have many changes or contributors |
+| It allows the team to focus on a specific topic | It generates more work for the team per each version |
+
+
+---
+
+# Q023:
+
+Your team uses clones of an Azure DevOps Git repository to collaborate on a shared project. 
+Commits pushed to the repository include large binary files.
+
+A new employee joins the team and clones the repository but cannot find any large binary 
+files in the local clone. All the other team members can locate large binary files in their
+local clones.
+
+You need to recommend a solution that will enable the new employee to locate the large binary 
+files after creating a local clone.
+
+What should you recommend?
+
+Select only one answer.
+
+1. Ask the employee to run az repos create.
+2. Ask the employee to run git clone git@ssh.dev.azure.com.
+3. Install the GitX client on the new employee’s computer.
+4. Install the Git LFS client on the new employee’s computer.
+
+---
+
+4. Install the Git LFS client on the new employee’s computer.
+
+The Git LFS client must be installed and configured properly to allow you 
+to see binary committed files. 
+
+`az repos create`: creates a new Git repository by using Azure Repos. 
+
+`git clone git@ssh.dev.azure.com`: 
+clones a repository by using **SSH**, which is **unsupported in Azure Repos** 
+**when Git LFS is used to track files**. 
+
+`GitX`:
+is a Git extension that provides an improved development workflow.
+
+---
+
+[Training: Manage Git repositories](https://learn.microsoft.com/en-gb/training/modules/manage-git-repositories/)
+
+> Work with large repositories:
+
+There are two primary causes for large repositories:
+- Long history
+- Large binary files
+
+> Shallow clone:
+If developers don't need all the available history in their local repositories, 
+**a good option** is to implement a shallow clone.
+`git clone --depth [depth] [clone-url]`
+
+> VFS for Git:
+VFS for Git helps with large repositories. It requires a **Git LFS client**.
+
+[VFS for Git](https://github.com/microsoft/VFSForGit)
+VFS for Git virtualizes the file system beneath your Git repository so that Git 
+and all tools see what appears to be a regular working directory, but VFS for Git
+only downloads objects as they are needed.
+
+> Scalar:
+Scalar is a .NET Core application available for Windows and macOS. 
+With tools and extensions for Git to allow very large repositories to maximize your
+Git command performance. **Microsoft uses it for Windows and Office repositories**.
+It achieves by enabling some advanced Git features, such as:
+
+- Partial clone: 
+reduces time to get a working repository by not downloading all Git objects right away.
+- Background prefetch: 
+downloads Git object data from all remotes every hour, reducing the time for foreground
+git fetch calls.
+- Sparse-checkout: 
+limits the size of your working directory.
+- File system monitor: 
+tracks the recently modified files and eliminates the need for Git to scan the entire work tree.
+- Commit-graph:
+accelerates commit walks and reachability calculations, speeding up commands like git log.
+- Multi-pack-index: 
+enables fast object lookups across many pack files.
+- Incremental repack: 
+Repacks the packed Git data into fewer pack files without disrupting concurrent commands 
+using the multi-pack-index.
+
+---
+
+
 # Q022:
 
 You have an Azure DevOps organization that contains multiple projects, 
@@ -40,9 +222,88 @@ do not improve performance.
 
 [Azure Pipelines - Multi-job configuration](https://learn.microsoft.com/en-gb/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#multi-job-configuration)
 
+**From a single job** you author, you can **run multiple jobs on multiple agents in parallel**. 
+Some examples include:
+
+**Multi-configuration builds**: 
+You can build multiple configurations in parallel. For example, you could build 
+a Visual C++ app for both debug and release configurations on both x86 and x64 
+platforms. 
+To learn more, see Visual Studio Build - multiple configurations for multiple platforms.
+
+**Multi-configuration deployments**: 
+You can run multiple deployments in parallel, for example, to different geographic regions.
+
+**Multi-configuration testing**: 
+You can run test multiple configurations in parallel.
+
+Multi-configuration will always generate at least one job, even if a 
+multi-configuration variable is empty.
+
+```
+jobs:
+- job: Test
+  strategy:
+    maxParallel: 2
+    matrix: 
+      US_IE:
+        Location: US
+        Browser: IE
+      US_Chrome:
+        Location: US
+        Browser: Chrome
+      Europe_Chrome:
+        Location: Europe
+        Browser: Chrome
+```
+
+---
+
 [Implement multi-agent builds](https://learn.microsoft.com/en-gb/training/modules/implement-pipeline-strategy/3-implement-multi-agent-builds)   
 
+You can use multiple build agents to:
+
+- support multiple build machines 
+- distribute the load
+- run builds in parallel 
+- or use different agent capabilities
+
+Adding multiple jobs to a pipeline lets you:
+
+- Break your pipeline into sections that need different agent pools or self-hosted agents.
+- Publish artifacts in one job and consume them in one or more subsequent jobs.
+- Enable conditional execution of tasks
+- Build faster by running multiple jobs in parallel:
+At the organization level, you can configure the number of parallel jobs that are made available.
+The free tier allows for one parallel job of up to 1800 minutes per month.
+You can define a build as a collection of jobs rather than as a single job. 
+Each job consumes one of these parallel jobs that run on an agent. 
+If there aren't enough parallel jobs available for your organization, 
+the jobs will be queued and run sequentially.
+
+---
+
 [Azure Pipelines agents - Parallel jobs](https://learn.microsoft.com/en-gb/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=yaml%2Cbrowser#parallel-jobs)
+
+Parallel jobs represents the number of jobs you can run at the same time in your organization. If your organization has a single parallel job, you can run a single job at a time in your organization, with any additional concurrent jobs being queued until the first job completes. To run two jobs at the same time, you need two parallel jobs. In Azure Pipelines, you can run parallel jobs on Microsoft-hosted infrastructure or on your own (self-hosted) infrastructure.
+
+Microsoft provides a free tier of service by default in every organization that includes at least one parallel job. Depending on the number of concurrent pipelines you need to run, you might need more parallel jobs to use multiple Microsoft-hosted or self-hosted agents at the same time. For more information on parallel jobs and different free tiers of service, see Parallel jobs in Azure Pipelines.
+
+---
+
+[Specify jobs in your pipeline - Slicing](https://learn.microsoft.com/en-gb/azure/devops/pipelines/process/phases?view=azure-devops&tabs=yaml#slicing)  
+
+An agent job can be used **to run a suite of tests in parallel**. 
+For example, you can run a large suite of 1000 tests on a single agent. 
+Or, you can use two agents and run 500 tests on each one in parallel.
+
+**To apply slicing**, the tasks in the job should be smart enough to understand
+the slice they belong to.
+
+The **Visual Studio Test task** is one such task that **supports test slicing**. 
+If you **installed multiple agents**, you can specify how the Visual Studio Test task
+runs in parallel on these agents.
+
 ---
 
 # Q021:
