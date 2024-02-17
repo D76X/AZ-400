@@ -1,7 +1,143 @@
 ﻿
 ---
 
+# Q010:
+
+You have a project in Azure DevOps named Project1 that contains a build pipeline. The build pipeline generates an artifact and stores the artifact in Azure Repos.
+
+You create a release pipeline in Project1.
+
+You need to automatically execute the release pipeline whenever the build pipeline generates a new artifact.
+
+What should you configure?
+
+Select only one answer.
+
+the default approver settings of the first stage of the release pipeline
+
+the release gate settings of the first stage of the release pipeline
+
+the service connection settings of an artifact in the build pipeline
+
+the trigger settings of an artifact in the build pipeline
+
+---
+
+# Q009:
+
+You plan a versioning strategy for a NuGet package.
+You need to implement a unique prerelease label based on the date and time of the package.
+Which semantic versioning should you use?
+
+Select only one answer.
+
+1. a custom scheme
+2. a generated script
+3. $(Major).$(Minor).$(Patch).$(date:yyyyMMdd)
+4. $(Major).$(Minor).$(rev:.r)
+
+---
+
+1. a custom scheme
+
+In a **case where a unique label is required**, a custom scheme must be implemented
+by using date and time as unique values. 
+
+`$(Major).$(Minor).$(Patch).$(date:yyyyMMdd)` uses variables for major, minor, patch, and date. 
+**It does not generate unique values**. 
+
+A script can be used to generate the version in the build pipeline. 
+
+`$(Major).$(Minor).$(rev:.r)` is a format of semantic versioning that uses variables. 
+It does not generate unique values based on date and time.
+
+---
+
+[Publish NuGet packages with Pipeline tasks or the classic editor - Azure Pipelines | Microsoft Learn](https://learn.microsoft.com/en-gb/azure/devops/pipelines/artifacts/nuget?view=azure-devops&tabs=yaml#package-versioning)
+
+Azure Pipelines and can be configured in your NuGet task as follows:
+
+- Use the date and time (Classic): 
+- byPrereleaseNumber (YAML):
+Your package version is in the format: `Major.Minor.Patch-ci-datetime` 
+where you have the flexibility to choose the values of your Major, Minor, and Patch.
+
+- Use an environment variable (Classic): 
+- byEnvVar (YAML). 
+Your package version is set to the value of the environment variable you specify.
+
+- Use the build number (Classic): 
+- byBuildNumber (YAML). 
+Your package version is set to the build number. Make sure you set your build number 
+format under your pipeline Options to: 
+`$(BuildDefinitionName)_$(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)`. 
+
+To do set the format in YAML, add a property `name`: 
+at the root of your pipeline and add your format.
+
+---
+
+# Q008:
+
+You have a project in Azure DevOps that contains build and release pipelines.
+You need to change the number of parallel jobs that will be available to the 
+agent pool allocated to the project.
+
+At which level should you add the parallel jobs?
+
+Select only one answer.
+
+1. build pipeline
+2. organization
+3. project
+4. release pipeline
+
+---
+
+2. organization
+
+Parallel jobs are added at the organization level, 
+not the project, build pipeline, or release pipeline levels.
+
+---
+
+[Configure and pay for parallel jobs](https://learn.microsoft.com/en-gb/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
+[Understand parallel jobs](https://learn.microsoft.com/en-gb/training/modules/describe-pipelines-concurrency/2-understand-parallel-jobs)  
+[Estimate parallel jobs](https://learn.microsoft.com/en-gb/training/modules/describe-pipelines-concurrency/3-estimate-parallel-jobs)  
+
+A simple rule of thumb: 
+Estimate that you'll need one parallel job for every four to five users in your organization.
+
+---
+
 # Q007:
+
+You plan to create a project in Azure DevOps.
+You need to identify which Azure DevOps feature enables the sharing of arbitrary
+values across all the definitions in the project.
+Which Azure DevOps feature should you identify?
+
+Select only one answer.
+
+1. predefined variables
+2. release pipeline variables
+3. stage variables
+4. variable groups
+
+---
+
+4. variable groups
+
+Variable groups provide the ability to share arbitrary values across
+all the definitions in the same project. 
+
+The values of **predefined variables** are assigned automatically. 
+**stage and pipeline variables** have a smaller scope than the entire project.
+
+---
+
+[Explore variables in release pipelines](https://learn.microsoft.com/en-gb/training/modules/manage-modularize-tasks-templates/4-explore-variables-release-pipelines)  
+[Publish NuGet packages with Azure Pipelines (YAML/Classic)](https://learn.microsoft.com/en-gb/azure/devops/pipelines/artifacts/nuget?view=azure-devops&tabs=yaml)  
 
 ---
 
