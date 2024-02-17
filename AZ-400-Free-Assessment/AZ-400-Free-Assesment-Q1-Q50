@@ -4,22 +4,84 @@
 # Q020:
 
 You manage a GitHub organization named contoso that contains multiple repositories.
+For each repository, you plan to create a multi-job workflow by using GitHub Actions
+and share artifacts between jobs.
 
-For each repository, you plan to create a multi-job workflow by using GitHub Actions and share artifacts between jobs.
+You need to ensure that the artifacts are retained for up to 10 days for all the 
+GitHub Actions. 
 
-You need to ensure that the artifacts are retained for up to 10 days for all the GitHub Actions. The solution must minimize development effort.
+The solution must minimize development effort.
 
 At which levels should you configure the retention limit?
 
 Select only one answer.
 
-actions
+1. actions
+2. organization
+3. repositories
+4. workflow
 
-organization
+---
 
-repositories
+2. organization
 
-workflow
+Setting the retention limits at the organization level enforces 
+the maximum retention limit for all actions. 
+
+While **you can define the retention limit for each action or repository**, 
+this requires more effort to implement and maintain compared to configuring
+this at the organization level. 
+
+Retention limits **are not configurable at the workflow level**.
+
+[CI Integration with HitHub Actions](https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/4-share-artifacts-between-jobs)  
+
+### Share artifacts between jobs
+
+When using Actions to create CI or CD workflows, you'll often need to pass artifacts created by one job to another.
+
+> Upload-artifact Action:
+
+This action can upload one or more files from your workflow to be shared between jobs.
+
+```
+- uses: actions/upload-artifact
+  with:
+    name: harness-build-log
+    path: bin/output/logs/harness.log
+     retention-days: 12 # You can set a custom retention period when uploading, 
+                        # but it can't exceed the defaults for the repository, organization, or enterprise.
+    #  path: bin/output/logs/harness[ab]?/* # can use wildcards
+```
+
+For en entire folder:
+
+```
+- uses: actions/upload-artifact
+  with:
+    name: harness-build-logs
+    path: bin/output/logs/
+```
+
+You can specify multiple paths:
+
+```
+- uses: actions/upload-artifact
+  with:
+    name: harness-build-logs
+    path: |
+        bin/output/logs/harness.log
+        bin/output/logs/harnessbuild.txt
+```
+
+> Download-artifact
+
+```
+- uses: actions/download-artifact
+  with:
+    name: harness-build-log
+
+```
 
 ---
 
