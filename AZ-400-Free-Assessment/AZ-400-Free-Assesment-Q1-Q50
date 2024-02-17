@@ -1,0 +1,69 @@
+﻿
+---
+
+# Q002: 
+
+You have a project in Azure DevOps named Project1 that contains a continuous integration pipeline named Pipeline1.
+You plan to **use Windows-based self-hosted agents for UI tests in Pipeline1**.
+You need to identify the option you must configure to apply to the agents.
+Which option should you identify?
+
+1. Enable Autologon.
+2. Run a screen resolution task.
+3. Run a unit test.
+4. Run tests in parallel.
+
+---
+
+1. Enable Autologon.
+
+When **self-hosted agents are used, autologon must be enabled** to allow UI tests to run. 
+
+**A screen resolution task** allows additional configurations to be performed**, 
+but an autologon configuration is needed first to allow the test to run. 
+
+To **reduce the duration of the test activities**, running tests in parallel can be useful, 
+but this strategy does not address this scenario. 
+
+A unit test is the first step to adding testing to the development process.
+
+---
+
+# Q001: 
+
+You plan to design a DevSecOps security validation process for your company.
+You need to identify which stage in the process will include an automated Open Source Software (OSS) vulnerability scan.
+Which stage should you identify?
+
+1. continuous deployment
+2. continuous integration
+3. IDE/pull requests
+4. nightly test runs
+
+---
+
+2. continuous integration
+Continuous integration should include an OSS vulnerability scan. 
+The integrated development environment/pull request step should include static code analysis and code reviews. 
+Nightly test runs should include an infrastructure scan. 
+Continuous deployment should include passive penetration tests, an SSL scan, and an infrastructure scan.
+
+| Stage        | Scans Types     |
+| ------------ | --------------- |
+|  IDE/PR      | static code analysis and code reviews  |
+|  CI          | OSS vulnerability scan  |
+|  Nightly     | infrastructure scan  |
+|  CD          | passive penetration tests, an SSL scan, and an infrastructure scan  |
+
+---
+
+[VERACODE - What are SSL and TLS Vulnerabilities?](https://www.veracode.com/security/ssl-tls-vulnerabilities)
+
+The SSL Scanner uses testssl.sh, a command-line tool that checks a server’s service 
+on any port to support TLS/SSL ciphers, protocols as well as recent cryptographic 
+flaws, and more.
+All issues found are further deciphered by our SSL Scanner and appropriately designed 
+into a comprehensible report.
+
+---
+
