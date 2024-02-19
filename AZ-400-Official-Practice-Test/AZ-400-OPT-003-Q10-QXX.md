@@ -2253,7 +2253,7 @@ Gathering feedback from a stakeholder is more appropriate **after building and t
 
 A development team decides to replace their centralized version control system with Git.
 
-As the concept of branching is new to teh team, you need to develop
+As the concept of branching is new to the team, you need to develop
 a branching strategy that is easy to adopt and causes minimal disruption.
 
 Which action should you perform to define a branching strategy?
@@ -2283,7 +2283,7 @@ problems on merging.
 
 - Commit changes to the main branch
 Commits are performed on **local repositories and not on the main branch**.
-New code flows into teh main branch through the process of merging. 
+New code flows into the main branch through the process of merging. 
 
 - Keep long-running feature branches
 This has always negative effects and normally results in many merge conflicts.
@@ -2302,7 +2302,7 @@ It is a bad branching strategy.
 A company decides to use Azure DevOps together with a Git repository.
 The copany wants to use Git with a **trunk-based branching strategy**.
 
-You need to ensure that code is delivered ot production safely.
+You need to ensure that code is delivered to production safely.
 
 Which four action should you perform and in which order?
 
@@ -2338,10 +2338,10 @@ The remaining options do not apply.
 
 - commit changes to the main branch
 Commits are performed on **local repositories and not on the main branch**.
-New code flows into teh main branch through the process of merging. 
+New code flows into the main branch through the process of merging. 
 
 - create a build agent
-Build agents are created as part of a CI pipeline and have nothing ot do with 
+Build agents are created as part of a CI pipeline and have nothing to do with 
 the definition of a **branching strategy**.
 
 ---
@@ -2359,7 +2359,7 @@ the definition of a **branching strategy**.
 ### Question 39:
 
 You are creating a **pull request policy** as part of Azure DevOps services in which a 
-specified number of reviewers are required to approve tyhe code in your project with no 
+specified number of reviewers are required to approve the code in your project with no 
 rejections.
 
 The following additional contitions must be met:
@@ -2415,11 +2415,12 @@ az policy approver-count create --allow-downvotes true \
 ### Explanation:
 
 `--allow-downvotes`:
- This policy allows downvotes. PRs can complete successfully even if some of the code reviewers 
+ This policy determinses whether to allow downvotes. 
+ Set to `true ` the PRs can complete successfully even if some of the code reviewers 
  do not approve as long as the minimum number of upvotes required is met.
 
 `--reset-on-source-push`:
-Push request to the source branch will not reset votes.
+When set to `false` push request to the source branch will not reset votes.
 
 ---
 
@@ -2537,13 +2538,13 @@ az repos policy merge-strategy create --blocking {false, true}
 
 ### Question 41:
 
-You manage a Azure Subscription which has appplications that were specifically
+You manage an Azure Subscription which has appplications that were specifically
 developed for different teams in youur company.
 
 You made to be sure that every resource in this subscription contains a tag
 that identifies the team that is responsible for each resource.
 
-Which tool should you use to meet this **compliancerequirement**?
+Which tool should you use to meet this **compliance requirement**?
 
 - a Chef server
 - a resource group
@@ -2559,8 +2560,8 @@ Which tool should you use to meet this **compliancerequirement**?
 
 ### Explanation:
 
-**Azure Policy is a set of rules that rea used to ensure that the resources in a**
-**subscription comply with these rules** and adhere to a specified configuration.
+**Azure Policy is a set of rules that are used to ensure that the resources in**
+**a subscription comply with these rules** and adhere to a specified configuration.
 It is possible to create an Azure Policy that has a rule by which all resources
 in the subscription or a specific resource group have a specific tag from a chosen
 set.
@@ -2569,7 +2570,8 @@ The other options do not apply in this case.
 
 - a Chef server
 Chef is an **infrastructure automation tool** that can guarantee that 
-reosurces are **in a desired state**. This may include the presence of a tag.
+reosurces are **in a desired state**. 
+This may include the presence of a tag.
 
 - a resource group
 This is only a logical grouping and **tags** are not hinhereted down from the RG
@@ -2613,8 +2615,8 @@ Which actions should you perform in Azure DevOps to make your project private?
 
 ### Explanation:
 
-By **changing the project visibility under the project overview tab** to private the project 
-will no longer publicly available.
+By **changing the project visibility under the project overview tab** to private 
+the project will no longer publicly available.
 
 The other options do not apply tio this case.
 

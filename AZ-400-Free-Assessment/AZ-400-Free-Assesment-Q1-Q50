@@ -1,6 +1,303 @@
 ﻿
 ---
 
+# Q052:
+
+You have a GitHub repository that contains a project named Project1. 
+Source code scanning for Project1 is performed by using a third-party tool.
+
+You plan to integrate the source code analysis results from the third-party
+tool into the GitHub repository by using 
+**Static Analysis Results Interchange Format (SARIF)** files.
+
+You need to identify two tools that support uploading a SARIF file to 
+the GitHub repository.
+
+Which two tools should you identify? 
+Each correct answer presents a complete solution.
+
+Select all answers that apply.
+
+1. Azure DevOps CLI
+2. Azure Storage Explorer
+3. CodeQL CLI
+4. GitHub Actions
+
+---
+
+3. CodeQL CLI
+4. GitHub Actions
+
+CodeQL CLI is a standalone product that can be used to 
+analyze code and generate a CodeQL database that performs queries 
+and produces results in the SARIF format.
+
+A GitHub Actions workflow can be configured to use the `upload-sarif` 
+action to upload a SARIF-based file.
+
+Incorrect: CodeQL workflow does not enable the upload of a SARIF file to a repository.
+
+Incorrect: Azure Storage Explorer is used to upload files to an Azure Storage account not to GitHub.
+
+Incorrect: Azure DevOps CLI is used to manage Azure DevOps by using Azure CLI commands.
+
+---
+
+[GitHub Enable code scanning with third party tools](https://learn.microsoft.com/en-gb/training/modules/configure-code-scanning/3-enable-code-scanning-with-third-party-tools)    
+
+Instead of running code scanning in GitHub, you can perform analysis 
+elsewhere and then upload the results to GitHub.
+Alerts for code scanning that you run externally are displayed in the 
+same way as those you run within GitHub. 
+
+You can upload **Static Analysis Results Interchange Format (SARIF)** 
+files generated outside GitHub or with GitHub Actions to see code scanning
+alerts from third-party tools in your repository.
+
+You can upload the results using:
+- the code scanning API
+- the CodeQL CLI
+- GitHub Actions. 
+
+The best upload method will depend on how you generated the SARIF file.
+
+> Code scanning API
+[GitHub API Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28)
+
+
+The GitHub API can be accessed over HTTPS from `https://api.github.com`.
+The code scanning API lets you retrieve and update code scanning alerts 
+from a repository. 
+
+You can use the endpoints to create automated reports for the 
+code scanning alerts in an organization or upload analysis results 
+generated using offline code scanning tools. 
+
+There is one supported custom media type for the code scanning REST API:
+`application/sarif+json`
+
+> the CodeQL CLI
+[Use the CodeQL CLI to secure your code](https://docs.github.com/en/code-security/codeql-cli)   
+
+The CodeQL CLI is a **standalone product that you can use to analyze code**.
+
+ Its main purpose is **to generate a database representation of a codebase**
+ a CodeQL database. Once the database is ready, you can query it interactively
+ or run a suite of queries to generate a set of results in SARIF format and 
+ upload the results to GitHub.com. 
+ 
+ The **CodeQL CLI is free to use on public repositories** that are maintained on
+ GitHub.com, and available to use on private repositories that are owned by 
+ customers with an Advanced Security license. 
+ 
+ Download the CodeQL bundle from https://github.com/github/codeql-action/releases. 
+ 
+ The bundle contains:
+- CodeQL CLI product
+- A compatible version of the queries and libraries from https://github.com/github/codeql
+- Precompiled versions of all the queries included in the bundle
+
+You should always use the CodeQL bundle as this ensures compatibility and also
+gives much better performance than a separate download of the CodeQL CLI and 
+checkout of the CodeQL queries.
+
+> GitHub Actions
+
+use GitHub Actions to upload a third-party SARIF file to a repository
+Your workflow uses the `upload-sarif action`, which is part of the `github/codeql-action` repository. 
+The main input parameter is `sarif-file` which configures the file or directory of SARIF files to be uploaded. 
+The directory or file path is relative to the root of the repository.
+
+The upload-sarif action can be configured to run when the `push` and `scheduled`
+event occurs.
+
+SARIF **upload** supports a **maximum of 5000 results per upload**. 
+For each upload, SARIF upload supports a **maximum size of 10 MB** 
+for the **gzip-compressed SARIF file**.
+
+---
+
+
+# Q051:
+
+
+You have a private GitHub repository named Repo1.
+
+You need to detect whether the source code in Repo1 contains 
+shared access signatures (SAS) of Azure Storage accounts. 
+
+The solution must minimize administrative effort.
+
+What should you configure?
+
+Select only one answer.
+
+1. GitHub code scanning
+2. GitHub secret scanning
+3. Mend Bolt
+4. SonarQube
+
+---
+
+2. GitHub secret scanning
+
+GitHub secret scanning can be used to automate source code analysis. 
+A secret can be a token or a private key used for authentication. 
+If you check a secret into a repository, anyone who has read-access
+to the repository can use the secret to access the external service
+with your privileges. 
+
+**Secret scanning is enabled by default on public repositories** and
+cannot be configured or turned off. 
+Secret scanning **must be enabled manually on private repositories**.
+
+#### Enable secret scanning for a repository
+> Repo > Settings > Security & analysis >  GitHub Advanced Security 
+> Enable GitHub Advanced Security
+
+#### Enable secret scanning for an organization
+enables it all private repositories where GitHub Advanced Security is enabled.
+
+> GitHub Organization > Settings > Security & analysis
+> GitHub Advanced Security
+
+#### Exclude files from being scanned
+
+In some cases, you may not want secret scanning to scan certain files in your repositories.
+For example, **test files or files that contain randomly generated content**, 
+**can generate false alerts**. 
+
+You can create a `.github/secret_scanning.yml` file in your repository that excludes
+some directories from being scanned.
+
+```
+paths-ignore:
+  - "foo/bar/*.js"
+```
+
+####  Configure recipients of secret scanning alerts
+
+Provided that they are watching the repository and have enabled notifications
+for security alerts or for all the activity on the repository, GitHub notifies
+the following users of secret scanning alerts on a repository:
+
+- Repository administrators
+- Organization owners
+- Authors of commits that trigger alerts
+
+Additionally, **repository administrators and organization owners** 
+can give view access to security alerts to people or teams who have write 
+access to the repository under:
+> Settings > Security & analysis:
+
+---
+
+> GitHub code scanning 
+relates to vulnerabilities or code errors. 
+
+> SonarQube 
+is a code analysis tool that supports specific programming languages.
+
+> Mend Bolt 
+is a source code-based tool used to search open source libraries for 
+security/licensing issues. 
+
+---
+
+[Configure and use secret scanning in your GitHub repository](https://learn.microsoft.com/en-gb/training/modules/configure-use-secret-scanning-github-repository/)  
+
+---
+
+# Q050:
+
+You have an Azure DevOps project named Project1. 
+Project1 contains multiple pipelines.
+
+You plan to enable Project1 to build and deploy iOS 
+apps by using an Apple provisioning profile.
+
+You need to ensure that you can share the 
+Apple provisioning profile across the pipelines in Project1.
+
+The solution must support configuring per-pipeline
+permissions to the shared content.
+
+What should you use?
+
+Select only one answer.
+
+1. cache tasks
+2. personal access tokens (PATs)
+3. secure files
+4. variable groups
+
+---
+
+3. secure files
+
+With secure files, you can store files in Azure DevOps 
+to be **shared across pipelines**, as well as assign proper permissions. 
+
+> Variable groups 
+are used to group variables. 
+
+> Cache tasks 
+are used to improve build performance
+
+> PATs 
+are an alternative authentication method in Azure DevOps.
+
+---
+
+[Azure Pipelines secure files](https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/secure-files?view=azure-devops)  
+
+Secure files give you a way to store files that **you can share across pipelines**.
+Use the secure files library to store files such as:
+
+- signing certificates
+- Apple Provisioning Profiles
+- Android Keystore files
+- SSH keys
+
+These files can be stored on the server **without having to commit them to your repository**.
+The contents of the secure **files are encrypted and can only be used when you consume them from a task**.
+
+> Azure DevOps > Pipelines > Library > Secure Files
+
+
+> Consume a secure file in a pipeline  
+
+[DownloadSecureFile@1 - Download secure file v1 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/download-secure-file-v1?view=azure-pipelines)  
+
+```
+- task: DownloadSecureFile@1
+  name: caCertificate
+  displayName: 'Download CA certificate'
+  inputs:
+    secureFile: 'myCACertificate.pem'
+
+- script: |
+    echo Installing $(caCertificate.secureFilePath) to the trusted CA directory...
+    sudo chown root:root $(caCertificate.secureFilePath)
+    sudo chmod a+r $(caCertificate.secureFilePath)
+    sudo ln -s -t /etc/ssl/certs/ $(caCertificate.secureFilePath)
+```
+
+[Q: How do I authorize a secure file for use in a specific pipeline?](https://learn.microsoft.com/en-gb/azure/devops/pipelines/library/secure-files?view=azure-devops#q-how-do-i-authorize-a-secure-file-for-use-in-a-specific-pipeline)  
+
+In Azure Pipelines, select the Library tab.
+Select the Secure files tab at the top.
+Select the secure file you want to authorize.
+Select the Pipeline permissions button.
+Review and modify the access for each available pipeline.
+
+### Use of Azure Key Vaults in place of Azurwe DevOps secure files
+
+Azure **Key Vault is another, more secure option for securing sensitive information**. 
+If you decide to use Azure Key Vault, you can **use it with variable groups**.
+
+---
+
 # Q049:
 
 You have an Azure DevOps organization connected to a Microsoft Entra tenant.
@@ -76,7 +373,50 @@ your Microsoft Entra tenant.
 **If Azure DevOps PATs get checked into public GitHub repositories**
 **they're automatically revoked**.
 
+---
+
 [Use policies to manage personal access tokens for users - Set maximum lifespan for new PATs](https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats)
+
+---
+
+[Explore an authorization and access strategy](https://learn.microsoft.com/en-gb/training/modules/migrate-to-devops/4-explore-authorization-access-strategy)
+
+Azure DevOps Services uses **enterprise-grade authentication**. 
+To protect and secure your data, you can use:
+
+- Microsoft account.
+- GitHub account.
+- Microsoft Entra ID.
+
+Tools like: 
+- Visual Studio 
+- Azure DevOps 
+
+natively support the use of 
+- Microsoft Accounts 
+- Microsoft Entra ID
+
+Eclipse can also support this form of authentication if you install 
+a **Team Explorer Everywhere plug-in**.
+
+> Personal access tokens:
+
+Use PATs for tools that don't directly support Microsoft accounts or 
+Microsoft Entra ID for authentication. 
+You can use it if you want them to integrate with Azure DevOps.
+PATs are also helpful when establishing access to command-line tools,
+external tools, and tasks in build pipelines.
+With PAT when calling **REST-based APIs** you don't have a 
+UI popping out to do the authentication. 
+
+For example, tools like:
+- Git-based repositories
+- NuGet
+- Xcode
+
+These tokens can be set up using **Git Credential managers**
+or you can create them manually.
+
 
 ---
 
