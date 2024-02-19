@@ -1,23 +1,107 @@
 ﻿
 ---
 
+# Q048:
+
+You have a GitHub organization.
+You plan to implement GitHub workflows that will make extensive use of GitHub secrets.
+You need to identify the maximum number of secrets supported by a single workflow.
+What should you identify?
+
+Select only one answer.
+
+1. 10
+2. 100
+3. 1,000
+4. 10,000
+
+---
+
+2. 100
+
+Workflows support up to 100 secrets each up to 64 KB.
+
+[GitHub Actions Use secrets in a workflow](https://learn.microsoft.com/en-gb/training/modules/learn-continuous-integration-github-actions/9-use-secrets-workflow)  
+
+---
+
 # Q047:
 
 You have an Azure App Service web app named app1 and a project in Azure DevOps named Project1.
 
-You need to add work items to Project1 based on exceptions detected in app1. The solution must minimize administrative effort.
+You need to add work items to Project1 based on exceptions detected in app1. 
+The solution must minimize administrative effort.
 
 What should you use to create work items?
 
 Select only one answer.
 
-Application Insights
+1. Application Insights
+2. Azure App Configuration
+3. Azure Automation
+4. Log Analytics
 
-Azure App Configuration
+---
 
-Azure Automation
+1. Application Insights
 
-Log Analytics
+Application Insights **provides direct integration with Azure Boards** 
+**allowing you to embed its data into work items**. 
+
+- Azure Automation
+- App Configuration
+- Log Analytics 
+
+do not provide direct integration with Azure Boards. 
+
+There are currently two locations where you can create work items: 
+Proactive detection and individual instances of activity (that is, exceptions, failures, requests, and so on.).
+
+---
+
+[Application Insights - Integrate with Azure Boards](https://learn.microsoft.com/en-gb/training/modules/share-knowledge-within-teams/4-integrate-azure-boards)  
+
+Work item integration functionality allows you to easily create work items in Azure DevOps
+with relevant Application Insights data embedded in them.
+
+Configuring this association and creating work items is straightforward, 
+this process should only take a minute or two.
+
+> Configuring work item integration
+
+To configure work item integration **for an Application Insights resource** 
+navigate to your settings blade for that resource.
+You'll note that a new item in the **"Configure" section** of the settings blade says:
+"Work Items."
+
+All you need to do is fill out the information about the Azure DevOps system 
+to which you want to connect, along with the project where you want to write 
+your work items.
+
+Once that information is in place, you can click on the **Authorization button**
+where you'll be redirected to authorize access in your selected Azure DevOps system
+so that work items can be written there.
+
+Once you've completed the authorization process, you can set defaults for:
+> "assigned to."
+> "area path" [REQUIRED]
+if you have not set up specific area paths in your project, that is ok. 
+Use the project's name, as it's the top-level area path.
+
+> Creating work items
+There are currently two locations where you can create work items: 
+
+1.  Proactive detection 
+2. individual instances of activity that is, exceptions, failures, requests, and so on.
+
+> Viewing work items created by App Insights in Azure DevOps
+
+Once you have created more work items in Application Insights, 
+you can quickly view them in Azure DevOps.
+
+From the App Insignts resource on the Azure Portal use the `"View Work Items"` button.
+If you click the link for the work item that you want to view, it will open in Azure DevOps:
+
 
 ---
 

@@ -1791,10 +1791,10 @@ Makes the paths 'lockable' meaning **they should be locked to edit them**
 and will be made read-only **in the working copy when not locked**.
 
 This command allows developers to **lock their files when they are updating them** and as 
-long as one develioper holds the lock other developers will not be able to edit those large
+long as one developer holds the lock other developers will not be able to edit those large
 files.
 
-**This solves the problem of concurrent edits and therefore the merge conflich that may arise.**
+**This solves the problem of concurrent edits and therefore the merge conflict that may arise.**
 
 The other options do not apply in this case.
 
@@ -1803,12 +1803,12 @@ With this command a developer can force out the lock on a file held by another d
 This  might  be necessary when someone has forgotten to release their lock on a file.
 
 - Use the `git lfs fetch --exclude` command (also -X)
-**This command is typically used when you are configuring the CI/ build or tio run unit tests**
+**This command is typically used when you are configuring the CI build or to run unit tests**
 **and you want to exclude large files which are not necessary to the build or the test run**.
 You can exclude a directory or a path pattern.
 
 - Use the `git lfs fetch --include` command (also -I)
-This allows to explicetely include a specifies path pattern.
+This allows to explicitly include a specifies path pattern.
 
 ---
 
@@ -1819,9 +1819,12 @@ This allows to explicetely include a specifies path pattern.
 [Git LFS Documentation](https://github.com/git-lfs/git-lfs/blob/main/docs/README.md)
 
 #### Git LFS Unlock:
+
 [docs/man/git-lfs-unlock.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-unlock.adoc)  
+
 Removes the given file path as "locked" on the Git LFS server. 
 Files must exist and have a clean git status before they can be unlocked. 
+
 The `--force` flag will skip these checks.
 
 `r <name>` `--remote=<name>`
@@ -1839,12 +1842,14 @@ Intended for interoperation with external tools.
 If the command returns with a non-zero exit code, plain text messages will be sent to STDERR.
 
 #### Git LFS Track:
+
 [docs/man/git-lfs-track.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-track.adoc)  
+
 Start tracking the given **patterns(s)** through Git LFS. 
 The argument is **written to .gitattributes**. 
 If no paths are provided, simply list the currently-tracked paths.
 
-The gitattributes documentation states that patterns **use the gitignore pattern rules to match paths**. 
+The `gitattributes` documentation states that patterns **use the gitignore pattern rules to match paths**. 
 This means that patterns which contain asterisk (*), question mark (?), and the bracket characters 
 ([ and ]) are treated specially. 
 To disable this behavior and treat them literally instead, use `--filename` or 
@@ -1874,6 +1879,7 @@ Treat the arguments as literal filenames, not as patterns.
 Any special glob characters in the filename will be escaped when writing the .gitattributes file.
 
 #### Git LFS Fetch:
+
 [docs/man/git-lfs-fetch.adoc](https://github.com/git-lfs/git-lfs/blob/main/docs/man/git-lfs-fetch.adoc)  
 
 Download Git LFS objects at the given refs from the specified remote. 
@@ -1886,7 +1892,7 @@ Cannot be combined with --recent or --include/--exclude.
 Ignores any globally configured include and exclude paths to ensure that all objects are downloaded.
 
 `--prune:`
-Prune old and unreferenced objects after fetching, equivalent to running git lfs prune afterwards.
+Prune old and unreferenced objects after fetching, equivalent to running `git lfs prune` afterwards.
 
 `--recent:`
 Download objects referenced by recent branches & commits in addition to those that would otherwise be downloaded. 
@@ -1898,10 +1904,11 @@ You can configure Git LFS to only fetch objects to satisfy references in certain
 and/or to exclude certain paths of the repo, to reduce the time you spend downloading things you 
 do not use.
 
-In your Git configuration or in a .lfsconfig file, you may set either or both of 
-lfs.fetchinclude and lfs.fetchexclude to comma-separated lists of paths. 
-If lfs.fetchinclude is defined, Git LFS objects will only be fetched if their path matches one in that list.
-if lfs.fetchexclude is defined, Git LFS objects will only be fetched if their path does not match one in that list. Paths are matched using wildcard matching as per gitignore(5).
+In your Git configuration or in a `.lfsconfig` file, you may set either or both of 
+`lfs.fetchinclude` and `lfs.fetchexclude` to comma-separated lists of paths. 
+If `lfs.fetchinclude` is defined, Git LFS objects will only be fetched if their path matches one in that list.
+if `lfs.fetchexclude` is defined, Git LFS objects will only be fetched if their path does not match one in that list. 
+Paths are matched using wildcard matching as per `gitignore`.
 
 Note that using the command-line options -I and -X override the respective configuration settings. 
 Setting either option to an empty string clears the value.
@@ -1911,13 +1918,13 @@ Setting either option to an empty string clears the value.
 ### Question 33:
 
 Your company uses Git source code versioning as part fo an Azure DevOps services project
-to build and release mobile applications. Ypu have noticed that during teh execution of 
+to build and release mobile applications. You have noticed that during the execution of 
 simple commands, such as `git commit`, `git fetch` the commands remain stuck for several 
 minutes.
 
 You decide to use **Scalar**.
 
-Which four actionsa should you perform?
+Which four actions should you perform?
 Each correct answer presents part of the solution.
 
 - Enable `status.aheadBehind=true` to calculate how far ahead or behind
@@ -1932,9 +1939,9 @@ Each correct answer presents part of the solution.
 
 - Use the `git gc --aggressive` command
 
-- Disable autio-GC by setting `gc.auto=0`
+- Disable auto-GC by setting `gc.auto=0`
 
-- Disable writing the commit-graph during fetch vby setting `fetch.writeCommitGraph=false`
+- Disable writing the commit-graph during fetch by setting `fetch.writeCommitGraph=false`
 
 ---
 
@@ -1955,25 +1962,27 @@ With **Scalar** it is possible to **accelerate the Git Workflow**
 It allows Git Config Settings to be modified in order to overcome performance issues
 and bottlenecks.
 
-- Disable autio-GC by setting `gc.auto=0`
+- Disable auto-GC by setting `gc.auto=0`
 This prevents Git commands from being blocked by **maintenance**, that is
 the **Garbage Collection** that is built into Git.
-he background maintenance keeps your Git object database clean.
+The background maintenance keeps your Git object database clean.
 
-- Disable writing the commit-graph during fetch vby setting `fetch.writeCommitGraph=false`
+- Disable writing the commit-graph during fetch by setting `fetch.writeCommitGraph=false`
 **Scalar ensures that the fetch step is run once about every 1h, which saves precious time**
 **and makes sure that new objects are not downloaded while your git commands are executed**.
 
-**Fetch in the background**
+> Fetch in the background
+
 The fetch step runs git fetch about once an hour. This allows your local repository to keep
 its object database close to that of your remotes. This means that the time-consuming part
 of git fetch that downloads the new objects happens when you are not waiting for your command
 to complete.
 
-We intentionally do not change your local branches, including the ones in refs/remotes.
-You still need to run git fetch in the foreground when you want ref updates from your remotes.
-We run git fetch with a custom refspec to put all remote refs into a new 
-ref namespace: refs/scalar/hidden/<remote>/<branch>. 
+**We intentionally do not change your local branches**, including the ones in refs/remotes.
+**You still need to run git fetch in the foreground when you want ref updates from your remotes**.
+We run git fetch with a custom `refspec` to put all remote refs into a new 
+ref namespace: `refs/scalar/hidden/<remote>/<branch>`.
+
 This allows us to have starting points when writing the commit-graph
 
 - Disable `status.aheadBehind=false` to remove the calculation of 
@@ -1983,16 +1992,19 @@ remote-tracking branch. This message is frequently ignored, but can cost preciou
 seconds when you just want to see your unstaged changes.
 
 - Use the `core.fsmonitor` command hook to **Watchman**
+
 If you are using the [GitHub Watchman](https://github.com/facebook/watchman)  
+
 The **Watchman** watches files and records for changes and can also trigger actions such
 as the rebuild of assets when matching files have changed.
 The **hooks folder** in **.git** that is **.git/hooks** holds a few **Git Hooks** scripts.
 These are executed **before of after Git Events**. 
 
-In other words, by installong **Watchman** in your repo and by using `core.fsmonitor`
+In other words, by installIng **Watchman** in your repo and by using `core.fsmonitor`
 within Scalar: 
 
-[Improve Git Repo performance with File System NMonitor](https://github.blog/2022-06-29-improve-git-monorepo-performance-with-a-file-system-monitor/)  
+[Improve Git Repo performance with File System Monitor](https://github.blog/2022-06-29-improve-git-monorepo-performance-with-a-file-system-monitor/)  
+
 The Git file system monitor (FSMonitor) feature can speed up these commands by 
 **reducing the size of the search**, and this can greatly reduce the pain of working
 in large worktrees. 
