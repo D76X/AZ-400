@@ -1,6 +1,35 @@
 ﻿
 ---
 
+# Q054:
+
+You plan to design a package management strategy for your company.
+
+You need to recommend a package management tool optimized for managing Java-based projects.
+
+Which package management tool should you recommend?
+
+Select only one answer.
+
+1. Docker
+2. Maven
+3. NuGet
+4. PyPi
+
+2. Maven
+
+Maven is a tool used for the management of Java-based projects. 
+
+> NuGet is the standard package management tool for .NET code artifacts. 
+> PyPi provides a software repository for Python packages. 
+> Docker is a tool used for the management of container images.
+
+---
+
+[Explore common public package sources](https://learn.microsoft.com/en-gb/training/modules/understand-package-management/5-explore-common-public-package-sources)
+
+---
+
 # Q053:
 
 You have a project in Azure DevOps named Project1 that contains

@@ -2869,10 +2869,10 @@ It does the same as with `--mixed` **but it preserves the subsequent changes as 
 
 ### Question 46:
 
-You use **Git Repos to store source code and mamage features** as part of a project
-on Azure DevOps Services.
+You use **Git Repos to store source code and mamage features** 
+as part of a project on Azure DevOps Services.
 
-A user has added a **large binary file** into teh repository.
+A user has added a **large binary file** into the repository.
 You need to remove the file in order to keep the rpository clean and lightweight.
 
 Which **two commands** should you use?
@@ -2893,7 +2893,7 @@ Which **two commands** should you use?
 To solve this problem:
 
 1. ask your team to **stop pushing to the repo** that is freeze the history until the problem is solved.
-2. **rebase** wirh `git rebase #SHA` where `#SHA` is the hash value of the commit you want to go back to.
+2. **rebase** with `git rebase #SHA` where `#SHA` is the hash value of the commit you want to go back to.
    You can use `git log` to find the **SHA values** of recent commits.
 3. Once you have been able to remove the offending file(s) use  `git push --force`.
    This forces your repository to **override the history on the origin**.
@@ -2921,12 +2921,14 @@ This is only to restore the repo to a particular branch or files to a particolar
 
 ### Question 47:
 
-Company2 is a software company which has branch offices around teh world.
+Company2 is a software company which has branch offices around the world.
 
-Each office can choose which source control system or service they use in their projects.
+Each office can choose which source control system or service they use 
+in their projects.
 You have been hired to integrate these projects with Azure Pipelines.
 
-You need to determine which source control services Company2 can use wirh Azure Pipelines.
+You need to determine which source control services Company2 can use with
+Azure Pipelines.
 
 Which **three source control services** can they use?
 
@@ -2957,7 +2959,7 @@ The following is only supported in **Azure Pipelines Classic**!
 - **Azure DevOps Repos TFVC**
 - Subversions (CSV)
 
-The following options do nopt apply as are not supported by Azure DevOps Services.
+The following options do not apply as are not supported by Azure DevOps Services.
 
 - CSV
 - Mercurial
@@ -2975,15 +2977,16 @@ The following options do nopt apply as are not supported by Azure DevOps Service
 
 ### Question 48:
 
-You are building an **automated test pipeline for a Java application** using **Azure Pipelines**.
-Yoou create a task to run **code coverage** tests. 
-However the results are not available in the test summary.
+You are building an **automated test pipeline for a Java application** 
+using **Azure Pipelines**.
+You create a task to run **code coverage** tests. 
+However, the results are not available in the test summary.
 
 Which **two** actions should you perform?
 
 - include a Publish code coverage task
 - enable the code coverage tool in Visual Studio test task
-- enable the code ocverage tool in a Maven task
+- enable the code coverage tool in a Maven task
 - include a Shell script task to publish to **Coveralls**
 
 
@@ -2993,15 +2996,15 @@ Which **two** actions should you perform?
 ### Explanation:
 
 - include a Publish code coverage task
-- enable the code ocverage tool in a Maven task
+- enable the code coverage tool in a Maven task
 
-The **Publish code coverage task** publishes test a coverage summary generated in 
-**Cobertura or JaCoCo** formats to Azure Pipelines. These are the code coverage 
-summary formats supported by Azure Pipelines.
+The **Publish code coverage task** publishes a coverage summary generated in 
+**Cobertura or JaCoCo** formats to Azure Pipelines. 
+These are the code coverage summary formats supported by Azure Pipelines.
 
-**Alternatively** by **enabling the code ocverage tool in a Maven task** you can achieve 
-teh same result from within Maven, whcich can publish test cover results in the supported
-formats.
+**Alternatively** by **enabling the code ocverage tool in a Maven task** you
+can achieve the same result from within Maven, which can publish test cover
+results in the supported formats.
 
 The remaining options do not apply in this case.
 
@@ -3030,9 +3033,9 @@ This is another service [COVERALLS](https://coveralls.io/)
 
 ### Question 49:
 
-You use Azure DevOps services to build amd release software.
-You need to **implement Dynamic Security Scanning** against a running web applicatiions
-as part of the **CD pipeline**.
+You use Azure DevOps services to build and release software.
+You need to **implement Dynamic Security Scanning** against a 
+running web applicatiions as part of the **CD pipeline**.
 
 Which tool should you intergate with your CD pipeline?
 
@@ -3054,8 +3057,11 @@ Which tool should you intergate with your CD pipeline?
 
 **OSWAP ZAP stands for Zed Attack Proxy by OSWAP**, **Open Worldwide Application Security Project**.
 **ZAP** is an **extension** that allows to perform **Dynamic Security Scanning** against a running
-application. It **requires a CD Pipeline** to be in place.
-The extension **pretends** to be an attacker and it fiddles the web app with requests in  order to
+application. 
+
+It **requires a CD Pipeline** to be in place.
+
+The extension **pretends** to be an attacker and it fiddles the web app with requests in order to
 identify possible vulerabilities.
 
 The other options do not apply in this case.
@@ -3070,7 +3076,9 @@ It **provides real-time allerts** on **vulnerabilities and licencing uissues** r
 
 - SonarQube
 [SonarQube extension for Azure DevOps](https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/scanners/sonarqube-extension-for-azure-devops/)  
+
 [SonarQube Extension for Azure DevOps Pipelines](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarqube)
+
 This is a **static code analysis** tool for applications written in any of the supported languages.
 **Java, .Net C#, Kotlin, etc.**
 
