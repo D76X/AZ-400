@@ -36,7 +36,45 @@ automatically revokes any PATs checked in to a public GitHub repository.
 
 [Use policies to manage personal access tokens for users](https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats)  
 
-You can limit the creation, scope, and lifespan of new or renewed personal access tokens (PATs) for users in Azure DevOps by enabling Microsoft Entra policies. You can also manage automatic revocation of leaked PATs. Learn the default behavior for each policy in its own section of this article.
+You can limit the creation, scope, and lifespan of new or renewed personal access tokens (PATs) 
+for users in Azure DevOps by enabling Microsoft Entra policies. 
+You can also manage automatic revocation of leaked PATs. 
+Learn the default behavior for each policy in its own section of this article.
+
+You must be an **Azure DevOps Administrator** in Microsoft Entra ID to manage
+your organization policies.
+
+> Restrict creation of global PATs:
+
+> Azure DevOps > Organization Settings > Azure Active Directory 
+> Restict global PAT creation
+
+**Global tokens** apply to all accessible organizations, rather than a single organization. 
+Enabling this policy means that new PATs must be associated with specific Azure DevOps organizations. 
+**By default, this policy is set to off**.
+
+> Restrict creation of full-scoped PATs:
+> same worklow as above >
+> obviois settings
+Enabling this policy means new PATs must be limited to a specific custom defined set of scopes. 
+**By default, this policy is set to off.**
+
+> Set maximum lifespan for new PATs:
+> obvious workflow
+By default, this policy is set to off.
+
+> Add Microsoft Entra users or groups to the allowlist:
+Users or groups on the allowlist are exempt from the restrictions 
+and enforcements created by these policies when they're turned on.
+If you want a user to be exempt from all policies, you should add 
+them to each allowlist.
+
+> Revoke leaked PATs automatically:
+**By default, this policy is set to on**.
+this policy applies to all PATs within all organizations linked to 
+your Microsoft Entra tenant. 
+**If Azure DevOps PATs get checked into public GitHub repositories**
+**they're automatically revoked**.
 
 [Use policies to manage personal access tokens for users - Set maximum lifespan for new PATs](https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats)
 
