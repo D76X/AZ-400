@@ -987,8 +987,8 @@ Your company uses Azure DevOps services to manage development projects internall
 The company has drawn up an internal policy for creation of new projects 
 in Azure DevOps services and it has established the following requirements.
 
-1. Formal project methods which require a framework for process improvement should be used.
-2. All records of decisions for change management should be audited anuualy by the company.
+1. Formal project methods which require a framework for processing improvement should be used.
+2. All records of decisions for change management should be audited annualy by the company.
 
 You need to choose a process model that allows you to plan and track Work Item Types (WITs)
 
@@ -1008,7 +1008,7 @@ Which process model should you use?
 
 ### Explanation:
 
-**Capability Maturity Model Integration (CMMI) process model** is one of the 4 prpcess models
+**Capability Maturity Model Integration (CMMI) process model** is one of the 4 process models
 supported by **Azure DevOps services** or **Azure DevOps Server**.
 
 **Azure DevOps services** refers to the online platform where organizations can manage multiple 
@@ -1016,15 +1016,15 @@ projects while **Azure DevOps Server** - more on this distinction si found below
 
 The **Work Item Types (WITs)** to be used for **tracking** and **planning** work determine which
 model process should be used within the organization as a default. In this scenario, given that 
-the company has **strick guidelines in regard to compliance policies**, it is recommended that 
-the *Capability Maturity Model Integration (CMMI) process model** is used.
+the company has **strict guidelines in regard to compliance policies**, it is recommended that 
+the **Capability Maturity Model Integration (CMMI) process model** is used.
 
-The **Capability Maturity Model Integration (CMMI) process model** the following WITs are used to track work:
+With the **Capability Maturity Model Integration (CMMI) process model** the following WITs are used to track work:
 
  - tests
  - feedback
  - code reviews
-  - requirements
+ - requirements
  - chage requests
  - tasks
  - bugs
@@ -1041,14 +1041,19 @@ The remaining options do not apply to this question.
 
 - Basic:
 This process model is **suitable for a team to get started with**. 
+It is based on only three types of trackable items:
+  - Epic
+  - Issue
+  - Task
+On for each the states are: 
+> ToDo > Doing > Completed
 
 It employes the following artifacts in order **to track work**:  
   - issues
   - tasks
   - epics
 
-
-In the Bsic model: 
+In the Basic model: 
   - there are **not formal project methods** 
   - **it does not provide auditing** for records and decisions.
 
