@@ -803,7 +803,7 @@ It does not show the success rate but only the current status.
 
 Your organization wants to create a custom dashboard widget.
 The proposed widget will use a combination of HTML, JavaScript and CSS.
-You create a **extension's manifets vss-extension.json** in the home directory as shown below.
+You create an **extension's manifets vss-extension.json** in the home directory as shown below.
 
 ```
 {
@@ -830,7 +830,7 @@ You need to add the follwoing information to the manifest.
 
 Which property should you add to the file **vss-extension.json**?
 
-- dadges
+- badges
 - scopes
 - baseUri
 - demands
@@ -861,7 +861,7 @@ Demands get used by the Visual Studio Marketplace to list the products and envir
 your extension is compatible with.
 This helps customers understand whether your extension works with their version of Azure DevOps.
 
-The following options are nopt applicable to this question.
+The following options are not applicable to this question.
 
 **Runtime properties**
 
@@ -887,7 +887,7 @@ This property should be left empty if your extension's contents are packaged wit
 
 [**Discovery attributes**](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#discovery-attributes)
 
-- dadges
+- badges
 Array of links to external metadata badges like TravisCI, Appveyor, and so on, from the approved badges sites.
 [Supported Badge Services](https://learn.microsoft.com/en-us/azure/devops/extend/develop/manifest?view=azure-devops#approvedbadges)  
 
@@ -913,7 +913,7 @@ The file also defines how it can extend and enhance the experience.
 
 ### Question 21:
 
-Your organization uses Azure DevOps Services team projec tWikis to enhance developer communication.
+Your organization uses Azure DevOps Services team project Wikis to enhance developer communication.
 You need to assign default permissions to a user named UserA so that they can edit the team project 
 page.
 
@@ -932,7 +932,7 @@ Which security groups should you add UserA to as a team member?
 ---
 
 ### Explanation:
-In Azure DevOps assign users to Security Groups in order to assgn to those
+In Azure DevOps assign users to Security Groups in order to assign to those
 users the permissions of the Security Groups.
 
 >The security group **Project administrator**: 
@@ -964,7 +964,7 @@ The following are not applicable in this case.
  **perform code search and work tracking**.
 
 >The security group **Readers**:
-**View project Wikis / Wikis code**, 
+ **View project Wikis / Wikis code**, 
  **view project page**,
  **navigate from project page**,
  **request / provide feedback**, 

@@ -1,6 +1,250 @@
 ﻿
 ---
 
+# Q040:
+
+You clone a Git repository to a Linux server.
+
+You plan to implement a Git hook that will be triggered automatically 
+when the commit command is invoked in the repository.
+
+You need to use one of the predefined Git hook files.
+
+What should you do to ensure that the predefined file will be executed?
+
+Select only one answer.
+
+1. Add an extension to the script file.
+2. Modify the location of the file.
+3. Modify the permissions of the file.
+4. Remove the extension from the script file.
+
+---
+
+4. Remove the extension from the script file.
+
+To ensure that the predefined Git hook script can be executed, you **must** 
+remove its existing extension (`.sample`), rather than adding the extension. 
+
+**On a Windows server** there is no need to modify the existing permissions
+of the script file. 
+
+The file must reside in its default location.
+
+---
+
+[Implement Git hooks](https://learn.microsoft.com/en-gb/training/modules/explore-git-hooks/3-implement)  
+
+Here are a few instances of where you can use Git hooks to 
+uphold arrangements, guarantee consistency, and control your environment:
+
+> Enforcing preconditions for merging
+> Verifying work Item ID association in your commit message Preventing you and your team from committing faulty code
+> Sending notifications to your team's chat room (Teams, Slack, HipChat)
+
+In this recipe, we'll use the **pre-commit Git hook** to scan the commit 
+for keywords from a predefined list to block the commit if it contains 
+any of these keywords.
+
+### Enable the Git hook
+
+Open the folder `.git\hooks`, you'll find a file called `pre-commit.sample`. 
+To enable it, rename it to `pre-commit` by removing the .sample extension and 
+making the script executable.
+
+> you'll find that there are a bunch of samples, but they're disabled by default.
+> You commit successfully if your pre-commit script exits with a 0 (zero) otherwise, the commit fails. 
+
+### Enable the Git hook on Windows
+
+**If you're using Windows** simply renaming the file won't work!
+Git will fail to find the shell in the chosen path specified in the script.
+**The problem** is lurking in the first line of the script, the **shebang declaration**:
+
+```
+#!/bin/sh
+```
+
+On **Unix-like OSs** the `#!` (aka shebang) tells the program loader that it's a script
+to be interpreted, and `/bin/sh` is the path to the interpreter you want to use, `sh` in this case.
+
+**Windows isn't a Unix-like OS**. 
+Git for Windows supports Bash commands and shell scripts via **Cygwin** that is an application 
+installed on Windows with Git that is used as the interpreter!
+
+> By default, what does it find when it looks for sh.exe at /bin/sh?
+Nothing, nothing at all. 
+Fix it **by providing the path to the sh executable on your system**. 
+It's using the 64-bit version of Git for Windows, so the baseline looks like this:
+
+```
+#!C:/Program\ Files/Git/usr/bin/sh.exe
+```
+
+```
+#!C:/Program\ Files/Git/usr/bin/sh.exe
+matches=$(git diff-index --patch HEAD | grep '^+' | grep -Pi 'password|keyword2|keyword3')
+if [ ! -z "$matches" ]
+then
+    cat <<\EOT
+Error: Words from the blocked list were present in the diff:
+EOT
+    echo $matches
+    exit 1
+fi
+```
+
+### There's more
+
+The repo `.git\hooks` folder **isn't committed into source control**. 
+You may wonder how you share the goodness of the automated scripts you create with the team.
+**From Git version 2.9** you can now map Git hooks to a folder that can be committed into 
+source control.
+
+You could do that by **updating the global settings configuration for your Git repository**:
+
+`Git config --global core.hooksPath '~/.githooks'`
+
+If you ever need to overwrite the Git hooks you have set up on the client-side, 
+you can do so by using the `no-verify` switch:
+
+`Git commit --no-verify`
+
+---
+
+## [Server-side service hooks with Azure Repos](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops)  
+
+So far, we've looked at the client-side Git Hooks on Windows. 
+
+**Azure Repos** also exposes **server-side hooks**. 
+Azure DevOps uses the exact mechanism itself to create Pull requests. 
+
+#### [What Is Service Hooks?](https://k21academy.com/microsoft-azure/az-400/azure-devops-service-hooks-subscription-of-service-hooks-release-approvals/)  
+
+Service hooks let you run tasks on other services when events happen in your Azure DevOps Services projects.
+For example, build a CI in Azure DevOps and then start the CD on the Jenkins or we can send 
+the notifications on the Slack channel or Teams channels if the build or deployment fails 
+or even we can send the slack for Release approvals too.
+
+Service hooks can also be used in custom apps and services as a more efficient way to drive 
+activities when events happen in your projects.
+
+Service hook publishers define a set of events. Subscriptions listen for the events and define
+actions to take based on the event. Subscriptions also target consumers, which are external 
+services that can run their own actions, when an event occurs.
+
+> Creating A Subscription Of Service Hooks: Project Settings > Service Hooks > +Create Subscription
+> Select a target service: there is a long list of target services:
+- Jenkins
+- Trello
+- Web Hooks
+- Windows Azure Service Bus
+- Azure Storage
+- Zapier
+..etc.
+
+> Configure the event: sel;ect the event you want the subscription on
+These is the list of Azure DevOps Service Side events i.e. `code is pushed` then `branch: main`..
+
+> Configure the action
+The list of available actions may be limited based on the event type you selected and oviously the
+service that is subscriber and therefore target of the Azure DevOps Event.
+At this point you would normally have to provide a **Token** that is a secret generated on the 
+subscriber i.e. Trello on your Trello's account that will be used by Azure DevOps as authentication
+token when the event is raised and the wookhook is run to send to the subscriber the event payload.
+
+---
+
+[Nuget WebHooks Receivers](https://www.nuget.org/packages/Microsoft.AspNet.WebHooks.Receivers.vsts) 
+package provides support for receiving Webhooks from Azure DevOps.
+[Troubleshoot service hooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/troubleshoot?toc=%2Fazure%2Fdevops%2Fmarketplace-extensibility%2Ftoc.json&view=azure-devops)  
+[Azure DevOps Integrate with service hooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/overview?view=azure-devops)
+
+---
+
+[ASP.NET WebHooks receivers](https://learn.microsoft.com/en-us/aspnet/webhooks/receiving/receivers)
+
+---
+
+### Run an Azure DevOps Pipeline triggering it throuigh a public (protected) WebHook
+
+[Azure Pipeline - resources.webhooks.webhook definition](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/resources-webhooks-webhook?view=azure-pipelines)  
+
+A webhook resource enables you to integrate your pipeline with an external service to automate the workflow.
+
+```
+webhooks:
+- webhook: string # Required as first property. Name of the webhook.
+  connection: string # Required. Name of the connection. In case of offline webhook this will be the type of Incoming Webhook otherwise it will be the type of the webhook extension.
+  type: string # Name of the webhook extension. Leave this empty if it is an offline webhook.
+  filters: [ filter ] # List of trigger filters.
+```
+
+```
+resources:
+  webhooks:
+    - webhook: WebHook
+      connection: IncomingWH
+
+steps:  
+- script: echo ${{ parameters.WebHook.resource.message.title }}
+```
+
+To trigger your pipeline using the webhook, you need to make a POST request to https://dev.azure.com/<org_name>/_apis/public/distributedtask/webhooks/<webhook_connection_name>?api-version=6.0-preview. This endpoint is publicly available, and no authorization is needed. The request should have the following body.
+
+```
+{
+    "resource": {
+        "message": {
+            "title": "Hello, world!",
+            "subtitle": "I'm using WebHooks!"
+        }
+    }
+}
+```
+
+---
+
+# Q039:
+
+You have an Azure Repos Git-based repository named repo1.
+
+In repo1, you plan to store approximately 500 MB of data.
+
+You need to minimize how long it takes to clone repo1 to a Windows computer.
+
+Which Git extension should you use when you clone repo1?
+
+Select only one answer.
+
+1. Git LFS
+2. Git Machete
+3. GitFlow
+4. GitX
+
+---
+
+1. Git LFS
+
+Git LFS is a Git extension that provides the fastest response time when using Azure DevOps Git-based repositories that contain large files. 
+
+Git LFS handles large files by storing in the repository only pointers to them, rather than the actual files. When you clone the repository, the pointer file is used to locate the large file. Git LFS supports the `git lfs clone` command that offers superior performance as compared to the traditional `git clone command`. The command downloads any required Git LFS files as a batch after the checkout is complete. The download uses parallelized downloads, which significantly improves the performance of the Windows operating system
+
+- GitFlow : [gitflow](https://github.com/nvie/gitflow)  
+is a Git extension that implements the GitFlow branching model. 
+
+- Git Machete : https://github.com/VirtusLab/git-machete 
+is a Git extension that simplifies and automates repository organization. 
+
+- GitX 
+is a Git extension that provides an improved development workflow.
+
+---
+
+[Work with large repositories](https://learn.microsoft.com/en-gb/training/modules/manage-git-repositories/2-work-large-repositories)
+
+---
+
 # Q038:
 
 You have an Azure App Service web app named WebApp1 that has Application Insights enabled.
@@ -11,13 +255,26 @@ Which Application Insights feature should you use?
 
 Select only one answer.
 
-availability tests
+1. availability tests
+2. Profiler
+3. Snapshot Debugger
+4. usage analysis
 
-Profiler
+---
 
-Snapshot Debugger
+4. usage analysis
 
-usage analysis
+Usage analysis provides insights into how users use an app, including whether they
+drop out at certain points. 
+
+- Snapshot Debugger 
+is useful to show the state of the source code and variables when an exception occurs.
+
+- Profiler 
+provides performance traces but not application usage. 
+
+- Availability tests 
+are used to test application availability.
 
 ---
 
