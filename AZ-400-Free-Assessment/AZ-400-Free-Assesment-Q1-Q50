@@ -1,6 +1,47 @@
 ﻿
 ---
 
+# Q049:
+
+You have an Azure DevOps organization connected to a Microsoft Entra tenant.
+
+You need to configure a Microsoft Entra ID policy to control 
+the maximum duration of personal access tokens (PAT) for the organization.
+
+What should you configure?
+
+Select only one answer.
+
+1. full-scoped PATs
+2. Global PATs
+3. lifespan of a PAT
+4. revoke leaked PATs
+
+---
+
+3. lifespan of a PAT
+
+Lifespan can be used to define the maximum lifespan of a PAT and control its lifecycle. 
+
+- full-scoped 
+forces the use of defined sets of scopes. 
+
+- Global grants 
+access to all accessible organizations in Azure DevOps. 
+
+- Revoke leaked PATs 
+automatically revokes any PATs checked in to a public GitHub repository.
+
+---
+
+[Use policies to manage personal access tokens for users](https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats)  
+
+You can limit the creation, scope, and lifespan of new or renewed personal access tokens (PATs) for users in Azure DevOps by enabling Microsoft Entra policies. You can also manage automatic revocation of leaked PATs. Learn the default behavior for each policy in its own section of this article.
+
+[Use policies to manage personal access tokens for users - Set maximum lifespan for new PATs](https://learn.microsoft.com/en-gb/azure/devops/organizations/accounts/manage-pats-with-policies-for-administrators?view=azure-devops#set-maximum-lifespan-for-new-pats)
+
+---
+
 # Q048:
 
 You have a GitHub organization.

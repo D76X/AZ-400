@@ -2076,40 +2076,38 @@ commands by using the multi-pack-index.
 
 ### Question 34:
 
-You manage project in Azure DevOps Repos. The Developemnt team requires that at least
+You manage a project in Azure DevOps Repos. The Development team requires that at least
 three team members (including the pull requester) review pull requests. 
 All team members must approve the code changes on pull requests before it is merged
-with teh master.
+with the master.
 
 Which three actions should you perform?
 
-- Set the minimum number of reviewer to three
-- Set the minimum number of reviewer to two
+- Set the minimum number of reviewers to three
+- Set the minimum number of reviewers to two
 - Enable the Reset all code reviwer votes option when new changes are pushed
 - Enable the Allow requestors to approve their own changes options
-- Enable Require a minimum nuner of reviewers options
+- Enable Require a minimum number of reviewers options
 
 ---
 
 ### Answer:
 ### Explanation:
 
-- Enable Require a minimum nuner of reviewers options
+- Enable Require a minimum nunber of reviewers options
 - Set the minimum number of reviewer to three
 - Enable the Allow requestors to approve their own changes options
 
-The reasons are pretty obvous just by looking at the requirements in the 
-question.
+The reasons are pretty obvious just by looking at the requirements in the question.
 
-The following options do not applyu in this case.
+The following options do not apply in this case.
 
 - Set the minimum number of reviewer to two
-This is the dfault number when the `nable Require a minimum nuner of reviewers`
+This is the dfault number when the `Enable Require a minimum nuner of reviewers`
 option is enabled.
 
-- Enable the Reset all code reviwer votes option when new changes are pushed
-This options enusre that new changes ot a PR are reviwed by already approved
-reviewers.
+- Enable the Reset all code reviewer votes option when new changes are pushed
+This options ensures that new changes ot a PR are reviwed by already approved reviewers.
 
 ---
 
@@ -2121,18 +2119,18 @@ for your e-commenrce platform.
 Your company uses **Azure Boards** to manage the platform backlog and 
 **the external team** uses **Trello**.
 
-You need to add new cards to the external team board when 
-**your product team** creates new backlog items in Azure Boards.
+You need to add new cards to the external team board when **your product team** 
+creates new backlog items in Azure Boards.
 
 This process should be as automatic as possible.
 
 Which two actions should you perform?
 
-- Grant access to Azure Devops in the Trello account
+- Grant access to Azure DevOps in the Trello account
 - Import CSV cards into Trello with Import2 Widzard
 - Configure a Service Hook Subscription in Azure DevOps
 - Install Trello integration from Visual Studio Marketplace
-- Create a quey in Azure Board and export the work items as a CSV file.
+- Create a query in Azure Board and export the work items as a CSV file.
 
 ---
 
@@ -2144,7 +2142,8 @@ Which two actions should you perform?
 
 ### Explanation:
 
-- Grant access to Azure Devops in the Trello account
+- Grant access to Azure DevOps in the Trello account
+
 This allows the Trello Account to subscribe to Azure Boards events that is to 
 listen to/receive them from Azure Boards and Azure Boards to perform some 
 actions on the Trello Board.
@@ -2152,6 +2151,7 @@ Then Azure Board will be able to create new Cards and lists on the Trello Board
 used by the external team.
 
 - Configure a Service Hook Subscription in Azure DevOps
+
 The service hook should be set up such that when the event of the creation 
 of a new Backlog Item occurs in Azure Boards then a task is run such that 
 it creates a new Card on the Trello Board.
@@ -2159,18 +2159,34 @@ In order to do so Azure Boards needs some kind of token to be used by this
 service hook. This token is created in Trello at the step above and will be
 used by Azure Boards when the hook runs.
 
+> The following references provide complete info about useing Azure DevOps Server Side Hooks
+
+## [Server-side service hooks with Azure Repos](https://learn.microsoft.com/en-us/azure/devops/service-hooks/events?view=azure-devops)  
+So far, we've looked at the client-side Git Hooks on Windows. 
+
+**Azure Repos** also exposes **server-side hooks**. 
+Azure DevOps uses the exact mechanism itself to create Pull requests. 
+
+#### [What Is Service Hooks?](https://k21academy.com/microsoft-azure/az-400/azure-devops-service-hooks-subscription-of-service-hooks-release-approvals/)  
+
+---
+
 The remaining options do not apply in this case.
 
 - Install Trello integration from Visual Studio Marketplace
+
 This page conatains only a link to Micorsoft Docs that describe stet by step
 how to configure Trello integration with Azure Boards.
 There is no extension for Trello that can be installed into Azure Boards!
+
+**The integration between Azure DevOps and Trello must be implemented by means of**
+**Server-side service hooks with Azure Repos**
 
 - Create a quey in Azure Board and export the work items as a CSV file.
 This would work only for one-off jobs and would not be automatic!
 
 - Import CSV cards into Trello with Import2 Widzard
-This **Import2 Widzard** ios a 3rd-oparty tool that performs the import of 
+This **Import2 Widzard** is a 3rd-oparty tool that performs the import of 
 CSV cards into Trello. It is a manual process therefore not suitable to this 
 scenario.
 
