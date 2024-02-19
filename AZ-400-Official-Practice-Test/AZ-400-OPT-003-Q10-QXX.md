@@ -1119,13 +1119,13 @@ In the Scrum model:
 
 ### Question 23:
 
-Your company uses Azure DevOps Services tp build and release cloud-native modern applications on Azure.
+Your company uses Azure DevOps Services to build and release cloud-native modern applications on Azure.
 
-You wamt to use **Azure DevOps Release Notes Generator** to create Release Notes for Azure DevOps.
+You want to use **Azure DevOps Release Notes Generator** to create Release Notes for Azure DevOps.
 **Release Notes Generator** is **deployed as a Functiion App in App Service** and requires 
 authentication to access the endpoint.
 
-You need to set up a Webhook function to send the event to Azure DevOopa Release Notes Generator
+You need to set up a **Webhook function** to send the event to Azure DevOps Release Notes Generator
 function endpoint.
 
 Which action setting should you configure to invoke the endpoint securely?
@@ -1148,7 +1148,7 @@ A **Webhook** provides a way to send the data that describes an event in the for
 to any service. In this case the service that needs to receive the event data is the 
 **Azure DevOps Release Notes Generator** and it is required that this data is sent to this endpoint securely.
 
-The  **endpoint** in this case uses **authentication** that is it is an authenticated endpoint. 
+The **endpoint** in this case uses **authentication** that is it is an authenticated endpoint. 
 The **URL with HTTPS endpoint** employs **encryption** of the payload **to protect the authentication details**.
 
 The remaining options do not apply in this question.
@@ -1169,7 +1169,7 @@ authetication details will always be **encrypted in transit** and never as plain
 
 - HTTP header:
 These are used in a HTTP requests to send to the endpoint additional data that should not be in the payload.
-There are **authentication headers** which may be used to supply authetication credentials sucuh as, for example,
+There are **authentication headers** which may be used to supply authetication credentials such as, for example,
 **Bearer Tokens**.
 
 ---
@@ -1178,7 +1178,8 @@ There are **authentication headers** which may be used to supply authetication c
 
 [Azure DevOps Release Notes Generator](https://github.com/azure-samples/azure-devops-release-notes/tree/master/)  
 
-The generator is a function app containing a HTTP triggered function that creates a Markdown file whenever a new release is created in Azure DevOps, using Azure Blob Storage.
+The generator is a function app containing a HTTP triggered function that creates 
+a Markdown file whenever a new release is created in Azure DevOps, using Azure Blob Storage.
 
 [Webhooks](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops)  
 Webhooks provide a way to send a JSON representation of an event to any service. 
@@ -1188,7 +1189,9 @@ In **Azure DevOps Services** webhooks are managed in the tab **Project Settings 
 
 [Q: Can I send webhooks to non HTTPS endpoints?](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops#q-can-i-send-webhooks-to-non-https-endpoints)   
 
-A: Yes. However, it's recommended that you only use HTTPS endpoints for your webhooks. Using HTTP means there is a the potential for private data being sent unencrypted. **This includes any authentication headers in your webhook**.
+A: Yes. However, it's recommended that you only use HTTPS endpoints for your webhooks. 
+Using HTTP means there is a the potential for private data being sent unencrypted. 
+**This includes any authentication headers in your webhook**.
 
 [Q: Can I use basic authentication when setting up a webhook that isn't HTTPS?](https://learn.microsoft.com/en-us/azure/devops/service-hooks/services/webhooks?view=azure-devops#q-can-i-use-basic-authentication-when-setting-up-a-webhook-that-isnt-https) 
 A: No. You must use HTTPS when utilizing basic authentication on a webhook.
@@ -1267,10 +1270,10 @@ changelog:
 
 The excerpt of **.github/release.yml** above specifies that 
 
-**exclide:/labels:/ ignore-for-release label1, lable2, label3**:
-Excludes a PR that has the specified lable value from appearing in the auomatically generated RNs.
+**exclude:/labels:/ ignore-for-release label1, lable2, label3**:
+Excludes a PR that has the specified label value from appearing in the auomatically generated RNs.
 
-**exclide:/authors:/ sarah, otherAuthor1, otherAuthor2**:
+**exclude:/authors:/ sarah, otherAuthor1, otherAuthor2**:
 Excludes a PR that has the specified author value from appearing in the auomatically generated RNs.
 The second statement is false becase the given YAML causes only the PRs with author Sarah to be excluded
 which is the opposite of what is specified in the second statement.
@@ -1348,7 +1351,7 @@ in response to that event from the publisher.
 > [Notifications - Create](https://learn.microsoft.com/en-us/rest/api/azure/devops/hooks/notifications/create?view=azure-devops-rest-6.0)
   Sends a test notification. 
   **This is useful for verifying the configuration of an updated or new service hooks subscription.**
-  This means that this API can be use to generate artificial notifications in order to check 
+  This means that this API can be used to generate artificial notifications in order to check 
   whether the subscriptions that have been set with any number of consumer work properly and
   process the event as planned.
 
@@ -1445,7 +1448,7 @@ In that case, you can almost always use the **Web Hooks** option as a generic wa
 Your company decides to integrate the **GitHub Enterprise Server** into their Azure DevOps Server CI/CD
 pipeline.
 
-You need to make sure that the connection bewteen **GitHub Enterprise Server** and the 
+You need to make sure that the connection between **GitHub Enterprise Server** and the 
 **Azure DevOps Server** is protected.
 
 What should you choose?
@@ -1473,8 +1476,8 @@ The other options cannot be applied to this question.
 - Personal Access Tokens (PATs):
 
 PATs are a better alternative to passwords that may be used to authenticate to Azure DevOps.
-Hiowever, in this specific case this is not the preferred method.
-With PATs the admin of teh Azure DevOps organization / project create a PAT from the 
+However, in this specific case this is not the preferred method.
+With PATs the admin of the Azure DevOps organization / project create a PAT from the 
 Azure DevOps portal. In the process of creation of the PAT the admin provides the details
 of the service/server that will make use of the PAT to call into Azure DevOps.
 This process ivolves a manual authetication to this service / server and the specification
@@ -1516,7 +1519,7 @@ Whcih solution should you recommend?
 
 - Azure Artifacts
 - Git Large File Storage (LFS)
-- Azure Blob sTORAGE
+- Azure Blob Storage
 - OneDrive
 
 ---
@@ -1551,12 +1554,15 @@ packages.
 
 [Git Large File Storage](https://git-lfs.com/)  
 
-
 [Introduction to Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)  
 
 [Azure Artifacts overview](https://learn.microsoft.com/en-us/azure/devops/artifacts/start-using-azure-artifacts?view=azure-devops&tabs=nugettfs%2Cnuget%2Corgstorage)  
 
-Azure Artifacts enables developers to share their code efficiently and manage all their packages from one place. With Azure Artifacts, developers can publish packages to their feeds and share it within the same team, across organizations, and even publicly. Developers can also consume packages from different feeds and public registries such as NuGet.org or npmjs.com. Azure Artifacts supports multiple package types such as NuGet, npm, Python, Maven, Cargo, and Universal Packages.
+Azure Artifacts enables developers to share their code efficiently and manage all their packages from one place. 
+With Azure Artifacts, developers can publish packages to their feeds and share it within the same team, 
+across organizations, and even publicly. Developers can also consume packages from different feeds and 
+public registries such as NuGet.org or npmjs.com.
+Azure Artifacts supports multiple package types such as NuGet, npm, Python, Maven, Cargo, and Universal Packages.
 
 [Plan for SharePoint and OneDrive in Microsoft 365](https://learn.microsoft.com/en-us/sharepoint/plan-for-sharepoint-onedrive)  
 
@@ -1568,7 +1574,7 @@ You are a DevOps consultant and you are helping a software development company t
 migrate their codebase to Azure DevOps Repos. The company has remote development 
 teams that work on different projects and with different features at the same time.
 Some developer have limited internet connectivity, which requires them to work
-offiline occasionally.
+offline occasionally.
 
 Which source control system should you recommend?
 
@@ -1587,8 +1593,8 @@ Which source control system should you recommend?
 ### Explanation:
 
 **Git allows developers to keep a local copy of the source code repo** and work on different 
-features uisng branches. Being the repo local to their machines this would laso work well
-in all cases with limited connectivity to the cenral Git Repo as it is the case in this scenario.
+features uisng branches. Being the repo local to their machines this would also work well
+in all cases with limited connectivity to the central Git Repo as it is the case in this scenario.
 **Developers can work on their branches completely offline and need to be online only when they**
 **need to synch their changes with thiose on the remote repos**.
 
@@ -1596,7 +1602,7 @@ The other options are not suitable in this scenario.
 
 - Team Foundation Vesrion Control (TFVC):
 This is a **cenralized version control system**. Its use case is for Repos that are 
-**very large!**. In this cases it might be an alternative for Giot Repos as it allows 
+**very large!**. In this cases it might be an alternative to Git Repos as it allows 
 the developer to only check out to their development machines the files they need to work 
 on and not the whole repository as it is the case with Git Repos.
 **This is not suitable in all cases whth limited connectivity to the TFVS server**.
@@ -1604,7 +1610,7 @@ on and not the whole repository as it is the case with Git Repos.
 - Subversion (SVN)
 - Mercurial
 These source control systems **are not supported by Azure Repos**.
-In these case the source control system ought ot be changed to Git / TFVC before it 
+In these case the source control system ought to be changed to Git / TFVC before it 
 is possible to migrate it to Azure Repos.
 
 
@@ -1622,7 +1628,7 @@ is possible to migrate it to Azure Repos.
 
 ### Question 30:
 
-You use **GitHub Desktop** to manage your GitHub puill request workflow effectively.
+You use **GitHub Desktop** to manage your GitHub pull request workflow effectively.
 You are trying to authenticate your account from GitHub Desktop so that you can 
 access your already existing resources on **GitHub.com**.
 
@@ -1671,18 +1677,24 @@ You may not have access, or it may have been deleted or renamed.)
 To troubleshoot, contact the person in your organization who administers permissions.
 
 - You do not have a valid SSH key setup.
+
 [GitHub Desktop - Could not read from remote repository](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#could-not-read-from-remote-repository)
+
 ```
 git@github.com: Permission denied (publickey).
 fatal: Could not read from remote repository.
 Please make sure you have the correct access rights and the repository exists.
 ```
+
 This error means that you do not have a valid SSH key set up.
+
 To troubleshoot, see:
 [Generating a new SSH key and adding it to the ssh-agent](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)  
 
 - You want to clone a source code repository which has existing submodules that you do not have access to.
+
 [GitHub Desktop - Failed to clone](https://docs.github.com/en/desktop/installing-and-authenticating-to-github-desktop/authenticating-to-github-in-github-desktop#failed-to-clone)  
+
 ```
 fatal: clone of 'git@github.com:<user>/<repo>' into submodule path '<path>' failed
 Failed to clone 'src/github.com/<user>/<repo>'. Retry scheduled
@@ -1692,6 +1704,7 @@ fatal: Could not read from remote repository.
 Please make sure you have the correct access rights
 and the repository exists.
 ```
+
 This error means that either the repository that you are trying to clone has submodules 
 that you do not have access to or you do not have a valid SSH key set up.
 If you do not have access to the submodules, troubleshoot by contacting the person who

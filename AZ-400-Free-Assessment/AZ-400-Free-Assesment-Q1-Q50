@@ -1,6 +1,305 @@
 ﻿
 ---
 
+# Q047:
+
+You have an Azure App Service web app named app1 and a project in Azure DevOps named Project1.
+
+You need to add work items to Project1 based on exceptions detected in app1. The solution must minimize administrative effort.
+
+What should you use to create work items?
+
+Select only one answer.
+
+Application Insights
+
+Azure App Configuration
+
+Azure Automation
+
+Log Analytics
+
+---
+
+# Q046:
+
+You plan to create a project wiki in Azure DevOps.
+You need to create a diagram on the wiki page.
+
+Which syntax element should you use to designate the beginning of the diagram?
+
+Select only one answer.
+
+1. ::: mermaid
+2. :zzz:
+3. ###
+4. ```
+
+---
+
+1. ::: mermaid
+
+The purpose of the **Mermaid syntax in Markdown** when implementing Azure DevOps wikis 
+is to create diagrams, not to create images or reference work items and pipelines.
+
+To add a Mermaid diagram to a wiki page, use the following syntax:
+
+```
+
+::: mermaid
+<mermaid diagram syntax>
+:::
+
+```
+
+[Mermaid Diagramming and charting tool](https://mermaid.js.org/)  
+
+---
+
+# Q045:
+
+You plan to create a project wiki in Azure DevOps.
+
+You need to format the wiki pages to include headers, bulleted lists, and italicized font.
+
+Which language should you use to format the pages?
+
+Select only one answer.
+
+1. HTML
+2. JSON
+3. Markdown
+4. XML
+
+---
+
+3. Markdown
+
+[Introduction to Azure DevOps project wikis](https://learn.microsoft.com/en-gb/training/modules/share-knowledge-within-teams/3-introduction-azure-devops-project-wikis)  
+
+---
+
+# Q044:
+
+You plan to use the metrics and Key Performance Indicators (KPIs) for Azure DevOps projects.
+
+You need to identify the KPI that represents a faster outcome metric associated with a project 
+in Azure DevOps.
+
+Which KPI should you identify?
+
+Select only one answer.
+
+1. Lead Time
+2. Mean time to detection
+3. Mean time to recover
+4. Retention rates
+
+---
+
+1. Lead Time
+
+Only Lead Time is an example of a **faster outcome metric** associated with an Azure DevOps project. 
+
+- Mean time to detection and Mean time to recover 
+are examples of a **quality and security metric**. 
+
+- Retention rates 
+is an example of a culture metric.
+
+---
+
+# Q043:
+
+You plan to use the metrics and Key Performance Indicators (KPIs) for Azure DevOps projects
+to ensure that your team is meeting goals and expectations.
+
+You need to identify the KPI that represents a culture metric associated with a project in Azure DevOps.
+
+Which KPI should you identify?
+
+Select only one answer.
+
+1. Defect escape rate
+2. Retention rates
+3. Service level agreement achievement
+4. Staff Member to Customers Ratio
+
+---
+
+2. Retention rates
+
+Out of all the answer choices, only the Retention rates KPI constitutes an example of a culture metric 
+associated with an Azure DevOps project. 
+
+- Defect 
+- escape rate 
+- Service level agreement achievement 
+
+are examples of a **quality and security metric**. 
+
+- Staff Member to Customers Ratio 
+is an example of an **efficiency metric**.
+
+---
+
+# Q042:
+
+You plan to use the metrics and Key Performance Indicators (KPIs) 
+of Azure DevOps projects to validate that your team is meeting 
+its goals and expectations.
+
+You need to identify the KPI that is used to measure 
+the quality and security associated with a project in Azure DevOps.
+
+Which KPI should you identify?
+
+Select only one answer.
+
+1. Application Performance
+2. Lead Time
+3. Mean time to recover
+4. Server to Admin Ratio
+
+---
+
+3. Mean time to recover
+
+Mean time to recover is an example of a quality and security metric. 
+
+- Server to Admin Ratio and Application Performance 
+are examples of efficiency metrics. 
+
+- Lead Time 
+is an example of a faster outcome metric.
+
+---
+
+[Identify project metrics and key performance indicators (KPIs)](https://learn.microsoft.com/en-gb/training/modules/choose-right-project/6-identify-project-metrics-key-performance-indicators-kpis)  
+
+It is essential to establish (and agree upon) appropriate metrics and 
+Key Performance Indicators (KPIs) to ensure these goals are measurable.
+
+While there is no specific list of metrics and KPIs that apply to all 
+DevOps Projects, the following are commonly used:
+
+> Faster outcomes
+
+Deployment Frequency. Increasing the frequency of deployments is often a critical driver in DevOps Projects.
+Deployment Speed. It is necessary to reduce the time that they take.
+Deployment Size. How many features, stories, and bug fixes are being deployed each time?
+Lead Time. How long does it take from the creation of a work item until it is completed?
+
+> Efficiency
+
+Server to Admin Ratio. Are the projects reducing the number of administrators required for a given number of servers?
+Staff Member to Customers Ratio. Is it possible for fewer staff members to serve a given number of customers?
+Application Usage. How busy is the application?
+Application Performance. Is the application performance improving or dropping? (Based upon application metrics)?
+
+> Quality and security
+
+Deployment failure rates. How often do deployments (or applications) fail?
+Application failure rates. How often do application failures occur, such as configuration failures, performance timeouts, and so on?
+**Mean time to recover**. How quickly can you recover from a failure?
+**Mean time to detection**: ...
+Bug report rates. You do not want customers finding bugs in your code. Is the amount they are seeing increasing or lowering?
+Test pass rates. How well is your automated testing working?
+Defect escape rate. What percentage of defects are being found in production?
+Availability. What percentage of time is the application truly available for customers?
+Service level agreement achievement. Are you meeting your service level agreements (SLAs)?
+Mean time to detection. If there is a failure, how long does it take for it to be detected?
+
+> Culture
+Employee morale. Are employees happy with the transformation and where the organization is heading? Are they still willing to respond to further changes? This metric can be challenging to measure but is often done by periodic, anonymous employee surveys.
+Retention rates. Is the organization losing staff?
+
+---
+
+# Q041:
+
+Your team uses a Git repository to collaborate on a project.
+
+You discover that several large files that are larger than 50 MB were 
+accidentally pushed into the repository.
+
+You need to delete all files that are larger than 50 MB from the repository.
+The solution must ensure that commits and tags referencing the deleted files 
+are updated automatically.
+
+What should you use?
+
+Select only one answer.
+
+1. BFG
+2. JAR
+3. KILL
+4. ZIP
+
+---
+
+1. [BFG](https://rtyley.github.io/bfg-repo-cleaner/)
+
+The BFG utility is the only one of the answers provided that can quickly delete 
+a subset of repository files based on criteria such as size, as well as automatically 
+update all commits and tags. 
+
+The other answer choices can be used for compressing/archiving files or terminating processes.
+
+### BFG Repo-Cleaner
+
+It's easier to use than the `git filter-branch` command. 
+For a single file or set of files, use the `--delete-files` option:
+
+```
+$ bfg --delete-files file_I_should_not_have_committed
+```
+
+The following bash shows how to find all the places that a file called `passwords.txt`
+exists in the repository. Also, to replace all the text in it, you can execute the 
+`--replace-text` option:
+
+```
+$ bfg --replace-text passwords.txt
+```
+
+---
+
+[Purge repository data](https://learn.microsoft.com/en-gb/training/modules/manage-git-repositories/3-purge-repository-data)  
+
+While one of the benefits of Git is its ability to hold long histories for repositories efficiently, 
+there are times when you need to purge data.
+
+The most common situations are where you want to:
+
+- Significantly reduce the size of a repository by removing history.
+- Remove a large file that was accidentally uploaded.
+- Remove a sensitive file that shouldn't have been uploaded.
+
+[git filter-repo tool](https://github.com/newren/git-filter-repo)
+
+The git filter-repo is a tool for rewriting history.
+
+Its core filter-repo contains a library for creating history rewriting tools. 
+Users with specialized needs can quickly create entirely new history rewriting tools.
+
+---
+
+[Removing files from Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/removing-files-from-git-large-file-storage)    
+
+If you've set up Git LFS for your repository, you can remove all files or a subset of files from Git LFS.
+
+[Removing sensitive data from a repository](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)  
+
+If you commit sensitive data, such as a password or SSH key into a Git repository, you can remove it from the history. To entirely remove unwanted files from a repository's history you can use either the git filter-repo tool or the BFG Repo-Cleaner open source tool.
+
+[git filter-repo](https://github.com/newren/git-filter-repo/)  
+is a versatile tool for rewriting history,
+
+It roughly falls into the same space of tool as git filter-branch but without the capitulation-inducing poor performance, with far more capabilities, and with a design that scales
+
+---
+
 # Q040:
 
 You clone a Git repository to a Linux server.
