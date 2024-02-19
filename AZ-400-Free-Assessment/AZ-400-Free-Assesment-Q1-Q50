@@ -1,6 +1,172 @@
 ﻿
 ---
 
+# Q053:
+
+You have a project in Azure DevOps named Project1 that contains
+a release pipeline named pipeline1. 
+All users use Microsoft Teams.
+
+A user named User1 does not have access to Project1. 
+User1 must be able to use Teams to provide approval 
+for initiating a run of pipeline1.
+
+You need to identify the Azure DevOps mechanism 
+that will allow User1 to provide the approval.
+
+Which mechanism should you identify?
+
+Select only one answer.
+
+1. a post-deployment gate
+2. a pre-deployment gate
+3. manual intervention
+4. manual validation
+
+---
+
+2. a pre-deployment gate
+
+**Approval integration** can be implemented to allow users in Teams 
+approve a pipeline run by using a pre-deployment gate without providing
+direct access to Azure DevOps. 
+
+> a post-deployment gate 
+is executed after a release is executed. 
+
+> Manual intervention 
+is used to prompt for values or parameters or to edit the release. 
+
+> Manual validation 
+is similar to manual intervention, with the capability to notify 
+users and a timeout option.
+
+---
+
+### [Use Azure Pipelines with Microsoft Teams](https://learn.microsoft.com/en-gb/azure/devops/pipelines/integrations/microsoft-teams?view=azure-devops#approve-deployments-from-your-channel)  
+
+The **Azure Pipelines app for Microsoft Teams** lets you monitor events for your pipelines. 
+You can set up and get notifications in your Teams channel for 
+
+- releases
+- pending approvals
+- completed builds
+and so on. 
+
+- can also approve releases 
+from within your Teams channel.
+
+> Use commands
+
+`@azure pipelines subscribe [project url]`
+Monitor all pipelines in a project. 
+
+`@azure pipelines subscribe [pipeline url]`
+Monitor a specific pipeline
+
+> Manage subscriptions
+`@azure pipelines subscriptions`
+customize these subscriptions. For example, you might want to 
+get notified only when builds fail or when deployments get 
+pushed to a production environment.
+
+---
+
+[Approve deployments from your channel](https://learn.microsoft.com/en-gb/azure/devops/pipelines/integrations/microsoft-teams?view=azure-devops#approve-deployments-from-your-channel)  
+
+You can approve deployments from within your channel without 
+going to the Azure Pipelines portal. 
+
+Subscribe to the **Release deployment approval pending** notification 
+for classic Releases.
+
+Subscribe to the **Run stage waiting for approval** notification 
+for YAML pipelines. 
+
+Both of these subscriptions get created by default when you subscribe
+to the pipeline.
+
+The Azure Pipelines app supports all of the checks and approval 
+scenarios present in the Azure Pipelines portal. 
+You can approve requests as an individual or for a team.
+
+> Unsubscribe from a pipeline channel
+`@azure pipelines unsubscribe all [project url]`
+`@azure pipelines unsubscribe all https://dev.azure.com/myorg/myproject`
+
+---
+
+[Azure Pipelines Deployment gates](https://learn.microsoft.com/en-gb/azure/devops/pipelines/release/approvals/gates?view=azure-devops)
+
+---
+
+# Q052:
+
+You have a project in Azure DevOps that contains a 
+build pipeline for a .NET Core application. 
+
+The pipeline includes the Microsoft Visual Studio Test task.
+
+You are reviewing the pipeline run summary in the Azure DevOps portal.
+You plan to download the `.coverage` files to be used for code coverage
+analysis in Visual Studio.
+
+You need to identify which section of the pipeline run summary you 
+should use to access the `.coverage` files.
+
+Which section of the pipeline run summary should you identify?
+
+Select only one answer.
+
+1. Related
+2. Repository and version
+3. Tests
+4. Tests and Coverage
+
+---
+
+1. Related
+
+From Related, you can download coverage extension files to be used
+as evidence of code coverage. 
+
+> Tests and Coverage 
+can be used to configure tests and coverage or to see the general 
+results of coverage **but not to generate evidence** by using the 
+Visual Studio Test task. 
+
+Tests are used to see test results but not to get evidence 
+about code coverage. 
+
+> Repository and version 
+provides information about the repository used for the pipeline.
+
+---
+
+[Azure Pipelines - Review code coverage results](https://learn.microsoft.com/en-gb/azure/devops/pipelines/test/review-code-coverage-results?view=azure-devops#artifacts)
+
+> Pipeline Summary >
+The results can be viewed and downloaded on the **Code coverage tab**.
+
+#### Code Coverage in multi-stage YAML pipeline
+
+In a multi-stage YAML pipeline, the code coverage results are only
+available after the completion of the entire pipeline. 
+This means that you may have to separate the build stage into a 
+pipeline of its own if you want to review the code coverage results
+prior to deploying to production.
+
+
+If you use the **Visual Studio Test task** to collect coverage for
+.NET and .NET Core apps, the artifact contains `.coverage` files 
+that **can be downloaded and used for further analysis in Visual Studio**.
+
+If you publish code coverage using **Cobertura or JaCoCo coverage formats**, 
+the code coverage artifact **contains an HTML file** that can be 
+viewed offline for further analysis.
+
+---
+
 # Q052:
 
 You have a GitHub repository that contains a project named Project1. 

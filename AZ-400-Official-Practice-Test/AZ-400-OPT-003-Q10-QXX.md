@@ -2681,7 +2681,7 @@ the following operations:
 - create tags
 - mamange notes
 
-Which **three security groups** cpould tou add UserA to?
+Which **three security groups** could you add UserA to?
 
 - Contributors
 - Project Administrators
@@ -2709,7 +2709,7 @@ You may add UserA to any of the following  security groups:
 UserA would then be able to 
 - create branches
 - create tags
-- mamange notes
+- manage notes
 
 The following do not apply.\
 
@@ -2741,14 +2741,14 @@ Assign to users who define and manage release pipelines.
 
 ### Question Q44:
 
-You use **Git repositories to store source code and manage features** as part of an 
-Azure DevOps services project in your company.
+You use **Git repositories to store source code and manage features** 
+as part of an Azure DevOps services project in your company.
 
-You are a member of teh **Contributors** security group.
+You are a member of the **Contributors** security group.
 
 You need to **create git tags**.
 
-Which**three name convenctions** should you consider?
+Which **three name conventions** should you consider?
 
 - a name without ASCII control characters such as spaces and colons
 - a name length which does not exceed 250 ACII characters
@@ -2782,7 +2782,7 @@ However:
 
 ### Question 45:
 
-You use Git for source code versioning for all yourprojects.
+You use Git for source code versioning for all your projects.
 
 You need to **undo the changes made by a shared commit for one of the projects**
 **and ensure that the original commit is not deleted**.
@@ -2799,7 +2799,7 @@ You need to **undo the changes made by a shared commit for one of the projects**
 
 - git revert #commitID
 This **undoes / reverses** the changes of `commitID` by **adding a new commit** and  
-**without deleting teh original commit**.
+**without deleting the original commit**.
 
 The other options do not apply to this case.
 
@@ -2822,16 +2822,18 @@ the **switch** and **restore** commands were introduced to split the
 1. "checking out a branch to work on advancing its history"
 2. "checking out paths out of the index and/or a tree-ish to work on advancing the current history"
 
-In other words, **checkout** does two different things and this release split each of those different
-things into its own focused command.
+In other words, **checkout** does two different things and this release
+splits each of those different things into its own focused command.
 
 ```
 git-checkout - Switch branches or restore working tree files
 ```
 
-switch has some limitations: at the moment you can switch from any commit to <branch name>, 
+> switch has some limitations: 
+at the moment you can switch from any commit to <branch name>, 
 however it's impossible to switch from <branch name> to a particular commit with a status 
 of detached HEAD. 
+
 So you need to use git **checkout 5efb** 
 (where 5efb is an example of a hash reference to arbitrary commit)
 
@@ -2839,13 +2841,14 @@ So you need to use git **checkout 5efb**
 
 - git reset
 
-**Reverst a branch to its state in a previous commit**.
+**Resets a branch to its state in a previous commit**.
 **It affetcs all files in the branch!**.
 This command can be used with multiple flags.
 
 `git reset #id --hard`:
-This resets the branch to the commit #id **nd discards all changes made to the branch following this commit**.
-That is these changes will no longer be in teh working tree and are lost!
+This resets the branch to the commit #id 
+**and discards all changes made to the branch following this commit**.
+That is these changes will no longer be in the working tree and are lost!
 
 `git reset #id --mixed`:
 It does the same as with `--hard` **but it preserves the subsequent changes as unstaged**.
