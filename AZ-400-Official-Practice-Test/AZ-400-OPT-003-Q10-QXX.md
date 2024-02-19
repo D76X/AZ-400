@@ -523,14 +523,14 @@ in the YAML Pipeline.
 ### Question 17:
 
 Your company uses Azure DevOps. 
-You are using GitHub Actions with Azure Pipeliens.
+You are using GitHub Actions with Azure Pipelines.
 You are trying to execute a workflow every time a Git commit gets pushed to main or
 when a pull request is initiated.
 
 You need to implement a solution.
 
 How should you complete the given YAML code?
-To answer selct the appropriate values from the drop down menus.
+To answer select the appropriate values from the drop down menus.
 
 ```
 name: CI
@@ -595,16 +595,16 @@ jobs:
 ### Explanation:
 
 1. Use the **main** branch for both triggers `push` and `pull_request`. 
-   This satisy the requirement that this pipeline should run when commits are pushed on the emain branch
-   or when a PR is opened against the main branch.
+   This satisfies the requirement that this pipeline should run when commits are pushed to
+   the emain branch or when a PR is opened against the main branch.
 
 2. `runs-on: ubuntu-latest` specifies that this pipeline should execute on the latest available 
     Ubuntu based VM on Azure DevOps infrastructure. This is one of the options available when 
     a pipeline is run from GitHub Actions.
     The other option `runs-on: Azurepipelines@v1` does not make any sense!
 
-3. in the steps of the build job for this pipeline use the pipeline task **Azure/pipelines@v1** by specifying 
-   `uses: Azure/pipelines@v1`. The deatis of **Azure/pipelines@v1** are found in the references to this 
+3. in the steps of the build job for this pipeline use the pipeline task **Azurepipelines@v1** by specifying 
+   `uses: Azurepipelines@v1`. The deatails of **Azurepipelines@v1** are found in the references to this 
    question.
 
   ```
@@ -613,26 +613,28 @@ jobs:
         uses: Azurepipelines@v1
   ```
 
-4. Use `azure-devops-token : ${{secrets.AZURE_DEVOPS_TOKEN}}` to provide a PAT token to the pipeline
-   action **Azure/pipelines@v1** so that it can operate on Azure DevOps on the project and pipeline 
-   specified as follows:
+4. Use `azure-devops-token : ${{secrets.AZURE_DEVOPS_TOKEN}}` 
+   to provide a PAT token to the pipeline action **Azurepipelines@v1** so that it can operate 
+   on Azure DevOps on the project and pipeline specified as follows:
    
    ```
    azure-devops-project-url: https://dev.azure.com/organization/project-name
-        azure-pipeline-name: 'First Pipeline'
+   azure-pipeline-name: 'First Pipeline'
    ``` 
 
-   You will need to create the PAT value on Azure DevOps for GitHub Actions and store it as a secret
-   on GitHub. Create the token on Azure DevOps so that it specifies the permnissions that the 
-   GitHub Action  **Azure/pipelines@v1** in this pipeline needs.
-   Then you take the token that has been crafted on Azure DevOps for your organizsation/project/pipeline
-   and store it as a secret on GitHub.
-   When the GitHub Action Workflow execute the pipeline on Azure DevOps the value  
+   You will need to create the PAT value on Azure DevOps for GitHub Actions and 
+   store it as a secret on GitHub. 
+   
+   Create the token on Azure DevOps so that it specifies the permnissions that the 
+   GitHub Action  **Azurepipelines@v1** in this pipeline needs.
+   Then you take the token that has been crafted on Azure DevOps for your 
+   `organizsation/project/pipeline` and store it as a secret on GitHub.
+   When the GitHub Action Workflow executes the pipeline on Azure DevOps the value  
    ` ${{secrets.AZURE_DEVOPS_TOKEN}}` is provided by GitHub to Azure DevOps so that the 
    GitHub Action Workflow is authenticated to Azure DevOps for the purpuse of running this
    action worflow.
 
-The remaining wrong options.
+The remaining wrong options follow.
 
 5. The value `feature/*` would set the wrong branches. The requirement says that the pipeline 
    must trigger for pushes or PR on the main branch and not feature branches.
@@ -644,13 +646,14 @@ branches:
       feature/* 
 ```
 
-6. `azureSubscriptionEndpoint` is not an option of **Azure/pipelines@v1**. 
-    Instead `$(azureSubscriptionEndpoint)` is the value of a custom pipeline variable named `azureSubscriptionEndpoint`.
-    However, it is not required to create or use the value of such a variabnle in this scenario.
+6. `azureSubscriptionEndpoint` is not an option of **Azurepipelines@v1**. 
+    Instead `$(azureSubscriptionEndpoint)` is the value of a custom pipeline 
+    variable named `azureSubscriptionEndpoint`. However, it is not required to create or use
+    the value of such a variabnle in this scenario.
 
-7. `$(System.DefaultWorkingDirectory)\TFC\$(ProjectName)` is also a value built in the pipeline
-  from the values of `System.DefaultWorkingDirectory` and `ProjectName`. This is not required in
-  this scenario.
+7. `$(System.DefaultWorkingDirectory)\TFC\$(ProjectName)` 
+  is also a value built in the pipeline from the values of `System.DefaultWorkingDirectory`
+  and `ProjectName`. This is not required in this scenario.
 
 ```
 with:
@@ -683,10 +686,10 @@ or you don't want to provide your primary credentials to the tool – use PATs t
 You have a GitHub private Repo for a library used by your organization.
 This Repo is integrated with an Azure Boards project which is used to mage the project backlog.
 You adopt a pull request and commit guidelines to automatically generate release notes.
-Every two weeks you create a new git tag for this library followuing semantic versioning.
+Every two weeks you create a new git tag for this library following semantic versioning.
 
-You need to define the best place to communicate with the library users to communicate the
-changes in any specific version of teh library.
+You need to define the best place to communicate to the library users the changes 
+in any specific version of the library.
 
 Where should you store the releas notes?
 
@@ -729,18 +732,18 @@ si the consumers of the library. Istead you **could and should** include in the 
 
 You work as a product owner for a project in Azure DevOps.
 The project follows the Scrum process and Azure Repos, Azure Boards 
-and Azure Puipelines are used for the project lifecycle.
+and Azure Pipelines are used for the project lifecycle.
 The stakeholders want to receive reports about the project's progress.
 
 You need to create a custom dashboard in Azure DevOps for the stakeholders.
 
 Which chart widgets should you use for each requirement?
-To answer drag the appropriate widget ot each requirement.
+To answer drag the appropriate widget to each requirement.
 A widget may be used once, more than once or not at all.
 
 - Lead Time widget
 - Sprint Capacity widget
-- Deplyment status widget
+- Deplyoment status widget
 - Cycle Time widget
 - Releae Pipeline Overview widget
 
@@ -775,9 +778,8 @@ This means from **created** to **completed**.
 This alloes the stakeholders to determine whether the team is currently caopable 
 of working on all the user stories in the sprint.
 
-
-- Deplyment status widget
-It shows the status of the deployment and the test pass rate accross multuiple 
+- Deployment status widget
+It shows the status of the deployment and the test pass rate accross multiple 
 environments for a recent set of builds on a deployment pipeline.
 
 The following two widget are not applicable to this question.
@@ -786,8 +788,8 @@ The following two widget are not applicable to this question.
 It shows how long a WI takes from **active** to **completed**.
 
 - Releae Pipeline Overview widget
-It shows the statuis of a release pipeline and its environment when the pipeline was executed.
-It does not show teh success rate but only the current status.
+It shows the status of a release pipeline and its environment when the pipeline was executed.
+It does not show the success rate but only the current status.
 
 ---
 

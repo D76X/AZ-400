@@ -1,6 +1,286 @@
 ﻿
 ---
 
+# Q038:
+
+You have an Azure App Service web app named WebApp1 that has Application Insights enabled.
+
+You need to identify the places in WebApp1 where users drop out.
+
+Which Application Insights feature should you use?
+
+Select only one answer.
+
+availability tests
+
+Profiler
+
+Snapshot Debugger
+
+usage analysis
+
+---
+
+# Q037:
+
+You implement the monitoring of a distributed application named App1 
+by using Application Insights. 
+
+App1 has several external dependencies.
+
+You need to identify which requirement must be met for the dependencies 
+to appear on the Application Map for App1.
+
+Which requirement should you identify?
+
+Select only one answer.
+
+1. access to the code of the dependency component
+2. access to the telemetry of the dependency component
+3. access via HTTP dependency calls from App1
+4. the same instrumentation key as App1
+
+
+---
+
+3. access via HTTP dependency calls from App1
+
+For dependencies of App1 to appear on the Application Map, dependency resources
+**must be accessible via HTTP dependency calls**. 
+
+- Access to the code of dependency resources
+- access to the telemetry of dependency resources 
+- using the same instrumentation key 
+
+are not requirements.
+
+---
+
+# Q036:
+
+You plan to implement an Azure Pipelines release pipeline that will deploy 
+Azure resources to development and production environments.
+
+You need to prevent deployment to the production environment if the 
+Azure platform raises alerts about issues affecting the development environment.
+
+Which integration should you add to the release pipeline?
+
+Select only one answer.
+
+1. artifact policy
+2. Azure Monitor
+3. exclusive lock
+4. GitHub Actions
+
+---
+
+2. Azure Monitor
+
+Azure Monitor can be used in a release pipeline to detect whether active alerts
+are triggered and block or allow the next step. 
+
+- An artifact policy 
+is used to check and evaluate artifacts. 
+
+- Exclusive lock 
+allows only a single run from the pipeline to proceed. 
+
+- GitHub Actions 
+are used to trigger an Azure pipeline to run directly from a GitHub Actions workflow.
+
+---
+
+[AzureMonitor@1 - Query Azure Monitor alerts v1 task](https://learn.microsoft.com/en-gb/azure/devops/pipelines/tasks/reference/azure-monitor-v1?view=azure-pipelines&viewFallbackFrom=azure-devops)  
+
+```
+# Query Azure Monitor alerts v1
+# Observe the configured Azure Monitor rules for active alerts.
+- task: AzureMonitor@1
+  inputs:
+    connectedServiceNameARM: # string. Required. Azure subscription. 
+    ResourceGroupName: # string. Required. Resource group. 
+  # Advanced
+    filterType: 'none' # 'resource' | 'alertrule' | 'none'. Required. Filter type. Default: none.
+    #resource: # string. Required when filterType = resource. Resource. 
+    #alertRule: # string. Required when filterType = alertrule. Alert rule. 
+    #severity: 'Sev0,Sev1,Sev2,Sev3,Sev4' # 'Sev0' | 'Sev1' | 'Sev2' | 'Sev3' | 'Sev4'. Severity. Default: Sev0,Sev1,Sev2,Sev3,Sev4.
+    #timeRange: '1h' # '1h' | '1d' | '7d' | '30d'. Time range. Default: 1h.
+    #alertState: 'Acknowledged,New' # 'New' | 'Acknowledged' | 'Closed'. Alert state. Default: Acknowledged,New.
+    #monitorCondition: 'Fired' # 'Fired ' | 'Resolved'. Monitor condition. Default: Fired.
+```
+
+---
+
+# Q035:
+
+You manage 100 on-premises servers that run Linux or Windows.
+
+You need to collect logs from all the servers and make the logs available 
+for analysis directly from the Azure portal. 
+
+The solution must meet the following requirements:
+
+> Provide the ability to send data from Linux virtual machines to multiple Log Analytics workspaces.
+> Support the use of XPATH queries to filter Windows events for collection.
+> Minimize the number of agents installed on the servers.
+
+Which agent should you install?
+
+Select only one answer.
+
+1. Azure Connected Machine agent
+2. Azure Monitor Agent
+3. Dependency agent
+4. Telegraph agent
+
+---
+
+2. Azure Monitor Agent
+
+The Azure Monitor Agent **replaces** 
+
+- the Log Analytics agent 
+- the diagnostic extension 
+- the Telegraph agent 
+
+It can centrally configure data collection for different data from different sets of virtual machines,
+sending the data from Linux virtual machines to multiple workspaces and using XPATH queries to filter
+Windows events for collection. 
+
+- The Telegraph agent 
+supports only Linux operating systems. 
+
+- The Azure Connected Machine agent 
+is used by Azure Arc, which is not required in this scenario. 
+
+- The Dependency agent 
+increases the number of agents installed on the target servers.
+
+---
+
+[Collect events and performance counters from virtual machines with Azure Monitor Agent](https://learn.microsoft.com/en-gb/azure/azure-monitor/agents/data-collection-rule-azure-monitor-agent?tabs=portal)  
+
+
+---
+
+# Q034:
+
+You manage the deployment of an Azure App Service web app named App1 
+to multiple on-premises locations.
+
+You plan to implement Application Insights to monitor App1.
+You need to authorize App1 to access an Application Insights resource.
+
+Which authorization method should you use?
+
+Select only one answer.
+
+1. access key
+2. instrumentation key
+3. Microsoft Entra managed identity
+4. Microsoft Entra security principal
+
+---
+
+2. instrumentation key
+
+An instrumentation key is used to authorize access to an Application Insights resource.
+
+- An access key 
+is used to authorize access to an Azure Storage account. 
+
+- Microsoft Entra security principals and managed identities 
+are not supported for authorizing access to an Application Insights resource.
+
+---
+
+# Q033:
+
+You manage the deployment of an Azure App Service web app named App1 
+to multiple Azure regions.
+You need to identify which Azure service enables you to validate the
+availability of App1 from multiple locations around the world.
+
+What should you identify?
+
+Select only one answer.
+
+1. Application Insights
+2. Azure Advisor
+3. Azure App Configuration
+4. Azure Service Health
+
+---
+
+1. Application Insights
+
+Application Insights **includes a built-in functionality** that allows you 
+**to validate the availability of an app from multiple locations** around 
+the world. 
+
+- App Configuration 
+is a key/value store that you can use to facilitate the implementation of 
+feature flags. 
+
+- Azure Advisor 
+detects misconfiguration issues. 
+
+- Azure Service Health 
+provides information about the status of platform services, not individual apps.
+
+---
+
+[Application Insights availability tests](https://learn.microsoft.com/en-gb/azure/azure-monitor/app/availability-overview)  
+
+After you deploy your web app or website, you can set up recurring tests to monitor **availability and responsiveness**. **Application Insights sends web requests to your application at regular intervals from points around the world**.
+It can **alert** you if your application isn't responding or responds too slowly.
+
+You **can set up availability tests for any HTTP or HTTPS endpoint that's accessible from the public internet**.
+**You don't have to make any changes to the website you're testing**. 
+In fact, **it doesn't even have to be a site that you own**. 
+You **can test the availability of a REST API that your service depends on**.
+
+### Types of Tests:
+
+- Standard test: 
+This single request test is **similar to the URL ping test**. 
+It includes: 
+  > TLS/SSL certificate validity
+  > proactive lifetime check
+  > HTTP request verb (for example, GET, HEAD, or POST)
+  > custom headers
+  > custom data associated with your HTTP request.
+
+- Custom TrackAvailability test: 
+If you decide to create a custom application to run availability tests, 
+you can use the `TrackAvailability()` method to send the results to Application Insights.
+
+- Classic tests (older versions of availability tests):
+ - URL ping test: 
+You can **create this test through the Azure portal** to validate whether an endpoint is
+ responding and measure performance associated with that response. You can also set custom
+ success criteria coupled with more advanced features, like parsing dependent requests and
+ allowing for retries.
+
+  - Multi-step web test (deprecated): 
+You can play back this recording of a sequence of web requests to test more complex scenarios.
+Multi-step web tests **are created in Visual Studio Enterprise** and **uploaded to the portal**,
+where you can run them.
+
+#### Dewpendance on the DNS public infrastructure
+
+The older classic tests: 
+- URL ping test 
+- multi-step web test 
+
+**rely on the DNS infrastructure of the public internet to resolve the domain names** of the 
+tested endpoints. If you're using private DNS, you must ensure that the public domain name 
+servers can resolve every domain name of your test. 
+**When that's not possible, you can use custom TrackAvailability tests instead**.
+
+---
+
 # Q032:
 
 You have an Azure DevOps organization named Organization1 that contains 
