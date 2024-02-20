@@ -3214,11 +3214,11 @@ with azure pipeline. Kindly suggest.
 ### Question 51:
 
 Your company uses Azure DevOps Services to build and release enterprise software.
-You use **manual validation** to pause an Azure Pipelien Task and validate 
+You use **manual validation** to pause an Azure Pipeline Task and validate 
 configuration settings before starting a computation-intensive task.
 
 You have crerated the following YAML code:
-You meed 5to ensure that the YAML file will achieve the desired outcome.
+You meed to ensure that the YAML file will achieve the desired outcome.
 
 ```
  pool:
@@ -3239,12 +3239,12 @@ jobs:
       onTimeout: 'resume' 
 ```
 
-For each of the following statements select Yeas or No.
+For each of the following statements select Yes or No.
 
 | Yes | No  | Statement |
 | --- | --- | ------------------------------------------------- |
 | Yes | No  | jdoe@mycompany.com will be able to approve or deny the pipeline run. |
-| Yes | No  | Users with teh View builds, Queue builds and Stop builds permissions can act on a manual validation |
+| Yes | No  | Users with the View builds, Queue builds and Stop builds permissions can act on a manual validation |
 | Yes | No  | The job will time out in 48 hours |
 
 
@@ -3267,7 +3267,7 @@ This user will be able to approve or deny the pipeline run.
 The **optional parameter** `notifyUsers` denotes the list of email addresses of users that will be notified
 when the task runs. They will be able to approve or deny the pipeline run.
 
-However, only users with **Queue builds permission** can act on a manula validation.
+However, only users with **Queue builds permission** can act on a manual validation.
 Users with **Stop builds and View builds permissions** **cannot perform** manual validation.
 
 ` timeoutInMinutes: 2880`
