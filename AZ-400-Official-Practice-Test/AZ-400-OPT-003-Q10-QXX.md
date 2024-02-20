@@ -4402,10 +4402,10 @@ You need to **communicate to the possible users of this package what is new**
 
 Which **two** actions should you perform?
 
-- Use a Git Wprkflow based on feature branches
+- Use a Git Workflow based on feature branches
 - Implement automated tests
 - Generate a Changelog
-- Follow Semantic Vesrioning (SemVer)
+- Follow Semantic Versioning (SemVer)
 
 
 ---
@@ -4418,14 +4418,14 @@ Which **two** actions should you perform?
 
 The remaining options do not apply to this case.
 
-- Use a Git Wprkflow based on feature branches
+- Use a Git Workflow based on feature branches
 - Implement automated tests
 
 ---
 
 - Generate a Changelog:
 This is a means to communicate changes to the consumers of a library.
-This can be used in combination with a tool sucha as [release-changelog-builder-action](https://github.com/marketplace/actions/release-changelog-builder) to automate teh process of generating the changelog
+This can be used in combination with a tool such as [release-changelog-builder-action](https://github.com/marketplace/actions/release-changelog-builder) to automate the process of generating the changelog
 entries from the commit messages.  
 
 - Follow Semantic Vesrioning (SemVer)
@@ -4439,7 +4439,7 @@ The remaining options do not apply to this case.
 This is obviously off-topic in this question and would only guarantee some
 quality to the library.
 
-- Use a Git Wprkflow based on feature branches
+- Use a Git Workflow based on feature branches
 This is only a common way library projects can try to promote the contribution
 from the community by allowing them to create PRs and discuss the feature in 
 a collaborative fashion which is suitable for open-source projects.
@@ -4512,7 +4512,8 @@ This must be a **private feed** as requested.
 
 We recommend using two .npmrc files. 
 The first one should be located in the same directory as your package.json file. 
-The second should be placed in the $home directory (Linux/macOS) or $env.HOME (Windows) to securely store your credentials. 
+The second should be placed in the $home directory (Linux/macOS) or $env.HOME (Windows) to securely 
+store your credentials. 
 The npm client will then be able to look up this file and fetch your credentials for authentication. 
 This enables you to share your config file while keeping your credentials secure.
 
@@ -4532,7 +4533,7 @@ This file will contain the registry configuration to the feed.
 
 To publish your npm package, run the following command in your project directory: `npm publish`
 
-When the command `npm publish` ececutes **it will read the resistry= property** in the file
+When the command `npm publish` executes **it will read the resistry= property** in the file
 `.npmrc` and publish the build to the right place.
 
 ---
@@ -4541,12 +4542,12 @@ The remaining options do not apply in this case.
 
 - commit the `npm-shrinkmap.json` file in the root of your project
 
-This file is used **published lockfile** to keep the same dependency versions for an immutable build.
-It does not configure the `npm publish` to send teh build to the right registry.
+This file is used as **published lockfile** to keep the same dependency versions for an immutable build.
+It does not configure the `npm publish` to send the build to the right registry.
 
 - run `npm ci` during the build pipeline
 
-This command coyuld be used to **download npm dependencies**, that are necessary to build 
+This command could be used to **download npm dependencies**, that are necessary to build 
 your project, **more quikly** than the command `npm install` does.
 However, this command **does not publish the build artifacts**.
 
@@ -4676,19 +4677,19 @@ Which type of **pre-deployment trigger** is used to each stage?
 The **Development stage** is isolated in the sense that there is no other stage 
 preceeding it **and it is not linked to any artifatcs** that is the cannot be any
 releases that can be used to trigger deployment to the Development stage to. 
-Ttherefore deploing to this stage (environment) can only be done with a `Manual Only` trigger.
+Therefore deploying to this stage (environment) can only be done with a `Manual Only` trigger.
 
-The Artficats of a build preceed a QA stage and this preceedes the the Production stage.
+The Artifacts of a build preceedes a QA stage and this preceedes the the Production stage.
 This chain can be used to chain the corresponding deployments with **pre-deployment triggers**.
 
 2. QA : `After Release` 
 
-Will deploy teh artifacts to a QA Environment by running the QA stange when new artifacts 
-are available in the Artifacts feed follwing a new build and release pipeline.
+will deploy the artifacts to a QA Environment by running the QA stange when new artifacts 
+are available in the Artifacts feed following a new build and release pipeline.
 
 3. Production  : `After Stage`
 
-This means that the samne artifacts are goimng to be deplyed to the Environment Production
+This means that the same artifacts are going to be deployed to the Environment Production
 only after the deployment stage to QA has run successfully.
 
 ---
@@ -4738,9 +4739,13 @@ There are also special triggers.
 
 [Trigger one pipeline after another (classic)](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers-classic?view=azure-devops)  
 
-Large products have several components that are dependent on each other. These components are often independently built. When an upstream component (a library, for example) changes, the downstream dependencies have to be rebuilt and revalidated.
+Large products have several components that are dependent on each other. 
+These components are often independently built. 
+When an upstream component (a library, for example) changes, the downstream dependencies 
+have to be rebuilt and revalidated.
 
-In situations like these, add a pipeline trigger to run your pipeline upon the successful completion of the triggering pipeline.
+In situations like these, add a pipeline trigger to run your pipeline upon the successful 
+completion of the triggering pipeline.
 
 ---
 
@@ -4751,7 +4756,8 @@ therefore those entirely written in YAML.
 
 [Trigger one pipeline after another](https://learn.microsoft.com/en-us/azure/devops/pipelines/process/pipeline-triggers?view=azure-devops)  
 
-Previously, you may have navigated to the classic editor for your YAML pipeline and configured build completion triggers in the UI. While that model still works, **it is no longer recommended**. 
+Previously, you may have navigated to the classic editor for your YAML pipeline and configured 
+build completion triggers in the UI. While that model still works, **it is no longer recommended**. 
 
 **The recommended approach is to specify pipeline triggers directly within the YAML file**.
 
