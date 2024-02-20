@@ -3091,7 +3091,7 @@ This is a **static code analysis** tool for Java applications.
 
 Your company uses Azure DevOps Services to build and release **enterprise software**.
 You use **Pull Requests code coverage** to measure the percentage of your code that 
-si tested.
+is tested.
 
 You create the following YAML file:
 
@@ -3105,12 +3105,12 @@ coverage:
 
 You need to ensure that the YAML file will achieve the desired outcome.
 
-For each of the following statements select Yeas or No.
+For each of the following statements select Yes or No.
 
 | Yes | No  | Statement |
 | --- | --- | ------------------------------------------------- |
 | Yes | No  | The details about coverage for each changed file will be posted as a PR comment |
-| Yes | No  | The file provides code coverage only for the lines changed in a PR|
+| Yes | No  | The file provides code coverage only for the lines changed in a PR |
 | Yes | No  | 50% represents the threshold value for a sucessful full coverage status to be posted |
 
 
@@ -3144,7 +3144,7 @@ There are **two types of code coverager**:
 **details about coverage for each file** will be posted as **PR comments**. 
 
 `target: 50%`
-It rerpesents the target threshold value for **diff coverage and not dull coverage** 
+It rerpesents the target threshold value for **diff coverage and not full coverage** 
 in order for a success status for the PR to be posted.
 
 ---
@@ -3152,6 +3152,60 @@ in order for a success status for the PR to be posted.
 ### References:
 
 [Code coverage for pull requests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/codecoverage-for-pullrequests?view=azure-devops)  
+
+> There are two types of CC the Full and the Diff coverage.
+> By default, the server checks for atleast 70% of changed lines being covered by tests. 
+> The diff coverage threshold target can be changed to a value of your choice.
+
+### Configuring coverage settings
+
+To change the default settings of the code coverage experience for pull requests, 
+you must include a configuration YAML file named `azurepipelines-coverage.yml` 
+at the root of your repo.
+Set the desired values in this file and it will be used automatically the next 
+time the pipeline runs.
+
+```
+coverage:
+  status:           # Code coverage status will be posted to pull requests based on targets defined below.
+    comments: on    # Off by default. When on, details about coverage for each file changed will be posted as a pull request comment. 
+    diff:           # Diff coverage is code coverage only for the lines changed in a pull request.
+      target: 60%   # Set this to a desired percentage. Default is 70 percent
+```
+
+> The coverage settings YAML is different from a YAML pipeline. 
+>  This is because the coverage settings apply to your repo and will be used regardless of which pipeline builds your code.
+
+### Protect a branch using a code coverage policy 
+
+Code coverage status check for pull requests is only a suggestion for developers and 
+it does not prevent pull requests with low code coverage from being merged into the 
+target branch. f you maintain a repo where you would like to prevent developers from 
+merging changes that do not meet a coverage threshold, 
+**you must configure a branch policy using the coverage status check**.
+
+[FAQ](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/codecoverage-for-pullrequests?view=azure-devops#faq)
+
+> Which coverage tools and result formats can be used for validating code coverage in pull requests?
+
+Code coverage for pull requests capability is currently only available for 
+**Visual Studio code coverage (.coverage)** formats. 
+This can be used if you publish code coverage using the `Visual Studio Test task`,
+the test verb of `dotnet` core task and the `TRX` option of the publish test results task. 
+Support for other coverage tools and result formats will be added in future milestones.
+
+[How can I fail the pipeline if the code coverage is below 70%, in azure devops?](https://stackoverflow.com/questions/74024503/how-can-i-fail-the-pipeline-if-the-code-coverage-is-below-70-in-azure-devops)  
+
+We are using springboot, Jacoco, and azure devops, we need to break the pipeline 
+if the percentage of code coverage is less than 70%, how can I achieve this 
+with azure pipeline. Kindly suggest.
+
+[Build Quality Checks Extension](https://marketplace.visualstudio.com/items?itemName=mspremier.BuildQualityChecks)  
+> Breaks a build based on quality metrics like number of warnings or code coverage.
+[Build Quality Checks](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md)  
+> The Build Quality Checks task allows you to add quality gates to your build process.
+
+---
 
 [codecoverage-yaml-samples](https://github.com/MicrosoftDocs/codecoverage-yaml-samples)  
 
