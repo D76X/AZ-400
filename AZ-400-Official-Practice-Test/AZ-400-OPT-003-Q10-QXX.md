@@ -4293,7 +4293,7 @@ The number of versions for each package hosted in your feed can grow quickly.
 To free up storage space, you can set up retention policies to automatically delete old packages.
 If you want to retain a package indefinitely, you can promote it to a view. 
 Packages promoted to a view are exempt from retention policies and will not be subject to deletion.
- To configure retention policies for your feed, please follow the steps below:
+To configure retention policies for your feed, please follow the steps below:
 
 
 [Delete and recover packages](https://learn.microsoft.com/en-us/azure/devops/artifacts/how-to/delete-and-recover-packages?view=azure-devops&tabs=nuget)  
@@ -4308,7 +4308,7 @@ a copy will be automatically saved to your feed.
 
 ---
 
-### Question Q63:
+### Question 63:
 
 You have a **release pipeline for a Maven project** in Azure Pipelines.
 You **use Maven to build and publish** the package.
@@ -4357,7 +4357,7 @@ build or release pipelines.
 
 - include the feed repository configuration in the package `pom.xml` file
 
-This configure Maven to publish the package to the feed.
+This configures Maven to publish the package to the feed.
 
 - add a **download secure file task** in the pipeline
 This goes hand in hand with the first step and allows the release pipeline to consume the 
@@ -4374,8 +4374,8 @@ The remaining options do not apply in this case.
 
 - add the credential in the package `pom.xml` file
 - commit the `settings.xml` in the package repository
-Sensitive information should never be committed to a repository it is a security flaw.
-Nor should be copied ot the file `pom.xml` for the package.
+Sensitive information should never be committed to a repository it is a security flaw,
+nor should they be copied to the file `pom.xml` for the package.
 
 - include the feed repository configuration in the pipeline build variables
 Maven uses the `pom.xml` file to **build and publish** a package you do not need to use the 
@@ -4396,7 +4396,7 @@ Azure Pipeline Variables for the build.
 You are the Tech Lead of a developemt team.
 You plan to open-source modules of the .NET application as NuGet packages.
 
-You need to **communicate ot the possible users of this package what is new**
+You need to **communicate to the possible users of this package what is new**
 **for each package release**. You **must diffentiate between releases that contain**
 **breaking changes** and those that contain only security patches.
 
