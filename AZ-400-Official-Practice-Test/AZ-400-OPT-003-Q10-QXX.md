@@ -4244,7 +4244,7 @@ You manage a NuGet feed with a C# library in Azure Artifacts.
 
 Users report that NuGet restore takes too long to run.
 
-You investigate and siscover that there are too many package versions
+You investigate and discover that there are too many package versions
 in Azure Artifacts.
 
 You need to **choose a solution that will remove old package versions**
@@ -4268,11 +4268,11 @@ By adding a **retention policy** to Azure Artifacts you can choose the max numbe
 to retain and for how long a version should be retained from the time it was last downloaded.
 **This improves performance**.
 
-The remainign options do not apply in this case.
+The remaining options do not apply in this case.
 
 - Unlist old packages versions
 **This would only modify how packages are displayed to clients** i.e. to prevent the installation 
-of certain package versions. For example, in order to prevent braking changes to reach consumers.
+of certain package versions. For example, in order to prevent breaking changes to reach consumers.
 This is a manual process.
 
 - delete old package versions
@@ -4280,7 +4280,7 @@ This would work but it is a manual process.
 
 - set up a `nuget.org` as an upstream source
 This is done only to make available one or more upstream sources through a single private feed
-on Azure Artifatcs. This also store a copy of each packages that is downloaded from any upstream
+on Azure Artifatcs. This also stores a copy of each packages that is downloaded from any upstream
 locally to Azure Artifacts therefore eliminating the dependency on the upstream sources.
 
 ---
