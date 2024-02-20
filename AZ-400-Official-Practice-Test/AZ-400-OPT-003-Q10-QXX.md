@@ -4176,9 +4176,11 @@ It can manage tokens to grant access to private developers.
 
 - **Artifactory**:
 it is available as **self-hosted** and/or **as service** **universal repository manager for**:
-- application apckages
+
+- application packages
 - Linux Packages
 - Docker images
+
 It can manage tokens to grant access to private developers.
 
 ---
@@ -4186,7 +4188,7 @@ It can manage tokens to grant access to private developers.
 The remaining options do not apply to this case.
 
 - Maven Central Repository: 
-thisis the central repository for Maven packages and it is not private
+this is the central repository for Maven packages and it is not private
 
 - Packagist:
 This is a Dependency Manager for PHP
