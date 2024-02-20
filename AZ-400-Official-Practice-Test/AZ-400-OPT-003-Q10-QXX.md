@@ -3294,11 +3294,11 @@ The **2880** is the timeout in minutes for the **task**.
 ### Question 52:
 
 Your company uses Azure DevOps Services to build and release software.
-Your team uses **Azure Test Plans** to integrate automated test cases in its test plans
-and run them as part of an Azure DevOps project.
+Your team uses **Azure Test Plans** to integrate automated test cases in 
+its test plans and run them as part of an Azure DevOps project.
 
 UserA receices the error:
-`You do not have sufficient permissio to trigger a release`.
+`You do not have sufficient permissions to trigger a release`.
 
 You needd to troubleshoot this issue.
 
@@ -3327,10 +3327,10 @@ of the release pipeline?
 ### Explanation:
 
 Pipeline permissions are permissions associated with pipelines in a Azure DevOps project. 
-For a user to be able **to run automated tests fro Azure Test Plans**, the user can
+For a user to be able **to run automated tests for Azure Test Plans**, the user can
 either:
 
-1. be assigned to teh security group **Project Contributor**
+1. be assigned to the security group **Project Contributor**
 2. be assigned the **four permissions above**.
 
 The remaining options do not apply.
@@ -3354,17 +3354,17 @@ This permission enables users to queue new builds.
 ### Question 53:
 
 You are implementing **GitHub Actions** to **automate the development workflow** 
-from withing GitHub. Your team si trying to use **Azure Command Line Interface**
+from within GitHub. Your team is trying to use **Azure Command Line Interface**
 **Azure CLI** in a GitHub Action Workflow.
 
 You need to **establish an authentication method** that enables you to use the 
 Azure CLI in a GitHub Action Workflow to be used.
 
-Which **two** authetication methods could you use to 
+Which **two** authentication methods could you use to 
 **authenticate your login action** with Azure?
 
 - Azure login action with OpenID conncet (OIDC)
-- Azure login action with a srvice principal secret
+- Azure login action with a service principal secret
 - Azure login action with SAML 2.0
 - Azure login action with Micorsoft Authentication Library (MSAL)
 
@@ -3391,26 +3391,28 @@ and therefore to keep them safe from accidental leaks.
 An user with permission to create secrets on the GitHub Workflow i.e. can store the 
 **Application ID** and **application secret** in a one-off operation in that this user
 will be the only one to actually know the values of these secrets. The other users such
-as developers may make use of them in their Workflow referrenging to them through the 
+as developers may make use of them in their Workflow referring to them through the 
 labels givent to these secrects and therefore only indirectly. These users have therefore
 no access to the values of this secrets and moreover these are never witten as such to 
-any of teh Workflow logs.
+any of the Workflow logs.
+
+---
 
 - The 2nd option:  Azure login action with OpenID connect (OIDC)
 
-**OpenID Connect (OIDC) with an Azure Service Principla using a Federated Identity Credential**.
+**OpenID Connect (OIDC) with an Azure Service Principal using a Federated Identity Credential**.
  **OIDC** is an **authentication & authorization layer** build on top of **OAuth 2.0**.
 
  In this scenario, you require:
  
-  1. a **Service Principal in Azure AD** withy the **Contributor role** on the Azure subscription.
+  1. a **Service Principal in Azure AD** with the **Contributor role** on the Azure subscription.
   2. **this same Azure AD application** must be configured with **federated credentials** to trust
-      tokens issued by GHitHub Actions to your GitHub Repo.
+      tokens issued by GitHub Actions to your GitHub Repo.
   3. a GitHub Action Workflow that requests GitHub to issue tokens to it and use them in its
      Login Action.  
 
 In the GitHub Action of the Workflow the action with the **Azure Command Line Interface (Azure CLI)**
-will then request an authetication token from GitHub and present this token together with the identity
+will request an authetication token from GitHub and present this token together with the identity
 of the Azure AD application of  **STEP-1** above to autheticate on Azure AD as this **Service Pricipal**.
 **Azure AD** will trust the token issued by GitHub because of the **federation** to GitHub that was 
 set up in **STEP-2**. At this point the login can succeed and the action will run under an identity that
@@ -3425,16 +3427,16 @@ This authentication method is **not supported** by Azure.
 
 - Azure login action with Micorsoft Authentication Library (MSAL)
  
- **MSAL** is **not a supported** as authentication method on Azure AD.
+ **MSAL** is **not supported** as authentication method on Azure AD.
  It is not possible to use **MASL** in a GitHub Action with the **Azure Command Line Interface (Azure CLI)**
  in order to log in to an Azure AD tenant and thereofre gain access as a valid identity on a subscription
  under that tenant.
 
-**MSAL** makes it posiible for code to interact with the **Micorsoft Identity Platform** and allows developers
+**MSAL** makes it possible for code to interact with the **Micorsoft Identity Platform** and allows developers
 to write simple code to: 
 
 1. **authenticate users** 
-2. **access secured Micorsoft Web APIs** such as **Micorsoft APIS** i.e. **Microsoft Graph** 
+2. **access secured Micorsoft Web APIs** such as **Microsoft APIs** i.e. **Microsoft Graph** 
 2. **access secured 3rd-party APIs** 
 
 ---
@@ -3463,7 +3465,7 @@ What should you integrate with your DevOps pipelines?
 - Azure Monitor Container Instances
 - Azure Log Analytics
 - Azure Data Explorer
-- Azure Monitor Application Insignts
+- Azure Monitor Application Insights
 
 ---
 
@@ -3474,9 +3476,13 @@ What should you integrate with your DevOps pipelines?
 You can integrate **Azure Data Explorer** with Azure DevOps Pipelines!
 
 [Azure Data Explorer - Pipeline Tools](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX)  
+[Azure DevOps Task for Azure Data Explorer](https://learn.microsoft.com/en-us/azure/data-explorer/devops)  
 
 Azure Pipelines task facilitates an integration between Azure DevOps Pipeline 
 (Build / Release) and Azure Data Explorer (ADX) databases. 
+This task enables you to create release pipelines and deploy your database changes 
+to your Azure Data Explorer databases.
+
 
 This extension includes 3 basic tasks:
 
@@ -3492,18 +3498,19 @@ The content and functionality of the tasks can be taken from either:
 - inline the task. 
 
 The tasks **authenticates with AAD App details (ID / Key)** 
-either from variabes or an Azure DevOps Service endpoint.
+either from variables or an Azure DevOps Service endpoint.
 
 ---
 
 The remaining options do not apply in this case.
 
-- Azure Monitor Application Insignts
+- Azure Monitor Application Insights
 
 This step would be required if you wanted:
 **to implement a mechanism that allows the continuous monitoring** 
 **of your Azure DevOps release pipelines** throughout the complete
 development lifecycle. 
+
 The intergation of **Azure DevOps Release Pipelines** with 
 **Azure Monitor Application Insights** allows you to create:
 
@@ -3595,7 +3602,7 @@ such as:
 - Jenkins
 
 The remaining options do not apply in this case.
-The details are inthe references.
+The details are in the references.
 However, in summary:
 
 - PSScriptAnalyzer:
@@ -3609,6 +3616,7 @@ Pester is a testing and mocking framework for **PowerShell**.
 - WebLOAD
 **WebLoad is a full-featured enterprise-level load testing tool by RadView**. 
 It is a licensed product therefore not free like JMeter!
+
 ---
 
 ### References:
@@ -3638,7 +3646,7 @@ Pester is most commonly **used for writing unit and integration tests**, but
 
 You can publish test results from common unit test frameworks to Azure DevOps so that they’re associated with a build.
 
-[Azure DevIOps - Pester](https://pester.dev/docs/usage/test-results/#azure-devops)  
+[Azure DevOps - Pester](https://pester.dev/docs/usage/test-results/#azure-devops)  
 [Increase the success rate of Azure DevOps pipelines using Pester](https://www.logitblog.com/increase-the-success-rate-of-azure-devops-pipelines-using-pester/)  
 
 ---
@@ -3709,7 +3717,7 @@ namespace MyCompany.SomeNamespace
 }
 ```
 
-You need to make usre that the tests run in a specific order.
+You need to make sure that the tests run in a specific order.
 For each statement select Yes or No.
 
 | Yes | No  | Statement |
@@ -3756,19 +3764,20 @@ However, those that do not specify an order are run randomly.
 
 ### Question 57:
 
-Your company uses Azure DevOps. You are **automating the UI testing process**
-for  your company. You have chosen **Selenium** to do so.
+Your company uses Azure DevOps. 
+You are **automating the UI testing process** for  your company. 
+You have chosen **Selenium** to do so.
 
-You have decided to **deply a Microsoft Hostet Agent in Azure to run the**
+You have decided to **deploy a Microsoft-Hosted Agent in Azure to run the**
 **tests on Selenium** for a Web App.
 
-You need to implement a soulition using **Headless** mode.
+You need to implement a solution using **headless** mode.
 
 What should you do?
 
 - Configure Windows Agents to run as interactive process with auto-logon enabled
 - Configure Windows Agents to run as interactive process with auto-logon disabled
-- Enable Selenium to use popular browser and matching web-driver version to run the tests
+- Enable Selenium to use a popular browser and matching web-driver version to run the tests
 - Create a Batch File with `%windir%\System32\tscon.exe 1 /dest:console` on  the remote computer
   to disconnect from the Remote Desktop
 
@@ -3776,40 +3785,42 @@ What should you do?
 ---
 
 ### Answer:
-- Enable Selenium to use popular browser and matching web-driver version to run the tests
+- Enable Selenium to use a popular browser and matching web-driver version to run the tests
 
 ---
 
 ### Explanation:
 
-In this scenario you have decided to **deply a Microsoft Hostet Agent in Azure to run the**
+In this scenario you have decided to **deploy a Microsoft-Hosted Agent in Azure to run the**
 **tests on Selenium** for a Web App on Azure DevOps pipelines.
 
 There are **two ways you can deploy your Web App with Selenium** on an Agent in a Azure DevOps pipeline.
 
-1. Microsoft Hostet Agent 
-2. Self-Hosted (Windows) Hostet Agent 
+1. Microsoft-Hosted Agent 
+2. Self-Hosted (Windows) Agent 
 
-1. Microsoft Hostet Agent: 
-In this case you can enable Selenium to use popular browser and matching web-driver version to run the tests.
-This is **referred as running headless mode** as teh browsers will run without their UI.
+1. Microsoft-Hosted Agent: 
+
+In this case you can enable Selenium to use popular browsers and matching web-driver versions
+to run the tests. This is **referred as running headless mode** as the browsers will run 
+without their UI. 
 This is ideal when you want to run UI **unattenmded UI tests** in CI/CD pipelines.
-This way of testing UI is much faster when compared with the interactive alternative where the UI of 
-the browser is used.
+This way of testing UI is much faster when compared with the interactive alternative where 
+the UI of the browser is used.
 
 **Important**:
 
 The following browsers **can run in headless mode**:
-- **Microsoft Internet Explorer**
-- **Chrome**
-- **Firefox**
+- Microsoft Internet Explorer
+- Chrome
+- Firefox
 
 The following browsers **cannot run in headless mode**:
 - Micorsoft Edge
 
 ---
 
-The other optios do nto apply in this case:
+The other options do not apply in this case:
 
 - Configure Windows Agents to run as interactive process with auto-logon disabled
 This does not enable Selenium to run in headless mode, which is a requirement in this scenario.
@@ -3817,7 +3828,7 @@ This does not enable Selenium to run in headless mode, which is a requirement in
 - Configure Windows Agents to run as interactive process with auto-logon enabled
 **The interactive process with auto-log on** is used when UI tests are run for:
 - Desktop Apps
-- test that do not use a headless browser
+- test that do not use a headless browser i.e. Micorsoft Edge
 
 - Create a Batch File with `%windir%\System32\tscon.exe 1 /dest:console` on  the remote computer
   to disconnect from the Remote Desktop
@@ -3850,12 +3861,12 @@ Your company uses Azure DevOps.
 You are running automated tests in the CI/CD pipeline.
 You have decided to **use Visual Studio test task** to run tests.
 
-**This enables you to automatically capture teh video of teh tests!**
+**This enables you to automatically capture the video of the tests!**
 **This video is then available as an attachment to the test results**.
 
-You need to isolate a problematic test that casuses the host to crash.
+You need to isolate a problematic test that causes the host to crash.
 
-How should you complete the XML code in teh given `*.runnsettings` file?
+How should you complete the XML code in the given `*.runnsettings` file?
 
 Select the appropriate options.
 
@@ -14909,7 +14920,7 @@ nuget push <PACKAGE_PATH> -src <SOURCE_NAME> -ApiKey <ANY_STRING>
 
 ---
 
-## [Configure Monitopring for a DevOps Environment](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/4b522def-55ee-4459-b8e6-fd183dd785a4)  
+## [Configure Monitoring for a DevOps Environment](https://app.pluralsight.com/ilx/video-courses/675a1cc4-be1f-4660-8afd-4c2d6f3d81d7/7bd90908-7488-4cae-aae4-f0a8ba0a7bff/4b522def-55ee-4459-b8e6-fd183dd785a4)  
 
 - Logging in Azure
 - Azure Monitor Logs

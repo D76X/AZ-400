@@ -3303,7 +3303,8 @@ with the previous minor version.
 
 # Q002: 
 
-You have a project in Azure DevOps named Project1 that contains a continuous integration pipeline named Pipeline1.
+You have a project in Azure DevOps named Project1 that contains a continuous 
+integration pipeline named Pipeline1.
 You plan to **use Windows-based self-hosted agents for UI tests in Pipeline1**.
 You need to identify the option you must configure to apply to the agents.
 Which option should you identify?
@@ -3319,7 +3320,7 @@ Which option should you identify?
 
 When **self-hosted agents are used, autologon must be enabled** to allow UI tests to run. 
 
-**A screen resolution task** allows additional configurations to be performed**, 
+**A screen resolution task** allows additional configurations to be performed, 
 but an autologon configuration is needed first to allow the test to run. 
 
 To **reduce the duration of the test activities**, running tests in parallel can be useful, 
