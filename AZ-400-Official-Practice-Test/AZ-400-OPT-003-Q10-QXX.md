@@ -3983,7 +3983,6 @@ in any given situation.
 
 Which version should a developer increase for each of the following?
 
-
 | Major | Minor | Patch | Statement |
 | ----- | ----- | ------| ------------------------------------------- |
 | Major | Minor | Patch |  To introduce a new backward compatible feature |
@@ -4046,21 +4045,23 @@ Which **two** solutions would meet the requirements?
 - GitVersion
 - Semantic release
 
-The **Semantic release** use the **AngularJS** commit message convenction as its default
+The **Semantic release** use the **AngularJS** commit message convention as its default
 but this can be changed through configuration. 
 
-**Both tools can be set up so that they understandthe teams's message convention.**
-Thy both intergate with Azure DevOps.
+**Both tools can be set up so that they understand the teams's message convention**.
+Thy both integrate with Azure DevOps.
 
 The remaining options do not apply in this case.
 
 - Git version number bumper
 - Release It
-These do not satisfy teh requirement because are both **command line tools** that 
+
+These do not satisfy the requirement because are both **command line tools** that 
 operate **interactively and not automatically** within a Azure DevOps Release pipeline.
 
 - GitKraken
-**This is a graphical Git client** with lost of features to make it easier for developer to 
+
+**This is a graphical Git client** with lots of features to make it easier for developer to 
 interact with Git. It is not a tool that is meant to be integrated with Azure DevOps release
 pipelines.
 
