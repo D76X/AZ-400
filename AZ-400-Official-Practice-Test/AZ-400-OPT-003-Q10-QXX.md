@@ -3871,6 +3871,7 @@ How should you complete the XML code in the given `*.runnsettings` file?
 Select the appropriate options.
 
 https://github.com/microsoft/vstest/issues/2375
+
 ```
 <RunSettings>
   <RunConfiguration>
@@ -3912,7 +3913,7 @@ https://github.com/microsoft/vstest/issues/2375
 
 ```
 
-In `.runnsettings` the element **DataCollector** speciies the **settings of the diagnostic data adapterr**.
+In `.runnsettings` the element **DataCollector** specifies the **settings of the diagnostic data adapter**.
 Since you want to **isolate a problematic test that causes the host to crash** you need to use
 the `blame` **data collector feature**.
 
@@ -3920,21 +3921,21 @@ the `blame` **data collector feature**.
 <DataCollector friendlyName="blame" enabled="True">
 ```
 
-Running **this collector creates a output file: Sequence.xml in TestResults** and in this file
-the oorder of execution of teh  test is captured up to the crash.
+Running **this collector creates a output file: `Sequence.xml` in TestResults** and 
+in this file the order of execution of the test is captured up to the crash.
 
-**There are three differnt ways to execute the blame data collector:**
+**There are three different ways to execute the blame data collector:**
 
-1. Simply enable the Sequence.xml file but do not collect the dump
+1. Simply enable the `Sequence.xml` file but do not collect the dump
 2. enable the Crash Dump when the Host crashes
-3. enable the Hang Dump when the Host hangs and does not finish running teh test before its timeout
+3. enable the Hang Dump when the Host hangs and does not finish running the test before its timeout
 
 Moreover
 
-`<CollectDump DumpType="full" />`: with full | mini
+`<CollectDump DumpType="full" />`: with `full | mini`
 **enables the Crash Dump** with either the Full or the Mini Dump type.
-**Full** ensures that the files contain the containts of teh **Vitual Memory** for a proccess.
-**Mini** do not do the same but are far smaller files.
+**Full** ensures that the files contain the contents of the **Vitual Memory** for a proccess.
+**Mini** has the same effect but the files ar much smaller.
 The recommendation is to use **full**.
 
 `<CollectDumpOnTestSessionHang TestTimeout="120000" HangDumpType="full"/>`
@@ -3943,9 +3944,9 @@ The value `TestTimeout="120000"` is millisencods but it could also be something 
 Then the meaning of the attribute `DumpType="full | mini"` is a s described above.
 
 **You should not use Mini in this case for the follwoing reason:**
-You might not be able ot extract the necessary information and therefore debug teh problem.
+You might not be able ot extract the necessary information and therefore debug the problem.
 
-**Do not use the value none** as this does not capture anything and simply **kills the processes on  the host**!
+**Do not use the value none** as this does not capture anything and simply **kills the processes on the host**!
 This would prevent any debugging at all.
 
 ---
