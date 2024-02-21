@@ -6035,20 +6035,20 @@ You need to reduce the queue waiting time during working hours.
 What should you do?
 
 - add an extra self-hosted agent pool
-- increase the number fo parallel jobs for Miscrosoft-Hosted agents
-- decrease the number of parallel jobs  for Miscrosoft-Hosted agents
+- increase the number oF parallel jobs for Miscrosoft-Hosted agents
+- decrease the number of parallel jobs for Miscrosoft-Hosted agents
 - scale up the current self-hosted agent pool
 
 ---
 
 ### Answer:
-- increase the number fo parallel jobs for Miscrosoft-Hosted agents
+- increase the number oF parallel jobs for Miscrosoft-Hosted agents
 
 This will increase the throughput of the pipelines, consequently reducing the queueing time.
 
 The other options do not apply in this case.
 
-- decrease the number of parallel jobs  for Miscrosoft-Hosted agents
+- decrease the number of parallel jobs for Miscrosoft-Hosted agents
 obvious
 
 - add an extra self-hosted agent pool
