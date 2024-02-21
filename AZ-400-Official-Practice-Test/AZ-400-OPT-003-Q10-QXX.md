@@ -7194,13 +7194,13 @@ Specifies the DSC configuration mode. Valid values are:
 - ApplyAndAutocorrect
 - ApplyOnly
 
-You should set this parameter to **ApplySAndAutocorrect** in order to eliminate the configuration drift.
+You should set this parameter to **ApplyAndAutocorrect** in order to eliminate the configuration drift.
 The **ApplyOnly** updates the server configuration only the first time and neither detects not correct
-any configuration drift afetrwards. \
+any configuration drift afetrwards. 
 
 **ApplyAndMonitor**:
 
-ApplyAndMonitor: This is the default value. The LCM applies any new configurations. 
+This is the default value. The LCM applies any new configurations. 
 After initial application of a new configuration, if the target node drifts from the
 desired state, **DSC reports the discrepancy in logs**. 
 Note that DSC will attempt to apply the configuration until it is successful before
@@ -7214,11 +7214,13 @@ The following options do not apply.
 Specifies whether to restart the virtual machine, if needed.
 
 - ConfigurationModeFrequencyMins
-Specifies the frequency, in minutes, at which the background application of DSC attempts to implement the current configuration on the target node.
+Specifies the frequency, in minutes, at which the background application of DSC
+attempts to implement the current configuration on the target node.
 
 - RefreshFrequencyMins
 Specifies the frequency, in minutes, at which the local Configuration Manager 
-contacts the Azure Automation DSC pull server to download the latest node configuration.
+contacts the Azure Automation DSC pull server to download the latest node 
+configuration.
 
 ---
 
