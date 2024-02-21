@@ -6798,7 +6798,9 @@ Desired State Configuration for Linux requires the Open Management Infrastructur
 
 [Get started with Azure Automation State Configuration](https://learn.microsoft.com/en-us/azure/automation/automation-dsc-getting-started?view=dsc-1.1)  
 
-Azure Automation State Configuration is an Azure configuration management service that allows you to write, manage, and compile PowerShell Desired State Configuration (DSC) configurations for nodes in any cloud or on-premises datacenter. The service also imports DSC Resources, and assigns configurations to target nodes, all in the cloud. You can access Azure Automation State Configuration in the Azure portal by selecting State configuration (DSC) under Configuration Management.
+Azure Automation State Configuration is an Azure configuration management service that allows you to write, manage, and compile PowerShell Desired State Configuration (DSC) configurations for nodes in any cloud or on-premises datacenter. 
+The service also imports DSC Resources, and assigns configurations to target nodes, all in the cloud. 
+You can access Azure Automation State Configuration in the Azure portal by selecting State configuration (DSC) under Configuration Management.
 
 You can use Azure Automation State Configuration to manage a variety of machines:
 
@@ -6811,9 +6813,13 @@ If you aren't ready to manage machine configuration from the cloud, you can use 
 
 ####  Why use Azure Automation State Configuration 
 
-The Azure Automation State Configuration service is to DSC what Azure Automation runbooks are to PowerShell scripting.  In other words, in the same way that Azure Automation helps you manage PowerShell scripts, it also helps you manage DSC configurations.
+The Azure Automation State Configuration service is to DSC what Azure Automation runbooks are to PowerShell scripting.
+In other words, in the same way that Azure Automation helps you manage PowerShell scripts, it also helps you manage DSC configurations.
 
-Azure Automation State Configuration provides several advantages over the use of DSC outside of Azure. This service enables scalability across thousands of machines quickly and easily from a central, secure location. You can easily enable machines, assign them declarative configurations, and view reports showing each machine's compliance with the desired state you specify.
+Azure Automation State Configuration provides several advantages over the use of DSC outside of Azure. 
+This service enables scalability across thousands of machines quickly and easily from a central, secure location.
+You can easily enable machines, assign them declarative configurations, and view reports showing each 
+machine's compliance with the desired state you specify.
 
 ---
 
