@@ -8074,7 +8074,7 @@ uses Azure Pipelines to deploy Azure Resources using a Azure Resource Manager (A
 template with a secure parameter value.
 
 - ProjectB:
-uses GitHub Actions to publis a Node.js package to a nepm registru unisn a secret npm token.
+uses GitHub Actions to publis a Node.js package to a npm registry using a secret npm token.
 
 - ProjectC:
 uses Azure Pipelines to notify a 3rd-party monitoring system about successful deployments
@@ -8119,6 +8119,7 @@ The following do not apply to this case.
 in Azure Pipelines these are  regual variables accessible by name in the pipelines.
 
 - Runtime parameters
+
 ---
 
 ### References:
