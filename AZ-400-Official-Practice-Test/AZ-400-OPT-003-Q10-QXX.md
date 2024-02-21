@@ -5272,7 +5272,7 @@ perform teh manual approval.
 
 [Lab: Release Pipeline Gate - Query Wok Items](https://www.udemy.com/course/azure100/learn/lecture/33385716#overview)
 [Lab: Release Pipeline Gate - Azure Monitor Alerts](https://www.udemy.com/course/azure100/learn/lecture/33385742#overview)
-
+[Lab: Release Pipeline Gate - Azure Policy Compliance](https://www.udemy.com/course/azure100/learn/lecture/33385774#overview)
 
 ---
 
@@ -5373,8 +5373,8 @@ This would not guarantee that the maibnual interaction occurs.
 ### Question 71:
 
 You work as a project manager and you want to use a Microsoft-hosted angent in your
-dvelopment team's CI/CD pipelien. There are both advantages and disadvantages to using 
-a Microsoft-hosted angent instead of a Self-Hosted agent.
+dvelopment team's CI/CD pipelien. There are both advantages and disadvantages to 
+using a Microsoft-hosted angent instead of a Self-Hosted agent.
 
 Which **two** features would you sacrifise if you chose a Micorsoft-Hosted agent
 over a Self-Hosted agent?
@@ -5401,15 +5401,16 @@ then need to do any of this it is going to be slower than using a **Self-Hosted 
 The other opptions do not apply in this case.
 
 - the ability to do maintenance and upgrades
-Upgrades and maintenance of **VMs for Microsoft-hosted angent** is managed automatiacll for you by Micosoft.
+Upgrades and maintenance of **VMs for Microsoft-hosted angent** is managed automatically 
+for you by Micosoft.
 However, they still happen therefore you do not give up these!
 
 - the ability to run the agent in a VM
-This is obviosly not the case as a **Microsoft-hosted angent**  runs indeed in a VM on 
+This is obviosly not the case as a **Microsoft-hosted angent** runs indeed in a VM on 
 Azure infrastructure.
 
 - the ability to run more that one agent simultaneoulsy
-*Microsoft-hosted angent** can indeed run in parallel if required.
+Microsoft-hosted angent can indeed run in parallel if required.
 
 ---
 
@@ -5426,7 +5427,7 @@ Azure infrastructure.
 ### Question 72:
 
 A company creates a Azure DevOops pipeline.
-The company has a large amount of test scripts that perform a sereis of 
+The company has a large amount of test scripts that perform a series of 
 regression tests which takes a lot of time.
 
 You need to reduce the amount of time that is required to complete a test run.
@@ -5444,20 +5445,64 @@ What should you do?
 ### Explanation:
 - configure multiple agents and run the test in parallel
 
-This will reduce the amount of time required to run teh tests.
+This will reduce the amount of time required to run the tests.
 **You must also change the build pipeline in order to slice the tests suite into**
-**parts that are goinf to be run each on its agent**.
+**parts that are going to be run each on its agent**.
 
 ### References:
+
 [Run tests in parallel for any test runner](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-any-test-runner?view=azure-devops)
 
-Running tests to validate changes to code is key to maintaining quality. For continuous integration practice to be successful, it is essential you have a good test suite that is run with every build. However, as the codebase grows, the regression test suite tends to grow as well and running a full regression test can take a long time. Sometimes, tests themselves may be long running - this is typically the case if you write end-to-end tests. 
+Running tests to validate changes to code is key to maintaining quality. 
+For continuous integration practice to be successful, it is essential you have a 
+good test suite that is run with every build. However, as the codebase grows, the
+regression test suite tends to grow as well and running a full regression test can 
+take a long time. 
+
+Sometimes, tests themselves may be long running - this is typically the case if 
+you write end-to-end tests. 
 
 **This reduces the speed with which customer value can be delivered as pipelines cannot process builds quickly enough**.
 **Running tests in parallel is a great way to improve the efficiency of CI/CD pipelines**. 
 
 This can be done easily by employing the additional capacity offered by the cloud. 
-This article discusses how you can parallelize tests by using multiple agents to process jobs.
+This article discusses how you can parallelize tests by using multiple agents to 
+process jobs.
+
+---
+
+[Slicing the test suite](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-any-test-runner?view=azure-devops#slicing-the-test-suite)
+
+```
+jobs:
+- job: ParallelTesting
+  strategy:
+    parallel: 2
+```
+
+The step that runs the tests in a job needs to know which test slice should be run. 
+The variables below can be used for this purpose: 
+
+`System.JobPositionInPhase`:
+identifies a particular slice (you can think of this as "sliceNum")
+
+`System.TotalJobsInPhase`:
+ indicates the total number of slices (you can think of this as "totalSlices")
+
+If you represent all test files as a single dimensional array, each job can run a 
+test file indexed at : **[sliceNum + totalSlices]**
+
+---
+
+[Combine parallelism for massively parallel testing](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/parallel-testing-any-test-runner?view=azure-devops#combine-parallelism-for-massively-parallel-testing)  
+
+When parallel jobs are used in a pipeline, the pipeline employs multiple machines
+to run each job in parallel. Most test runners provide the capability to run tests 
+in parallel on a single machine (typically by creating multiple processes or threads
+that are run in parallel). 
+
+**The two types of parallelism can be combined for massively parallel testing**, 
+which makes testing in pipelines extremely efficient.
 
 ---
 
