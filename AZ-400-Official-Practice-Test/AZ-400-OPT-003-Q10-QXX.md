@@ -6931,8 +6931,6 @@ set this property to Present. To ensure that the role or feature is removed, set
 property to Absent. 
 The default value is Present.
 
-
-
 ---
 
 ### References:
@@ -6959,11 +6957,11 @@ This resource is a composite resource that calls the WindowsOptionalFeature reso
 
 ### Question 91:
 
-You manage an Azure VM that runs as a worker for the job workload a web application.
-The application shares the same code for the worker and the web workroles.
+You manage an Azure VM that runs as a worker for the job workload of a web application.
+The application shares the same code for the worker and the web roles.
 
 Developers report that they can accesss the web application through the worker VM.
-You discover that a web server was incorectly installer on the worker, 
+You discover that a web server was incorectly installed on the worker, 
 causing configuration drift.
 
 You need to **ensure that the worker server does not respond to web requets and**
@@ -6974,7 +6972,7 @@ What should you do?
 - enable the Change tracking and Inventory feature in Azure Automation
 - block internet access to the VM with a security group
 - schedule a runbook to remove the web server
-- create a Deisered State Configuration (DSC) in Azure Automation to 
+- create a Desired State Configuration (DSC) in Azure Automation to 
   ensure that the web server (role) is not installed on the VM (of the worker role)
 
 ---
@@ -6987,14 +6985,20 @@ What should you do?
 
 The remaining options do not apply to this case.
 
-- enable the Change tracking and Inventory feature in Azure Automation
+- enable the Change tracking and Inventory feature in Azure Automation:
+
 **Change tracking and Inventory feature in Azure Automation** creates **alerts**
-when a specified service is installed on a node. Hoever, it does not prevent
+when a specified service is installed on a node. However, it does not prevent
 the web server from running on the worker role VM and any other configuration
 drift.
 
 [Change Tracking and Inventory overview](https://learn.microsoft.com/en-us/azure/automation/change-tracking/overview?tabs=python-2)  
-This feature tracks changes in virtual machines hosted in Azure, on-premises, and other cloud environments to help you pinpoint operational and environmental issues with software managed by the Distribution Package Manager. Items that are tracked by Change Tracking and Inventory include:
+
+This feature tracks changes in virtual machines hosted in Azure, on-premises, 
+and other cloud environments to help you pinpoint operational and environmental
+issues with software managed by the Distribution Package Manager. 
+
+Items that are tracked by Change Tracking and Inventory include:
 
 - Windows software
 - Linux software (packages)
@@ -7003,23 +7007,26 @@ This feature tracks changes in virtual machines hosted in Azure, on-premises, an
 - Windows services
 - Linux daemons
 
-- schedule a runbook to remove the web server
-To schedule a runbook in Azure Automation to start at a specified time, you link it to one or more schedules. 
-This solution is not suitable in this case beacause there might be times when the web server is running
-on the worker role machine bwteen two consecutive runs of the runbook. The solution based on DSC is 
-superior and more suitable.
+- schedule a runbook to remove the web server:
+To schedule a runbook in Azure Automation to start at a specified time, 
+you link it to one or more schedules. 
+This solution is not suitable in this case beacause there might be times
+when the web server is running on the worker role machine between two 
+consecutive runs of the runbook. The solution based on DSC is superior 
+and more suitable.
 
-- block internet access to the VM with a security group
-This wouod prevent teh worker role VM from respo0nding to web requets but does not remove the 
-cause of this misconfiguration.
+- block internet access to the VM with a security group:
+This wouod prevent the worker role VM from responding to web requets but 
+does not remove the cause of this misconfiguration.
 
 ---
 
 ### References:
 
-[Azuire Automation - Configure machines to a desired state](https://learn.microsoft.com/en-us/azure/automation/tutorial-configure-servers-desired-state)  
+[Azure Automation - Configure machines to a desired state](https://learn.microsoft.com/en-us/azure/automation/tutorial-configure-servers-desired-state)  
 
-Azure Automation State Configuration allows you to specify configurations for your servers and ensure that those servers are in the specified state over time.
+Azure Automation State Configuration allows you to specify configurations 
+for your servers and ensure that those servers are in the specified state over time.
 
 - Onboard a VM to be managed by Azure Automation DSC
 - Upload a configuration to Azure Automation
@@ -7027,13 +7034,19 @@ Azure Automation State Configuration allows you to specify configurations for yo
 - Assign a node configuration to a managed node
 - Check the compliance status of a managed node
 
-For this tutorial, we use a simple DSC configuration that ensures that IIS is installed on the VM.
+For this tutorial, we use a simple DSC configuration that ensures that IIS is 
+installed on the VM.
 
 ---
 
 [Discover what software is installed on your VMs](https://learn.microsoft.com/en-us/azure/automation/automation-tutorial-installed-software)  
 
-Learn how to use the Azure Automation Change Tracking and Inventory feature to find out what software is installed in your environment. You can collect and view inventory for software, files, Linux daemons, Windows services, and Windows Registry keys on your computers. Tracking the configurations of your machines can help you pinpoint operational issues across your environment and better understand the state of your machines.
+Learn how to use the Azure Automation Change Tracking and Inventory feature
+to find out what software is installed in your environment. 
+You can collect and view inventory for software, files, Linux daemons, Windows services,
+and Windows Registry keys on your computers. Tracking the configurations of your machines
+can help you pinpoint operational issues across your environment and better understand 
+the state of your machines.
 
 - Enable Change Tracking and Inventory
 - Enable an Azure VM
