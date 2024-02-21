@@ -8675,9 +8675,8 @@ The remaining options do not apply in this case:
 
 [Probely](https://probely.com/?utm_source=google&utm_medium=cpc&utm_campaign=RP+-+Brand+-+Exact&utm_term=probely&hsa_ad=654489877632&hsa_net=adwords&hsa_grp=147353173825&hsa_tgt=kwd-804841504705&hsa_acc=6027994897&hsa_kw=probely&hsa_cam=19958547983&hsa_mt=p&hsa_src=g&hsa_ver=3&gad_source=1&gclid=Cj0KCQiAsvWrBhC0ARIsAO4E6f-6lMXtRMUs0hTXNabf5tbwFGq2yP205D2nZuPjyV6EwFZyRCHZAh4aAlULEALw_wcB)  
 
-
-is similar to OWASP ZAP but is not open-source and it is not integrated with Azure DevOps Pipelines as easily
-as OWASP ZAP.
+is similar to OWASP ZAP but is not open-source and it is not 
+integrated with Azure DevOps Pipelines as easily as OWASP ZAP.
 
 ---
 
@@ -8686,7 +8685,8 @@ as OWASP ZAP.
 A company uses several open source libraries in their Azure Pipeline.
 These libraries have their own terms and conditions.
 
-You need to make sure the company is using software with approved terms and conditions.
+You need to make sure the company is using software with approved 
+terms and conditions.
 To meet this requirement, you decide to use Mend Bolt.
 
 Which **two actions** should you perform to achieve this goal?
@@ -8741,7 +8741,7 @@ configure the team dashboard permissions as shown in exhibit B.
 
 You need to indicate tha access and permissions the teams have to dashboard1.
 
-For eache of teh following statements select yes or no.
+For each of the following statements select yes or no.
 
 | Yes | No  | Statement |
 | --- | --- | ------------------------------------------------- |
