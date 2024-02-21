@@ -7736,7 +7736,7 @@ and agents, the previous test running times, or the location of tests in assembl
 
 ### Question 100:
 
-Your company uses Azure DevOps Services to build AND release software.
+Your company uses Azure DevOps Services to build and release software.
 Your project downloads the same set of dependencies at the start of every run.
 
 Your team needs to reduce the build time and cost associated with creating or
@@ -7777,10 +7777,12 @@ testing, or deploying your application.
 
 [Run cross-platform scripts](https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml)  
 With Azure Pipelines, you can run your builds on macOS, Linux, and Windows machines. 
-If you develop on cross-platform technologies such as .NET Core, Node.js and Python, these capabilities bring both benefits and challenges.
+If you develop on cross-platform technologies such as .NET Core, Node.js and Python, these capabilities 
+bring both benefits and challenges.
 For example, most pipelines include one or more scripts that you want to run during the build process. 
 But scripts often don't run the same way on different platforms. 
-You can use the script keyword shortcut to make writing scripts easier and also can use conditions to target specific platforms with your scripts.
+You can use the script keyword shortcut to make writing scripts easier and also can use conditions
+to target specific platforms with your scripts.
 
 [Consider Bash or pwsh](https://learn.microsoft.com/en-us/azure/devops/pipelines/scripts/cross-platform-scripting?view=azure-devops&tabs=yaml)  
 
