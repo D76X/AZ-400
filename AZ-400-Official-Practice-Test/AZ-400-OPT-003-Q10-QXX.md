@@ -7457,9 +7457,9 @@ This reports focusses on the failires of the tasks in CI pipeline which might in
 In this case the development team is interested in the unit tests.
 
 - the **analytics metric**
-The Azure Pipelines build analytics tab has trhree summary metrics:
+The Azure Pipelines build analytics tab has three summary metrics:
 
-- pipeline failurea
+- pipeline failures
 - test failures
 - pipeline duration
 
@@ -7481,9 +7481,11 @@ It helps improve the efficiency of your pipeline by identifying repetitive, high
 
 [Manage flaky tests](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/flaky-test-management?view=azure-devops&source=recommendations)  
 
-Flaky tests present a barrier to finding real problems, since the failures often don't relate to the changes being tested. 
-A flaky test is a test that provides different outcomes, such as pass or fail, even when there are no changes in the source
-code or execution environment. Flaky tests also impact the quality of shipped code
+Flaky tests present a barrier to finding real problems, since the failures often don't 
+relate to the changes being tested. 
+A flaky test is a test that provides different outcomes, such as pass or fail, 
+even when there are no changes in the source code or execution environment. 
+Flaky tests also impact the quality of shipped code
 
 
 ---
@@ -7534,7 +7536,7 @@ Project1: Self-Hosted Agent
 Microsoft offers a free self-hosted tier: [Azure DevOps Services](https://azure.microsoft.com/en-us/pricing/details/devops/azure-devops-services/)
 With the **free self-hosted tier** you get an **unlimited bild time per month**.
 However, you will have to pay for the infrastructure that your self-hosted agent runs on.
-In this specific case there is a sponsor that pays for these costs.
+**In this specific case there is a sponsor that pays for these costs**.
 Moreover, you are required to **minimize the in-queue build time** and a way to achieve this goal is 
 obviously to parallelize the builds over as many agents as possible, thus you will have to provision 
 as many hosted server as required  in order to keep the **in-queue build time** for **Project1** within
@@ -7545,8 +7547,8 @@ agents to keep the performance within acceptable limits.
 
 Project2: Microsoft-Hosted Agent
 
-For **public & open-source projects** Micorsoft offers a **free tear ofr Azure Pipelines of 10 parallel builds**
-**on Microsoft-Hosted Agents and unlimited build time per month!** This is plenty co cover the requiremnts for 
+For **public & open-source projects** Micorsoft offers a **free tear for Azure Pipelines of 10 parallel builds**
+**on Microsoft-Hosted Agents and unlimited build time per month!** This is plenty to cover the requiremnts for 
 Project2. This choice **minimize not only the costs but also the administrative effort** which is a requirement.
 
 
