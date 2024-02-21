@@ -6099,11 +6099,13 @@ Which **two** solutions should you recomment?
 - Traffic Manager
 - Deployment Slots 
 
-With **Azure App Services Deployment Slots** you can define a **route traffic percentage for the deployment slot**!
-You can gradually move the traffic from one deplyment slot to another for each deployment stage.
+With **Azure App Services Deployment Slots** you can define a 
+**route traffic percentage for the deployment slot**!
+You can gradually move the traffic from one deployment slot to 
+another for each deployment stage.
 
-With **Traffic Manager** you can set **weighted traffing routing** to gradually route traffic from older apps version
-to new ones **on each deployment stage**.
+With **Traffic Manager** you can set **weighted traffing routing** to gradually 
+route traffic from older apps version to new ones **on each deployment stage**.
 
 ---
 
