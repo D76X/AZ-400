@@ -4774,7 +4774,7 @@ triggering pipeline using build completion triggers.
 
 ---
 
-### Question 67: ?
+### Question 67: 
 
 Your company has a **release process in Azure Pipelines** that contains a
 **manual approval step** that **must occur two hours before deployment**.
@@ -5206,9 +5206,58 @@ this built into it.
 
 ### References:
 
+[Approvals & Gates](https://www.udemy.com/course/azure100/learn/lecture/33385684#overview)
+
+
+- approvals are based on notification and manual interaction to determine whether 
+  a deployment stage can be executed or to require a manual intervention or post
+  deployment intervention.
+
+[Lab: Release Pipeline Approvals](https://www.udemy.com/course/azure100/learn/lecture/33385702#overview)
+> Click on the bolt icon at the beginning of a stage block
+> Select pre-deployment approvals and enable it
+> add uses to notify, these must be users within the Azure DevOps Organization
+> set a timeout for the approval which fails the deployment otherwise
+
+#### Approval from user that are not part of the Azure DevOps organization
+
+[Approve deployments from your channel](https://learn.microsoft.com/en-us/azure/devops/pipelines/integrations/microsoft-teams?view=azure-devops#approve-deployments-from-your-channel)
+
+To notify users outside the Azure DevOps organization and reuest their approval to
+carry on with the deployment stage the workflow is a bit different as the Azure
+DevOps pre-/post- deployment approval cannot be used.
+
+In this case you can:
+
+1. 
+rely on the **Microsoft Teams Integration with Azure Pipelines**
+and have the apporvers of a deployment subscribe to the Azure DevOps Release Pipeline 
+notifications:
+Classic Pipelines: `Release deployment approval pending`
+YAML pipelines: `Run stage waiting for approval` 
+
+Both of these subscriptions get created by default when you subscribe to the pipeline.
+
+2. 
+Send an email to teh approver and then they will have to go to the Azure DevOps Portal to 
+perform teh manual approval.
+
+- gates are the same in concept but are based on an automatic approach where there is 
+  a way to avoid manual imtervention.
+  Examples:
+  > run a query on Azure Boards to determine that there are no open bugs before deplyng to Staging
+  > run a query on Azure Boards to determine that there are no open WIs  before deplyng to Staging
+  > collect ealth signals from the target environment or infrastructure to determine whether the stage can go ahead
+  > test ealth signals from dependenyc i.e. APIs to determine whether the stage can go ahead
+
+---
+
 [Deployment gates](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/approvals/gates?view=azure-devops)
 
-Gates allow automatic collection of health signals from external services and then promote the release when all the signals are successful or stop the deployment on timeout. Typically, gates are used in connection with incident management, problem management, change management, monitoring, and external approval systems.
+Gates allow **automatic** collection of health signals from external services and then promote 
+the release when all the signals are successful or stop the deployment on timeout. 
+Typically, gates are used in connection with incident management, problem management, 
+change management, monitoring, and external approval systems.
 
 Some common use cases for deployment gates are:
 
@@ -5226,28 +5275,40 @@ Some common use cases for deployment gates are:
 
 [What is an availability set?](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview#what-is-an-availability-set) 
 
-Availability sets are logical groupings of VMs that reduce the chance of correlated failures bringing down related VMs at the same time. Availability sets place **VMs in different fault domains** for better reliability, 
+Availability sets are logical groupings of VMs that reduce the chance of correlated 
+failures bringing down related VMs at the same time. 
+Availability sets place **VMs in different fault domains** for better reliability, 
 **especially beneficial if a region doesn't support availability zones**. 
 
 **When using availability sets, create two or more VMs within an availability set**.
-Using two or more VMs in an availability set helps highly available applications and meets the 99.95% Azure SLA. **There's no extra cost for using availability sets**, you only pay for each VM instance you create.
+Using two or more VMs in an availability set helps highly available applications 
+and meets the 99.95% Azure SLA. 
 
-**Availability sets offer improved VM to VM latencies compared to availability zones**, since VMs in an availability set are allocated in closer proximity. 
-**Availability sets have fault isolation for many possible failures**, minimizing single points of failure, and offering high availability. 
-**Availability sets are still susceptible to certain shared infrastructure failures**, like datacenter network failures, which **can affect multiple fault domains**.
+**There's no extra cost for using availability sets**, you only pay for each VM 
+instance you create.
+
+**Availability sets offer improved VM to VM latencies compared to availability zones**, 
+since VMs in an availability set are allocated in closer proximity. 
+
+**Availability sets have fault isolation for many possible failures**, minimizing single
+points of failure, and offering high availability. 
+
+**Availability sets are still susceptible to certain shared infrastructure failures**, like
+datacenter network failures, which **can affect multiple fault domains**.
 
 **For more reliability than availability sets offer, use availability zones**. 
 Availability zones offer the highest reliability since each VM is deployed in multiple datacenters, 
 protecting you from loss of either power, networking, or cooling in an individual datacenter. 
 **If your highest priority is the best reliability for your workload, replicate your VMs across** 
 **multiple availability zones**.
+
 ---
 
 ### Question 70:
 
 Your team decides to use Azure DevOps as their development platform.
 
-You need to **create a build pipeline that contains task that require**
+You need to **create a build pipeline that contains a task that requires**
 **a human interaction before a deployment can be approved**.
 
 What should you do?
