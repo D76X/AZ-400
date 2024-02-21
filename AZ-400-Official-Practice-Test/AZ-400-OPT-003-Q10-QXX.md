@@ -8411,9 +8411,10 @@ Secret filter: apiKey
 You manage an Azure SQL DB in your company subscription.
 The DB password is stored as a secret in AKV with an expiration of 14 days.
 The expiration of the secret may vary according to the new security policies.
-An Azure Wb App connects to thsi DB using this secret.
+An Azure Web App connects to this DB using this secret.
 
-You need to **automate the secret rotation** for this DB while keeping the password available.
+You need to **automate the secret rotation** for this DB while keeping the 
+password available.
 
 Which **three actions** and in which sequence should you perform?
 
@@ -8421,13 +8422,13 @@ Which **three actions** and in which sequence should you perform?
 - create a new password and set a new secret version in the KV
 - create a new password and set a new secret in the KV
 - update the DB with the new password
-- create an Azure function that is triggered by the Key Vauklt Near Expiry event
+- create an Azure function that is triggered by the Key Vault Near Expiry event
 
 ---
 
 ### Answer:
 
-1. create an Azure function that is triggered by the Key Vauklt Near Expiry event
+1. create an Azure function that is triggered by the Key Vault Near Expiry event
 2. create a new password and set a new secret version in the KV
 3. update the DB with the new password
 
@@ -8446,8 +8447,8 @@ The other option do not apply, obviously.
 
 ### Question 110:
 
-You worj at a large consulting company with projects in multiple languages integrated 
-in Azure Devosp. The **legal team** is concerned about the ise of open-source software 
+You work at a large consulting company with projects in multiple languages integrated 
+in Azure DevOps. The **legal team** is concerned about the use of open-source software 
 without  proper licencing model.
 
 You need to use an automated ptocess to detect when common oprn-source libraries are 
@@ -8469,6 +8470,7 @@ Mn bolt can scann all your projects and detect open-source component and report 
 licencing models and known vulnerabilities. It integrates with Azure DevOps.
 
 The following does not apply here:
+
 - Dependabox
 **is a native tool in GitHub** that perform analysis on software package dependencies.
 **It creates PRs** or **automatically merging updates** when new versions of a package 
@@ -8482,9 +8484,10 @@ The remaining options obviously do nto apply here and heave been discussed in pr
 
 You have been asked to create a project in a new Azure DevOps organization.
 This project will be integrated with **SonarQube**.
-The infrastructure team creates teh SonarQube server and gives you the admin credentials to acces the SonarQube portal.
+The infrastructure team creates teh SonarQube server and gives you the 
+admin credentials to acces the SonarQube portal.
 
-You need to integrate this nes project with the SonareQube server.
+You need to integrate this new project with the SonareQube server.
 
 Which **three actions** and in which sequence should you perform?
 
@@ -8506,7 +8509,8 @@ to autenticate to the server.
 
 2. create a service endpoint in Azure DevOps
 Create a SE in Azure DevOps with the token above.
-This SE represents the authenticated connection to the SQ Server that can be used in the pipelines.
+This SE represents the authenticated connection to the SQ Server that can be used in
+ the pipelines.
 
 3. install the SQ extension in your project
 From the Azure DevOps Marketplace install the extension **to your organization**.
@@ -8536,9 +8540,10 @@ Your identify three main stages tha need security improvements:
 2. in the CI checks 
 3. in the CD release
 
-You need to recommend a technique to improves security for each stage of the development process.
-The technique should have little impact on the team productivity during each stage and
-on the time necessary to run CI checks.
+You need to recommend a technique to improve security for each stage of 
+the development process.
+The technique should have little impact on the team productivity during 
+each stage and on the time necessary to run CI checks.
 
 Which technique should you recommend for each of the three stages?
 
