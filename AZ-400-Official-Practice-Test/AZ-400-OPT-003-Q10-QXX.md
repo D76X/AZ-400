@@ -4997,6 +4997,12 @@ artifact block of the Release Pipeline editor.
 
 This allows you to **choose the branch and the tags** of the PR
 
+This runs a CI pipeline only when a PR against the specified branches is open 
+**OR** 
+when changes are pushed to the PR.
+This would not build the branch if code is pushed directly to the branch which is a requirement in the question.
+
+
 - Stage triggers
 Stage triggers allow you set up specific conditions to trigger deployment to a specific stage.
 
@@ -5543,7 +5549,7 @@ When new code is pushed to these branches the trigger starts the build of the co
 The other opptions do not apply in this case.
 
 - create a PR trigger and specify which branches should be proccessed
-This runs a CI pipline only when a PR against the specified branches is open 
+This runs a CI pipeline only when a PR against the specified branches is open 
 **OR** 
 when changes are pushed to the PR.
 This would not build the branch if code is pushed directly to the branch which is a requirement in the question.
@@ -5572,8 +5578,8 @@ A set of assets are deployed to a target Environment.
 ### Question 74:
 
 Your company's Azure DevOps team has several developers that use a single pipeline.
-The push changes constantly which triggers frequent build runs.
-**You turn the trigger setting for batch** paramater to **true**.
+They push changes constantly which triggers frequent build runs.
+**You turn the trigger setting for batch** parameter to **true**.
 
 How does this improve build runs?
 
