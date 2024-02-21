@@ -8813,8 +8813,9 @@ The pipeline has two stages one for each environment:
 1. staging
 2. production
 
-The imfrastructure team requires that the CPU usage metric in the staging environment 
-does not increase by more than 10% after deployment. If this event occur the deployment stage to production should not start.
+The imfrastructure team requires that the CPU usage metric in the staging
+environment does not increase by more than 10% after deployment. 
+If this event occur the deployment stage to production should not start.
 
 You need to configure the pipeline in order to meet this requirement.
 
@@ -8835,7 +8836,7 @@ Which **four action and in which sequence** should you perform?
 ### Answer:
 
 
-1. create an alert tule in Azure Monitor
+1. create an alert rule in Azure Monitor
 2. add a Query Azure Monitor alerts task in the production post-deployment gate
 3. configure the task with an alert rule filter type
 4. select the alert rule
@@ -8867,11 +8868,11 @@ The other oprions do not apply in this case.
 
 Your company has an **Android and backend API** in Azure App Service.
 
-The **backend API has an Application Insights account that centrlizes the application logs**.
-The **Android application si configured with the App Center SDK** to report events to 
+The **backend API has an Application Insights account that centralizes the application logs**.
+The **Android application is configured with the App Center SDK** to report events to 
 **App Center Analytics**.
 
-You need to **centralize the stamndard analytics data from the Android app in the App Insights account**.
+You need to **centralize the standard analytics data from the Android app in the App Insights account**.
 
 Which **two actions** should you perform?
 
@@ -8890,14 +8891,14 @@ Which **two actions** should you perform?
 - export App Center Analytics to App Insights
 
 You can **link the Azure subscription with the App Center** and allows you to use a 
-**standard export to eithe App Insights or Blob Storage**. 
+**standard export to either App Insights or Blob Storage**. 
 
 By exporting to **App Insights** the back end and the Android app logs are centralized
 into App Insights as required.
 
-The option to export teh Android app logs to Blod Storage could be useful to extend the
+The option to export the Android app logs to Blod Storage could be useful to extend the
 retention periods of logs over the term possible in App Center. However, this does not 
-acvhieve the goal of centralizetion.
+acvhieve the goal of centralization.
 
 The remaining options obviously do not apply in this case.
 
@@ -8921,9 +8922,12 @@ By exporting the data, you benefit from:
 - Unlimited data retention
 - Detailed Usage Analysis
 - Unified dashboard
-- Additional rich features from Application Insights such as funnels, retention
+- Additional rich features from Application Insights such as funnels, retention, etc.
 
-App Center continuously exports Analytics data to Application Insights from the moment you configure export along with two days of backfilled data. With the new updated dashboard in Application Insights, App Center users can get a unified view of both Application and Backend Analytics on one dashboard.
+App Center continuously exports Analytics data to Application Insights from 
+the moment you configure export along with two days of backfilled data. 
+With the new updated dashboard in Application Insights, App Center users can get a unified
+view of both Application and Backend Analytics on one dashboard.
 
 ---
 
@@ -8934,10 +8938,10 @@ App Center continuously exports Analytics data to Application Insights from the 
 ### Question 120:
 
 You are a Site Reliability Engineer (SRE) of an e-learning platform in Azure App Service.
-The developers of teh platform work remotely and use Microsoft Teams as their main 
+The developers of the platform work remotely and use Microsoft Teams as their main 
 communication channel.
 
-You need to send alerts to the developers whe users see erriors on the production website.
+You need to send alerts to the developers whe users see errors on the production website.
 The developers should be able to debug those errors using stack traces.
 
 Which **two services** should you recommend?
@@ -8986,7 +8990,7 @@ would not be usefult ot the developers in order to perofrm debugging.
 In SRE it is necessary not only to make sure that the infrastructure on which applications run is
 available but also the applications themselves.
 
-As part of SRE we want to be able to test and measure **Availability** therefore means to cerate
+As part of SRE we want to be able to test and measure **Availability** therefore means to create
 **availability tests** are required. **Azure Monitor** can be used to fashion 
 **availability tests at infrastrucure level** and **Application Insights** which is part of 
 **Azure Monitor** is the product that can be used to create **availability test for applications**.
@@ -9029,7 +9033,7 @@ Yiu need to infiorm your team what will trigger this allert.
 
 <img src="./Q121-exhibit.png">
 
-Which action will trigger this alret?
+Which action will trigger this alert?
 
 - a successful attempt to scale up plan01
 - a failed attempt to delete a web app up plan01
@@ -9043,18 +9047,18 @@ Which action will trigger this alret?
 - a failed attempt to restart a web app in plan01
 
 The **All Administrative operations signal** **for an Azure App Service Plan** named plan01
-implies that an alert is generate for any operation through the **Azure Resource Manger** 
+implies that an alert is generated for any operation through the **Azure Resource Manger** 
 **in a specific resource**.
 
 The **specific resource** here is the App Service Plan plan01.
-The action that are considered **dministrative operations** in this case are:
+The action that are considered **administrative operations** in this case are:
 
-- create / update /delete / join app service plan
+- create / update / delete / join app service plan
 - restart web apps
 
 Notce that while **restating** a web app in an App Service plan is an admin activity
 **deleting a web app is not**. Moreover, the **exhibit** shown that the alert is 
-configured with `Status=failed` which causes the allert to be genearted only on failues.
+configured with `Status=failed` which causes the alert to be genearted only on failues.
 
 This excludes: 
 - a failed attempt to delete a web app up plan01
@@ -9128,7 +9132,7 @@ release pipeline throughout the software development lifecycle. This is in order
 to allow you to create alerts and gates or roll back deployments until an alert 
 is resolved.
 
-What should you integrate with AzurE dEVoPS PIPELINES?
+What should you integrate with Azure DevOps Pipelines?
 
 - Azure Monitor Application Insights
 - Azure Monitor Log Analtics
@@ -9277,7 +9281,7 @@ of container workloads deployed to Azure or that are managed by Azure Arc-enable
 
 ### Question 124:
 
-You have a GitHub repo connected to Azure Borads.
+You have a GitHub repo connected to Azure Boards.
 A product owner reports that some work items do not have traceability with GitHub commits.
 You discover that only the work items developed by a specific developer do not have links 
 in Azure Boards.
@@ -9382,9 +9386,9 @@ We recommend configuring alert rules with dynamic thresholds on these metrics:
 ### Question 126:
 
 You are a **Site Reliability Engineer (SRE)** who maintains an **Azure App Service** application.
-This application is instrumentwed with **Application Insights**.
+This application is instrumented with **Application Insights**.
 
-You need to **create a report usning Azure Monitor query** to notify the development team
+You need to **create a report uning Azure Monitor query** to notify the development team
 about the web page errors and number of users impacted.
 
 How should you complete the query?
@@ -9519,7 +9523,7 @@ You are configuring a new freight calculator service for an e-commerce platform.
 
 This is the maximum downtime per week that is compatible with a **SLO of 90%**.
 
-All the otrher options corresponds to higher values of SLO.
+All the other options corresponds to higher values of SLO.
 
 ---
 
