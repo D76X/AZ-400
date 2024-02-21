@@ -6618,9 +6618,8 @@ Which **five actions** should you perform and **in which order**?
 
 2. create a release strategy:
 
-You need to determine whether f which ones.eature flags are used and if
-so which ones. You also need to know how to incorporate user feedback
-and acceptance.
+You need to determine whether feature flags are used and if so which ones. 
+You also need to know how to incorporate user feedback and acceptance.
 
 3. build the feature:
 This includes:
@@ -6642,12 +6641,13 @@ It may target the entire user pool or just one or more specific groups of users.
 The remaining options do not apply in this case.
 
 - create a pull request:
-PRs should be part of the build strategy. PRs are used to notify others about changes
-that you want ot make to a branch in a repository. 
+PRs should be part of the build strategy. 
+PRs are used to notify others about changes
+that you want to make to a branch in a repository. 
 
 - create a push request:
-Push of changes are not part of a delivery strategy. They transfer changes from
-one local branch to a remote branch.
+Push of changes are not part of a delivery strategy. 
+They transfer changes from one local branch to a remote branch.
 
 ---
 
@@ -6692,23 +6692,33 @@ Which **two** solutions should you recomment?
 - Chef Infra
 
 [Chef Infra Overview](https://docs.chef.io/chef_overview/)  
-Chef Infra is a powerful automation platform that transforms infrastructure into code. Whether you’re operating in the cloud, on-premises, or in a hybrid environment, Chef Infra automates how infrastructure is configured, deployed, and managed across your network, no matter its size.
 
-Chef uses **cookbooks** to sotre **IaC** Each node managed by Chef has a **Chef Client** agent installed on it.
-The **Chef Client** communicate with a **Chef Server** and reports its state to it nad if the Server detects 
-any drift it then instructs the **Chef Client** to perform actions to remove the drift. The desired configuration
-for each managed node is store on teh Chef Server.
+Chef Infra is a powerful automation platform that transforms infrastructure into code. 
+Whether you’re operating in the cloud, on-premises, or in a hybrid environment, 
+Chef Infra automates how infrastructure is configured, deployed, and managed across
+ your network, no matter its size.
+
+Chef uses **cookbooks** to sotre **IaC** Each node managed by Chef has a **Chef Client**
+agent installed on it.
+
+The **Chef Client** communicate with a **Chef Server** and reports its state to it and
+if the Server detects any drift it then instructs the **Chef Client** to perform actions
+to remove the drift. 
+
+The desired configuration for each managed node is store on the Chef Server.
 
 - PowerShell Desired State Configuration (DSC)
 
 In this case the configuration of resources is held in configuration files.
-DSC works according to a **Push & Pull models**. Both modes create a **local configuration state**
-**in the target machines** called **Local Configuration Manager (LCM)** that determines which 
-configurations should be applied to the node.
+DSC works according to a **Push & Pull models**. 
+Both modes create a **local configuration state in the target machines** called
+**Local Configuration Manager (LCM)** that determines which configurations should 
+be applied to the node.
 
-- **In the Pull mode** the LCM is configured to regularly check a pull service for newer 
-  configurations and uensure that the target is in line with the IaC code.
-  It is recommended to use **Azure Automation** as a **managed pull service**.
+- Pull Mode:
+In the Pull mode the LCM is configured to regularly check a pull service for newer 
+configurations and ensure that the target is in line with the IaC code.
+It is recommended to use **Azure Automation** as a **managed pull service**.
 
 ---
 
@@ -6721,14 +6731,16 @@ However, **Runbooks are not designed to define the configuration of a machine (V
 For this **Desired State Configuration (DSC)** should be used instead.
 
 - Terraform:
-Terraform connectes to Azure via the Azure Resource Manager API. It can create and update 
-infrastructure from IaC files. However, it **cannot maintain the state of what has been**
-**deplyed** the same way Chef or DSC do, thus it cannot work against configuration drift,
+Terraform connects to Azure via the Azure Resource Manager API. 
+It can create and update infrastructure from IaC files. 
+However, it **cannot maintain the state of what has been deplyed** 
+the same way Chef or DSC do, thus it cannot work against configuration drift,
 which is one of the requirements in this case.
 
 - Ansible:
-Using **Ansible Palybooks** yoi can **apply resource configurations** to targets.
-However, Ansible **uses only a Push model** therefore it cannot guard against configuration drift.
+Using **Ansible Palybooks** you can **apply resource configurations** to targets.
+However, Ansible **uses only a Push model** therefore it cannot guard against 
+configuration drift.
 
 ---
 
