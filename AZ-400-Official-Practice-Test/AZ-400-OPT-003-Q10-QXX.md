@@ -6257,11 +6257,13 @@ Which **three actions** should you perform and in which sequence?
 3. configure the agent extension with a personal access token (PAT)
 
 There are several ways to set up the agent on the instances of a VMSS.
-Howver, **the most effective** is to install the **Azure Pipelines agent in the extensions blade of the VMSS**.
+Howver, **the most effective** is to install the **Azure Pipelines agent** 
+**in the extensions blade of the VMSS**.
 This installs the agent automatically on each instance of the VMSS.
 
 **To configure the agent extension in the Azure Portal you need first to generate a PAT**
 **in Azure DevOps and use it to configure the script that will then be run on each VM of the VSMM**.
+
 The PAT should be generated to have the permissions:
 - Deployment Group Read
 - Deployment Group Manage
@@ -6282,6 +6284,16 @@ Ti configure the Azure Pipelines agent in the extensions a PAT is required
 ---
 
 ### References:
+
+[Tutorial: Deploy a Java app to a virtual machine scale set](https://learn.microsoft.com/en-us/azure/devops/pipelines/apps/cd/azure/deploy-virtual-scale-set-java?view=azure-devops)  
+
+---
+
+[Deploy your application on Virtual Machine Scale Sets](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app)
+
+[LAB: Deployment Groups Implementation](https://www.udemy.com/course/azure100/learn/lecture/33385822#overview)  
+
+---
 
 [Provision deployment groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/?view=azure-devops)  
 
@@ -6319,6 +6331,49 @@ You can install the agent in any one of these ways:
 1. Run the script that is generated automatically when you create a deployment group.
 2. Install the Azure Pipelines Agent Azure VM extension on each of the VMs.
 3. Use the ARM Template deployment task in your release pipeline.
+
+There are 2 ways you can perform step 2:
+
+Notice that in both cases you have to provide teh PAT that is created in the Azure DevOps
+portal when the Deplyment Group is created.
+
+1. Manually
+[Install the Azure Pipelines Agent Azure VM extension](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/deployment-groups/howto-provision-deployment-group-agents?view=azure-devops#install-the-azure-pipelines-agent-azure-vm-extension)  
+
+3. ARM Templates:
+o deploy an Azure Resource Manager (ARM) template that installs the Azure Pipelines Agent Azure VM extension as you create a virtual machine, or to update the resource group to apply the extension after the virtual machine has been created. Alternatively, you can use the advanced deployment options of the ARM Template deployment task to deploy the agent to deployment groups.
+
+```
+"resources": [
+  {
+    "name": "[concat(parameters('vmNamePrefix'),copyIndex(),'/TeamServicesAgent')]",
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "location": "[parameters('location')]",
+    "apiVersion": "2015-06-15",
+    "dependsOn": [
+        "[resourceId('Microsoft.Compute/virtualMachines/',
+                      concat(parameters('vmNamePrefix'),copyindex()))]"
+    ],
+    "properties": {
+      "publisher": "Microsoft.VisualStudio.Services",
+      "type": "TeamServicesAgent",
+      "typeHandlerVersion": "1.0",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "VSTSAccountName": "[parameters('VSTSAccountName')]",
+        "TeamProject": "[parameters('TeamProject')]",
+        "DeploymentGroup": "[parameters('DeploymentGroup')]",
+        "AgentName": "[parameters('AgentName')]",
+        "AgentMajorVersion": "auto|2|3",
+        "Tags": "[parameters('Tags')]"
+      },
+      "protectedSettings": {
+      "PATToken": "[parameters('PATToken')]"
+     }
+   }
+  }
+]
+```
 
 ---
 
