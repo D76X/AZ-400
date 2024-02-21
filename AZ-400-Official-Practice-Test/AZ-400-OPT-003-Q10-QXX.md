@@ -5208,7 +5208,6 @@ this built into it.
 
 [Approvals & Gates](https://www.udemy.com/course/azure100/learn/lecture/33385684#overview)
 
-
 - approvals are based on notification and manual interaction to determine whether 
   a deployment stage can be executed or to require a manual intervention or post
   deployment intervention.
@@ -5242,6 +5241,8 @@ Both of these subscriptions get created by default when you subscribe to the pip
 Send an email to teh approver and then they will have to go to the Azure DevOps Portal to 
 perform teh manual approval.
 
+---
+
 - gates are the same in concept but are based on an automatic approach where there is 
   a way to avoid manual imtervention.
   Examples:
@@ -5249,6 +5250,29 @@ perform teh manual approval.
   > run a query on Azure Boards to determine that there are no open WIs  before deplyng to Staging
   > collect ealth signals from the target environment or infrastructure to determine whether the stage can go ahead
   > test ealth signals from dependenyc i.e. APIs to determine whether the stage can go ahead
+
+  > Click on the bolt icon at the beginning of a stage block
+  > Select pre-deployment Gate
+  > Select `+Add`
+
+  The follwing are the possible automated operations:
+  - Check Azure Policy Compliance
+  - Invoke Azure Function
+  - Invoke REST API
+  - Query Azure Monitor Alerts
+  - Query WIs
+  - Sonar Cloud Quality Gate
+
+  > Set delay before evaluation for the first evaluation delay
+  > set the upper threshold
+  > set Evaluation options:
+  - the time between re-evaluations of teh gates
+  - minimun duration of the a steady result for successful evaluation
+  - the timeout for the gate 
+
+[Lab: Release Pipeline Gate - Query Wok Items](https://www.udemy.com/course/azure100/learn/lecture/33385716#overview)
+[Lab: Release Pipeline Gate - Azure Monitor Alerts](https://www.udemy.com/course/azure100/learn/lecture/33385742#overview)
+
 
 ---
 
