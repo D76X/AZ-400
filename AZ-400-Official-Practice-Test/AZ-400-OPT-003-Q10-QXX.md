@@ -5772,10 +5772,11 @@ The same as with AKS. They could be used but is overkill in cost andadmin comple
 
 You use Azure DevOps to develop an open-source project.
 You create a build pipeline to update the project documentation.
-The documentation is sotred in the same Azure Repos Git of you project source code inside the
-`/docs` folder.
+The documentation is stored in the same Azure Repos Git of you project 
+source code inside the`/docs` folder.
 
-You need to trigger this pipeline only when the docimentation changes in the main branch.
+You need to trigger this pipeline only when the documentation changes in 
+the main branch.
 
 Which **two filters** dhould you configure to trigger this pipeline?
 
@@ -5793,10 +5794,10 @@ Which **two filters** dhould you configure to trigger this pipeline?
 - set **branch filter** to include `main`
 - set **path filter** to include `/docs`
 
-This is equivalent to say that the trigger for this main branch build whatches only changes
-in the `/docs` folder.
+This is equivalent to say that the trigger for this main branch build 
+whatches only changes in the `/docs` folder.
 
-The other opptions do not apply in this case.
+The other options do not apply in this case.
 
 ---
 
@@ -5808,19 +5809,19 @@ The other opptions do not apply in this case.
 
 ### Question 79:
 
-You are a frontend engineer on an AngualJS app.
+You are a frontend engineer on an AnguaJS app.
 Azure Pipeline is used to build the app and test it as a single job.
-The pipelines takes about 7 mins every time it runs in order to download and install
-the app dependencies with npm.
+The pipelines takes about 7 mins every time it runs in order to 
+download and install the app dependencies with npm.
 
-Yoyu want to reduce the pipeline execution time.
+You want to reduce the pipeline execution time.
  
 Which solution should results in the greatest reduction of build time?
 
-- include a step to upgrade npm befre installing the app dependencies
+- include a step to upgrade npm before installing the app dependencies
 - implement pipeline cahcing
-- use a self-hosted agaent
-- enable parallel jobs for the puipeline
+- use a self-hosted agent
+- enable parallel jobs for the pipeline
 
 ---
 
@@ -5831,16 +5832,16 @@ Include a cach task in your pipeline and configure a `node_modules` path to be r
 You should use the `package-lock.json` as **cache key** to invalidate the cache every time 
 the app dependencies have changed.
 
-The other opptions do not apply in this case.
+The other options do not apply in this case.
 
-- use a self-hosted agaent
+- use a self-hosted agent
 This could also work but its benefits would not match those possible with the **caching task**.
 
-- include a step to upgrade npm befre installing the app dependencies
-Tis would acually increase the build time
+- include a step to upgrade npm before installing the app dependencies
+This would actually increase the build time
 
-- enable parallel jobs for the puipeline
-Thisi is something else alltogether, of course.
+- enable parallel jobs for the pipeline
+This is something else alltogether, of course.
 
 ---
 
@@ -5858,6 +5859,92 @@ Caching can be effective at improving build time **provided the time to restore 
 **Because of this, caching may not be effective in all scenarios and may actually have a negative impact on build time**.
 
 Caching is currently supported in **CI and deployment jobs, but not classic release jobs**.
+
+### When to use artifacts versus caching
+
+Pipeline caching and pipeline artifacts perform similar functions but are designed for 
+different scenarios and shouldn't be used interchangeably.
+
+- Use pipeline artifacts 
+when you need to take specific files produced in one job and share them with other jobs
+(and these other jobs will likely fail without them).
+
+- Use pipeline caching 
+when you want to improve build time by reusing files from previous runs 
+(and not having these files won't impact the job's ability to run)
+
+[Cache@2](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/cache-v2?view=azure-pipelines)  
+
+When a cache step is encountered during a run, the task restores the cache based 
+on the provided inputs. If no cache is found, the step completes and the next 
+step in the job is run.
+
+After all steps in the job have run and assuming a successful job status, a special 
+**"Post-job: Cache"** **step is automatically added and triggered** for each 
+"restore cache" step that wasn't skipped. 
+This step is responsible for saving the cache.
+
+```
+# Cache v2
+# Cache files between runs.
+- task: Cache@2
+  inputs:
+    key: # string. Required. Key. 
+    path: # string. Required. Path. 
+    #cacheHitVar: # string. Cache hit variable. 
+    #restoreKeys: # string. Additional restore key prefixes.
+```
+
+- path: 
+the path of the folder to cache. 
+Can be an absolute or a relative path. 
+Relative paths are resolved against `$(System.DefaultWorkingDirectory)`.
+
+- key: (strings | file paths | file patterns)
+should be set to the identifier for the cache you want to restore or save. 
+Keys are composed of a combination of string values, file paths, or file patterns,
+where each segment is separated by a | character.
+
+For example in this case:
+
+Include a cach task in your pipeline and configure a `node_modules` path to be reused later.
+You should use the `package-lock.json` as **cache key** to invalidate the cache every time 
+the app dependencies have changed.
+
+```
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+
+steps:
+- task: Cache@2
+  inputs:
+    key: '"yarn" | "$(Agent.OS)" | yarn.lock'
+    restoreKeys: |
+       "yarn" | "$(Agent.OS)"
+       "yarn"
+    path: $(YARN_CACHE_FOLDER)
+  displayName: Cache Yarn packages
+
+- script: yarn --frozen-lockfile
+```
+
+[Cache isolation and security](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops#cache-isolation-and-security)  
+
+To ensure isolation between caches from different pipelines and different branches, 
+every cache belongs to a logical container called a **scope**.
+
+**Scopes provide a security boundary** that ensures a job from one pipeline cannot 
+access the caches from a different pipeline, and a job building a PR has read access 
+to the caches for the PR's target branch (for the same pipeline), but cannot write
+(create) caches in the target branch's scope.
+
+When a cache step is encountered during a run, the cache identified by the key is 
+requested from the server. The server then looks for a cache with this key from the 
+scopes visible to the job, and returns the cache (if available). On cache save 
+(at the end of the job), a cache is written to the scope representing the pipeline 
+and branch.
+
+---
 
 [Configure and pay for parallel jobs](https://learn.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted)  
 
