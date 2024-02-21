@@ -8593,10 +8593,10 @@ in the **development and/or QA environments**.
 
 Your team maintains a **Java application** that is integrated with Azure Pipelines.
 
-During the **code review process**, developers find **code quality problems** like unused
-variables and empty try/catch blocks. 
-These **code quality problems significantly reduce performance by increasing the time required**
-**to complte code reviews**.
+During the **code review process**, developers find **code quality problems** like 
+unused variables and empty try/catch blocks. 
+These **code quality problems significantly reduce performance by increasing the**
+**time required to complte code reviews**.
 
 You need to **recommend a solution to improve code quality in the CI pipeline**.
 
@@ -8611,8 +8611,9 @@ Which **two solutions** do you recommend?
 
 ### Answer:
 
-Being the question about improving the quality of the code by automatic means for a Java app
-in the CI pipeline the only tasks that can be used are the **Maven tasks**.
+Being the question about improving the quality of the code by automatic 
+means for a Java app in the CI pipeline the only tasks that can be used 
+are the **Maven tasks**.
 
 - enable Run SonarQube Analysis in a Maven task
 - enable Run PMD Analysis in a Maven task
