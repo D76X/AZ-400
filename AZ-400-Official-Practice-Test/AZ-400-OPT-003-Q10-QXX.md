@@ -7843,15 +7843,15 @@ owned by a specific entry and optionally being scoped to a single Azure pipeline
 
 Which **retention lease operation** should you perform?
 
-- Gete Retentionl Lease By User Id
-- Gete Retentionl Lease By Owner Id
-- Gete Retentionl Lease By Minimal Retention Leases
+- Gete Retention Lease By User Id
+- Gete Retention Lease By Owner Id
+- Gete Retention Lease By Minimal Retention Leases
 
 ---
 
 ### Answer:
 
-- Gete Retentionl Lease By Owner Id
+- Gete Retention Lease By Owner Id
 Returns any leases owned by the specified entity, optionally scoped to a single pipeline definition and run.
 
 ---
@@ -7893,7 +7893,7 @@ Retention leases are used to manage the lifetime of pipeline runs beyond the con
 ### Question 102:
 
 Your company uses Azure DevOps Services to OPTIMIZE the BUILD and RELEASE cycle of commercial software.
-You want to understand hoe to run parallel jobs as part of a pipeline.
+You want to understand how to run parallel jobs as part of a pipeline.
 
 You need to **identify shich scenarios are appropriate for running parallel jobs on Microsoft-Hosted infrastructure**.
 
@@ -7914,7 +7914,7 @@ You should opt for **parallel jobs to optimize your pipelines** in the following
 allocate to each team its own pipeline
 
 - if you develop multiple applications using one organization or server
-use a job for each application in order to deply each app concurrently 
+use a job for each application in order to deploy each app concurrently 
 
 The following do not apply.
 
