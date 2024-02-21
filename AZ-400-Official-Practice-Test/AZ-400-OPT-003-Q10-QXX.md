@@ -6454,7 +6454,7 @@ The features should be available to the users **as fast as possible** with
 
 Which solution should you recommend?
 
-- set an application settin in Azure App Service
+- set an application setting in Azure App Service
 - include the users to test the features using an admin site
 - deploy a new version of the Web App for the canary users
 - use LauchDarkly to manage feature toggles
@@ -6466,23 +6466,25 @@ Which solution should you recommend?
 - use LauchDarkly to manage feature toggles
 
 [LauchDarkly](https://launchdarkly.com/demo/)
-LaunchDarkly unites feature flags, context-aware targeting, and experimentation in one powerful software delivery platform.
+LaunchDarkly unites feature flags, context-aware targeting, and experimentation 
+in one powerful software delivery platform.
 
 This is a solution that manages feature toggles in your application.
-You can integrate it with **Python** apps via a SDK **and instantly denable the feature toggles to a specific group of users**.
-This is doen through the **LauchDarkly Portal**.
+You can integrate it with **Python** apps via a SDK **and instantly enable** 
+**the feature toggles to a specific group of users**.
+This is done through the **LauchDarkly Portal**.
 
 ---
 
 The other options do not apply in this case.
 
-- set an application settin in Azure App Service
-This could alos be done to implement a **general feature toggle** in any app.
+- set an application setting in Azure App Service
+This could also be done to implement a **general feature toggle** in any app.
 However, with this method you cannot select a specific group of canary users
 as required in this scenario.
 
 - deploy a new version of the Web App for the canary users
-Thsi would require a duplication of the app and larger admin effort.
+This would require a duplication of the app and larger admin effort.
 You would need a **reverse Proxy**.
 
 - include the users to test the features using an admin site
