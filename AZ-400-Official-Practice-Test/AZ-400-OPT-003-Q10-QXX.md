@@ -7936,7 +7936,7 @@ If there are multiple teams and multiple branches then use parallen jobs.
 
 You manage a release pipeline in Azure Pipeline.
 **During the release phase you need to use a private SSH key stored in a file**.
-You need to **store the ket securely and use it without exposing it**.
+You need to **store the key securely and use it without exposing it**.
 
 Which **two actions** sould you perform?
 
@@ -7950,7 +7950,7 @@ Which **two actions** sould you perform?
 
 ### Answer:
 - upload the SSH key in the Azure Pipeline Library as a secure file
-- use the Dowwnload Secure File task to download the SSH key
+- use the Download Secure File task to download the SSH key
 
 With Azure Pipilines you can create variable groups and store secure files 
 to be shared in all your build and release pipelines. 
