@@ -5610,14 +5610,14 @@ The other opptions do not apply in this case.
 
 ### Question 75:
 
-You are building a new **GitHub Actiosn pipeline**.
-This pipeline automates your software development workflowa from within GitHub.
+You are building a new **GitHub Action pipeline**.
+This pipeline automates your software development workflow from within GitHub.
 You decide to use `Azure\pipelines@v1` and you need to set the ncecessary params.
 
 Which **three** parameters should you define?
 
 - the Azure Pipeline name
-- Container Registry Credentiala
+- Container Registry Credentials
 - Azure Credentials
 - a personal access token (PAT)
 - the Azure DevOps project URL
@@ -5634,7 +5634,7 @@ Refer to the documentation in the reference for the details.
 
 The other opptions do not apply in this case.
 
-- Container Registry Credentiala
+- Container Registry Credentials
 - Azure Credentials
 
 ---
@@ -5650,7 +5650,7 @@ The other opptions do not apply in this case.
 
 ### Question 76:
 
-Ypu are standardizing some pipelines accross your organization.
+You are standardizing some pipelines accross your organization.
 
 You find three pipelines with similar tasks:
 
@@ -5658,7 +5658,7 @@ You find three pipelines with similar tasks:
 - Pipeline B: a YAML build pipeline that builds a helm chart
 - Pipeline C: a classic RELEASE pipeline that deploys a helm chart
 
-You create a **task grouop** in order to combine similar tasks used by these pipelines.
+You create a **task group** in order to combine similar tasks used by these pipelines.
 
 You need to evaluate which pipelines the task group can use.
 Selct Yes if you can replace the similar atsk with the task group.
@@ -5698,12 +5698,23 @@ A task group allows you to **encapsulate a sequence of tasks, already defined in
 into a single reusable task that can be added to a build or release pipeline, just like any other task. You can 
 choose to extract the parameters from the encapsulated tasks as configuration variables, and abstract the rest of the task information.
 
-The new task group is automatically added to the task catalog, ready to be added to other release and build pipelines. **Task groups are stored at the project level, and are not accessible outside the project scope**.
+The new task group is automatically added to the task catalog, ready to be added to other release and build pipelines.
+**Task groups are stored at the project level, and are not accessible outside the project scope**.
 
 **Task groups are a way to standardize and centrally manage deployment steps for all your applications**. 
 When you include a task group in your definitions, and then make a change centrally to the task group, 
 the change is automatically reflected in all the definitions that use the task group. 
 There is no need to change each one individually.
+
+### [Versioning of Tasks & Task Groups](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/task-groups?view=azure-devops#create-previews-and-updated-versions-of-task-groups)  
+
+All of the built-in tasks in Azure Pipelines and TFS are versioned. 
+
+This allows build and release pipelines to continue to use the existing version of a task while 
+new versions are developed, tested, and released. 
+
+In Azure Pipelines, you can version your own custom task groups so that they behave in the same 
+way and provide the same advantages.
 
 ---
 
@@ -5723,8 +5734,8 @@ You need to use a compute service that runs this self-hosted agent and minimize 
 Which should you choose?
 
 - Azure Kubernetes Services (AKS)
-- Azure Vistual Machine Scale Set
-- Azure Vistual Machine VM
+- Azure Virtual Machine Scale Set
+- Azure Virtual Machine VM
 - Azure Container Instances (ACI)
 
 ---
@@ -5733,9 +5744,9 @@ Which should you choose?
 
 - Azure Container Instances (ACI)
 This is the most cost-effective solution to run Self-Hosted Linux Agent inside a Docker container.
-This service is charged by teh seconds of execution time.
+This service is charged by the seconds of execution time.
 
-The other opptions do not apply in this case.
+The other options do not apply in this case.
 
 - Azure Kubernetes Services (AKS)
 This **requires much greater administrative effort** and larger costs due to the necessary controller node.
