@@ -8146,10 +8146,10 @@ Secrets allow you to store sensitive information in your organization, repositor
 ### Question 106:
 
 You are migrating an on-premise web application to Azure.
-You decide to lift and shift to  Azure Virtual Machines (Azure VMs).
+You decide to lift and shift to Azure Virtual Machines (Azure VMs).
 
 You plan to use Azure Resource Manager (ARM) templates to create a Azure VM via a build pipeline.
-**These templates will need to reference secrets stored in Azure Key Vayult during deployment**.
+**These templates will need to reference secrets stored in Azure Key Vault during deployment**.
 
 How should you complete the ARM template?
 
@@ -8182,12 +8182,12 @@ How should you complete the ARM template?
 ---
 
 OPTION-1: 
-Microsoft.Comnpute/virtualMachines
+Microsoft.Compute/virtualMachines
 Microsoft.KeyVault/vaults
 Microsoft.Resources/deployments
 
 OPTION-2:
-keyVault
+keyVaultId
 secret
 value
 
@@ -8237,11 +8237,12 @@ The following does not apply:
 
 `"type": "Microsoft.KeyVault/vaults"`:
 This is wrong in this case and would be used to deploy a Key Vault resource.
-In this case the task is to read a secret from the Key Vault in order to use this secret to create the VM.
+In this case the task is to read a secret from the Key Vault in order to use 
+this secret to create the VM.
 
 `"type": "Microsoft.Comnpute/virtualMachines"`:
-likewise this is to deploy the VM but the exerpt refers to ` "name": "dynamicSecret",` which obviously 
-indicates that this part of teh template is to read a secret from a Key Vault.
+likewise this is to deploy the VM but the exerpt refers to ` "name": "dynamicSecret",` 
+which obviously indicates that this part of the template is to read a secret from a Key Vault.
 
 OPTION-2: 
 
@@ -8256,7 +8257,7 @@ OPTION-2:
         }
 ```
 
-It is pretty obvoius here that you need `"keyVaultId":` to refetrence the KV by its id.
+It is pretty obvious here that you need `"keyVaultId":` to refetrence the KV by its id.
 ---
 
 ### References:
@@ -8278,7 +8279,7 @@ You are building a delivery pipeline in Azure DevOps.
 This pipeline will deploy to an Azure App Service that is in a 3rd-party Azure subscription
 that your credential does not have access to.
 
-You need to configure this pipeline to deply the application in the 3rd-party subscription.
+You need to configure this pipeline to deploy the application in the 3rd-party subscription.
 
 What should you use?
 
@@ -8293,17 +8294,18 @@ What should you use?
 - a service connection with manual subscription pipeline
 
 A **Service Connection** in this case allows to connect the Azure DevOps Pipeline 
-to the Azure Resource Manager and other serices in order to execute tasks such as
+to the Azure Resource Manager and other services in order to execute tasks such as
 deploying to App Services.
 
 Since in this case your credential does not have access to the 3rd-party Azure 
-subscription, you shluod use a manual subscription pipeline and set a different 
+subscription, you should use a manual subscription pipeline and set a different 
 account that has permission to deploy the app.
 
 The option below does not apply in this case: 
 - a service connection with automatic subscription detection
-**Automatic subscription detection** can detect the Azure subscription your credential has access to.
-This iS not the case here.
+**Automatic subscription detection** can detect the Azure subscription your credential 
+has access to. 
+This is not the case here.
 
 
 ---
@@ -8353,6 +8355,7 @@ Subscriptions listen for these events and define actions to take based on the ev
 ---
 
 [Create a service endpoint](https://learn.microsoft.com/en-us/azure/devops/extend/develop/service-endpoints?view=azure-devops)  
+
 Service endpoints are a way for Azure DevOps to connect to external systems or services. 
 They're a bundle of properties securely stored by Azure DevOps, which includes but isn't 
 limited to the following properties:
@@ -8369,12 +8372,12 @@ limited to the following properties:
 
 You are creating a deployment pipeline in Azure DevOps.
 The pipeline needs to access a secret stored in Azure Key Vault.
-The KV is provisioned in a subscription namend company1.
+The KV is provisioned in a subscription named company1.
 
-The secret is referenced with thsi URI:
+The secret is referenced with this URI:
 `https://acme.vault.azure.net/secrets/apiKey/THE-API-KEY-ID`
 
-You need to configure the AKV task in the pipelien to read this secret.
+You need to configure the AKV task in the pipeline to read this secret.
 Select the appropriate options.
 
 Azure Subscription: apiKey | company1 | acme | THE-API-KEY-ID
