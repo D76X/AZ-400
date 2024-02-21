@@ -6553,7 +6553,7 @@ The other options do not apply in this case.
  
 - the developers should create a log-running feature branch 
   and merge changes after the feature is complete
-Thi is possible and does indeed happen in some projects but is is obviously 
+This is possible and does indeed happen in some projects but is is obviously 
 not a good practice or the best option because a **log-running feature branch**
 tend to **diverge significanlty from the main branch** over time if developer
 do not take care of **merging in the main** branch often.
