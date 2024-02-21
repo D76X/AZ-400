@@ -7241,7 +7241,7 @@ Specifies the DSC configuration mode. Valid values are:
 
 You work for a financial company. 
 You maintain an application that runs in a group of Azure VMs with Red Had Enterprise 
-as OS. You plan to maintain therse VMs desired configuration by using a configuration 
+as OS. You plan to maintain these VMs desired configuration by using a configuration 
 management tool. 
 
 Due to compliance policies the VMs should not have agents installed or any background
@@ -7264,7 +7264,7 @@ It only **needs Python to be installed on both machines and access to SSH**.
 
 
 - Ansible:
-Using **Ansible Palybooks** yoi can **apply resource configurations** to targets.
+Using **Ansible Palybooks** you can **apply resource configurations** to targets.
 However, Ansible **uses only a Push model** therefore it cannot guard against 
 configuration drift.
 
