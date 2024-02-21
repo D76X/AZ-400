@@ -6197,17 +6197,19 @@ The other options do not apply in this case.
 - Blue/Green deployment
 
 - gradual deployment
-It replaces an existing deployment with newer versions and therefore the old version and the
-new versions are both in production at the same time. With this technique alone 
-**it is not possible to control how the new version is rolled out to users.**
+It replaces an existing deployment with newer versions and therefore the old 
+version and the new versions are both in production at the same time. 
+With this technique alone **it is not possible to control how the new version is rolled out to users.**
 
 - Blue/Green deployment
 This techinque **duplicates your production workload** as follows:
 - blue : old version
 - green: new version
 
-Onnce the **green** is deplyed you would run all possible test on it that is automated and manual
-and decide whether the **green** is ready to be promoted to **blue** that is production.
+Onnce the **green** is deployed you would run all possible test on it that is
+automated and manual and decide whether the **green** is ready to be promoted to
+**blue** that is production.
+
 Then in a **single event** you would simply switch all users to the new versions.
 
 ---
