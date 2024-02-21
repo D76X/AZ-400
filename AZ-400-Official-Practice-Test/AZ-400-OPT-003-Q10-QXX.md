@@ -4774,15 +4774,15 @@ triggering pipeline using build completion triggers.
 
 ---
 
-### Question 67:
+### Question 67: ?
 
 Your company has a **release process in Azure Pipelines** that contains a
 **manual approval step** that **must occur two hours before deployment**.
 
 The approval step notifies users inside the Azure DevOps portal.
 
-The project stakeholder reports that deployments in which the approval takes
-longer than two hours do not fail automatically.
+The project stakeholder reports that deployments in which the approval 
+takes longer than two hours do not fail automatically.
 
 You must ensure that if the approval takes longer than 2h the deployment fails.
 
@@ -4813,9 +4813,201 @@ These **conditions** are evaluated and executed **before** a pipeline task is ex
 
 are used to define either: 
 
-- **when** a deployment stage should start when it is a manual deployment
+- **when** a deployment stage should start when it is a **manual** deployment
 - **when** a deployment stage should start **according to a schedule**
-- to start a  deployment after an artifact has been release and published
+- to start a deployment after an artifact has been released and published *
+
+The last option is what you normally use to build a release pipeline.
+You want to deploy to QA as soon as build artifacts are available
+
+[Demo: Create a Release Pipeline](https://www.udemy.com/course/azure100/learn/lecture/33385604#overview)  
+
+
+---
+
+[Azure Pipelines Release triggers](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/triggers?view=azure-devops#release-triggers)  
+
+### Release Triggers aka Continuous deployment triggers
+
+The following triggers create a release that is a set of deployable immutable assets.
+These triggers are available when you click on the **bolt icon** on the top right
+corner of the Artifact block of a Release Pipeline in the classic editor.
+
+> The only exception to this is the schedule release trigger.
+
+The important detail to understand in this case is the concept of **build artifact**.
+In order to create a release you must have build artifacts and these are most often
+the output of build pipeline. However, this is not the only case!
+
+### Artifact sources - Release pipelines and Artifact sources
+
+[Release pipelines and Artifact sources](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/artifacts?view=azure-devops#artifact-sources---version-control)  
+
+Releases can be linked to multiple artifact sources, 
+where one is designated as the primary source.
+Use the **+Add** icon on the Artifact block to add one or more artifact sources.
+If you link more than one artifact, you can specify which one is the **primary source**.
+The primary artifact source is used to set a number of predefined variables. 
+It can also be used in naming releases.
+
+---
+
+The different types of artifact sources for Release Pipelines are:
+
+1. Artifact sources - Azure Pipelines 
+
+From one or more Azure Build Pipelines.
+When any of the builds completes, it will trigger the creation of a release.
+**Artifact download**:	
+By default, build artifacts are downloaded to the agent running the pipeline.
+You can also configure a step in your stage to skip downloading your artifact.
+
+In the case the Artifacts for the release are from an Azure Build Pipeline you must 
+use the following task in the build pipeline to publish the artifacts otherwise the
+release pipeline will not find any artifacts.
+
+[PublishBuildArtifacts@1](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/publish-build-artifacts-v1?view=azure-pipelines)  
+
+```
+# Publish build artifacts v1
+# Publish build artifacts to Azure Pipelines or a Windows file share.
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)' # string. Required. Path to publish. Default: $(Build.ArtifactStagingDirectory).
+    ArtifactName: 'drop' # string. Required. Artifact name. Default: drop.
+    publishLocation: 'Container' # 'Container' | 'FilePath'. Alias: ArtifactType. Required. Artifact publish location. Default: Container.
+    #MaxArtifactSize: '0' # string. Max Artifact Size. Default: 0.
+    #TargetPath: # string. Required when ArtifactType = FilePath. File share path. 
+    #Parallel: false # boolean. Optional. Use when ArtifactType = FilePath. Parallel copy. Default: false.
+    #ParallelCount: '8' # string. Optional. Use when ArtifactType = FilePath && Parallel = true. Parallel count. Default: 8.
+  # Advanced
+    #StoreAsTar: false # boolean. Tar the artifact before uploading. Default: false.
+```
+> Example:
+
+This example takes the binaries and other files in `_buildOutput` and puts them into
+`$(Build.ArtifactStagingDirectory)` then the `PublishBuildArtifacts@1` takes it all
+and **publishes** it that is this content will be available to any release pipeline
+that triggers on this build pipeline or that uses it as its release sorces.
+
+
+```
+steps:
+- task: CopyFiles@2
+  inputs:
+    contents: '_buildOutput/**'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathToPublish: $(Build.ArtifactStagingDirectory)
+    artifactName: MyBuildOutputs
+```
+
+---
+
+2. Artifact sources - version control
+Scenarios in which you may want to consume artifacts from different source controls 
+directly **without passing them through a build pipeline**.
+
+> PHP or a JavaScript application that doesn't require an explicit build pipeline.
+
+> Configurations for various stages in different version control repositories 
+> and you want to consume these configuration files directly from version control 
+> as part of the deployment pipeline.
+
+### Deployment of Infrastructure from files (IaC)
+> You manage your infrastructure and configuration as code and you want to manage
+> these files in a version control repository.
+
+Because you can configure multiple artifact sources in a single release pipeline, 
+you can link both a build pipeline that produces the binaries of your application 
+as well as a version control repository that stores the configuration files into 
+the same pipeline, and use the two sets of artifacts together while deploying.
+
+---
+
+3. Artifact sources - Jenkins
+To consume Jenkins artifacts, you must create a service connection to authenticate 
+with your Jenkins server.
+
+---
+
+4. Artifact sources - containers
+When deploying containerized apps, the container image is first pushed to a container 
+registry. You can then deploy your container image to **Azure Web App for Containers** 
+or a **Docker/Kubernetes cluster**. 
+You must create a service connection to authenticate with Azure. 
+
+---
+
+5. Artifact sources - Azure Artifacts
+
+> Your application binary is published to Azure Artifacts and you want to consume the package in a release pipeline.
+> You need additional packages stored in Azure Artifacts as part of your deployment workflow.
+
+Using Azure Artifacts in your release pipeline, you must select the following details for your package:
+
+- Feed
+- Package
+- the Default version 
+
+---
+
+6. Artifact sources - TFS server ...
+7. Artifact sources - TeamCity ...
+
+---
+
+### Artifact download
+
+The versioned artifacts from each of the sources are downloaded to the pipeline agent so 
+that tasks running within that stage can access those artifacts. The downloaded artifacts
+**do not get deleted when a release is completed**. 
+
+However, when you initiate the next release, the downloaded artifacts are deleted and 
+replaced with the new set of artifacts.
+
+`$(System.DefaultWorkingDirectory)`
+
+Azure Pipelines **does not perform any optimization** to avoid downloading the unchanged artifacts
+if the same release is deployed again. In addition, because the previously downloaded contents are
+always deleted when you initiate a new release, Azure Pipelines cannot perform incremental 
+downloads to the agent.
+
+---
+
+### Relase Triggers
+
+- Continuous deployment triggers
+Continuous deployment triggers allow you to create a release **every time a new build** 
+**artifact is available**. Using the build branch filters you can trigger deployment for
+a specific target branch. 
+
+- Scheduled release triggers
+Scheduled release triggers allow you to create new releases at specific times.
+In order to use this you use the **Schedule set** icon located in the bootm leff
+corner of the artifact block of the Release Pipeline editor.
+
+- Pull request triggers:
+
+If you chose to enable the pull-request triggers, a release will be created every time
+a selected artifact is available as part of a pull request workflow.
+In order to use this you use the **bolt** icon located in the top right corner of the 
+artifact block of the Release Pipeline editor.
+
+This allows you to **choose the branch and the tags** of the PR
+
+- Stage triggers
+Stage triggers allow you set up specific conditions to trigger deployment to a specific stage.
+
+> 
+
+
+
+
+### Artifact Filters
+
+[Is there a way to only run a deployment job if the downloaded artifact is newer than the one deployed in azure devops?](https://stackoverflow.com/questions/66773118/is-there-a-way-to-only-run-a-deployment-job-if-the-downloaded-artifact-is-newer)  
 
 ---
 
@@ -4886,8 +5078,8 @@ You **automate the release pipeline** to **build and publish a Linux Node.js bin
 using an agent.
 
 When the new SDK version is released, your team is asked to include a 
-**release notes document** that contain a summary of the work items that are present
-in this new release.
+**release notes document** that contains a summary of the work items 
+that are present in this new release.
 
 You need to **automate the release notes generation** process 
 **using the least amount of administrative effort**.
@@ -4909,29 +5101,29 @@ Whcich **two** action should you perform?
 - add a generate release notes task to the release pipeline
 
 The details for the **Generate Release Notes cross-platform extension** are below in the references.
-However, in summary this tool is used to make a diff of the work doen in a release by using the
+However, in summary, this tool is used to make a diff of the work done in a release by using the
 same Azure Boards API that is used by Azure Boards.
-**You can use a template to retrieve the related WIs and customize the release notes summary**
+**You can use a template to retrieve the related WIs and customize the release notes summary**.
 
 There is also an alternative to this:
 - add a generate release notes task to the release pipeline  
 [Generate Release Notes](https://marketplace.visualstudio.com/items?itemName=SpeedTechSolutions.GenerateReleaseNotes)  
 
-This Extension is used to Generate Release Notes based on difference in Commits and WorkItems between two BuildId's
+This Extension is used to Generate Release Notes based on difference in Commits and WorkItems between two Build Id's
 
 ---
 
 The remaining options do not apply in this case.
 
 - install the Generate Release Notes extension from the Visual Studio Marketplace
-This this referers tio the **Powershell** version in the reference below and it is **deprecated**.
+This this referers to the **Powershell** version in the reference below and it is **deprecated**.
 This **would only work on Windows agents and not in Linux agents** as it is required in this case.
 
 - create a **managed query in Azure Boards**
 You may as well create the query in Azure Board that filters the WIs in the release.
 However, it does not by itself create the RNs and therefore it requires additional 
 administrative effort.
-This option therefore vilolates one of the requitments of this question. 
+This option therefore violates one of the requitments of this question. 
 
 - use an Azure Function task to the release pipeline
 The same as the item above. You can do it but it requires far more administrative effort.
@@ -4967,30 +5159,33 @@ This Extension is used to Generate Release Notes based on difference in Commits 
 
 ### Question 69:
 
-
 Your company moves to development to Azure DevOps.
-**The build jobs rely on external devices**.
+**The build jobs relies on external devices**.
 
-You need to **build a secure pipeline by monitoring the health signals from external devices**.
+You need to **build a secure pipeline by monitoring** 
+**the health signals from external devices**.
 
 What should you do?
 
 - enable pre- and post- deployment release gate
-- use Azure REST API to send emnail alerts
-- use qustomized queries with Azure Monitor
+- use Azure REST API to send email alerts
+- use customized queries with Azure Monitor
 - add build pipeline devices to an availability set
 
 ---
 
 ### Answer:
+
 - enable pre- and post- deployment release gate
 
 This option allows the build process to monitor the health of external devices
 that may be needed before or after the build is finished.
 
-Gates are used to **check the state of exteranl services** or **Azure Monitor** alerts or health signals.
-On the basis  of the outcome of these checks it is determined whether the stage tasks should be 
-executed or not.
+Gates are used to **check the state of exteranl services** or **Azure Monitor** 
+alerts or health signals.
+
+On the basis  of the outcome of these checks it is determined whether the stage
+tasks should be executed or not.
 
 ---
 
