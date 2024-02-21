@@ -6391,8 +6391,10 @@ o deploy an Azure Resource Manager (ARM) template that installs the Azure Pipeli
 
 You manage a Azure Web App.
 
-You need to implement a **release pipeline** for a **blue/green deployment** using **deplyment slots**.
-Your solution **must minimize administrative effort and application downtime** during the deployment.
+You need to implement a **release pipeline** for a **blue/green deployment** 
+using **deplyment slots**.
+Your solution **must minimize administrative effort and application downtime**
+ during the deployment.
 
 Which **five actions**  should you perform?
 Arrange the actions in any order.
