@@ -7611,7 +7611,7 @@ It provides insights into which tasks have failed and have contributed to failur
 The **pipeline pass rate report consist of three sections**:
 
 1. Summary:
-this provides a summary of the key rare metrics for the pipeline over a specific time range.
+this provides a summary of the key metrics for the pipeline over a specific time range.
 
 2. Failure trend:
 this provides the number of pipeline failures per day.
@@ -7652,10 +7652,10 @@ Your company uses Azure DevOps Services to build, release an manage large custom
 You manage a team of developers and you aim at increasing their productivity by helping them to find
 **real problems** in the code under development.
 
-YOU need to use a pipeline test to test different outcomes such as pass of fail.
+You need to use a pipeline test to test different outcomes such as pass of fail.
 The data should be available for all pipelines for a given branch.
 
-Which pepeline test should you use?
+Which pipeline test should you use?
 
 - UI testing
 - Parallel testing
@@ -7698,19 +7698,23 @@ Flaky tests present a barrier to finding real problems, since the failures often
 A flaky test is a test that provides different outcomes, such as pass or fail, even when there are no changes in the source
 code or execution environment. Flaky tests also impact the quality of shipped code
 
+### Test Impact Analysis (TIA)
+
 [Speed up testing by using Test Impact Analysis (TIA)](https://learn.microsoft.com/en-us/azure/devops/pipelines/test/test-impact-analysis?view=azure-devops)  
 
 As the codebase grows and matures, its regression test suite tends to grow as well - to the extent that running a full regression test might require hours.
 This slows down the frequency of integrations, and ultimately defeats the purpose of continuous integration. 
-In order to have a CI pipeline that completes quickly, some teams defer the execution of their longer running tests to a separate stage in the pipeline.
+In order to have a CI pipeline that completes quickly, some teams defer the execution of their longer running
+tests to a separate stage in the pipeline.
 However, this only serves to further defeat continuous integration.
 
 Instead, enable Test Impact Analysis (TIA) when using the **Visual Studio Test task in a build pipeline**. 
 **TIA performs incremental validation by automatic test selection**. 
 **It will automatically select only the subset of tests required to validate the code being committed**. 
-For a given code commit entering the CI/CD pipeline, TIA will select and run only the relevant tests required to validate that commit. 
-Therefore, that test run will complete more quickly, if there is a failure you will get to know about it sooner, and because it is all
-scoped by relevance, analysis will be faster as well.
+For a given code commit entering the CI/CD pipeline, TIA will select and run only the relevant tests 
+required to validate that commit. 
+Therefore, that test run will complete more quickly, if there is a failure you will get to know about
+it sooner, and because it is all scoped by relevance, analysis will be faster as well.
 
 ---
 
