@@ -2,10 +2,6 @@
 
 [AZ-400-renewal-20250418](https://learn.microsoft.com/en-us/collections/ypzkt537gz56z5)    
 
-> Modules: 
-
-[Manage alerts, blameless retrospectives and a just culture](https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/)
-
 ---
 
 ## Q00X:
@@ -13,4 +9,928 @@
 ## Answer:
 ---
 ## References:
+
+---
+
+> Modules: 
+
+[Automate inspection of health](https://learn.microsoft.com/en-us/training/modules/automate-inspection-health/)  
+[Automatisieren der Integritätsprüfung](https://learn.microsoft.com/de-de/training/modules/automate-inspection-health/)
+7%
+
+[Design and implement branch strategies and workflows](https://learn.microsoft.com/en-us/training/modules/manage-git-branches-workflows/)  
+28%
+
+[Learn continuous integration with GitHub Actions](https://learn.microsoft.com/en-us/training/modules/learn-continuous-integration-github-actions/)    
+100%
+
+[Security Monitoring and Governance](https://learn.microsoft.com/en-us/training/modules/security-monitoring-and-governance/) 
+84%
+
+[Manage alerts, blameless retrospectives and a just culture](https://learn.microsoft.com/en-us/training/modules/manage-alerts-blameless-retrospectives-just-culture/)
+14%
+
+---
+## Q00X:
+---
+## Answer:
+---
+## References:
+
+---
+
+> Module:
+
+[Automate inspection of health](https://learn.microsoft.com/en-us/training/modules/automate-inspection-health/)  
+[Automatisieren der Integritätsprüfung](https://learn.microsoft.com/de-de/training/modules/automate-inspection-health/)
+7%
+
+# Assesment 20250209
+
+---
+
+## Q02X:
+
+---
+## Answer:
+
+---
+## References:
+
+---
+
+## Q025:
+
+You plan to create a YAML Azure Pipelines build pipeline that will use Azure virtual machines 
+from your Azure subscription as build agents.
+
+Which YAML schema elements must you include in the YAML build pipeline?
+
+Select only one answer.
+
+- environment
+- pool name
+- pool visage
+- server
+
+---
+## Answer:
+- pool name
+
+When using Azure virtual machines as build agents in Azure Pipelines, you need to specify the agent pool that these VMs belong to.  
+The pool section in your YAML pipeline definition is where you define the pool and its properties, and the name property within 
+the pool section specifies the name of the agent pool (which contains your VMs).  
+This is the essential element.
+
+---
+## References:
+
+---
+
+## Q024:
+
+You are configuring an on-premises build machine for use with Azure Pipelines. 
+The build machine is located in a highly restricted network location.
+
+You need to ensure that the required outbound port is available for the 
+connection from the build machine to Azure Pipelines.
+
+Which port should you open?
+
+Select only one answer.
+
+- 80
+- 81
+- 443
+- 8081
+
+---
+## Answer:
+- 443
+
+Azure Pipelines communication relies on HTTPS, which uses port 443.  
+This is the standard port for secure web traffic and is essential for the build machine to communicate with Azure DevOps services.
+
+---
+## References:
+
+---
+
+## Q023:
+
+You have a project in Azure DevOps named Project1. 
+Project1 contains a self-hosted agent pool named Pool1.
+
+You deploy an Azure virtual machine named VM1 that runs Linux Ubuntu 18.04.
+
+You need to add VM1 to Pool1.
+
+Which authentication method should you use?
+
+Select only one answer.
+
+- a managed identity in Microsoft Azure Active Directory (Azure AD), part of Microsoft Entra
+- a personal access token
+- a service principal in Microsoft Azure Active Directory (Azure AD), part of Microsoft Entra
+- SSH keys
+
+---
+## Answer:
+- a personal access token
+
+When configuring a self-hosted agent on a machine like VM1 to connect to an Azure DevOps agent pool (like Pool1), you use a Personal Access Token (PAT) for authentication.  The PAT is created in Azure DevOps and provides the necessary credentials for the agent to register with the pool.
+
+---
+## References:
+
+---
+
+## Q022:
+
+You are using Azure Pipelines to manage building an app.
+
+You need to run a server job directly on Azure DevOps.
+
+Which job type should you implement?
+
+Select only one answer.
+
+- an agent pool job
+- an agentless job
+- a container job
+- a virtual machine job
+
+---
+## Answer:
+- an agentless job
+
+Agentless jobs run directly on the Azure DevOps server and do not require an agent to be provisioned or managed.  
+They are suitable for tasks that don't need a full virtual machine environment, such as simple scripts or interacting 
+with Azure DevOps APIs.  
+
+While other job types could be used, agentless jobs are the most direct and efficient way to run a job directly 
+on the Azure DevOps server itself.
+
+---
+## References:
+
+---
+
+## Q021:
+
+You are configuring GitHub Packages to access a NuGet registry.
+
+Which authentication method should you use?
+
+Select only one answer.
+
+- Basic
+- Certificate
+- OAuth
+- PAT
+
+---
+## Answer:
+
+You should use a PAT (Personal Access Token).  
+
+GitHub Packages uses PATs for authentication when accessing NuGet registries (and other package registries it hosts).  
+You create a PAT with the appropriate scopes (permissions) and then use that PAT as your password or API key when 
+NuGet authenticates with GitHub Packages.
+
+
+
+---
+## References:
+
+
+---
+
+## Q020:
+
+You need to configure GitHub Packages to access a NuGet registry.
+
+Which two actions should you perform?
+
+Select all answers that apply.
+
+- Add a PAT to the Username key in the file.
+- Add GitHub Packages to packageSources.
+- Create a .npmrc file.
+- Create a nuget.config file.
+
+
+---
+## Answer:
+
+- Add GitHub Packages to packageSources. 
+
+This tells NuGet where to find your GitHub Packages registry. 
+You'll specify the URL for your GitHub Packages NuGet feed within the packageSources section.
+
+- Create a nuget.config file. 
+
+The nuget.config file is where you configure NuGet, including the packageSources (where GitHub Packages is) 
+and any API keys or credentials needed.
+
+While a PAT (Personal Access Token) is required for authentication, it's not added directly to a file named "Username key". 
+Instead, it's typically used as the password/API key when NuGet authenticates with GitHub Packages.  
+It's associated with the packageSource entry in nuget.config.  .npmrc is for npm (Node.js) packages, not NuGet.
+
+---
+## References:
+
+---
+
+## Q019:
+
+You need to delete an entire organization-scoped package that has been uploaded to GitHub Packages.
+
+Which setting area should you use?
+
+Select only one answer.
+
+- Danger Zone
+- Manage versions
+- Organization settings
+- Repository settings
+
+---
+## Answer:
+- Organization settings
+
+Organization-scoped packages are managed at the organization level, not the repository level.  
+Therefore, you'll find the settings related to deleting an entire organization-scoped package 
+within the organization's settings in GitHub.  
+
+The "Danger Zone" is often where destructive actions like deletion are located, but it would 
+be within the organization settings.
+
+---
+## References:
+
+---
+
+## Q018:
+
+You accidentally delete a package from GitHub Packages.
+
+What is the maximum number of days that you have to restore the package?
+
+Select only one answer.
+
+- 30
+- 60
+- 90
+- 120
+
+---
+## Answer:
+- 30
+
+---
+## References:
+
+---
+
+## Q017:
+
+You are configuring access permissions for a package in GitHub Packages.
+
+You need to ensure that a user named User1 can upload, download, and manage 
+permissions for the package. 
+
+The solution must follow the principle of least privilege.
+
+Which permission level should you assign to User1?
+
+Select only one answer.
+
+- admin permission
+- both Read and Write permissions
+- only Read permission
+- only Write permission
+
+---
+## Answer:
+- both Read and Write permissions
+
+While "admin permission" would grant the necessary access, it violates the principle of least privilege by granting more permissions than are required.  User1 needs to upload (write), download (read), and manage permissions.  "Read and Write" covers all three of these.  "Read" or "Write" alone are insufficient.
+
+---
+## References:
+
+---
+
+## Q016:
+
+You plan to use GitHub Packages to centralize the management of external packages.
+
+Which two of the following package registry types can be hosted by GitHub Packages?
+
+Select all answers that apply.
+
+- Artifactory
+- Conda
+- Gradle
+- NuGet
+
+---
+## Answer:
+
+- Conda
+- NuGet
+
+GitHub Packages supports a variety of package registry types, including those for popular package managers 
+like npm, RubyGems, Maven, Gradle, Docker, and the two listed above: Conda and NuGet.
+
+---
+## References:
+
+
+---
+
+## Q015:
+
+You are building an app in a GitHub repository and deploying the app using Actions.
+
+You need to collect health signals from external services and automatically prevent 
+deployment if any of the services do not respond within a configured period.
+
+What should you use?
+
+Select only one answer.
+
+- an approval
+- a release gate
+- a service hook
+- a subscription
+
+---
+## Answer:
+- a release gate
+
+Release gates in GitHub Actions allow you to define conditions that must be met before a deployment can proceed.  
+You can configure release gates to check the status of external services (health signals) and automatically block 
+the deployment if those checks fail (e.g., a service doesn't respond within the configured period). This is precisely what you need to prevent deployments based on external service health.
+
+Why the other options are not the best fit:
+
+An approval: 
+Approvals require manual intervention. While you could use approvals in conjunction with other checks, they don't automate the health signal collection and automatic blocking based on timeouts.
+
+A service hook: 
+Service hooks are used to trigger actions in response to events. While you could potentially use a service hook to notify you of a service outage, they don't directly prevent deployments in the way release gates do. They are more for notification/integration.
+
+A subscription: 
+Subscriptions are related to billing and resource access within Azure (or other cloud providers). They have no direct role in controlling deployments based on external service health checks.
+
+---
+## References:
+
+---
+
+## Q014:
+
+You are creating a project wiki in an Azure DevOps project. 
+The wiki will include process diagrams.
+
+You need to ensure that the diagrams are version-controlled
+and support merging in pull requests. 
+
+The solution must minimize effort.
+
+Which format should you use for the process diagrams?
+
+Select only one answer.
+
+- Mermaid
+- PDF
+- PNG
+- Word
+
+---
+## Answer:
+- Mermaid
+
+Mermaid is a diagramming and charting tool that uses text-based descriptions to generate and render diagrams.  Because the diagrams are defined in plain text, they can be easily version-controlled in Git alongside your code.  Mermaid diagrams are also diffable, making it easier to see changes in pull requests and resolve merge conflicts.  This directly addresses the requirements of version control and merging with minimal effort.
+
+Why other formats are less suitable:
+
+PDF, PNG: 
+These are binary formats and are not easily diffable or mergeable in a text-based version control system like Git. Changes to diagrams in these formats are hard to track and merge conflicts are difficult to resolve.
+
+Word: 
+Word documents are also binary and while they can be diffed, the process is complex and doesn't provide the clean, semantic diffing that text-based formats like Mermaid offer. Merging is also cumbersome.
+
+---
+## References:
+
+---
+
+## Q013:
+
+You use GitHub for code source control.
+
+You need to ensure that any changes by users to the main branch pass validation checks before being merged.
+
+What should you use?
+
+Select only one answer.
+
+- branch protection rules
+- feature branches
+- GitHub Advanced Security
+- trunk-based development
+
+---
+## Answer:
+- branch protection rules
+
+Branch protection rules in GitHub allow you to enforce various requirements on specific branches, including the main branch.  You can require pull requests, status checks, code owner reviews, and other validations before changes can be merged.  This ensures that all changes are properly reviewed and tested before they become part of the main branch.
+
+Why the other options are not the primary solution for this specific need:
+
+Feature branches: 
+Feature branches are a good development practice, but they don't enforce validation checks. You still need branch protection rules to enforce checks on the target branch (like main) when merging feature branches.
+
+GitHub Advanced Security: 
+GitHub Advanced Security focuses on identifying security vulnerabilities in your code. While it can be integrated with your workflow to block merges if vulnerabilities are found, it's not the general-purpose solution for all kinds of validation checks (e.g., code style, unit tests). It's a type of check you might include as part of branch protection.
+
+Trunk-based development: 
+Trunk-based development encourages frequent commits directly to the main branch. While it can be used with CI/CD, it doesn't inherently provide a mechanism for enforcing validation checks before merges. You would still need branch protection rules on your trunk (main) branch.
+
+---
+## References:
+
+
+---
+
+## Q012:
+
+You are developing a public open-source project by using GitHub.
+
+You need to ensure that only the project maintainer can push to the official repository.
+
+Which type of branching workflow should you implement?
+
+Select only one answer.
+
+- trunk-based
+- GitHub flow
+- feature branch
+- forking
+
+---
+## Answer:
+
+- forking
+Forking is the standard way to contribute to open-source projects on GitHub.  
+Contributors fork the official repository, create their changes in their fork, and then submit a pull request to the maintainer's repository.  The maintainer can then review the changes and merge them into the official repository if they are accepted. This ensures that only the maintainer has direct push access to the main branch of the official repository.
+
+Why the other options are less suitable for this specific requirement in an open-source context:
+
+Trunk-based: 
+Trunk-based development involves frequent commits directly to the main branch (trunk). This is generally not suitable for public open-source projects where you want to control who can directly modify the main branch.
+
+GitHub flow: 
+GitHub flow is a lightweight branching strategy, but it still typically involves pushing branches to the main repository for review. In a public open-source project, you want to restrict direct pushes to the main repository.
+
+Feature branch: 
+Feature branching is a good practice, but it doesn't inherently restrict who can push to the main repository. In a collaborative project, multiple developers might have push access to the main repository, even with feature branches. Forking provides the necessary isolation and control for open-source.
+
+---
+## References:
+
+---
+
+## Q011:
+
+You are developing code releases in GitHub.
+
+You need to mark a specific point in the history of a repository as the releases are created.
+
+What should you use?
+
+Select only one answer.
+
+- Actions
+- Environment Variables
+- Tags
+- Webhooks
+
+---
+
+## Answer:
+- Tags
+
+Tags are specifically designed to mark specific points in a repository's history.  They are lightweight and act like immutable pointers to a particular commit.  This makes them ideal for marking releases, as they provide a clear and persistent reference to the code that was shipped in that release.
+
+Why the other options are not the best fit:
+
+Actions: 
+GitHub Actions automate workflows, but they don't inherently mark releases. You would likely use an Action to create a tag as part of your release process, but the Action itself isn't the marking mechanism.
+
+Environment Variables: 
+Environment variables store values that can be used within your code or workflows. They are not used for marking specific points in history.
+
+Webhooks: 
+Webhooks trigger actions in response to events. While you could use a webhook to notify other systems about a release, they don't themselves mark the release point in the repository's history.
+
+---
+
+## References:
+
+---
+
+## Q010:
+
+You have a GitHub workflow that deploys an Azure web app. 
+The workflow is configured to trigger a deployment following 
+a pull request that includes a label.
+
+You plan to configure the pull request of the workflow to 
+trigger the deployment only if the label is set to a string of "stage".
+
+The workflow includes the following section.
+
+if: contains(<missing element>.event.pull_request.labels.*.name, 'stage')
+
+What should you add for the missing element of the workflow?
+
+Select only one answer.
+
+- action
+- github
+- name
+- workflow
+
+---
+## Answer:
+- github
+
+The expression `github.event.pull_request.labels.*.name` correctly accesses the names of the labels on the pull request.  github is the context object that provides access to information about the workflow run and the triggering event.
+
+---
+## References:
+
+---
+
+## Q009:
+
+You plan to add a job to a GitHub workflow that will deploy a container-based web app to Azure Web Apps.
+
+You need to ensure that a previous job in the workflow completes successfully before the new job can run.
+
+Which GitHub workflow element should you add to the workflow?
+
+Select only one answer.
+
+- contains
+- needs
+- runs-on
+- uses
+
+---
+## Answer:
+- needs
+
+The needs keyword in a GitHub Actions workflow allows you to define dependencies between jobs. By specifying that your deployment job needs a previous job, you ensure that the deployment job will only start after the preceding job has completed successfully.  If the previous job fails, the deployment job will be skipped.
+
+---
+## References:
+
+[Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions)  
+
+[jobs.<job_id>.needs](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idneeds)
+
+Use jobs.<job_id>.needs to identify any jobs that must complete successfully before this job will run. 
+
+---
+
+## Q008:
+
+You plan to configure a GitHub workflow that will deploy 
+a container-based web app to Azure Web Apps.
+
+You need to automate Azure-related tasks.
+
+What should you add to the workflow?
+
+Select only one answer.
+
+- a GitHub Marketplace action
+- a job condition
+- a workflow trigger
+- an Azure Marketplace item
+
+---
+
+## Answer:
+- a GitHub Marketplace action
+
+GitHub Marketplace actions provide pre-built, reusable components for your workflows.  There are specific Azure actions available that allow you to automate various Azure tasks, such as deploying to Web Apps, managing resources, and more.  These actions simplify the process of interacting with Azure from your GitHub workflow.
+
+Why the other options are not the primary solution for automating Azure tasks:
+
+A job condition: 
+Job conditions control when a job in your workflow runs (e.g., based on branch, tags, etc.). While important for workflow logic, they don't provide the actual Azure automation functionality.
+
+A workflow trigger: 
+Workflow triggers define when a workflow runs (e.g., on push, pull request, schedule). They initiate the workflow but don't perform the Azure tasks themselves.
+
+An Azure Marketplace item: 
+Azure Marketplace items are software and services offered for use within Azure. They aren't directly related to automating Azure tasks from a GitHub workflow. You might deploy an Azure Marketplace item using a GitHub workflow and an Azure action, but the marketplace item itself isn't the automation mechanism.
+
+
+---
+## References:
+
+---
+
+## Q007:
+
+You use pipelines to deploy Azure infrastructure.
+
+You plan to configure an Azure policy to ensure that automatic 
+remediation occurs if an Azure SQL database is created without 
+Transparent Data Encryption (TDE).
+
+Which policy definition effect should you use?
+
+Select only one answer.
+
+- auditIfNotExists
+- deployIfNotExists
+- deny
+- modify
+
+---
+## Answer:
+- deployIfNotExists
+
+The deployIfNotExists effect is specifically designed for scenarios where you want to automatically deploy or modify resources to bring them into compliance.  In this case, if an Azure SQL database is created without TDE, the policy will automatically deploy the necessary configuration to enable TDE.  This is exactly what automatic remediation requires.
+
+Why the other options are not suitable:
+
+auditIfNotExists: 
+This effect audits resources that don't meet the policy criteria but doesn't automatically remediate them. It just reports the non-compliance.
+
+deny: 
+This effect prevents the creation or modification of resources that don't meet the policy criteria. While this can enforce TDE, it doesn't automatically enable it on existing non-compliant databases. You'd have to manually remediate.
+
+modify: 
+This effect allows you to modify properties of existing resources. While you could use modify to enable TDE, deployIfNotExists is generally preferred for adding missing configurations, as it can handle more complex scenarios than just modifying a property. It can also deploy related resources if needed. deployIfNotExists is the more purpose-built effect for this scenario.
+
+---
+
+## References:
+
+
+---
+
+## Q006:
+
+You are applying Azure Policy to Azure resources.
+
+You must define a policy assignment.
+
+Which type of file should you create?
+
+Select only one answer.
+
+- an XML document
+- a JSON document
+- a CSV file
+- a TSV file
+
+---
+## Answer:
+- a JSON document
+
+Azure Policy definitions and assignments are defined using JSON.  This is the standard format for working with Azure resources and services programmatically.
+
+---
+
+## References:
+---
+
+---
+
+## Q005:
+
+You have integrated Microsoft Defender for Cloud into your 
+workflows and are developing an incident response plan.
+
+You plan to launch a change management process when a 
+relevant event occurs by using workflow automation in 
+Microsoft Defender for Cloud.
+
+What should you create first?
+
+Select only one answer.
+
+- an Azure logic App
+- an Azure function
+- an Azure Data Factory pipeline
+- an Azure Automation runbook
+
+---
+
+## Answer:
+- an Azure logic App
+
+Logic Apps are specifically designed for workflow automation and integration with various services, including Microsoft Defender for Cloud.  They offer a visual designer, pre-built connectors for many Azure services, and can easily trigger actions based on Defender for Cloud alerts and events.  While other options could be used, Logic Apps are the most straightforward and appropriate tool for this scenario.
+
+Why the other options are less suitable as a first step:
+
+Azure Function: 
+Azure Functions are great for serverless compute and can be used within a Logic App. However, you'd typically create the Logic App first and then call a Function from it if you need custom code logic. The Logic App handles the workflow orchestration.
+
+Azure Data Factory pipeline: 
+Data Factory pipelines are designed for data integration and transformation. While they have some orchestration capabilities, they are not the best fit for general-purpose workflow automation triggered by Defender for Cloud alerts.
+
+Azure Automation runbook: 
+Automation runbooks are good for automating Azure management tasks. Again, they can be integrated into a Logic App, but the Logic App would be the primary workflow orchestrator. Logic Apps provide easier integration with Defender for Cloud for this purpose.
+
+---
+## References:
+
+
+---
+
+## Q004:
+
+You manage five Azure subscriptions.
+
+You need to ensure that all automated deployments via Azure Pipelines 
+can proceed only if security vulnerabilities are NOT present in the code.
+
+What should you use?
+
+Select only one answer.
+
+- Azure Policy
+- GitHub Advanced Security for Azure DevOps
+- management group
+- Microsoft Defender For Cloud
+
+
+---
+## Answer:
+- GitHub Advanced Security for Azure DevOps
+
+GitHub Advanced Security for Azure DevOps integrates directly with Azure Pipelines and is specifically designed to find security vulnerabilities in your code before it gets deployed.  It can scan your code for secrets, dependencies with known vulnerabilities, and other security issues, and can be configured to block deployments if vulnerabilities are found.
+
+Why the other options aren't the best fit:
+
+Azure Policy: 
+Azure Policy is used to enforce compliance on Azure resources themselves (e.g., allowed SKUs, regions, tags). It doesn't directly scan application code for vulnerabilities. It's useful for governing the environment the code runs in, not the code itself.
+
+Management group: 
+Management groups help you organize and manage Azure subscriptions. They are a hierarchical structure for applying policies and permissions, but they don't provide code scanning capabilities. They manage access and governance not code.
+
+Microsoft Defender for Cloud: 
+Microsoft Defender for Cloud focuses on the security of your Azure resources (VMs, storage, etc.) and provides threat detection. While it can identify vulnerabilities in running applications, it doesn't typically perform static code analysis during the CI/CD pipeline like GitHub Advanced Security does. It's more about runtime security.
+
+---
+## References:
+
+---
+
+## Q003:
+
+Users complain that the pages in your application are loading too slowly.
+
+You suspect that an external web service called by your application is responding slowly.
+
+You need to validate whether the application performance issue is related to slow 
+response times from the external web service.
+
+What should you do first?
+
+Select only one answer.
+
+- Add an alert to a performance metric in Azure Monitor.
+- Migrate the service to a different region.
+- Set up availability tests.
+- Set up dependency tracking.
+
+---
+
+## Answer:
+- Set up dependency tracking.
+
+Dependency tracking in Azure Monitor specifically helps you understand the performance of external dependencies, such as the web service you suspect.  It will show you the response times of calls to that service, allowing you to directly validate whether it's the source of the slow page loads.
+
+Why the other options are not the best first step:
+
+Add an alert to a performance metric in Azure Monitor: 
+While alerts are useful, they are a reactive measure. You want to diagnose the problem first, and then set up alerts to be notified if the problem reoccurs. You don't yet know which metric to alert on.
+
+Migrate the service to a different region: 
+Migrating the service is a drastic step and should only be considered after you've confirmed that the service is indeed the bottleneck and that region is a contributing factor. Premature migration could be costly and might not even solve the problem.
+
+Set up availability tests: 
+Availability tests check if your application is up and running from different locations. While important, they don't give you detailed performance information about specific dependencies. They tell you if the site is reachable, not how fast components are responding. They would be a useful secondary step, once you've identified the slow dependency.
+
+---
+
+## References:
+
+
+---
+
+## Q002:
+
+You are developing a process for blameless retrospectives.
+
+What are three pieces of information that you should gather as part of 
+a blameless retrospective process?
+
+Select all answers that apply.
+
+- Assumptions made by the team.
+- Effects that were observed.
+- Justification for user actions.
+- Timeline of events that occurred.
+
+---
+
+## Answer:
+
+- Assumptions made by the team.
+- Effects that were observed.
+- Timeline of events that occurred.
+
+
+Assumptions made by the team: 
+Understanding the assumptions that guided decisions and actions is crucial. Incorrect or unexamined assumptions can be a root cause of issues, and identifying them helps the team learn and improve.
+
+Effects that were observed: 
+Documenting the actual consequences of actions, both positive and negative, provides a clear picture of what happened. This should be objective and factual, focusing on the impact rather than assigning blame.
+
+Timeline of events that occurred: 
+A chronological sequence of events helps the team understand the context and how different factors contributed to the outcome. This provides a shared understanding of the situation and helps identify potential points of intervention.
+
+- Justification for user actions.
+
+is not a good fit for a blameless retrospective.  Focusing on justifications tends to lead back to assigning blame or defensiveness, which defeats the purpose of a blameless process.  The goal is to understand what happened and why, not to judge whether actions were right or wrong.  Understanding the context that led to user actions is valuable, but not by asking for justifications.
+
+---
+## References:
+---
+
+
+---
+
+## Q001:
+
+You have a globally distributed Azure web app named WebApp1 
+that is configured for Azure Application Insights.
+
+You receive a Smart Detection-generated alert regarding an issue 
+with WebApp1 that results in an exception every time users in
+Singapore open a specific page.
+
+You need to verify whether the issue is limited to specific regions.
+
+What should you do?
+
+- Configure availability tests.
+- Configure user flows.
+- Modify the Smart Detection rules.
+- Update the Application map components.
+
+---
+## Answer:
+- Configure availability tests.
+
+Availability tests allow you to proactively monitor the availability 
+and responsiveness of your web application from various geographic 
+locations. 
+
+By setting up availability tests specifically targeted at Singapore,
+and potentially other regions, you can quickly confirm if the issue 
+is isolated to that region or if it's affecting users elsewhere. 
+
+These tests simulate real user requests and can detect failures, including exceptions, from those locations.
+
+Why the other options are not the best fit:
+
+Configure user flows: 
+
+User flows (formerly called web tests) are excellent for testing complex user scenarios, but they are more focused on end-to-end functionality and less on isolating regional issues. While they could help, availability tests are a more direct and efficient way to confirm regional impact.
+
+Modify the Smart Detection rules: 
+
+Smart Detection rules are designed to automatically detect anomalies and failures. Modifying them won't help you isolate the regional scope of an existing issue. Smart Detection has already alerted you; now you need to investigate the scope.
+
+Update the Application map components: 
+
+The Application Map visually represents the components of your application and their interactions. While useful for understanding the architecture and dependencies, it won't directly help you pinpoint the regional scope of an exception. It's a helpful diagnostic tool after you've identified the problem area, but not for initial regional isolation.
+
+---
+## References:
+
 ---
